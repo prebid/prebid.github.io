@@ -66,7 +66,7 @@ Publishers can use Prebid Server in any of the following ways with Consumable. C
 
 ### Supported media types
 
-The following table lists the media types that Consumable supports. For information about the the Time-To-Live (TTL) for each media type, see [How Consumable counts impressions](https://kb.Consumableexchange.com/publishers/billing/how_Consumable_counts_impressions.htm) in our Knowledge Base.
+The following table lists the media types that Consumable supports.
 
 {: .table .table-bordered .table-striped }
 
@@ -156,7 +156,7 @@ To add Consumable as a bidder:
 
 ### Bid request parameters
 
-For a list of the OpenRTB fields that Consumable supports in bid requests, see [List of supported OpenRTB bid request fields for sellers](https://kb.Consumableexchange.com/publishers/openrtb_integration/list_of_supported_openrtb_bid_request_fields_for_sellers.htm#List_of_supported_OpenRTB_bid_request_fields_for_sellers). The following are the required fields for the various supported media types.
+For a list of the OpenRTB fields that Consumable supports in bid requests, see [List of supported OpenRTB bid request fields for sellers](https://iabtechlab.com/wp-content/uploads/2022/04/OpenRTB-2-6_FINAL.pdf). The following are the required fields for the various supported media types.
 ### Site (Banner, Video, Audio)
 
 You must include these parameters at the bidder level.

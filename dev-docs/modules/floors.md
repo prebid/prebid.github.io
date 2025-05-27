@@ -58,6 +58,57 @@ Notes:
 * [Prebid Floor Service Providers](/dev-docs/modules/floors.html#floors-providers)
 * [Transcript of this video](/dev-docs/floors-video-overview.html)
 
+### Simple Static Floor Signaling
+
+Some publishers just want to set a simple static floor and don't need enforcement. Please don't use this module for that. This module should only be used when you need to vary the floor by mediatype, size, etc. Here's how you can signal static floors on each Prebid adunit:
+
+```javascript
+pbjs.addAdUnits({
+    code: "test-div",
+    mediaTypes: {
+        banner: {
+            sizes: [[300,250]]
+        }
+    },
+    ortb2Imp: {
+        bidfloor: 1.00,
+        bidfloorcur: "EUR"
+    },
+    // ...
+});
+```
+
+### Simple Static Floor Enforcement
+
+If you need a static floor signal and also want to enforce that static floor, here's the quick start:
+
+```javascript
+ var adUnits = [
+         {
+             code: 'test-div',
+             mediaTypes: {
+                 banner: { sizes: [[300,250],[300,600]] }
+             },
+             floors: {
+                 currency: 'USD',
+                 schema: {
+                     delimiter: '|',
+                     fields: [ 'mediaType' ]
+                 },
+                 values: {
+                     '*': 1.00      // enter your static floor here
+                 }
+             },
+             bids: [
+                 ...
+             ]
+         }
+     ];
+```
+
+{: .alert.alert-warning :}
+Prebid does not recommend setting static floors. They are blunt tools and you'll forget to update them.
+
 ## How it Works
 
 There are several places where the Floor module changes the behavior of the Prebid.js auction process. Below is a diagram describing the general flow of the client-side Price Floors Module:
@@ -298,10 +349,13 @@ Schema 1 restricts floors providers or publishers to applying only one data grou
 Note: if you're a dynamic floor provider service, your response must be
 a subset that will be merged under the 'data' object.
 
+{: .alert.alert-warning :}
+You **cannot** set the `floorMin` parameter without specifying a `data` object. See the [simple static floor](/dev-docs/modules/floors.html#simple-static-floors) section above for more info.
+
 {: .table .table-bordered .table-striped }
 | Param | Type | Description | Default |
 |---+---+---+---+---|
-| floorMin | float | The mimimum CPM floor used by the Price Floors Module (as of 4.13). The Price Floors Module will take the greater of floorMin and the matched rule CPM when evaluating getFloor() and enforcing floors. | - |
+| floorMin | float | The mimimum CPM floor used by the Price Floors Module (as of 4.13). The Price Floors Module will take the greater of floorMin and the matched rule CPM when evaluating getFloor() and enforcing floors. **Note**: this is not a method of setting a [static floor](/dev-docs/modules/floors.html#simple-static-floors). | - |
 | floorProvider | string | Optional atribute (as of prebid version 4.1) used to signal to the Floor Provider's Analytics adapter their floors are being applied. They can opt to log only floors that are applied when they are the provider. If floorProvider is supplied in both the top level of the floors object and within the data object, the data object's configuration shall prevail.| - |
 | enforcement | object | Controls the enforcement behavior within the Price Floors Module.| - |
 | skipRate | integer | skipRate is a random function whose input value is any integer 0 through 100 to determine when to skip all floor logic, where 0 is always use floor data and 100 is always skip floor data. The use case is for publishers or floor providers to learn bid behavior when floors are applied or skipped. Analytics adapters will  have access to model version (if defined) when skipped is true to signal the Price Floors Module is in floors mode. If skipRate is supplied in both the root level of the floors object and within the data object, the skipRate configuration within the data object shall prevail. | 0 |
@@ -354,10 +408,13 @@ While some attributes are common in both schema versions, for completeness, all 
 Note: if you're a dynamic floor provider service, your response must be
 a subset that will be merged under the 'data' object.
 
+{: .alert.alert-warning :}
+You **cannot** set the `floorMin` parameter without specifying a `data` object. See the [simple static floor](/dev-docs/modules/floors.html#simple-static-floors) section above for more info.
+
 {: .table .table-bordered .table-striped }
 | Param | Type | Description | Default |
 |---+---+---+---+---|
-| floorMin | float | The mimimum CPM floor used by the module (as of 4.13). The module will take the greater of floorMin and the matched rule CPM when evaluating getFloor() and enforcing floors. | - |
+| floorMin | float | The mimimum CPM floor used by the module (as of 4.13). The module will take the greater of floorMin and the matched rule CPM when evaluating getFloor() and enforcing floors. **Note**: this is not a method of setting a [static floor](/dev-docs/modules/floors.html#simple-static-floors). | - |
 | floorMinCur | float | Prebid Server only: the currency used for the floorMin value. | - |
 | floorProvider | string | Optional atribute (as of prebid version 4.1) used to signal to the Floor Provider's Analytics adapter their floors are being applied. They can opt to log only floors that are applied when they are the provider. If floorProvider is supplied in both the top level of the floors object and within the data object, the data object's configuration shall prevail.| - |
 | skipRate | integer | skipRate is a random function whose input value is any integer 0 through 100 to determine when to skip all floor logic, where 0 is always use floor data and 100 is always skip floor data. The use case is for publishers or floor providers to learn bid behavior when floors are applied or skipped. Analytics adapters will  have access to model version (if defined) when skipped is true to signal the module is in floors mode. If skipRate is supplied in both the root level of the floors object and within the data object, the skipRate configuration within the data object shall prevail. | 0 |
@@ -1238,7 +1295,7 @@ Even if a publisher is using a floors provider, they may wish to provide additio
 
 1. default floor data if dynamic data fails to load on time
 2. global floorMin: allows the publisher to constrain dynamic floors with a global min
-3. impression-level floor min (PBJS 6.24+): allows the publisher to constrain dynamic floors with an adunit-specific value
+3. impression-level floor min (PBJS 6.24+): allows the publisher to constrain dynamic floors with an adunit-specific value. Specify this in `ortb2Imp.ext.prebid.floors.floorMin` (prior to Prebid.js 8 it was `ortb2Imp.ext.prebid.floorMin`).
 
 Here's an example covering the first two scenarios:
 
