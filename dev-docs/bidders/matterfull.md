@@ -17,8 +17,8 @@ deals_supported: true
 pbjs: false
 pbs: true
 pbs_app_supported: true
-fpd_supported: check with bidder
-ortb_blocking_supported: check with bidder
+fpd_supported: false
+ortb_blocking_supported: false
 multiformat_supported: will-not-bid
 ---
 
