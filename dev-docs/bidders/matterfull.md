@@ -3,9 +3,9 @@ layout: bidder
 title: Matterfull
 description: Matterfull Prebid Adapter
 biddercode: matterfull
-tcfeu_supported: check with bidder
-dsa_supported: check with bidder
-usp_supported: check with bidder
+tcfeu_supported: false
+dsa_supported: false
+usp_supported: false
 coppa_supported: true
 schain_supported: true
 floors_supported: true
