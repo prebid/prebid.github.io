@@ -19,9 +19,7 @@ pbs: true
 pbs_app_supported: true
 fpd_supported: check with bidder
 ortb_blocking_supported: check with bidder
-gvl_id: check with bidder
-multiformat_supported: no
-privacy_sandbox: check with bidder
+multiformat_supported: will-not-bid
 ---
 
 ### Bid Params
