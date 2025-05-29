@@ -12,7 +12,7 @@ floors_supported: true
 media_types: banner, video, native
 userIds: none
 prebid_member: false
-safeframes_ok: check with bidder
+safeframes_ok: false
 deals_supported: true
 pbjs: false
 pbs: true
