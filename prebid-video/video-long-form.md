@@ -35,7 +35,7 @@ To implement header bidding for long-form video start by [downloading Prebid.js]
 
 Before downloading, select the adapters you want to include. (You can add more adapters later.)
 
-- Include at least one video adapter. Find a list of available video adapters [here](/dev-docs/bidders.html#bidder-video-native).
+- Include at least one video adapter. Find a list of available video adapters in [the video bidders table](/dev-docs/bidders.html#bidder-video-native).
 - Include the [FreeWheel](/dev-docs/modules/freewheel.html) Ad Server module.
 - Include the [Category Translation](/dev-docs/modules/categoryTranslation.html) module.  
 - If you’ll be integrating with Prebid Server, be sure to include “Prebid Server” in the list of adapters.

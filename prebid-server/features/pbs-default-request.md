@@ -6,7 +6,7 @@ title: Prebid Server | Developers | Default Request
 
 # Server Based Global Default Request
 
-This allows a defaut stored request to be defined that allows the server to set up some defaults for all incoming requests. A request specified stored request will override these defaults, and of course any options specified directly in the stored request override both. The default stored request is only read on server startup, it is meant as an installation static default rather than a dynamic tuning option.
+This allows a default stored request to be defined that allows the server to set up some defaults for all incoming requests. A request specified stored request will override these defaults, and of course any options specified directly in the stored request override both. The default stored request is only read on server startup, it is meant as an installation static default rather than a dynamic tuning option.
 
 A common use case is to "hard code" aliases into the server. This saves having to specify them on all incoming requests, and/or on all stored requests. To help support automation and alias discovery we can flag that any aliases found in the file be added to the bidder info endpoints.
 
