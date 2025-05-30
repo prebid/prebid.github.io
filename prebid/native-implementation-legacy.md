@@ -52,6 +52,7 @@ This table summarizes how the 3 approaches work:
 **Table 1: Native Implementation Approaches**
 
 {: .table .table-bordered .table-striped }
+
 | Component | AdServer-Defined Creative Scenario | AdUnit-Defined Creative Scenario | Custom Renderer Scenario |
 | --- | --- |--- | --- |
 | Prebid.js | mediaTypes. native.sendTargetingKeys: false | sendTargetingKeys:false and mediaTypes.native.adTemplate contains ##macros## | sendTargetingKeys:false and mediaTypes.native.rendererUrl |
@@ -67,6 +68,7 @@ The Prebid.js AdUnit needs to defines a native mediatype object to tell bidders 
 **Table 2: Prebid.js AdUnit Native MediaType Options**
 
 {: .table .table-bordered .table-striped }
+
 | Attribute | Scope | Description | Example | Type |
 | --- | --- | --- | --- | --- |
 | sendTargetingKeys | optional | Defines whether or not to send the hb_native_ASSET targeting keys to the ad server. Defaults to `true` for now, though we recommend setting this to `false` and utilizing one of the ways to define a native template. | `false` | boolean |
