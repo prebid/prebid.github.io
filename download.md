@@ -33,7 +33,6 @@ a.tip:hover span {
 </style>
 
 <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
 <script src="/assets/js/download.js"></script>
 
 <style>
