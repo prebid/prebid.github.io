@@ -3,7 +3,8 @@ layout: bidder
 title: Conceptx
 description: Conceptx bidder adapter
 biddercode: conceptx
-tcfeu_supported: false
+tcfeu_supported: true
+gvl_id: 1340
 usp_supported: false
 coppa_supported: false
 schain_supported: false

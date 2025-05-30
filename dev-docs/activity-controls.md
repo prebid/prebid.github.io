@@ -235,7 +235,7 @@ If `allow` is not defined, the rule is assumed to assert **true** (i.e. allow th
 
 #### Always include a particular bidder in auctions
 
-This is similiar to the 'vendor exception' feature of the [TCF Control Module](/dev-docs/modules/tcfControl.html). This would always allow bidderA to participate in the auction, even without explicit consent in GDPR scenarios. It might indicate, for instance, that this is a 'first party bidder'.
+This is similar to the 'vendor exception' feature of the [TCF Control Module](/dev-docs/modules/tcfControl.html). This would always allow bidderA to participate in the auction, even without explicit consent in GDPR scenarios. It might indicate, for instance, that this is a 'first party bidder'.
 
 ```javascript
 pbjs.setConfig({

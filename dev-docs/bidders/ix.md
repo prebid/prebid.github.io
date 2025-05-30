@@ -69,6 +69,8 @@ Publishers can use Prebid.js to call Index Exchange (Index) in any of the follow
   * In the **Network** tab, search for requests sent to `casalemedia.com/cygnus` (from version 6.28.0 and earlier) or `casalemedia.com/openrtb/pbjs` (from version 6.29.0 and later). These are the bid requests sent to Index.
 * **Recommended Global Bidder settings:** For our adapter, Index recommends enabling local storage. As of Prebid.js 7.x, local storage access must be explicitly specified. By leveraging local storage, Index is able to take advantage of the latest features our exchange has to offer. For instructions on enabling local storage, see Prebid’s [pbjs.bidderSettings](/dev-docs/publisher-api-reference/bidderSettings.html) documentation.
 
+{% include dev-docs/storageAllowed.md %}
+
 ### Example
 
 ```javascript
@@ -374,15 +376,16 @@ pbjs.addAdUnits({
 
 **Before you begin:**
 
-* You must have Google Ad Manager and the [paapiForGpt](/dev-docs/modules/paapiForGpt.html) module.
+* You must be using Google Ad Manager as your ad server.
 * In your Google Ad Manager configuration, make sure that you have not opted out from using the Protected Audience API. For more information about the configuration, see Google's documentation on  [Protected Audience API and Ad Manager after Chrome GA](https://support.google.com/admanager/answer/13627134?hl=en&ref_topic=12264880&sjid=10591375417866092080-NA).
 
 Depending on the Prebid.js version that you are using, the steps to configure Prebid.js will differ. Follow the steps provided in the appropriate section for the version of Prebid.js that you are using:
 
 **Configure Protected Audience API for Prebid.js versions 8.18.0 to 8.36.0**
 
-1. Build the `paapiForGpt` module in your Prebid.js configuration by adding `fledgeForGpt` to the list of modules that you are already using. For more information about the module, see Prebid's [Protected Audience API (PAAPI) for GPT Module](/dev-docs/modules/paapiForGpt.html) documentation.
-2. Configure your ad units to make them eligible for Protected Audience API demand. You can do this in the global-level configuration, bidder level, or ad-unit level. For more information about the configurations, see Prebid's [Protected Audience API (PAAPI) for GPT Module](/dev-docs/modules/paapiForGpt.html) documentation. Index recommends that you do this in the global-level configuration by using the `defaultForSlots` parameter with a value of `1`. The following code is an example of the configuration done at the global level:
+1. Build the [PAAPI module](/dev-docs/modules/paapi.html) and the Fledge for GPT module in your Prebid.js configuration by adding `paapi` and `fledgeForGpt` to the list of modules that you are already using. <br />
+**Note:** The `fledgeForGpt` module documentation no longer exists on Prebid's site. You can however refer to Prebid's [Protected Audience API (PAAPI) for GPT Module](/dev-docs/modules/paapiForGpt.html) documentation for information on adding module configurations.
+2. Configure your ad units to make them eligible for Protected Audience API demand. You can do this in the global-level configuration, bidder level, or ad-unit level. Index recommends that you do this in the global-level configuration by using the `defaultForSlots` parameter with a value of `1`. The following code is an example of the configuration done at the global level:
 
     ```javascript
      pbjs.que.push(function() {
@@ -411,7 +414,8 @@ Depending on the Prebid.js version that you are using, the steps to configure Pr
 
 **Configure Protected Audience API for Prebid.js versions 8.37.0 and up to 9.0.0**
 
-1. Build the `fledgeForGpt` module in your Prebid.js configuration by adding `fledgeForGpt` to the list of modules that you are already using. For more information about the module, see Prebid's [Protected Audience API (PAAPI) for GPT Module](/dev-docs/modules/paapiForGpt.html) documentation.
+1. Build the PAAPI module in your Prebid.js configuration by adding `fledgeForGpt` to the list of modules that you are already using. When you add the `fledgeForGpt` module, the `paapi` module automatically gets included as a sub-module. For more information about the module, see Prebid's [PAAPI module](/dev-docs/modules/paapi.html) documentation. <br />
+**Note:** The `fledgeForGpt` module documentation no longer exists on Prebid's site. You can however refer to Prebid's [Protected Audience API (PAAPI) for GPT Module](/dev-docs/modules/paapiForGpt.html) documentation for information on adding module configurations.
 2. Complete the following steps to make your ad units eligible for Protected Audience API demand: <br />
 **Note:** If you continue to use the `fledgeForGpt` property, you will receive a warning message in the console logs stating that the `fledgeForGpt` configuration options will soon be renamed to `paapi`. Therefore, Index recommends that you use the `paapi` property, which is available in Prebid.js version 8.37.0 or later.
     * In the `pbjs.setConfig().paapi` field, set the `defaultForSlots` parameter to `1`:
@@ -462,9 +466,9 @@ Depending on the Prebid.js version that you are using, the steps to configure Pr
 
 **Configure Protected Audience API for Prebid.js version 9.0.0 or later**
 
-1. Build the [PAAPI](/dev-docs/modules/paapi.html) module in your Prebid.js configuration by adding paapi to the list of modules that you are already using. For more information about the module, see Prebid's [Protected Audience API (PAAPI) for GPT Module(/dev-docs/modules/paapiForGpt.html) documentation.
+1. Build the PAAPI for GPT module in your Prebid.js configuration by adding `paapi` to the list of modules that you are already using. For more information about the module, see Prebid's [Protected Audience API (PAAPI) for GPT Module](/dev-docs/modules/paapiForGpt.html) documentation.
 2. In the `pbjs.setConfig().paapi` field, set the `defaultForSlots` parameter to `1`. 
-3. In the `paapi.gpt.configWithTargeting` field, set `configWithTargeting` to `true`. For more control over configuring GPT slots to use PAAPI, set the `configWithTargeting` to `false` and use the `setPAAPIConfigForGPT` API. For more information about the configurations, see Prebid’s Prebid's [Protected Audience API (PAAPI) for GPT Module(/dev-docs/modules/paapiForGpt.html) documentation. <br />The following code is an example of the `defaultForSlots` and `configWithTargeting` configuration:
+3. In the `paapi.gpt.configWithTargeting` field, set `configWithTargeting` to `true`. For more control over configuring GPT slots to use PAAPI, set the `configWithTargeting` to `false` and use the `setPAAPIConfigForGPT` API. For more information about the configurations, see Prebid's [Protected Audience API (PAAPI) for GPT Module](/dev-docs/modules/paapiForGpt.html) documentation. <br />The following code is an example of the `defaultForSlots` and `configWithTargeting` configuration:
 
   ```javascript
   pbjs.que.push(function() {

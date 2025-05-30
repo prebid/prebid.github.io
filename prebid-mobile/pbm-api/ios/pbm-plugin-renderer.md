@@ -43,34 +43,117 @@ Please notice that all implementation on mobile related to the Plugin Renderer s
 
 ___
 
-#### Create your implementation from the interface PrebidMobilePluginRenderer
+#### Create your implementation of the `PrebidMobilePluginRenderer`
+
+The `PrebidMobilePluginRenderer` protocol is designed to provide a standardized way for developers to implement custom ad rendering solutions within the Prebid Mobile framework. It provides a unified interface for managing ad rendering, event handling, and metadata integration. 
+
+Below is the sample implementation of the renderer:
 
 ```swift
-public class SampleCustomRenderer: NSObject, PrebidMobilePluginRenderer {
+public class SampleRenderer: NSObject, PrebidMobilePluginRenderer {
     
-    public let name = "SampleCustomRenderer"
-    
+    public let name = "SampleRenderer"
     public let version = "1.0.0"
+    public var data: [String: Any]?
     
-    public var data: [AnyHashable: Any]? = nil
-    
-    private var adViewManager: PBMAdViewManager?
-    
-    public func isSupportRendering(for format: AdFormat?) -> Bool {}
-   
-    public func setupBid(_ bid: Bid, adConfiguration: AdUnitConfig, connection: PrebidServerConnectionProtocol) {}
-    
-    public func createBannerAdView(with frame: CGRect, bid: Bid, adConfiguration: AdUnitConfig,
-                                   connection: PrebidServerConnectionProtocol, adViewDelegate: (any PBMAdViewDelegate)?) {
-        // TODO "Handle bid response as you want and display your banner ad"
+    /// This method creates an instance of `SampleAdView`, which is a custom view used to display the ad. 
+    public func createBannerView(
+        with frame: CGRect,
+        bid: Bid,
+        adConfiguration: AdUnitConfig,
+        loadingDelegate: DisplayViewLoadingDelegate,
+        interactionDelegate: DisplayViewInteractionDelegate
+    ) -> (UIView & PrebidMobileDisplayViewProtocol)? {
+        let adView = SampleAdView(frame: frame)
+        
+        adView.interactionDelegate = interactionDelegate
+        adView.loadingDelegate = loadingDelegate
+        adView.bid = bid
+        
+        return adView
     }
-
-    public func createInterstitialController(bid: Bid, adConfiguration: AdUnitConfig, connection: PrebidServerConnectionProtocol,
-                                             adViewManagerDelegate adViewDelegate: InterstitialController?, videoControlsConfig: VideoControlsConfiguration?) {
-        // TODO "Handle bid response as you want and display your interstitial ad"
+    
+    /// This method creates an instance of `SampleInterstitialController`,
+    /// a custom controller used to display interstitial ads.
+    public func createInterstitialController(
+        bid: Bid,
+        adConfiguration: AdUnitConfig,
+        loadingDelegate: InterstitialControllerLoadingDelegate,
+        interactionDelegate: InterstitialControllerInteractionDelegate
+    ) -> PrebidMobileInterstitialControllerProtocol? {
+        let interstitialController = SampleInterstitialController()
+        
+        interstitialController.loadingDelegate = loadingDelegate
+        interstitialController.interactionDelegate = interactionDelegate
+        interstitialController.bid = bid
+        
+        return interstitialController
     }
 }
 
+class SampleAdView: UIView, PrebidMobileDisplayViewProtocol {
+    
+    weak var interactionDelegate: DisplayViewInteractionDelegate?
+    weak var loadingDelegate: DisplayViewLoadingDelegate?
+    
+    var bid: Bid?
+
+    // ...
+    // Setup view
+    // ...
+    
+    func loadAd() {
+        DispatchQueue.main.async {
+            if let adm = self.bid?.adm {
+                self.webView.loadHTMLString(adm, baseURL: nil)
+                self.loadingDelegate?.displayViewDidLoadAd(self)
+            } else {
+                self.loadingDelegate?.displayView(self, didFailWithError: SampleError.noAdm)
+            }
+        }
+    }
+}
+
+class SampleInterstitialController: NSObject, PrebidMobileInterstitialControllerProtocol {
+    
+    weak var loadingDelegate: InterstitialControllerLoadingDelegate?
+    weak var interactionDelegate: InterstitialControllerInteractionDelegate?
+    
+    var bid: Bid?
+
+    // ...
+    // Setup view
+    // ...
+
+    func loadAd() {
+        DispatchQueue.main.async {
+            guard let adm = self.bid?.adm else {
+                self.loadingDelegate?.interstitialController(self, didFailWithError: SampleError.noAdm)
+                return
+            }
+            
+            self.webView.loadHTMLString(adm, baseURL: nil)
+            self.loadingDelegate?.interstitialControllerDidLoadAd(self)
+        }
+    }
+    
+    func show() {
+        DispatchQueue.main.async {
+            guard let presentingController = UIApplication.shared.topViewController else {
+                self.loadingDelegate?.interstitialController(
+                    self,
+                    didFailWithError: SampleError.noAvailableController
+                )
+                return
+            }
+            
+            presentingController.present(
+                self.interstitialViewController,
+                animated: true
+            )
+        }
+    }
+}
 ```
 
 #### Global Initialization of Plugin Renderer
@@ -86,7 +169,7 @@ import PrebidMobile
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let sampleCustomRenderer = SampleCustomRenderer()
+    let sampleCustomRenderer = SampleRenderer()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Initialize the Prebid SDK
@@ -113,13 +196,11 @@ func applicationWillTerminate(_ application: UIApplication) {
 If you need to handle plugin registration in a specific view or controller for more granular control, you can still register the Plugin Renderer at that level:
 
 ```swift
-class CustomRendererBannerController: NSObject, AdaptedController, PrebidConfigurableBannerController, BannerViewDelegate {
+class CustomRendererBannerController: UIViewController {
     
-    required init(rootController: AdapterViewController) {
+    override init() {
         super.init()
-        self.rootController = rootController
         Prebid.registerPluginRenderer(sampleCustomRenderer)
-        setupAdapterController()
     }
     
     deinit {
@@ -131,15 +212,15 @@ class CustomRendererBannerController: NSObject, AdaptedController, PrebidConfigu
 ## Limitations
 
 ### Supported Ad Formats
-Currently the interface `PrebidMobilePluginRenderer` provide the ability to render `BANNER` and `INTERSTITIAL` only. The compability with more ad formats can be supported in future releases.
 
-It is important to notice that the compliant formats you set on `isSupportRenderingFor` implementation are taken into account to add your Plugin Renderer to the bid request or not, according to the ad unit configuration that is bid requesting.
+Currently the interface `PrebidMobilePluginRenderer` provides the ability to render `BANNER` and `INTERSTITIAL` only. The compability with more ad formats can be supported in future releases.
 
 ### Original API
 
-The Plugin Renderer feature does not work with [GAM Original API](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html) since the ad rendering does not happen in the Prebid SDK but externally. Despite that if you are using the regular GAM integration it will work fine.
+The Plugin Renderer feature does not work with [GAM Original API](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html) since the ad rendering does not happen in the Prebid SDK but externally. Despite that if you are using the regular GAM integration it will work fine.
 
 ## Ad Event Listeners
+
 An optional dedicated generic ad event listener is offered in case of the existing event listeners are insufficient to keep your ad consumer fully aware of your ad lifecycle.
 
 ![Plugin Event Listener big picture](/assets/images/prebid-mobile/prebid-plugin-renderer-event-listeners.png)
@@ -165,26 +246,19 @@ ___
         // TODO on impressions
     }
 }
-
 ```
 
 #### Handle your plugin event delegate on your Plugin Renderer
 
 ```swift
-public class SampleCustomRenderer: NSObject, PrebidMobilePluginRenderer {
+public class SampleRenderer: NSObject, PrebidMobilePluginRenderer {
     
     // Store your listeners
     private var pluginEventDelegateMap = [String: SampleCustomRendererEventDelegate]()
 
-    public let name = "SampleCustomRenderer"
-    
+    public let name = "SampleRenderer"
     public let version = "1.0.0"
-    
     public var data: [AnyHashable: Any]? = nil
-    
-    private var adViewManager: PBMAdViewManager?
-    
-    public func isSupportRendering(for format: AdFormat?) -> Bool {}
    
     public func registerEventDelegate(pluginEventDelegate: any PluginEventDelegate, adUnitConfigFingerprint: String) {
         pluginEventDelegateMap[adUnitConfigFingerprint] = pluginEventDelegate as? SampleCustomRendererEventDelegate
@@ -193,15 +267,24 @@ public class SampleCustomRenderer: NSObject, PrebidMobilePluginRenderer {
     public func unregisterEventDelegate(pluginEventDelegate: any PluginEventDelegate, adUnitConfigFingerprint: String) {
         pluginEventDelegateMap.removeValue(forKey: adUnitConfigFingerprint)
     }
-
-    public func setupBid(_ bid: Bid, adConfiguration: AdUnitConfig, connection: PrebidServerConnectionProtocol) {}
     
-    public func createBannerAdView(with frame: CGRect, bid: Bid, adConfiguration: AdUnitConfig,
-                                   connection: PrebidServerConnectionProtocol, adViewDelegate: (any PBMAdViewDelegate)?) {
+    public func createAdView(
+        with frame: CGRect,
+        bid: Bid,
+        adConfiguration: AdUnitConfig,
+        loadingDelegate: DisplayViewLoadingDelegate,
+        interactionDelegate: DisplayViewInteractionDelegate
+    ) -> (UIView & PrebidMobileDisplayViewProtocol)? {
+        // .......
     }
 
-    public func createInterstitialController(bid: Bid, adConfiguration: AdUnitConfig, connection: PrebidServerConnectionProtocol,
-                                             adViewManagerDelegate adViewDelegate: InterstitialController?, videoControlsConfig: VideoControlsConfiguration?) {
+    public func createInterstitialController(
+        bid: Bid,
+        adConfiguration: AdUnitConfig,
+        loadingDelegate: InterstitialControllerLoadingDelegate,
+        interactionDelegate: InterstitialControllerInteractionDelegate
+    ) -> PrebidMobileInterstitialControllerProtocol? {
+        // .......
     }
 }
 ```

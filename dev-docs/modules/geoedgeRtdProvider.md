@@ -12,7 +12,6 @@ sidebarType : 1
 ---
 
 # Geoedge Realtime Module
-
 {:.no_toc}
 
 * TOC
@@ -21,7 +20,7 @@ sidebarType : 1
 ## Overview
 
 The Geoedge Realtime module lets publishers block bad ads such as automatic redirects, malware, offensive creatives and landing pages.
-To use this module, you'll need to work with [Geoedge](https://www.geoedge.com/publishers-real-time-protection/) to get an account and cutomer key.
+To use this module, you'll need to work with [Geoedge](https://www.geoedge.com/publishers-real-time-protection/) to get an account and customer key.
 
 {% include dev-docs/loads-external-javascript.md %}
 

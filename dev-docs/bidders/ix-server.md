@@ -35,6 +35,7 @@ privacy_sandbox: paapi
   * [Call Index from Prebid Mobile SDK](#call-index-from-prebid-mobile-sdk)
   * [Call Index from CTV/long-form video environment](#call-index-from-ctvlong-form-video-environment)
   * [Call Index from any other server-to-server OpenRTB environment](#call-index-from-any-other-server-to-server-openrtb-environment)
+* [Receive Protected Audience API demand from Index](#paapi)
 * [Bid request parameters](#bid-request-parameters)
   * [Banner](#banner)
   * [Video](#video)
@@ -83,12 +84,11 @@ If you are hosting your own Prebid Server instance, depending on whether you are
      ```
 
   * Edit the below existing entry and include your publisher ID in the `s` parameter:
-{% raw %}
 
     ```javascript
      userSync:  
       redirect:  
-       url: "https://ssum.casalemedia.com/usermatchredir?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}"
+       url: "https://ssum.casalemedia.com/usermatchredir?s=<PUBLISHER ID>&gdpr={% raw %}{{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}{% endraw %}"
      ```
 
   * Edit the below existing entry and include your publisher ID in the `s` parameter:
@@ -96,7 +96,7 @@ If you are hosting your own Prebid Server instance, depending on whether you are
      ```javascript
      userSync:  
       redirect:  
-       iframe: "https://ssum.casalemedia.com/usermatch?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}"
+       iframe: "https://ssum.casalemedia.com/usermatch?s=<PUBLISHER ID>&gdpr={% raw %}{{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}{% endraw %}"
       ```         
 
 * If you are using [Prebid Server Java](https://github.com/prebid/prebid-server-java) version, edit the `prebid-server-java` entry in the `src/main/resources/bidder-config/ix.yaml` file as follows:
@@ -116,7 +116,7 @@ If you are hosting your own Prebid Server instance, depending on whether you are
        ix: 
         usersync: 
          redirect: 
-          url: "https://ssum.casalemedia.com/usermatchredir?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}" 
+          url: "https://ssum.casalemedia.com/usermatchredir?s=<PUBLISHER ID>&gdpr={% raw %}{{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}{% endraw %}" 
     ```
 
   * Add the below entry and include your publisher ID in the `s` parameter:
@@ -126,10 +126,8 @@ If you are hosting your own Prebid Server instance, depending on whether you are
       ix: 
        usersync: 
         iframe: 
-         url: "https://ssum.casalemedia.com/usermatch?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}"
+         url: "https://ssum.casalemedia.com/usermatch?s=<PUBLISHER ID>&gdpr={% raw %}{{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}{% endraw %}"
     ```
-
-{% endraw %}
 
 <a id="call-index"></a>
 
@@ -236,6 +234,44 @@ To request bids from Index:
               }
         }
       }],
+```
+
+<a id="paapi"></a>
+
+### Receive Protected Audience API demand from Index
+
+Publishers who want to use the Protected Audience API with Prebid Server, must first set up their inventory to be eligible for Protected Audience API in Prebid.js. Prebid Server will automatically pass through the on-device auction signals received from Prebid.js to Index. To receive Protected Audience API auction demand from Index, contact your Index Representative.
+
+**Before you begin:** Depending on whether you are using the Prebid Server Go or Java code base and the Prebid.js version, you must make sure that you are using the appropriate Prebid Server version:
+
+* **For Prebid Server Go:** If you are using a Prebid.js version that is between 8.18.0 and 8.51.0, you must be using Prebid Server version 2.1.0 or later. For a Prebid.js version that is 8.52.0 or later, you must be using Prebid Server version 3.3.0 or later.
+* **For Prebid Server Java:** If you are using a Prebid.js version that is 8.18.0 or later, you must be using Prebid Server Java version 3.16.0 or later.
+
+1. Configure Prebid.js to send the `ae` field with a value of `1`. For more information on how to set up the Protected Audience API in Prebid.js, see the [Protected Audience API support](/dev-docs/bidders/ix.html#protected-audience-api-support) section in our Prebid.js documentation on the Prebid site.
+2. Prebid Server will now automatically pass through the `ae=1` field received from Prebid.js to Index. No other specific Prebid Server configuration is required.
+
+**Example:** The following is an example that illustrates how to set up Prebid Server in your Prebid.js configuration:
+
+```javascript
+    pbjs.setConfig({
+    s2sConfig: [{
+        accountId: '1',
+        bidders: ['ix'],
+        adapter: 'prebidServer',
+        enabled: true,
+        endpoint: 'https://prebid-server.example.com/openrtb2/auction',
+        syncEndpoint: 'https://prebid-server.example.com/cookie_sync',
+        timeout: 500,
+        extPrebid: {
+            cache: {
+                vastxml: { returnCreative: false }
+            },
+            targeting: {
+                pricegranularity: {"ranges": [{"max":40.00,"increment":1.00}]}
+            }
+        }
+    }]
+})
 ```
 
 <a id="bid-request-parameters"></a>

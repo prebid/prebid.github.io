@@ -3,6 +3,9 @@ layout: userid
 title: GRAVITO ID by Gravito Ltd.
 description: GRAVITO ID by Gravito Ltd. User ID sub-module
 useridmodule: gravitoIdSystem
+bidRequestUserId:
+eidsource:
+example:
 ---
 
 
@@ -11,12 +14,14 @@ Please contact Gravito Ltd. for using this ID.
 
 Add the Gravito ID to your Prebid.js Package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=gravitoIdSystem
+```
 
 ## Gravito ID Configuration
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module | `"gravitompId"` |

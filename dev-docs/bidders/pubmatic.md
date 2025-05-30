@@ -22,6 +22,7 @@ ortb_blocking_supported: true
 gvl_id: 76
 multiformat_supported: will-bid-on-one
 sidebarType: 1
+endpoint_compression: true
 ---
 
 ### Prebid Server Note
@@ -226,4 +227,8 @@ Publishers should use the `ortb2` method of setting [First Party Data](https://d
 - `ortb2.user.*`
 
 AdUnit-specific data is supported using `AdUnit.ortb2Imp.ext.*`
+
+### Endpoint Compression
+
+This adapter utilizes gzip compression support built into Prebid.js core. For more information, see [Compression Support for Outgoing Requests](https://docs.prebid.org/dev-docs/bidder-adaptor.html#compression-support-for-outgoing-requests)
 <!-- workaround bug where code blocks at end of a file are incorrectly formatted-->
