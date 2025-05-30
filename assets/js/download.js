@@ -97,6 +97,15 @@
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
+            if (window.pako) {
+                try {
+                    var gz = pako.gzip(data);
+                    var kb = (gz.length / 1024).toFixed(1);
+                    document.getElementById('package-size').innerText = 'Estimated gzipped size: ' + kb + ' kB';
+                } catch(e) {
+                    console.log('pako gzip failed', e);
+                }
+            }
             if (form_data["removedModules"].length > 0) {
                 alert(
                     "The following modules were removed from your download because they aren't present in Prebid.js version " +
