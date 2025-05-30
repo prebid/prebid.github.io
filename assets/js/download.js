@@ -109,17 +109,8 @@
             var jsBlob = new Blob([data], { type: "text/javascript" });
             var configData = JSON.stringify({ version: form_data.version, modules: form_data.modules }, null, 2);
 
-            if (window.JSZip) {
-                var zip = new JSZip();
-                zip.file(filename, jsBlob);
-                zip.file("prebid-config.json", configData);
-                zip.generateAsync({ type: "blob" }).then(function (zipBlob) {
-                    triggerDownload(zipBlob, "prebid-" + form_data.version + ".zip");
-                });
-            } else {
-                triggerDownload(jsBlob, filename);
-                triggerDownload(new Blob([configData], { type: "application/json" }), "prebid-config.json");
-            }
+            triggerDownload(jsBlob, filename);
+            triggerDownload(new Blob([configData], { type: "application/json" }), "prebid-config.json");
 
             if (form_data["removedModules"].length > 0) {
                 alert(
