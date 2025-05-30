@@ -22,6 +22,7 @@ ortb_blocking_supported: true
 gvl_id: 76
 multiformat_supported: will-bid-on-one
 sidebarType: 1
+endpoint_compression: true
 ---
 
 ### Prebid Server Note
