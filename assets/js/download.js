@@ -64,6 +64,15 @@
         }
     }
 
+    function triggerDownload(blob, filename) {
+        var link = document.createElement("a");
+        link.href = window.URL.createObjectURL(blob);
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
     function submit_download() {
         $('#download-button').html('<i class="glyphicon glyphicon-send"></i> Sending Request...').addClass('disabled');
 
@@ -90,13 +99,11 @@
                     filename = matches[1].replace(/['"]/g, "");
             }
             // The actual download
-            var blob = new Blob([data], { type: "text/javascript" });
-            var link = document.createElement("a");
-            link.href = window.URL.createObjectURL(blob);
-            link.download = filename;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            var jsBlob = new Blob([data], { type: "text/javascript" });
+            var configData = JSON.stringify({ version: form_data.version, modules: form_data.modules }, null, 2);
+
+            triggerDownload(jsBlob, filename);
+            triggerDownload(new Blob([configData], { type: "application/json" }), "prebid-config.json");
             if (window.pako) {
                 try {
                     var gz = pako.gzip(data);
