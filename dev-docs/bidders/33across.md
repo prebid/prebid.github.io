@@ -26,10 +26,12 @@ sidebarType: 1
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
+ 
 | Name        | Scope    | Description                                                                                                                    | Example    | Type     |
 |-------------|----------|--------------------------------------------------------------------------------------------------------------------------------|------------|----------|
 | `siteId`    | required | Publisher  GUID from 33Across                                                                                                  | `'examplePub123'` | `string` |
 | `productId` | required | 33Across Product ID that the Publisher has registered for (use `'siab'` for Banner or Outstream Video , `'inview'` for Adhesion, `'instream'` for Instream Video) | `'siab'`   | `string` |
+| `test` | optional | Set to `1` to enable test mode | `1` | `integer` |
 
 ### Ad Unit Setup for Banner
 

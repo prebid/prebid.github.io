@@ -9,6 +9,24 @@
         $(".adapters .col-md-4").show();
         setPrepickedModules();
 
+        var configInput = document.getElementById('configFileInput');
+        if (configInput) {
+            configInput.addEventListener('change', function(event) {
+                var file = event.target.files[0];
+                if (!file) return;
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        var cfg = JSON.parse(e.target.result);
+                        applyConfig(cfg);
+                    } catch (err) {
+                        alert('Invalid configuration file');
+                    }
+                };
+                reader.readAsText(file);
+            });
+        }
+
         document.getElementById('download-button').addEventListener('click', function (event) {
             event.preventDefault();
             submit_download();
@@ -88,9 +106,7 @@
             setTimeout(function () {
                 $('#download-button').html('<i class="glyphicon glyphicon-download-alt"></i> Download Prebid.js').removeClass('disabled');
             }, 5000);
-            // Try to find out the filename from the content disposition `filename` value
             var filename = "prebid" + form_data["version"] + ".js";
-            // this doens't work in our current jquery version.
             var disposition = jqXHR.getResponseHeader("Content-Disposition");
             if (disposition && disposition.indexOf("attachment") !== -1) {
                 var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
@@ -98,12 +114,11 @@
                 if (matches != null && matches[1])
                     filename = matches[1].replace(/['"]/g, "");
             }
-            // The actual download
             var jsBlob = new Blob([data], { type: "text/javascript" });
             var configData = JSON.stringify({ version: form_data.version, modules: form_data.modules }, null, 2);
 
             triggerDownload(jsBlob, filename);
-            triggerDownload(new Blob([configData], { type: "application/json" }), "prebid-config.json");
+            triggerDownload(new Blob([configData], { type: "application/json" }), "prebid-config.json")
             if (window.pako) {
                 try {
                     var gz = pako.gzip(data);
@@ -126,6 +141,15 @@
             console.log(e);
             alert("Ran into an issue.");
         });
+    }
+
+    function triggerDownload(blob, filename) {
+        var link = document.createElement("a");
+        link.href = window.URL.createObjectURL(blob);
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     }
 
     const renameModules = (function() {
@@ -220,6 +244,32 @@
                 window.history.replaceState(null, "", currentUrl);
             });
         });
+    }
+
+    function applyConfig(cfg) {
+        if (!cfg) return;
+        if (cfg.version) {
+            var versionOption = document.querySelector('#version_selector option[value="' + cfg.version + '"]');
+            if (versionOption) {
+                versionOption.selected = true;
+                searchParams.set("version", cfg.version);
+            }
+        }
+
+        if (Array.isArray(cfg.modules)) {
+            var moduleCheckboxes = document.querySelectorAll('.module-check-box');
+            moduleCheckboxes.forEach(function(cb){ cb.checked = false; });
+            cfg.modules.forEach(function(module){
+                var cb = document.getElementById(module);
+                if (cb) cb.checked = true;
+            });
+            if (cfg.modules.length) {
+                searchParams.set("modules", cfg.modules.join(','));
+            } else {
+                searchParams.delete("modules");
+            }
+            window.history.replaceState(null, "", window.location.pathname + "?" + searchParams.toString());
+        }
     }
 
     function setPrepickedVersion() {
