@@ -204,7 +204,6 @@ Here's how it works:
 1. The s2sConfig.bidders array contains 'tripleliftVideo' telling Prebid.js to direct bids for that code to the server
 1. Finally, the extPrebid.aliases line tells Prebid Server to route the 'tripleliftVideo' biddercode to the 'triplelift' server-side adapter.
 
-
 Make sure to register your aliases' [`gvlMapping`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-gvlMapping) via setConfig as well.
 
 ### Routing for Multiple PBS instances
