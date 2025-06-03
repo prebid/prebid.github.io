@@ -2,6 +2,7 @@
 layout: bidder
 title: Ads Interactive
 description: Prebid Ads Interactive Bidder Adapter
+aliasCode: ads_interactive
 biddercode: adsinteractive
 gpp_sids: usstate_all
 gvl_id: 1212
