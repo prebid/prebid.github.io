@@ -1295,7 +1295,7 @@ Even if a publisher is using a floors provider, they may wish to provide additio
 
 1. default floor data if dynamic data fails to load on time
 2. global floorMin: allows the publisher to constrain dynamic floors with a global min
-3. impression-level floor min (PBJS 6.24+): allows the publisher to constrain dynamic floors with an adunit-specific value
+3. impression-level floor min (PBJS 6.24+): allows the publisher to constrain dynamic floors with an adunit-specific value. Specify this in `ortb2Imp.ext.prebid.floors.floorMin` (prior to Prebid.js 8 it was `ortb2Imp.ext.prebid.floorMin`).
 
 Here's an example covering the first two scenarios:
 
