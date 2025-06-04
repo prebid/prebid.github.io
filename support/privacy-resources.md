@@ -123,6 +123,7 @@ Prebid Server reads the HTTP header set by Chrome and copies the value to the Op
 This table may be useful to publishers trying to decide which version of Prebid.js to use to support Privacy Sandbox.
 
 {: .table .table-bordered .table-striped }
+
 | Prebid.js Version | Notes |
 |-------------------|-------|
 | 8.22| Makes Prebid FPD available to the PAAPI generateBid, scoreAds, and reportResult functions |
@@ -133,11 +134,13 @@ This table may be useful to publishers trying to decide which version of Prebid.
 #### Prebid Server Versions Supporting Privacy Sandbox
 
 {: .table .table-bordered .table-striped }
+
 | PBS-Go Version | Notes |
 |-------------------|-------|
 | 0.239.0 | Basic passthrough support |
 
 {: .table .table-bordered .table-striped }
+
 | PBS-Java Version | Notes |
 |-------------------|-------|
 | 2.11| Topics and Test Labels |

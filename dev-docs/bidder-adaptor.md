@@ -271,6 +271,24 @@ Building the request will use data from several places:
 * **BidRequest Params**: Several important parameters such as first-party data, userId, GDPR, USP, and supply chain values are on the `bidderRequest` object.
 * **Prebid Config**: Publishers can set a number of config values that bid adapters should consider reading.
 
+#### Compression Support for Outgoing Requests
+
+Prebid.js core now includes support for gzip compression of bidder request payloads (This helps reduce payload size and improve performance).
+
+Prebid will pass compressed payloads if the following criteria are met:
+
+* Participating bidders must implement compression support on their server-side endpoint before making a change in their bid adapter in Prebid.js
+* Once server-side support is present, `request.options.endpointCompression = true` needs to be set for a bidder's outgoing requests within their Prebid.js bid adapter (see the [PubMatic adapter example](https://github.com/prebid/Prebid.js/blob/master/modules/pubmaticBidAdapter.js#L730))
+* The browser must support gzip compression (Prebid core has a built-in utility function to check this)
+
+If the above criteria is met, Prebid.js core will do the following:
+
+* Gzip compress the request payload
+* Set the `Content-Type` header to `plain/text` (to avoid a preflight request)
+* Append the `gzip=1` query param to the bidder request (to signal to a bidder's server-side endpoint that the request is compressed)
+
+Note: If the Prebid.js debugging query param `?pbjs_debug=true` is present in the URL or `debug: true` has been configured in `pbjs.setConfig()`, the gzip compression feature will be disabled and all bidder requests will be sent uncompressed.
+
 #### Ad Unit Params in the validBidRequests Array
 
 Here is a sample array entry for `validBidRequests[]`:
@@ -371,6 +389,7 @@ When disabled, `auctionId`/`transactionId` are set to `null`; `ortb2.source.tid`
 There are a number of important values that a publisher expects to be handled in a standard way across all Prebid.js adapters:
 
 {: .table .table-bordered .table-striped }
+
 | Parameter | Description                                   | Example               |
 | ----- | ------------ | ---------- |
 | Ad Server Currency | If your endpoint supports responding in different currencies, read this value. | config.getConfig('currency.adServerCurrency') |
@@ -405,6 +424,7 @@ You shouldn't call your bid endpoint directly. Rather, the end result of your bu
 ServerRequest objects. These objects have this structure:
 
 {: .table .table-bordered .table-striped }
+
 | Attribute | Type             | Description                                                        | Example Value               |
 |-----------+------------------+--------------------------------------------------------------------+-----------------------------|
 | `method`  | String           | Which HTTP method should be used.                                  | `POST`                      |
@@ -486,6 +506,7 @@ particularly useful. Publishers may have analytics or security vendors with the 
 The parameters of the `bidResponse` object are:
 
 {: .table .table-bordered .table-striped }
+
 | Key          | Scope                                       | Description                                                                                                                                   | Example                              |
 |--------------+---------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------|
 | `requestId`  | Required                                    | The bid ID that was sent to `spec.buildRequests` as `bidRequests[].bidId`. Used to tie this bid back to the request.                          | 12345                                |
@@ -632,7 +653,7 @@ Sample data received by this function:
 
 The `onBidBillable` function will be called when it deems a bid to be billable. When a bid wins, it is by default also billable. That is, by default, onBidWon and onBidBillable will be called one after the other. However, a publisher can flag adUnits as being separately billable: `pbjs.addAdUnits({deferBilling: true, ...})`. Winning bids for adUnits with `deferBilling` set to true, trigger the onBidWon function but not the onBidBillable function. When appropriate (e.g. an interstitial is displayed), the publisher may then call the public API method, `pbjs.triggerBilling(winningBidObjectToBill)` passing the winning bid to be billed, which will trigger onBidBillable.
 
-Sample data received by this function (same as what is recieved for onBidWon):
+Sample data received by this function (same as what is received for onBidWon):
 
 ```javascript
 {
@@ -742,6 +763,7 @@ spec.aliases can be an array of strings or objects.
 If the alias entry is an object, the following attributes are supported:
 
 {: .table .table-bordered .table-striped }
+
 | Name  | Scope | Description   | Type      |
 |-------|-------|---------------|-----------|
 | `code` | required | shortcode/partner name | `string` |
@@ -796,7 +818,7 @@ If your adapter supports banner and video media types, make sure to include `'ba
 
 ### Step 2: Accept video parameters and pass them to your server
 
-Video parameters are often passed in from the ad unit in a `video` object. As of Prebid 4.0 the following paramters should be read from the ad unit when available; bidders can accept overrides of the ad unit on their bidder configuration parameters but should read from the ad unit configuration when their bidder parameters are not set. Parameters one should expect on the ad unit include:
+Video parameters are often passed in from the ad unit in a `video` object. As of Prebid 4.0 the following parameters should be read from the ad unit when available; bidders can accept overrides of the ad unit on their bidder configuration parameters but should read from the ad unit configuration when their bidder parameters are not set. Parameters one should expect on the ad unit include:
 
 * mimes
 * minduration
@@ -944,7 +966,7 @@ Adapter must add following new properties to bid response
 }
 ```
 
-Appnexus Adapter uses above explained approach. You can refer [here](https://github.com/prebid/Prebid.js/blob/master/modules/appnexusBidAdapter.js)
+Appnexus Adapter uses the approach explained above. You can see an example in the [AppNexus adapter](https://github.com/prebid/Prebid.js/blob/master/modules/appnexusBidAdapter.js)
 
 Adapter must return one [IAB accepted subcategories](https://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file) if they want to support competitive separation. These IAB sub categories will be converted to Ad server industry/group. If adapter is returning their own proprietary categroy, it is the responsibility of the adapter to convert their categories into [IAB accepted subcategories](https://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file).
 
@@ -953,6 +975,7 @@ If the demand partner is going to use Prebid API for this process, their adapter
 **Params**  
 
 {: .table .table-bordered .table-striped }
+
 | Key             | Scope    | Description                                                                                        | Example                    |
 |-----------------|----------|----------------------------------------------------------------------------------------------------|----------------------------|
 | `url`             | Required | The URL to the mapping file.                                                                       | `"//example.com/mapping.json"` |
@@ -982,6 +1005,7 @@ getIabSubCategory(bidderCode, pCategory)
 **Params**
 
 {: .table .table-bordered .table-striped }
+
 | Key          | Scope    | Description                                   | Example               |
 |--------------|----------|-----------------------------------------------|-----------------------|
 | `bidderCode` | Required | BIDDER_CODE defined in spec.                  | `"sample-biddercode"` |
@@ -1148,7 +1172,7 @@ export const spec = {
          * Determines whether or not the given bid request is valid.
          *
          * @param {BidRequest} bid The bid params to validate.
-         * @return boolean True if this is a valid bid, and false otherwise.
+         * @return {boolean} True if this is a valid bid, and false otherwise.
          */
         isBidRequestValid: function(bid) {
             return !!(bid.params.placementId || (bid.params.member && bid.params.invCode));
@@ -1156,8 +1180,8 @@ export const spec = {
         /**
          * Make a server request from the list of BidRequests.
          *
-         * @param {validBidRequests[]} - an array of bids
-         * @return ServerRequest Info describing the request to the server.
+         * @param {BidRequest[]} validBidRequests - an array of bids
+         * @return {ServerRequest} Info describing the request to the server.
          */
         buildRequests: function(validBidRequests) {
             const payload = {
@@ -1242,7 +1266,7 @@ export const spec = {
 
     /**
      * Register bidder specific code, which will execute if bidder timed out after an auction
-     * @param {data} Containing timeout specific data
+     * @param {Object} data Containing timeout specific data
      */
     onTimeout: function(data) {
         // Bidder specifc code
@@ -1250,7 +1274,7 @@ export const spec = {
 
     /**
      * Register bidder specific code, which will execute if a bid from this bidder won the auction
-     * @param {Bid} The bid that won the auction
+     * @param {Bid} bid The bid that won the auction
      */
     onBidWon: function(bid) {
         // Bidder specific code
@@ -1258,7 +1282,7 @@ export const spec = {
 
     /**
      * Register bidder specific code, which will execute when the adserver targeting has been set for a bid from this bidder
-     * @param {Bid} The bid of which the targeting has been set
+     * @param {Bid} bid The bid of which the targeting has been set
      */
     onSetTargeting: function(bid) {
         // Bidder specific code
@@ -1266,7 +1290,7 @@ export const spec = {
 
     /**
      * Register bidder specific code, which will execute if the bidder responded with an error
-     * @param {error, bidderRequest} An object with the XMLHttpRequest error and the bid request object
+     * @param {Object} params An object with the XMLHttpRequest error and the bid request object
      */
     onBidderError: function({ error, bidderRequest }) {
         // Bidder specific code
@@ -1275,7 +1299,7 @@ export const spec = {
     /**
      * Register bidder specific code, which will execute if the ad
      * has been rendered successfully
-     * @param {bid} bid request object
+     * @param {Bid} bid Bid request object
      */
     onAdRenderSucceeded: function(bid) {
         // Bidder specific code
@@ -1352,6 +1376,7 @@ The Example Bidding adapter requires setup before beginning. Please contact us a
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
 | `placement`      | required | Placement id         | `'11111'`    | `string` |

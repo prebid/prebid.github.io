@@ -33,7 +33,7 @@ sidebarType: 1
 | `cId`         | deprecated | The connection ID from Exco.                                                          | `'562524b21b1c1f08117fc7f9'` | `string` |
 | `pId`         | deprecated | The publisher ID from Exco.                                                           | `'59ac17c192832d0011283fe3'` | `string` |
 | `bidFloor`    | deprecated | The minimum bid value desired. Exco will not respond with bids lower than this value. | `0.90`                       | `float`  |
-| `accountID`   | required   | A unique account identifier provided by EX.CO.                                        | `'1234567890'`               | `string` |
+| `accountId`   | required   | A unique account identifier provided by EX.CO.                                        | `'1234567890'`               | `string` |
 | `publisherId` | required   | Publisher ID provided by EX.CO.                                                       | `'1234567890'`               | `string` |
 | `tagId`       | required   | A unique Tag ID (supply id) identifier provided by EX.CO.                             | `'1234567890'`               | `string` |
 
@@ -53,7 +53,7 @@ var adUnits = [{
         bids: [{
             bidder: 'exco',
             params: {
-                accountID: '1234567890',   // Required - PROVIDED DURING SETUP...
+                accountId: '1234567890',   // Required - PROVIDED DURING SETUP...
                 publisherId: '1234567890', // Required - PROVIDED DURING SETUP...
                 tagId: '1234567890'        // Required - PROVIDED DURING SETUP...
             }
