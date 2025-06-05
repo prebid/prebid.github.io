@@ -32,6 +32,7 @@ endpoint_compression: true
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name          | Scope    | Description        | Example                      | Type     |
 |---------------|----------|--------------------|------------------------------|----------|
 | `publisherId` | required | Publisher ID       | `'32572'`                    | `string` |
@@ -74,6 +75,7 @@ Note: Combine the above the configuration with any other UserSync configuration.
 The adSlot parameter supports two different formats:
 
 {: .table .table-bordered .table-striped }
+
 | Format         | Example              |
 |----------------|----------------------|
 | Without Size   | `'38519891'`         |
@@ -86,6 +88,7 @@ adSlot parameter is optional.  To omit the adSlot parameter, your publisher acco
 The PubMatic adapter supports video as of Prebid v1.16.0
 
 {: .table .table-bordered .table-striped }
+
 | Name                      | Scope    | Description                                              | Example |
 | :----------------------| :------- | :---------------------------------------------------------- | :------ |
 | `video.mimes`          | required | Video MIME types                                            | `['video/mp4','video/x-flv']` |
@@ -100,7 +103,7 @@ The PubMatic adapter supports video as of Prebid v1.16.0
 | `video.linearity`      | optional | Indicates if the impression is linear or nonlinear<br/>Values:<br/>`1`: Linear/In-Stream<br/>`2`: Non-Linear/Overlay.                                                                                | `1` |
 | `video.placement`      | optional | Video placement type.  See [OpenRTB 2.5 specification](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf), List 5.9 for Values                            | `1` |
 | `video.plcmt`          | optional | Video placement type. See [OpenRTB 2.6 specification - github](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/develop/2.6.md#327---object-video-), For values [plcmt subtypes](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/develop/AdCOM%20v1.0%20FINAL.md#list_plcmtsubtypesvideo)                            | `1` |
-| `video.minbitrate`     | optional | Minumim bit rate in Kbps.                                   | 50 |
+| `video.minbitrate`     | optional | Minimum bit rate in Kbps.                                   | 50 |
 | `video.maxbitrate`     | optional | Maximum bit rate in Kbps.                                   | 70 |
 
 ### AdUnit Format for Video
