@@ -17,7 +17,7 @@ sidebarType: 3
 
 # How to simplify line item setup
 
-#### Let's do the math:
+## Let's do the math
 
 * Per bidder per size: $0.01 increment, capped at $10 => 1000 line items
 * 10 creative sizes
@@ -25,9 +25,7 @@ sidebarType: 3
 
 1000 x 10 x 5 = 50,000 line items and creatives for header bidding!
 
-<br>
-
-#### How to reduce the number of line items for header bidding?
+## How to reduce the number of line items for header bidding?
 
 > Prebid.js helps you use 1 set of line items for all bidders and all creatives.
 
@@ -35,39 +33,35 @@ By removing the size and bidder dimension, the number of line items now becomes:
 
 1000 x 1 x 1 = 1000 line items! 50 times less!
 
-<br>
-
 ### Simplification 1: Remove the size dimension
 
 In this section, we'll learn how to remove the creative size dimension for header bidding. Before, a publisher would have to create different set of line items for different creative sizes. With Prebid.js, a publisher only need to create 1 set of line items for all creative sizes.
 
 Let's first clarify what "different set of line items for different creative sizes" means. In this scenario, a line item's creative is only of one size. In Google Ad Manager, this looks like:
 
-![Header Bidding Normal Line Item Creative]({{ site.github.url }}/assets/images/blog/line-item-creative.png){: .pb-md-img :}
-
+![Header Bidding Normal Line Item Creative](/assets/images/overview/line-item-creative.png){: .pb-md-img :}
 
 Because a site would have many creative sizes, with this setup you need X number of line item sets for X number of creative sizes.
 
 There's a reason bidders recommend different set of line items for different creative sizes. If we simply attach all creative sizes to a line item, the line item wouldn't know which size of creative to choose. Consider this case:
 
-* Your line item has all creatives of different sizes attached. 
+* Your line item has all creatives of different sizes attached.
 * Your ad unit can accept both 300x250 and 300x600. A bidder bid $6.00 for the 300x600 size and has the highest price.
-* The $6.00 line item got picked by the line item. 
+* The $6.00 line item got picked by the line item.
 * The best your ad server can do is to RANDOMLY choose a creative. If the 300x250 one is chosen, the ad will be cut in half.
 
-#### How Prebid.js solves this problem:
+#### How Prebid.js solves this problem
 
 Prebid.js can dynamically resize the returned creative to the right size. Here's the setup:
 
-* Submit a few creatives of size 1x1 and make them override the line items' sizes when you [attach creatives to the line item]({{ site.github.url }}/adops/step-by-step.html#step-3-attach-the-creative-to-the-line-item).
-* Your ad unit can accept both 300x250 and 300x600. A bidder bid $6.00 for the 300x600 size and has the highest price. Prebid.js passed the bid in, as well as a generated bid ID. 
-* The $6.00 line item got picked by the line item. 
+* Submit a few creatives of size 1x1 and make them override the line items' sizes when you [attach creatives to the line item](/adops/step-by-step.html#step-3-attach-the-creative-to-the-line-item).
+* Your ad unit can accept both 300x250 and 300x600. A bidder bid $6.00 for the 300x600 size and has the highest price. Prebid.js passed the bid in, as well as a generated bid ID.
+* The $6.00 line item got picked by the line item.
 * Your ad server randomly choose a 1x1 creative. However, because all creatives have the same content, it does not make a difference.
-* The creative content has the bid ID. Prebid.js reads this bid ID, which is mapped to size 300x600. 
+* The creative content has the bid ID. Prebid.js reads this bid ID, which is mapped to size 300x600.
 * Prebid.js resize the returned creative to size 300x600 and injects the bid's cretive payload.
 
 There you go!
-
 
 ### Simplification 2: Remove the bidder dimension
 
@@ -77,7 +71,7 @@ There're a few reasons why previously you'd need different set of line items for
 
 1. Bidders did not design their implementation guide with other bidders in mind.
 2. Bidders all have different targeting parameters.
-3. You need to run reports to learn fill rates and CPM from different bidders. 
+3. You need to run reports to learn fill rates and CPM from different bidders.
 
 Assume we have 1 set of line items for ALL bidders. Consider the below key-value pairs came in: (AppNexus bid $1.60, Rubicon bid $1.20. Ad IDs are used for rendering the right creative):
 
@@ -90,7 +84,7 @@ The line item for $1.60 is chosen because it has the highest price. However, the
 
 <a name="pbjs-sends-highest-price-only"></a>
 
-#### How Prebid.js solves the problem:
+#### How Prebid.js solves the problem
 
 Prebid.js only picks the highest price bid and sends its key-value pairs to the ad server. Given the above example, Prebid.js will send:
 
@@ -98,19 +92,17 @@ Prebid.js only picks the highest price bid and sends its key-value pairs to the 
 * `hb_adId`: 65432
 * `hb_bidder`: appnexus
 
-This simplifies the setup and the right creative (with adId 65432) will get displayed. 
+This simplifies the setup and the right creative (with adId 65432) will get displayed.
 
-#### How about reporting?
+### How about reporting?
 
 It's important to understand the fill rates and CPM from different bidders. Prebid.js therefore passes in `hb_bidder`: bidderCode. This enables Google Ad Manager to report on query strings.  You can run queries like:
 
 * For bidder X, at what CPM does it fill?
 * For bidder X, what's the fill rate out of all the winning header bidding bids?
 
-Note that because Prebid.js only sends in the highest price bid, Google Ad Manager does not see the rest of the lost bids. However, from working with publishers, we conclude that the rest of the bids do NOT matter that much. Let's say one bidder always fills at 1 penny and bids 100% of the time. Is that information helpful? Not really, only the winning bids count. We belive the above 2 queries well serve the reporting and analytics needs. 
+Note that because Prebid.js only sends in the highest price bid, Google Ad Manager does not see the rest of the lost bids. However, from working with publishers, we conclude that the rest of the bids do NOT matter that much. Let's say one bidder always fills at 1 penny and bids 100% of the time. Is that information helpful? Not really, only the winning bids count. We belive the above 2 queries well serve the reporting and analytics needs.
 
-### Conclusion
+## Conclusion
 
 Enjoy the much more simplified line items, creatives, and targeting setup!
-
-

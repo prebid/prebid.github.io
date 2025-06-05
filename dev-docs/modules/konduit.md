@@ -2,21 +2,24 @@
 layout: page_v2
 page_type: module
 title: Module - Konduit Accelerate
-description: Applies Konduit video ad acceleration optimization to a provided bid.
+description: Applies Konduit video ad acceleration optimization to wining video bid.
 module_code : konduitWrapper
 display_name : Konduit Accelerate
-enable_download : true
+enable_download : false
+vendor_specific: true
 sidebarType : 1
 ---
 
 # Konduit Accelerate Module
-{:.no_toc}
 
-The Konduit Accelerate module applies the [Konduit](https://konduitvideo.com/) video acceleration optimization to a publisher’s existing Prebid setup. This optimization provides publishers with tools to monetize previously lost revenue and drive higher fill rates on their video inventory.
+{: .alert.alert-warning :}
+Prebid believes this module may no longer be maintained.
+
+The Konduit Accelerate module applies the Konduit video acceleration optimization to a publisher’s existing Prebid setup. This optimization provides publishers with tools to monetize previously lost revenue and drive higher fill rates on their video inventory.
 
 To install the module, follow these instructions:
 
-### Step 1: Prepare the base Prebid file
+## Step 1: Prepare the base Prebid file
 
 Build your Prebid.js package in one of two ways:
 
@@ -25,14 +28,13 @@ Build your Prebid.js package in one of two ways:
 - From the command line, run  
    `gulp build --modules=konduitWrapper,...`
 
-
-### Step 2: Implement module code on page
+## Step 2: Implement module code on page
 
 - Add konduitId as config using `setConfig` prebid method (`pbjs.setConfig({ konduit: { konduitId: your_konduit_id } })`)
 
 - Insert the Konduit module code in the source code of your page.  
   The module exposes the `pbjs.adServers.konduit.processBids` function.
-   
+
 - Provide input parameters to the function. (All parameters are shown in the following table.)
 
 {: .table .table-bordered .table-striped }
@@ -43,18 +45,20 @@ Build your Prebid.js package in one of two ways:
   | adUnitCode | string | adUnitCode where a winner bid can be found | - |
   | timeout | number | Max time to wait for Konduit response with cache key and kCpm data | 1000 |
   | callback | function | The callback function is called once Konduit caches data for the bid. Arguments of this function are `error` and `bids` (`error` should be `null` if Konduit request is successful). | - |
-  
+
 Konduit Accelerate module respects the Prebid `enableSendAllBids` flag and supports both ‘Send All Bids’ and ‘Use only the winning bid’ scenarios.
 
 Prebid set the `enableSendAllBids` flag to true by default and it can be explicitly disabled in Prebid config if needed.
+
 ```javascript
 pbjs.setConfig({
   enableSendAllBids: false
 });  
 ```
-Please refer to [Publisher API Reference (Send All Bids)](https://prebid.org/dev-docs/publisher-api-reference.html#setConfig-Send-All-Bids) for more information on the Send All Bids settings. 
 
-### Step 3: Configure Google Ad Manager (GAM)
+Please refer to [Publisher API Reference (Send All Bids)](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-All-Bids) for more information on the Send All Bids settings.
+
+## Step 3: Configure Google Ad Manager (GAM)
 
 In order for Konduit’s module to be completely integrated, line item creatives need to be adjusted in GAM.
 Please contact [support@konduit.me](mailto:support@konduit.me) for assistance.
@@ -81,12 +85,11 @@ Note that the creative URL contains a few custom macros that allow Konduit platf
   | k_cache_key | %%PATTERN:k_cache_key%% | The macro is passing a cache key so that Konduit platform is able to fetch current bid tag for processing. This macro is recommended for use in a ‘single bid’ mode. In ‘send all bids’ mode it always represents a winning bid. |
   | konduit_cache_key | %%PATTERN:konduit_cache_key%% | *This macro is deprecated and k_cache_key should be used instead* |
   | k_cache_key_BIDDERCODE | %%PATTERN:k_cache_key_rubicon%% | The macro is passing a cache key so that Konduit platform is able to fetch a bidder tag for processing. This macro should be used in a ‘send all bids’ mode. |
-  
-Refer to the following documentation for more information on Google Ad Manager setup:  
-[Step By Step Guide to Google Ad Manager Setup](https://prebid.org/adops/step-by-step.html)  
-[Send all bids to the ad server - Ad Ops setup](https://prebid.org/adops/send-all-bids-adops.html)
 
-### Sample Code
+Refer to the following documentation for more information on Google Ad Manager setup:  
+[Step By Step Guide to Google Ad Manager Setup](/adops/step-by-step.html)  
+
+## Sample Code
 
 We recommended using the Konduit module function call in the `bidsBackHandler` callback function.
 
@@ -118,8 +121,8 @@ pbjs.que.push(function() {
   });
 });
 ```
-​
-## Further Reading
-​
-[Getting Started Example]({{site.baseurl}}/dev-docs/getting-started.html)  
-[Prebid.js for Video]({{site.baseurl}}/prebid-video/video-overview.html)
+
+# Further Reading
+
+- [Getting Started Example]({{site.baseurl}}/dev-docs/getting-started.html)
+- [Prebid.js for Video]({{site.baseurl}}/prebid-video/video-overview.html)

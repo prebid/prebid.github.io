@@ -2,7 +2,7 @@
 layout: page_v2
 page_type: module
 title: Module - Currency
-description: Converts bids to the ad server currency
+description: Converts bid currency into ad server currency based on data in a supplied exchange rate file.
 module_code : currency
 display_name : Currency
 enable_download : true
@@ -10,14 +10,15 @@ sidebarType : 1
 
 ---
 
-
-
 # Currency Module
 {:.no_toc}
 
+* TOC
+{:toc}
+
 This module supports the conversion of multiple bidder currencies into a single currency
 used by the publisher's ad server. In previous versions of Prebid, this was accomplished
-by using [BidderSettings.bidCpmAdjustment]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.bidderSettings), but that's a static value not changed except when
+by using [BidderSettings.bidCpmAdjustment]({{site.baseurl}}/dev-docs/publisher-api-reference/bidderSettings.html), but that's a static value not changed except when
 the web development team makes a manual update.
 
 Publishers may continue to use the bidCpmAdjustment approach, or may begin using this optional module, gaining automatic updates as currency exchange rates fluctuate. Here's how it works at a high level:
@@ -29,13 +30,13 @@ currency conversion file while the bids are taking place. Alternately, the conve
 be provided in the page.
 1. At runtime, bids are converted to the ad server currency as needed.
 1. Default rates can be provided in case the file cannot be loaded.
+1. When `requestBids` is called, the Currency Module will delay the auction up to the supplied amount of time in `currency.auctionDelay` or as soon as the dynamic endpoint returns data, whichever is first.
 
 ## Currency Architecture
 
 The numbered circles in this diagram are explained below.
 
 ![Currency Architecture]({{site.baseurl}}/assets/images/dev-docs/currency_architecture.png){:class="pb-lg-img"}
-
 
 ### 1. Line Item Creation
 
@@ -53,7 +54,7 @@ For example, the default Prebid "low granularity" bucket is:
 The following config translates the "low granularity" bucket with a conversion rate of
 108 yen to 1 US dollar. It also defines the default conversion rate as being 110 yen to the dollar.
 
-{% highlight js %}
+```javascript
 pbjs.setConfig({
     "priceGranularity": "low",
     "currency": {
@@ -62,7 +63,7 @@ pbjs.setConfig({
        "defaultRates": { "USD": { "JPY": 110 }}
     }
 });
-{% endhighlight %}
+```
 
 This results in a granularity rule that's scaled up to make sense in Yen:
 
@@ -122,7 +123,6 @@ to all currencies.
 For instance, if the current conversion rate is &yen;110 to the dollar, then a bid of USD$1.55 would be converted to &yen;170.50, which gets put into the
 low granularity bucket hb_pb=162.
 
-
 ### 5. Ad Request and Decision
 
 Finally, the scaled and quantized bids are sent to the ad server, where they will match
@@ -130,7 +130,6 @@ the line items set up initially.
 
 {: .alert.alert-success :}
 No other part of the Prebid process has changed due to currency support: creation of AdUnits, creative display, analytics, etc.
-
 
 ### Full Example
 
@@ -167,12 +166,12 @@ from USD to JPY is 110.
 | B | 151 | JPY | 151 | hb_pb_b=108 |
 | C | 0.90 | ? (USD assumed) | 99.9 | hb_pb_b=54 |
 
-
 ## Page integration
 
 Adding the currency module to a page is done with a call to the setConfig API with one or
 more parameters. The simplest recommended implementation would be:
-{% highlight js %}
+
+```javascript
 pbjs.setConfig({
     "currency": {
        "adServerCurrency": "JPY",
@@ -180,12 +179,14 @@ pbjs.setConfig({
        "defaultRates": { "USD": { "JPY": 110 }}
     }
 });
-{% endhighlight %}
-Note that the `defaultRates` attribute is optional, but recommended in case
-there's an issue loading the currency file.
+```
+
+{: .alert.alert-warning :}
+Note that the `defaultRates` attribute is optional, but recommended in case there's an issue loading the currency file.
 
 In this example, the publisher is providing their own `conversionRateFile`:
-{% highlight js %}
+
+```javascript
 pbjs.setConfig({
 "currency": {
       // enables currency feature
@@ -195,12 +196,16 @@ pbjs.setConfig({
       "conversionRateFile": "URL_TO_RATE_FILE",
       // optionally provide a default rate in case the file can't be read
       "defaultRates": { "USD": { "GPB": 0.75 }}
+      // optionally sets the auction defer time if the file has not been loaded yet
+      "auctionDelay": 1000
    }
 });
-{% endhighlight %}
+```
+
 And finally, here's an example where the conversion rate is specified right in the config, so
 the external file won't be loaded:
-{% highlight js %}
+
+```javascript
 pbjs.setConfig({
     "currency": {
        "adServerCurrency": "JPY",
@@ -208,8 +213,7 @@ pbjs.setConfig({
        "rates": { "USD": { "JPY": 110.21 }}
     }
 });
-{% endhighlight %}
-
+```
 
 ## Building the Prebid package with Currency Support
 
@@ -217,16 +221,16 @@ pbjs.setConfig({
 
 Follow the basic build instructions on the Gihub repo's main README. To include the module, an additional option must be added to the the gulp build command:
 
-{% highlight js %}
+```javascript
 gulp build --modules=currency,exampleBidAdapter
-{% endhighlight %}
+```
 
 This command will build the following files:
 
-- build/dist/prebid-core.js - the base Prebid code
-- build/dist/currency.js - additional code for the currency feature
-- build/dist/exampleBidAdapter.js - a specified bidder adapter
-- build/dist/prebid.js - a combined file with the base Prebid core code, bidder adapter code, and the currency module code.
+* build/dist/prebid-core.js - the base Prebid code
+* build/dist/currency.js - additional code for the currency feature
+* build/dist/exampleBidAdapter.js - a specified bidder adapter
+* build/dist/prebid.js - a combined file with the base Prebid core code, bidder adapter code, and the currency module code.
 
 ### Step 2: Publish the package(s) to the CDN
 
@@ -234,7 +238,7 @@ After testing, get your javascript file(s) out to your Content Delivery Network 
 
 Note that there are more dynamic ways of combining these components for publishers or integrators ready to build a more advanced infrastructure.
 
-<a name="currency-config-options" />
+<a name="currency-config-options"></a>
 
 ## Functions
 
@@ -248,14 +252,14 @@ a currency object that may contain several parameters:
 | granularityMultiplier | `decimal` | How much to scale the price granularity calculations. Defaults to 1. | 108 |
 | conversionRateFile | `URL` | Optional path to a file containing currency conversion data. See below for the format. Prebid.org hosts a file as described in the next section. | `https://example.com/rates.json` |
 | rates | object | This optional argument allows you to specify the rates with a JSON object, subverting the need for the conversionRateFile parameter.  If this argument is specified, the conversion rate file will not be loaded. | { 'USD': { 'CNY': 6.8842, 'GBP': 0.7798, 'JPY': 110.49 } } |
-| defaultRates | `object` | An optional parameter that defines a default rate that can be used if the currency file cannot be loaded. This option isn't used when the `rates` parameter is supplied. | { 'USD': { 'GPB': 0.75 }} |
+| defaultRates | `object` | An optional **but highly recommended** parameter that defines a default rate that can be used if the currency file cannot be loaded. This option isn't used when the `rates` parameter is supplied. | { 'USD': { 'GPB': 0.75 }} |
 | bidderCurrencyDefault | `object` | This is an optional argument to provide publishers a way to define which currency is used by a particular bidder. This option was provided as a transition until such a time that most bidder adapters define currency on bid response and is kept for legacy 0.x integrations. | { "bidderXYZ": "GBP" } |
 
 ## Currency Rate Conversion File
 
 ### Prebid.org's currency file
 
-Prebid.org hosts a conversion file at [https://cdn.jsdelivr.net/gh/prebid/currency-file@1/latest.json](https://cdn.jsdelivr.net/gh/prebid/currency-file@1/latest.json). The currencies currently supported are: AUD, BGN, BRL, CAD, CHF, CNY, CZK, DKK, EUR, GBP, HKD, HRK, HUF, IDR, ILS, INR, ISK, JPY, KRW, MXN, MYR, NOK, NZD, PHP, PLN, RON, RUB, SEK, SGD, THB, TRY, USD, ZAR.
+Prebid.org hosts a conversion file at [cdn.jsdelivr.net/gh/prebid/currency-file@1/latest.json](https://cdn.jsdelivr.net/gh/prebid/currency-file@1/latest.json). The currencies currently supported are: AUD, BGN, BRL, CAD, CHF, CNY, CZK, DKK, EUR, GBP, HKD, HRK, HUF, IDR, ILS, INR, ISK, JPY, KRW, MXN, MYR, NOK, NZD, PHP, PLN, RON, RUB, SEK, SGD, THB, TRY, USD, ZAR.
 
 {: .alert.alert-warning :}
 The currencies on this list could change if the underlying API source changes. If a desired currency isn't on this list, you will need to generate and host your own conversion file.

@@ -80,17 +80,17 @@ Here are a couple examples showing the logic behind the currency converter:
 
 ## Request-Defined Conversion Rates
 
-Using PBS-Java, rates can be passed in on the request:
+Rates can be passed in on the request:
 
 ```
 "ext": {
-    "prebid": {
-	  "currency": {
-		  "rates": {
-			  "USD": { "UAH": 24.47, "ETB": 32.04, "EUR": 0.92, ... }
-		  },
-                  "usepbsrates": false // defaults to true
-	  }
+  "prebid": {
+    "currency": {
+      "rates": {
+        "USD": { "UAH": 24.47, "ETB": 32.04, "EUR": 0.92, ... }
+      },
+      "usepbsrates": false // defaults to true
+    }
   }
 }
 ```
@@ -104,3 +104,9 @@ Note that the `usepbsrates` flag allows you to define which rates to use when PB
 
 A dedicated endpoint on the Admin port will allow you to see what's happening within the currency converter.
 See [currency rates endpoint](/prebid-server/endpoints/pbs-endpoint-admin.html) for more details.
+
+## Price Granularity
+
+When converting to a currency where the typical nominal CPMs are much different than USD such as JPY or INR, use a custom price granularity that reflects the typical range of CPMs in that currency.  
+
+The predefined price granularities such as `medium` or `dense` will not be correctly scaled and thus almost every bid will end in the top bucket.  Unlike Prebid.js, Prebid Server does not support `granularityMultiplier` to scale granularities so a custom price granularity needs to be used.

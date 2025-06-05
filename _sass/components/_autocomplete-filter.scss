@@ -1,0 +1,12 @@
+.pb-content {
+  .autocomplete-filter {
+    padding: 10px 15px;
+    border: 1px solid #b3c1cc;
+    background-color: rgba(236, 243, 245, 0.35);
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+

@@ -5,8 +5,9 @@ display_name: Geoedge Realtime
 description: Geoedge realtime blocking of bad ads - malware, redirect and offensive content
 page_type: module
 module_type: rtd
-module_code : geoedge
+module_code : geoedgeRtdProvider
 enable_download : true
+vendor_specific: true
 sidebarType : 1
 ---
 
@@ -19,20 +20,19 @@ sidebarType : 1
 ## Overview
 
 The Geoedge Realtime module lets publishers block bad ads such as automatic redirects, malware, offensive creatives and landing pages.
-To use this module, you'll need to work with [Geoedge](https://www.geoedge.com/publishers-real-time-protection/) to get an account and cutomer key.
+To use this module, you'll need to work with [Geoedge](https://www.geoedge.com/publishers-real-time-protection/) to get an account and customer key.
 
-{: .alert.alert-warning :}
-Disclosure: This module loads external code that is not open source and has not been reviewed by Prebid.org.
+{% include dev-docs/loads-external-javascript.md %}
 
 ## Integration
 
-1) Build the geoedge RTD module into the Prebid.js package with:
+1. Build the geoedge RTD module into the Prebid.js package with:
 
-```
-gulp build --modules=geoedgeRtdProvider,...
-```
+    ```bash
+    gulp build --modules=geoedgeRtdProvider,...
+    ```
 
-2) Use `setConfig` to instruct Prebid.js to initilize the geoedge module, as specified below.
+2. Use `setConfig` to instruct Prebid.js to initilize the geoedge module, as specified below.
 
 ## Configuration
 
@@ -70,15 +70,15 @@ Parameters details:
 ## Example
 
 To view an integration example:
- 
-1) in your cli run:
 
-```
-gulp serve --modules=appnexusBidAdapter,geoedgeRtdProvider
-```
+1. in your cli run:
 
-2) in your browser, navigate to:
+    ```bash
+    gulp serve --modules=appnexusBidAdapter,geoedgeRtdProvider
+    ```
 
-```
+2. in your browser, navigate to:
+
+```text
 http://localhost:9999/integrationExamples/gpt/geoedgeRtdProvider_example.html
 ```

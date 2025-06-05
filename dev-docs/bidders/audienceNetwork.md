@@ -5,6 +5,7 @@ description: Prebid Audience Network Bidder Adaptor
 pbs: true
 biddercode: audienceNetwork
 media_types: native, video
+sidebarType: 1
 ---
 
 ### Registration

@@ -1,0 +1,26 @@
+.pb-content {
+  .c-bidder-list-group {
+    h4 {
+      color: #797f90;
+      font-size: 19px;
+      font-weight: 700;
+    }
+  }
+
+  .c-bidder-list {
+    padding-left: 0;
+    columns: 2;
+
+    li {
+      padding-bottom: 5px;
+
+      &::before {
+        content: none !important;
+      }
+    }
+
+    a {
+      text-decoration: none;
+    }
+  }
+}

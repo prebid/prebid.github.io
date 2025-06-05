@@ -2,17 +2,22 @@
 layout: bidder
 title: VOX
 description: Prebid VOX Bidder Adapter
+schain_supported: true
+floors_supported: true
+userIds: all
 pbjs: true
+pbs: true
 media_types: banner, video
 biddercode: vox
-gdpr_supported: true
+tcfeu_supported: true
+gvl_id: 206
+sidebarType: 1
 ---
 
 ### Note
 
 You can use this adapter to get a bid from partners.hybrid.ai
 Please reach out to your partners account team before using this plugin to get placementId.
-
 
 ### Bid Params
 
@@ -21,8 +26,8 @@ Please reach out to your partners account team before using this plugin to get p
 |---------------------|------------------------|-------------------------------------------------------------------|--------------------------------------|----------|
 | `placementId`       | required               | The place id.                                                     | '5af45ad34d506ee7acad0c26'           | `string` |
 | `placement`         | required               | Adunit placement, possible values: banner, video, inImage         | 'banner'                             | `string` |
-| `imageUrl`          | required for inImage   | URL of the image on which the banner will be displayed            | 'https://hybrid.ai/images/image.jpg' | `string` |
-
+| `imageUrl`          | required for inImage   | URL of the image on which the banner will be displayed            | `'https://example.com/images/image.jpg'` | `string` |
+| `displaySizes`      | optional, only supported by inImage format   | An array of strings. Each string should be in `<Width>x<Height>` format (currently, this parameter is supported only by PrebidServer vox adapter) | `["123x90", "720x100"]` | `string[]` |
 
 ### Sample Banner Ad Unit
 
@@ -51,7 +56,7 @@ var adUnits = [{
     code: 'video_ad_unit',
     mediaTypes: {
         video: {
-            context: 'outstream',      // required, possible values: instream, outstream 
+            context: 'outstream',      // required, possible values: instream, outstream
             playerSize: [[640, 480]]   // required
         }
     },

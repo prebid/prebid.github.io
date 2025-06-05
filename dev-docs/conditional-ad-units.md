@@ -11,33 +11,34 @@ sidebarType: 1
 
 
 # Conditional Ad Units
+
 {:.no_toc}
 
-The [global sizeConfig](/dev-docs/publisher-api-reference.html#setConfig-Configure-Responsive-Ads) and [Advanced Size Mapping](/dev-docs/modules/sizeMappingV2.html) features are useful for standard responsive ad designs, but a number of other scenarios are supported as well:
+The [Size Mapping](/dev-docs/modules/sizeMapping.html) and [Advanced Size Mapping](/dev-docs/modules/sizeMappingV2.html) features are useful for standard responsive ad designs, but a number of other scenarios are supported as well.
 
 * TOC
 {:toc}
 
-By supporting these scenarios, header bidding can be more efficient - the browser can send bids to a more surgical set of bidders based on device size or other attributes the page code can create.
+By supporting these scenarios, header bidding can be more efficient; the browser can send bids to a more surgical set of bidders based on device size or other attributes the page code can create.
 
 The basic steps are:
 
-1. Build up an array of 'labels' from two sources: as an output of [`sizeConfig`](/dev-docs/publisher-api-reference.html#setConfig-Configure-Responsive-Ads), as an optional argument to [`requestBids()`](/dev-docs/publisher-api-reference.html#module_pbjs.requestBids), or both.
+1. Build up an array of 'labels' from two sources: as an output of [`sizeConfig`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-Responsive-Ads), as an optional argument to [`requestBids()`](/dev-docs/publisher-api-reference/requestBids.html), or both.
 1. Apply label targeting to AdUnits or specific bids.
 
-See the [Publisher API reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html#setConfig-Configure-Responsive-Ads) for syntax.
+See the [Publisher API reference](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-Responsive-Ads) for syntax.
 
-## What if some bidders should be skipped for some devices?
+## Some Bidders Should Be Skipped for Some Devices
 
 {: .alert.alert-info :}
-See the [Advanced Size Mapping module](/dev-docs/modules/sizeMappingV2.html) for another way to handle this scenario. Note that you must use Advanced Size Mapping for mediaTypes other than banner.
+The following example uses [Size Mapping](/dev-docs/modules/sizeMapping.html). See the [Advanced Size Mapping module](/dev-docs/modules/sizeMappingV2.html) for another way to handle this scenario. Note that you must use Advanced Size Mapping for mediaTypes other than banner.
 
 Say a particular bidder is focused on mobile phone demand, so it's really not worthwhile
 to send them requests from display or tablets.
 
 We'll start with how to set up the labels from `sizeConfig`:
 
-{% highlight js %}
+```javascript
 
 pbjs.setConfig({
   sizeConfig: [{
@@ -55,12 +56,12 @@ pbjs.setConfig({
   }]
 });
 
-{% endhighlight %}
+```
 
 In the above `sizeConfig`, labels are applied for each of the 3 screen sizes that can later be used in
 conditional ad unit logic. Now you need to label your AdUnits to match. For example:
 
-{% highlight js %}
+```javascript
 
 var AdUnits = [{
     code: "ad-slot-1",
@@ -85,7 +86,7 @@ var AdUnits = [{
    ]
 }]
 
-{% endhighlight %}
+```
 
 How this works:
 
@@ -95,7 +96,7 @@ How this works:
     1. The first bid doesn't have any conditional logic, so is present in every auction.
     1. The second bid requires that "phone" be present in the label array, otherwise it won't be part of the auction.
 
-## What if some bidders have different parameters for different devices?
+## Some Bidders Have Different Parameters for Different Devices
 
 For reporting and targeting purposes, Publishers and SSPs sometimes break out different inventory structures for different platforms.
 
@@ -107,13 +108,13 @@ For instance, say that a given bidder wants to define different placements for d
 | Display | 1111 |
 | Phones and tablets | 2222 |
 
-### Using the Global sizeConfig Approach (Banner only)
+### Using the Size Mapping Approach (Banner only)
 
 Assuming the same `sizeConfig` as in the first use case above, the AdUnit would contain bids for both
 placements, but the conditional `labelAny` is added to them both. This will cause the bid to be fired only if one
 or more of the strings in the array matches a defined label.
 
-{% highlight js %}
+```javascript
 
 var AdUnits = [{
     code: "ad-slot-1",
@@ -139,7 +140,7 @@ var AdUnits = [{
    ]
 }]
 
-{% endhighlight %}
+```
 
 How this works:
 
@@ -153,7 +154,7 @@ How this works:
 
 Here's another way of doing the same thing as shown in the previous section:
 
-{% highlight js %}
+```javascript
 
 var AdUnits = [{
     code: "ad-slot-1",
@@ -166,18 +167,18 @@ var AdUnits = [{
         {
             bidder: "bidderA",
             sizeConfig: [
-		{ minViewPort: [0, 0], relevantMediaTypes: ['none'] },
-		{ minViewPort: [1200, 0], relevantMediaTypes: ['banner'] }
-	    ],
+                { minViewPort: [0, 0], relevantMediaTypes: ['none'] },
+                { minViewPort: [1200, 0], relevantMediaTypes: ['banner'] }
+            ],
             params: {
                 placement: "1111"
             }
        },{
             bidder: "bidderA",
             sizeConfig: [
-		{ minViewPort: [0, 0], relevantMediaTypes: ['banner'] },
-		{ minViewPort: [1200, 0], relevantMediaTypes: ['none'] }
-	    ],
+                { minViewPort: [0, 0], relevantMediaTypes: ['banner'] },
+                { minViewPort: [1200, 0], relevantMediaTypes: ['none'] }
+            ],
             params: {
                 placement: "2222"
             }
@@ -185,15 +186,14 @@ var AdUnits = [{
    ]
 }]
 
-{% endhighlight %}
+```
 
-
-## What if some ad unit auctions should be skipped entirely for some devices?
+## Some Ad Unit Auctions Should Be Skipped Entirely for Some Devices
 
 Say there's a responsive page where one of the ad units only supports larger sizes, so it doesn't make sense
-on phones. To suppress the ad unit for mobile users, we can apply conditional logic to the entire ad unit. Here's an example using the global sizeConfig approach (banner only):
+on phones. To suppress the ad unit for mobile users, we can apply conditional logic to the entire ad unit. Here's an example using the size mapping approach (banner only):
 
-{% highlight js %}
+```javascript
 
 var AdUnits = [{
     code: "ad-slot-1",
@@ -218,31 +218,30 @@ var AdUnits = [{
        }
    ]
 }]
+```
 
 See the [Advanced Size Mapping module](/dev-docs/modules/sizeMappingV2.html) if you need to do something like this for video.
 
-{% endhighlight %}
+## Some Bid Requests Apply Only to Users Originating from Certain Countries
 
-## What if some bid requests apply only to users originating certain from countries?
-
-Labels aren't constrained to describing device size -- they can be used for many types of conditions the page maywant to define. Besides being defined as part of `sizeConfig`, labels can also be passed into the [`requestBids()`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.requestBids) function as an argument.
+Labels aren't constrained to describing device size -- they can be used for many types of conditions the page maywant to define. Besides being defined as part of `sizeConfig`, labels can also be passed into the [`requestBids()`](/dev-docs/publisher-api-reference/requestBids.html) function as an argument.
 
 A specific use case: suppose that a certain bidder doesn't have a data center outside of a
 certain region. It's really not worth sending them bid
 requests for users outside of their geographic area. Assuming the page can figure out where the user's from,
 a label can be implemented and applied to make the bid conditional.
 
-{% highlight js %}
+```javascript
 // page logic determines the 'europeanUser' boolean
 If (europeanUser) {
     reqArgs={labels:['eur']};
 }
 pbjs.requestBids(reqArgs);
-{% endhighlight %}
+```
 
 Then this label can be applied to conditions in the AdUnit just like labels that originate from `sizeConfig`. E.g.
 
-{% highlight js %}
+```javascript
 var AdUnits = [{
     code: "ad-slot-1",
     mediaTypes: {
@@ -261,16 +260,16 @@ var AdUnits = [{
        ...
    ]
 }]
-{% endhighlight %}
+```
 
 This example shows that the 'euroMobileBidder' is only interested in receiving bids that have **both**
 labels:
 
-* "eur" as passed into [`requestBids()`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.requestBids)
+* "eur" as passed into [`requestBids()`](/dev-docs/publisher-api-reference/requestBids.html)
 * "phone" as created by `sizeConfig`
 
 ## Further Reading
 
-+ [Responsive ad designs](/dev-docs/publisher-api-reference.html#setConfig-Configure-Responsive-Ads)
-+ [Advanced Size Mapping Module](/dev-docs/modules/sizeMappingV2.html)
-+ [Using Media Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)
+* [Size Mapping Module](/dev-docs/modules/sizeMapping.html)
+* [Advanced Size Mapping Module](/dev-docs/modules/sizeMappingV2.html)
+* [Using Media Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)

@@ -6,16 +6,16 @@ pbjs: true
 biddercode: quantumdex
 aliasCode: apacdex
 media_types: banner, video
-gdpr_supported: true
-tcf2_supported: true
+tcfeu_supported: false
 schain_supported: true
 usp_supported: true
+userIds: all
+floors_supported: true
+pbs: true
+pbs_app_supported: true
+sidebarType: 1
 ---
 
+### Description
 
-### Bid Params
-
-{: .table .table-bordered .table-striped }
-| Name        | Scope    | Description                                                                                                                    | Example    | Type     |
-|-------------|----------|--------------------------------------------------------------------------------------------------------------------------------|------------|----------|
-| `siteId`    | required | Publisher site ID from Quantumdex                                                                                         | `'quantumdex-site-id'` | `string` |
+Quantumdex is an aliased bidder of Apacdex bid adapter. Please refer to [Apacdex documentation](https://docs.prebid.org/dev-docs/bidders/apacdex) for bid parameters and implementation guide.

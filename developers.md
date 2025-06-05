@@ -6,8 +6,7 @@ description: Developers Landing Page
 sidebarType: 0
 ---
 
-<a name="publisher_developers"/>
-
+<a name="publisher_developers"></a>
 
 # Developers
 
@@ -25,13 +24,13 @@ Key links for publisher developers.
 
 **Prebid for AMP** - integrating display ads into AMP pages:
 
-+ [How Prebid on AMP works](/dev-docs/how-prebid-on-amp-works.html)
++ [How Prebid on AMP works](/prebid-server/use-cases/pbs-amp.html)
 + [Prebid AMP Implementation Guide](/dev-docs/show-prebid-ads-on-amp-pages.html)
 + [Prebid Server AMP endpoint documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-amp.html)
 
 **Prebid Mobile** - integrating display, video, and native ads into iOS and Android apps:
 
-+ [Getting started with Prebid Mobile](/prebid-mobile/prebid-mobile-pbs.html)
++ [Getting started with Prebid Mobile](/prebid-mobile/prebid-mobile-getting-started.html)
 + [Android code integration](/prebid-mobile/pbm-api/android/code-integration-android.html)
 + [iOS code integration](/prebid-mobile/pbm-api//ios/code-integration-ios.html)
 

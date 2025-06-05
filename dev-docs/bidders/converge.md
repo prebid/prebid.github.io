@@ -1,20 +1,41 @@
 ---
 layout: bidder
-title: Converge
-description: Prebid Converge Bidder Adaptor
-pbjs: true
+title: Converge-Digital
+description: Converge-Digital Bidder Adaptor
 biddercode: converge
-media_types: banner, video
-gdpr_supported: true
+aliasCode: adkernel
+tcfeu_supported: true
+dsa_supported: false
+gvl_id: 248
 usp_supported: true
+coppa_supported: true
+gpp_sids: tcfeu, usp
+schain_supported: true
+dchain_supported: false
+userId: all
+media_types: banner, video, native
+safeframes_ok: true
+deals_supported: false
+floors_supported: true
+fpd_supported: true
+pbjs: true
+pbs: false
+pbs_app_supported: false
+prebid_member: false
+multiformat_supported: will-bid-on-any
+ortb_blocking_supported: true
+privacy_sandbox: no
+sidebarType: 1
 ---
 
+### Note
+
+The Converge-Digital Bidding adapter requires setup and approval before implementation. Please reach out to <info@converge-digital.com> for more details.
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name        | Scope    | Description                                                                                                                                                                                                             | Example                                   | Type      |
-|-------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------|-----------|
-| `uid`       | required | Represents the Converge bidder system Ad Slot ID associated with the respective div id from the site page.                                                                                                              | `59`                                      | `integer` |
-| `priceType` | optional | Can take the values `gross` or `net`, default value is `net`. Net represents the header bid price with the Converge header bidder margin already extracted. Gross price does contain the Converge bidder margin within. | `'gross'`                                 | `string`  |
-| `keywords`  | optional | A set of key-value pairs applied to all ad slots on the page. Values can be empty.                                                                                                                                      | `keywords: { topic: ['stress', 'fear'] }` | `object`  |
+| Name     | Scope    | Description           | Example                   | Type     |
+|----------|----------|-----------------------|---------------------------|----------|
+| `host`   | required | ConvergeDigital RTB host | `'cpm.convergeselect.net'` | `string` |
+| `zoneId` | required | Zone Id           | `30164`                 | `integer` |

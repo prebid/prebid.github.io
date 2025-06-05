@@ -62,7 +62,7 @@ In order to make Prebid Server aware of the new analytics module it needs to be 
 ### Example
 {:.no_toc}
 
-The [log module](https://github.com/prebid/prebid-server-java/blob/master/src/main/java/org/prebid/server/analytics/LogAnalyticsReporter.java) is provided as an example. This module will write dummy messages to a log.
+The [log module](https://github.com/prebid/prebid-server-java/blob/c5e7782b15c3bd47267a9268fd25a21a8bf34d98/src/main/java/org/prebid/server/analytics/reporter/log/LogAnalyticsReporter.java) is provided as an example. This module will write dummy messages to a log.
 
 It can be configured with:
 

@@ -4,11 +4,12 @@ title: Buzzoola
 description: Prebid Buzzoola Bidder Adaptor
 pbjs: true
 biddercode: buzzoola
-media_types: banner, video
-gdpr_supported: false
+media_types: banner, video, native
+tcfeu_supported: false
+sidebarType: 1
 ---
 
-### Note:
+### Note
 
 * The Buzzoola Header Bidding adaptor requires setup and approval before beginning. Please reach out to <support@buzzoola.com> for more details.
 * Please note that cookie support is required.

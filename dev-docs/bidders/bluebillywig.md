@@ -5,11 +5,14 @@ description: Prebid Blue Billywig Bidder Adaptor
 biddercode: bluebillywig
 pbjs: true
 media_types: video
-gdpr_supported: true
+gvl_id: 684
+tcfeu_supported: true
 schain_supported: true
 coppa_supported: true
 usp_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+pbjs_version_notes: removed in 9.0
+sidebarType: 1
 ---
 
 #### Bid Params
@@ -23,3 +26,4 @@ userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrable
 | `rendererCode`    | required | The name of the renderer to use in your Blue Billywig publication  | `"renderer"` | `string` |
 | `connections`     | required | Back-ends to connect with. For every value in this a param matching the back-end should exist too. | `["bluebillywig"]` | `array` |
 | `video`     | optional | Any OpenRTB 2.5 video params to additionally send along to the SSPs. | `{"maxduration": 30}` | `object` |
+| `rendererSettings`     | optional | Any playout property for the renderer you wish to override. | `{"autoPlay": "false", "interactivity_inView":"Play"}` | `object` |

@@ -1,18 +1,41 @@
 ---
 layout: bidder
 title: Türk Telekom
-description: Prebid Türk Telekom Bidder Adaptor
-pbjs: true
+description: Türk Telekom Bidder Adaptor
 biddercode: turktelekom
-media_types: banner, video
-gdpr_supported: true
+aliasCode: adkernel
+tcfeu_supported: true
+dsa_supported: false
+gvl_id: 673
+usp_supported: true
+coppa_supported: true
+gpp_sids: tcfeu, usp
+schain_supported: true
+dchain_supported: false
+userId: all
+media_types: banner, video, native
+safeframes_ok: true
+deals_supported: false
+floors_supported: true
+fpd_supported: true
+pbjs: true
+pbs: false
+pbs_app_supported: false
+prebid_member: false
+multiformat_supported: will-bid-on-any
+ortb_blocking_supported: true
+privacy_sandbox: no
+sidebarType: 1
 ---
 
+### Note
+
+The Türk Telekom bidding adapter requires setup and approval before implementation. Please reach out to <ad-ops@turktelekom.com.tr> for more details.
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name        | Scope    | Description                                                                                                                                                                                                                     | Example   | Type      |
-|-------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|-----------|
-| `uid`       | required | Represents the Türk Telekom bidder system Ad Slot ID associated with the respective div id from the site page.                                                                                                                  | `42`      | `integer` |
-| `priceType` | optional | Can take the values `gross` or `net`, default value is `net`. Net represents the header bid price with the Türk Telekom header bidder margin already extracted. Gross price does contain the Türk Telekom bidder margin within. | `'gross'` | `string`  |
+| Name     | Scope    | Description           | Example                   | Type     |
+|----------|----------|-----------------------|---------------------------|----------|
+| `host`   | required | RTB host | `'cpm.programattik.com'` | `string` |
+| `zoneId` | required | Zone Id           | 30164                 | `integer` |

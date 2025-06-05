@@ -2,11 +2,17 @@
 layout: bidder
 title: DataBlocks
 pbs: true
-media_types: video
+pbjs: true
+description: Prebid Datablocks Bidder Adaptor
+media_types: banner,native
 biddercode: datablocks
 prebid_member: true
-gdpr_supported: true
-tcf2_supported: true
+tcfeu_supported: false
+pbs_app_supported: true
+schain_supported: true
+usp_supported: true
+userIds: criteo,unifiedId,netId,pubcid
+sidebarType: 1
 ---
 
 ### Bid Params
@@ -14,5 +20,7 @@ tcf2_supported: true
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description            | Example | Type     |
 |------------|----------|------------------------|---------|----------|
-| sourceId | required | Website Source Id | 111 | integer |
-| host | requird | Network Host to request from | 'host1' | string |
+| source_id | required | Website Source Id | 111 | integer |
+| host | optional | Network Host to request from | 'prebid.dblks.net' | string |
+| tagid | optional | Placement ID | 'leaderboard_1' | string |
+| vis_optout | optional | Opt out of visibility metric | true | boolean |
