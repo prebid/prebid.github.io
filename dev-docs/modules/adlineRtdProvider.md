@@ -25,7 +25,7 @@ The Adline Real-Time Data (RTD) Provider automatically retrieves age consent inf
     gulp build --modules=adlineRtdProvider ...
     ```
 
-2) Use `setConfig` to instruct Prebid.js to initialize the adlineRtdProvider module, as specified below.
+2. Use `setConfig` to instruct Prebid.js to initialize the adlineRtdProvider module, as specified below.
 
 ## Configuration
 
@@ -42,6 +42,7 @@ pbjs.setConfig({
   }
 });
 ```
+
 ## Parameters
 
 | Name      | Type    | Description                                  | Default |
