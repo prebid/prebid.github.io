@@ -52,6 +52,8 @@ var adUnits = [
     params: {
         siteId: 'examplePub123',    // required 
         productId: 'siab|inview'    // required
+        // optional: uncomment to enable test requests
+        // test: 1
     }
   }]
 }
