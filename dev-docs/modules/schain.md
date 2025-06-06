@@ -101,7 +101,6 @@ Yes, you can set both global and bidder-specific SChain configs. When together, 
 {: .alert.alert-warning :}
 **Prebid 10 :** Validation will be automatically performed by the **validationFpdModule** if you have included it in your Prebid.js build. If the `skipValidation` parameter is set to true in the validationFpdModule configuration, validation will be skipped. Please visit the [validationFpdModule documentation](https://docs.prebid.org/dev-docs/modules/validationFpdModule.html) for more information.
 
-
 {: .table .table-bordered .table-striped }
 | SChain Param | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
