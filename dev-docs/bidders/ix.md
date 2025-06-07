@@ -374,6 +374,8 @@ pbjs.addAdUnits({
 
 ### Protected Audience API support
 
+**Info:** Starting in June 2025, Index is pausing support for the Protected Audience API. After this date, you will no longer receive Protected Audience API demand from Index, even if your inventory is configured to be eligible for it.
+
 **Before you begin:**
 
 * You must be using Google Ad Manager as your ad server.
