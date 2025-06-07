@@ -44,13 +44,15 @@ The adapter supports both legacy and OpenRTB request formats:
 
 #### Legacy Format (Default)
 Uses GET request to legacy endpoint:
-```
+
+```http
 GET https://api.condorx.io/cxb/get.json
 ```
 
 #### OpenRTB Format
 Uses POST request to OpenRTB endpoint:
-```
+
+```http
 POST https://api.condorx.io/cxb/openrtb.json
 ```
 
