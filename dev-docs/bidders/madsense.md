@@ -26,6 +26,9 @@ The MadSense Header Bidding adapter needs approval from the MadSense team. For m
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name | Scope    | Description        | Example     | Type      |
 |------|----------|--------------------|-------------|-----------|
 | `company_id` | required | Company ID | `'1234567'` | `string`  |
+| `bidfloor`   | optional | Bid floor price | `0.5` | `number` |
+| `currency`   | optional | Bid floor currency | `'USD'` | `string` |
