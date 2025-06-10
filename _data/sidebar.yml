@@ -258,7 +258,7 @@
   subgroup: 1
 
 - sbSecId: 1
-  title: Running without an ad server
+  title: Running Prebid.js as an ad server
   link: /dev-docs/examples/no-adserver.html
   isHeader: 0
   isSectionHeader: 0

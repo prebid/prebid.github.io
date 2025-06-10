@@ -118,7 +118,7 @@ To handle the banner, video and in-banner native (Native Styles) ads:
         self?.bannerView.constraints.first { $0.firstAttribute == .width }?.constant = size.width
         self?.bannerView.constraints.first { $0.firstAttribute == .height }?.constant = size.height
     }, failure: { (error) in
-        PrebidDemoLogger.shared.error("Error occuring during searching for Prebid creative size: \(error)")
+        PrebidDemoLogger.shared.error("Error occurring during searching for Prebid creative size: \(error)")
     })
 }
 {% endcapture %}
@@ -134,7 +134,7 @@ To handle the banner, video and in-banner native (Native Styles) ads:
         self?.bannerView.constraints.first { $0.firstAttribute == .width }?.constant = size.width
         self?.bannerView.constraints.first { $0.firstAttribute == .height }?.constant = size.height
     }, failure: { (error) in
-        PrebidDemoLogger.shared.error("Error occuring during searching for Prebid creative size: \(error)")
+        PrebidDemoLogger.shared.error("Error occurring during searching for Prebid creative size: \(error)")
     })
 }
 {% endcapture %}
