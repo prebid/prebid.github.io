@@ -240,6 +240,8 @@ To request bids from Index:
 
 ### Receive Protected Audience API demand from Index
 
+**Info:** Starting in June 2025, Index is pausing support for the Protected Audience API. After this date, you will no longer receive Protected Audience API demand from Index, even if your inventory is configured to be eligible for it.
+
 Publishers who want to use the Protected Audience API with Prebid Server, must first set up their inventory to be eligible for Protected Audience API in Prebid.js. Prebid Server will automatically pass through the on-device auction signals received from Prebid.js to Index. To receive Protected Audience API auction demand from Index, contact your Index Representative.
 
 **Before you begin:** Depending on whether you are using the Prebid Server Go or Java code base and the Prebid.js version, you must make sure that you are using the appropriate Prebid Server version:
