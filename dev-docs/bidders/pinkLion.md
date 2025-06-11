@@ -2,7 +2,7 @@
 layout: bidder
 title: PinkLion
 description: Prebid PinkLion Bidder Adapter
-biddercode: PinkLion
+biddercode: pinkLion
 gpp_sids: usstate_all
 gvl_id: none
 tcfeu_supported: false
