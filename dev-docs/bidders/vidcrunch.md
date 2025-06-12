@@ -14,7 +14,7 @@ floors_supported: true
 usp_supported: true
 schain_supported: true
 safeframes_ok: true
-gvl_id: 780
+gvl_id: 780 (aniview)
 sidebarType: 1
 userIds: all
 ---
