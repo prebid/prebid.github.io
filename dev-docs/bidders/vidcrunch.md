@@ -62,7 +62,7 @@ const adUnit = [{
 }];
 ```
 
-**### Setup for Banner**
+### Setup for Banner
 
 ```javascript
 const adUnit = [{
