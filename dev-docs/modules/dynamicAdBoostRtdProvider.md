@@ -13,8 +13,6 @@ sidebarType : 1
 
 # Dynamic Ad Boost Real-time Data Submodule
 
-[Dynamic Ad Boost Real-time Data Submodule](/dev-docs/modules/dynamicAdBoostRtdProvider.html)
-
 There is no need for any parameters — we will do all the work automatically for you.
 
 {% include dev-docs/loads-external-javascript.md %}
