@@ -32,4 +32,4 @@ sidebarType: 1
 
 ### Note
 
-For the prebid server you only need to use one parameter: either placementId or endpointId
+For the prebid server you only need to use one parameter: either `placementId` or `endpointId`
