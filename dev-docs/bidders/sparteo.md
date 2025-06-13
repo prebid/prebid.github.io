@@ -3,7 +3,7 @@ layout: bidder
 title: Sparteo
 description: Prebid Sparteo Bidder Adaptor
 pbjs: true
-pbs: false
+pbs: true
 biddercode: sparteo
 media_types: banner, video
 tcfeu_supported: true
