@@ -37,4 +37,4 @@ The RocketLab Bidding adapter requires setup before beginning. Please contact us
 
 ### Note
 
-For prebid.js you only need to use one parameter: either placementId or endpointId
+For prebid.js you only need to use one parameter: either `placementId` or `endpointId`
