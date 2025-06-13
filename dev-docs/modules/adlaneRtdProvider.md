@@ -1,8 +1,8 @@
 ---
 layout: page_v2
-title: Adlane  Real-Time Data Module
-display_name: Adlane  RTD
-description: Adlane  Real-Time Data Provider for Age Consent
+title: Adlane Real-Time Data Module
+display_name: Adlane RTD
+description: Adlane Real-Time Data Provider for Age Verification
 page_type: module
 module_type: rtd
 module_code: Adlane Rtd
