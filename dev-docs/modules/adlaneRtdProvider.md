@@ -1,11 +1,11 @@
 ---
 layout: page_v2
 title: Adlane Real-Time Data Module
-display_name: Adlane RTD
+display_name: Adlane RTD Module
 description: Adlane Real-Time Data Provider for Age Verification
 page_type: module
 module_type: rtd
-module_code: Adlane Rtd
+module_code: adlaneRtdProvider
 enable_download: true
 vendor_specific: true
 sidebarType: 1
@@ -35,7 +35,7 @@ pbjs.setConfig({
     auctionDelay: 1000,
     dataProviders: [
       {
-        name: "adlaneRtd",
+        name: "adlane",
         waitForIt: true,
       }
     ]
@@ -47,7 +47,7 @@ pbjs.setConfig({
 
 | Name      | Type    | Description                                   | Default |
 |-----------|---------|-----------------------------------------------|---------|
-| name      | String  | Must be "adlaneRtd"                           | n/a     |
+| name      | String  | Must be "adlane"                           | n/a     |
 | waitForIt | Boolean | Whether to wait for the module before auction | true    |
 
 ## Age Verification Data
