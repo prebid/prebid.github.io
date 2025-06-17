@@ -9,7 +9,6 @@ example: '"abc123def456"'
 ---
 
 
-
 Taboola is a global leader in powering recommendations across the open web. The Taboola ID module allows publishers to enable identity support for Taboola demand by leveraging a persistent user ID from Taboola's identity infrastructure.
 
 This ID helps improve addressability, performance, and monetization opportunities across Taboola-integrated supply paths, particularly in environments where third-party cookies are limited or unavailable.
@@ -29,8 +28,6 @@ The Taboola ID module does not require any configuration parameters. If needed, 
 {: .alert.alert-info :}
 NOTE: The Taboola ID module supports both first-party and server-side Prebid identity environments.
 
-
-
 The following configuration parameters are available:
 
 {: .table .table-bordered .table-striped }
@@ -42,7 +39,6 @@ The following configuration parameters are available:
 | storage.name | Required | String | The name of the cookie or html5 local storage key         | `"taboolaId"` (recommended)                               |
 | storage.type | Required | String | This is where the taboola user ID will be stored          | `"cookie&html5"` (recommended) or `"html5"` |
 | storage.expires | Strongly Recommended | Number | How long (in days) the user ID information will be stored | `365` (recommended)                                       |
-
 
 ## Taboola ID Example
 
