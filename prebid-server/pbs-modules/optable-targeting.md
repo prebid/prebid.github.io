@@ -213,7 +213,7 @@ This will lead to id5 ID supplied as `id=c1:...` to the Targeting API.
 
 ## Analytics Tags
 
-The following 2 analytics tags are written by the module: 
+The following 2 activities are recorded by the module in the corresponding ATags on the corresponding stages: 
 
 * `optable-enrich-request`
 * `optable-enrich-response`
@@ -224,40 +224,58 @@ Example:
 
 ```json
 {
-  "analytics": {
-    "tags": [
-      {
-        "stage": "auction-response",
-        "module": "optable-targeting",
-        "analyticstags": {
-          "activities": [
+    "analytics":
+    {
+        "tags":
+        [
             {
-              "name": "optable-enrich-request",
-              "status": "success",
-              "results": [
+                "stage": "processed-auction-request",
+                "module": "optable-targeting",
+                "analyticstags":
                 {
-                  "values": {
-                    "execution-time": 33
-                  }
+                    "activities":
+                    [
+                        {
+                            "name": "optable-enrich-request",
+                            "status": "success",
+                            "results":
+                            [
+                                {
+                                    "values":
+                                    {
+                                        "execution-time": "42"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
                 }
-              ]
             },
             {
-              "name": "optable-enrich-response",
-              "status": "success",
-              "results": [
+                "stage": "auction-response",
+                "module": "optable-targeting",
+                "analyticstags":
                 {
-                  "values": {
-                    "reason": "none"
-                  }
+                    "activities":
+                    [
+                        {
+                            "name": "optable-enrich-response",
+                            "status": "success",
+                            "results":
+                            [
+                                {
+                                    "values":
+                                    {
+                                        "reason": "none"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
                 }
-              ]
             }
-          ]
-        }
-      }
-    ]
-  }
+        ]
+    }
 }
 ```
 
