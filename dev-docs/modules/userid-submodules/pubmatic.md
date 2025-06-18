@@ -40,7 +40,7 @@ pbjs.setConfig({
     userIds: [{
       name: "pubmaticId",
       params: {
-        publisherId: "123456" // Example ID
+        publisherId: 123456 // Example ID
       },
       storage: {
         name: "pubmaticId",
