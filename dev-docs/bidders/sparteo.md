@@ -3,9 +3,9 @@ layout: bidder
 title: Sparteo
 description: Prebid Sparteo Bidder Adaptor
 pbjs: true
-pbs: false
+pbs: true
 biddercode: sparteo
-media_types: banner, video
+media_types: banner, video, native
 tcfeu_supported: true
 gvl_id: 1028
 usp_supported: true
