@@ -17,7 +17,7 @@ media_types: banner, video, native
 multiformat_supported: will-bid-on-one
 userIds: all
 pbjs: true
-pbs: true
+pbs: 0
 pbs_app_supported: true
 safeframes_ok: true
 sidebarType: 1
