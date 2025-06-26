@@ -34,4 +34,3 @@ Take the first step toward optimizing your ad revenue and enhancing your site's 
 ## Parameters
 
 There is no need for any parameters — the module will handle everything automatically.
-
