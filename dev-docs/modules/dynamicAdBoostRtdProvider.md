@@ -1,5 +1,6 @@
 ---
 layout: page_v2
+<<<<<<< HEAD
 title: Dynamic Ad Boost RTD Module
 display_name: Dynamic Ad Boost RTD Module
 description: Boost your ad revenue and gain unprecedented visibility into your performance with our powerful, site-tailored Dynamic Ad Boost solution powered by Lupon Media.
@@ -7,10 +8,20 @@ page_type: module
 module_type: rtd
 module_code: dynamicAdBoostRtd
 enable_download: true
+=======
+title: Dynamic Ad Boost Real Time Data Provider
+display_name: Dynamic Ad Boost Real Time Data Provider
+description: Dynamic Ad Boost Real Time Data Provider
+page_type: module
+module_type: rtd
+module_code: dynamicAdBoostRtd
+enable_download: false
+>>>>>>> 14d6cb427754f51d8f67c22c5c66c46b1369e218
 vendor_specific: true
 sidebarType : 1
 ---
 
+<<<<<<< HEAD
 # Dynamic Ad Boost Module
 
 {% include dev-docs/loads-external-javascript.md %}
@@ -28,3 +39,10 @@ ake the first step towards optimizing your ad revenue and enhancing your site's 
 Contact info@luponmedia.com for information.
 
 There is no need for any parameters — we will do all the work automatically for you.
+=======
+# Dynamic Ad Boost Real-time Data Submodule
+
+There is no need for any parameters — we will do all the work automatically for you.
+
+{% include dev-docs/loads-external-javascript.md %}
+>>>>>>> 14d6cb427754f51d8f67c22c5c66c46b1369e218
