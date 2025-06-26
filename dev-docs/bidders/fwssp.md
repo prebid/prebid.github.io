@@ -18,6 +18,7 @@ ortb_blocking_supported: partial
 ### Bid Params
 
 The following bid params are for use with the Prebid Server bid adapter:
+
 {: .table .table-bordered .table-striped }
 | Name     | Scope    | Description | Example | Type     |
 |----------|----------|-------------------------|--------|----------|
@@ -26,6 +27,7 @@ The following bid params are for use with the Prebid Server bid adapter:
 | `profile_id` | required | The value should contain a profile name. and NOT a numeric profile ID. This can either include the network ID prefix or with the profile name alone | "prof_12345" | `string` |
 
 The following bid params are for use with the Prebid.js bid adapter:
+
 {: .table .table-bordered .table-striped }
 | Name     | Scope    | Description | Example | Type     |
 |----------|----------|-------------------------|--------|----------|
