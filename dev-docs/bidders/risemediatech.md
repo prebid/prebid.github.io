@@ -25,10 +25,9 @@ RiseMediaTech is a digital advertising platform that supports banner and video a
 
 | Name         | Scope              | Type             | Description                                | Example                 |
 |--------------|--------------------|------------------|--------------------------------------------|-------------------------|
-| `publisherId`| optional           | string           | Unique identifier for the publisher        | `'1234'`       
+| `publisherId`| optional           | string           | Unique identifier for the publisher        | `'p-1234'`       
 | `placementId`| optional           | string           | Placement ID                               | `'1234'`            |
-| `bidFloor`   | optional           | string           | Bid Floor                                  | 
-`'0.01'`
+| `bidFloor`   | optional           | string           | Bid Floor                                  | `'0.01'`
 | `mimes`      | required for video | array of strings | Supported MIME types for video creatives   | `['video/mp4']`         |
 | `minduration`| optional           | number           | Minimum video duration (in seconds)        | `5`                     |
 | `maxduration`| optional           | number           | Maximum video duration (in seconds)        | `30`                    |
