@@ -15,6 +15,7 @@ safeframes_ok: false
 deals_supported: false
 pbjs: true
 pbs: true
+pbs_app_supported: true
 prebid_member: false
 sidebarType: 1
 gpp_sids: tcfeu, usnat, usstate_all
