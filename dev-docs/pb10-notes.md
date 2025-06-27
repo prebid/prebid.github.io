@@ -23,6 +23,7 @@ This document describes the changes included for Prebid.js version 10.0.
 5. TypeScript support has landed and Node.js 20+ is required to build.
 6. `targetingControls.allBidsCustomTargeting` now defaults to `false`.
 7. Many modules were renamed and minor APIs updated. Details follow.
+8. Storage use disclosures can now be enforced and catalogued 
 
 ## Removed Modules
 
@@ -56,6 +57,8 @@ The following modules have been removed from Prebid.js as part of the 10.0 relea
 * Default behavior for publisher purpose permissions in the TCF control module now enables purposes P4, P7 and special feature 1.
 * Global vendor list IDs have been filled in for a number of bidder and analytics modules.
 * The user ID module introduces an `enforceStorageType` flag alongside `autoRefresh` and `retainConfig` options.
+* A new activity control, and purpose 1 enforcement, prevent bidder endpoint access to third party storage via set-cookie headers.
+* The storage disclosures module enables publishers to identify all keys used in the first party and deny access to undisclosed keys. A build artifact is produced to help provide clear and concise information on device storage use for e-peivacy directive adherence.
 
 ## TypeScript and Build Updates
 
@@ -68,7 +71,7 @@ The following modules have been removed from Prebid.js as part of the 10.0 relea
 * The deprecated `createBid` helper and bid `statusMessage` fields were removed.
 * `bid.userId` is no longer populated; modules should rely on `userIdAsEids`.
 * Bid response helper methods (`getBidResponses*` and `getNoBids*`) now return an array which also exposes the array under `.bids` for backward compatibility.
-* Schain data now lives under `ortb2.source.ext.schain` and is normalized when provided in first party data.
+* Schain data now lives under `ortb2.source.ext.schain` and is normalized when provided in first party data. The module is now superfluous for publishers transitioned to seeing this object directly and will be removed in the future.
 * Native adapters no longer send legacy targeting keys.
 
 ## Ad Server Updates
