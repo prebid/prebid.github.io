@@ -269,6 +269,11 @@ We request that you do not duplicate information that is already present in the 
 {: .alert.alert-warning :}
 You may not try to set the full endpoint domain from a publisher-specified bidder parameter. Prebid Server is not an open proxy. If absolutely necessary, you may specify a *portion* of the domain as a parameter to support geo regions or account specific servers. However, this is discouraged and may degrade the performance of your adapter since the server needs to maintain more outgoing connections. Host companies may choose to disable your adapter if it uses a dynamically configured domain.
 
+{: .alert.alert-info :}
+Prebid publishers and managed services often require test responses from bid adapters. Please plan to provide a method for obtaining test bids for each mediatype you support. This can be done in response to the OpenRTB `test:1` flag, or with a documented set of bidder parameters.
+
+#### Defining the Parameters
+
 Create a file with the path `static/bidder-params/{bidder}.json` using [JSON Schema](https://json-schema.org/understanding-json-schema/) to define your bidder parameters. Prebid Server requires this file for every adapter, even if yours doesn't require bidder parameters (see the 'no parameters' example at the end of this section).
 
 Let's start with this example which defines one required `placementId` string parameter:
@@ -1430,6 +1435,12 @@ Notes on the metadata fields:
   - `resources/org/prebid/server/it/openrtb2/{bidder}/test-{bidder}-bid-response.json` (test directory)
 - Register With The Core
   - `org/prebid/server/spring/config/bidder/{bidder}Configuration.java`
+
+### Optional Code Update Notification
+
+The core Prebid engineering team sometimes makes changes to bid adapter files for various reasons: general refactoring, internal API changes, bug fixes, etc. If you want to receive an email alert about any changes made to your codebase, you can update the [codepath notification file](https://github.com/prebid/prebid-server-java/blob/master/.github/workflows/scripts/codepath-notification). Please read the instructions in the file. In many cases, the regex will just be your biddercode, but if you have a short biddercode, you might need to be more precise or you'll get false notifications.
+
+Likewise, your bidder documentation can receive alerts by updating the [docs codepath notification file](https://github.com/prebid/prebid.github.io/blob/master/.github/workflows/scripts/codepath-notification).
 
 ## Contribute
 

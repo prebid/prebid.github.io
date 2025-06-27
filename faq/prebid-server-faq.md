@@ -267,7 +267,7 @@ The supply chain is meant to track financial arrangements, and PBS is basically 
 
 Generally, people and companies will work on features and bug fixes that directly affect them. The process is:
 
-1. If there's not already an issue tracking the work, create an issue in the PBS-Go repo [here](https://github.com/prebid/prebid-server/issues/new). Note: we track enhancement requests in the PBS-Go repo. If it's a bug that affects PBS-Java only, then you can open the issue [here](https://github.com/prebid/prebid-server-java/issues/new).
+1. If there's not already an issue tracking the work, create an issue in the PBS-Go repo [the PBS-Go issue tracker](https://github.com/prebid/prebid-server/issues/new). Note: we track enhancement requests in the PBS-Go repo. If it's a bug that affects PBS-Java only, then you can open the issue [the PBS-Java issue tracker](https://github.com/prebid/prebid-server-java/issues/new).
 2. The issue should describe what you're planning to build/fix. We'll want to review any interfaces, config options, or metrics for consistency.
 3. After getting approval (if needed), you'll make a Pull Request against the appropriate repo, whether PBS-Go or PBS-Java. Be sure to have read the contribution guidelines for [PBS-Go](https://github.com/prebid/prebid-server/tree/master/docs/developers) or [PBS-Java](https://github.com/prebid/prebid-server-java/tree/master/docs/developers).
 4. The core team will review your PR.

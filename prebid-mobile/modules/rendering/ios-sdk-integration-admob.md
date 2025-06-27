@@ -105,7 +105,7 @@ This step is the same as for the original [AdMob integration](https://developers
 #### Step 2: Create AdMobMediationBannerUtils
 {:.no_toc}
 
-The `AdMobMediationBannerUtils` is a helper class, which performs certain utilty work for the `MediationBannerAdUnit`, such as passing the targeting keywords to the adapters and checking the visibility of the ad view.
+The `AdMobMediationBannerUtils` is a helper class, which performs certain utility work for the `MediationBannerAdUnit`, such as passing the targeting keywords to the adapters and checking the visibility of the ad view.
 
 #### Step 3: Create MediationBannerAdUnit
 {:.no_toc}
@@ -213,7 +213,7 @@ This step is the same as for the original [AdMob integration](https://developers
 #### Step 2: Create AdMobMediationInterstitialUtils
 {:.no_toc}
 
-The `AdMobMediationInterstitialUtils` is a helper class, which performs certain utilty work for the `MediationInterstitialAdUnit`, such as passing the targeting keywords to adapters and checking the visibility of the ad view.
+The `AdMobMediationInterstitialUtils` is a helper class, which performs certain utility work for the `MediationInterstitialAdUnit`, such as passing the targeting keywords to adapters and checking the visibility of the ad view.
 
 #### Step 3: Create MediationInterstitialAdUnit
 {:.no_toc}
@@ -235,7 +235,9 @@ Make a regular AdMob's ad request. Everything else will be handled by GMA SDK an
 
 Once you receive the ad it will be ready for display. Follow the [AdMob instructions](https://developers.google.com/admob/ios/interstitial#swift) for displaying an ad.
 
-### Rewarded Video
+### Rewarded
+
+{% include mobile/rewarded-server-side-configuration.md %}
 
 **Integration example(Swift)**:
 
@@ -326,7 +328,7 @@ This step is the same as for the original [AdMob integration](https://developers
 #### Step 2: Create MediationRewardedAdUnit
 {:.no_toc}
 
-The `AdMobMediationRewardedUtils` is a helper class, which performs certain utilty work for the `MediationRewardedAdUnit`, like passing the targeting keywords to the adapters.
+The `AdMobMediationRewardedUtils` is a helper class, which performs certain utility work for the `MediationRewardedAdUnit`, like passing the targeting keywords to the adapters.
 
 #### Step 3: Create MediationInterstitialAdUnit
 {:.no_toc}
@@ -440,12 +442,12 @@ Prepare the `Request` object before you make a bid request. It will be needed fo
 #### Step 2: Create AdMobMediationNativeUtils
 {:.no_toc}
 
-The `AdMobMediationNativeUtils` is a helper class, which performs certain utilty work for `MediationNativeAdUnit`, like passing the targeting keywords to adapters and checking the visibility of the ad view.
+The `AdMobMediationNativeUtils` is a helper class, which performs certain utility work for `MediationNativeAdUnit`, like passing the targeting keywords to adapters and checking the visibility of the ad view.
 
 #### Step 3: Create and configure MediationNativeAdUnit
 {:.no_toc}
 
-The `MediationNativeAdUnit` is part of the Prebid mediation API. This class is responsible for making a bid request and providing a winning bid and targeting keywords to the adapters. For better targetting you should provide additional properties like `conteaxtType` and `placemantType`.
+The `MediationNativeAdUnit` is part of the Prebid mediation API. This class is responsible for making a bid request and providing a winning bid and targeting keywords to the adapters. For better targeting you should provide additional properties like `contextType` and `placementType`.
 
 #### Step 4: Set up assets for bid request
 {:.no_toc}

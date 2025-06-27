@@ -22,7 +22,7 @@ To integrate HTML banner ads into the app you should use the `BannerAdUnit` clas
     // 2. Configure banner parameters using Prebid Mobile SDK
     let parameters = BannerParameters()
     parameters.api = [Signals.Api.MRAID_2, Signals.Api.OMID_1]
-    adUnit.parameters = parameters
+    adUnit.bannerParameters = parameters
     
     // 3. Create an AdManagerBannerView using Google Mobile Ads SDK
     gamBanner = AdManagerBannerView(adSize: adSizeFor(cgSize: AD_SIZE))
@@ -52,7 +52,7 @@ To integrate HTML banner ads into the app you should use the `BannerAdUnit` clas
     // 2. Configure banner parameters using Prebid Mobile SDK
     let parameters = BannerParameters()
     parameters.api = [Signals.Api.MRAID_2, Signals.Api.OMID_1]
-    adUnit.parameters = parameters
+    adUnit.bannerParameters = parameters
     
     // 3. Create a GAMBannerView using Google Mobile Ads SDK
     gamBanner = GAMBannerView(adSize: GADAdSizeFromCGSize(AD_SIZE))
@@ -85,7 +85,7 @@ In case you use a single-size banner (e.g., 300x250), you don't need to make a c
         guard let bannerView = bannerView as? AdManagerBannerView else { return }
         bannerView.resize(adSizeFor(cgSize: size))
     }, failure: { (error) in
-        PrebidDemoLogger.shared.error("Error occuring during searching for Prebid creative size: \(error)")
+        PrebidDemoLogger.shared.error("Error occurring during searching for Prebid creative size: \(error)")
     })
 }
 {% endcapture %}

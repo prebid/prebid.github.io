@@ -62,6 +62,7 @@ This table summarizes how the 3 approaches work:
 **Table 1: Native Implementation Approaches**
 
 {: .table .table-bordered .table-striped }
+
 | Component | AdServer-Defined Creative Scenario | AdUnit-Defined Creative Scenario | Custom Renderer Scenario |
 | --- | --- |--- | --- |
 | Prebid.js | mediaTypes. native.ortb | mediaTypes. native.ortb and mediaTypes.native.adTemplate contains ##macros## | mediaTypes. native.ortb and mediaTypes.native.rendererUrl |
@@ -77,11 +78,12 @@ The Prebid.js AdUnit needs to define a native mediatype object to tell bidders w
 **Table 2: Prebid.js AdUnit Native MediaType Options**
 
 {: .table .table-bordered .table-striped }
+
 | Attribute | Scope | Description | Example | Type |
 | --- | --- | --- | --- | --- |
 | adTemplate | optional | Used in the ‘AdUnit-Defined Creative Scenario’, this value will contain the Native template right in the page. | See [example](#42-implementing-an-adunit-defined-template) below. | escaped ES5 string |
 | rendererUrl | optional | Used in the ‘Custom Renderer Scenario’, this points to javascript code that will produce the Native template. | `'https://host/path.js'` | string |
-| ortb | recommended | OpenRTB configuration of the Native assets. The Native 1.2 specification can be found [here](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf) | { assets: [], eventtrackers: [] } | object |
+| ortb | recommended | OpenRTB configuration of the Native assets. The Native 1.2 specification can be found [the OpenRTB Native Ads Specification](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf) | { assets: [], eventtrackers: [] } | object |
 | sendTargetingKeys | deprecated | (**NOTE**: not supported in 9.0 and later). Defines whether or not to send the hb_native_ASSET targeting keys to the ad server. Defaults to `false`. | `false` | boolean |
 
 ### 3.1. Prebid.js and the ORTB asset fields
@@ -157,6 +159,7 @@ Here's an example:
 For reference, this is the table that specifies all data types:
 
 {: .table .table-bordered .table-striped }
+
 | Type ID | Name |
 | ------- | ---- |
 | 1 | sponsored |
