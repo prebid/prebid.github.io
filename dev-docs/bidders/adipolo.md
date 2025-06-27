@@ -9,7 +9,7 @@ tcfeu_supported: false
 usp_supported: true
 prebid_member: false
 pbjs: true
-pbs: false
+pbs: true
 schain_supported: true
 floors_supported: true
 multiformat_supported: will-bid-on-any
@@ -30,3 +30,11 @@ privacy_sandbox: no
 | `pid`       | required | Placement ID                | `test-banner` | `string`  |
 | `env`       | optional | Environment name            | `adipolo`     | `string`  |
 | `ext`       | optional | Specific integration config | `{}`          | `object`  |
+
+### Prebid Server Bid Params
+
+{: .table .table-bordered .table-striped }
+| Name        | Scope    | Description                   | Example                            | Type      |
+|-------------|----------|-------------------------------|------------------------------------|-----------|
+| `env`       | required | Environment name              | `adipolo-stage`                    | `string`  |
+| `pid`       | required | unique placement ID           | `aa8217e20131c095fe9dba67981040b0` | `string`  |
