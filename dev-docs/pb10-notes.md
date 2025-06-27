@@ -16,9 +16,9 @@ This document describes the changes included for Prebid.js version 10.0.
 
 ## Publisher Summary
 
-1. A large number of obsolete modules have been removed. See below for the list.
-2. `bid.userId` has been removed in favor of `bid.userIdAsEids`.
-3. `pbadslot` has been removed. Use `ortb2Imp.ext.gpid` instead.
+1. A large number of obsolete modules have been removed. Many modules have changed name. See below for the list.
+2. The legacy method of native targeting keys has been removed.
+3. `pbadslot` has been removed from the . Use `ortb2Imp.ext.gpid` instead.
 4. The API methods `getBidResponses` and `getNoBidsForAdUnitCode` now return arrays of bids.
 5. TypeScript support has landed and Node.js 20+ is required to build.
 6. `targetingControls.allBidsCustomTargeting` now defaults to `false`.
