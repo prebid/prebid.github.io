@@ -17,13 +17,12 @@ This document describes the changes included for Prebid.js version 10.0.
 ## Publisher Summary
 
 1. A large number of obsolete modules have been removed. Many modules have changed name. See below for the list.
-2. The legacy method of native targeting keys has been removed.
-3. `pbadslot` has been removed from the . Use `ortb2Imp.ext.gpid` instead.
+2. The legacy method of native targeting keys have been removed.
+3. `pbadslot` has been removed from the preAuction module. Use `ortb2Imp.ext.gpid` instead.
 4. The API methods `getBidResponses` and `getNoBidsForAdUnitCode` now return arrays of bids.
 5. TypeScript support has landed and Node.js 20+ is required to build.
-6. `targetingControls.allBidsCustomTargeting` now defaults to `false`.
-7. Many modules were renamed and minor APIs updated. Details follow.
-8. Storage use disclosures can now be enforced and catalogued 
+6. `targetingControls.allBidsCustomTargeting` now defaults to `false`, this prevents custom targeting values from being set for non-winning bids.
+7. Storage use disclosures can now be enforced and catalogued 
 
 ## Removed Modules
 
@@ -54,7 +53,7 @@ The following modules have been removed from Prebid.js as part of the 10.0 relea
 | adsinteractiveBidAdapter | ads_interactiveBidAdapter |
 | admanBidAdapter | |
 | bridgeuppBidAdapter | |
-| BTBidAdapter | blockthroughBidAdaper |
+| BTBidAdapter | blockthroughBidAdaper  |
 | brightMountainMediaBidAdapter | bmtmBidAdapter |
 | vubleAnalyticsAdapter | |
 | serverbidServerBidAdapter | |
@@ -88,12 +87,10 @@ The following modules have been removed from Prebid.js as part of the 10.0 relea
 * Bid response helper methods (`getBidResponses*` and `getNoBids*`) now return an array which also exposes the array under `.bids` for backward compatibility.
 * getHighestUnusedBidResponseForAdUnitCode returns null instead of an empty object when no suitable bid exists.
 * Schain data now lives under `ortb2.source.ext.schain` and is normalized when provided in first party data. The module is now superfluous for publishers transitioned to seeing this object directly and will be removed in the future.
-* Native adapters no longer send legacy targeting keys.
+* Bid adapters supporting the `NATIVE` mediatype no longer send legacy targeting keys. Please migrate to the new setup.
 * The deprecated `createBid` helper and non-varying `statusMessage` fields were removed.
-
-## Ad Server Updates
-
-* The DFP modules have been renamed to GAM modules (`gamAdServerVideo`, `gamAdpod`, etc.).
+* The DFP modules have been renamed to GAM modules (`gamAdServerVideo`, `gamAdpod`, etc.). Please migrate to the new names.
+* Default configuration of various PBS Host companies has been removed.
 * Support for the legacy `pbadslot` field has been removed from all utilities and adapters.
 
 ## Miscellaneous Changes
