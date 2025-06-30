@@ -17,7 +17,7 @@ This document describes the changes included for Prebid.js version 10.0.
 ## Publisher Summary
 
 1. A large number of obsolete modules have been removed. Many modules have changed name. See below for the list.
-2. The legacy method of native targeting keys have been removed.
+2. The legacy method of native targeting keys, `sendTargetingKeys`, has been removed.
 3. `pbadslot` has been removed from the preAuction module. Use `ortb2Imp.ext.gpid` instead.
 4. The API methods `getBidResponses` and `getNoBidsForAdUnitCode` now return arrays of bids.
 5. TypeScript support has landed and Node.js 20+ is required to build.
@@ -76,7 +76,8 @@ The following modules have been removed from Prebid.js as part of the 10.0 relea
 ## User Id Module
 * The user ID module introduces an `enforceStorageType` flag, which why by default warn when a userId submodule accesses the incorrect storage type. Future versions will prevent access.
 * userId accepts two new config flags, autoRefresh (default false) and retainConfig (default true). With autoRefresh: true, userId automatically refreshes IDs for which the configuration changed (either a previously configured module now has different config, or a new module was configured). With retainConfig: false, userId "forgets" userIds that were previously configured, but are missing from userSync.userIds[] in a later setConfig.
-* For bidders: `bid.userId` is no longer populated; bid modules should rely on `userIdAsEids`.
+* For bidders: `bid.userId` is no longer populated; bid modules should rely on `userIdAsEids` or `user.ext.eids`. Several bid adapters made this change in the 10.0 release; others in 9.x in anticipation.
+* Eids in `user.eids` are appended to the array in `user.ext.eids` and de-duplicated.
 
 ## TypeScript and Build Updates
 
@@ -88,7 +89,7 @@ The following modules have been removed from Prebid.js as part of the 10.0 relea
 
 * The ADPOD mediatype has received a deprecation warning.
 * Bid response helper methods (`getBidResponses*` and `getNoBids*`) now return an array which also exposes the array under `.bids` for backward compatibility.
-* getHighestUnusedBidResponseForAdUnitCode returns null instead of an empty object when no suitable bid exists.
+* `getHighestUnusedBidResponseForAdUnitCode` returns null instead of an empty object when no suitable bid exists.
 * Schain data now lives under `ortb2.source.ext.schain` and is normalized when provided in first party data. The module is now superfluous for publishers transitioned to seeing this object directly and will be removed in the future.
 * Bid adapters supporting the `NATIVE` mediatype no longer send legacy targeting keys. Please migrate to the new setup.
 * The deprecated `createBid` helper and non-varying `statusMessage` fields were removed.
@@ -96,6 +97,7 @@ The following modules have been removed from Prebid.js as part of the 10.0 relea
 * Default configuration of various PBS Host companies has been removed.
 * Support for the legacy `pbadslot` field has been removed from all utilities and adapters.
 * All public API methods have a log message in debug mode.
+* The build target browser use statistcs are now updated as part of the build process. Tests now target Chrome 109 as the minimum version. `not dead` was added to the babel target.
 
 ## Further Reading
 
