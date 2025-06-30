@@ -60,7 +60,7 @@ The following modules have been removed from Prebid.js as part of the 10.0 relea
 | gothamadsBidAdapter | |
 | growadvertisingBidAdapter | advertisingBidAdapter |
 | imdsBidAdapter | |
-| incrxBidaAdapter | incrementxBidAdapter |
+| incrxBidAdapter | incrementxBidAdapter |
 | kueezBidAdapter | |
 | pubwiseBidAdapter | |
 | viantOrtbBidAdapter | viantBidAdapter |
