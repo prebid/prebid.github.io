@@ -34,19 +34,21 @@ The following modules have been removed from Prebid.js as part of the 10.0 relea
 | Module | Replacement |
 |:-----------------------------|:-------------------------|
 | telariaBidAdapter | |
+| eclickads | eclick |
+| imdsBidAdapter | advertisingBidAdapter |
 | cleanmedianetBidAdapter | |
-| kueezBidAdapter | |
-| saambaaBidAdapter | |
+| kueezBidAdapter | kueezRTBBidAdapter |
+| saambaaBidAdapter | advangelistBidAdapter |
 | adoceanBidAdapter | |
-| radsBidAdapter | sonaradsBidAdapter |
+| radsBidAdapter | |
 | freewheelsspBidAdapter | |
-| akamaiDapRtdProvider | |
+| akamaiDapRtdProvider | symetriRtdProvider |
 | bidwatchAnalyticsAdapter | oxxionAnalyticsAdapter |
 | conversantAnalyticsAdapter | |
 | konduitAnalyticsAdapter | |
 | konduitWrapper | |
-| globalsunBidAdapter | |
-| verizonMediaIdSystem | |
+| globalsunBidAdapter | global_sunBidAdapter |
+| verizonMediaIdSystem | yahooConnectId |
 | loglyliftBidAdapter | |
 | yieldmoSyntheticInventoryModule | |
 | adsinteractiveBidAdapter | ads_interactiveBidAdapter |
@@ -54,25 +56,26 @@ The following modules have been removed from Prebid.js as part of the 10.0 relea
 | bridgeuppBidAdapter | |
 | BTBidAdapter | |
 | brightMountainMediaBidAdapter | |
-| epomDspBidAdapter | epom_dspBidAdapter |
-| cadentApertureMXBidAdapter | cadent_aperture_mxBidAdapter |
-| eclickadsBidAdapter | eclickBidAdapter |
-| gothamadsBidAdapter | |
+| vubleAnalyticsAdapter | |
+| serverbidServerBidAdapter | |
+| gothamAdsBidAdapter | intenzeBidAdapter |
 | growadvertisingBidAdapter | advertisingBidAdapter |
-| imdsBidAdapter | |
 | incrxBidAdapter | incrementxBidAdapter |
-| kueezBidAdapter | |
-| pubwiseBidAdapter | |
 | viantOrtbBidAdapter | viantBidAdapter |
 | zetaBidAdapter | zeta_globalBidAdapter |
- 
+
+
 ## Consent and Data Handling
 
 * Default behavior for publisher purpose permissions in the TCF control module now enables purposes P4, P7 and special feature 1.
 * Global vendor list IDs have been filled in for a number of bidder and analytics modules.
-* The user ID module introduces an `enforceStorageType` flag alongside `autoRefresh` and `retainConfig` options.
 * A new activity control, and purpose 1 enforcement, prevent bidder endpoint access to third party storage via set-cookie headers.
 * The storage disclosures module enables publishers to identify all keys used in the first party and deny access to undisclosed keys. A build artifact is produced to help provide clear and concise information on device storage use for e-peivacy directive adherence.
+
+## User Id Module
+* The user ID module introduces an `enforceStorageType` flag, which why by default warn when a userId submodule accesses the incorrect storage type. Future versions will prevent access.
+* userId accepts two new config flags, autoRefresh (default false) and retainConfig (default true). With autoRefresh: true, userId automatically refreshes IDs for which the configuration changed (either a previously configured module now has different config, or a new module was configured). With retainConfig: false, userId "forgets" userIds that were previously configured, but are missing from userSync.userIds[] in a later setConfig.
+* For bidders: `bid.userId` is no longer populated; bid modules should rely on `userIdAsEids`.
 
 ## TypeScript and Build Updates
 
@@ -82,11 +85,12 @@ The following modules have been removed from Prebid.js as part of the 10.0 relea
 
 ## API Changes
 
-* The deprecated `createBid` helper and bid `statusMessage` fields were removed.
-* `bid.userId` is no longer populated; modules should rely on `userIdAsEids`.
+* The ADPOD mediatype has received a deprecation warning.
 * Bid response helper methods (`getBidResponses*` and `getNoBids*`) now return an array which also exposes the array under `.bids` for backward compatibility.
+* getHighestUnusedBidResponseForAdUnitCode returns null instead of an empty object when no suitable bid exists.
 * Schain data now lives under `ortb2.source.ext.schain` and is normalized when provided in first party data. The module is now superfluous for publishers transitioned to seeing this object directly and will be removed in the future.
 * Native adapters no longer send legacy targeting keys.
+* The deprecated `createBid` helper and non-varying `statusMessage` fields were removed.
 
 ## Ad Server Updates
 
@@ -95,7 +99,6 @@ The following modules have been removed from Prebid.js as part of the 10.0 relea
 
 ## Miscellaneous Changes
 
-* Several adapters were renamed (e.g. EClickAds to eClick, IMDS to advertising, gothamads to intenze, fanAdapter to fanBidAdapter).
 * The build includes additional validation for banner parameters and request credentials.
 * Bidder aliases may not include the word `BidAdapter`.
 * Many lint fixes and test updates were made across modules.
