@@ -78,6 +78,7 @@ The following modules have been removed from Prebid.js as part of the 10.0 relea
 * **The storage disclosures module enables publishers to identify all keys used in the first party and deny access to undisclosed keys. A build artifact is produced to help provide clear and concise information on device storage use for e-privacy directive adherence.**
 
 ## User Id Module
+
 * **The user ID module introduces an `enforceStorageType` flag, which why by default warn when a userId submodule accesses the incorrect storage type. Future versions will prevent access.**
 * **`userId` accepts two new config flags, autoRefresh (default false) and retainConfig (default true).** With `autoRefresh: true`, `userId` automatically refreshes IDs for which the configuration changed (either a previously configured module now has different config, or a new module was configured). With `retainConfig: false`, `userId` "forgets" userIds that were previously configured, but are missing from `userSync.userIds[]` in a later setConfig.
 * For bidders: `bid.userId` is no longer populated; bid modules should rely on `userIdAsEids` or `user.ext.eids`. Several bid adapters made this change in the 10.0 release; others in 9.x in anticipation.
