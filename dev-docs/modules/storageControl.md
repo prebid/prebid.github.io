@@ -91,13 +91,13 @@ pbjs.getStorageUseDisclosures()
 
 The return value follows the same format as the TCF [disclosures array](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/Vendor%20Device%20Storage%20%26%20Operational%20Disclosures.md), except that 
 
- - `domain`/`domains` is omitted (and always `'*'` in the original disclosure, as Prebid's storage is always on the first party domain);
- - each item in the array contains these additional fields:
+- `domain`/`domains` is omitted (and always `'*'` in the original disclosure, as Prebid's storage is always on the first party domain);
+- each item in the array contains these additional fields:
 
 {: .table .table-bordered .table-striped }
 |Name | Type | Description |
 | ------------ | ------------ | ------------ |
-|`disclosedIn` | String | URL of the JSON containing this disclosure. Can be `null` for identifiers chosen trough publisher configuration - such as those set by the [userId module](#/dev-docs/modules/userId.html) |
+|`disclosedIn` | String | URL of the JSON containing this disclosure. Can be `null` for identifiers chosen trough publisher configuration - such as those set by the [userId module](/dev-docs/modules/userId.html) |
 |`disclosedBy` | Array of Strings | Names of the Prebid modules providing this disclosure |
 
 <a id="adapter-integration"></a>
@@ -106,8 +106,8 @@ The return value follows the same format as the TCF [disclosures array](https://
 
 Modules that use storage should publish a [disclosure file](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/Vendor%20Device%20Storage%20%26%20Operational%20Disclosures.md) listing all keys that the pass to `storageManager` for the first party domain (`'*'`). This can be done by either:
 
- - providing a GVL ID in your adapter. The corresponding `deviceStorageDisclosureUrl` from the GVL is then used as your disclosure.
- - providing a `disclosureURL` directly. This does not require membership in the GVL, and overrides its disclosure if provided. For example:
+- providing a GVL ID in your adapter. The corresponding `deviceStorageDisclosureUrl` from the GVL is then used as your disclosure.
+- providing a `disclosureURL` directly. This does not require membership in the GVL, and overrides its disclosure if provided. For example:
 
 ```javascript
 registerBidder({
