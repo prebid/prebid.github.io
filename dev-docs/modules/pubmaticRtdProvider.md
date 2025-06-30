@@ -80,7 +80,6 @@ pbjs.setConfig({
 | params.publisherId | String  | Publisher ID                                                   |                            |
 | params.profileId   | String  | Profile ID                                                     |                            |
 
-
 ## Targeting Keys
 
 The module sets the following targeting keys for ad server integration and reporting:
