@@ -54,8 +54,8 @@ The following modules have been removed from Prebid.js as part of the 10.0 relea
 | adsinteractiveBidAdapter | ads_interactiveBidAdapter |
 | admanBidAdapter | |
 | bridgeuppBidAdapter | |
-| BTBidAdapter | |
-| brightMountainMediaBidAdapter | |
+| BTBidAdapter | blockthroughBidAdaper |
+| brightMountainMediaBidAdapter | bmtmBidAdapter |
 | vubleAnalyticsAdapter | |
 | serverbidServerBidAdapter | |
 | gothamAdsBidAdapter | intenzeBidAdapter |
