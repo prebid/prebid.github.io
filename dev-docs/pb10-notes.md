@@ -64,7 +64,6 @@ The following modules have been removed from Prebid.js as part of the 10.0 relea
 | viantOrtbBidAdapter | viantBidAdapter |
 | zetaBidAdapter | zeta_globalBidAdapter |
 
-
 ## Consent and Data Handling
 
 * Default behavior for publisher purpose permissions in the TCF control module now enables purposes P4, P7 and special feature 1.
