@@ -58,7 +58,7 @@ The following modules have been removed from Prebid.js as part of the 10.0 relea
 | vubleAnalyticsAdapter | |
 | serverbidServerBidAdapter | |
 | gothamAdsBidAdapter | intenzeBidAdapter |
-| growadvertisingBidAdapter | advertisingBidAdapter |
+| growadvertisingBidAdapter | |
 | incrxBidAdapter | incrementxBidAdapter |
 | viantOrtbBidAdapter | viantBidAdapter |
 | zetaBidAdapter | zeta_globalBidAdapter |
