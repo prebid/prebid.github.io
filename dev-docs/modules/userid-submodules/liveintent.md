@@ -106,7 +106,7 @@ The attributes `uid2`, `medianet`, `magnite`, `bidswitch`, `pubmatic`, `openx`, 
 #### Note
 
 * `thetradedesk` will be exposed as `tdid` because of historical reasons.
-* In order for `segments` to be present in `ortb2.user.data` of the bid requests, you need to configure the [liveIntentRTDProvider](/dev-docs/modules/liveIntentRtdProvider.html) module. 
+* In order for `segments` to be present in `ortb2.user.data` of the bid requests, you need to configure the [liveIntentRTDProvider](/dev-docs/modules/liveIntentRtdProvider.html) module.
 
 For example, in case `uid2` is configured to be requested in addition to the `nonID`, the `request.userId` object would look like the following:
 
@@ -194,9 +194,6 @@ pbjs.setConfig({
 ```
 
 ## LiveIntent ID configuration
-
-{: .alert.alert-info :}
-NOTE: For optimal performance, the LiveIntent ID sub-module should be called at every opportunity. It is best not to use `params.storage` with this sub-module as it has its own optimal caching mechanism.
 
 {: .table .table-bordered .table-striped }
 
