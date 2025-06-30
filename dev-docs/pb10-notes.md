@@ -26,12 +26,14 @@ This document describes the changes included for Prebid.js version 10.0.
 
 ## Removed Modules
 
-The following modules have been removed from Prebid.js as part of the 10.0 release. Publishers building with one of them will need to point to its replacement or remove the module from their build.
+The following modules have been removed from Prebid.js as part of the 10.0 release. The `dfp` modules are still there but now import the `gam` modules. Publishers building with one of them will need to point to its replacement or remove the module from their build.
 
 {: .table .table-bordered .table-striped }
 
 | Module | Replacement |
 |:-----------------------------|:-------------------------|
+| dfpAdServerVideo | gamAdServerVideo |
+| dfpAdPod | gamAdPod |
 | telariaBidAdapter | |
 | eclickads | eclick |
 | imdsBidAdapter | advertisingBidAdapter |
@@ -49,11 +51,12 @@ The following modules have been removed from Prebid.js as part of the 10.0 relea
 | globalsunBidAdapter | global_sunBidAdapter |
 | verizonMediaIdSystem | yahooConnectId |
 | loglyliftBidAdapter | |
+| apnPspParamsConverter | |
 | yieldmoSyntheticInventoryModule | |
 | adsinteractiveBidAdapter | ads_interactiveBidAdapter |
 | admanBidAdapter | |
 | bridgeuppBidAdapter | |
-| BTBidAdapter | blockthroughBidAdaper  |
+| BTBidAdapter | blockthroughBidAdaper |
 | brightMountainMediaBidAdapter | bmtmBidAdapter |
 | vubleAnalyticsAdapter | |
 | serverbidServerBidAdapter | |
@@ -92,12 +95,7 @@ The following modules have been removed from Prebid.js as part of the 10.0 relea
 * The DFP modules have been renamed to GAM modules (`gamAdServerVideo`, `gamAdpod`, etc.). Please migrate to the new names.
 * Default configuration of various PBS Host companies has been removed.
 * Support for the legacy `pbadslot` field has been removed from all utilities and adapters.
-
-## Miscellaneous Changes
-
-* The build includes additional validation for banner parameters and request credentials.
-* Bidder aliases may not include the word `BidAdapter`.
-* Many lint fixes and test updates were made across modules.
+* All public API methods have a log message in debug mode.
 
 ## Further Reading
 
