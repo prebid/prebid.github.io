@@ -54,7 +54,17 @@ The following modules have been removed from Prebid.js as part of the 10.0 relea
 | bridgeuppBidAdapter | |
 | BTBidAdapter | |
 | brightMountainMediaBidAdapter | |
-
+| epomDspBidAdapter.js | |
+| cadentApertureMX | cadent_aperture_mx |
+| gothamadsBidAdapter.js | |
+| growadvertisingBidAdapter.js | |
+| imdsBidAdapter.js | |
+| incrxBidaAdapter.js | incrementxBidAdapter.js |
+| kueezBidAdapter.js | |
+| pubwiseBidAdapter.js | |
+| viantOrtbBidAdapter.js | viantBidAdapter.js |
+| zetaBidAdapter.js | |
+ 
 
 ## Consent and Data Handling
 
