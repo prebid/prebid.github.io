@@ -12,7 +12,7 @@ title: Prebid Server | Modules | Rules Engine
 
 ## Overview
 
-The Rules Engine is a flexible module that lets host companies define JSON configuration for controlling various aspects of requests rather than having to having to code exceptions in a standalone module or in the core of Prebid Server.
+The Rules Engine is a flexible module that allows host companies to define JSON configurations for controlling various aspects of requests, rather than having to code exceptions in a standalone module or in the core of Prebid Server.
 
 Most of the use cases for this version are centered around controlling which bid adapters are called in particular scenarios, based on:
 
@@ -24,18 +24,18 @@ Most of the use cases for this version are centered around controlling which bid
 
 ### Limitations
 
-The first phase is limited in a number of ways:
+The first phase is limited in several ways:
 
 - Runs only at the Processed-Auction stage.
 - Only delivers functions for including and excluding bidders.
-- Does not necessarily reload config periodically like the Floors feature, making integration with a backend machine learning system more difficult.
-- Does not support getting rules config from multiple sources. e.g. host-level rules cannot be merged with account-level rules. And ideally, there could someday be an ecosystem of vendors supplying config for different rule sets. This is not currently possible.
+- Does not necessarily reload config periodically like the Floors feature, making integration with a backend machine learning system more challenging.
+- Does not support getting rules config from multiple sources. e.g. host-level rules cannot be merged with account-level rules. And ideally, there could be an ecosystem of vendors supplying config for different rule sets. This is not currently possible.
 
 ### Future Enhancements
 
 - Add additional results functions.
 - Support additional module stages.
-- Improve getting configuration from multiple sources.
+- Improve getting the configuration from multiple sources.
 
 The team will tackle enhancements as important use cases drive priority. 
 
@@ -158,15 +158,16 @@ These are the full set of attributes that can be present in the account-level co
 | Property | Scope | Type | Description | Example |
 |----------|-------|------|-------------|---------|
 | enabled | optional | boolean | Whether the module as a whole is enabled. Allows for easy temporary deactivation. Defaults to true. | true |
+| generateRulesFromBidderConfig | optional | boolean | (PBS-Go only) If true, the module automatically generates rules based on 'geoscope' section of the bidder YAML files to include or exclude that bidder from certain countries. Defaults to true. | false |
 | ruleSets[] | required | array of objects | One or more independent sets of rules. | |
 | ruleSets[]<wbr>.enabled | optional | boolean | Indicates whether this ruleset is active. Defaults to true. Allows easy toggling for troubleshooting. | true |
-| ruleSets[]<wbr>.timestamp | optional | string | String indicates when this ruleset was last updated. Useful in optimization and troubleshooting. | "20250101 00:00:00" |
-| ruleSets[]<wbr>.stage | required | string | Which module stage this object applies to. Initially the only value allowed is "processed auction" | "processed auction" |
+| ruleSets[]<wbr>.timestamp | optional | string | String indicates when this ruleset was last updated. Useful in optimization and troubleshooting. Format is ISO 8601. | "20250101T00:00:00" |
+| ruleSets[]<wbr>.stage | required | string | Which module stage this object applies to. Initially, the only value allowed is "processed auction" | "processed auction" |
 | rulesets[]<wbr>.name | optional | string | Just for human readability. | "remove-bidder-by-datacenter" |
 | ruleSets[]<wbr>.modelGroups[] | required | array of objects | This is where the rule details are stored. It's an array in case there's a desire to A/B test different rule configs. Model groups work here like they do for [floors](/dev-docs/modules/floors.html#schema-2). | |
 | ruleSets[]<wbr>.modelGroups[]<wbr>.weight | optional | integer | The relative weight of this specific modelGroup entry. Only one array entry within this modelGroup will be chosen. Default weight is 1, and they must range from 1 to 100. | 10 |
 | ruleSets[]<wbr>.modelGroups[]<wbr>.version | optional | string | In case the machine learning system would like to track the specifics of an experiment. | "123" |
-| ruleSets[]<wbr>.modelGroups[]<wbr>.default[] | optional | array of objects | The default results object should anything go wrong traversing the rule tree or if there aren't any rules defined. | |
+| ruleSets[]<wbr>.modelGroups[]<wbr>.default[] | optional | array of objects | The default results object to be used if anything goes wrong while traversing the rule tree or if there aren't any rules defined. | |
 | ruleSets[]<wbr>.modelGroups[]<wbr>.default[]<wbr>.function | optional | string | Which results function to call. | "logAtag" |
 | ruleSets[]<wbr>.modelGroups[]<wbr>.default[]<wbr>.args | optional | object or array of objects | Which arguments to pass to the function. | |
 | ruleSets[]<wbr>.modelGroups[]<wbr>.schema[] | optional | array of objects | Array of functions used to define the tree. | |
@@ -190,7 +191,7 @@ Mapping these concepts to the JSON syntax:
 - The contents of each leaf are stored in the 'results' JSON element, which is one or more [results functions](#results-functions)
 
 {: .alert.alert-warning :}
-This model differs from how rules are handled in the [floors system](/dev-docs/modules/floors.html#rule-handling). In that model, the runtime system has the ability to "go back up" the tree if it finds a dead-end. While friendlier, that model can create performance problems. The Rules Engine system is a little harder to utilize, but guarantees that each dimension is processed only once.
+This model differs from how rules are handled in the [floors system](/dev-docs/modules/floors.html#rule-handling). In that model, the runtime system has the ability to "go back up" the tree if it finds a dead-end. While friendlier, that model can create performance problems. The Rules Engine system is a little harder to utilize, but it guarantees that each dimension is processed only once.
 
 Here's an example rule tree:
 
@@ -204,11 +205,11 @@ Here's an example rule tree:
 {: .alert.alert-info :}
 Tip: you can also think of the rule tree as an N-dimensional matrix where each intersection of schema function values resolves to a 'results' node.
 
-See the [runtime processing](#runtime-processing) section below for more detail.
+See the [runtime processing](#runtime-processing) section below for more details.
 
 ### Schema Functions
 
-The module supplies a set of functions that parse the OpenRTB request for particular fields, pulling out a particular value. For instance, finding out which specific country or channel is associated with this request. These functions are called 'schema functions' because they form the structure of the Rule Tree as described in the section above.
+The module provides a set of functions that parse the OpenRTB request for specific fields, extracting a particular value. For instance, finding out which specific country or channel is associated with this request. These functions are called 'schema functions' because they form the structure of the Rule Tree as described in the section above.
 
 All of these functions operate only on the OpenRTB request at the 'Processed Auction Request' stage of module invocation.
 
@@ -217,7 +218,7 @@ All of these functions operate only on the OpenRTB request at the 'Processed Auc
 | :---- | :---- | :---- | :---- |
 | deviceCountry | null  | Returns OpenRTB device.geo.country. | "CAN" |
 | deviceCountryIn | array of strings representing country codes | If the parameter is an array of strings, then check to see if device.geo.country is part of the named set (case sensitive). If yes, then return "true", else return "false". The parameter must be an array of strings. No length limit. If the array is length zero, treat it as 'null' above. | "true" |
-| datacenters | null  This is an option for those who don't have geo-lookup available on every request. | Returns the value of the datacenter, which is host-company specific. Please work with your host company to get the list values available in your environment. | "eu-west" |
+| datacenters | null  This is an option for those who don't have geo-lookup available on every request. | Returns the value of the datacenter, which is host-company specific. Please work with your host company to get the list of values available in your environment. | "eu-west" |
 | datacentersIn | array of strings containing PBS host company-specific code for region.  This is an option for those who don't have geo-lookup available on every request. | Arguments must be an array of strings with no length limit. The function returns "true"/"false" if the actual datacenter is on the array (case sensitive). Please work with your host company to get the list values available in your environment. | "true" |
 | channel | null | Returns ext.prebid.channel – e.g. web, amp, app. Returns empty string if there is no channel. | "app" |
 | eidAvailable | null  | Returns "true" if user.eids array exists and is non-empty. Returns "false" if user.eids doesn't exist or is empty. | "false" |
@@ -260,9 +261,9 @@ Notes:
 ### Results Functions
 
 Once the Rule Tree is processed, a 'leaf' is chosen. The syntax of the leaf is
-an array of results functions that operate on the request and/or analytics. (Someday the system will likely support functions that operate on the response.)
+an array of results functions that operate on the request and/or analytics. (Someday, the system will likely support functions that operate on the response.)
 
-These are the currently define results functions:
+These are the currently defined results functions:
 
 - includeBidders and excludeBidders
 - logATag
@@ -306,11 +307,11 @@ Both functions expect an array of objects, each of which has these parameters:
 
 Here's how they work:
 
-1. Find the intersection of the request bidders bidders (imp[n].ext.prebid.bidders) with the bidders listed in the include or exclude array
+1. Find the intersection of the request bidders (imp[n].ext.prebid.bidders) with the bidders listed in the include or exclude array
 1. If 'ifSyncedId' is an argument, then for each of the bidders, check to see if the idsync status matches what's specified. For exclude, the intention is to remove the bidder from the list only if the synced id status matches, which means if the synced ID status doesn't match the arg, remove the bidder from the exclude array.
 1. For 'exclude', remove these bidders from imp[n].ext.prebid.bidders
 1. For 'include', keep only these bidders in imp[n].ext.prebid.bidders
-1. If seatnonbid is specified, use the specified code to record the seatnonbid when ext.prebid.returnallbidstatus is true and for the aTag. Otherwise, use seatnonbid code 203.
+1. If seatnonbid is specified, use that code to record the seatnonbid when ext.prebid.returnallbidstatus is true and for the aTag. Otherwise, use seatnonbid code 203.
 1. If analyticsKey is present, then create an analytics tag as noted below.
 
 ```json5
@@ -336,11 +337,11 @@ Here's how they work:
 
 [Analytics tags](/prebid-server/developers/module-atags.html) are how Prebid Server modules communicate their activity to the analytics adapters. Each analytics adapter needs to know how to retrieve these values. Check with your analytics vendor to make sure they can receive this data.
 
-The `logAtag` results function simply communicates some detail to the analytics adapters via the analytics tags. The idea is that data science teams will design experiments (e.g. try running bidderA on 5% of Brazilian traffic) and they will need analytics data for the experiment and the control. The syntax of the Rules Engine allows for flexibly defining how the analytics system sees various decisions made at runtime.
+The `logAtag` results function communicates some details to the analytics adapters via the analytics tags. The idea is that data science teams will design experiments (e.g. try running bidderA on 5% of Brazilian traffic) and they will need analytics data for the experiment and the control. The syntax of the Rules Engine allows for flexibly defining how the analytics system sees various decisions made at runtime.
 
 Here's an example invocation that means:
 
-- tell analytics that this request is a control
+- Tell analytics that this request is a control
 
 ```json5
 "default": [{
