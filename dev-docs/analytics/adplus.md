@@ -7,7 +7,7 @@ modulecode: appier
 
 #### About
 
-Analytics adapter for AdPlus platform. Contact [adplusdestek@turkcell.com.tr]() if you have any questions about integration.
+Analytics adapter for AdPlus platform. Contact [adplusdestek@turkcell.com.tr](adplusdestek@turkcell.com.tr) if you have any questions about integration.
 
 #### Example Configuration
 
