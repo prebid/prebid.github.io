@@ -42,7 +42,7 @@ The following modules have been removed from Prebid.js as part of the 10.0 relea
 | saambaaBidAdapter | advangelistBidAdapter |
 | adoceanBidAdapter | |
 | radsBidAdapter | |
-| freewheelsspBidAdapter | |
+| freewheelsspBidAdapter | fwsspBidAdapter |
 | akamaiDapRtdProvider | symetriRtdProvider |
 | bidwatchAnalyticsAdapter | oxxionAnalyticsAdapter |
 | conversantAnalyticsAdapter | |
@@ -55,16 +55,20 @@ The following modules have been removed from Prebid.js as part of the 10.0 relea
 | yieldmoSyntheticInventoryModule | |
 | adsinteractiveBidAdapter | ads_interactiveBidAdapter |
 | admanBidAdapter | |
-| bridgeuppBidAdapter | |
+| bridgeuppBidAdapter | sonaradsBidAdapter |
 | BTBidAdapter | blockthroughBidAdaper |
 | brightMountainMediaBidAdapter | bmtmBidAdapter |
 | vubleAnalyticsAdapter | |
 | serverbidServerBidAdapter | |
 | gothamAdsBidAdapter | intenzeBidAdapter |
-| growadvertisingBidAdapter | |
+| growadvertisingBidAdapter | growAdsBidAdapter |
 | incrxBidAdapter | incrementxBidAdapter |
 | viantOrtbBidAdapter | viantBidAdapter |
 | zetaBidAdapter | zeta_globalBidAdapter |
+| fanAdapter | fanBidAdapter |
+| cadentaperturemxBidAdapter | cadent_aperture_mxBidAdapter |
+| epomDspBidAdapter | epom_dspBidAdapter |
+| pubwiseBidAdapter | pwbidBidAdapter |
 
 ## Consent and Data Handling
 
