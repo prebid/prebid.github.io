@@ -92,7 +92,7 @@ The following modules have been removed from Prebid.js as part of the 10.0 relea
 
 ## API Changes
 
-* The ADPOD mediatype has received a deprecation warning.
+* The `ADPOD` mediatype has received a deprecation warning.
 * Bid response helper methods (`getBidResponses*` and `getNoBids*`) now return an array which also exposes the array under `.bids` for backward compatibility.
 * `getHighestUnusedBidResponseForAdUnitCode` returns null instead of an empty object when no suitable bid exists.
 * **Schain data now lives under `ortb2.source.ext.schain` and is normalized when provided in first party data. The module is now superfluous for publishers transitioned to seeing this object directly and will be removed in the future.**
