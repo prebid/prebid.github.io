@@ -97,10 +97,11 @@ The following modules have been removed from Prebid.js as part of the 10.0 relea
 * Bid response helper methods (`getBidResponses*` and `getNoBids*`) now return an array which also exposes the array under `.bids` for backward compatibility.
 * `getHighestUnusedBidResponseForAdUnitCode` returns null instead of an empty object when no suitable bid exists.
 * **Schain data now lives under `ortb2.source.ext.schain` and is normalized when provided in first party data. The module is now superfluous for publishers transitioned to seeing this object directly and will be removed in the future.**
-* **Bid adapters supporting the `NATIVE` mediatype no longer send legacy targeting keys. Please migrate to the new setup.**
-* The deprecated `createBid` helper and non-varying `statusMessage` fields were removed.
+* **Native ad units no longer support `sendTargetingKeys`, and native key-value pairs can no longer be sent to the ad server. Please migrate to a newer setup.**
+* The `createBid` API has been removed.
+* The `statusMessage` and `getStatusCode()` properties were removed from bid objects.
 * **The DFP modules have been renamed to GAM modules (`gamAdServerVideo`, `gamAdpod`, etc.). Please migrate to the new names.**
-* **Default configuration of various PBS Host companies has been removed.**
+* **Default configuration of various PBS Host companies has been removed. The PBS adapter now requires an explicit endpoint in its configuration.**
 * Support for the legacy `pbadslot` field has been removed from all utilities and adapters.
 * All public API methods have a log message in debug mode.
 * **`mediatypes.banner` params that match to imp[].banner are type checked**
