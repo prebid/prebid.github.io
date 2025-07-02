@@ -21,6 +21,7 @@ This document describes the changes included for Prebid.js version 10.0.
 3. `pbadslot` has been removed from the preAuction module. Use `ortb2Imp.ext.gpid` instead.
 4. The API methods `getBidResponses` and `getNoBidsForAdUnitCode` now return arrays of bids.
 5. TypeScript support has landed and Node.js 20+ is required to build.
+6. Using Prebid as an NPM dependency no longer requires using Babel or Prebid's Babel settings.
 6. `targetingControls.allBidsCustomTargeting` now defaults to `false`, this prevents custom targeting values from being set for non-winning bids.
 7. Storage use disclosures can now be enforced and catalogued 
 
