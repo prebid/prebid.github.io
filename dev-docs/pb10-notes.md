@@ -109,5 +109,5 @@ The following modules have been removed from Prebid.js as part of the 10.0 relea
 
 ## Further Reading
 
-* [Publisher API Reference](/dev-docs/publisher-api-reference.html)
-* [First Party Data](/features/firstPartyData.html)
+* [Publisher API Reference](https://docs.prebid.org/dev-docs/publisher-api-reference.html)
+* [First Party Data](https://docs.prebid.org/features/firstPartyData.html)
