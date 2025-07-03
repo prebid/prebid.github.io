@@ -177,10 +177,14 @@ function initAdserver(bids) {
 
     // Set targeting for each display slot
     googletag.cmd.push(function() {
-        pbjs.que.push(function() {
-            pbjs.setTargetingForGPTAsync(displayAdUnitCodes);
+        if (pbjs.libLoaded) {
+            pbjs.que.push(function() {
+                pbjs.setTargetingForGPTAsync(displayAdUnitCodes);
+                googletag.pubads().refresh();
+            });
+        } else {
             googletag.pubads().refresh();
-        });
+        }
     });
 
     // Build DFP URL with targeting for videoAdUnit

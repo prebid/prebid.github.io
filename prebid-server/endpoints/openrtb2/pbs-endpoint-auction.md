@@ -142,7 +142,7 @@ Prebid Server accepts all OpenRTB 2.x fields and passes them in the request to a
 | user.consent | 2.6 | Bidders supporting 2.5 only: downgraded to user.ext.consent |
 | imp.rwdd | 2.6 | Bidders supporting 2.5 only: downgraded to imp[].ext.prebid.is_rewarded_inventory |
 | user.eids | 2.6 | Bidders supporting 2.5 only: downgraded to user.ext.eids |
-| source.schain | 2.6 | Bidders supporting 2.5 only: downgraded to source.ext.schain |
+| source.schain | 2.6 | Bidders supporting 2.5 only: downgraded to source.ext.schain, Bidders supporting 2.4 only: downgraded to ext.schain |
 | wlangb, {content, device}.langb, cattax, {site, app, publisher, content, producer}.cattax, ssai, {app, site}.content.{network, channel}, {app, content, site, user}.kwarray, device.sua | 2.6 | Bidders supporting 2.5 only: these fields are removed |
 | {video, audio}.{rqddurs, maxseq, poddur, podid, podseq, mincpmpersec, slotinpod} | 2.6 | Bidders supporting 2.5 only: these fields are removed |
 | regs.gpp | 2.6-202211 | Bidders supporting 2.5 only: this field is removed |
@@ -309,20 +309,21 @@ To summarize the process:
 
 ##### PBS-Java
 
-Core concepts:
+Definitions:
 
 - request_tmax: what the incoming ORTB request defines as tmax (as milliseconds)
-- biddertmax_max: controls that upstream doesn't tell us ridiculous values. In milliseconds. (configuration auction.biddertmax.max)
-- biddertmax_min: it's not worth calling bidders and give them less time than this number of milliseconds (configuration (auction.biddertmax.min). Note: we recommend this value be at least 150 ms)
-- biddertmax_percent: a lower number means more buffer for network delay. Host companies should set this to a lower value in regions where the network connections are slower. (configuration auction.biddertmax.percent)
-- tmax_upstream_response_time: the amount of time (in ms) that PBS needs to respond to the original caller (configuration auction.tmax-upstream-response-time)
+- biddertmax_max: configuration that controls that upstream doesn't tell us ridiculous values. In milliseconds. Actual config value is configuration auction.biddertmax.max. The default is 5000 ms.
+- biddertmax_min: configuration declaring that it's not worth calling bidders with a tmax of less than this number of milliseconds. Actual config value is auction.biddertmax.min. Note: we recommend this value be at least 150 ms, but the default is 50 ms.
+- biddertmax_percent: configuration defining what percent of the tmax should be given to bidders. A lower number provides a larger buffer for network delay, meaning that host companies should set this to a lower value in regions where the network connections are slower. Actual config value is auction.biddertmax.percent.
+- tmax_upstream_response_time: configuration estimating the amount of time (in ms) that PBS needs to respond to the original caller. Actual config value is auction.tmax-upstream-response-time.
+- bidder_tmax_deduction: (PBS-Java 3.18+) configuration adjusting the tmax sent to the bidder to give them a higher sense of urgency for the expected network delays. It doesn't affect the actual timeout enforced by PBS. Actual config value is adapter.ADAPTER.tmax-deduction-ms.
 - processing_time: PBS calculation for how long it's been since the start of the request up to the point where the bidders are called
-- bidder_tmax: this is what PBS-core tells the bidders they have to respond. The conceptual formula is: capped(request_tmax)*biddertmax_percent - processing_time - tmax_upstream_response_time ==> must be at least the configured min
-- enforced_tmax: this is long PBS-core actually gives the bidders: capped(request_tmax)- processing_time - tmax_upstream_response_time ==> cannot be lower than bidder_tmax
+- bidder_tmax: calculated value that PBS-core tells bidders indicating how long they have to respond. The conceptual formula is: capped(request_tmax)*biddertmax_percent - processing_time - tmax_upstream_response_time ==> must be at least the configured min
+- enforced_tmax: calculated value for the actually enforced bidder timeout. The conceptual formula is: capped(request_tmax)- processing_time - tmax_upstream_response_time ==> cannot be lower than bidder_tmax
 
 The full formulas:
 
-bidder_tmax=max(calculated_tmax, biddertmax_min)=max((min(request_tmax,biddertmax_max)*biddertmax_percent)-processing_time - tmax_upstream_response_time, biddertmax_min)
+bidder_tmax=max(calculated_tmax, biddertmax_min)=max((min(request_tmax,biddertmax_max)*biddertmax_percent)-processing_time - tmax_upstream_response_time - bidder_tmax_deduction, biddertmax_min)
 
 enforced_tmax=max(calculated_enforcement,bidder_tmax)=max(min(request_tmax,biddertmax_max)-processing_time - tmax_upstream_response_time , bidder_tmax)
 
@@ -997,7 +998,13 @@ An additional option is `usepbsrates`. When `true`, this flag indicates that dyn
 
 ##### Supply Chain Support
 
-Basic supply chains are passed to Prebid Server on `source.ext.schain` and passed through to bid adapters. Prebid Server does not currently offer the ability to add a node to the supply chain.
+Basic supply chains are passed to Prebid Server on `source.schain` and passed through to bid adapters. Prebid Server does not currently offer the ability to add a node to the supply chain.
+
+See
+[OpenRTB 2.6, Section 3.2.2 - Object: Source](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/2.6-202501/2.6.md#322---object-source-)
+and
+[OpenRTB 2.6, Section 3.2.25 - Object: SupplyChain](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/2.6-202501/2.6.md#3225---object-supplychain-)
+.
 
 Bidder-specific schains:
 
@@ -1010,7 +1017,7 @@ Bidder-specific schains:
 
 In this scenario, Prebid Server sends the first schain object to `bidderA` and the second schain object to everyone else.
 
-If there's already an source.ext.schain and a bidder is named in ext.prebid.schains (or covered by the wildcard condition), ext.prebid.schains takes precedent.
+If there's already an source.schain and a bidder is named in ext.prebid.schains (or covered by the wildcard condition), ext.prebid.schains takes precedent.
 
 ##### User IDs
 
@@ -1407,7 +1414,7 @@ For example, this request:
           },
           "storedbidresponse": [
             { "bidder": "BidderA", "id": "5555555", "replaceimpid":true }
-            // note: no storedbidrespose for bidderB
+            // note: no storedbidresponse for bidderB
           ]
         }
       }
@@ -1890,8 +1897,9 @@ ext.prebid.biddercontrols: {
 
 Here's how this works:
 
-1. If the bid adapter YAML declares support of multiformat, then `prefmtype` is ignored in the request. The default value of multiformat supported is `true`.
+1. If the bid adapter YAML declares support of multiformat as `true`, then `prefmtype` is ignored in the request. The default value of multiformat supported is `false`.
 1. If the bidder declares that they don't support multiformat and the incoming request contains multiple formats, then one of the formats is chosen by either `$.ext.prebid.biddercontrols.BIDDER.prefmtype` or config `auction.preferredmediatype.BIDDER`
+1. If multiformat-supported is false, and if the specified prefmtype is not part of the request, then the imp doesn't go out to the bidder.
 
 #### OpenRTB Response Extensions
 

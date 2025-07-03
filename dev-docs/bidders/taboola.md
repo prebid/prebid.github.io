@@ -19,6 +19,7 @@ safeframes_ok: true
 fpd_supported: true
 ortb_blocking_supported: partial
 deals_supported: false
+userIds: taboolaId
 pbs_app_supported: true
 multiformat_supported: will-not-bid
 sidebarType: 1
@@ -33,6 +34,8 @@ sidebarType: 1
 ### Bidder Config
 We recommend allowing us access to localStorage.
 You can allow writing in localStorage `pbjs.bidderSettings` for the bidder `taboola`
+
+{% include dev-docs/storageAllowed.md %}
 
 ```javascript
 pbjs.bidderSettings = {

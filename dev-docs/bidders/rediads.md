@@ -6,7 +6,7 @@ biddercode: rediads
 prebid_member: false
 media_types: banner, video, native
 pbjs: true
-pbs: false
+pbs: true
 tcfeu_supported: false
 usp_supported: true
 coppa_supported: false
@@ -27,9 +27,9 @@ sidebarType: 1
 {: .table .table-bordered .table-striped }
 | Name         | Scope    | Description                                                                 | Example              | Type           |
 |--------------|----------|-----------------------------------------------------------------------------|----------------------|----------------|
-| account_id | required | Account ID generated on the Rediads Platform.                              | '12345'            | string       |
-| site       | optional | Site domain name.                                                          | 'rediads.com'      | string       |
-| slot       | optional | Unique identifier for the ad slot generated on the platform.               | '54321'            | string       |
+| account_id   | required | Account ID generated on the Rediads Platform.                               | '123xyz'             | string       |
+| endpoint     | optional | Only to be used if RediAds team provides you with one.                      | 'bidding2'        | string       |
+| slot         | optional | Unique identifier for the ad slot generated on the platform.                | '54321'              | string       |
 
 ---
 
@@ -64,7 +64,6 @@ var adUnits = [
         bidder: 'rediads',
         params: {
           account_id: '12345',
-          site: 'rediads.com',
           slot: '54321'
         }
       }

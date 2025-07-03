@@ -42,6 +42,8 @@ If you use the Prebid.js [TCF Control Module](/dev-docs/modules/tcfControl.html)
 
 To do that, you can use below configuration:
 
+{% include dev-docs/vendor-exception.md %}
+
 ```javascript
 pbjs.setConfig({
   consentManagement: {

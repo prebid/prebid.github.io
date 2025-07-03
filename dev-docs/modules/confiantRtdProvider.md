@@ -53,3 +53,14 @@ pbjs.setConfig({
     }
 });
 ```
+
+## Parameters
+
+{: .table .table-bordered .table-striped }
+
+| Name | Type | Description | Required | Default |
+| :--- | :--- | :--- | :--- | :--- |
+| `propertyId` | String | Identifier provided by Confiant | yes | n/a |
+| `prebidExcludeBidders` | String | Comma separated bidder codes to exclude from Confiant scanning | no | empty |
+| `prebidNameSpace` | String | Custom namespace for the integration | no | empty |
+| `shouldEmitBillableEvent` | Boolean | Emit a billable event when a Confiant scan occurs | no | `false` |

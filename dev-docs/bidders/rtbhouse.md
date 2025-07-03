@@ -4,18 +4,24 @@ title: RTBHouse
 description: Prebid RTB House Bidder Adapter
 gvl_id: 16
 tcfeu_supported: true
+usp_supported: false
+coppa_supported: false
+gpp_sids: none
 dsa_supported: true
 pbjs: true
 pbs: true
 biddercode: rtbhouse
 prebid_member: true
 floors_supported: true
+fpd_supported: true
 safeframes_ok: true
 media_types: banner, native
 schain_supported: true
 userIds: id5Id, identityLink, pubProvidedId
 pbs_app_supported: true
 ortb_blocking_supported: partial
+multiformat_supported: will-bid-on-any
+privacy_sandbox: topics
 sidebarType: 1
 ---
 
@@ -73,49 +79,3 @@ pbjs.setBidderConfig({
 ### Setting up the Prebid Server Adapter
 
 If you’re a Prebid Server host company looking to enable the RTB House server-side adapter, you'll need to contact <prebid@rtbhouse.com>. They will guide you through the process. Do not use the default bidder config file as it will require custom partner code to be entered. It will be provided by RTB House.
-
-### Protected Audience API (PAAPI) support
-
-There’s an option to receive demand for Protected Audience API (FLEDGE/PAAPI)
-ads using RTB House bid adapter.
-Prebid’s [paapiForGpt](https://docs.prebid.org/dev-docs/modules/paapiForGpt.html)
-module and Google Ad Manager is currently required.
-
-The following steps should be taken to setup Protected Audience for RTB House:
-
-1. Reach out to your RTB House representative for setup coordination.
-
-2. Build and enable PAAPI module as described in
-[paapiForGpt](https://docs.prebid.org/dev-docs/modules/paapiForGpt.html)
-module documentation.
-
-    a. Make sure to enable RTB House bidder to participate in PAAPI. If there are any other bidders to be allowed for that, add them to the **bidders** array:
-
-    ```javascript
-    pbjs.setConfig({
-        paapi: {
-           enabled: true,
-           bidders: ["rtbhouse"]           
-        }    
-    })
-    ```
-
-    b. If you as a publisher have your own [decisionLogicUrl](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#21-initiating-an-on-device-auction)
-    you may utilize it by setting up a dedicated `fledgeConfig` object:
-
-    ```javascript
-    pbjs.setBidderConfig({
-        bidders: ["rtbhouse"],
-        config: {
-            fledgeConfig: {
-                seller: 'https://seller.domain',
-                decisionLogicUrl: 'https://seller.domain/decisionLogicFile.js',
-                sellerTimeout: 100
-            }
-        }
-    });
-    ```
-
-    The `decisionLogicUrl` must be in the same domain as `seller` and has to respond with `X-Allow-FLEDGE: true` http header.
-
-    `sellerTimeout` is optional, defaults to 50 as per spec, will be clamped to 500 if greater.

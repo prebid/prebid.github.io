@@ -125,6 +125,26 @@ pbjs.setConfig({
 });
 ```
 
+### Change prerendering behavior
+
+When a page is [prerendered](https://developer.chrome.com/docs/web-platform/prerender-pages), by default Prebid will delay auctions until it is activated.
+
+You can disable this behavior and allow auctions to run during prerendering with `allowPrerendering`:
+
+```javascript
+pbjs.setConfig({
+  allowPrerendering: true
+})
+```
+
+Alternatively you may delay execution of the entire command queue (not just auctions) until the page is activated, using `delayPrerendering`:
+
+```javascript
+pbjs.delayPrerendering = true;
+```
+
+Note that `delayPrerendering` is a property of the `pbjs` global and not a normal setting; this is because it takes effect before (and delays) any call to `setConfig`.  
+
 ### Send All Bids
 
 <a name="setConfig-Send-All-Bids"></a>
@@ -688,6 +708,7 @@ The `targetingControls` object passed to `pbjs.setConfig` provides some options 
 | allowTargetingKeys | Array of Strings | Selects supported default targeting keys. |
 | addTargetingKeys   | Array of Strings | Selects targeting keys to be supported in addition to the default ones |
 | allowSendAllBidsTargetingKeys | Array of Strings | Selects supported default targeting keys. |
+| allBidsCustomTargeting | boolean | Set to true to prevent custom targeting values from being set for non-winning bids |
 
 {: .alert.alert-info :}
 Note that this feature overlaps and can be used in conjunction with [sendBidsControl.bidLimit](#setConfig-Send-Bids-Control).
@@ -884,6 +905,11 @@ config.setConfig({
 });
 ```
 
+#### Details on the allBidsCustomTargeting setting
+{: .no_toc}
+
+By default, non winning bids will have custom tageting values concatenated to the winning bid's custom targeting for the same key.  The `allBidsCustomTargeting` setting is a boolean that, when set to `false`, prevents custom targeting values from being set for non-winning bids. This can be useful if you want to ensure that only the winning bid has custom targeting values set.  
+
 <a name="setConfig-Configure-Responsive-Ads"></a>
 
 ### Configure Responsive Ads
@@ -956,6 +982,7 @@ The Prebid Video Module allows Prebid to directly integrate with a Video Player,
 To register a video player with Prebid, you must use `setConfig` to set a `video` config compliant with the following structure:
 
 {: .table .table-bordered .table-striped }
+
 | Field | Required? | Type | Description |
 |---|---|---|---|
 | video.providers[] | yes | array of objects | List of Provider configurations. You must define a provider configuration for each player instance that you would like integrate with. |
@@ -1027,20 +1054,23 @@ pbjs.setConfig({
 
 ### Client-side Caching of VAST XML
 
-When serving video ads, VAST XML creatives must be cached on the network so the
+When serving video ads, VAST XML creatives must be cached so the
 video player can retrieve them when it's ready. Players don't obtain the VAST XML from
 the JavaScript DOM in Prebid.js, but rather expect to be given a URL where it can
-be retrieved. There are two different flows possible with Prebid.js around VAST XML caching:
+be retrieved. There are three different flows possible with Prebid.js around VAST XML caching:
 
 * Server-side caching:  
   Some video bidders (e.g. Rubicon Project) always cache the VAST XML on their servers as part of the bid. They provide a 'videoCacheKey', which is used in conjunction with the VAST URL in the ad server to retrieve the correct VAST XML when needed. In this case, Prebid.js has nothing else to do. As of Prebid.js 4.28, a publisher may specify the `ignoreBidderCacheKey` flag to re-cache these bids somewhere else using a VAST wrapper.
 * Client-side caching:  
   Video bidders that don't cache on their servers return the entire VAST XML body. In this scenario, Prebid.js needs to copy the VAST XML to a publisher-defined cache location on the network. Prebid.js POSTs the VAST XML to the named Prebid Cache URL. It then sets the 'videoCacheKey' to the key that's returned in the response.
+* Local client-side caching (Blob URL):
+  To reduce network traffic to the publisher-defined remote cache location, Prebid allows publishers to locally store the VAST XML of a bid as a blob in the browser's memory. When the `cache.useLocal` option is enabled, Prebid sets the bid’s `videoCacheKey` to the key assigned to the locally stored blob. In this scenario, `bid.vastUrl` becomes a blob URL.
 
 {: .table .table-bordered .table-striped }
 | Cache Attribute | Required? | Type | Description |
 |----+--------+-----+-------|
 | cache.url | yes | string | The URL of the Prebid Cache server endpoint where VAST creatives will be sent. |
+| cache.useLocal | no | boolean | Flag determining whether to locally save VAST XML as a blob |
 | cache.timeout | no | number | Timeout (in milliseconds) for network requests to the cache |
 | cache.vasttrack | no | boolean | Passes additional data to the url, used for additional event tracking data. Defaults to `false`. |
 | cache.ignoreBidderCacheKey | no | boolean | If the bidder supplied their own cache key, setting this value to true adds a VAST wrapper around that URL, stores it in the cache defined by the `url` parameter, and replaces the original video cache key with the new one. This can dramatically simplify ad server setup because it means all VAST creatives reside behind a single URL. The tradeoff: this approach requires the video player to unwrap one extra level of VAST. Defaults to `false`. |
@@ -1114,6 +1144,27 @@ If a batchSize is set to 2 and 5 video responses arrive (within the timeframe sp
 
 <a name="setConfig-instream-tracking"></a>
 
+As of Prebid.js 9.37.0, you can save VAST XML as blob in browser's memory. Here's how to leverage local caching to reduce network traffic while working with an ad server. Using Google Ad Manager (GAM) as an example, no additional configuration of VAST creatives is required within GAM. The existing process of building the GAM VAST ad tag URL and retrieving the VAST wrapper from GAM remains unchanged - except for one key difference.
+
+Consider the following Prebid configuration:
+
+```javascript
+pbjs.setConfig({
+        cache: {
+            url: 'https://prebid.adnxs.com/pbc/v1/cache',
+            useLocal: true
+        }
+});
+```
+
+When `useLocal` is set to true, the remote cache URL endpoint is never called. However, existing GAM creatives configured with a VAST ad tag URL, such as:
+
+``
+https://prebid.adnxs.com/pbc/v1/cache?uuid=%%PATTERN:hb_uuid%%
+``
+
+will continue to function correctly. `hb_uuid` is set to locally assigned blob UUID. If the bid wins the GAM auction and it's `videoCacheKey` (`hb_uuid`) is included in a GAM wrapper VAST XML, Prebid will update the VAST ad tag URL with the locally cached blob URL after receiving a response from Google Ad Manager.
+
 ### Instream tracking
 
 {: .alert.alert-info :}
@@ -1141,7 +1192,7 @@ pbjs.setConfig({
 });
 ```
 
-More examples [here](/dev-docs/modules/instreamTracking.html#example-with-urlpattern).
+More examples can be found in [the instream tracking module documentation](/dev-docs/modules/instreamTracking.html#example-with-urlpattern).
 
 <a name="setConfig-site"></a>
 
@@ -1283,6 +1334,7 @@ pbjs.setConfig({
 The controls publishers have over the RTD modules:
 
 {: .table .table-bordered .table-striped }
+
 | Field | Required? | Type | Description |
 |---|---|---|---|
 | realTimeData.auctionDelay | no | integer | Defines the maximum amount of time, in milliseconds, the header bidding auction will be delayed while waiting for a response from the RTD modules as a whole group. The default is 0 ms delay, which means that RTD modules need to obtain their data when the page initializes. |
@@ -1336,6 +1388,7 @@ pbjs.setConfig({
 ```
 
 {: .table .table-bordered .table-striped }
+
 | Field | Required? | Type | Description |
 |---|---|---|---|
 | topics.maxTopicCaller | no | integer | Defines the maximum numbers of Bidders Iframe which needs to be loaded on the publisher page. Default is 1 which is hardcoded in Module. Eg: topics.maxTopicCaller is set to 3. If there are 10 bidders configured along with their iframe URLS, random 3 bidders iframe URL is loaded which will call TOPICS API. If topics.maxTopicCaller is set to 0, it will load random 1(default) bidder iframe atleast. |
@@ -1369,6 +1422,23 @@ Inversely, if you wish for the alias registry to be private you can do so by usi
 ```javascript
 pbjs.setConfig({aliasRegistry: 'private'})
 ```
+
+<a id="setConfig-gvlMapping"></a>
+
+### Map modules to Global Vendor IDs
+
+Prebid modules sometimes need to know the [IAB Global Vendor List](https://iabeurope.eu/tcf-for-vendors/) (GVL) ID associated with a bidder alias or other module. The optional `gvlMapping` object lets publishers specify these IDs or override the ones declared by the module itself.
+
+```javascript
+pbjs.setConfig({
+  gvlMapping: {
+    appnexus: 4,
+    someModule: 123
+  }
+});
+```
+
+Prebid Server uses this mapping when it sends `ext.prebid.aliasgvlids` for bidder aliases, and the [TCF Control Module](/dev-docs/modules/tcfControl.html) references it when enforcing consent.
 
 ### Set Max Bid
 
