@@ -28,7 +28,7 @@ The Kuantyx adapter requires approval and setup. Please reach out to <support@ku
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description      | Example                     | Type      |
 |---------------|----------|------------------|-----------------------------|-----------|
-| `server`      | required | Server endpoint  | `https://srv.kuantyx.com`   | `String`  |
+| `server`      | required | Server endpoint  | `https://srv.kntxy.com`     | `String`  |
 | `zone`        | required | Zone ID          | `73815`                     | `Integer` |
 
 #### Video Caching
