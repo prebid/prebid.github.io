@@ -17,7 +17,7 @@ PubMatic team. Please reach out to your account team for more information.
 {: .table .table-bordered .table-striped }
 | Name         | Scope              | Description                                                                                                                 | Example                                                                             | Type             |
 |-------------|---------|--------------------|-----------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|------------------|
-| publisherId | required  | The PubMatic Publisher ID | 1001  | int |
+| publisherId | required  | The PubMatic Publisher ID | 1001  | String |
 
 ### Example Configuration
 
