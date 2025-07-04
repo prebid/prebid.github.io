@@ -22,9 +22,9 @@ sidebarType : 1
 
 The 152media Real-time Data (RTD) module enhances programmatic advertising performance by providing contextual and audience-based data at runtime. Integrated into Prebid.js, it enables publishers to:
 
-- Improve bid relevance with enriched targeting data
-- Filter unqualified or low-value bid requests
-- Leverage AI-based deal optimization
+* Improve bid relevance with enriched targeting data
+* Filter unqualified or low-value bid requests
+* Leverage AI-based deal optimization
 
 This module is maintained by [152media](mailto:hello@152media.com) and requires the global `rtdModule` to function.
 
@@ -83,4 +83,3 @@ When active, the module appends targeting and/or deal data into the ad unit targ
 ## Support
 
 For questions, help, or to obtain a publisher ID, please contact [hello@152media.com](mailto:hello@152media.com).
-
