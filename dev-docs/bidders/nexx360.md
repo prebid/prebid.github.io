@@ -4,28 +4,32 @@ title: Nexx360
 description: Prebid Nexx360 Bidder Adapter
 pbjs: true
 biddercode: nexx360
+gvl_id: 965
 tcfeu_supported: true
 usp_supported: true
+gpp_supported: true
 schain_supported: true
+dchain_supported: false
 floors_supported: true
 userIds: all
-tcf2_supported: true
+tcfeu_supported: true
 media_types: banner, video, native
-gvl_id: 965
-pbs: false
+safeframes_ok: true
+deals_supported: true
 sidebarType: 1
+fpd_supported: true
+multiformat_supported: will-bid-on-any
 
 ---
-
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                | Example                                   | Type      |
 |---------------|----------|----------------------------|--------------------------------------     |-----------|
-| `tagId`       | required | Nexx360 tag ID             | `"luvxjvgn"`                              | `string`  |
-| `videoTagId`  | optional | Nexx360 Video tag ID       | `"luvxjvgn"`                              | `string`  |
-| `nativeTagId` | optional | Nexx360 Native tag ID      | `"luvxjvgn"`                              | `string`  |
+| `tagId`       | required | Nexx360 tag ID             | `"testnexx"`                              | `string`  |
+| `videoTagId`  | optional | Nexx360 Video tag ID       | `"testnexx"`                              | `string`  |
+| `nativeTagId` | optional | Nexx360 Native tag ID      | `"testnexx"`                              | `string`  |
 | `allBids`     | optional | Return all bids            | `true`                                    | `boolean` |
 | `divId`       | optional | divId linked to adUnit     | `"div-1"`                                 | `string`  |
 | `adUnitName`  | optional | A code to identify adUnit  | `"header-ad"`                             | `string`  |
@@ -34,6 +38,8 @@ sidebarType: 1
 ### Bidder Config
 
 You can allow writing in localStorage `pbjs.bidderSettings` for the bidder `nexx360`
+
+{% include dev-docs/storageAllowed.md %}
 
 ```javascript
 pbjs.bidderSettings = {
@@ -62,7 +68,7 @@ var adUnits = [
       bids: [{
          bidder: 'nexx360',
          params: {
-            tagId: 'luvxjvgn'
+            tagId: 'testnexx'
          }
        }]
    },
@@ -78,7 +84,7 @@ var adUnits = [
         bids: [{
             bidder: 'nexx360',
             params: {
-               tagId: 'luvxjvgn'
+               tagId: 'testnexx'
             }
         }]
     },
@@ -101,7 +107,7 @@ var adUnits = [
         bids: [{
             bidder: 'nexx360',
             params: {
-               tagId: 'luvxjvgn'
+               tagId: 'testnexx'
             }
         }]
     },
@@ -123,8 +129,8 @@ var adUnits = [
         bids: [{
             bidder: 'nexx360',
             params: {
-               tagId: 'luvxjvgn',
-               videoTagId: 'luvxjvgn'
+               tagId: 'testnexx',
+               videoTagId: 'testnexx'
             }
         }]
     };

@@ -10,7 +10,6 @@ sidebarType : 1
 ---
 
 # User ID Module
-
 {:.no_toc}
 
 * TOC
@@ -40,7 +39,7 @@ Not all bidder adapters support all forms of user ID. See the tables below for a
 
 ## User ID, GDPR, Permissions, and Opt-Out
 
-When paired with the [Consent Management](/dev-docs/modules/consentManagement.html) module, privacy rules are enforced:
+When paired with the [Consent Management](/dev-docs/modules/consentManagementTcf.html) module, privacy rules are enforced:
 
 * The module checks the GDPR consent string
 * If no consent string is available OR if the user has not consented to Purpose 1 (local storage):
@@ -72,9 +71,13 @@ Publishers using Google AdManager may want to sync one of the identifiers as the
 The PPID in GAM (which is unrelated to the PPID UserId Submodule) has strict rules; refer to [Google AdManager documentation](https://support.google.com/admanager/answer/2880055?hl=en) for them. Please note, Prebid uses a [GPT command](https://developers.google.com/publisher-tag/reference#googletag.PubAdsService) to sync identifiers for publisher convenience. It doesn't currently work for instream video requests, as Prebid typically interacts with the player, which in turn may interact with IMA. IMA does has a [similar method](https://developers.google.com/interactive-media-ads/docs/sdks/html5/client-side/reference/js/google.ima.ImaSdkSettings#setPpid) as GPT, but IMA does not gather this ID from GPT.
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | ppid | Optional | String | Must be a source from the [pbjs.getUserIdsAsEids()](#getUserIdsAsEids) array | `"pubcid.org"` |
+| autoRefresh | Optional | Boolean | Refresh IDs automatically when their configuration changes. Defaults to `false`. | `true` |
+| retainConfig | Optional | Boolean | When set to `false`, previously configured IDs are removed if they are not present in updated configuration. Defaults to `true`. | `false` |
+| enforceStorageType | Optional | Boolean | Restrict submodules to storing IDs only in the location defined by `storage.type`. | `true` |
 
 The table below has the options that are common across ID systems. See the sections below for specific configuration needed by each system and examples.
 
@@ -84,16 +87,17 @@ The table below has the options that are common across ID systems. See the secti
 {% assign count = 0 %}
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be any of the following values: {% for page in userid_pages -%}{% if count == 1 %}{{ name_string | append: ", " -}}{% endif %}{% assign count = 1 %}`"{{ name_string | append: name_string -}}{{ name_string | append: page.useridmodule -}}"`{% endfor %} | `"unifiedId"`
+| name | Required | String | May be any of the following values: {% for page in userid_pages -%}`"{{ page.useridmodule -}}"`{% if forloop.last == false -%}, {% endif -%}{% endfor -%} | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
 | bidders | Optional | Array of Strings | An array of bidder codes to which this user ID may be sent. | `['bidderA', 'bidderB']` |
-| storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
-| storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
+| storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be a cookie, HTML5 storage or both.| |
+| storage.type | Required | String | Must be `"cookie"`, `"html5"` or `"cookie&html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
 | storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"_unifiedId"` |
 | storage.expires | Strongly Recommended | Integer | How long (in days) the user ID information will be stored. If this parameter isn't specified, session cookies are used in cookie-mode, and local storage mode will create new IDs on every page. | `365` |
-| storage.refreshInSeconds | Optional | Integer | The amount of time (in seconds) the user ID should be cached in storage before calling the provider again to retrieve a potentially updated value for their user ID. If set, this value should equate to a time period less than the number of days defined in `storage.expires`. By default the ID will not be refreshed until it expires.
+| storage.refreshInSeconds | Optional | Integer | The amount of time (in seconds) the user ID should be cached in storage before calling the provider again to retrieve a potentially updated value for their user ID. If set, this value should equate to a time period less than the number of days defined in `storage.expires`. By default the ID will not be refreshed until it expires. | `30` |
 | value | Optional | Object | Used only if the page has a separate mechanism for storing a User ID. The value is an object containing the values to be sent to the adapters. | `{"tdid": "1111", "IDP": "IDP-2233", "id5id": {"uid": "ID5-12345"}}` |
 
 ## Permissions
@@ -160,7 +164,7 @@ It is possible for a user id submodule to populate several identifiers including
 
 This can be configured inside the `userSync` object in the following manner:
 
-Let's say that the UID2 token populated by the trade desk user id submodule has the value 'uid2_value' and the UID2 token populated by Liveintent user id module has the value 'liveIntentUid2_value' (The actual identifiers populated in this case should be one and the same however the values are written differently in order to help the reader understand the source from which the identifiers get picked up from)
+Let's say that the UID2 token populated by the UID2 user ID submodule has the value 'uid2_value' and the UID2 token populated by Liveintent user id module has the value 'liveIntentUid2_value' (The actual identifiers populated in this case should be one and the same however the values are written differently in order to help the reader understand the source from which the identifiers get picked up from)
 
 ```javascript
 "userSync": {
@@ -197,16 +201,28 @@ The corresponding user id object and the eids array will look like this:
   ],
   // ...
 }
-
 ```
 
 ## User ID Sub-Modules
 
 {% assign userid_pages = site.pages | where: "layout", "userid" | sort_natural: "title" %}
 
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>ID System Name</th>
+    <th>Prebid.js Attr: bidRequest.userId</th>
+    <th>EID Source</th>
+    <th>Example</th>
+  </tr>
 {% for page in userid_pages %}
-<li><a href="/{{ page.path | replace: '.md', '.html'}}">{{page.title}}</a></li>
+  <tr>
+    <td><a href="/{{ page.path | replace: '.md', '.html'}}">{{page.title}}</a></td>
+    <td>{{page.bidRequestUserId}}</td>
+    <td>{{page.eidsource}}</td>
+    <td>{{page.example}}</td>
+  </tr>
 {% endfor %}
+</table>
 
 ## Bidder Adapter Implementation
 
@@ -217,49 +233,6 @@ To add a custom data type for the response of `pbjs.getUserIdsAsEids()`, see oth
 ### Prebid.js Adapters
 
 Bidders that want to support the User ID module in Prebid.js need to update their bidder adapter to read the indicated bidRequest attributes and pass them to their endpoint.
-
-{: .table .table-bordered .table-striped }
-| ID System Name | ID System Host | Prebid.js Attr: bidRequest.userId. | EID Source | Example Value |
-| --- | --- | --- | --- | --- | --- | --- |
-| 33Across ID | 33Across | 33acrossId | 33across.com | "1111" |
-| Admixer ID | Admixer | admixerId | admixer.net | "1111" |
-| adQuery QiD | adQuery | qid | adquery.io | "p9v2dpnuckkzhuc..." |
-| Adriver ID | Adriver | adriverId | adriver.ru | "1111" |
-| Adtelligent ID | Adtelligent | bidRequest.userId.adtelligentId | `"1111"` |
-| AMX ID | AMX | amxId | amxdt.net | "3ca11058-..." |
-| BritePool ID | BritePool | britepoolid | britepool.com | "1111" |
-| AudienceOne ID | DAC | dacId | dac.co.jp | {"id": "1111"} |
-| DeepIntent ID | Deep Intent | deepintentId | deepintent.com | "1111" |
-| DMD ID | DMD | dmdId | hcn.health | "1111" |
-| Czech Ad ID | czechAdId | czechAdId | czechadid.cz | "1111" |
-| CriteoID | Criteo | criteoId | criteo.com | "1111" |
-| Fabrick ID | Neustar | fabrickId | neustar.biz | "1111" |
-| FLoC ID | n/a | flocId | | |
-| GrowthCode ID | GrowthCode | growthCodeId | growthcode.io | "1111" |
-| Hadron ID | Audigent | hadronId | audigent.com | {"hadronId":"user-hadron-id", "auSeg":["segment1", "segment2"]} |
-| ID+ | Zeotap | IDP | zeotap.com | "1111" |
-| ID5 ID | ID5 | id5id | id5-sync.com | {uid: "1111", ext: { linkType: 2, abTestingControlGroup: false } } |
-| IdentityLink | LiveRamp | idl_env | liveramp.com | "1111" |
-| Intent IQ ID | Intent IQ | intentiqid | intentiq.com | "1111" |
-| Kinesso ID | Kinesso | kpuid | kpuid.com | "1111" |
-| LiveIntent ID | Live Intent | lipb.lipbid | liveintent.com | "1111" |
-| Lotame Panorama ID | Lotame | lotamePanoramaId | crwdcntrl.net | "e4b9..." |
-| MediaWallah OpenLink ID | MediaWallah | mwOpenLinkId | mediawallahscript.com | "1111" |
-| merkleID | Merkle | merkleId | merkleinc.com | "1111" |
-| naveggId | Navegg | naveggId | navegg.com | "1111" |
-| netID | netID | netId | netid.de | "fH5A..." |
-| Novatiq ID | Novatiq | novatiqId | novatiq.com | "1111" |
-| Parrable ID | Parrable | parrableId | parrable.com | {"eid":"01.15946..."} |
-| Publisher Link ID | n/a | publinkId | epsilon.com | |
-| PubProvided ID | n/a | pubProvidedId | publisher domain | "1111" |
-| Quantcast ID | n/a | quantcastId | quantcast.com | "1111" |
-| Tapad ID | Tapad | tapadId | tapad.com | "1111" |
-| Teads ID | Teads | teadsId | teads.com | "1111" |
-| SharedID (PBJS 5.x) | n/a | pubcid | pubcid.org | "1111" |
-| SharedID (PBJS 4.x)| Prebid | sharedid | sharedid.org | {"id":"01EAJWWN...", "third":"01EAJ..."} |
-| Unified ID | Trade Desk | tdid | adserver.org | "1111" |
-| ConnectID | Yahoo | connectId | yahoo.com | {"connectId": "72d04af6..."} |
-| FreePass ID | FreePass | freepassId | | "1111" |
 
 For example, the adapter code might do something like:
 
@@ -345,9 +318,11 @@ If you're an ID provider that wants to get on this page:
 * Add your *IdSystem name into the modules/.submodules.json file
 * Follow all the guidelines in the [contribution page](https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md).
 * Submit a Pull Request against the [Prebid.js repository](https://github.com/prebid/Prebid.js).
-* Fork the prebid.org [documentation repository](https://github.com/prebid/prebid.github.io), modify /dev-docs/modules/userId.md, /download.md, and submit a documentation Pull Request.
-
-<a name="getUserIds"></a>
+* Update the Prebid docs
+  * Fork the prebid.org [documentation repository](https://github.com/prebid/prebid.github.io)
+  * Add `/dev-docs/modules/userid-submodules/<userIdModuleName>.md`
+  * Add a new row to `/dev-docs/modules/userId.md#prebidjs-adapters`
+  * Submit a documentation Pull Request
 
 ## ESP Configurations
 
@@ -358,6 +333,7 @@ Please find more details [Share encrypted signals with bidders (Beta)](https://s
 Alternatively, GAM can now pull IDs from Prebid for UserId submodules that [register with GAM](https://services.google.com/fb/forms/encryptedsignalsforpublishers-signalcollectorform/) For those registered submodules, publishers can [select Prebid UserID module (Beta)  under "Signal collection deployment."](https://support.google.com/admanager/answer/10488752?hl=en). Publishers selecting this option should not also select those identifiers in the `encryptedSignalSources.sources.source` array.
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | encryptedSignalSources | Optional | Object | Publisher can specify the ESP config by adding encryptedSignal Object under userSync Object |  |
@@ -365,7 +341,7 @@ Alternatively, GAM can now pull IDs from Prebid for UserId submodules that [regi
 | encryptedSignalSources.sources.source | Required | Array | An array of sources for which signals needs to be registered  | `['sharedid.org','criteo.com']` |
 | encryptedSignalSources.sources.encrypt | Required | Boolean | Should be set to false by default. Please find below note | `true` or `false` |
 | encryptedSignalSources.sources.customFunc | Required | function | This function will be defined for custom sources only and called which will return the custom data set from the page  | Check below config as an example  |
-| encryptedSignalSources.registerDelay | Optional | Integer | The amount of time (in milliseconds) after which registering of signals will happen. Default value 0 is considered if 'registerDelay' is not provided. |  `3000`
+| encryptedSignalSources.registerDelay | Optional | Integer | The amount of time (in milliseconds) after which registering of signals will happen. Default value 0 is considered if 'registerDelay' is not provided. | `3000` |
 
 {: .alert.alert-info :}
 **NOTE:**
@@ -412,4 +388,4 @@ This will have no effect until you call the `registerSignalSources` API. This me
 ## Further Reading
 
 * [Prebid.js Usersync](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing)
-* [GDPR ConsentManagement Module](/dev-docs/modules/consentManagement.html)
+* [TCF ConsentManagement Module](/dev-docs/modules/consentManagementTcf.html)

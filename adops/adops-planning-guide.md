@@ -7,10 +7,9 @@ sbUUID: 3.2
 ---
 
 # Ad Ops Planning Guide
-
 {: .no_toc }
 
-* TOC
+- TOC
 {: toc }
 
 There are several decisions you need to make as you’re planning out your Prebid implementation. The following diagram guides you through these decisions. Click on the boxes to navigate to detailed information about each one. (See below for an overview of these options.)
@@ -29,6 +28,18 @@ There are several decisions you need to make as you’re planning out your Prebi
 
 {: .alert.alert-success :}
 As you go through the steps, we recommend that you document all your decisions. Many of the decisions will need to be made only once when you first set up Prebid, so good documentation will help you and future users understand the decisions and why they were made.
+
+## AdOps Video Overview
+
+An overview of the process of planning a Prebid integration for ad operations.
+
+{% include vimeo-iframe.html id="891677441" title="Prebid Ad Operations Planning" %}
+
+Notes:
+
+- [Creative Considerations](/adops/creative-considerations.html)
+- [Deals in Prebid](/adops/deals.html)
+- [Transcript of this video overview](/adops/adops-overview-video.html)
 
 ## Planning Process
 
@@ -52,6 +63,8 @@ Some additional resources that might be helpful as you work through your setup i
 
 [Deals in Prebid](/adops/deals.html): You can negotiate deals with header bidding demand partners and have them compete with ad server inventory. You’ll need to create additional line items to support these deals. This document explains how to set up Prebid to make that happen.
 
+[Prebid Mobile](/adops/mobile-adops.html): Read this if you have an app integration with Prebid Mobile.
+
 ## Terminology
 
 Throughout this planning guide, we use the following terms to describe elements within the ad server. These terms may vary among different ad servers.
@@ -66,4 +79,4 @@ Throughout this planning guide, we use the following terms to describe elements 
 
 ## Next Step
 
-* [Ad Server Integration](/adops/ad-server-integration.html)
+- [Ad Server Integration](/adops/ad-server-integration.html)

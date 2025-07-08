@@ -7,7 +7,7 @@ media_types: banner, video
 coppa_supported: true
 tcfeu_supported: false
 usp_supported: true
-prebid_member: false
+prebid_member: true
 pbjs: true
 pbs: true
 schain_supported: true

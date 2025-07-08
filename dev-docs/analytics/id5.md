@@ -2,12 +2,12 @@
 layout: analytics
 title: ID5
 description: ID5 Analytics Adapter
-modulecode: id5Analytics
+modulecode: id5
 tcfeu_supported: true
 usp_supported: true
 prebid_member: true
 gvl_id: 131
-enable_download: false
+enable_download: true
 ---
 
 #### Registration

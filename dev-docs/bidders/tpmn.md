@@ -16,7 +16,6 @@ fpd_supported: false
 pbjs: true
 pbs: true
 pbs_app_supported: true
-prebid_member: false 
 multiformat_supported: will-bid-on-one
 ortb_blocking_supported: true
 sidebarType: 1
@@ -29,7 +28,7 @@ TPMN Support media types
 {: .table .table-bordered .table-striped }
 | Name                  | banner | video | native | audio  |
 |-----------------------|--------|-------|--------|--------|
-| Prebid.js             | O      | X     | X      | X      |
+| Prebid.js             | O      | O     | X      | X      |
 | Prebid Server Adapter | O      | O     | O      | X      |
 
 ### Registration
@@ -43,7 +42,6 @@ For further information, please contact `info@tpmn.io`
 | Name          | Scope    | Description                          | Example          | Type      |
 |---------------|----------|--------------------------------------|------------------|-----------|
 | `inventoryId` | required | Inventory ID                         | `1`              | `integer` |
-| `publisherId` | required | Publisher ID                         | `'TPMN'`         | `string`  |
 
 ### User Sync
 

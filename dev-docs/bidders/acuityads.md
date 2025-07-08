@@ -3,7 +3,7 @@ layout: bidder
 title: AcuityAds
 description: Prebid AcuityAds Bidder Adaptor
 biddercode: acuityads
-filename: acuityAdsBidAdapter
+filename: acuityadsBidAdapter
 gvl_id: 231
 tcfeu_supported: true
 usp_supported: true
@@ -26,9 +26,12 @@ The Example Bidding adapter requires setup before beginning. Please contact us a
 ### Prebid.JS Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description           | Example   | Type      |
-|---------------|----------|-----------------------|-----------|-----------|
-| `placementId` | required | Placement ID          | `'123'`     | `string`  |
+| Name          | Scope    | Description  | Example                         | Type       |
+|---------------|----------|--------------|---------------------------------|------------|
+| `placementId` | optional | Placement Id | `'123'`                         | `'string'` |
+| `endpointId`  | optional | Endpoint Id  | `'456'`                         | `'string'` |
+
+For the prebid.js you only need to use one parameter: either placementId or endpointId
 
 ### Prebid Server Bid Params
 

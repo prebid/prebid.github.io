@@ -4,10 +4,12 @@ title: PGAMSSP
 description: Prebid PGAMSSP Bidder Adapter
 biddercode: pgamssp
 usp_supported: true
-tcfeu_supported: false
+gvl_id: 1353
+tcfeu_supported: true
 coppa_supported: true
 schain_supported: true
 floors_supported: true
+gpp_sids: tcfeu, usstate_all, usp
 media_types: banner, video, native
 pbjs: true
 pbs: true
@@ -23,7 +25,7 @@ safeframes_ok: true
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
 | `placementId`      | optional | Placement Id         | `'0'`    | `'string'` |
-| `endpointId`      | optional | Endpoint Id         | `'0'`    | `'string'` |
+| `endpointId`       | optional | Endpoint Id          | `'0'`    | `'string'` |
 
 ### Note
 

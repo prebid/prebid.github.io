@@ -24,6 +24,8 @@ safeframes_ok: true
 
 ### Note
 
+{% include dev-docs/pbjs-adapter-required-for-pbs.md %}
+
 The TrafficGate Bidding adapter requires setup before beginning. Please contact us at <support@bidscube.com>
 
 ### Bid Params

@@ -41,11 +41,11 @@ The site is hosted on GitHub pages, and uses [Jekyll](https://jekyllrb.com/) to 
 1. gem install github-pages
 1. start Jekyll as described below
 
-For CSS, the site uses Laravel Mix to build CSS from Sass (scss-flavored) source files. Under the hood Laravel Mix uses Webpack.
+For CSS, the site uses Jekyll board tools to compile SCSS down to CSS.
 
-1. follow the instructions at [/nodejs.dev](https://nodejs.dev) to install Node.js for your OS
-1. `npm ci` to install packages for building assets
-1. build assets as described below
+1. Install `boostrap` via `npm install` to make the build work
+1. [Jekyll assets management](https://jekyllrb.com/docs/assets/)
+1. [Jekyll SASS plugin](https://jekyllrb.com/docs/configuration/sass/)
 
 The markdown files are linted via [markdownlint-cli](https://github.com/igorshubovych/markdownlint-cli). VSCode supports the [.markdownlintignore](.markdownlintignore) file.
 You may need to configure the disabled rules specified in [.markdownlint.json](.markdownlint.json) directly in your project settings. You can invoke linting in CLI via
@@ -111,6 +111,26 @@ This means an adaptor is not available to download from Prebid.org as soon as th
 ## Liquid Templating
 
 * [jekyll - check for non empty](https://michaelcurrin.github.io/dev-cheatsheets/cheatsheets/jekyll/liquid/conditionals/non-empty.html)
+
+## Codex
+
+To get started with Codex with Ruby 3.4.4 preinstalled on this repo, you can set up your environment like this
+
+```bash
+echo "3.4.4" > .ruby-version
+export NOKOGIRI_USE_SYSTEM_LIBRARIES=1
+gem install jekyll bundler
+npm install boostrap
+gem install github-pages --no-document --force
+npm install -g markdownlint-cli
+bundle install
+```
+
+Codex can then check for linting success with
+
+```bash
+markdownlint --config .markdownlint.json "**/*.md"
+```
 
 ## Thanks
 

@@ -12,7 +12,6 @@ sidebarType : 1
 ---
 
 # Audigent Hadron Real-time Data Submodule
-
 {:.no_toc}
 
 * TOC
