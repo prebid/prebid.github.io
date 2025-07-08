@@ -20,7 +20,6 @@ sidebarType: 1
 To use the Rumble Advertising Center bidder, you need to have an existing Rumble Advertising Center account. To create a 
 new account, see <https://ads.rumble.com>. For additional help, contact support or your account representative.
 
-
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
