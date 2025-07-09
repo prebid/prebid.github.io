@@ -33,6 +33,7 @@ gvl_id: 1344
 | `pId`      | required | The publisher ID from Programmaticx.                                                           | `'59ac17c192832d0011283fe3'` | `string` |
 | `bidFloor` | optional | The minimum bid value desired. Programmaticx will not respond with bids lower than this value. | `0.90`                       | `float`  |
 ### Example ###
+
   ```javascript
 var adUnits = [{
     code: 'banner-div',
