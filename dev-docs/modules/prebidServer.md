@@ -98,6 +98,7 @@ There are many configuration options for s2sConfig:
 | `extPrebid` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server in request.ext.prebid. See the examples below. |
 | `customHeaders` | Optional | Object | These custom headers will be included in the XHR call to the bidder's endpoint. This will allow you to send data specific to your use case. The format consists of an object where the keys represent the header names and the values correspond to the respective header values. Here is an example how a customHeader object might look like - `{"Header1": "Value1", "Header2": "Value2"}`|
 | `endpointCompression` | Optional | Boolean | Gzip compress the auction request payload when supported and debug mode is off. Adds `gzip=1` to the request URL. |
+| `filterBidderlessCalls` | Optional | Boolean | When `true`, ad units that have no bidders defined are excluded from Prebid Server requests. Defaults to `false`. | `true` |
 
 If `endpoint` and `syncEndpoint` are objects, these are the supported properties:
 
