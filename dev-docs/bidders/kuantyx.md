@@ -21,7 +21,7 @@ aliasCode: aso
 ---
 ### Note
 
-The Kuantyx adapter requires approval and setup. Please reach out to <support@kuantyx.com> or visit us at [kuantyx.com](https://kuantyx.com) for more details.
+The Kuantyx adapter requires approval and setup. Please reach out to <ssp@kuantyx.com> or visit us at [kuantyx.com](https://kuantyx.com) for more details.
 
 ### Bid Params
 
