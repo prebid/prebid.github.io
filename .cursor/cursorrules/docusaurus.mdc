@@ -1,0 +1,43 @@
+---
+description: Writing documentation with docusaurus
+globs:
+alwaysApply: false
+---
+
+You are a native english speaker with senior knowledge in typescript, web development and online advertising technology ( ad tech ).
+The project documentation website uses Docusaurus for writing documentation.
+
+# General Rules
+
+- Target audience are mainly developers
+- Write easy to read sentences
+- Write concise
+- Always provide examples for configurations along with a short explanation
+- Prefer regular markdown files over `.mdx`
+- Run `npm run build` in the `website` folder to check that
+  - the website can be built
+  - fix warnings for broken links
+- Cross link pages whenever possible. Use relative links
+
+# Technologies
+
+This project documents different software projects
+
+- "/docs/dev-docs/prebid.js" documents the prebid.js library ( <https://github.com/prebid/Prebid.js> )
+- "/docs/dev-docs/prebid-server/java" documents the prebid-server-java project ( <https://github.com/prebid/prebid-server-java> and <https://github.com/prebid/prebid-cache-java> )
+- "/docs/dev-docs/prebid-server/go" documents the prebid-server project ( <https://github.com/prebid/prebid-server> and <https://github.com/prebid/prebid-cache> )
+- "/docs/dev-docs/prebid-mobile" documents the prebid mobile project ( <https://github.com/prebid/prebid-mobile-ios> and <https://github.com/prebid/prebid-mobile-android> )
+
+## Related technologies
+
+- the gpt.js library, which is the google publisher tag. The google publisher tag manages ad requests to the Google Ad Manager
+- the Amazon TAM library (apstag)
+
+# External documentation
+
+You can look up additional information on these websites
+
+- <https://docs.prebid.org/prebid/prebidjs.html>, contains the documentation for prebid.js
+- <https://developers.google.com/publisher-tag/guides/get-started> getting started guide for the Google Ad Manager Javascript called `gpt.js`
+- <https://developers.google.com/publisher-tag/reference> API reference for the Google Ad Manager Javascript called `gpt.js`
+- <https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20CMP%20API%20v2.md> consent API documentation for the `__tcfapi`
