@@ -95,24 +95,44 @@ const config: Config = {
             type: 'docsVersionDropdown',
             docsPluginId: 'prebidjs',
             position: "left",
+            versions: {
+              'current': {
+                label: 'Prebid.js',
+              },
+            },
           },
           {
             type: 'docsVersionDropdown',
             docsPluginId: 'prebidServer',
             position: "left",
             label: 'Prebid Server',
+            versions: {
+              'current': {
+                label: 'Prebid Server',
+              },
+            },
           },
           {
             type: 'docsVersionDropdown',
             docsPluginId: 'prebidMobile',
             position: "left",
             label: 'Prebid Mobile',
+            versions: {
+              'current': {
+                label: 'Prebid Mobile',
+              },
+            },
           },
           {
             type: 'docsVersionDropdown',
             docsPluginId: 'tools',
             position: "left",
             label: 'Tools',
+            versions: {
+              'current': {
+                label: 'Tools',
+              },
+            },
           },
           {
             href: "https://github.com/prebid/prebid.github.io",
@@ -174,7 +194,7 @@ const config: Config = {
       {
         id: 'prebidjs',
         path: 'docs/dev-docs/prebidjs',
-        routeBasePath: 'docs/dev-docs/prebidjs',
+        routeBasePath: 'dev-docs/prebidjs',
         sidebarPath: './sidebars.pbjs.ts',
         showLastUpdateTime: true,
         // ... other options
@@ -185,7 +205,7 @@ const config: Config = {
       {
         id: 'prebidServer',
         path: 'docs/dev-docs/prebid-server',
-        routeBasePath: 'docs/dev-docs/prebid-server',
+        routeBasePath: 'dev-docs/prebid-server',
         sidebarPath: './sidebars.pbs.ts',
         showLastUpdateTime: true
         // ... other options
@@ -196,7 +216,7 @@ const config: Config = {
       {
         id: 'prebidMobile',
         path: 'docs/dev-docs/prebid-mobile',
-        routeBasePath: 'docs/dev-docs/prebid-mobile',
+        routeBasePath: 'dev-docs/prebid-mobile',
         sidebarPath: './sidebars.pbm.ts',
         showLastUpdateTime: true,
       },
@@ -206,7 +226,7 @@ const config: Config = {
       {
         id: 'tools',
         path: 'docs/dev-docs/tools',
-        routeBasePath: 'docs/dev-docs/tools',
+        routeBasePath: 'dev-docs/tools',
         sidebarPath: './sidebars.tools.ts',
         showLastUpdateTime: true,
       },
