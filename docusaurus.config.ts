@@ -41,7 +41,7 @@ const config: Config = {
         docs: {
           sidebarPath: "./sidebars.ts",
           routeBasePath: "/",
-          path: "docs/overview",
+          path: "docs/content",
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl: "https://github.com/prebid/prebid.github.io/tree/master",
@@ -70,26 +70,54 @@ const config: Config = {
           src: "img/logo.svg",
         },
         items: [
-          // { to: "/dev-docs", label: "Dev", position: "left" },
           {
             type: "docSidebar",
             sidebarId: "prebid",
             position: "left",
-            label: "Prebid",
+            label: "Overview",
+          },
+          {
+            to: "/download",
+            position: "left",
+            label: "Download",
+          },
+          {
+            to: "/formats",
+            position: "left",
+            label: "Formats",
+          },
+          {
+            to: "/guides",
+            position: "left",
+            label: "Guides",
+          },
+          {
+            type: 'docsVersionDropdown',
+            docsPluginId: 'prebidjs',
+            position: "left",
+          },
+          {
+            type: 'docsVersionDropdown',
+            docsPluginId: 'prebidServer',
+            position: "left",
+            label: 'Prebid Server',
+          },
+          {
+            type: 'docsVersionDropdown',
+            docsPluginId: 'prebidMobile',
+            position: "left",
+            label: 'Prebid Mobile',
+          },
+          {
+            type: 'docsVersionDropdown',
+            docsPluginId: 'tools',
+            position: "left",
+            label: 'Tools',
           },
           {
             href: "https://github.com/prebid/prebid.github.io",
             label: "GitHub",
             position: "right",
-          },
-          {
-            type: 'docsVersionDropdown',
-            docsPluginId: 'prebidjs',
-          },
-          {
-            type: 'docsVersionDropdown',
-            docsPluginId: 'prebidServer',
-            label: 'Prebid Server',
           },
         ],
       },
@@ -145,8 +173,8 @@ const config: Config = {
       '@docusaurus/plugin-content-docs',
       {
         id: 'prebidjs',
-        path: 'docs/prebid',
-        routeBasePath: 'docs/prebid',
+        path: 'docs/dev-docs/prebidjs',
+        routeBasePath: 'docs/dev-docs/prebidjs',
         sidebarPath: './sidebars.pbjs.ts',
         showLastUpdateTime: true,
         // ... other options
@@ -156,17 +184,37 @@ const config: Config = {
       '@docusaurus/plugin-content-docs',
       {
         id: 'prebidServer',
-        path: 'docs/prebid-server',
-        routeBasePath: 'docs/prebid-server',
+        path: 'docs/dev-docs/prebid-server',
+        routeBasePath: 'docs/dev-docs/prebid-server',
         sidebarPath: './sidebars.pbs.ts',
         showLastUpdateTime: true
         // ... other options
       },
     ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'prebidMobile',
+        path: 'docs/dev-docs/prebid-mobile',
+        routeBasePath: 'docs/dev-docs/prebid-mobile',
+        sidebarPath: './sidebars.pbm.ts',
+        showLastUpdateTime: true,
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'tools',
+        path: 'docs/dev-docs/tools',
+        routeBasePath: 'docs/dev-docs/tools',
+        sidebarPath: './sidebars.tools.ts',
+        showLastUpdateTime: true,
+      },
+    ],
     [tocPlugin, {
       filter: (doc) => doc.frontMatter.layout === 'bidder',
       contentDocsId: 'prebidjs',
-      output: 'docs/prebid/bidders.json'
+      output: 'docs/dev-docs/prebidjs/bidders.json'
     }],
   ]
 };
