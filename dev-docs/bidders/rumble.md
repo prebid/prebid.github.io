@@ -3,15 +3,24 @@ layout: bidder
 title: Rumble Advertising Center
 description: Prebid Rumble Bidder Adapter
 biddercode: rumble
+tcfeu_supported: false
+dsa_supported: false
 gvl_id: none
-floors_supported: true
 usp_supported: true
-ortb_blocking_supported: false
+coppa_supported: false
+gpp_sids: none
+schain_supported: false
+dchain_supported: false
 media_types: video
-multiformat_supported: will-bid-on-one
+safeframes_ok: true
+floors_supported: true
+fpd_supported: false
 pbjs: true
 pbs: false
-safeframes_ok: true
+prebid_member: false
+multiformat_supported: will-bid-on-one
+ortb_blocking_supported: false
+privacy_sandbox: no
 sidebarType: 1
 ---
 
