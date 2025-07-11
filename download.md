@@ -64,7 +64,10 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <h4>Select Prebid Version</h4>
 <select id="version_selector" class="selectpicker">
 </select>
-
+<br/>
+<label for="configFileInput"><strong>Upload Configuration</strong></label>
+<input type="file" id="configFileInput" accept="application/json" />
+<br>
 <h4>Select Bidder Adapters</h4>
 <div class="row adapters">
 {% for page in bidder_pages %}{% if page.pbjs == true %}{% if page.enable_download == false %}{% continue %}{% endif %}
@@ -72,23 +75,24 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
  <div class="checkbox">
   <label>
   {% if page.filename %} <input type="checkbox" id="{{ page.filename }}" moduleCode="{{ page.filename }}" {% elsif page.aliasCode %} <input type="checkbox" id="{{ page.biddercode }}BidAdapter" moduleCode="{{ page.aliasCode }}BidAdapter" {% else %} <input type="checkbox" id="{{ page.biddercode }}BidAdapter" moduleCode="{{ page.biddercode }}BidAdapter" {% endif %} class="bidder-check-box module-check-box"><a href="{{page.url}}"> {{ page.title }}</a>
-  {% if page.pbjs_version_notes %}<div style="font-size:80%">{{page.pbjs_version_notes}}</div>{% endif %}
+  {% if page.pbjs_version_notes %}<br/><div style="font-size:80%">{{page.pbjs_version_notes}}</div>{% endif %}
   </label>
 </div>
 </div>
 {% endif %}{% endfor %}
 </div>
 
+<br>
 <h4>Analytics Adapters</h4>
 <div class="row">
 {% for page in analytics_pages %}{% if page.enable_download == false %}{% continue %}{% endif %}<div class="col-md-4"><div class="checkbox"><label><input type="checkbox" id="{{ page.modulecode }}AnalyticsAdapter" moduleCode="{{ page.modulecode }}AnalyticsAdapter" class="analytics-check-box module-check-box"><a href="{{page.url}}"> {{ page.title }}</a></label></div></div>{% endfor %}
 </div>
-
+<br/>
 <h4>Recommended Modules</h4>
 Prebid.org highly recommends that publishers utilize the following modules:
-
+<br/>
 {% for page in module_pages %}{% if page.recommended == true %}<div class="row"><div class="checkbox" style="background-color: #e1fce2;"><label> <input type="checkbox" CHECKED id="{{ page.module_code }}" moduleCode="{{ page.module_code }}" minVersion="{{ page.min_js_version }}" class="bidder-check-box module-check-box"> <a href="{{page.url}}" class="tip"><strong>{{ page.display_name }}</strong></a> - {{page.description}}</label></div></div>{% endif %}{% endfor %}
-
+<br/>
 <h4>General Modules</h4>
 <div class="row">
  {% for page in module_pages %}{% if page.enable_download == false or page.recommended == true or page.vendor_specific == true %}{% continue %}{% endif %}<div class="col-md-4"><div class="checkbox">
@@ -97,7 +101,7 @@ Prebid.org highly recommends that publishers utilize the following modules:
 </div>
 
 <h4>Vendor-Specific Modules</h4>
-These modules may require accounts with a service provider.
+These modules may require accounts with a service provider.<br/>
 <div class="row">
  {% for page in module_pages %}{% if page.enable_download == false or page.recommended == true %}{% continue %}{% endif %}{% if page.vendor_specific == true %}<div class="col-md-4"><div class="checkbox"><label> <input type="checkbox" id="{{ page.module_code }}" moduleCode="{{ page.module_code }}" minVersion="{{ page.min_js_version }}" class="bidder-check-box module-check-box"> <a href="{{page.url}}" class="tip">{{ page.display_name }}<span>{{page.description}}</span></a></label>
 </div></div>{% endif %}{% endfor %}
@@ -105,9 +109,11 @@ These modules may require accounts with a service provider.
 
 <h4>User ID Modules</h4>
 <div class="row">
- {% for page in userid_pages %}{% if page.enable_download == false %}{% continue %}{% endif %}<div class="col-md-4"><div class="checkbox"><label> <input type="checkbox" id="{{ page.useridmodule }}" moduleCode="{{ page.useridmodule }}" class="bidder-check-box module-check-box"> <a href="{{page.url}}">{{ page.title }}</a></label>{% if page.pbjs_version_notes %}<div style="font-size:80%">{{page.pbjs_version_notes}}</div>{% endif %}
+ {% for page in userid_pages %}{% if page.enable_download == false %}{% continue %}{% endif %}<div class="col-md-4"><div class="checkbox"><label> <input type="checkbox" id="{{ page.useridmodule }}" moduleCode="{{ page.useridmodule }}" class="bidder-check-box module-check-box"> <a href="{{page.url}}">{{ page.title }}</a></label>{% if page.pbjs_version_notes %}<br/><div style="font-size:80%">{{page.pbjs_version_notes}}</div>{% endif %}
 </div></div>{% endfor %}
 </div>
+
+<br>
 
 <div class="form-group">
 
@@ -117,6 +123,7 @@ These modules may require accounts with a service provider.
 
 </form>
 
+<br>
 
 {: .alert.alert-info :}
 Note: If you receive an error during download you most likely selected a configuration that is not supported. Verify that each bidder / module is available in the selected version. Also please note that even though you can download older versions of Prebid.js,

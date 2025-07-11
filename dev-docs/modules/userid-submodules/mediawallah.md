@@ -3,6 +3,9 @@ layout: userid
 title: MediaWallah OpenLinkID
 description: MediaWallah OpenLinkID User ID sub-module
 useridmodule: mwOpenLinkIdSystem
+bidRequestUserId: mwOpenLinkId
+eidsource: mediawallahscript.com
+example: '"1111"'
 ---
 
 
@@ -21,6 +24,7 @@ MediaWallah requires the creation of an accountId a partnerId in order to take a
 ## MediaWallah OpenLinkID Configuration
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module. | `'mwOpenLinkId'` |

@@ -12,8 +12,8 @@ title: Prebid Server | Versions | Java
 
 The Java version of Prebid Server is for those who:
 <ul>
-<li> Want to host Programmatic Guaranteed</li>
-<li> Or just prefer the Java language</li>
+<li>Prefer the Java language.</li>
+<li>Are satisified with the <a href="/prebid-server/features/pbs-feature-idx.html">feature set</a> and available <a href="https://github.com/prebid/prebid-server-java/tree/master/src/main/resources/bidder-config">bid adapters</a>.</li>
 </ul>
 
 </div>
@@ -23,11 +23,6 @@ The Java version of Prebid Server is for those who:
 
 </div>
 </div>
-
-
-## Features
-
-We recommend you review the [feature comparison list](/prebid-server/features/pbs-feature-idx.html) to familiarize yourself with the differences between this and PBS-Go in deciding which version is right for you.
 
 ## Code Repositories
 

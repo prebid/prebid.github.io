@@ -13,14 +13,13 @@ This feature is currently only available in PBS-Java.
 - TOC
 {:toc}
 
-{: .alert.alert-danger :}
-Important: This resource should not be construed as legal advice and Prebid.org makes no guarantees about compliance with any law or regulation. Please note that because every company and its collection, use, and storage of personal data is different, you should seek independent legal advice relating to obligations under European and /or US regulations, including the GDPR, individual state laws, the ePrivacy Directive and CCPA. Only a lawyer can provide you with legal advice specifically tailored to your situation. Nothing in this guide is intended to provide you with, or should be used as a substitute for, legal advice tailored to your business.
+{% include legal-warning.html %}
 
 ## Overview
 
 This module provides a way for publishers to define a custom interpretion for GPP strings in Sections 7-12.
 If the publisher is satisfied with Prebid's interpretation of GPP SIDs 7-12 as defined in
-[Prebid Multi-State Privacy Agreement Support](/features/mspa-usnat.html), it's recommended
+[Prebid US Compliance Support](/features/mspa-usnat.html), it's recommended
 that they utilze the [US Gen Privacy Module](/prebid-server/features/pbs-usgen.html) instead of this one.
 
 This module lets publishers define GPP string interpretation with a powerful general syntax
@@ -79,7 +78,7 @@ Here are the parameters allowed in the module's `config` section. See below for 
 | Parameter | Type | Scope | Description |
 |------|------|-------------|
 | sids | array of integer | required | Process only the named section IDs. |
-| normalizeFlags | boolean | optional | Convert the state SIDs 8-12 into SID 7 fields as described in the [Prebid MSPA reference](/features/mspa-usnat.html). Defaults to `true`. |
+| normalizeFlags | boolean | optional | Convert the state SIDs 8-12 into SID 7 fields as described in [Prebid US Compliance Support](/features/mspa-usnat.html). Defaults to `true`. |
 | activityConfig | array of objects | required | Defines what processing to do. |
 | activityConfig[].activities | array of strings | required | Defines which activity or activities are in scope for this array entry. |
 | activityConfig[].restrictIfTrue | object | required | [JsonLogic](https://jsonlogic.com) rules object. |
@@ -273,7 +272,7 @@ Here's how the module works when called by an Activity Control:
     1. If the SID is < 7 or > 12, go on to the next SID
     1. Else if the SID is not on the sids list, go on to the next SID
     1. Else pull that section of out the GPP string and process it
-        1. If the normalizeFlags option is true and the SID is 8-12, normalize the flags to the SID 7 form as described in the Prebid [MSPA/USNat reference](/features/mspa-usnat.html).
+        1. If the normalizeFlags option is true and the SID is 8-12, normalize the flags to the SID 7 form as described in [Prebid US Compliance Support](/features/mspa-usnat.html).
         1. Find the current activity. If found, run the JsonLogic in the `restrictIfTrue` section as the rule, and pass in the GPP SID flags as the data. If the result is true, then "allow=false".
     1. On first "allow: false" immediately return `allow: false` to the Activity Control system.
     1. Continue until all SIDs are processed or skipped.
@@ -302,7 +301,7 @@ Here's a screenshot showing the usage of that tool:
 
 ## Related Topics
 
-- [Prebid Multi-State Privacy Agreement Support](/features/mspa-usnat.html)
+- [Prebid US Compliance Support](/features/mspa-usnat.html)
 - [US General Privacy Module](/prebid-server/features/pbs-usgen.html)
 - [Activity Control system](/prebid-server/features/pbs-activitycontrols.html)
 - [IAB US National Privacy Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md)

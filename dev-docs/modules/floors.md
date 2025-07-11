@@ -10,7 +10,6 @@ sidebarType : 1
 ---
 
 # Price Floors Module
-
 {:.no_toc}
 
 * TOC
@@ -48,11 +47,73 @@ The expectation with the Prebid Server floors feature is that
 Publishers will use it mainly for mobile app and AMP scenarios.
 Web sites running Prebid.js will utilize this client-side module.
 
+### Video Overview of Floors
+
+<div style="padding:56.25% 0 0 0;margin: 1rem 0;position:relative;"><iframe src="https://player.vimeo.com/video/938434804?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Price Floors in Prebid.js and Prebid Server"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+
+<p/>
+Notes:
+
+* [Price Floors in Prebid Server](/prebid-server/features/pbs-floors.html#prebid-server--features--price-floors)
+* [Prebid Floor Service Providers](/dev-docs/modules/floors.html#floors-providers)
+* [Transcript of this video](/dev-docs/floors-video-overview.html)
+
+### Simple Static Floor Signaling
+
+Some publishers just want to set a simple static floor and don't need enforcement. Please don't use this module for that. This module should only be used when you need to vary the floor by mediatype, size, etc. Here's how you can signal static floors on each Prebid adunit:
+
+```javascript
+pbjs.addAdUnits({
+    code: "test-div",
+    mediaTypes: {
+        banner: {
+            sizes: [[300,250]]
+        }
+    },
+    ortb2Imp: {
+        bidfloor: 1.00,
+        bidfloorcur: "EUR"
+    },
+    // ...
+});
+```
+
+### Simple Static Floor Enforcement
+
+If you need a static floor signal and also want to enforce that static floor, here's the quick start:
+
+```javascript
+ var adUnits = [
+         {
+             code: 'test-div',
+             mediaTypes: {
+                 banner: { sizes: [[300,250],[300,600]] }
+             },
+             floors: {
+                 currency: 'USD',
+                 schema: {
+                     delimiter: '|',
+                     fields: [ 'mediaType' ]
+                 },
+                 values: {
+                     '*': 1.00      // enter your static floor here
+                 }
+             },
+             bids: [
+                 ...
+             ]
+         }
+     ];
+```
+
+{: .alert.alert-warning :}
+Prebid does not recommend setting static floors. They are blunt tools and you'll forget to update them.
+
 ## How it Works
 
 There are several places where the Floor module changes the behavior of the Prebid.js auction process. Below is a diagram describing the general flow of the client-side Price Floors Module:
 
-TODO fix image url [Floors Module Flow](/assets/images/floors/floors_flow.png)
+![Floors Module Flow](/assets/images/floors/floors_flow.png)
 
 1. When building the Prebid.js package, the Price Floors Module (and any analytics adapters) needs to be included with 'gulp build --modules=priceFloors,...'
 2. As soon as the setConfig({floors}) call is initiated, the Price Floors Module will build an internal hash table for each auction derived from a Rule Location (one of Dynamic, setConfig or adUnit)
@@ -288,10 +349,13 @@ Schema 1 restricts floors providers or publishers to applying only one data grou
 Note: if you're a dynamic floor provider service, your response must be
 a subset that will be merged under the 'data' object.
 
+{: .alert.alert-warning :}
+You **cannot** set the `floorMin` parameter without specifying a `data` object. See the [simple static floor](/dev-docs/modules/floors.html#simple-static-floors) section above for more info.
+
 {: .table .table-bordered .table-striped }
 | Param | Type | Description | Default |
 |---+---+---+---+---|
-| floorMin | float | The mimimum CPM floor used by the Price Floors Module (as of 4.13). The Price Floors Module will take the greater of floorMin and the matched rule CPM when evaluating getFloor() and enforcing floors. | - |
+| floorMin | float | The mimimum CPM floor used by the Price Floors Module (as of 4.13). The Price Floors Module will take the greater of floorMin and the matched rule CPM when evaluating getFloor() and enforcing floors. **Note**: this is not a method of setting a [static floor](/dev-docs/modules/floors.html#simple-static-floors). | - |
 | floorProvider | string | Optional atribute (as of prebid version 4.1) used to signal to the Floor Provider's Analytics adapter their floors are being applied. They can opt to log only floors that are applied when they are the provider. If floorProvider is supplied in both the top level of the floors object and within the data object, the data object's configuration shall prevail.| - |
 | enforcement | object | Controls the enforcement behavior within the Price Floors Module.| - |
 | skipRate | integer | skipRate is a random function whose input value is any integer 0 through 100 to determine when to skip all floor logic, where 0 is always use floor data and 100 is always skip floor data. The use case is for publishers or floor providers to learn bid behavior when floors are applied or skipped. Analytics adapters will  have access to model version (if defined) when skipped is true to signal the Price Floors Module is in floors mode. If skipRate is supplied in both the root level of the floors object and within the data object, the skipRate configuration within the data object shall prevail. | 0 |
@@ -305,7 +369,7 @@ a subset that will be merged under the 'data' object.
 | data.floorProvider | string | Optional atribute (as of prebid version 4.2) used to signal to the Floor Provider's Analytics adapter their floors are being applied. They can opt to log only floors that are applied when they are the provider. If floorProvider is supplied in both the top level of the floors object and within the data object, the data object's configuration shall prevail.| - |
 | data.currency | string | Currency of floor data. Floor Module will convert currency where necessary. See Currency section for more details. | 'USD' |
 | data.skipRate | integer | skipRate is a random function whose input value is any integer 0 through 100 to determine when to skip all floor logic, where 0 is always use floor data and 100 is always skip floor data. The use case is for publishers or floor providers to learn bid behavior when floors are applied or skipped. Analytics adapters will  have access to model version (if defined) when skipped is true to signal the Price Floors Module is in floors mode. If skipRate is supplied in both the root level of the floors object and within the data object, the skipRate configuration within the data object shall prevail. | 0 |
-| data.floorsSchemaVersion | integer | The module supports two versions of the data schema. Version 1 allows for only one model to be applied in a given data set, whereas Version 2 allows you to sample multiple models selected by supplied weights. If no schema version is provided, the module will assume version 1 for the sake of backwards compatiblity. For schema version 2 see the next section. | 1 |
+| data.floorsSchemaVersion | integer | The module supports two versions of the data schema. Version 1 allows for only one model to be applied in a given data set, whereas Version 2 allows you to sample multiple models selected by supplied weights. If no schema version is provided, the module will assume version 1 for the sake of backwards compatibility. For schema version 2 see the next section. | 1 |
 | data.modelVersion | string | Used by floor providers to train on model version performance. The expectation is a floor provider’s analytics adapter will pass the model verson back for algorithm training. | - |
 | data.modelTimestamp | integer | Epoch timestamp associated with modelVersion. Can be used to track model creation of floor file for post auction analysis.| - |
 | data.schema | object |allows for flexible definition of how floor data is formatted. | - |
@@ -344,10 +408,13 @@ While some attributes are common in both schema versions, for completeness, all 
 Note: if you're a dynamic floor provider service, your response must be
 a subset that will be merged under the 'data' object.
 
+{: .alert.alert-warning :}
+You **cannot** set the `floorMin` parameter without specifying a `data` object. See the [simple static floor](/dev-docs/modules/floors.html#simple-static-floors) section above for more info.
+
 {: .table .table-bordered .table-striped }
 | Param | Type | Description | Default |
 |---+---+---+---+---|
-| floorMin | float | The mimimum CPM floor used by the module (as of 4.13). The module will take the greater of floorMin and the matched rule CPM when evaluating getFloor() and enforcing floors. | - |
+| floorMin | float | The mimimum CPM floor used by the module (as of 4.13). The module will take the greater of floorMin and the matched rule CPM when evaluating getFloor() and enforcing floors. **Note**: this is not a method of setting a [static floor](/dev-docs/modules/floors.html#simple-static-floors). | - |
 | floorMinCur | float | Prebid Server only: the currency used for the floorMin value. | - |
 | floorProvider | string | Optional atribute (as of prebid version 4.1) used to signal to the Floor Provider's Analytics adapter their floors are being applied. They can opt to log only floors that are applied when they are the provider. If floorProvider is supplied in both the top level of the floors object and within the data object, the data object's configuration shall prevail.| - |
 | skipRate | integer | skipRate is a random function whose input value is any integer 0 through 100 to determine when to skip all floor logic, where 0 is always use floor data and 100 is always skip floor data. The use case is for publishers or floor providers to learn bid behavior when floors are applied or skipped. Analytics adapters will  have access to model version (if defined) when skipped is true to signal the module is in floors mode. If skipRate is supplied in both the root level of the floors object and within the data object, the skipRate configuration within the data object shall prevail. | 0 |
@@ -361,14 +428,17 @@ a subset that will be merged under the 'data' object.
 | enforcement.floorDeals | boolean | Enforce floors for deal bid requests. | false |
 | enforcement.bidAdjustment | boolean | If true, the module will use the bidAdjustment function to adjust the floor per bidder. If false (or no bidAdjustment function is provided), floors will not be adjusted. Note: Setting this parameter to false may have unexpected results, such as signaling a gross floor when expecting net or vice versa. | true |
 | enforcement.enforceRate | integer | Prebid Server only: Defines a percentage for how often bid response enforcement activity should take place given that the floors feature is active. If the floors feature is skipped due to skipRate, this has no affect. For every non-skipped auction, this percent of them should be enforced: i.e. bids discarded. This feature lets publishers ease into enforcement in case bidders aren't adhering to floor rules. | 100 |
+| enforcement.noFloorSignalBidders | array of strings | (PBJS 8.31+, PBS-Java 3.4+) This is an array of bidders for which to avoid sending floors. This is useful for bidders where the publishers has established different floor rules in their systems. The value can be `["*"]`. | - | 
 | endpoint | object | Controls behavior for dynamically retrieving floors.  | - |
 | endpoint.url | string | URL of endpoint to retrieve dynamic floor data.  | - |
 | data | object (required) | Floor data used by the module to pass floor data to bidders and floor enforcement. | - |
 | data.floorProvider | string | Optional atribute (as of prebid version 4.2) used to signal to the Floor Provider's Analytics adapter their floors are being applied. They can opt to log only floors that are applied when they are the provider. If floorProvider is supplied in both the top level of the floors object and within the data object, the data object's configuration shall prevail.| - |
 | data.currency | string | Currency of floor data. The module will convert currency where necessary. See Currency section for more details. | 'USD' |
 | data.skipRate | integer | skipRate is a random function whose input value is any integer 0 through 100 to determine when to skip all floor logic, where 0 is always use floor data and 100 is always skip floor data. The use case is for publishers or floor providers to learn bid behavior when floors are applied or skipped. Analytics adapters will  have access to model version (if defined) when skipped is true to signal the module is in floors mode. If skipRate is supplied in both the root level of the floors object and within the data object, the skipRate configuration within the data object shall prevail.| 0 |
-| data.floorsSchemaVersion | string | The module supports two version of the data schema. Version 1 allows for only one model to be applied in a given data set, whereas Version 2 allows you to sample multiple models selected by supplied weights. If no schema version is provided, the module will assume version 1 for the sake of backwards compatiblity.| 1 |
+| data.useFetchDataRate | integer | (PBS-Go 2.6+) useFetchDataRate is a random function whose input value is any integer 0 through 100 to determine when to skip dynamic floor data and fall back to static floor data. 0 means always use static floor data and 100 means always use dynamic floor data. The use case is for publishers or floor providers to confirm how dynamic floors data compares to static floors data. Analytics adapters will have access to the location of the actual floors data used, either "request" or "fetch". | 100 |
+| data.floorsSchemaVersion | integer | The module supports two versions of the data schema. Version 1 allows for only one model to be applied in a given data set, whereas Version 2 allows you to sample multiple models selected by supplied weights. If no schema version is provided, the module will assume version 1 for the sake of backwards compatibility.| 1 |
 | data.modelTimestamp | int | Epoch timestamp associated with modelVersion. Can be used to track model creation of floor file for post auction analysis.| - |
+| data.noFloorSignalBidders | array of strings | (PBJS 8.31+, PBS-Java 3.4+) This is an array of bidders for which to avoid sending floors. This is useful for bidders where the publishers has established different floor rules in their systems. The value can be `["*"]`. | - |
 | data.modelGroups | array of objects | Array of model objects to be used for A/B sampling multiple models. This field is only used when data.floorsSchemaVersion = 2 | - |
 | data.modelGroups[].currency | string | Currency of floor data. Floor Module will convert currency where necessary. See Currency section for more details. | 'USD' |
 | data.modelGroups[].skipRate | integer | skipRate is a random function whose input value is any integer 0 through 100 to determine when to skip all floor logic, where 0 is always use floor data and 100 is always skip floor data. The use case is for publishers or floor providers to learn bid behavior when floors are applied or skipped. Analytics adapters will have access to model version (if defined) when skipped is true to signal the module is in floors mode. | 0 |
@@ -381,6 +451,7 @@ a subset that will be merged under the 'data' object.
 | data.modelGroups[].values."rule key" | string | Delimited field of attribute values that define a floor. | - |
 | data.modelGroups[].values."rule floor value" | float | The floor value for this key. | - |
 | data.modelGroups[].default | float | Floor used if no matching rules are found. | - |
+| data.modelGroups[].noFloorSignalBidders | array of strings | (PBJS 8.31+, PBS-Java 3.4+) This is an array of bidders for which to avoid sending floors. This is useful for bidders where the publishers has established different floor rules in their systems. The value can be `["*"]`. | - |
 | additionalSchemaFields | object | Object contain the lookup function to map custom schema.fields. Not supported by Prebid Server. | - |
 | additionalSchemaFields."custom key" | string | custom key name | - |
 | additionalSchemaFields."key map function" | function | Function used to lookup the value for that particular custom key | - |
@@ -545,11 +616,11 @@ e.g.
       
       let deviceType = getDeviceTypeFromUserAgent(navigator.userAgent);
 
-      if(deviceType = 'mobile')
+      if(deviceType === 'mobile')
           return 'mobile'
-      else if (deviceType = 'tablet')
+      else if (deviceType === 'tablet')
           return 'tablet'
-      else if (deviceType = 'desktop')
+      else if (deviceType === 'desktop')
           return 'desktop'
   }
 
@@ -667,7 +738,7 @@ Below are some real example behaviors.
 
 #### Example 1
 
-Domain = `<www.website.com>`
+Domain = <www.website.com>
 
 Floor provider rule definition
 
@@ -704,7 +775,7 @@ Floor provider rule definition
 
 mediaType = banner  
 Size = 300x600  
-Domain context = `<www.website.com>`
+Domain context = <www.website.com>  
 
 The Floor module produces an internal hash table of all possible permutations of “banner”, “300x600”, “www.website.com” and “\*” with the most specific hash values up top, weighting rules priority from left column specific values to right. Each left value will weigh more than the subsequent column’s specific values. The module attempts to find the matching rule by cycling through each below possible rule (from top to bottom) against the above rule provider data set.
 
@@ -729,7 +800,7 @@ Floor enforced: 3.01
 
 mediaType = video  
 Size = 640x480  
-Domain context = `<www.website.com>`
+Domain context = <www.website.com>  
 
 Price Floor internal possible permutations sorted by priority:
 
@@ -753,7 +824,7 @@ Enforced Floor: 15.01
 
 mediaType = video  
 Size = 300x250  
-Domain context = `<www.website.com>`
+Domain context = <www.website.com>  
 
 Price Floor internal possible permutations sorted by priority:
 
@@ -777,7 +848,7 @@ Enforced floor: 10.01
 
 Similar data set with slightly different rules and same bids from each bidder. Matching rules will differ from example 1.
 
-Domain = `<www.website.com>`
+Domain = <www.website.com>
 
 Floor provider rule definition
 
@@ -815,7 +886,7 @@ Floor provider rule definition
 
 mediaType = banner  
 Size = 300x600  
-Domain context = `<www.website.com>`
+Domain context = <www.website.com>  
 
 ```javascript
 
@@ -840,7 +911,7 @@ Floor enforced: 4.01
 
 mediaType = video  
 Size = 640x480  
-Domain context = `<www.website.com>`
+Domain context = <www.website.com>.
 
 Price Floor internal possible permutations sorted by priority:
 
@@ -866,7 +937,7 @@ Enforced Floor: 9.01
 
 mediaType = video  
 Size = 300x250  
-Domain context = `<www.website.com>`
+Domain context = <www.website.com>  
 
 Price Floor internal possible permutations sorted by priority:
 
@@ -1224,7 +1295,7 @@ Even if a publisher is using a floors provider, they may wish to provide additio
 
 1. default floor data if dynamic data fails to load on time
 2. global floorMin: allows the publisher to constrain dynamic floors with a global min
-3. impression-level floor min (PBJS 6.24+): allows the publisher to constrain dynamic floors with an adunit-specific value
+3. impression-level floor min (PBJS 6.24+): allows the publisher to constrain dynamic floors with an adunit-specific value. Specify this in `ortb2Imp.ext.prebid.floors.floorMin` (prior to Prebid.js 8 it was `ortb2Imp.ext.prebid.floorMin`).
 
 Here's an example covering the first two scenarios:
 
@@ -1268,10 +1339,10 @@ pbjs.addAdUnits({
     ortb2Imp: {
         ext: {
         prebid: {
-                data: {
-            floorMin: 0.25,
-            floorMinCur: "USD"
-        }
+                floors: {
+                    floorMin: 0.25,
+                    floorMinCur: "USD"
+                }
             }
         }
     },
@@ -1285,7 +1356,7 @@ The Price Floors Module defaults the floor currency to USD if none is supplied i
 
 {% capture warning_note %}
 For publishers requiring currency conversions (for example if the floors data currency is not the same as a bid adapter’s supported currency), **failure to include the currency module may result in unexpected behavior** and / or may impact revenue performance.
-:::
+{% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
 Currency conversion can occur in two areas of the Floor Module code:
@@ -1374,15 +1445,14 @@ If the currency function is unable to derive the correct cpm in any of the scena
 
 ## Floors Providers
 
-TODO insert proper company logos
-
 {: .table  }
 | Partner | Contact | About |
-| [/assets/images/partners/leader/Magnite_logo.png] | [globalsupport@magnite.com](mailto:globalsupport@magnite.com) | Magnite data-science applied to dynamic floors. (Currently only available to Demand Manager customers) |
-| [assets/images/partners/leader/openx.png] | Reach out to OpenX at [apollo@openx.com](mailto:apollo@openx.com) | Dynamic floor optimization and more |
-| [assets/images/partners/leader/pubmatic.png] | [header-bidding@pubmatic.com](mailto:header-bidding@pubmatic.com) | PubMatic's ML powered dynamic Floor Optimization |
-| [assets/images/partners/leader/AssertiveYield_logo.png] | [assertiveyield.com](https://assertiveyield.com) | Holistic flooring covering Prebid, Amazon, GAM UPR, RTB and more |
-| pubx.ai | [hello@pubx.ai](mailto:hello@pubx.ai) | AI-powered dynamic floor optimization |
+| <img src="/assets/images/partners/leader/Magnite_logo.png" style="height:50px;" alt="magnite"> | Your Magnite account team | Magnite data-science applied to dynamic floors. (Currently only available to Demand Manager customers) |
+| <img src="/assets/images/partners/leader/openx.png" style="height:50px;" alt="openx"> | Reach out to OpenX at [apollo@openx.com](mailto:apollo@openx.com) | Dynamic floor optimization and more |
+| <img src="/assets/images/partners/leader/pubmatic.png" style="height:50px;" alt="pubmatic"> | [header-bidding@pubmatic.com](mailto:header-bidding@pubmatic.com) | PubMatic's ML powered dynamic Floor Optimization |
+| <img src="/assets/images/partners/leader/AssertiveYield_logo.png" alt="assertive_yield"> | [assertiveyield.com](https://assertiveyield.com) | Holistic flooring covering Prebid, Amazon, GAM UPR, RTB and more |
+| <img src="/assets/images/partners/leader/pubx.png" style="height:50px;" alt="pubx.ai"> | [hello@pubx.ai](mailto:hello@pubx.ai) | pubX is an ML-led, dynamic flooring solution covering the full programmatic revenue spectrum (the header + GAM). pubX integrates with your current set-up, so no need to replace any part of the current stack. Our team is solely focussed on delivering the best flooring technology to publishers. |
+| <img src="/assets/images/partners/leader/mile.png" style="height:25px" alt="mile.tech" alt="mile"> | [hello@mile.tech](mailto:hello@mile.tech) | Boost your Prebid stack with Mile’s AI-powered dynamic flooring module that delivers an average revenue uplift of 22%. Sign-up for a free trial. |
 
 ## Further Reading
 

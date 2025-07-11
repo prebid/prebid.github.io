@@ -23,7 +23,9 @@ sidebarType: 1
 
 ### Note
 
-The adstir Bidding adapter requires setup before beginning. Please contact us at [sales@ad-stir.com](mailto:sales@ad-stir.com)
+The adstir Bidding adapter is available from Prebid.js version 8.24.0 and above.
+
+It requires setup before beginning. Please contact us at [sales@ad-stir.com](mailto:sales@ad-stir.com)
 
 ### Bid Params
 

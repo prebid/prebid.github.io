@@ -10,7 +10,6 @@ sidebarType : 1
 ---
 
 # Supply Chain Object Module
-
 {:.no_toc}
 
 * TOC
@@ -27,6 +26,9 @@ Two modes are supported:
   Use this configuration when one or more bid adapters is an entity (such as a reseller) that requires an SChain node, but other adapters do not require the node. e.g. payments flow through a bidder that doesn't add its own schain node.
 
 ## How to Use the Module
+
+{: .alert.alert-warning :}
+**Prebid 10 :** You don't need to add the schain module explicitly starting from Prebid 10.
 
 First, build the schain module into your Prebid.js package:
 
@@ -87,19 +89,28 @@ pbjs.setBidderConfig({
 
 You can find more information about the `pbjs.setBidderConfig` function in the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference/setBidderConfig.html).
 
+{: .alert.alert-warning :}
+**Prebid 10 :** You can either use above method or `ortb2.source.schain` property to pass schain. You can read more about passing [First Party Data](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html#first-party-data). As far as precedence is concerned, `ortb2.source.schain` property takes precedence over the schain config setup via `pbjs.setConfig` using above mentioned method.
+
 ### Global and Bidder-Specific Together
 
 Yes, you can set both global and bidder-specific SChain configs. When together, the schain config setup via `pbjs.setConfig` acts as a global config that applies to all your bidders, while `pbjs.setBidderConfig` overrides the global config for the noted bidder(s).
 
 ## SChain Config Syntax
 
+{: .alert.alert-warning :}
+**Prebid 10 :** Validation will be automatically performed by the **validationFpdModule** if you have included it in your Prebid.js build. If the `skipValidation` parameter is set to true in the validationFpdModule configuration, validation will be skipped. Please visit the [validationFpdModule documentation](https://docs.prebid.org/dev-docs/modules/validationFpdModule.html) for more information.
+
 {: .table .table-bordered .table-striped }
 | SChain Param | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| validation | optional | string | `'strict'`: In this mode, schain object will not be passed to adapters if it is invalid. Errors are thrown for invalid schain object. `'relaxed'`: Errors are thrown for an invalid schain object but the invalid schain object is still passed to adapters. `'off'`: No validations are performed and schain object is passed as-is to adapters. The default value is `'strict'`. | 'strict' |
+| validation (deprecated from Prebid 10) | optional | string | `'strict'`: In this mode, schain object will not be passed to adapters if it is invalid. Errors are thrown for invalid schain object. `'relaxed'`: Errors are thrown for an invalid schain object but the invalid schain object is still passed to adapters. `'off'`: No validations are performed and schain object is passed as-is to adapters. The default value is `'strict'`. | 'strict' |
 | config | required | object | This is the full Supply Chain object sent to bidders conforming to the [IAB OpenRTB SupplyChain Object Specification](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/supplychainobject.md). | (See examples above) |
 
 ## Adapter Information
+
+{: .alert.alert-warning :}
+**Prebid 10 :** Adapters can read `bidderRequest.ortb2.source.ext.schain` instead of `bidRequest.schain`.
 
 Adapters can read the `bidRequest.schain` object and pass it through to their endpoint. The adapter does not need to be concerned about whether a bidder-specific schain was provided; the system will provide the relevant one.
 

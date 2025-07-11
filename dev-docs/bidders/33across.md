@@ -26,10 +26,12 @@ sidebarType: 1
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
+ 
 | Name        | Scope    | Description                                                                                                                    | Example    | Type     |
 |-------------|----------|--------------------------------------------------------------------------------------------------------------------------------|------------|----------|
 | `siteId`    | required | Publisher  GUID from 33Across                                                                                                  | `'examplePub123'` | `string` |
 | `productId` | required | 33Across Product ID that the Publisher has registered for (use `'siab'` for Banner or Outstream Video , `'inview'` for Adhesion, `'instream'` for Instream Video) | `'siab'`   | `string` |
+| `test` | optional | Set to `1` to enable test mode | `1` | `integer` |
 
 ### Ad Unit Setup for Banner
 
@@ -50,6 +52,8 @@ var adUnits = [
     params: {
         siteId: 'examplePub123',    // required 
         productId: 'siab|inview'    // required
+        // optional: uncomment to enable test requests
+        // test: 1
     }
   }]
 }
@@ -68,7 +72,7 @@ var adUnits = [
       context: 'outstream',                 // required
       mimes: ['video/mp4','video/x-flv'],   // required
       protocols: [ 2, 3 ],                  // required, set at least 1 value in array
-      placement: 2,                         // optional, defaults to 2 when context = outstream
+      plcmt: 2,                             // optional, defaults to 2 when context = outstream
       api: [ 1, 2 ],                        // optional
       skip: 0,                              // optional
       minduration: 5,                       // optional
@@ -104,7 +108,7 @@ var adUnits = [
       context: 'instream',                  // required
       mimes: ['video/mp4','video/x-flv'],   // required
       protocols: [ 2, 3 ],                  // required, set at least 1 value in array
-      placement: 1,                         // optional, defaults to 1 when context = instream
+      plcmt: 1,                             // optional, defaults to 1 when context = instream
       startdelay: 0,                        // optional, defaults to 0 when context = instream
       api: [ 1, 2 ],                        // optional
       skip: 0,                              // optional
@@ -147,7 +151,7 @@ var adUnits = [
       context: 'outstream',                 // required
       mimes: ['video/mp4','video/x-flv'],   // required
       protocols: [ 2, 3 ],                  // required, set at least 1 value in array
-      placement: 2,                         // optional, defaults to 2 when context = outstream
+      plcmt: 2,                             // optional, defaults to 2 when context = outstream
       api: [ 1, 2 ],                        // optional
       skip: 0,                              // optional
       minduration: 5,                       // optional

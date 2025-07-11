@@ -3,6 +3,9 @@ layout: userid
 title: Adtelligent
 description: Adtelligent User ID sub-module
 useridmodule: adtelligentIdSystem
+bidRequestUserId: adtelligentId
+eidsource: adtelligent.com
+example: '"1111"'
 ---
 
 
@@ -10,8 +13,9 @@ The [Adtelligent](https://adtelligent.com) ID system is a unique per-session use
 
 Add it to your Prebid.js package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=userId,adtelligentIdSystem
+```
 
 ## Adtelligent Configuration
 

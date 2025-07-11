@@ -10,19 +10,19 @@ sidebarType: 1
 
 The core of Prebid.js contains only the foundational code needed for header bidding. Any functionality that could be considered an add-on is part of a module. These are the major categories:
 
-* [Bidder adapters](/dev-docs/bidders.html)
-* [Analytics adapters](/overview/analytics.html)
-* Any other extensible functionality - documented on this page
+- [Bidder adapters](/dev-docs/bidders.html)
+- [Analytics adapters](/overview/analytics.html)
+- Any other extensible functionality - documented on this page
 
-* TOC
+- TOC
 {:toc}
+
+{% assign module_pages = site.pages | where: "page_type", "module" %}
 
 ## Recommended Modules
 
 Prebid.org highly recommends that publishers utilize the following modules:
-
-TODO generate table
-
+<br/>
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
@@ -31,10 +31,12 @@ TODO generate table
     </tr>
   </thead>
   <tbody>
+{% for page in module_pages %}{% if page.recommended == true %}
     <tr>
-      <td><a href="page.url"><strong>DISPLAY NAME</strong></a></td>
-      <td>DESCRIPTION</td>
+      <td><a href="{{page.url}}"><strong>{{page.display_name}}</strong></a></td>
+      <td>{{page.description}}</td>
     </tr>
+{% endif %}{% endfor %}
 </tbody>
 </table>
 
@@ -46,8 +48,6 @@ RTD modules, define an overall amount of time they're willing to wait for
 results, and even flag some of the modules as being higher priority
 than others. See [the realTimeData setConfig](/dev-docs/publisher-api-reference/setConfig.html#setConfig-realTimeData) reference for more details.
 
-TODO generate table
-
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
@@ -57,11 +57,13 @@ TODO generate table
     </tr>
   </thead>
   <tbody>
+{% for page in module_pages %}{% if page.recommended == true or page.vendor_specific == true or page.enable_download == false %}{% continue %}{% endif %}
     <tr>
-      <td><a href="page.url"><strong>DISPLAY NAME</strong></a></td>
-      <td>DESCRIPTION</td>
-      <td>RTD yes/no</td>
+      <td><a href="{{page.url}}"><strong>{{page.display_name}}</strong></a></td>
+      <td>{{page.description}}</td>
+      {% if page.module_type == "rtd" %}<td>yes</td>{% else %}<td>no</td>{% endif %}
     </tr>
+{% endfor %}
 </tbody>
 </table>
 
@@ -77,17 +79,45 @@ These modules may require accounts with a service provider.
     </tr>
   </thead>
   <tbody>
+{% for page in module_pages %}{% if page.recommended == true or page.enable_download == false %}{% continue %}{% endif %}{% if page.vendor_specific == true %}
     <tr>
-      <td><a href="page.url"><strong>DISPLAY NAME</strong></a></td>
-      <td>DESCRIPTION</td>
-      <td>RTD yes/no</td>
+      <td><a href="{{page.url}}"><strong>{{page.display_name}}</strong></a></td>
+      <td>{{page.description}}</td>
+      {% if page.module_type == "rtd" %}<td>yes</td>{% else %}<td>no</td>{% endif %}
     </tr>
+{% endif %}{% endfor %}
+</tbody>
+</table>
+
+## User ID Modules
+
+UserID modules conform to a consistent set of publisher controls. The publisher can choose to run multiple user id modules, define an overall amount of time they're willing to wait for
+results. See [the userSync setConfig](/dev-docs/publisher-api-reference/setConfig.html#setConfig-ConfigureUserSyncing-UserSyncProperties) reference and the [User ID Module](/dev-docs/modules/userId) for more details.
+
+{% assign userid_module_pages = site.pages | where: "layout", "userid" %}
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Module</th>
+      <th>Description</th>
+      <th>EID Source</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for page in userid_module_pages %}
+    <tr>
+      <td><a href="{{page.url}}"><strong>{{page.title}}</strong></a></td>
+      <td>{{page.description}}</td>
+      <td>{{page.eidsource}}</td>
+    </tr>
+{% endfor %}
 </tbody>
 </table>
 
 ## Further Reading
 
-* [Source code of all modules](https://github.com/prebid/Prebid.js/tree/master/modules)
-* [How to add a Bid Adapter](/dev-docs/bidder-adaptor.html)
-* [How to add an Analytics Adapter](/dev-docs/integrate-with-the-prebid-analytics-api.html)
-* [How to add a Real Time Data Submodule](/dev-docs/add-rtd-submodule.html)
+- [Source code of all modules](https://github.com/prebid/Prebid.js/tree/master/modules)
+- [How to add a Bid Adapter](/dev-docs/bidder-adaptor.html)
+- [How to add an Analytics Adapter](/dev-docs/integrate-with-the-prebid-analytics-api.html)
+- [How to add a Real Time Data Submodule](/dev-docs/add-rtd-submodule.html)

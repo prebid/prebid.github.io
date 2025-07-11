@@ -25,7 +25,7 @@ The process is similar to [Prebid.js client side](/prebid-video/video-long-form.
 1. Application makes request for a video stream.
 2. An SSAI Server sends a video request to PBS, specifying the pod requirements.
 3. PBS sends a request for bids to selected demand partners by relaying OpenRTB requests to them.
-4. Demand partners return a bid response to PBS. If competitive seperation is enabled, PBS peforms [category translation](/dev-docs/modules/categoryTranslation.html) on each bid. Whether category translation is required or not, the bids are stored in prebid cache.
+4. Demand partners return a bid response to PBS. If competitive separation is enabled, PBS performs [category translation](/dev-docs/modules/categoryTranslation.html) on each bid. Whether category translation is required or not, the bids are stored in prebid cache.
 5. PBS generates key-value pairs that are comprised of price, category, and duration values. The key is `hb_pb_cat_dur` and each component of the key name after the `hb` represents a related value.  
 &nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;  `_pb` represents the price bucket.
@@ -46,8 +46,9 @@ These key-values are returned to the SSAI server as part of the video response.
 9. The SSAI server requests the content from the content host and stitches the creatives and content together.
 10. The stitched stream is returned to the application.
 
-<img src="/assets/images/flowcharts/pb-lfv-serverside.png">
-
+<br>
+<img src="/assets/images/flowcharts/pb-lfv-serverside.png" alt="architecture diagram">
+<br>
 
  **Parameters**<a name="parameters"></a>
 
@@ -136,7 +137,7 @@ These are the parameters for the `pod` subobject:
 | Param | Scope | Type | Description |
 | --- | --- | --- | --- |
 | podconfig.pods | Required | `Object` |  Container object describing the adPod(s) to be requested. |
-| pod.podid | Required | `Integer` |  Unique id of the pod within a particular request.   **Recommendation**: Order these numerically, with increment of 1. |
+| pod.podid | Required | `Integer` |  Unique id of the pod within a particular request.   <br>**Recommendation**: Order these numerically, with increment of 1. |
 | pod.adpoddurationsec | Required | `Integer` |  Duration of the adPod. |
 | pod.configid | Required | `String` |  ID of the stored config that corresponds to a single pod request for all included adapters. |
 
@@ -200,12 +201,7 @@ The `pricegranularity` sub-object `range` describes the maximum price point for 
 
 ### Regulations
 
-{% capture legalNotice %}
-
-  This resource should not be construed as legal advice and Prebid.org makes no guarantees about compliance with any law or regulation.  Please note that because every company and its collection, use, and storage of personal data is different, you should also seek independent legal advice relating to obligations under European and /or US regulations, including the General Data Protection Regulations (GDPR), the existing ePrivacy Directive and California Consumer Protection Act (CCPA). Only a lawyer can provide you with legal advice specifically tailored to your situation. Nothing in this guide is intended to provide you with, or should be used as a substitute for, legal advice tailored to your business.
-  :::
-
-{% include /alerts/alert_important.html content=legalNotice %}
+{% include legal-warning.html %}
 
 In order for publishers to meet their transparency, notice and choice/consent requirements under the GDPR and CCPA, Prebid Server supports the [IAB Europe Transparency & Consent Framework](https://www.iab.com/topics/consumer-privacy/gdpr/) and the [CCPA Compliance Framework](https://www.iab.com/guidelines/ccpa-framework/).
 
