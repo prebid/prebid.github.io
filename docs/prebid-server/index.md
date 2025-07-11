@@ -1,3 +1,0 @@
-# Prebid Server
-
-Overview
