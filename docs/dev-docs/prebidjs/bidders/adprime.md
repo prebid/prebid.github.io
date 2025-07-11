@@ -1,0 +1,36 @@
+---
+layout: bidder
+title: Adprime
+description: Prebid Adprime Bidder Adapter
+biddercode: adprime
+tcfeu_supported: false
+usp_supported: true
+media_types: banner, video, native
+tcf2_supported: true
+pbjs: true
+pbs: true
+pbs_app_supported: true
+sidebarType: 1
+---
+
+### Note
+
+The Adprime Bidding adapter requires setup before beginning. Please contact us at [mailto:rafal@adprime.com](rafal@adprime.com)
+
+### Prebid.js Bid Params
+
+
+| Name          | Scope    | Description           | Example   | Type      |
+|---------------|----------|-----------------------|-----------|-----------|
+| `placementId` | required | Adprime placement id  | `'1234asdf'`    | `string` |
+| `keywords`    | optional | page context keywords | ['car','sport'] | `array` |
+| `audiences`   | optional | publisher audiences   | ['aud1','aud2'] | `array` |
+
+### Prebid Server Bid Params
+
+
+| Name          | Scope    | Description           | Example   | Type      |
+|---------------|----------|-----------------------|-----------|-----------|
+| `TagID`       | required | Adprime ad tag id     | `'1234asdf'`    | `string` |
+| `keywords`    | optional | page context keywords | ['car','sport'] | `array` |
+| `audiences`   | optional | publisher audiences   | ['aud1','aud2'] | `array` |

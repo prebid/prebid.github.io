@@ -1,0 +1,27 @@
+---
+layout: bidder
+title: AdKernelAdn
+description: Prebid AdKernel Ad Delivery Network Bidder Adaptor
+pbjs: true
+pbs: true
+biddercode: adkernelAdn
+media_types: banner, video
+tcfeu_supported: true
+usp_supported: true
+coppa_supported: true
+pbs_app_supported: true
+gvl_id: 14
+sidebarType: 1
+---
+
+### Note
+
+The AdkernelAdn Header Bidding adaptor requires setup and approval before beginning. Please reach out to [mailto:prebid@adkernel.com](prebid@adkernel.com) for more details
+
+### Bid Params
+
+
+| Name    | Scope    | Description     | Example              | Type      |
+|---------|----------|-----------------|----------------------|-----------|
+| `host`  | optional | Ad network host | `'tag.adkernel.com'` | `string`  |
+| `pubId` | required | Publisher Id    | `102`                | `integer` |

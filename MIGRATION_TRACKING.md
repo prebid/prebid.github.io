@@ -61,70 +61,100 @@
 - [ ] Copy guide content to docs/guides/
 - [ ] Copy tools content to docs/dev-docs/tools/
 
-## Phase 2: Custom Version Dropdown Implementation ⏳
+## Phase 2: Layout and Include Components Migration ✅
 
-### Step 2.1: Create custom version dropdown component
+### Step 2.1: Create React components for essential layouts ✅
+
+- [x] Created HomeLayout component
+- [x] Created BidderLayout component  
+- [x] Created DocsLayout component
+- [x] Implemented responsive design patterns
+- [x] Added TypeScript interfaces
+
+### Step 2.2: Create React components for essential includes ✅
+
+- [x] Created Navigation component with dropdown menus
+- [x] Created Sidebar component with collapsible sections
+- [x] Created Footer component
+- [x] Implemented state management for dropdowns
+- [x] Added accessibility features
+
+### Step 2.3: Identify and remove unnecessary layouts/includes ✅
+
+- [x] Identified layouts to remove: test.html, userid.html, video_sample.html, api_prebidjs.html, internal_api_prebidjs.html, pb-video-template.html, analytics.html, fourofour.html
+- [x] Identified includes to remove: vimeo-iframe.html, prebidjs-non-prod.html, gptjs.html, astjs.html, legal-warning.html, body-end.html, example_tab.html, head.html
+- [x] Consolidated similar functionality into reusable components
+
+### Step 2.4: Move bidders directory ✅
+
+- [x] Used git mv to move dev-docs/bidders to docs/dev-docs/prebidjs/bidders
+- [x] Preserved git history
+- [x] Updated directory structure
+
+## Phase 3: Custom Version Dropdown Implementation ⏳
+
+### Step 3.1: Create custom version dropdown component
 
 - [ ] Create CustomVersionDropdown component
 - [ ] Implement project identification logic
 - [ ] Add styling and UI components
 
-### Step 2.2: Implement version selection logic
+### Step 3.2: Implement version selection logic
 
 - [ ] Handle multiple versioned projects
 - [ ] Maintain version selection state
 - [ ] Integrate with Docusaurus routing
 
-### Step 2.3: Add project identification to dropdown
+### Step 3.3: Add project identification to dropdown
 
 - [ ] Show project ID in selection
 - [ ] Handle project-specific versioning
 - [ ] Test with existing versioned content
 
-### Step 2.4: Test with existing versioned content
+### Step 3.4: Test with existing versioned content
 
 - [ ] Test with prebidjs versions
 - [ ] Test with prebid-server versions
 - [ ] Validate routing and navigation
 
-## Phase 3: Download Page Migration ⏳
+## Phase 4: Download Page Migration ⏳
 
-### Step 3.1: Analyze current download.md structure ✅
+### Step 4.1: Analyze current download.md structure ✅
 
 - [x] Reviewed download.md content
 - [x] Identified JavaScript dependencies
 - [x] Mapped Firebase integration
 - [x] Documented module selection logic
 
-### Step 3.2: Create React component for download page
+### Step 4.2: Create React component for download page
 
 - [ ] Create DownloadPage component
 - [ ] Implement form structure
 - [ ] Add module selection checkboxes
 - [ ] Create version selector
 
-### Step 3.3: Migrate JavaScript functionality
+### Step 4.3: Migrate JavaScript functionality
 
 - [ ] Port download.js logic to React
 - [ ] Implement Firebase integration
 - [ ] Add module validation
 - [ ] Create download generation logic
 
-### Step 3.4: Integrate with Firebase API
+### Step 4.4: Integrate with Firebase API
 
 - [ ] Set up Firebase configuration
 - [ ] Implement version fetching
 - [ ] Add error handling
 - [ ] Test API integration
 
-### Step 3.5: Test download functionality
+### Step 4.5: Test download functionality
 
 - [ ] Test module selection
 - [ ] Test version compatibility
 - [ ] Test download generation
 - [ ] Validate error handling
 
-## Phase 4: Prebid.js Documentation Migration ⏳
+## Phase 5: Prebid.js Documentation Migration ⏳
 
 ### Step 4.1: Copy dev-docs content to docs/dev-docs/prebidjs/
 
@@ -157,7 +187,7 @@
 - [ ] Validate version-specific content
 - [ ] Test version dropdown
 
-## Phase 5: Prebid Server Documentation Migration ⏳
+## Phase 6: Prebid Server Documentation Migration ⏳
 
 ### Step 5.1: Copy prebid-server content to docs/dev-docs/prebid-server/
 
@@ -190,7 +220,7 @@
 - [ ] Test Go version switching
 - [ ] Validate version-specific content
 
-## Phase 6: Prebid Mobile Documentation Migration ⏳
+## Phase 7: Prebid Mobile Documentation Migration ⏳
 
 ### Step 6.1: Copy prebid-mobile content to docs/dev-docs/prebid-mobile/
 

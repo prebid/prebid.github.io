@@ -1,0 +1,17 @@
+---
+layout: bidder
+title: Cointraffic
+description: Prebid Cointraffic Bidder Adaptor
+pbjs: true
+pbs: true
+biddercode: cointraffic
+sidebarType: 1
+---
+
+
+### Bid Params
+
+
+| Name          | Scope    | Description      | Example | Type     |
+|---------------|----------|------------------|---------|----------|
+| `placementId` | required | The placement ID (Tracker key) |         | `string` |
