@@ -22,14 +22,13 @@ sidebarType: 1
 
 ### Registration
 
-All references to the OpenRTB spec refer to OpenRtb v2.5 (<https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf>)
+All references to the OpenRTB spec refer to [OpenRtb v2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf)
 
 The Zeta Global SSP adapter requires setup and approval from the Zeta Global SSP team. Please reach out to your account team or [mailto:rcomolli@zetaglobal.com](rcomolli@zetaglobal.com) for more information.
 
 ### Bid Params
 
 #### Prebid.js Bid Params
-
 
 | Name                 | Scope    | Description                                                                                                         | Example      | Type      |
 |----------------------|----------|---------------------------------------------------------------------------------------------------------------------|--------------|-----------|
@@ -42,7 +41,6 @@ The Zeta Global SSP adapter requires setup and approval from the Zeta Global SSP
 | `test`               | optional | Flag which will induce a sample bid response when true; only set to true for testing purposes (1 = true, 0 = false) | `1`          | `integer` |
 
 #### Prebid Server Bid Params
-
 
 | Name                 | Scope    | Description                                                                                                         | Example      | Type      |
 |----------------------|----------|---------------------------------------------------------------------------------------------------------------------|--------------|-----------|

@@ -15,6 +15,8 @@ pbs: true
 sidebarType: 1
 ---
 
+import StorageAllowed from '@site/src/components/DevDocs/StorageAllowed.jsx';
+
 ### Note
 
 To be able to use the full bandwidth of VIS.X high impact ad products, we strongly recommend disabling SafeFrames:
@@ -30,7 +32,6 @@ The YOC VIS.X adapter requires setup and approval from your YOC account manager 
 Please reach out to your account manager to enable Prebid.js for your account.
 
 ### Configuration: Currency
-
 
 | Name  | Scope    | Description                                                                                                                              | Example  | Type      |
 | ----- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------- |
@@ -96,7 +97,7 @@ pbjs.setConfig({
 
 - In Prebid's `bidderSettings`, the `storageAllowed` parameter must be set to **true**. In Prebid v7.0 and later, `storageAllowed` defaults to false, so you will need to explicitly set this value to true.
 
-{% include dev-docs/storageAllowed.md %}
+<StorageAllowed />
 
 ```javascript
         pbjs.bidderSettings = {
@@ -108,21 +109,17 @@ pbjs.setConfig({
 
 ### Bid params
 
-
-
 | Name  | Scope    | Description                                                                                                                              | Example  | Type      |
 | ----- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------- |
 | `uid` | required | The publisher's ad unit ID in VIS.X. The parameter can be either an `integer` or `string` for Prebid.js, however `integer` is preferred. | `903536` | `integer` |
 
 ### Media type Banner object params
 
-
 | Name    | Scope    | Description                        | Example                    | Type                      |
 | ------- | -------- | ---------------------------------- | -------------------------- | ------------------------- |
 | `sizes` | required | All sizes this ad unit can accept. | `[[300, 250], [300, 600]]` | `array of integer arrays` |
 
 ### Media type Video object params
-
 
 | Name         | Scope    | Description                                                          | Example                           | Type            |
 | ------------ | -------- | -------------------------------------------------------------------- | --------------------------------- | --------------- |

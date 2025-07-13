@@ -22,7 +22,6 @@ Note: In order to use Yieldmo adapter please reach out to your Yieldmo account's
 
 ### Bid Params
 
-
 | Name          | Scope    | Description            | Example                | Type     |
 |---------------|----------|------------------------|------------------------|----------|
 | `placementId` | required |  Yieldmo placement id  | `'825209316101005155'` | `string` |
@@ -32,7 +31,6 @@ Note: In order to use Yieldmo adapter please reach out to your Yieldmo account's
 ### video parameters
 
 The Yieldmo adapter supports in-stream video as of Prebid v4.18. Out-stream will be supported as of Prebid v4.35.0.
-
 
 | Name              | Scope    | Description                                            | Example         | Type      |
 |-------------------|----------|--------------------------------------------------------|-----------------|-----------|
@@ -48,10 +46,9 @@ The Yieldmo adapter supports in-stream video as of Prebid v4.18. Out-stream will
 | `skipafter`       | optional | Number of seconds a video must play before skipping is enabled; only applicable if the ad is `skippable` | `5`  | `integer` |
 | `mimes`           | required | List of the content MIME types supported by the player | `["video/mp4"]` | `Arraystring`  |
 
-Following video parameters might be also defined in `mediaTypes.video` in order to simplify bidders configuration. If the same parameters was also defined in `params.video` it will be overriten by `params.video`. More details - <https://docs.prebid.org/dev-docs/adunit-reference.html>
+Following video parameters might be also defined in `mediaTypes.video` in order to simplify bidders configuration. If the same parameters was also defined in `params.video` it will be overriten by `params.video`. More details [adunit reference](../adunit-reference.md)
 
 In addition, Yieldmo adapter relies on parameters specified in the `mediaTypes.video` definition of the video ad-units, namely:
-
 
 | Name              | Scope    | Description                                            | Example         | Type             |
 |-------------------|----------|--------------------------------------------------------|-----------------|------------------|

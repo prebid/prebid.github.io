@@ -44,7 +44,6 @@ Prebid-server Yahoo Advertising bid adapter supports one integration method:
 
 For legacy "aol", "oneMobile" adapter partners/publishers.
 
-
 | Name       | Scope    | Description            | Example | Type     |
 |------------|----------|------------------------|---------|----------|
 | dcn | Required | Site ID provided by Yahoo Advertising | 'site1' | string |
@@ -54,7 +53,6 @@ For legacy "aol", "oneMobile" adapter partners/publishers.
 
 For new partners/publishers joining Yahoo Advertising and legacy "oneVideo" partners/publishers migrating to Yahoo Advertising.
 
-
 | Name       | Scope    | Description            | Example | Type     |
 |------------|----------|------------------------|---------|----------|
 | pubId | Required | Your Publisher External ID provided by Yahoo Advertising | 'DemoPublisher' | string |
@@ -63,7 +61,7 @@ For new partners/publishers joining Yahoo Advertising and legacy "oneVideo" part
 
 ### Prebid.js Adapter Supported Features
 
-For further setup details & examples please see <https://github.com/prebid/Prebid.js/blob/master/modules/yahooAdsBidAdapter.md>
+For further setup details & examples please see [prebid.js bid adapter markdown](https://github.com/prebid/Prebid.js/blob/master/modules/yahooAdsBidAdapter.md)
 
 * Media Types: Banner & Video
 * Outstream renderer

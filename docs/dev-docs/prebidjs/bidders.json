@@ -14700,7 +14700,7 @@
     }
   },
   {
-    "source": "@site/docs/dev-docs/prebidjs/bidders/visx.md",
+    "source": "@site/docs/dev-docs/prebidjs/bidders/visx.mdx",
     "permalink": "/dev-docs/prebidjs/next/bidders/visx",
     "title": "YOC VIS.X",
     "meta": {
