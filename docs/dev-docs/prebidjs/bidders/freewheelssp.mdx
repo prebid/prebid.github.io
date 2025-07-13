@@ -26,7 +26,7 @@ sidebarType: 1
 | `format` | optional | The format to use for displaying the ad. Can be one of the following:*screen-roll* intext-roll*sliderad* floorad*expand-banner* instream* inbannerNote: The screen-roll, intext-roll, sliderad and floorad formats are all FreeWheel outstream formats.Default value: "instream" | "screen-roll" | `string` |
 | `bidfloor` | optional | Bid floor price. | 13.2118  | `float` |
 | `bidfloorcur` | optional | Bid floor currency. | "USD" | `string` |
-| `vastUrlParams` | optional | Add query parameters to the vast request. Should be a single item level JSON.Works with formats: instream, inbanner | { protocolVersion:'3.0' } | `object` |
+| `vastUrlParams` | optional | Add query parameters to the vast request. Should be a single item level JSON.Works with formats: instream, inbanner | `{ protocolVersion:'3.0' }` | `object` |
 
 When the following params are used with instream or inbanner formats, they should be included in the `vastUrlParams` object. For other formats, they should be included directly in the `params` object:
 
