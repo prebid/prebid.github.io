@@ -3,6 +3,9 @@ layout: userid
 title: European Unified ID
 description: European Unified ID User ID sub-module
 useridmodule: euidIdSystem
+bidRequestUserId: euid
+eidsource:
+example: '"1111"'
 ---
 
 European Unified ID (EUID) is an open-source identity solution built for the open internet and based on the Unified ID 2.0 solution. It leverages encrypted email data to provide a privacy-conscious, secure, and accurate identity standard designed to meet market requirements in Europe and the UK.
@@ -11,8 +14,9 @@ EUID relies on user consent before an ID can be added to the bid stream. Consent
 
 To add EUID to your Prebid.js package, run the following:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=euidIdSystem
+```
 
 ## European Unified ID Registration
 
@@ -146,11 +150,16 @@ pbjs.setConfig({
 });
 ```
 
+## European Unified ID Client Side Integration for Prebid.js
+
+Prebid.js supports fully client side integration for EUID.  See the [official EUID documentation](https://euid.eu/docs/guides/integration-prebid) for the most up-to-date integration instructions.
+
 ## European Unified ID Configuration
 
 The following parameters apply only to the European Unified ID module integration.
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | ID value for the EUID module - `"euid"` | `"euid"` |

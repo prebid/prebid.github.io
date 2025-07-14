@@ -3,6 +3,9 @@ layout: userid
 title: ID5 ID
 description: ID5 ID User ID sub-module
 useridmodule: id5IdSystem
+bidRequestUserId: id5id
+eidsource: id5-sync.com
+example: {uid: "1111", ext: { linkType: 2, abTestingControlGroup: false } }
 ---
 
 
@@ -18,12 +21,14 @@ The ID5 privacy policy is at [id5.io/platform-privacy-policy](https://id5.io/pla
 
 First, make sure to add the ID5 submodule to your Prebid.js package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=id5IdSystem,userId
+```
 
 The following configuration parameters are available:
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module: `"id5Id"` | `"id5Id"` |
@@ -35,6 +40,7 @@ The following configuration parameters are available:
 | params.abTesting.enabled | Optional | Boolean | Set this to `true` to turn on this feature | `true` or `false` |
 | params.abTesting.controlGroupPct | Optional | Number | Must be a number between `0.0` and `1.0` (inclusive) and is used to determine the percentage of requests that fall into the control group (and thus not exposing the ID5 ID). For example, a value of `0.20` will result in 20% of requests without an ID5 ID and 80% with an ID. | `0.1` |
 | params.disableExtensions | Optional | Boolean | Set this to `true` to force turn off extensions call. Default `false` | `true` or `false` |
+| params.canCookieSync | Optional | Boolean | Set this to `true` to enable cookie syncing with other ID5 partners. See [our documentation](https://wiki.id5.io/docs/initiate-cookie-sync-to-id5) for details. Default `false` | `true` or `false` |
 | params.provider | Optional | String | An identifier provided by ID5 to technology partners who manage API deployments on behalf of their clients. Reach out to ID5 if you have questions about this parameter. | `"providerName"` |
 
 {: .alert.alert-info :}
@@ -65,11 +71,12 @@ pbjs.setConfig({
         abTesting: {             // optional
           enabled: true,         // false by default
           controlGroupPct: 0.1   // valid values are 0.0 - 1.0 (inclusive)
-        }
+        },
+        canCookieSync: true      // optional, has effect only when externalModuleUrl is used 
       },
       storage: {
-        type: 'html5',           // "html5" is the required storage type
-        name: 'id5id',           // "id5id" is the required storage name
+        type: 'html5',           // "html5" is the recommended storage type
+        name: 'id5id',           // "id5id" is the recommended storage name
         expires: 90,             // storage lasts for 90 days
         refreshInSeconds: 7200   // refresh ID every 2 hours to ensure it's fresh
       }
@@ -80,7 +87,7 @@ pbjs.setConfig({
 ```
 
 {: .alert.alert-warning :}
-**ATTENTION:** As of Prebid.js v4.14.0, ID5 requires `storage.type` to be `"html5"` and `storage.name` to be `"id5id"`. Using other values will display a warning today, but in an upcoming release, it will prevent the ID5 module from loading. This change is to ensure the ID5 module in Prebid.js interoperates properly with the [ID5 API](https://github.com/id5io/id5-api.js) and to reduce the size of publishers' first-party cookies that are sent to their web servers. For the same reasons it is very important as of Prebid.js v8.33.0 to provide the `externalModuleUrl` parameter and set it to the latest available module version at `https://cdn.id5-sync.com/api/1.0/id5PrebidModule.js`. If you have any questions, please reach out to us at [prebid@id5.io](mailto:prebid@id5.io).
+**ATTENTION:** As of Prebid.js v8.33.0, to ensure the ID5 module in Prebid.js interoperates properly with the [ID5 API](https://github.com/id5io/id5-api.js), it's possible to provide the `externalModuleUrl` parameter and set it to the latest available module version at `https://cdn.id5-sync.com/api/1.0/id5PrebidModule.js`. If you have any questions, please reach out to us at [prebid@id5.io](mailto:prebid@id5.io).
 
 ### Provided eids
 The module provides following eids:
