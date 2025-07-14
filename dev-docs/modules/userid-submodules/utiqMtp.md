@@ -37,10 +37,33 @@ pbjs.setConfig({
     userIds: [
       {
         name: "utiqMtpId",
+        bidders: ["bidder1", "bidder2", ...]
       },
     ],
   },
 })
+```
+
+## TCF Activity Integration
+
+If you use the Prebid.js [TCF Control Module](/dev-docs/modules/tcfControl), which prevents access to local storage for non consented vendors, you may need to add a vendor exception for the Utiq user id module to work, as Utiq is not a TCF vendor and will be automatically blocked by Prebid when TCF Control is enabled. Utiq performs its own consent check, outside TCF, to ensure that there is no device storage access in the absence of consent.
+
+To do that, you can use below configuration:
+
+```javascript
+pbjs.setConfig({
+  consentManagement: {
+    gdpr: {
+      cmpApi: 'iab',
+      rules: [{        // these are the default values
+        purpose: "storage",
+        enforcePurpose: true, // block localStorage based on purpose 1 of TCF
+        enforceVendor: true,  // block localStorage for non consented / non TCF vendors
+        vendorExceptions: ["utiqMtpId"] // configuration line to add to make utiq exception
+      }]
+    }
+  }
+});
 ```
 
 ## Utiq ID onboarding
