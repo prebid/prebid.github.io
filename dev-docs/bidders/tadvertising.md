@@ -26,12 +26,14 @@ fpd_supported: false
 ---
 
 ### Disclosure
+
 {: .alert.alert-danger :}
 Note: The T-Advertising Solutions Bidding adapter requires setup and approval from the T-Advertising Solutions service team. Please reach out to your account manager for more information to start using it.
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
+
 Name | Scope | Description | Example | Type
 --- | --- | --- | --- | ----
 `publisherId` | required | The publisher ID | `'1427ab10f2e448057ed3b422'` | `String`
@@ -69,7 +71,7 @@ var bannerAdUnit = {
 ### Video Ad Unit Example
 
 The T-Advertising Solutions adapter for video requires certain parameters in the AdUnit's
-[mediaTypes.video](https://docs.prebid.org/dev-docs/adunit-reference.html#adUnit.mediaTypes.video) definition.
+[mediaTypes.video](/dev-docs/adunit-reference.html#adUnit.mediaTypes.video) definition.
 
 Here's a video ad unit example:
 
@@ -100,5 +102,4 @@ var videoAdUnit = {
 ```
 
 ### First Party Data
-
-Publishers should use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html).
+Publishers should use the `ortb2` method of setting [First Party Data](/features/firstPartyData.html).
