@@ -6,6 +6,7 @@ description: Check or enforce disclosure of device storage use
 module_code : storageControl
 display_name : storageControl
 enable_download : true
+recommended: true
 sidebarType : 1
 ---
 
