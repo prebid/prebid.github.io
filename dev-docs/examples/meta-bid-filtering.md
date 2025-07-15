@@ -7,8 +7,8 @@ sidebarType: 1
 
 about:
 - This is an example that filters bid responses based on the metadata object.
-- Bidders can supply metadata about the bid such as advertiser domain. See the "meta" fields in the [bid response](/dev-docs/bidder-adaptor.html#interpreting-the-response) for the full list of metadata.
-- Please note that we recommend a dedicated module for this case. See [Bid Response Filter](https://docs.prebid.org/dev-docs/modules/bidResponseFilter.html)
+- Bidders can supply metadata about the bid such as advertiser domain. See the "meta" fields in the <a href="/dev-docs/bidder-adaptor.html#interpreting-the-response">bid response</a> for the full list of metadata.
+- Please note that we recommend a dedicated module for this case. See <a href="https://docs.prebid.org/dev-docs/modules/bidResponseFilter.html">Bid Response Filter</a>
 
 ---
 
