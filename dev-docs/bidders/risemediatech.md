@@ -25,6 +25,6 @@ RiseMediaTech is a digital advertising platform that supports banner and video a
 
 | Name         | Scope              | Type             | Description                                | Example                 |
 |--------------|--------------------|------------------|--------------------------------------------|-------------------------|     
-| `bidFloor`   | optional           | string           | Bid Floor                                  | `'0.01'`
-| `testMode`   | optional           | string           | Parameter to indicate prebid test mode                                  | `'1'`
+| `bidFloor`   | optional           | string           | Bid Floor                                  | `'0.01'`|
+| `testMode`   | optional           | string           | Parameter to indicate prebid test mode                                  | `'1'`|
 
