@@ -8,6 +8,7 @@ display_name : storageControl
 enable_download : true
 recommended: true
 sidebarType : 1
+min_js_version: 10.0.0
 ---
 
 # Storage Control Module
