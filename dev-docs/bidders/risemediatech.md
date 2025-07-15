@@ -9,9 +9,7 @@ media_types:
 gdpr_supported: true
 usp_supported: true
 gpp_supported: true
-user_sync:
-  iframe: false
-  image: false
+user_sync: false
 schain_supported: true
 pbjs: true
 pbs: true
