@@ -26,7 +26,7 @@ sidebarType: 1
 {: .table .table-bordered .table-striped }
 | Name           | Scope | Description                              | Example   | Type    |
 |----------------+-------+-----------------------------------+-----------+---------|
-| `placement_id` | required | Placement ID, provided by nextMillennium | `'12345'` | String  |
+| `placement_id` | optional | Placement ID, provided by nextMillennium | `'12345'` | String  |
 | `group_id`     | optional | Group ID, provided by nextMillennium     | `'12345'` | String  |
 
 Required one of the two parameters placement_id or group_id.
