@@ -11,13 +11,14 @@ vendor_specific: true
 sidebarType : 1
 ---
 
-> **Warning!**
->
-> The **cleanioRtdProvider** module has been renamed to [humansecurityMalvDefenseRtdProvider](humansecurityMalvDefenseRtdProvider.md) following HUMAN Security's acquisition of the Clean.io project in 2022.
-> **cleanioRtdProvider** module is maintained for backward compatibility until the next major Prebid release.
->
-> Please use **humansecurityMalvDefenseRtdProvider** instead of **cleanioRtdProvider** in your Prebid integration.
->
+
+{: .alert.alert-warning :}
+**Warning!**
+
+The **cleanioRtdProvider** module has been renamed to [humansecurityMalvDefenseRtdProvider](humansecurityMalvDefenseRtdProvider.md) following HUMAN Security's acquisition of the Clean.io project in 2022.
+ **cleanioRtdProvider** module is maintained for backward compatibility until the next major Prebid release.
+
+Please use **humansecurityMalvDefenseRtdProvider** instead of **cleanioRtdProvider** in your Prebid integration.
 
 # clean.io Real-time Anti-Malvertising Module
 
