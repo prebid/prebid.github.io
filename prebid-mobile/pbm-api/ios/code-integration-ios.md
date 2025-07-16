@@ -55,9 +55,11 @@ To [add the Prebid Mobile SDK package dependency](https://developer.apple.com/do
 
 1. In Xcode, install the Prebid Mobile SDK by navigating to File > Add Package Dependencies...
 2. In the prompt that appears, search for the Prebid Mobile SDK GitHub repository:
-    ```
+
+    ```bash
     https://github.com/prebid/prebid-mobile-ios.git
     ```
+    
 3. Select the version of the Prebid Mobile SDK you want to use. For new projects, we recommend using the `Up to Next Major Version`.
 4. In the package selection screen, make sure to check the modules you need for your integration and link it to your application target.
 
