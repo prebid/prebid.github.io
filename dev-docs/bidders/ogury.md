@@ -83,6 +83,8 @@ Use this example configuration for enabling Ogury ad server integration on a spe
 
 _"Inventory mapping" is only available for request coming from **web**. For **in-app** request use the "bid param" integration method._
 
+_Note: If you choose inventory mapping, you can skip specifying assetKey and adUnitId per ad unit._
+
 With inventory mapping you don't need to setup `assetKey/adUnitId` for every ad unit that you want to integrate. You use a single `id` and provide Ogury with list of sites and `ad_unit_code`s that you want to integrate and the mapping will be done on our side.
 The example configuration for this type of integration looks like this:
 ```javascript
@@ -109,6 +111,8 @@ pbjs.que.push(function () {
 
 Depending on your advertising format needs, other optional parameters can be used. Supported parameters are detailed [here](https://ogury-ltd.gitbook.io/mobile-web/header-bidding/ogury-prebid.js-adapter-integration#optional-configuration).
 
-### How to contact us
+### Contact information
 
-If you have any technical concerns or questions about the adapter, please contact <web.inventory@ogury.co>.
+* For platform registration and partnership questions: supply-development@ogury.co
+* For technical or integration issues with the adapter: web.inventory@ogury.co
+* For technical issues with Prebid Server:  deliveryservices@ogury.co
