@@ -6,13 +6,14 @@ pbjs: true
 biddercode: audiencerun
 media_types: banner
 gvl_id: 944
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 schain_supported: true
 safeframes_ok: false
 prebid_member: false
 userIds: all
 floors_supported: true
+sidebarType: 1
 ---
 
 ### Bid Params

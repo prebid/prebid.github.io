@@ -33,7 +33,7 @@ The simplest method for using the Brightcove Prebid Plugin is to invoke prebid a
 
 The following is a sample Brightcove Player Prebid Plugin integration that invokes prebid after the Brightcove Player has been loaded.
 
-```
+```html
 <!doctype html>
 <html>
 <head>
@@ -115,5 +115,3 @@ The following is a sample Brightcove Player Prebid Plugin integration that invok
 </html>
 
 ```
-
-

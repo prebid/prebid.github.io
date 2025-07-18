@@ -17,9 +17,9 @@ sidebarType: 1
 
 1. Compile the Adnuntius RTD Module and Adnuntius Bid Adapter into your Prebid build:
 
-```
-gulp build --modules="adnuntiusRtdProvider,adnuntiusBidAdapter,..."
-```
+    ```bash
+    gulp build --modules="adnuntiusRtdProvider,adnuntiusBidAdapter,..."
+    ```
 
 2. Use `setConfig` to instruct Prebid.js to initilize the adnuntius module, as specified below.
 

@@ -4,9 +4,13 @@ title: Streamkey
 description: Prebid Streamkey.tv Bidder Adapter
 pbjs: true
 pbs: true
+media_types: video,banner
+gvl_id: 410 (adtelligent)
+tcfeu_supported: true
+gpp_supported: true
 biddercode: streamkey
 aliasCode: adtelligent
-media_types: video
+sidebarType: 1
 ---
 
 ### Bid params
@@ -16,9 +20,9 @@ media_types: video
 |-------|----------|---------------------------------|----------|-----------|
 | `aid` | required | The traffic source ID | `232131` | `integer` |
 
-
 ### Test Parameters
-```
+
+``` javascript
     var adUnits = [
 
       // Video instream adUnit

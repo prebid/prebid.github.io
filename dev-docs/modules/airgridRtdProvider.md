@@ -12,14 +12,14 @@ sidebarType : 1
 ---
 
 # AirGrid RTD Provider
+{:.no_toc}
 
 AirGrid is a privacy-first, cookie-less audience platform. Designed to help publishers increase inventory yield,
 whilst providing audience signal to buyers in the bid request, without exposing raw user level data to any party.
 
-This real-time data module provides quality first-party data, contextual data, site-level data and more that is 
+This real-time data module provides quality first-party data, contextual data, site-level data and more that is
 injected into bid request objects destined for different bidders in order to optimize targeting.
 
-{:.no_toc}
 * TOC
 {:toc}
 
@@ -29,7 +29,7 @@ Compile the AirGrid RTD module (`airgridRtdProvider`) into your Prebid build, al
 
 `gulp build --modules=rtdModule,airgridRtdProvider,appnexusBidAdapter`
 
-Next we configure the module, via `pbjs.setConfig`. See the **Parameter Descriptions** below for more detailed information of the configuration parameters. 
+Next we configure the module, via `pbjs.setConfig`. See the **Parameter Descriptions** below for more detailed information of the configuration parameters.
 
 ```js
 pbjs.setConfig(
@@ -61,7 +61,7 @@ pbjs.setConfig(
 | :------------ | :------------ | :------------ |:------------ |
 | name | `String` | RTD sub module name | Always 'airgrid' |
 | waitForIt | `Boolean` | Wether to delay auction for module response | Optional. Defaults to false |
-| params.apiKey | `Boolean` | Publisher partner specific API key | Required |
+| params.apiKey | `String` | Publisher partner specific API key | Required |
 | params.accountId | `String` | Publisher partner specific account ID | Required |
 | params.publisherId | `String` | Publisher partner specific publisher ID | Required |
 | params.bidders | `Array` | Bidders with which to share segment information | Optional |
@@ -80,7 +80,7 @@ gulp serve-fast --modules=rtdModule,airgridRtdProvider,appnexusBidAdapter
 
 Then in your browser access:
 
-```
+```text
 http://localhost:9999/integrationExamples/gpt/airgridRtdProvider_example.html
 ```
 
@@ -93,8 +93,9 @@ gulp test --file "test/spec/modules/airgridRtdProvider_spec.js"
 ## Support
 
 If you require further assistance or are interested in discussing the module functionality please reach out to:
-- [hello@airgrid.io](mailto:hello@airgrid.io) for general questions.
-- [support@airgrid.io](mailto:support@airgrid.io) for technical questions.
+
+* [hello@airgrid.io](mailto:hello@airgrid.io) for general questions.
+* [support@airgrid.io](mailto:support@airgrid.io) for technical questions.
 
 You are also able to find more examples and other integration routes on the [AirGrid docs site](https://docs.airgrid.io), or learn more on our [site](https://airgrid.io)!
 

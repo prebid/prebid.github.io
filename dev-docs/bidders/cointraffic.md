@@ -3,7 +3,9 @@ layout: bidder
 title: Cointraffic
 description: Prebid Cointraffic Bidder Adaptor
 pbjs: true
+pbs: true
 biddercode: cointraffic
+sidebarType: 1
 ---
 
 

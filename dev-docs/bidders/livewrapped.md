@@ -5,16 +5,19 @@ description: Prebid Livewrapped Bidder Adaptor
 biddercode: livewrapped
 pbjs: true
 media_types: banner, video, native
-gdpr_supported: true
+tcfeu_supported: true
+prebid_member: true
 userIds: all
 schain_supported: true
 gvl_id: 919
 usp_supported: true
 coppa_supported: true
 safeframes_ok: true
+floors_supported: true
+sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The Livewrapped Bidder Adapter requires setup and approval from Livewrapped AB.
 Please reach out to <sales@livewrapped.com> for more information.

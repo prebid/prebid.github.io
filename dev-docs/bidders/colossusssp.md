@@ -10,6 +10,7 @@ userIds: britepoolid, identityLink, unifiedId, id5Id, uid2
 gdpr: true
 pbjs: true
 pbs: false
+sidebarType: 1
 ---
 
 ### Prebid.JS Bid Params
@@ -21,4 +22,4 @@ pbs: false
 | `group_id`     | optional | Group Id will be generated on Colossus SSP Platform. Use instead of placement_id  | `0`        | `integer` |
 | `traffic`      | optional | Type traffic                                             | `'banner'` | `string`  |
 
-*For colossus prebid server parametres, look into colossus.md*
+*For colossus prebid server parameters, look into colossus.md*

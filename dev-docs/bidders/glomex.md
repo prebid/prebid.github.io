@@ -4,10 +4,12 @@ title: Glomex
 description: Prebid Glomex Bidder Adapter
 biddercode: glomex
 media_types: banner
-gdpr_supported: true
+gvl_id: 967
+tcfeu_supported: true
 schain_supported: false
 prebid_member: false
 pbjs: true
+sidebarType: 1
 ---
 
 

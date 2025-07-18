@@ -7,6 +7,7 @@ pbjs: true
 pbs: true
 media_types: banner
 fpd_supported: false
+sidebarType: 1
 ---
 
 #### Prebid.js Bid Params
@@ -25,5 +26,3 @@ fpd_supported: false
 |---------------|----------|-------------|---------|----------|
 | `position` | optional | Position field from automatad | `22390678` | `string` |
 | `placementId`    | optional | The placement ID from automatad.  | `"a34gh6d"` | `string` |
-
-

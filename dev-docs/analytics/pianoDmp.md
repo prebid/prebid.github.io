@@ -3,7 +3,7 @@ layout: analytics
 title: Piano DMP
 description: Piano DMP Analytics Adapter
 modulecode: pianoDmp
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: false
 coppa_supported: false
 prebid_member: false
@@ -13,7 +13,7 @@ enable_download: true
 
 #### Registration
 
-Please visit [https://piano.io/product/dmp/](https://piano.io/product/dmp/) for more information.
+Please visit [piano.io/product/dmp/](https://piano.io/product/dmp/) for more information.
 
 ### Example Configuration
 

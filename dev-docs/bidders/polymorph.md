@@ -5,10 +5,12 @@ description: Polymorph Prebid Adaptor
 pbjs: true
 biddercode: polymorph
 media_types: native, video, banner
+sidebarType: 1
 ---
 
-### Note:
-Polymorph adapter requires setup and approval from the Polymorph team. Please reach out to your account team or support@getpolymorph.com for more information.
+### Note
+
+Polymorph adapter requires setup and approval from the Polymorph team. Please reach out to your account team or <support@getpolymorph.com> for more information.
 
 ### Bid Params
 
