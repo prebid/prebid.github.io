@@ -113,6 +113,6 @@ Depending on your advertising format needs, other optional parameters can be use
 
 ### Contact information
 
-* For platform registration and partnership questions: supply-development@ogury.co
-* For technical or integration issues with the adapter: web.inventory@ogury.co
-* For technical issues with Prebid Server:  deliveryservices@ogury.co
+* For platform registration and partnership questions: <supply-development@ogury.co>
+* For technical or integration issues with the adapter: <web.inventory@ogury.co>
+* For technical issues with Prebid Server:  <deliveryservices@ogury.co>
