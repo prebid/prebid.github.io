@@ -32,5 +32,5 @@ Afront will bid on the first impression in request.
 
 | Name              | Scope    | Description       | Example  | Type     |
 | ----------------- | -------- | ----------------- | -------- | -------- |
-| `clientAccountId` | required | Client account id | `'id'`   | `string` |
-| `dataSourceId`    | required | Data source id    | `'hash'` | `string` |
+| `accountId` | required | Client account id | `'id'`   | `string` |
+| `sourceId`    | required | Data source id    | `'hash'` | `string` |
