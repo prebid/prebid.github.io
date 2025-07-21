@@ -80,7 +80,6 @@ Use this example configuration for enabling Ogury ad server integration on a spe
 
 ```
 
-
 #### Inventory mapping
 
 _"Inventory mapping" is only available for request coming from **web**. For **in-app** request use the "bid param" integration method._
