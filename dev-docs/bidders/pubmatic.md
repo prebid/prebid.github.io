@@ -234,4 +234,20 @@ AdUnit-specific data is supported using `AdUnit.ortb2Imp.ext.*`
 ### Endpoint Compression
 
 This adapter utilizes gzip compression support built into Prebid.js core. For more information, see [Compression Support for Outgoing Requests](https://docs.prebid.org/dev-docs/bidder-adaptor.html#compression-support-for-outgoing-requests)
+
+#### Disabling Compression
+
+You can disable gzip compression at the bidder level using `pbjs.setBidderConfig`. Set the `gzipEnabled` value to false:
+
+```javascript
+pbjs.que.push(function () {
+  pbjs.setBidderConfig({
+    bidders: ['pubmatic'],
+    config: {
+      gzipEnabled: false
+    }
+  });
+});
+```
+
 <!-- workaround bug where code blocks at end of a file are incorrectly formatted-->
