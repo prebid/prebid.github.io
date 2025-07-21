@@ -55,6 +55,7 @@ There are two ways to integrate with Ogury ad server, via the "bid params" i.e. 
 
 #### With bid params
 Use this example configuration for enabling Ogury ad server integration on a specific ad unit:
+
 ```javascript
  pbjs.que.push(function () {
     pbjs.addAdUnits([
@@ -76,6 +77,7 @@ Use this example configuration for enabling Ogury ad server integration on a spe
         // rest of ad units
     ])
 })
+
 ```
 
 
@@ -87,6 +89,7 @@ _Note: If you choose inventory mapping, you can skip specifying assetKey and adU
 
 With inventory mapping you don't need to setup `assetKey/adUnitId` for every ad unit that you want to integrate. You use a single `id` and provide Ogury with list of sites and `ad_unit_code`s that you want to integrate and the mapping will be done on our side.
 The example configuration for this type of integration looks like this:
+
 ```javascript
 pbjs.que.push(function () {
             // setup publisherId for ogury
@@ -104,8 +107,8 @@ pbjs.que.push(function () {
             })
 })
 ````
-`$OGURY_PUBLISHER_ID` is a Ogury provided id. 
 
+`$OGURY_PUBLISHER_ID` is a Ogury provided id. 
 
 ### Optional bid Params
 
