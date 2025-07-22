@@ -32,6 +32,7 @@ pbjs.setBidderConfig({
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name                | Scope    | Description                                                                                | Example                      | Type     |
 |---------------------|----------|--------------------------------------------------------------------------------------------|------------------------------|----------|
 | `tagId`        | required |The unique identifier of the ad placement. Will be used for comparison of statistics.                             | 51772                        | `int`    |
