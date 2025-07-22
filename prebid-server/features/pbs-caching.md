@@ -50,7 +50,7 @@ From one of the [video instream examples](/examples/video/instream/jwplayer/pb-v
 
 The VAST XML is stored into Prebid Cache from Prebid.js with this call:
 ```
-POST https://prebid.adnxs.com/pbc/v1/cache
+POST https://my-pbs.example.com/cache
 <VAST XML BODY>
 ```
 And the response from the /cache call is:
@@ -61,7 +61,7 @@ And the response from the /cache call is:
 And when the video player is ready to display the video ad, this
 call is seen go out:
 ```
-GET https://prebid.adnxs.com/pbc/v1/cache?uuid=9b05c38c-709c-4fb5-8592-8fcacb1289f7
+GET https://my-pbs.example.com/cache?uuid=9b05c38c-709c-4fb5-8592-8fcacb1289f7
 ```
 And the response is the VAST XML.
 
