@@ -6,7 +6,6 @@ biddercode: oprx
 tcfeu_supported: false
 usp_supported: false
 coppa_supported: false
-gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 schain_supported: false
 dchain_supported: false
 userId: none
