@@ -6,7 +6,6 @@ pbjs: true
 biddercode: theads
 aliasCode: admixer
 media_types: banner, video, native
-tcfeu_supported: true
 usp_supported: true
 schain_supported: true
 prebid_member: true
