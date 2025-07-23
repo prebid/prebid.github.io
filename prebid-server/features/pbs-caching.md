@@ -94,4 +94,3 @@ Then when the ad is chosen by the ad server, this fetch goes out from the browse
 ```http
 https://prebid-server.example.com/cache?uuid=14b468d0-3c58-4a5d-ae5d-ab9a47b6152c
 ```
-
