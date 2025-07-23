@@ -8,7 +8,7 @@ usp_supported: true
 coppa_supported: true
 schain_supported: true
 dchain_supported: false
-safeframes_ok: false
+safeframes_ok: true
 deals_supported: false
 floors_supported: false
 fpd_supported: false

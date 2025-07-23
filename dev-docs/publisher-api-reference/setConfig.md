@@ -1082,7 +1082,7 @@ Here's an example of basic client-side caching. Substitute your Prebid Cache URL
 ```javascript
 pbjs.setConfig({
         cache: {
-            url: 'https://prebid.adnxs.com/pbc/v1/cache'
+            url: 'https://my-pbs.example.com/cache'
         }
 });
 ```
@@ -1127,7 +1127,7 @@ Optionally, `batchSize` and `batchTimeout` can be utlilized as illustrated with 
 ```javascript
 pbjs.setConfig({
         cache: {
-            url: 'https://prebid.adnxs.com/pbc/v1/cache',
+            url: 'https://my-pbs.example.com/cache',
             batchSize: 4,
             batchTimeout: 50
         }
@@ -1151,7 +1151,7 @@ Consider the following Prebid configuration:
 ```javascript
 pbjs.setConfig({
         cache: {
-            url: 'https://prebid.adnxs.com/pbc/v1/cache',
+            url: 'https://my-pbs.example.com/cache',
             useLocal: true
         }
 });
@@ -1160,7 +1160,7 @@ pbjs.setConfig({
 When `useLocal` is set to true, the remote cache URL endpoint is never called. However, existing GAM creatives configured with a VAST ad tag URL, such as:
 
 ``
-https://prebid.adnxs.com/pbc/v1/cache?uuid=%%PATTERN:hb_uuid%%
+https://my-pbs.example.com/cache?uuid=%%PATTERN:hb_uuid%%
 ``
 
 will continue to function correctly. `hb_uuid` is set to locally assigned blob UUID. If the bid wins the GAM auction and it's `videoCacheKey` (`hb_uuid`) is included in a GAM wrapper VAST XML, Prebid will update the VAST ad tag URL with the locally cached blob URL after receiving a response from Google Ad Manager.
