@@ -1,30 +1,14 @@
 ---
-layout: page_v2
-title: Analyze Header Bidding Setup
-description: What is the optimal header bidding setup and some common problems.
-
-pid: 10
-
-top_nav_section: overview
-nav_section: studies
-sidebarType: 3
-
+sidebar_position: 11
+title: Optimal Header Bidding Setup
+description: Learn about optimal header bidding setup and common problems to avoid
 ---
 
+# Optimal Header Bidding Setup
 
+## Ideal Header Bidding Auction
 
-# Analyze Header Bidding Setup
-
-## What's a good header bidding auction
-
-<div class="row">
-<div class="col-sm-6" markdown="1">
-
-![Optimal Header Bidding Auction]({{ site.github.url }}/assets/images/hb-expert/ideal.png){: .pb-xlg-img :}
-
-</div>
-
-<div class="col-sm-6" markdown="1">
+![Optimal Header Bidding Auction](/images/hb-expert/ideal.png)
 
 This setup (captured using [Headerbid Expert](https://chrome.google.com/webstore/detail/headerbid-expert/cgfkddgbnfplidghapbbnngaogeldmop)) has demonstrated a few facts that made it an ideal header bidding auction.
 
@@ -37,21 +21,11 @@ For each impression, all header bidding partners are given a similar amount of t
 **3. Adserver**
 The ad server sees the impression and header bidding info immediately after all header bidding partners finished responding, or when they timed out, whichever happens sooner.
 
-</div>
-</div>
-
 ## Poor Header Bidding Setup Examples
 
-### Scenario
+### Scenario 1
 
-<div class="row">
-<div class="col-sm-6" markdown="1">
-
-![Optimal Header Bidding Auction]({{ site.github.url }}/assets/images/hb-expert/loaded-too-late.png){: .pb-xlg-img :}
-
-</div>
-
-<div class="col-sm-6" markdown="1">
+![Poor Header Bidding Setup - Loaded Too Late](/images/hb-expert/loaded-too-late.png)
 
 **Problem**: This site is under monetized.
 
@@ -59,19 +33,9 @@ The ad server sees the impression and header bidding info immediately after all 
 
 **How to fix**: Load all bidders together, or use a framework as Prebid.js which already does this.
 
-</div>
-</div>
-
 ### Scenario 2
 
-<div class="row">
-<div class="col-sm-6" markdown="1">
-
-![Optimal Header Bidding Auction]({{ site.github.url }}/assets/images/hb-expert/adserver-too-early.png){: .pb-xlg-img :}
-
-</div>
-
-<div class="col-sm-6" markdown="1">
+![Poor Header Bidding Setup - Ad Server Too Early](/images/hb-expert/adserver-too-early.png)
 
 **Problem**: This site is under monetized.
 
@@ -79,19 +43,9 @@ The ad server sees the impression and header bidding info immediately after all 
 
 **How to fix**: Load these bidders earlier in the header, or experiment with extending the timeout without causing impression loss.
 
-</div>
-</div>
-
 ### Scenario 3
 
-<div class="row">
-<div class="col-sm-6" markdown="1">
-
-![Optimal Header Bidding Auction]({{ site.github.url }}/assets/images/hb-expert/adserver-too-late.png){: .pb-xlg-img :}
-
-</div>
-
-<div class="col-sm-6" markdown="1">
+![Poor Header Bidding Setup - Ad Server Too Late](/images/hb-expert/adserver-too-late.png)
 
 **Problem**: This site may suffer impression loss.
 
@@ -99,35 +53,10 @@ The ad server sees the impression and header bidding info immediately after all 
 
 **How to fix**: Set a shorter timeout for the page and remove any bidder that is blocking the ad server from loading.
 
-</div>
-</div>
-
 ### Scenario 4
 
-<div class="row">
-<div class="col-sm-6" markdown="1">
-
-![Optimal Header Bidding Auction]({{ site.github.url }}/assets/images/hb-expert/bidder-delay-adserver.png){: .pb-xlg-img :}
-
-</div>
-
-<div class="col-sm-6" markdown="1">
+![Poor Header Bidding Setup - Bidder Delay Ad Server](/images/hb-expert/bidder-delay-adserver.png)
 
 **Problem**: This site may suffer impression loss
 
 **Cause**: Bidders responded too late and delayed the ad server from loading.
-
-**How to fix**: Set a shorter timeout for the page.
-
-</div>
-</div>
-
-
-## Analyze Your Own Site
-
-Add the Plugin [Headerbid Expert](https://chrome.google.com/webstore/detail/headerbid-expert/cgfkddgbnfplidghapbbnngaogeldmop) to your browser.
-
-<div class="pb-sm-img">
-<a href="https://chrome.google.com/webstore/detail/headerbid-expert/cgfkddgbnfplidghapbbnngaogeldmop" target="_blank"><img src="/assets/images/hb-expert/headerbid-expert-logo.png" alt="headerbid-expert-logo" width="50%" style="cursor:pointer">
-</a>
-</div>

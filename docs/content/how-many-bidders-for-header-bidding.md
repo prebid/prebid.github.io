@@ -1,19 +1,8 @@
 ---
-layout: page_v2
-title: Optimize header bidding setup
-head_title: Optimize header bidding setup
-
-description: An analysis of the optimal number of bidders to work with for header bidding, to optimize yield and user experience.
-
-pid: 10
-
-top_nav_section: overview
-nav_section: studies
-sidebarType: 3
-
+sidebar_position: 9
+title: How to optimize header bidding setup
+description: How many bidders should you work with and how to maximize revenue while maintaining good user experience
 ---
-
-
 
 # How to optimize header bidding setup
 
@@ -28,7 +17,7 @@ Luckily, the publishers using Prebid.js are curious about these questions too. W
 
 ## Q1: How is revenue affected by different factors?
 
-![Prebid Diagram Image](/assets/images/overview/experiments/revenue.png){: .pb-lg-img :}
+![Prebid Diagram Image](/images/overview/experiments/revenue.png)
 (_the above data is normalized to CPM = 1 for anonymity_)
 
 Revenue is mainly determined by:
@@ -53,7 +42,7 @@ Conclusions:
 
 ## Q2: How is page content load time affected?
 
-![Prebid Diagram Image](/assets/images/overview/experiments/page-load-time.png){: .pb-lg-img :}
+![Prebid Diagram Image](/images/overview/experiments/page-load-time.png)
 _(The above page has on average 130 HTTP requests, 1.5MB data transferred per refresh)_
 
 Page content load time is critical to measure user experience. Your page's content taking 200 millisecond to load delivers a MUCH BETTER experience than if it takes 2 seconds.
@@ -69,7 +58,7 @@ Conclusions:
 
 ## Q3: How about ad load time?
 
-![Prebid Diagram Image](/assets/images/overview/experiments/ad-load-time.png){: .pb-lg-img :}
+![Prebid Diagram Image](/images/overview/experiments/ad-load-time.png)
 _(The above page has on average 130 HTTP requests, 1.5MB data transferred per refresh)_
 
 Ad load time measures how long a user has to wait before he/she can see the ad. This is less important than the page's content load time. However, the initial blank space in the ad unit, or the page elements shifting around due to a late ad load, can both demage the user experience.
@@ -94,7 +83,7 @@ Every webpage is different. Every site's users are different. Different publishe
 
 Prebid.js is a good place to start for free 😃
 
-<hr class="half-rule">
+---
 
 Note that the above data is collected by pages that run true header bidding auctions, which is defined by Prebid.js as:
 

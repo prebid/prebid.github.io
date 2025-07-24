@@ -1,8 +1,7 @@
 ---
-layout: page_v2
+sidebar_position: 14
 title: What is Prebid.org?
-description: An overview of Prebid.org, the organization behind Prebid, and what our goals and missions are.
-sidebarType: 0
+description: An overview of Prebid.org, the organization behind Prebid, and what our goals and missions are
 ---
 
 # About Prebid.org
@@ -22,7 +21,7 @@ Managed through Product Management Committees (PMCs)
 - Each PMC has a Chair and Members.
 - The Chair manages the PMC process and facilitates how the members contribute.  
 - PMCs drive open source software development as well as events and activities.  
-- To obtain more information about becoming a member of Prebid.org, email <membership@prebid.org>.
+- To obtain more information about becoming a member of Prebid.org, email [membership@prebid.org](mailto:membership@prebid.org).
 
 ## Focus on Value
 
@@ -41,9 +40,9 @@ We support wrappers based on Prebid technology with rights to the **Powered by P
 
 All Prebid projects are open source and licensed under Apache License 2.0.  
 
-- [Prebid.js](/prebid/prebidjs.html), including [Prebid Video](/prebid-video/video-overview.html) and [Prebid Native](/dev-docs/examples/native-ad-example.html): Header bidding on desktop and mobile web.
-- [Prebid Server](/prebid-server/overview/prebid-server-overview.html): Server-to-server header bidding.
-- [Prebid Mobile](/prebid-mobile/prebid-mobile.html): SDK for mobile app header bidding on iOS and Android. Works in conjunction with Prebid Server.
+- [Prebid.js](/dev-docs/prebidjs/prebidjs), including [Prebid Video](/dev-docs/prebidjs/prebid-video/video-overview) and [Prebid Native](/dev-docs/prebidjs/examples/native-ad-example): Header bidding on desktop and mobile web.
+- [Prebid Server](/dev-docs/prebid-server/overview/prebid-server-overview): Server-to-server header bidding.
+- [Prebid Mobile](/dev-docs/prebid-mobile/prebid-mobile): SDK for mobile app header bidding on iOS and Android. Works in conjunction with Prebid Server.
 - Continuing work on our tools, website, and documentation.
 Prebid welcomes any contribution on these projects!
 

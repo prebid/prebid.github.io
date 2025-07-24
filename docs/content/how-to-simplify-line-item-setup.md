@@ -1,19 +1,8 @@
 ---
-layout: page_v2
+sidebar_position: 10
 title: How to simplify line item setup
-head_title: How to simplify line item setup for header bidding with prebid.js
-
-description: A walkthrough of why header bidding implementations cause latency. An overview of how to use prebid.js to reduce it.
-
-pid: 50
-
-top_nav_section: overview
-nav_section: studies
-sidebarType: 3
-
+description: Learn how to reduce the number of line items for header bidding
 ---
-
-
 
 # How to simplify line item setup
 
@@ -39,7 +28,7 @@ In this section, we'll learn how to remove the creative size dimension for heade
 
 Let's first clarify what "different set of line items for different creative sizes" means. In this scenario, a line item's creative is only of one size. In Google Ad Manager, this looks like:
 
-![Header Bidding Normal Line Item Creative](/assets/images/overview/line-item-creative.png){: .pb-md-img :}
+![Header Bidding Normal Line Item Creative](/images/overview/line-item-creative.png)
 
 Because a site would have many creative sizes, with this setup you need X number of line item sets for X number of creative sizes.
 
@@ -54,7 +43,7 @@ There's a reason bidders recommend different set of line items for different cre
 
 Prebid.js can dynamically resize the returned creative to the right size. Here's the setup:
 
-* Submit a few creatives of size 1x1 and make them override the line items' sizes when you [attach creatives to the line item](/adops/step-by-step.html#step-3-attach-the-creative-to-the-line-item).
+* Submit a few creatives of size 1x1 and make them override the line items' sizes when you [attach creatives to the line item](/content/guides/ad-ops/step-by-step#step-3-attach-the-creative-to-the-line-item).
 * Your ad unit can accept both 300x250 and 300x600. A bidder bid $6.00 for the 300x600 size and has the highest price. Prebid.js passed the bid in, as well as a generated bid ID.
 * The $6.00 line item got picked by the line item.
 * Your ad server randomly choose a 1x1 creative. However, because all creatives have the same content, it does not make a difference.
@@ -81,8 +70,6 @@ Assume we have 1 set of line items for ALL bidders. Consider the below key-value
 * `rubicon_adId`: 23456
 
 The line item for $1.60 is chosen because it has the highest price. However, the creative attached to this line item will be given both `appnexus_ad_id`: 65432 and `rubicon_ad_id`: 23456. There's not an easy way for the right creative (in this case the AppNexus creative) to render.
-
-<a name="pbjs-sends-highest-price-only"></a>
 
 #### How Prebid.js solves the problem
 

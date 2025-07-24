@@ -180,6 +180,18 @@ docs/
 - **Update frontmatter**: Convert Jekyll frontmatter to Docusaurus format
 - **Fix internal links**: Update all internal links to match new structure
 - **Convert Jekyll syntax**: Replace Liquid templates and Jekyll-specific includes with React components
+- **Replace includes with IncludeTodo component**: Use `<IncludeTodo include="{% include ... %}"/>` for unmigrated includes
+- **If a markdown file requires a React component, change its extension from `.md` to `.mdx` using `git mv`**
+- **Build validation**: `npm run build` should not have any errors after each migration step
+
+### IncludeTodo Component
+
+The IncludeTodo component should:
+
+- Accept an `include` prop containing the original Jekyll include string
+- Render a warning that says "this include is not yet migrated"
+- Display the include string for reference
+- Be used as a temporary placeholder while includes are being migrated to React components
 
 ### Download Page
 

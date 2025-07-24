@@ -1,18 +1,10 @@
 ---
-layout: page_v2
+sidebar_position: 13
 title: Prebid Universal Creative
-description: An overview of Prebid Universal Creative
-sidebarType: 3
-nav_section: intro
+description: Learn about Prebid Universal Creative and its rendering routines
 ---
 
-<div class="bs-docs-section" markdown="1">
-
 # Prebid Universal Creative
-{:.no_toc}
-
-- TOC
-{:toc}
 
 ## Overview
 
@@ -21,7 +13,6 @@ that can pull a particular ad ID from Prebid's cache and do the right
 thing to display it. The scripts are generally entered into the ad server for
 when a Prebid ad has won the auction. There are a number of use cases:
 
-{: .table .table-bordered .table-striped }
 | Use Case | PUC file | Alternate Approach |
 | --- | --- | --- |
 | Web Banner: iframe | banner.js (or creative.js) | [Dynamic creatives](#alt-dyn), [Banner and In-Renderer Video iframes](#alt-iframes) |
@@ -43,7 +34,7 @@ by allowing the ad server creative to load banner.js, video.js, or native.js, wh
 This loads the PUC from the Prebid-maintained location. Your managed
 service provider may have a different location.
 
-To see specific examples of how to use the PUC within your ad server, see the guides for [GAM](/adops/gam-creative-banner-sbs.html), [Microsoft](/adops/setting-up-prebid-with-the-appnexus-ad-server.html), or [other ad servers](/adops/adops-general-sbs.html).
+To see specific examples of how to use the PUC within your ad server, see the guides for [GAM](/content/guides/ad-ops/gam-creative-banner-sbs), [Microsoft](/content/guides/ad-ops/setting-up-prebid-with-the-appnexus-ad-server), or [other ad servers](/content/guides/ad-ops/adops-general-sbs).
 
 ## Features of the PUC
 
@@ -79,15 +70,11 @@ While Prebid recommends the use of creative.js because we regularly add
 features and fix bugs, publishers may choose to hardcode the functionality
 into their ad server creatives.
 
-<a name="alt-dyn"></a>
-
 ### Prebid.js dynamic creatives
 
 If you only need to display creatives rendered by Prebid.js (as opposed platforms like AMP or mobile SDKs), 
 you can avoid loading the PUC script - and the performance cost that entails - but still keep some of its advantages, such as regular updates,
-by using [Prebid.js dynamic creatives](/adops/js-dynamic-creative.html). 
-
-<a name="alt-iframes"></a>
+by using [Prebid.js dynamic creatives](/content/guides/ad-ops/js-dynamic-creative). 
 
 ### Alternate methods for Banner and In-Renderer Video iframes
 
@@ -100,17 +87,8 @@ If you only ever need to display non-safeframed banner and in-renderer-video cre
 <script> var w = window; for (i = 0; i < 10; i++) { w = w.parent; if (w.pbjs) { try { w.pbjs.renderAd(document, '%%PATTERN:hb_adid%%'); break; } catch (e) { continue; } } } </script>
 ```
 
-<a name="alt-safeframes"></a>
-
 ### Alternate Method for Banner Safeframes
 
 If safeframe support is required, some options are:
 
 1. Copy the contents of `https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js` into each ad server creative.
-2. [Prebid.js dynamic creatives](/adops/js-dynamic-creative.html)
-
-## Further Reading
-
-- [Step by Step Guide to Google Ad Manager Setup](/adops/step-by-step.html)
-- [Setting up Prebid with the Xandr Monetize Ad Server](/adops/setting-up-prebid-with-the-appnexus-ad-server.html)
-- [Prebid.js dynamic creatives](/adops/js-dynamic-creative.html)

@@ -6,6 +6,7 @@ import {
   SendAllBidsKeywordTargeting,
   DefaultKeywordTargeting,
 } from '../components/DevDocs';
+import IncludeTodo  from '../components/IncludeTodo';
 
 export default {    
     // Add our custom components
@@ -15,4 +16,5 @@ export default {
     LegalWarning,
     SendAllBidsKeywordTargeting,
     DefaultKeywordTargeting,
+    IncludeTodo,
 } 
