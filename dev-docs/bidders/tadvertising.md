@@ -102,4 +102,5 @@ var videoAdUnit = {
 ```
 
 ### First Party Data
+
 Publishers should use the `ortb2` method of setting [First Party Data](/features/firstPartyData.html).
