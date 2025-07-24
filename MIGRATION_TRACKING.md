@@ -45,21 +45,12 @@
 - [x] docs/content/guides/sustainability/index.md
 - [x] docs/content/guides/identity/index.md
 
-### Step 1.4: Configure Docusaurus plugins ✅
+### Step 1.3: Configure Docusaurus plugins ✅
 
 - [x] Updated main docs plugin to exclude dev-docs folder
 - [x] Created separate plugins for versioned documentation
 - [x] Updated navbar configuration
 - [x] Created sidebar configurations for each plugin
-
-### Step 1.3: Copy matching files from existing Jekyll documentation ⏳
-
-- [ ] Copy dev-docs content to docs/dev-docs/prebidjs/
-- [ ] Copy prebid-server content to docs/dev-docs/prebid-server/
-- [ ] Copy prebid-mobile content to docs/dev-docs/prebid-mobile/
-- [ ] Copy formats content to docs/formats/
-- [ ] Copy guide content to docs/guides/
-- [ ] Copy tools content to docs/dev-docs/tools/
 
 ## Phase 2: Layout and Include Components Migration ✅
 
@@ -91,302 +82,175 @@
 - [x] Preserved git history
 - [x] Updated directory structure
 
-## Phase 3: Custom Version Dropdown Implementation ⏳
+## Phase 3: Content Migration - Overview Section ⏳
 
-### Step 3.1: Create custom version dropdown component
+### Step 3.1: Migrate overview/ directory content
 
-- [ ] Create CustomVersionDropdown component
-- [ ] Implement project identification logic
-- [ ] Add styling and UI components
+- [ ] Copy overview/ files to docs/content/
+- [ ] Update frontmatter and links
+- [ ] Fix image and asset references
+- [ ] Update sidebar configuration
 
-### Step 3.2: Implement version selection logic
+## Phase 4: Content Migration - Prebid.js Documentation ⏳
 
-- [ ] Handle multiple versioned projects
-- [ ] Maintain version selection state
-- [ ] Integrate with Docusaurus routing
+### Step 4.1: Copy dev-docs content to docs/dev-docs/prebidjs/
 
-### Step 3.3: Add project identification to dropdown
+- [ ] Migrate file by file, preserving structure
+- [ ] Update frontmatter and links
+- [ ] Fix image and asset references
+- [ ] Update sidebar configuration
+- [ ] Test versioning functionality
 
-- [ ] Show project ID in selection
-- [ ] Handle project-specific versioning
-- [ ] Test with existing versioned content
+## Phase 5: Content Migration - Prebid Server Documentation ⏳
 
-### Step 3.4: Test with existing versioned content
+### Step 5.1: Copy prebid-server content to docs/dev-docs/prebid-server/
 
-- [ ] Test with prebidjs versions
-- [ ] Test with prebid-server versions
-- [ ] Validate routing and navigation
+- [ ] Migrate file by file, preserving structure
+- [ ] Separate Java and Go documentation
+- [ ] Update frontmatter and links
+- [ ] Configure versioning for both Java and Go
+- [ ] Test versioning functionality
 
-## Phase 4: Download Page Migration ⏳
+## Phase 6: Content Migration - Prebid Mobile Documentation ⏳
 
-### Step 4.1: Analyze current download.md structure ✅
+### Step 6.1: Copy prebid-mobile content to docs/dev-docs/prebid-mobile/
+
+- [ ] Migrate file by file, preserving structure
+- [ ] Separate iOS and Android documentation
+- [ ] Update frontmatter and links
+- [ ] Configure versioning for both platforms
+- [ ] Test versioning functionality
+
+## Phase 7: Content Migration - Guides ⏳
+
+### Step 7.1: Copy guide content to docs/content/guides/
+
+- [ ] Migrate file by file, preserving structure
+- [ ] Organize into subdirectories (ad-ops, privacy, etc.)
+- [ ] Update frontmatter and links
+- [ ] Fix any Jekyll-specific syntax
+- [ ] Test navigation and links
+
+## Phase 8: Content Migration - Formats ⏳
+
+### Step 8.1: Copy formats content to docs/content/formats/
+
+- [ ] Migrate file by file, preserving structure
+- [ ] Organize into subdirectories
+- [ ] Update frontmatter and links
+- [ ] Fix any Jekyll-specific syntax
+- [ ] Test navigation and links
+
+## Phase 9: Content Migration - Tools Documentation ⏳
+
+### Step 9.1: Copy tools content to docs/dev-docs/tools/
+
+- [ ] Migrate file by file, preserving structure
+- [ ] Organize into subdirectories
+- [ ] Update frontmatter and links
+- [ ] Fix any Jekyll-specific syntax
+- [ ] Test navigation and links
+
+## Phase 10: Content Migration - Remaining Sections ⏳
+
+### Step 10.1: Migrate remaining content sections
+
+- [ ] features/ directory
+- [ ] troubleshooting/ directory
+- [ ] support/ directory
+- [ ] faq/ directory
+- [ ] policies/ directory
+- [ ] identity/ directory
+- [ ] prebid/ directory
+- [ ] prebid-video/ directory
+- [ ] adops/ directory
+
+## Phase 11: Layout and Include Components Analysis ⏳
+
+### Step 11.1: Analyze _layouts/ directory usage
+
+- [ ] Identify which markdown files use each layout
+- [ ] Create React components for needed layouts
+- [ ] Update migrated content to use new components
+- [ ] Remove unused layouts
+
+### Step 11.2: Analyze _includes/ directory usage
+
+- [ ] Identify which markdown files use each include
+- [ ] Create React components for needed includes
+- [ ] Update migrated content to use new components
+- [ ] Remove unused includes
+
+## Phase 12: Download Page Migration ⏳
+
+### Step 12.1: Analyze current download.md structure ✅
 
 - [x] Reviewed download.md content
 - [x] Identified JavaScript dependencies
 - [x] Mapped Firebase integration
 - [x] Documented module selection logic
 
-### Step 4.2: Create React component for download page
+### Step 12.2: Create React component for download page
 
 - [ ] Create DownloadPage component
 - [ ] Implement form structure
 - [ ] Add module selection checkboxes
 - [ ] Create version selector
 
-### Step 4.3: Migrate JavaScript functionality
+### Step 12.3: Migrate JavaScript functionality
 
 - [ ] Port download.js logic to React
 - [ ] Implement Firebase integration
 - [ ] Add module validation
 - [ ] Create download generation logic
 
-### Step 4.4: Integrate with Firebase API
+### Step 12.4: Integrate with Firebase API
 
 - [ ] Set up Firebase configuration
 - [ ] Implement version fetching
 - [ ] Add error handling
 - [ ] Test API integration
 
-### Step 4.5: Test download functionality
+### Step 12.5: Test download functionality
 
 - [ ] Test module selection
 - [ ] Test version compatibility
 - [ ] Test download generation
 - [ ] Validate error handling
 
-## Phase 5: Prebid.js Documentation Migration ⏳
+## Phase 13: Final Cleanup and Testing ⏳
 
-### Step 4.1: Copy dev-docs content to docs/dev-docs/prebidjs/
-
-- [ ] Copy all .md files
-- [ ] Preserve directory structure
-- [ ] Maintain file relationships
-
-### Step 4.2: Update frontmatter and links
-
-- [ ] Convert Jekyll frontmatter to Docusaurus
-- [ ] Update internal links
-- [ ] Fix image references
-- [ ] Update sidebar references
-
-### Step 4.3: Fix image and asset references
-
-- [ ] Move images to static/img/
-- [ ] Update image paths
-- [ ] Verify all assets load correctly
-
-### Step 4.4: Update sidebar configuration
-
-- [ ] Create custom sidebar for prebidjs
-- [ ] Organize content logically
-- [ ] Test navigation
-
-### Step 4.5: Test versioning functionality
-
-- [ ] Test version switching
-- [ ] Validate version-specific content
-- [ ] Test version dropdown
-
-## Phase 6: Prebid Server Documentation Migration ⏳
-
-### Step 5.1: Copy prebid-server content to docs/dev-docs/prebid-server/
-
-- [ ] Copy all .md files
-- [ ] Preserve directory structure
-- [ ] Maintain file relationships
-
-### Step 5.2: Separate Java and Go documentation
-
-- [ ] Organize Java-specific content
-- [ ] Organize Go-specific content
-- [ ] Create platform-specific indexes
-
-### Step 5.3: Update frontmatter and links
-
-- [ ] Convert Jekyll frontmatter to Docusaurus
-- [ ] Update internal links
-- [ ] Fix image references
-- [ ] Update sidebar references
-
-### Step 5.4: Configure versioning for both Java and Go
-
-- [ ] Set up Java versioning
-- [ ] Set up Go versioning
-- [ ] Test version switching
-
-### Step 5.5: Test versioning functionality
-
-- [ ] Test Java version switching
-- [ ] Test Go version switching
-- [ ] Validate version-specific content
-
-## Phase 7: Prebid Mobile Documentation Migration ⏳
-
-### Step 6.1: Copy prebid-mobile content to docs/dev-docs/prebid-mobile/
-
-- [ ] Copy all .md files
-- [ ] Preserve directory structure
-- [ ] Maintain file relationships
-
-### Step 6.2: Separate iOS and Android documentation
-
-- [ ] Organize iOS-specific content
-- [ ] Organize Android-specific content
-- [ ] Create platform-specific indexes
-
-### Step 6.3: Update frontmatter and links
-
-- [ ] Convert Jekyll frontmatter to Docusaurus
-- [ ] Update internal links
-- [ ] Fix image references
-- [ ] Update sidebar references
-
-### Step 6.4: Configure versioning for both platforms
-
-- [ ] Set up iOS versioning
-- [ ] Set up Android versioning
-- [ ] Test version switching
-
-### Step 6.5: Test versioning functionality
-
-- [ ] Test iOS version switching
-- [ ] Test Android version switching
-- [ ] Validate version-specific content
-
-## Phase 7: Guides Migration ⏳
-
-### Step 7.1: Copy guide content to docs/guides/
-
-- [ ] Copy all .md files
-- [ ] Preserve directory structure
-- [ ] Maintain file relationships
-
-### Step 7.2: Organize into subdirectories (ad-ops, privacy, etc.)
-
-- [ ] Organize ad-ops content
-- [ ] Organize privacy content
-- [ ] Organize sustainability content
-- [ ] Organize identity content
-
-### Step 7.3: Update frontmatter and links
-
-- [ ] Convert Jekyll frontmatter to Docusaurus
-- [ ] Update internal links
-- [ ] Fix image references
-- [ ] Update sidebar references
-
-### Step 7.4: Fix any Jekyll-specific syntax
-
-- [ ] Convert Liquid templates
-- [ ] Update include statements
-- [ ] Fix conditional logic
-
-### Step 7.5: Test navigation and links
-
-- [ ] Test all internal links
-- [ ] Validate navigation structure
-- [ ] Test search functionality
-
-## Phase 8: Formats Migration ⏳
-
-### Step 8.1: Copy formats content to docs/formats/
-
-- [ ] Copy all .md files
-- [ ] Preserve directory structure
-- [ ] Maintain file relationships
-
-### Step 8.2: Organize into subdirectories
-
-- [ ] Organize display content
-- [ ] Organize video content
-- [ ] Organize native content
-- [ ] Organize other format content
-
-### Step 8.3: Update frontmatter and links
-
-- [ ] Convert Jekyll frontmatter to Docusaurus
-- [ ] Update internal links
-- [ ] Fix image references
-- [ ] Update sidebar references
-
-### Step 8.4: Fix any Jekyll-specific syntax
-
-- [ ] Convert Liquid templates
-- [ ] Update include statements
-- [ ] Fix conditional logic
-
-### Step 8.5: Test navigation and links
-
-- [ ] Test all internal links
-- [ ] Validate navigation structure
-- [ ] Test search functionality
-
-## Phase 9: Tools Documentation Migration ⏳
-
-### Step 9.1: Copy tools content to docs/dev-docs/tools/
-
-- [ ] Copy all .md files
-- [ ] Preserve directory structure
-- [ ] Maintain file relationships
-
-### Step 9.2: Organize into subdirectories
-
-- [ ] Organize line-item-manager content
-- [ ] Organize professor-prebid content
-- [ ] Create tool-specific indexes
-
-### Step 9.3: Update frontmatter and links
-
-- [ ] Convert Jekyll frontmatter to Docusaurus
-- [ ] Update internal links
-- [ ] Fix image references
-- [ ] Update sidebar references
-
-### Step 9.4: Fix any Jekyll-specific syntax
-
-- [ ] Convert Liquid templates
-- [ ] Update include statements
-- [ ] Fix conditional logic
-
-### Step 9.5: Test navigation and links
-
-- [ ] Test all internal links
-- [ ] Validate navigation structure
-- [ ] Test search functionality
-
-## Phase 10: Final Cleanup and Testing ⏳
-
-### Step 10.1: Create comprehensive migration checklist
+### Step 13.1: Create comprehensive migration checklist
 
 - [ ] Document all migrated files
 - [ ] Create unmigrated files list
 - [ ] Validate migration completeness
 
-### Step 10.2: Identify unmigrated files
+### Step 13.2: Identify unmigrated files
 
 - [ ] Scan for remaining Jekyll files
 - [ ] Document excluded files
 - [ ] Create cleanup plan
 
-### Step 10.3: Test all navigation and links
+### Step 13.3: Test all navigation and links
 
 - [ ] Run link checker
 - [ ] Test all internal navigation
 - [ ] Validate external links
 
-### Step 10.4: Validate search functionality
+### Step 13.4: Validate search functionality
 
 - [ ] Test search indexing
 - [ ] Validate search results
 - [ ] Test search performance
 
-### Step 10.5: Performance testing
+### Step 13.5: Performance testing
 
 - [ ] Test build times
 - [ ] Test page load speeds
 - [ ] Optimize performance
 
-### Step 10.6: Create MIGRATION.md for tracking
+### Step 13.6: Create MIGRATION.md for tracking
 
 - [ ] Document final migration status
 - [ ] Create maintenance guide
@@ -400,19 +264,22 @@
 ## Current Status
 
 - **Phase 1**: ✅ Complete (Foundation Setup)
-- **Phase 2**: ⏳ In Progress (Custom Version Dropdown)
-- **Phase 3**: ⏳ Pending (Download Page)
-- **Phase 4**: ⏳ Pending (Prebid.js Migration)
-- **Phase 5**: ⏳ Pending (Prebid Server Migration)
-- **Phase 6**: ⏳ Pending (Prebid Mobile Migration)
-- **Phase 7**: ⏳ Pending (Guides Migration)
-- **Phase 8**: ⏳ Pending (Formats Migration)
-- **Phase 9**: ⏳ Pending (Tools Migration)
-- **Phase 10**: ⏳ Pending (Final Cleanup)
+- **Phase 2**: ✅ Complete (Layout and Include Components Migration)
+- **Phase 3**: ⏳ Ready to start (Content Migration - Overview Section)
+- **Phase 4**: ⏳ Pending (Content Migration - Prebid.js)
+- **Phase 5**: ⏳ Pending (Content Migration - Prebid Server)
+- **Phase 6**: ⏳ Pending (Content Migration - Prebid Mobile)
+- **Phase 7**: ⏳ Pending (Content Migration - Guides)
+- **Phase 8**: ⏳ Pending (Content Migration - Formats)
+- **Phase 9**: ⏳ Pending (Content Migration - Tools)
+- **Phase 10**: ⏳ Pending (Content Migration - Remaining Sections)
+- **Phase 11**: ⏳ Pending (Layout and Include Components Analysis)
+- **Phase 12**: ⏳ Pending (Download Page Migration)
+- **Phase 13**: ⏳ Pending (Final Cleanup and Testing)
 
 ## Next Steps
 
-1. Begin Phase 2: Implement custom version dropdown
+1. Begin Phase 3: Migrate overview/ directory content file by file
 2. Set up development environment for testing
 3. Create backup of current documentation
-4. Start implementing custom version dropdown component
+4. Start file-by-file migration process using sidebar.yml as reference

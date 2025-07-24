@@ -44,86 +44,127 @@ docs/
 
 ## Migration Steps
 
-### Phase 1: Foundation Setup ✅ (Partially Complete)
+### Phase 1: Foundation Setup ✅ (Complete)
 
 - [x] Basic Docusaurus configuration
 - [x] Custom tocPlugin implementation
 - [x] Initial docs structure setup
-- [ ] **Step 1.1**: Create target folder structure
-- [ ] **Step 1.2**: Generate sample files in each target directory
-- [ ] **Step 1.3**: Copy matching files from existing Jekyll documentation
+- [x] **Step 1.1**: Create target folder structure
+- [x] **Step 1.2**: Generate sample files in each target directory
+- [x] **Step 1.3**: Configure Docusaurus plugins for versioned documentation
 
-### Phase 2: Custom Version Dropdown Implementation
+### Phase 2: Layout and Include Components Migration ✅ (Complete)
 
-- [ ] **Step 2.1**: Create custom version dropdown component
-- [ ] **Step 2.2**: Implement version selection logic
-- [ ] **Step 2.3**: Add project identification to dropdown
-- [ ] **Step 2.4**: Test with existing versioned content
+- [x] **Step 2.1**: Create React components for essential layouts
+- [x] **Step 2.2**: Create React components for essential includes
+- [x] **Step 2.3**: Identify and remove unnecessary layouts/includes
+- [x] **Step 2.4**: Move bidders directory
 
-### Phase 3: Download Page Migration
+### Phase 3: Content Migration - Overview Section
 
-- [ ] **Step 3.1**: Analyze current download.md structure
-- [ ] **Step 3.2**: Create React component for download page
-- [ ] **Step 3.3**: Migrate JavaScript functionality
-- [ ] **Step 3.4**: Integrate with Firebase API
-- [ ] **Step 3.5**: Test download functionality
+- [ ] **Step 3.1**: Migrate overview/ directory content
+  - [ ] Copy overview/ files to docs/content/
+  - [ ] Update frontmatter and links
+  - [ ] Fix image and asset references
+  - [ ] Update sidebar configuration
 
-### Phase 4: Prebid.js Documentation Migration
+### Phase 4: Content Migration - Prebid.js Documentation
 
 - [ ] **Step 4.1**: Copy dev-docs content to docs/dev-docs/prebidjs/
-- [ ] **Step 4.2**: Update frontmatter and links
-- [ ] **Step 4.3**: Fix image and asset references
-- [ ] **Step 4.4**: Update sidebar configuration
-- [ ] **Step 4.5**: Test versioning functionality
+  - [ ] Migrate file by file, preserving structure
+  - [ ] Update frontmatter and links
+  - [ ] Fix image and asset references
+  - [ ] Update sidebar configuration
+  - [ ] Test versioning functionality
 
-### Phase 5: Prebid Server Documentation Migration
+### Phase 5: Content Migration - Prebid Server Documentation
 
 - [ ] **Step 5.1**: Copy prebid-server content to docs/dev-docs/prebid-server/
-- [ ] **Step 5.2**: Separate Java and Go documentation
-- [ ] **Step 5.3**: Update frontmatter and links
-- [ ] **Step 5.4**: Configure versioning for both Java and Go
-- [ ] **Step 5.5**: Test versioning functionality
+  - [ ] Migrate file by file, preserving structure
+  - [ ] Separate Java and Go documentation
+  - [ ] Update frontmatter and links
+  - [ ] Configure versioning for both Java and Go
+  - [ ] Test versioning functionality
 
-### Phase 6: Prebid Mobile Documentation Migration
+### Phase 6: Content Migration - Prebid Mobile Documentation
 
 - [ ] **Step 6.1**: Copy prebid-mobile content to docs/dev-docs/prebid-mobile/
-- [ ] **Step 6.2**: Separate iOS and Android documentation
-- [ ] **Step 6.3**: Update frontmatter and links
-- [ ] **Step 6.4**: Configure versioning for both platforms
-- [ ] **Step 6.5**: Test versioning functionality
+  - [ ] Migrate file by file, preserving structure
+  - [ ] Separate iOS and Android documentation
+  - [ ] Update frontmatter and links
+  - [ ] Configure versioning for both platforms
+  - [ ] Test versioning functionality
 
-### Phase 7: Guides Migration
+### Phase 7: Content Migration - Guides
 
 - [ ] **Step 7.1**: Copy guide content to docs/content/guides/
-- [ ] **Step 7.2**: Organize into subdirectories (ad-ops, privacy, etc.)
-- [ ] **Step 7.3**: Update frontmatter and links
-- [ ] **Step 7.4**: Fix any Jekyll-specific syntax
-- [ ] **Step 7.5**: Test navigation and links
+  - [ ] Migrate file by file, preserving structure
+  - [ ] Organize into subdirectories (ad-ops, privacy, etc.)
+  - [ ] Update frontmatter and links
+  - [ ] Fix any Jekyll-specific syntax
+  - [ ] Test navigation and links
 
-### Phase 8: Formats Migration
+### Phase 8: Content Migration - Formats
 
 - [ ] **Step 8.1**: Copy formats content to docs/content/formats/
-- [ ] **Step 8.2**: Organize into subdirectories
-- [ ] **Step 8.3**: Update frontmatter and links
-- [ ] **Step 8.4**: Fix any Jekyll-specific syntax
-- [ ] **Step 8.5**: Test navigation and links
+  - [ ] Migrate file by file, preserving structure
+  - [ ] Organize into subdirectories
+  - [ ] Update frontmatter and links
+  - [ ] Fix any Jekyll-specific syntax
+  - [ ] Test navigation and links
 
-### Phase 9: Tools Documentation Migration
+### Phase 9: Content Migration - Tools Documentation
 
 - [ ] **Step 9.1**: Copy tools content to docs/dev-docs/tools/
-- [ ] **Step 9.2**: Organize into subdirectories
-- [ ] **Step 9.3**: Update frontmatter and links
-- [ ] **Step 9.4**: Fix any Jekyll-specific syntax
-- [ ] **Step 9.5**: Test navigation and links
+  - [ ] Migrate file by file, preserving structure
+  - [ ] Organize into subdirectories
+  - [ ] Update frontmatter and links
+  - [ ] Fix any Jekyll-specific syntax
+  - [ ] Test navigation and links
 
-### Phase 10: Final Cleanup and Testing
+### Phase 10: Content Migration - Remaining Sections
 
-- [ ] **Step 10.1**: Create comprehensive migration checklist
-- [ ] **Step 10.2**: Identify unmigrated files
-- [ ] **Step 10.3**: Test all navigation and links
-- [ ] **Step 10.4**: Validate search functionality
-- [ ] **Step 10.5**: Performance testing
-- [ ] **Step 10.6**: Create MIGRATION.md for tracking
+- [ ] **Step 10.1**: Migrate remaining content sections
+  - [ ] features/ directory
+  - [ ] troubleshooting/ directory
+  - [ ] support/ directory
+  - [ ] faq/ directory
+  - [ ] policies/ directory
+  - [ ] identity/ directory
+  - [ ] prebid/ directory
+  - [ ] prebid-video/ directory
+  - [ ] adops/ directory
+
+### Phase 11: Layout and Include Components Analysis
+
+- [ ] **Step 11.1**: Analyze _layouts/ directory usage
+  - [ ] Identify which markdown files use each layout
+  - [ ] Create React components for needed layouts
+  - [ ] Update migrated content to use new components
+  - [ ] Remove unused layouts
+
+- [ ] **Step 11.2**: Analyze _includes/ directory usage
+  - [ ] Identify which markdown files use each include
+  - [ ] Create React components for needed includes
+  - [ ] Update migrated content to use new components
+  - [ ] Remove unused includes
+
+### Phase 12: Download Page Migration
+
+- [ ] **Step 12.1**: Analyze current download.md structure
+- [ ] **Step 12.2**: Create React component for download page
+- [ ] **Step 12.3**: Migrate JavaScript functionality
+- [ ] **Step 12.4**: Integrate with Firebase API
+- [ ] **Step 12.5**: Test download functionality
+
+### Phase 13: Final Cleanup and Testing
+
+- [ ] **Step 13.1**: Create comprehensive migration checklist
+- [ ] **Step 13.2**: Identify unmigrated files
+- [ ] **Step 13.3**: Test all navigation and links
+- [ ] **Step 13.4**: Validate search functionality
+- [ ] **Step 13.5**: Performance testing
+- [ ] **Step 13.6**: Create MIGRATION.md for tracking
 
 ## Files to NOT Migrate
 
@@ -131,13 +172,6 @@ docs/
 - algolia site search (excluded per requirements)
 
 ## Technical Requirements
-
-### Custom Version Dropdown
-
-- Must show project ID in selection
-- Support multiple versioned projects
-- Maintain current version selection state
-- Integrate with Docusaurus routing
 
 ### Download Page
 
@@ -172,17 +206,16 @@ docs/
 
 ## Timeline Estimate
 
-- **Phase 1-2**: 1-2 weeks (Foundation and Version Dropdown)
-- **Phase 3**: 1 week (Download Page)
-- **Phase 4-6**: 2-3 weeks (Project Documentation)
-- **Phase 7-9**: 1-2 weeks (Guides, Formats, Tools)
-- **Phase 10**: 1 week (Testing and Cleanup)
+- **Phase 3-10**: 4-6 weeks (Content Migration)
+- **Phase 11**: 2-3 weeks (Layout and Include Analysis)
+- **Phase 12**: 1 week (Download Page)
+- **Phase 13**: 1 week (Testing and Cleanup)
 
-**Total Estimated Time**: 6-9 weeks
+**Total Estimated Time**: 8-11 weeks
 
 ## Next Steps
 
-1. Begin with Phase 1.1: Create target folder structure
+1. Begin with Phase 3: Migrate overview/ directory content
 2. Set up development environment for testing
 3. Create backup of current documentation
-4. Start implementing custom version dropdown
+4. Start file-by-file migration process

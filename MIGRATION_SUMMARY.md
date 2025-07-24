@@ -7,15 +7,15 @@
 1. **Target Folder Structure Created**
    - All required directories have been created under `docs/`
    - Structure follows the specified organization:
-     - `docs/download/` - Download page
+     - `docs/content/download/` - Download page
      - `docs/dev-docs/prebidjs/` - Prebid.js documentation (versioned)
      - `docs/dev-docs/prebid-server/java/` - Prebid Server Java (versioned)
      - `docs/dev-docs/prebid-server/go/` - Prebid Server Go (versioned)
      - `docs/dev-docs/prebid-mobile/ios/` - Prebid Mobile iOS (versioned)
      - `docs/dev-docs/prebid-mobile/android/` - Prebid Mobile Android (versioned)
      - `docs/dev-docs/tools/` - Tools documentation
-     - `docs/formats/` - Ad formats documentation
-     - `docs/guides/` - Implementation guides
+     - `docs/content/formats/` - Ad formats documentation
+     - `docs/content/guides/` - Implementation guides
 
 2. **Sample Files Generated**
    - Created index.md files in each directory with proper Docusaurus frontmatter
@@ -49,6 +49,24 @@
      { id: 'tools', path: 'docs/dev-docs/tools' },
    ]
    ```
+
+### Phase 2: Layout and Include Components Migration - COMPLETE
+
+1. **React Components Created**
+   - Created HomeLayout component
+   - Created BidderLayout component  
+   - Created DocsLayout component
+   - Created Navigation component with dropdown menus
+   - Created Sidebar component with collapsible sections
+   - Created Footer component
+
+2. **Directory Structure Updated**
+   - Moved bidders directory from dev-docs/bidders to docs/dev-docs/prebidjs/bidders
+   - Preserved git history during move
+
+3. **Unnecessary Components Identified**
+   - Identified layouts to remove: test.html, userid.html, video_sample.html, api_prebidjs.html, internal_api_prebidjs.html, pb-video-template.html, analytics.html, fourofour.html
+   - Identified includes to remove: vimeo-iframe.html, prebidjs-non-prod.html, gptjs.html, astjs.html, legal-warning.html, body-end.html, example_tab.html, head.html
 
 ## Current Configuration
 
@@ -84,39 +102,49 @@ docs/
 
 ## Next Steps
 
-### Phase 2: Custom Version Dropdown Implementation
+### Phase 3: Content Migration - Overview Section
 
-1. **Create CustomVersionDropdown component**
-   - Implement project identification in dropdown
-   - Handle multiple versioned projects
-   - Maintain version selection state
+1. **Migrate overview/ directory content**
+   - Copy overview/ files to docs/content/
+   - Update frontmatter and links
+   - Fix image and asset references
+   - Update sidebar configuration
 
-2. **Test with existing versioned content**
-   - Validate with prebidjs versions
-   - Test with prebid-server versions
-   - Ensure proper routing
+### Phase 4-10: Content Migration - All Sections
 
-### Phase 3: Download Page Migration
+1. **File-by-file migration process**
+   - Prebid.js documentation (dev-docs/ → docs/dev-docs/prebidjs/)
+   - Prebid Server documentation (prebid-server/ → docs/dev-docs/prebid-server/)
+   - Prebid Mobile documentation (prebid-mobile/ → docs/dev-docs/prebid-mobile/)
+   - Guides content (guide/ → docs/content/guides/)
+   - Formats content (formats/ → docs/content/formats/)
+   - Tools content (tools/ → docs/dev-docs/tools/)
+   - Remaining sections (features/, troubleshooting/, support/, faq/, policies/, identity/, prebid/, prebid-video/, adops/)
+
+2. **Update frontmatter and links**
+   - Convert Jekyll frontmatter to Docusaurus
+   - Fix internal links using sidebar.yml as reference
+   - Update image references
+   - Adapt sidebar ordering as needed
+
+### Phase 11: Layout and Include Components Analysis
+
+1. **Analyze _layouts/ directory usage**
+   - Identify which markdown files use each layout
+   - Create React components for needed layouts
+   - Update migrated content to use new components
+
+2. **Analyze _includes/ directory usage**
+   - Identify which markdown files use each include
+   - Create React components for needed includes
+   - Update migrated content to use new components
+
+### Phase 12: Download Page Migration
 
 1. **Create React component for download page**
    - Port existing download.md functionality
    - Implement Firebase integration
    - Add module selection logic
-
-### Phase 4-9: Content Migration
-
-1. **Copy existing Jekyll content**
-   - Migrate dev-docs to docs/dev-docs/prebidjs/
-   - Migrate prebid-server content
-   - Migrate prebid-mobile content
-   - Migrate formats content
-   - Migrate guides content
-   - Migrate tools content
-
-2. **Update frontmatter and links**
-   - Convert Jekyll frontmatter to Docusaurus
-   - Fix internal links
-   - Update image references
 
 ## Key Benefits of Current Setup
 
@@ -132,6 +160,7 @@ docs/
 - `sidebars.*.ts` - Sidebar configurations
 - `docs/` - Main documentation structure
 - `docs/dev-docs/` - Versioned documentation
+- `_data/sidebar.yml` - Reference for old URL structure and linking
 
 ## Testing Recommendations
 
@@ -143,9 +172,11 @@ docs/
 ## Migration Status
 
 - **Phase 1**: ✅ Complete
-- **Phase 2**: ⏳ Ready to start
-- **Phase 3**: ⏳ Pending
-- **Phase 4-9**: ⏳ Pending
-- **Phase 10**: ⏳ Pending
+- **Phase 2**: ✅ Complete
+- **Phase 3**: ⏳ Ready to start
+- **Phase 4-10**: ⏳ Pending
+- **Phase 11**: ⏳ Pending
+- **Phase 12**: ⏳ Pending
+- **Phase 13**: ⏳ Pending
 
-The foundation is now solid and ready for the next phase of migration.
+The foundation is now solid and ready for content migration. The next step is to begin migrating the overview/ directory content file by file.
