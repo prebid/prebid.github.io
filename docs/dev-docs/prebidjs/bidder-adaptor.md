@@ -1,16 +1,10 @@
 ---
-layout: page_v2
+sidebar_position: 5
 title: How to Add a New Prebid.js Bidder Adapter
 description: Documentation on how to add a Prebid.js new bidder adapter
-top_nav_section: dev_docs
-nav_section: adapters
-sidebarType: 1
 ---
 
-
 # How to Add a New Prebid.js Bidder Adapter
-
-{:.no_toc}
 
 At a high level, a bidder adapter is responsible for:
 
@@ -19,21 +13,16 @@ At a high level, a bidder adapter is responsible for:
 
 This page has instructions for writing your own bidder adapter.  The instructions here try to walk you through some of the code you'll need to write for your adapter.  When in doubt, use [the working adapters in the GitHub repo](https://github.com/prebid/Prebid.js/tree/master/modules) for reference.
 
-* TOC
-{:toc}
-
 ## Planning your Adapter
 
-* [Required Adapter Rules](#bidder-adaptor-Required-Adapter-Conventions)
-* [Required Files](#bidder-adaptor-Required-Files)
+* [Required Adapter Rules](#bidder-adaptor-required-adapter-conventions)
+* [Required Files](#bidder-adaptor-required-files)
 * [Designing your Bid Params](#bidder-adaptor-Designing-your-Bid-Params)
 * [HTTP Simple Requests](#bidder-adaptor-HTTP-simple-requests)
 
-<a name="bidder-adaptor-Required-Adapter-Conventions"></a>
-
 ### Required Adapter Rules
 
-In order to provide a fast and safe header bidding environment for publishers, the Prebid.org team reviews all adapters for the required bid adapter conventions laid out in the [Module Rules](/dev-docs/module-rules.html). Here are additional details specific to Prebid.js:
+In order to provide a fast and safe header bidding environment for publishers, the Prebid.org team reviews all adapters for the required bid adapter conventions laid out in the [Module Rules](/dev-docs/prebidjs/module-rules). Here are additional details specific to Prebid.js:
 
 * **No loading of external code**: All code must be present in the adapter, not loaded at runtime. Exceptions are possible -- see [the full policy](https://github.com/prebid/prebid-js-external-js-template#policy).
 * **All user-sync activity must be registered via the provided functions**: The platform will place all registered syncs in the page after the auction is complete, subject to publisher configuration.
@@ -41,10 +30,9 @@ In order to provide a fast and safe header bidding environment for publishers, t
 * **Adapters may not modify ad slots directly**: For example, accessing `googletag.pubads().getSlots()` to modify or set targeting directly on slots is not permitted.
 * **All parameter conventions must be followed**: Video params must be read from AdUnit.mediaTypes.video when available; however, bidder config can override the ad unit.
 
-{: .alert.alert-danger :}
-The above list is **not** the full list of requirements. Failure to follow any of the required conventions defined in the [Module Rules](/dev-docs/module-rules.html) could lead to delays in approving your adapter for inclusion in Prebid.js. If you'd like to apply for an exception to one of the rules, make your request in a new [Prebid.js issue](https://github.com/prebid/Prebid.js/issues).
-
-<a name="bidder-adaptor-Required-Files"></a>
+:::danger
+The above list is **not** the full list of requirements. Failure to follow any of the required conventions defined in the [Module Rules](/dev-docs/prebidjs/module-rules) could lead to delays in approving your adapter for inclusion in Prebid.js. If you'd like to apply for an exception to one of the rules, make your request in a new [Prebid.js issue](https://github.com/prebid/Prebid.js/issues).
+:::
 
 ### Required Files
 
@@ -176,15 +164,15 @@ Prebid recommends keeping module HTTP requests 'simple' if at all possible. The 
 
 ## Creating the Adapter
 
-{: .alert.alert-success :}
+:::success
 If you're the type that likes to skip to the answer instead of going through a tutorial, see the <a href="#bidder-example">Full Bid Adapter Example</a> below.
+:::
 
-{: .alert.alert-warning :}
-
+:::warning
 ### Note on ORTB adapters
 
-{: .alert.alert-warning :}
 If your adapter interfaces with an ORTB backend, you may take advantage of Prebid's [ORTB conversion library](https://github.com/prebid/Prebid.js/blob/master/libraries/ortbConverter/README.md), which provides most of the implementation for `buildRequests` and `interpretResponse`.
+:::
 
 * [Overview](#bidder-adaptor-Overview)
 * [Building the Request](#bidder-adaptor-Building-the-Request)
@@ -360,15 +348,18 @@ Notes on parameters in the bidderRequest object:
 * **auctionId** (see [note](#tid-warning)) is unique per call to `requestBids()`, but is the same across ad units.
 * **ortb2** is the global (not specific to any adUnit) [first party data](/features/firstPartyData.html) to use for all requests in this auction. Note that Prebid allows any standard ORTB field or extension as first party data - including items that typically wouldn't be considered as such, for example user agent client hints (`device.sua`) or information on the regulatory environment (`regs.ext.gpc`).
 
-    {: .alert.alert-warning :}
-    If your adapter generates an ORTB request, we recommend that you include _everything_ contained in `bidderRequest.ortb2` (and `bidRequest.ortb2Imp`); or, use the [ORTB conversion library](https://github.com/prebid/Prebid.js/blob/master/libraries/ortbConverter/README.md) which does this by default.  
+:::warning
 
-    Since version 7.29, if Prebid finds appropriate values for the following fields, `ortb2` is guaranteed to contain:
+If your adapter generates an ORTB request, we recommend that you include _everything_ contained in `bidderRequest.ortb2` (and `bidRequest.ortb2Imp`); or, use the [ORTB conversion library](https://github.com/prebid/Prebid.js/blob/master/libraries/ortbConverter/README.md) which does this by default.  
 
-  * under `site`: `page`, `ref`, `domain`, `publisher.domain`, `keywords`;
-  * under `device`: `w`, `h`, `dnt`, `ua`, `sua`, `language`;
-  * under `regs`: `coppa`, `ext.gdpr`, `ext.us_privacy`;
-  * under `user`: `user.ext.consent`
+:::
+
+Since version 7.29, if Prebid finds appropriate values for the following fields, `ortb2` is guaranteed to contain:
+
+* under `site`: `page`, `ref`, `domain`, `publisher.domain`, `keywords`;
+* under `device`: `w`, `h`, `dnt`, `ua`, `sua`, `language`;
+* under `regs`: `coppa`, `ext.gdpr`, `ext.us_privacy`;
+* under `user`: `user.ext.consent`
 
 Some of the data in `ortb2` is also made available through other `bidderRequest` fields:
 
@@ -378,17 +369,16 @@ Some of the data in `ortb2` is also made available through other `bidderRequest`
 
 <a id="tid-warning"></a>
 
-{: .alert.alert-warning :}
+:::warning
 Since version 8, `auctionId` and `transactionId` are being migrated to `ortb2.source.tid` and `ortb2Imp.ext.tid` respectively; and are disabled by default, requiring [publisher opt-in](https://docs.prebid.org/dev-docs/pb8-notes.html#transaction-identifiers-are-now-reliable-and-opt-in).
 When disabled, `auctionId`/`transactionId` are set to `null`; `ortb2.source.tid`/`ortb2Imp.ext.tid` are not populated. Your adapter should prefer the latter two, and be able to handle the case when they are undefined.
+:::
 
 <a name="std-param-location"></a>
 
 #### Prebid Standard Parameter Locations
 
 There are a number of important values that a publisher expects to be handled in a standard way across all Prebid.js adapters:
-
-{: .table .table-bordered .table-striped }
 
 | Parameter | Description                                   | Example               |
 | ----- | ------------ | ---------- |
@@ -423,8 +413,6 @@ The URLs returned by `refererInfo` are in raw format. We recommend encoding the 
 You shouldn't call your bid endpoint directly. Rather, the end result of your buildRequests function is one or more
 ServerRequest objects. These objects have this structure:
 
-{: .table .table-bordered .table-striped }
-
 | Attribute | Type             | Description                                                        | Example Value               |
 |-----------+------------------+--------------------------------------------------------------------+-----------------------------|
 | `method`  | String           | Which HTTP method should be used.                                  | `POST`                      |
@@ -446,8 +434,6 @@ return {
 To have the topics in the Sec-Browsing-Topics request header marked by the browser as observed, but also to include the current page visit in the user's next epoch top topic calculation, the server's response has to include Observe-Browsing-Topics: ?1.
 
 Here's a JavaScript example using setHeader(): `res.setHeader('Observe-Browsing-Topics', '?1');`
-
-<a name="bidder-adaptor-Interpreting-the-Response"></a>
 
 ### Interpreting the Response
 
@@ -498,14 +484,13 @@ The `interpretResponse` function will be called when the browser has received th
 
 ```
 
-{: .alert.alert-info :}
+:::info
 Please provide as much information as possible in the `meta` object. Publishers use this
 data for tracking down bad creatives and ad blocking. The advertiserDomains field and the Demand Chain Object are
 particularly useful. Publishers may have analytics or security vendors with the capability to parse and validate complicated demand chain objects. The meta.advertiserDomains field is proposed as required in 5.0; other fields may become required in a future release.
+:::
 
 The parameters of the `bidResponse` object are:
-
-{: .table .table-bordered .table-striped }
 
 | Key          | Scope                                       | Description                                                                                                                                   | Example                              |
 |--------------+---------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------|
@@ -544,10 +529,11 @@ The parameters of the `bidResponse` object are:
 | `eventtrackers[].method` | Required     | Tracking method. Prebid.js only fires image pixels (`1`)                                        |    `1`        |
 | `eventtrackers[].url`    | Required     | Tracker URL                                                                                      | `https//www.example.com/track` |
 
-{: .alert.alert-info :}
+:::info
 **Note:** bid adapters must be coded to accept the 'advertiserDomains' parameter from their endpoint even if that endpoint doesn't currently respond with that value.
 Prebid.org publishers have required that all bidders must eventually supply this value, so every bidder should be planning for it.
 There's often a long lag time between making a PBJS adapter update and when most pubs upgrade to it, so we minimally require adapters to be ready for the day when the endpoint responds with adomain.
+:::
 
 #### Resolve OpenRTB Macros in the Creatives
 
@@ -559,8 +545,6 @@ bid currency. Header Bidding is a first-price auction, the best candidate for
 "clearing price" is the original bid itself.
 
 Prebid won't resolve any other macros in the creative (e.g. AUCTION_ID, AUCTION_CURRENCY).
-
-<a name="bidder-adaptor-Registering-User-Syncs"></a>
 
 ### Registering User Syncs
 
@@ -600,8 +584,6 @@ See below for an example implementation.  For more examples, search for `getUser
 }
 
 ```
-
-<a name="bidder-adaptor-Registering-on-Timout"></a>
 
 ### Registering on Timeout
 
@@ -762,18 +744,17 @@ spec.aliases can be an array of strings or objects.
 
 If the alias entry is an object, the following attributes are supported:
 
-{: .table .table-bordered .table-striped }
-
 | Name  | Scope | Description   | Type      |
 |-------|-------|---------------|-----------|
 | `code` | required | shortcode/partner name | `string` |
 | `gvlid` | optional | global vendor list id of company scoped to alias | `integer` |
 | `skipPbsAliasing` | optional | ability to skip passing spec.code to prebid server in request extension. In case you have a prebid server adapter with the name same as the alias/shortcode. Default value: `false` | `boolean` |
 
-{: .alert.alert-info :}
+:::info
 Note on aliases and TCF Global Vendor List IDs: if an alias entry does not have its own GVLID but wishes to claim GDPR support,
-the documentation entry (The file in <https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders>) must list the GVLID of the main adapter with that company's name in parentheses.
+the documentation entry (The file in [github dev-docs/bidders](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders)) must list the GVLID of the main adapter with that company's name in parentheses.
 Look for other doc entries containing an `aliasCode` metadata entry.
+:::
 
 ### Supporting Privacy Regulations
 
@@ -813,8 +794,9 @@ export const spec = {
 }
 ```
 
-{: .alert.alert-info :}
+:::info
 If your adapter supports banner and video media types, make sure to include `'banner'` in the `supportedMediaTypes` array as well
+:::
 
 ### Step 2: Accept video parameters and pass them to your server
 
@@ -873,8 +855,9 @@ if (bid.mediaType === 'video' || (videoMediaType && context !== 'outstream')) {
 
 #### Long-Form Video Content
 
-{: .alert.alert-info :}
+:::info
 The following is Prebid's way to setup bid request for long-form, adapters are free to choose their own approach.
+:::
 
 Prebid now accepts multiple bid responses for a single `bidRequest.bids` object. For each Ad pod Prebid expects you to send back n bid responses. It is up to you how bid responses are returned. Prebid's recommendation is that you expand an Ad pod placement into a set of request objects according to the total adpod duration and the range of duration seconds. It also depends on your endpoint as well how you may want to create your request for long-form. Appnexus adapter follows below algorithm to expand its placement.
 
@@ -974,8 +957,6 @@ If the demand partner is going to use Prebid API for this process, their adapter
 
 **Params**  
 
-{: .table .table-bordered .table-striped }
-
 | Key             | Scope    | Description                                                                                        | Example                    |
 |-----------------|----------|----------------------------------------------------------------------------------------------------|----------------------------|
 | `url`             | Required | The URL to the mapping file.                                                                       | `"//example.com/mapping.json"` |
@@ -1003,8 +984,6 @@ getIabSubCategory(bidderCode, pCategory)
 ```
 
 **Params**
-
-{: .table .table-bordered .table-striped }
 
 | Key          | Scope    | Description                                   | Example               |
 |--------------|----------|-----------------------------------------------|-----------------------|
@@ -1142,7 +1121,7 @@ We assume that in the first times all adapters will only understand legacy-style
 
 * `convertOrtbRequestToProprietaryNative(bidRequests)` - this function will convert OpenRTB-style native requests to legacy format. Actually, we've already added this conversion to all adapters so they will not fail when an OpenRTB definition is used by publisher.
 
-* `toOrtbNativeRequest(legacyNativeAssets)` - In the future, you should convert your bid adapter to assume that OpenRTB is the standard. If, however, you encounter a native bid without the `ortb` property, you can call this function to convert legacy assets to OpenRTB.
+* `toOrtbNativeRequest(legacyNativeAssets)` - In the future, you should convert your bid adapter to assume that OpenRTB is the standard. If, however, you encounter a native bid without the `ortb` property, you can call this function to convert legacy assets to OpenRTB.
 
 For the bid response, Prebid expects to find your OpenRTB bid response under `bid.native.ortb` property.
 

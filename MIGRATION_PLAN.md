@@ -182,6 +182,7 @@ docs/
 - **Convert Jekyll syntax**: Replace Liquid templates and Jekyll-specific includes with React components
 - **Replace includes with IncludeTodo component**: Use `<IncludeTodo include="{% include ... %}"/>` for unmigrated includes
 - **If a markdown file requires a React component, change its extension from `.md` to `.mdx` using `git mv`**
+- **Migrate no more than 5 files at once before reviewing**: This ensures manageable changes and allows for proper review
 - **Build validation**: `npm run build` should not have any errors after each migration step
 
 ### IncludeTodo Component

@@ -1,14 +1,8 @@
 ---
-layout: page_v2
+sidebar_position: 3
 title: Publisher API Reference
 description: Publisher API Reference for Prebid.js Header Bidding
-top_nav_section: dev_docs
-nav_section: reference
-pid: 10
-sidebarType: 1
 ---
-
-
 
 # Publisher API Reference
 

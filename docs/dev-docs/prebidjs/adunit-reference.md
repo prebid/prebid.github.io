@@ -1,13 +1,10 @@
 ---
-layout: page_v2
+sidebar_position: 2
 title: Ad Unit Reference
 description: Ad Unit Reference
-sidebarType: 1
 ---
 
 # Ad Unit Reference
-
-{:.no_toc}
 
 The ad unit object is where you configure what kinds of ads you will show in a given ad slot on your page, including:
 
@@ -18,32 +15,26 @@ The ad unit object is where you configure what kinds of ads you will show in a g
 It's also where you will configure bidders, e.g.:
 
 * Which bidders are allowed to bid for that ad slot
-* What information is passed to those bidders via their [parameters]({{site.baseurl}}/dev-docs/bidders.html)
+* What information is passed to those bidders via their [parameters](/dev-docs/prebidjs/bidders)
 
 This page describes the properties of the `adUnit` object.
-
-* TOC
-{:toc}
 
 ## AdUnit
 
 See the table below for the list of properties on the ad unit. For example ad units, see the [Examples](#adUnit-examples) below.
 
-{: .table .table-bordered .table-striped }
-| Name | Scope | Type | Description |
-|--------------+----------+---------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `code` | Required | String | An identifier you create and assign to this ad unit. Generally this is set to the ad slot name or the div element ID. Used by [setTargetingForGPTAsync()](/dev-docs/publisher-api-reference/setTargetingForGPTAsync.html) to match which auction is for which ad slot. |
-| `bids` | Optional | Array[Object] | Array of bid objects representing demand partners and associated parameters for a given ad unit. See [Bids](#adUnit.bids) below. |
-| `mediaTypes` | Optional | Object | Defines one or more media types that can serve into the ad unit. For a list of properties, see [`adUnit.mediaTypes`](#adUnit.mediaTypes) below. |
-| `labelAny` | Optional | Array[String] | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive]. |
-| `labelAll` | Optional | Array[String] | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive]. |
-| `ortb2Imp` | Optional | Object | ortb2Imp is used to signal OpenRTB Imp objects at the adUnit grain. Similar to the global ortb2 field used for [global first party data configuration](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd), but specific to this adunit.|
-| `ttlBuffer` | Optional | Number | TTL buffer override for this adUnit. See [setConfig({ttlBuffer})](/dev-docs/publisher-api-reference/setConfig.html#setConfig-ttlBuffer) |
-| `renderer` | Optional | Object | Custom renderer, typically used for [outstream video](/dev-docs/show-outstream-video-ads.html) |
-| `video` | Optional | Object | Used to link an Ad Unit to the [Video Module][videoModule]. For allowed params see the [adUnit.video reference](#adunitvideo). |
-| `deferBilling` | Optional | Boolean | Used by a publisher to flag adUnits as being separately billable. This allows for a publisher to trigger billing manually for winning bids. See [pbjs.triggerBilling](/dev-docs/publisher-api-reference/triggerBilling.html) and [onBidBillable](/dev-docs/bidder-adaptor.html#registering-on-bid-billable) for more info. |
-
-<a name="adUnit.bids"></a>
+| Name           | Scope     | Type                | Description                                                                                                                                                                                                                                                                         |
+| -------------- | --------- | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `code`         | Required  | String              | An identifier you create and assign to this ad unit. Generally this is set to the ad slot name or the div element ID. Used by [setTargetingForGPTAsync()](/dev-docs/prebidjs/publisher-api-reference/setTargetingForGPTAsync) to match which auction is for which ad slot.           |
+| `bids`         | Optional  | Array[Object]       | Array of bid objects representing demand partners and associated parameters for a given ad unit. See [Bids](#adunitbids) below.                                                                                                              |
+| `mediaTypes`   | Optional  | Object              | Defines one or more media types that can serve into the ad unit. For a list of properties, see [`adUnit.mediaTypes`](#adunitmediatypes) below.                                                                                               |
+| `labelAny`     | Optional  | Array[String]       | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                                                                                                                       |
+| `labelAll`     | Optional  | Array[String]       | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                                                                                                                       |
+| `ortb2Imp`     | Optional  | Object              | ortb2Imp is used to signal OpenRTB Imp objects at the adUnit grain. Similar to the global ortb2 field used for [global first party data configuration](/dev-docs/prebidjs/publisher-api-reference/setConfig#setConfig-fpd), but specific to this adunit.                             |
+| `ttlBuffer`    | Optional  | Number              | TTL buffer override for this adUnit. See [`setConfig({ttlBuffer})`](/dev-docs/prebidjs/publisher-api-reference/setConfig#setConfig-ttlBuffer)                                                                                                |
+| `renderer`     | Optional  | Object              | Custom renderer, typically used for [outstream video](/dev-docs/prebidjs/show-outstream-video-ads)                                                                                                                                           |
+| `video`        | Optional  | Object              | Used to link an Ad Unit to the [Video Module][videoModule]. For allowed params see the [adUnit.video reference](#adunitvideo).                                                                                                               |
+| `deferBilling` | Optional  | Boolean             | Used by a publisher to flag adUnits as being separately billable. This allows for a publisher to trigger billing manually for winning bids. See [pbjs.triggerBilling](/dev-docs/prebidjs/publisher-api-reference/triggerBilling) and [onBidBillable](/dev-docs/prebidjs/bidder-adaptor#registering-on-bid-billable) for more info. |
 
 ### adUnit.bids
 
@@ -51,56 +42,44 @@ See the table below for the list of properties in the `bids` array of the ad uni
 
 Note that `bids` is optional only for [Prebid Server stored impressions](#stored-imp), and required in all other cases.
 
-{: .table .table-bordered .table-striped }
-| Name | Scope | Type | Description |
-|------------+----------+---------------+------------------------------------------------------------------------------------------------------------------------------------------|
-| `bidder` | Optional | String | Unique code identifying the bidder. For bidder codes, see the [bidder param reference]({{site.baseurl}}/dev-docs/bidders.html). |
-| `module` | Optional | String | Module code - for requesting bids from modules that are not bid adapters. See [Prebid Server stored impressions](#stored-imp). |
-| `params` | Required | Object | Bid request parameters for a given bidder. For allowed params, see the [bidder param reference]({{site.baseurl}}/dev-docs/bidders.html). |
-| `labelAny` | Optional | Array[String] | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive]. |
-| `labelAll` | Optional | Array[String] | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive]. |
-| `ortb2Imp` | Optional | Object | OpenRTB first-party data specific to this bidder. This is merged with, and takes precedence over, `adUnit.ortb2Imp`.|
-| `renderer` | Optional | Object | Custom renderer. Takes precedence over `adUnit.renderer`, but applies only to this bidder. |
-
-<a name="adUnit.mediaTypes"></a>
+| Name        | Scope    | Type          | Description                                                                                                                                         |
+|-------------|----------|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| `bidder`    | Optional | String        | Unique code identifying the bidder. For bidder codes, see the [bidder param reference](/dev-docs/prebidjs/bidders).                                 |
+| `module`    | Optional | String        | Module code - for requesting bids from modules that are not bid adapters. See [Prebid Server stored impressions](#stored-imp).                      |
+| `params`    | Required | Object        | Bid request parameters for a given bidder. For allowed params, see the [bidder param reference](/dev-docs/prebidjs/bidders).                        |
+| `labelAny`  | Optional | Array[String] | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                              |
+| `labelAll`  | Optional | Array[String] | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                              |
+| `ortb2Imp`  | Optional | Object        | OpenRTB first-party data specific to this bidder. This is merged with, and takes precedence over, `adUnit.ortb2Imp`.                                |
+| `renderer`  | Optional | Object        | Custom renderer. Takes precedence over `adUnit.renderer`, but applies only to this bidder.                                                          |
 
 ### adUnit.mediaTypes
 
 See the table below for the list of properties in the `mediaTypes` object of the ad unit. For example ad units showing the different media types, see the [Examples](#adUnit-examples) below.
 
-{: .table .table-bordered .table-striped }
-| Name | Scope | Type | Description |
-|---------------------------------------+--------------------------------------------------------------------------+--------+------------------------------------------------------------------------------------------------------------------|
-| [`banner`](#adUnit.mediaTypes.banner) | At least one of the `banner`, `native`, or `video` objects are required. | Object | Defines properties of a banner ad. For examples, see [`adUnit.mediaTypes.banner`](#adUnit.mediaTypes.banner). |
-| [`native`](#adUnit.mediaTypes.native) | At least one of the `banner`, `native`, or `video` objects are required. | Object | Defines properties of a native ad. For properties, see [`adUnit.mediaTypes.native`](#adUnit.mediaTypes.native). |
-| [`video`](#adUnit.mediaTypes.video) | At least one of the `banner`, `native`, or `video` objects are required. | Object | Defines properties of a video ad. For examples, see [`adUnit.mediaTypes.video`](#adUnit.mediaTypes.video). |
-
-<a name="adUnit.mediaTypes.banner"></a>
+| Name                                   | Scope                                                                 | Type   | Description                                                                                                         |
+|-----------------------------------------|-----------------------------------------------------------------------|--------|---------------------------------------------------------------------------------------------------------------------|
+| [`banner`](#adunitmediatypesbanner)     | At least one of the `banner`, `native`, or `video` objects are required. | Object | Defines properties of a banner ad. For examples, see [`adUnit.mediaTypes.banner`](#adunitmediatypesbanner).         |
+| [`native`](#adunitmediatypesnative)     | At least one of the `banner`, `native`, or `video` objects are required. | Object | Defines properties of a native ad. For properties, see [`adUnit.mediaTypes.native`](#adunitmediatypesnative).       |
+| [`video`](#adunitmediatypesvideo)       | At least one of the `banner`, `native`, or `video` objects are required. | Object | Defines properties of a video ad. For examples, see [`adUnit.mediaTypes.video`](#adunitmediatypesvideo).            |
 
 #### adUnit.mediaTypes.banner
 
-{: .table .table-bordered .table-striped }
-| Name | Scope | Type | Description |
-|---------+----------+---------------------------------------+-----------------------------------------------------------------------------------------|
-| `sizes` | Required | Array[Number] or Array[Array[Number]] | All sizes this ad unit can accept. Examples: `[400, 600]`, `[[300, 250], [300, 600]]`. Prebid recommends that the sizes auctioned by Prebid should be the same auctioned by AdX and GAM OpenBidding, which means AdUnit sizes should match the GPT sizes. |
-| `pos` | Optional | Integer | OpenRTB page position value: 0=unknown, 1=above-the-fold, 3=below-the-fold, 4=header, 5=footer, 6=sidebar, 7=full-screen |
-| `name` | Optional | String | Name for this banner ad unit. Can be used for testing and debugging. |
-
-<a name="adUnit.mediaTypes.native"></a>
+| Name    | Scope    | Type                                 | Description                                                                                                                                                                                                                                                                                                                                                  |
+|---------|----------|--------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `sizes` | Required | Array[Number] or Array[Array[Number]]| All sizes this ad unit can accept. Examples: `[400, 600]`, `[[300, 250], [300, 600]]`. Prebid recommends that the sizes auctioned by Prebid should be the same auctioned by AdX and GAM OpenBidding, which means AdUnit sizes should match the GPT sizes.                                                            |
+| `pos`   | Optional | Integer                              | OpenRTB page position value: 0=unknown, 1=above-the-fold, 3=below-the-fold, 4=header, 5=footer, 6=sidebar, 7=full-screen                                                                                                                                                                                            |
+| `name`  | Optional | String                               | Name for this banner ad unit. Can be used for testing and debugging.                                                                                                                                                                                                                                                 |
 
 #### adUnit.mediaTypes.native
 
 The `native` object contains properties that correspond to the assets of the native ad.
 
-See [Prebid Native Implementation](/prebid/native-implementation.html) for details.
-
-<a name="adUnit.mediaTypes.video"></a>
+See [Prebid Native Implementation](/dev-docs/prebidjs/native-implementation) for details.
 
 #### adUnit.mediaTypes.video
 
-{: .table .table-bordered .table-striped }
-| Name | Scope | Type | Description |
-|------------------+-------------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Name      | Scope     | Type                 | Description |
+|-----------|-----------|----------------------|-------------|
 | `pos` | Optional | Integer | Ad position on screen, see [OpenRTB 2.5 spec][openRTB]. OpenRTB page position value: 0=unknown, 1=above-the-fold, 3=below-the-fold, 4=header, 5=footer, 6=sidebar, 7=full-screen |
 | `context` | Recommended | String | The video context, either `'instream'`, `'outstream'`, or `'adpod'` (for long-form videos). Example: `context: 'outstream'`. Defaults to 'instream'. |
 | `useCacheKey` | Optional | Boolean | Defaults to `false`. While context `'instream'` always will return an vastUrl in bidResponse, `'outstream'` will not. Setting this `true` will use cache url defined in global options also for outstream responses. |
@@ -127,9 +106,8 @@ See [Prebid Native Implementation](/prebid/native-implementation.html) for detai
 
 If `'video.context'` is set to `'adpod'` then the following parameters are also available.
 
-{: .table .table-bordered .table-striped }
-| Name | Scope | Type | Description |
-|------------------+-------------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Name                | Scope     | Type           | Description                                                                                                                                                         |
+|---------------------|-----------|----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `adPodDurationSec` | Required | Number | The length of the adpod in seconds. Example: `adPodDurationSec = 120` |
 | `durationRangeSec` | Required | Array[Number] | An array of numbers represents a list of the potential/accepted duration values that the creatives can be in the adpod block. Example: `durationRangeSec = [30, 60, 90]` |
 | `requireExactDuration` | Optional | Boolean | Whether the returned creatives running time must match the value of `adPodDurationSec`. Example: `requireExactDuration = true` |
@@ -140,10 +118,6 @@ If `'video.context'` is set to `'adpod'` then the following parameters are also 
 | `contentLengthSec` | Optional | Number | A number representing the length of the video in seconds. Example: `contentLengthSec = 1` |
 | `contentMode` | Optional | String | A string indicating the type of content being displayed in the video player. There are two options, `live` and `on-demand`. Example: `contentMode = 'on-demand'` |
 
-<a name="adUnit-examples"></a>
-
-<a name="adUnit.video"></a>
-
 ### adUnit.video
 
 See the table below for the list of properties in the `video` object of the ad unit. For example ad units, see the [Example](#adUnit-video-module-example) below.
@@ -151,9 +125,8 @@ See the table below for the list of properties in the `video` object of the ad u
 **Note:** your Ad Unit must have `mediaTypes.video` defined and your prebid instance should be configured to use the [Video Module][videoModule].
 When using the Video Module, the mediaTypes.video properties get filled out automatically. Any values already set by the Publisher will not be replaced by the Video Module.
 
-{: .table .table-bordered .table-striped }
-| Field | Scope | Type | Description |
-|----------+--------------------------------------------------------------+--------+--------------------------------------------------------------------------------------------------------------------|
+| Field    | Scope     | Type   | Description |
+|----------|-----------|--------|-------------|
 | `divId` | required | string | Unique identifier of the player provider, used to specify which player should be used to render the ad. Equivalent to the HTML Div Id of the player. |
 | `adServer` | optional | object | Configuration for ad server integration. Supersedes `video.adServer` configurations defined in the Prebid Config. |
 | `adServer.vendorCode` | required if `adServer` is defined | string | The identifier of the AdServer vendor (i.e. gam, etc). |
@@ -173,8 +146,6 @@ When using the Video Module, the mediaTypes.video properties get filled out auto
 * [Multi-Format](#adUnit-multi-format-example)
 * [Twin Codes](#adUnit-twin-codes-example)
 * [First Party Data](#adUnit-fpd-example)
-
-<a name="adUnit-banner-example"></a>
 
 ### Banner
 
@@ -199,11 +170,7 @@ pbjs.addAdUnits({
 });
 ```
 
-<a name="adUnit-video-example"></a>
-
 ### Video
-
-<a name="adUnit-video-module-example"></a>
 
 #### With the Video Module
 
@@ -232,8 +199,6 @@ pbjs.addAdUnits({
   ],
 });
 ```
-
-<a name="adUnit-video-example-instream"></a>
 
 #### Instream Sound-On
 
@@ -264,8 +229,6 @@ pbjs.addAdUnits({
 });
 ```
 
-<a name="adUnit-video-example-accompanying"></a>
-
 #### Player contains video content with sound off
 
 The IAB calls this scenario "Accompanying Content". Previously, this might have been called "instream with sound-off", but as of April 2023, the IAB has reclassified this scenario.
@@ -294,8 +257,6 @@ pbjs.addAdUnits({
   ],
 });
 ```
-
-<a name="adUnit-video-example-outstream"></a>
 
 #### Standalone ad wit no video content
 
@@ -359,8 +320,6 @@ pbjs.addAdUnits({
 });
 ```
 
-<a name="adUnit-video-example-adpod"></a>
-
 #### Adpod (Long-Form)
 
 For an example of an adpod video ad unit that you handle on your own, see below. For more detailed instructions, see [Show Long-Form Video Ads]({{site.baseurl}}/prebid-video/video-long-form.html).
@@ -392,8 +351,6 @@ var longFormatAdUnit = {
         }]
 }
 ```
-
-<a name="adUnit-native-example"></a>
 
 ### Native
 
@@ -456,8 +413,6 @@ pbjs.addAdUnits({
   ],
 });
 ```
-
-<a name="adUnit-multi-format-example"></a>
 
 ### Multi-Format
 
@@ -554,8 +509,6 @@ pbjs.addAdUnits([
 ]);
 ```
 
-<a name="adUnit-twin-codes-example"></a>
-
 ### Twin AdUnit Codes
 
 It's ok to have multiple AdUnits with the same `code`. This can be useful in scenarios
@@ -612,8 +565,6 @@ var adUnits = [
 In this example, bidderA receives 2 bidRequest objects while bidderB receives one. If a bidder provides more than one bid for the same AdUnit.code, Prebid.js will use the highest bid when it's
 time to set targeting.
 
-<a name="adUnit-fpd-example"></a>
-
 ### First Party Data and Floors
 
 Example of an adunit-specific block of first party data and a static floor:
@@ -643,8 +594,6 @@ Notes:
 * Only contextual data should be added on the AdUnit; user-related data goes in the [global first party data](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd) config.
 * For additional help with analytics and reporting you can use the [Prebid Ad Slot](/features/pbAdSlot.html), a special type of first party data.
 
-<a name="adUnit-interstitial-example"></a>
-
 ### Interstitial Ads
 
 Example of an adunit-specific interstitial signal:
@@ -665,8 +614,6 @@ pbjs.addAdUnits({
 ```
 
 For more information on Interstitial ads, reference the [Interstitial feature page](/features/InterstitialAds.html). Additionally, to assist with billing optimization and interstitial ads, the triggerBilling and onBidBillable functionality can be utilized. See [pbjs.triggerBilling](/dev-docs/publisher-api-reference/triggerBilling.html) and [onBidBillable](/dev-docs/bidder-adaptor.html#registering-on-bid-billable) for more info.
-
-<a id="stored-imp"></a>
 
 ### Prebid Server stored impressions
 
