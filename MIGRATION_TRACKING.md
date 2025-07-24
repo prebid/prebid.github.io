@@ -82,20 +82,29 @@
 - [x] Preserved git history
 - [x] Updated directory structure
 
-## Phase 3: Content Migration - Overview Section ⏳
+## Phase 3: Content Migration - Overview Section ✅
 
-### Step 3.1: Migrate overview/ directory content
+### Step 3.1: Migrate overview/ directory content ✅
 
-- [ ] Copy overview/ files to docs/content/
-- [ ] Update frontmatter and links
-- [ ] Fix image and asset references
-- [ ] Update sidebar configuration
+- [x] Move overview/ files to docs/content/ using git mv
+- [x] Update frontmatter and links
+- [x] Fix image and asset references
+- [x] Update sidebar configuration
+
+**Files migrated and converted:**
+
+- [x] intro.mdx (already converted)
+- [x] intro-to-header-bidding.md (converted to Docusaurus format)
+- [x] glossary.md (converted to Docusaurus format)
+- [x] analytics.md (converted to Docusaurus format)
+- [x] what-is-post-bid.md (converted to Docusaurus format)
+- [x] All other overview files moved (awaiting conversion)
 
 ## Phase 4: Content Migration - Prebid.js Documentation ⏳
 
 ### Step 4.1: Copy dev-docs content to docs/dev-docs/prebidjs/
 
-- [ ] Migrate file by file, preserving structure
+- [ ] Move file by file using git mv, preserving structure
 - [ ] Update frontmatter and links
 - [ ] Fix image and asset references
 - [ ] Update sidebar configuration
@@ -105,7 +114,7 @@
 
 ### Step 5.1: Copy prebid-server content to docs/dev-docs/prebid-server/
 
-- [ ] Migrate file by file, preserving structure
+- [ ] Move file by file using git mv, preserving structure
 - [ ] Separate Java and Go documentation
 - [ ] Update frontmatter and links
 - [ ] Configure versioning for both Java and Go
@@ -115,7 +124,7 @@
 
 ### Step 6.1: Copy prebid-mobile content to docs/dev-docs/prebid-mobile/
 
-- [ ] Migrate file by file, preserving structure
+- [ ] Move file by file using git mv, preserving structure
 - [ ] Separate iOS and Android documentation
 - [ ] Update frontmatter and links
 - [ ] Configure versioning for both platforms
@@ -125,7 +134,7 @@
 
 ### Step 7.1: Copy guide content to docs/content/guides/
 
-- [ ] Migrate file by file, preserving structure
+- [ ] Move file by file using git mv, preserving structure
 - [ ] Organize into subdirectories (ad-ops, privacy, etc.)
 - [ ] Update frontmatter and links
 - [ ] Fix any Jekyll-specific syntax
@@ -135,7 +144,7 @@
 
 ### Step 8.1: Copy formats content to docs/content/formats/
 
-- [ ] Migrate file by file, preserving structure
+- [ ] Move file by file using git mv, preserving structure
 - [ ] Organize into subdirectories
 - [ ] Update frontmatter and links
 - [ ] Fix any Jekyll-specific syntax
@@ -145,7 +154,7 @@
 
 ### Step 9.1: Copy tools content to docs/dev-docs/tools/
 
-- [ ] Migrate file by file, preserving structure
+- [ ] Move file by file using git mv, preserving structure
 - [ ] Organize into subdirectories
 - [ ] Update frontmatter and links
 - [ ] Fix any Jekyll-specific syntax
@@ -265,7 +274,7 @@
 
 - **Phase 1**: ✅ Complete (Foundation Setup)
 - **Phase 2**: ✅ Complete (Layout and Include Components Migration)
-- **Phase 3**: ⏳ Ready to start (Content Migration - Overview Section)
+- **Phase 3**: ✅ Complete (Content Migration - Overview Section)
 - **Phase 4**: ⏳ Pending (Content Migration - Prebid.js)
 - **Phase 5**: ⏳ Pending (Content Migration - Prebid Server)
 - **Phase 6**: ⏳ Pending (Content Migration - Prebid Mobile)

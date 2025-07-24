@@ -63,7 +63,7 @@ docs/
 ### Phase 3: Content Migration - Overview Section
 
 - [ ] **Step 3.1**: Migrate overview/ directory content
-  - [ ] Copy overview/ files to docs/content/
+  - [ ] Move overview/ files to docs/content/ using git mv
   - [ ] Update frontmatter and links
   - [ ] Fix image and asset references
   - [ ] Update sidebar configuration
@@ -71,7 +71,7 @@ docs/
 ### Phase 4: Content Migration - Prebid.js Documentation
 
 - [ ] **Step 4.1**: Copy dev-docs content to docs/dev-docs/prebidjs/
-  - [ ] Migrate file by file, preserving structure
+  - [ ] Move file by file using git mv, preserving structure
   - [ ] Update frontmatter and links
   - [ ] Fix image and asset references
   - [ ] Update sidebar configuration
@@ -80,7 +80,7 @@ docs/
 ### Phase 5: Content Migration - Prebid Server Documentation
 
 - [ ] **Step 5.1**: Copy prebid-server content to docs/dev-docs/prebid-server/
-  - [ ] Migrate file by file, preserving structure
+  - [ ] Move file by file using git mv, preserving structure
   - [ ] Separate Java and Go documentation
   - [ ] Update frontmatter and links
   - [ ] Configure versioning for both Java and Go
@@ -89,7 +89,7 @@ docs/
 ### Phase 6: Content Migration - Prebid Mobile Documentation
 
 - [ ] **Step 6.1**: Copy prebid-mobile content to docs/dev-docs/prebid-mobile/
-  - [ ] Migrate file by file, preserving structure
+  - [ ] Move file by file using git mv, preserving structure
   - [ ] Separate iOS and Android documentation
   - [ ] Update frontmatter and links
   - [ ] Configure versioning for both platforms
@@ -98,7 +98,7 @@ docs/
 ### Phase 7: Content Migration - Guides
 
 - [ ] **Step 7.1**: Copy guide content to docs/content/guides/
-  - [ ] Migrate file by file, preserving structure
+  - [ ] Move file by file using git mv, preserving structure
   - [ ] Organize into subdirectories (ad-ops, privacy, etc.)
   - [ ] Update frontmatter and links
   - [ ] Fix any Jekyll-specific syntax
@@ -107,7 +107,7 @@ docs/
 ### Phase 8: Content Migration - Formats
 
 - [ ] **Step 8.1**: Copy formats content to docs/content/formats/
-  - [ ] Migrate file by file, preserving structure
+  - [ ] Move file by file using git mv, preserving structure
   - [ ] Organize into subdirectories
   - [ ] Update frontmatter and links
   - [ ] Fix any Jekyll-specific syntax
@@ -116,7 +116,7 @@ docs/
 ### Phase 9: Content Migration - Tools Documentation
 
 - [ ] **Step 9.1**: Copy tools content to docs/dev-docs/tools/
-  - [ ] Migrate file by file, preserving structure
+  - [ ] Move file by file using git mv, preserving structure
   - [ ] Organize into subdirectories
   - [ ] Update frontmatter and links
   - [ ] Fix any Jekyll-specific syntax
@@ -173,6 +173,14 @@ docs/
 
 ## Technical Requirements
 
+### Content Migration Requirements
+
+- **Always use `git mv` instead of `cp`**: This maintains git history and makes merges easier
+- **Preserve file structure**: Maintain the original directory organization where possible
+- **Update frontmatter**: Convert Jekyll frontmatter to Docusaurus format
+- **Fix internal links**: Update all internal links to match new structure
+- **Convert Jekyll syntax**: Replace Liquid templates and Jekyll-specific includes with React components
+
 ### Download Page
 
 - Maintain current functionality
@@ -215,7 +223,7 @@ docs/
 
 ## Next Steps
 
-1. Begin with Phase 3: Migrate overview/ directory content
+1. Begin with Phase 3: Migrate overview/ directory content using git mv
 2. Set up development environment for testing
 3. Create backup of current documentation
 4. Start file-by-file migration process

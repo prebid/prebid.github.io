@@ -1,14 +1,12 @@
 ---
-layout: page_v2
+sidebar_position: 5
 title: Intro to Post-Bid & Get Started
-head_title: What is post-bid and when to use it vs. header bidding.
-description: What is post-bid and when to use it vs. header bidding.
-sidebarType: 1
+description: What is post-bid and when to use it vs. header bidding
 ---
 
 # What is Post-Bid?
 
-> Post-bid allows a publisher’s demand sources to compete in one auction based on price after the ad server has declined to choose a direct-sold or exchange-based line item.
+> Post-bid allows a publisher's demand sources to compete in one auction based on price after the ad server has declined to choose a direct-sold or exchange-based line item.
 
 `Post-bid` is the configuration scenario where a publisher loads and runs Prebid.js
 in a winning line item's creative. In a post-bid setup,
@@ -21,13 +19,13 @@ they all compete in one single line item based on price.
 
 This diagram summarizes the post-bid scenario:
 
-![Add Creative to Line Item]({{ site.github.url }}/assets/images/overview/postbid-diagram.png){: .pb-lg-img :}
+![Add Creative to Line Item](/images/overview/postbid-diagram.png)
 
 Steps:
 
 1. The webpage sends an impression to the ad server.
 2. The ad server chooses a winning line item among 'class 1' (direct-sold ads), exchanges, and the post-bid line items. In the case shown here, the post-bid line item wins.
-3. The post-bid line item’s creative is served to the page. The creative runs an auction for the bidders using prebid.js, which then displays the highest price creative in that creative’s ad slot.
+3. The post-bid line item's creative is served to the page. The creative runs an auction for the bidders using prebid.js, which then displays the highest price creative in that creative's ad slot.
 
 ## Why Post-Bid?
 
@@ -35,7 +33,7 @@ The main reasons we have seen publishers opt for post-bid (instead of header bid
 
 ### 1. A post-bid setup does not need engineering resources
 
-The post-bid creative is just a 3rd party tag. Once it’s served to the page, prebid.js runs an auction across all demand sources. The only technical work is to insert the tag Ids into the 3rd party tag’s JSON config for the demand sources. It’s trivial work.
+The post-bid creative is just a 3rd party tag. Once it's served to the page, prebid.js runs an auction across all demand sources. The only technical work is to insert the tag Ids into the 3rd party tag's JSON config for the demand sources. It's trivial work.
 
 ### 2. A post-bid setup adds no latency to standard ad delivery
 
@@ -45,7 +43,7 @@ Additionally, post-bid does not need as many line items, so initial setup is eas
 
 ## Disadvantages of Post-Bid
 
-We’ve listed the advantages of post-bid over header bidding in the previous section. The disadvantages include:
+We've listed the advantages of post-bid over header bidding in the previous section. The disadvantages include:
 
 ### 1. No dynamic allocation across all demand sources
 
@@ -61,11 +59,10 @@ already loaded.
 
 ### 3. Reporting is harder
 
-In the ad server's post-bid line item report, you’d only get an aggregated report of all demand sources. You may need to rely on a 3rd party reporting service to record which demand partner wins how much inventory.
+In the ad server's post-bid line item report, you'd only get an aggregated report of all demand sources. You may need to rely on a 3rd party reporting service to record which demand partner wins how much inventory.
 
 ## Comparison of Monetization Solutions
 
-{: .table .table-bordered .table-striped }
 | Feature | Mediation Solution | Post-Bid Solution | Pre-Bid Solution |
 | :--- | :---- | :---------- | :------ |
 | Engineering Resources | Not required | Not required | Required |
@@ -79,12 +76,12 @@ In the ad server's post-bid line item report, you’d only get an aggregated rep
 
 ### 1. If none of the post-bid demand sources fill, can I still passback to another tag, say from Adsense?
 
-Yes. Check out the [example](/dev-docs/examples/postbid.html).
+Yes. Check out the [example](/dev-docs/prebidjs/examples/postbid).
 
 ### 2. Can post-bid be used for mobile apps?
 
-Yes, it works the same as for browsers. When utilizing a server-to-server architecture, the [app](/dev-docs/publisher-api-reference/setConfig.html#setConfig-app) config option can be used to forward the mobile app details.
+Yes, it works the same as for browsers. When utilizing a server-to-server architecture, the [app](/dev-docs/prebidjs/publisher-api-reference/setConfig#setConfig-app) config option can be used to forward the mobile app details.
 
 # Getting Started
 
-Please refer to the [example](/dev-docs/examples/postbid.html).
+Please refer to the [example](/dev-docs/prebidjs/examples/postbid).
