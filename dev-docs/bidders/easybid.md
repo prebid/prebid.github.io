@@ -3,6 +3,7 @@ layout: bidder
 title: Easybid
 description: Prebid Easybid Bidder Adapter
 pbjs: true
+pbs: true
 biddercode: easybid
 gvl_id: 1068
 tcfeu_supported: true
