@@ -34,4 +34,4 @@ sidebarType: 1
 
 ### Note
 
-For the prebid server and prebid.js you only need to use one parameter: either placementId or endpointId
+For the prebid server and prebid.js you only need to use one parameter: either placementId or endpointId.
