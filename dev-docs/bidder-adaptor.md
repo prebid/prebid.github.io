@@ -1162,7 +1162,7 @@ For example tests, see [the existing adapter test suites](https://github.com/pre
 import * as utils from 'src/utils';
 import {config} from 'src/config';
 import {registerBidder} from 'src/adapters/bidderFactory';
-import {BANNER, VIDEO, NATIVE} from 'src/mediaTypes'.ts;
+import {BANNER, VIDEO, NATIVE} from 'src/mediaTypes.ts';
 const BIDDER_CODE = 'example';
 export const spec = {
         code: BIDDER_CODE,
