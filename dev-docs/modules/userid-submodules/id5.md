@@ -53,6 +53,18 @@ Publishers may want to test the value of the ID5 ID with their downstream partne
 
 To turn on A/B Testing, simply edit the configuration (see above table) to enable it and set what percentage of users you would like to set for the control group. The control group is the set of user where an ID5 ID will not be exposed in to bid adapters or in the various user id functions available on the `pbjs` global. An additional value of `ext.abTestingControlGroup` will be set to `true` or `false` that can be used to inform reporting systems that the user was in the control group or not. It's important to note that the control group is user based, and not request based. In other words, from one page view to another, a user will always be in or out of the control group.
 
+Since [Prebid version 9.42.0](https://github.com/prebid/Prebid.js/releases/tag/9.42.0) an [Enrichment Lift module](https://docs.prebid.org/dev-docs/modules/enrichmentLiftMeasurement.html) is available which also supports A/B Testing. It should not be configured for ID5 UserId Module if the `params.abTesting.enabled` is set to `true`.
+
+### Tags set by GAM targeting
+
+The ID5 UserId module can set GAM targeting tags, if enabled by setting the `params.gamTargetingPrefix`. 
+The prefix used should be unique on the property - if more than one Prebid integration is used, the prefix should be different for each integration. 
+If the same prefix is used, the ID5 module will overwrite the existing GAM targeting tags.
+
+If `params.gamTargetingPrefix` is set to a non-empty value and an ID5 module has initialized, the ID5 module will set the following GAM targeting tags:
+- `{prefix}_id` - set to `y` if a valid id5id was present, otherwise tag is not set
+- `{prefix}_ab` - set if `abTesting` was enabled - `n` if in Normal group (with ID5 returned), `c` if in Control group (without ID5 returned)
+
 ### A Note on Using Multiple Wrappers
 If you or your monetization partners are deploying multiple Prebid wrappers on your websites, you should make sure you add the ID5 ID User ID module to *every* wrapper. Only the bidders configured in the Prebid wrapper where the ID5 ID User ID module is installed and configured will be able to pick up the ID5 ID. Bidders from other Prebid instances will not be able to pick up the ID5 ID.
 
