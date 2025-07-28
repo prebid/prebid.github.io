@@ -62,6 +62,7 @@ The prefix used should be unique on the property - if more than one Prebid integ
 If the same prefix is used, the ID5 module will overwrite the existing GAM targeting tags.
 
 If `params.gamTargetingPrefix` is set to a non-empty value and an ID5 module has initialized, the ID5 module will set the following GAM targeting tags:
+
 - `{prefix}_id` - set to `y` if a valid id5id was present, otherwise tag is not set
 - `{prefix}_ab` - set if `abTesting` was enabled - `n` if in Normal group (with ID5 returned), `c` if in Control group (without ID5 returned)
 
