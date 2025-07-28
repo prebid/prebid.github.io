@@ -122,10 +122,10 @@ The module provides following eids:
     ]
   },
   {
-    source: 'true-link-id5-sync.com',
+    source: 'gpid.id5-sync.com',
     uids: [
       {
-        id: 'some-publisher-true-link-id',
+        id: 'some-publisher-gp-id',
         atype: 1
       }
     ]
@@ -147,18 +147,20 @@ The module provides following eids:
 
 The id from `id5-sync.com` should be always present (though the id provided will be '0' in case of no consent or optout)
 
-The id from `true-link-id5-sync.com` will be available if the page is integrated with TrueLink (if you are an ID5 partner you can learn more at [ID5 wiki](https://wiki.id5.io/en/identitycloud/retrieve-id5-ids/true-link-integration))
+The id from `gpid.id5-sync.com` will be available if the publisher has enabled Guarded Publisher ID [ID5 wiki](https://wiki.id5.io/docs/guarded-publisher-id)
 
-The id from `uidapi.com` will be available if the partner that is used in ID5 user module has the EUID2 integration enabled (it has to be enabled on the ID5 side)
+The id from `uidapi.com` will be available if the partner used in ID5 user module has the EUID2 integration enabled (it has to be enabled on the ID5 side)
 
-### Providing TrueLinkId as a Google PPID
+Additional EIDS may be provided if the publisher has enabled bid enrichment with ID5. 
 
-TrueLinkId can be provided as a PPID - to use, it the `true-link-id5-sync.com` needs to be provided as a ppid source in prebid userSync configuration:
+### Providing Guarded Publisher ID as a Google PPID
+
+GPID can be provided as a PPID - to use, it the `gpid.id5-sync.com` needs to be provided as a ppid source in prebid userSync configuration:
 
 ```javascript
 pbjs.setConfig({
   userSync: {
-    ppid: 'true-link-id5-sync.com',
+    ppid: 'gpid.id5-sync.com',
     userIds: [],  //userIds modules should be configured here
   }
 });
