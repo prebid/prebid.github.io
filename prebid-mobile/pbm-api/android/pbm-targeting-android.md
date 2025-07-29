@@ -348,6 +348,23 @@ Parameters:
 | --- | --- | --- | --- | --- |
 | eventDelegate | required | PrebidEventDelegate | The callback for handling all requests and responses. This interface takes request and response as the JSONObject types. | `{ request, response -> ... }` |
 
+#### setDisableStatusCheck()
+
+Informs the SDK whether it should check the PBS status during initialization. This will save initialization time if the PBS endpoint is always live and handled client side.
+
+Signature:
+
+```java
+public static void setDisableStatusCheck(boolean disableStatusCheck)
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| disableStatusCheck | required | boolean | Indicates whether the SDK should opt out of the PBS status checking during initialization. Default is `false`. | `true` |
+
 ---
 
 ## Consent Management Parameters
@@ -447,9 +464,9 @@ Since version 2.0.6, Prebid SDK reads and sends GPP signals:
 ## Open Measurement SDK (OMSDK) API
 
 {: .alert.alert-info :}
-Defining OMSDK values is only relevant for the 'Bidding-Only' Prebid integration with GAM. In this case the creative is rendered by GMA SDK and publishers should provide OMID description in the bid request. If you use Prebid SDK as a rendering engine you shouldn’t use these properties -- it sends them automaticaly according to the current OMID setup.
+Defining OMSDK values is only relevant for the 'Bidding-Only' Prebid integration with GAM. In this case the creative is rendered by GMA SDK and publishers should provide OMID description in the bid request. If you use Prebid SDK as a rendering engine you shouldn’t use these properties -- it sends them automatically according to the current OMID setup.
 
-OMSDK is designed to facilitate 3rd party viewability and verification measurement for ads served in mobile app enviroments. Prebid SDK will provide the signaling component to Bid Adapters by way of Prebid Server, indicating that the impression is eligible for OMSDK support. Prebid SDK does not currently integrate with OMSDK itself, instead it will rely on a publisher ad server to render viewability and verification measurement code.
+OMSDK is designed to facilitate 3rd party viewability and verification measurement for ads served in mobile app environments. Prebid SDK will provide the signaling component to Bid Adapters by way of Prebid Server, indicating that the impression is eligible for OMSDK support. Prebid SDK does not currently integrate with OMSDK itself, instead it will rely on a publisher ad server to render viewability and verification measurement code.
 
 There are three components to signaling support for OMSDK:
 

@@ -982,6 +982,7 @@ The Prebid Video Module allows Prebid to directly integrate with a Video Player,
 To register a video player with Prebid, you must use `setConfig` to set a `video` config compliant with the following structure:
 
 {: .table .table-bordered .table-striped }
+
 | Field | Required? | Type | Description |
 |---|---|---|---|
 | video.providers[] | yes | array of objects | List of Provider configurations. You must define a provider configuration for each player instance that you would like integrate with. |
@@ -1081,7 +1082,7 @@ Here's an example of basic client-side caching. Substitute your Prebid Cache URL
 ```javascript
 pbjs.setConfig({
         cache: {
-            url: 'https://prebid.adnxs.com/pbc/v1/cache'
+            url: 'https://my-pbs.example.com/cache'
         }
 });
 ```
@@ -1126,7 +1127,7 @@ Optionally, `batchSize` and `batchTimeout` can be utlilized as illustrated with 
 ```javascript
 pbjs.setConfig({
         cache: {
-            url: 'https://prebid.adnxs.com/pbc/v1/cache',
+            url: 'https://my-pbs.example.com/cache',
             batchSize: 4,
             batchTimeout: 50
         }
@@ -1150,7 +1151,7 @@ Consider the following Prebid configuration:
 ```javascript
 pbjs.setConfig({
         cache: {
-            url: 'https://prebid.adnxs.com/pbc/v1/cache',
+            url: 'https://my-pbs.example.com/cache',
             useLocal: true
         }
 });
@@ -1159,7 +1160,7 @@ pbjs.setConfig({
 When `useLocal` is set to true, the remote cache URL endpoint is never called. However, existing GAM creatives configured with a VAST ad tag URL, such as:
 
 ``
-https://prebid.adnxs.com/pbc/v1/cache?uuid=%%PATTERN:hb_uuid%%
+https://my-pbs.example.com/cache?uuid=%%PATTERN:hb_uuid%%
 ``
 
 will continue to function correctly. `hb_uuid` is set to locally assigned blob UUID. If the bid wins the GAM auction and it's `videoCacheKey` (`hb_uuid`) is included in a GAM wrapper VAST XML, Prebid will update the VAST ad tag URL with the locally cached blob URL after receiving a response from Google Ad Manager.
@@ -1191,7 +1192,7 @@ pbjs.setConfig({
 });
 ```
 
-More examples [here](/dev-docs/modules/instreamTracking.html#example-with-urlpattern).
+More examples can be found in [the instream tracking module documentation](/dev-docs/modules/instreamTracking.html#example-with-urlpattern).
 
 <a name="setConfig-site"></a>
 
@@ -1333,6 +1334,7 @@ pbjs.setConfig({
 The controls publishers have over the RTD modules:
 
 {: .table .table-bordered .table-striped }
+
 | Field | Required? | Type | Description |
 |---|---|---|---|
 | realTimeData.auctionDelay | no | integer | Defines the maximum amount of time, in milliseconds, the header bidding auction will be delayed while waiting for a response from the RTD modules as a whole group. The default is 0 ms delay, which means that RTD modules need to obtain their data when the page initializes. |
@@ -1386,6 +1388,7 @@ pbjs.setConfig({
 ```
 
 {: .table .table-bordered .table-striped }
+
 | Field | Required? | Type | Description |
 |---|---|---|---|
 | topics.maxTopicCaller | no | integer | Defines the maximum numbers of Bidders Iframe which needs to be loaded on the publisher page. Default is 1 which is hardcoded in Module. Eg: topics.maxTopicCaller is set to 3. If there are 10 bidders configured along with their iframe URLS, random 3 bidders iframe URL is loaded which will call TOPICS API. If topics.maxTopicCaller is set to 0, it will load random 1(default) bidder iframe atleast. |
@@ -1419,6 +1422,23 @@ Inversely, if you wish for the alias registry to be private you can do so by usi
 ```javascript
 pbjs.setConfig({aliasRegistry: 'private'})
 ```
+
+<a id="setConfig-gvlMapping"></a>
+
+### Map modules to Global Vendor IDs
+
+Prebid modules sometimes need to know the [IAB Global Vendor List](https://iabeurope.eu/tcf-for-vendors/) (GVL) ID associated with a bidder alias or other module. The optional `gvlMapping` object lets publishers specify these IDs or override the ones declared by the module itself.
+
+```javascript
+pbjs.setConfig({
+  gvlMapping: {
+    appnexus: 4,
+    someModule: 123
+  }
+});
+```
+
+Prebid Server uses this mapping when it sends `ext.prebid.aliasgvlids` for bidder aliases, and the [TCF Control Module](/dev-docs/modules/tcfControl.html) references it when enforcing consent.
 
 ### Set Max Bid
 

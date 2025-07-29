@@ -85,7 +85,7 @@ In case you use a single-size banner (e.g., 300x250), you don't need to make a c
         guard let bannerView = bannerView as? AdManagerBannerView else { return }
         bannerView.resize(adSizeFor(cgSize: size))
     }, failure: { (error) in
-        PrebidDemoLogger.shared.error("Error occuring during searching for Prebid creative size: \(error)")
+        PrebidDemoLogger.shared.error("Error occurring during searching for Prebid creative size: \(error)")
     })
 }
 {% endcapture %}
