@@ -13,7 +13,7 @@ safeframes_ok: true
 floors_supported: true
 fpd_supported: true 
 pbjs: true
-pbs: false
+pbs: true
 pbs_app_supported: false
 prebid_member: true
 multiformar_supported: will-bid-on-any
