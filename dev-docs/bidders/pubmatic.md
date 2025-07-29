@@ -25,9 +25,6 @@ sidebarType: 1
 endpoint_compression: true
 ---
 
-### Prebid Server Note
-
-{% include dev-docs/pbjs-adapter-required-for-pbs.md %}
 
 ### Bid Params
 
