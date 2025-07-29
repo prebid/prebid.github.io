@@ -1,9 +1,9 @@
 ---
 layout: bidder
-title: ProgX
-description: Prebid ProgX Bidder Adaptor
-biddercode: progx
-filename: progxBidAdapter
+title: ProgrammaticX
+description: Prebid ProgrammaticX Bidder Adapter
+biddercode: programmaticX
+filename: programmaticXBidAdapter
 userIds: criteo, id5Id, liveIntentId, netId
 tcfeu_supported: true
 usp_supported: true
@@ -31,9 +31,9 @@ gvl_id: 1344
 
 | Name       | Scope    | Description                                                                         | Example                      | Type     |
 |------------|----------|-------------------------------------------------------------------------------------|------------------------------|----------|
-| `cId`      | required | The connection ID from ProgX.                                                          | `'562524b21b1c1f08117fc7f9'` | `string` |
-| `pId`      | required | The publisher ID from ProgX.                                                           | `'59ac17c192832d0011283fe3'` | `string` |
-| `bidFloor` | optional | The minimum bid value desired. ProgX will not respond with bids lower than this value. | `0.90`                       | `float`  |
+| `cId`      | required | The connection ID from ProgrammaticX.                                                          | `'562524b21b1c1f08117fc7f9'` | `string` |
+| `pId`      | required | The publisher ID from ProgrammaticX.                                                           | `'59ac17c192832d0011283fe3'` | `string` |
+| `bidFloor` | optional | The minimum bid value desired. ProgrammaticX will not respond with bids lower than this value. | `0.90`                       | `float`  |
 
 ### Example ###
 
