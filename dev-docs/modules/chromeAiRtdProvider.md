@@ -126,7 +126,8 @@ The module initializes configured features (language detection, summarization) a
 
 If `waitForIt: true` is set in the RTD config, the auction will be delayed until all enabled and available Chrome AI features complete their processing.
 
-## Requirements
+
+## Browser Compatibility
 
 - The browser must support the Chrome AI APIs being used (Language Detection, Summarizer).
 - The specific Chrome AI models (e.g., for language detection or summarization) must be 'available' or become 'available-after-download'. The module handles these states.
