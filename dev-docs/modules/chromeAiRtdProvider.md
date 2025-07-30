@@ -142,9 +142,7 @@ If `waitForIt: true` is set in the RTD config, the auction will be delayed until
 
 ## Browser Compatibility
 
-- Chrome: 138(Beta)+
-- Firefox, Safari: Not supported (lacks Chrome AI API)
-
+[Language Detector API Support](https://caniuse.com/mdn-api_languagedetector)
 ## Example Use Cases
 
 ### Standard Implementation
