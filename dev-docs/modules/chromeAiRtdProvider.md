@@ -83,7 +83,6 @@ pbjs.setConfig({
 
 ## Configuration Options
 
-
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Description | Default |
 |-----------|-------|------|-------------|---------|
