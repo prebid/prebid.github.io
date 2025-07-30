@@ -145,9 +145,8 @@ You could use this example and place it in the `test/pages/instream.html` exampl
 #### banner
 
 Example of adunit configuration for banner ads:
+
 ```javascript
-
-
 var pbjs = pbjs || {};
 pbjs.que = pbjs.que || [];
 var adUnits = [
