@@ -52,6 +52,3 @@ The following bid params are for use with the Prebid.js bid adapter:
 | `sdkVersion` | optional | The AdManager sdk version to use for playback. This is only valid for "outstream" formats. Default: "7.10.0" | "7.11.0" | `string` |
 | `format` | optional | The format to use for displaying the ad. Default: outstream | "inbanner" | `string` |
 | `env` | optional | The AdManager build to use for ad playback. Valid values: "prd", "stg". Default: "prd" | "stg" | `string` |
-| `skip` | optional | Indicates if the player will allow the video to be skipped, where 0 = no, 1 = yes | 1 | `number` |
-| `skipmin` | optional | Videos of total duration greater than this number of seconds can be skippable | 15 | `number` |
-| `skipafter` | optional | Number of seconds a video must play before skipping is enabled | 5 | `number` |
