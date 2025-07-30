@@ -83,6 +83,8 @@ pbjs.setConfig({
 
 ## Configuration Options
 
+
+{: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Description | Default |
 |-----------|-------|------|-------------|---------|
 | `waitForIt` | Optional | Boolean | Whether to delay auction for data retrieval | `false` |
