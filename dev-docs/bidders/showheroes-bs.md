@@ -4,7 +4,7 @@ title: ShowHeroes
 description: Prebid ShowHeroes Bidder Adapter
 pbjs: true
 biddercode: showheroes-bs
-media_types: video
+media_types: video, banner
 gvl_id: 111
 tcfeu_supported: true
 usp_supported: true
@@ -141,3 +141,36 @@ pbjs.que.push(function(){
 ```
 
 You could use this example and place it in the `test/pages/instream.html` example page inside the Prebid.js repository.
+
+#### banner
+
+Example of adunit configuration for banner ads:
+```javascript
+
+
+var pbjs = pbjs || {};
+pbjs.que = pbjs.que || [];
+var adUnits = [
+    {
+      code: 'div-gpt-ad-1460505748561-0',
+      mediaTypes: {
+          banner: {
+              sizes: [[300, 250]],
+          }
+        },
+        bids: [{
+            bidder: "showheroes-bs",
+            params: {
+                unitId: "1234abcd-5678efgh",
+            }
+        }],
+    }
+];
+pbjs.que.push(function () {
+    pbjs.setConfig({...});
+    pbjs.addAdUnits(adUnits);
+    pbjs.requestBids({ bidsBackHandler: sendAdServerRequest });
+})
+```
+
+You can use this example and place in the `hello_world` gpt integration test page
