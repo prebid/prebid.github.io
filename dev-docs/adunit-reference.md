@@ -11,7 +11,7 @@ sidebarType: 1
 
 The ad unit object is where you configure what kinds of ads you will show in a given ad slot on your page, including:
 
-* Allowed media types (e.g., banner, native, and/or video)
+* Allowed media types (e.g., banner, native, video and/or audio)
 * Allowed sizes
 * AdUnit-specific first party data
 
@@ -74,6 +74,7 @@ See the table below for the list of properties in the `mediaTypes` object of the
 | [`banner`](#adUnit.mediaTypes.banner) | At least one of the `banner`, `native`, or `video` objects are required. | Object | Defines properties of a banner ad. For examples, see [`adUnit.mediaTypes.banner`](#adUnit.mediaTypes.banner). |
 | [`native`](#adUnit.mediaTypes.native) | At least one of the `banner`, `native`, or `video` objects are required. | Object | Defines properties of a native ad. For properties, see [`adUnit.mediaTypes.native`](#adUnit.mediaTypes.native). |
 | [`video`](#adUnit.mediaTypes.video) | At least one of the `banner`, `native`, or `video` objects are required. | Object | Defines properties of a video ad. For examples, see [`adUnit.mediaTypes.video`](#adUnit.mediaTypes.video). |
+| [`audio`](#adUnit.mediaTypes.audio) | At least one of the `banner`, `native`, or `video` objects are required. | Object | Defines properties of a audio ad. For examples, see [`adUnit.mediaTypes.video`](#adUnit.mediaTypes.video). |
 
 <a name="adUnit.mediaTypes.banner"></a>
 
@@ -159,6 +160,27 @@ When using the Video Module, the mediaTypes.video properties get filled out auto
 | `adServer.vendorCode` | required if `adServer` is defined | string | The identifier of the AdServer vendor (i.e. gam, etc). |
 | `adServer.baseAdTagUrl` | required if `adServer.params` is not defined | string | Your AdServer Ad Tag. The targeting params of the winning bid will be appended. |
 | `adServer.params` | required if `adServer.baseAdTagUrl` is not defined | object | Querystring parameters that will be used to construct the video ad tag URL. |
+
+<a name="adUnit.mediaTypes.audio"></a>
+
+#### adUnit.mediaTypes.audio
+
+{: .table .table-bordered .table-striped }
+| Name | Scope | Type | Description |
+|------------------+-------------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `context` | Recommended | String | The audio context. Defaults to 'instream'. |
+| `useCacheKey` | Optional | Boolean | Defaults to `false`. Setting this `true` will use cache url defined in global options also for outstream responses. |
+| `api` | Recommended | Array[Integer] | List of supported API frameworks for this impression. If an API is not explicitly listed, it is assumed not to be supported. For list, see [OpenRTB 2.5 spec][openRTB]. If your player supports [Open Measurement][OpenMeasurement], **recommended** to set `7` for OMID-1|
+| `mimes` | Recommended | Array[String] | Content MIME types supported, e.g. `"audio/mp3"`. **Required by OpenRTB when using [Prebid Server][pbServer]**. |
+| `minduration` | Recommended | Integer | Minimum audio ad duration in seconds, see [OpenRTB 2.5 spec][openRTB]. |
+| `maxduration` | Recommended | Integer | Maximum audio ad duration in seconds, see [OpenRTB 2.5 spec][openRTB]. |
+| `startdelay` | Recommended | Integer | Indicates the start delay in seconds, see [OpenRTB 2.5 spec][openRTB]. |
+| `minbitrate` | Optional | Integer | Minimum bit rate in Kbps., see [OpenRTB 2.5 spec][openRTB]. |
+| `maxbitrate` | Optional | Integer | Maximum bit rate in Kbps., see [OpenRTB 2.5 spec][openRTB]. |
+| `delivery` | Optional | Array[Integer] | Supported delivery methods (e.g., streaming, progressive), see [OpenRTB 2.5 spec][openRTB]. |
+| `companionad` | Optional | Array[Object] | Array of Banner objects (Section 3.2.6) if companion ads are available, see [OpenRTB 2.5 spec][openRTB]. |
+| `feed` | Optional | Integer | Type of audio feed, see [OpenRTB 2.5 spec][openRTB]. |
+| `nvol` | Optional | Integer | Volume normalization mode, see [OpenRTB 2.5 spec][openRTB]. |
 
 ## Examples
 
