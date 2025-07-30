@@ -25,12 +25,9 @@ sidebarType: 1
 endpoint_compression: true
 ---
 
-
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-
-
 | Name            | Scope    | Description                                                                                                                                                                                                                                                                       | Example                                                   | Type               |
 |-----------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------|--------------------|
 | `publisherId`   | required | Publisher ID                                                                                                                                                                                                                                                                      | `'32572'`                                                 | `string`           |
@@ -42,7 +39,7 @@ endpoint_compression: true
 | `gender`        | optional | Gender                                                                                                                                                                                                                                                                            | `'M'`                                                     | `string`           |
 | `kadpageurl`    | optional | Overrides Page URL                                                                                                                                                                                                                                                                | `'http://www.yahoo.com/'`                                 | `string`           |
 | `kadfloor`      | optional | Bid Floor                                                                                                                                                                                                                                                                         | `'1.75'`                                                  | `string`           |
-| `currency`      | optional | Bid currency<br><i>(Value configured only in the 1st adunit will be passed on. Values if present in subsequent adunits, will be ignored.)</i>                                                                                                                                                | `'AUD'`                                                   | `string`           |
+| `currency`      | optional | Bid currency<br><i>(Value configured only in the 1st adunit will be passed on. Values if present in subsequent adunits, will be ignored.)</i> | `'AUD'` | `string` |
 | `dctr`          | optional | Deal Custom Targeting<br><i>(Value configured in each adunit will be passed inside adunit configs i.e., imp.ext)</i>                                                                                                                                                             | `'key1=123|key2=345'`                                     | `string`           |
 | `acat`          | optional | Allowed categories<br><i>(Can be sent via ortb2 or slot-level params. If both are present, ortb2 takes priority.)</i>                                                                                                                                                            | `[ 'IAB1-5', 'IAB1-6', 'IAB1-7' ]`                         | `array of strings` |
 | `bcat`          | optional | Blocked IAB Categories<br><i>(Combined across all slots, unique values only. Each must be a string with more than 3 characters.)</i>                                                                                                                                                      | `[ 'IAB1-5', 'IAB1-6', 'IAB1-7' ]`                         | `array of strings` |
