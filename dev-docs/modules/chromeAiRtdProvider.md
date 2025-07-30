@@ -220,26 +220,3 @@ pbjs.setConfig({
 });
 ```
 
-## Integration with Other Modules
-
-The Chrome AI RTD Provider is compatible with other Prebid.js modules and can be used alongside other RTD providers:
-
-```javascript
-pbjs.setConfig({
-  realTimeData: {
-    dataProviders: [
-      {
-        name: 'chromeAi',
-        waitForIt: false
-      },
-      {
-        name: 'anotherProvider',
-        waitForIt: true,
-        params: {
-          // other provider config
-        }
-      }
-    ]
-  }
-});
-```
