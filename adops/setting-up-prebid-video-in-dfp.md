@@ -1,4 +1,4 @@
- ---
+---
 layout: page_v2
 title: GAM Step by Step - Video Creatives
 head_title: GAM Step by Step - Video Creatives
