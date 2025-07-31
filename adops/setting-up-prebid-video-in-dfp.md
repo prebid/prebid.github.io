@@ -1,4 +1,4 @@
----
+ ---
 layout: page_v2
 title: GAM Step by Step - Video Creatives
 head_title: GAM Step by Step - Video Creatives
@@ -86,7 +86,7 @@ In these examples, the `uuid` is set to the value of the `hb_pb_cat_dur` key you
 
 The resulting creative should look something like the following:
 
-![GAM Video Creative Setup](assets/images/ad-ops/gam-sbs/gam-tag-setup.png)!
+![GAM Video Creative Setup](/assets/images/ad-ops/gam-sbs/gam-tag-setup.png)!
 
 {:start="7"}
 7. If you're using jsdelivr, set your **Associated ad technology provider**:
