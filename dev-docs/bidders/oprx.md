@@ -36,3 +36,34 @@ privacy_sandbox: no
 | `npi`         | optional | NPI                    | `'22222'`  | `string`  |
 | `ndc`         | optional | NDC                    | `'33333'`  | `string`  |
 | `type`        | required | Type of Bid/Impression | `'banner'` | `string`  |
+
+### AdUnit Format
+
+```javascript
+var adUnits = [
+  {
+    code: 'test-div',
+    mediaTypes: {
+        banner: {
+            sizes: [[728, 90]]
+          }
+        },
+    bids: [
+      {
+        bidder: 'oprx',
+        params: {
+            placement_id: 1234567890,   // placement ID (required)
+            key: "123456abcd",          // key (required)            
+            width: 728,                 // width
+            height: 90,                 // height
+            bid_floor: 0.5,             // bidding price floor
+			npi: "1234567890",          // NPI
+			ndc: "12345678901"          // NDC
+            type: "banner",             // media type (required)
+          },
+        }
+      }
+    ]
+  }
+];
+```
