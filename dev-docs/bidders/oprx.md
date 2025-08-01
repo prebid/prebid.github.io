@@ -53,12 +53,12 @@ var adUnits = [
         bidder: 'oprx',
         params: {
             placement_id: 1234567890,   // placement ID (required)
-            key: "123456abcd",          // key (required)            
+            key: "123456abcd",          // key (required)
             width: 728,                 // width
             height: 90,                 // height
             bid_floor: 0.5,             // bidding price floor
-			npi: "1234567890",          // NPI
-			ndc: "12345678901"          // NDC
+            npi: "1234567890",          // NPI
+            ndc: "12345678901"          // NDC
             type: "banner",             // media type (required)
           },
         }
