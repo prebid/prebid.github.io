@@ -6,6 +6,7 @@ biddercode: adipolo
 media_types: banner, video
 coppa_supported: true
 tcfeu_supported: true
+gvl_id: 1456
 usp_supported: true
 prebid_member: false
 pbjs: true
