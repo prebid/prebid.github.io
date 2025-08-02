@@ -26,5 +26,4 @@ sidebarType: 1
 
 | Name          | Scope    | Description           | Example       | Type      |
 |:--------------|:---------|:----------------------|:--------------|:----------|
-| `host`        | required | Ad network's RTB host | `'ortb.tech'` | `string`  |
 | `publisherId` | required | Publisher ID          | `12345`       | `integer` |
