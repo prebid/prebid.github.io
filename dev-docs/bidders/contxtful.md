@@ -13,7 +13,7 @@ safeframes_ok: true
 floors_supported: true
 fpd_supported: true 
 pbjs: true
-pbs: false
+pbs: true
 pbs_app_supported: false
 prebid_member: true
 multiformar_supported: will-bid-on-any
@@ -23,6 +23,14 @@ ortb_blocking_supported: true
 ### Note
 
 The Contxtful bidder adapter requires some setup. Contact us at [contact@contxtful.com](mailto:contact@contxtful.com)
+
+### Bid Params
+
+{: .table .table-bordered .table-striped }
+| Name        | Scope    | Description                                                | Example                      | Type                 |
+|-------------|----------|------------------------------------------------------------|------------------------------|----------------------|
+| `placementId`      | required for Prebid and Prebid S2S | The placement identifier                                          | `'p12345678'` | `string`             |
+| `customerId`      | required for Prebid S2S | The customer identifier              | `'DEMO123456'`       | `string`           |
 
 ### User Sync
 Contxtful recommends enabling [User Syncing](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing) to optimize match rate and monetization.
