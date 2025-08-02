@@ -33,6 +33,7 @@ a.tip:hover span {
 </style>
 
 <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.0.4/pako.min.js"></script>
 <script src="/assets/js/download.js"></script>
 
 <style>
@@ -118,6 +119,8 @@ These modules may require accounts with a service provider.<br/>
 <div class="form-group">
 
 <button id="download-button" type="button" class="btn btn-lg btn-primary">Get Prebid.js! </button>
+
+<div id="package-size" style="margin-top:10px"></div>
 
 </div>
 
