@@ -4,21 +4,21 @@ title: Start.io
 biddercode: startio
 description: Prebid Start.io Adapter
 tcfeu_supported: true
-coppa_supported: false
+coppa_supported: true
 gpp_supported: false
-floors_supported: false
+floors_supported: true
 media_types: banner, video, native
 multiformat_supported: will-bid-on-any
 safeframes_ok: false
 schain_supported: false
 gvl_id: 1216
-usp_supported: false
+usp_supported: true
 pbjs: true
 pbs: true
 prebid_member: false
 fpd_supported: false
 privacy_sandbox: no
-ortb_blocking_supported: false
+ortb_blocking_supported: true
 sidebarType: 1
 ---
 
