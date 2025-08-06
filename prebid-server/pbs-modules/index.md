@@ -36,6 +36,7 @@ The full list of modules:
 | [**Greenbids Real Time Data**](/prebid-server/pbs-modules/greenbids-real-time-data.html) | Filters out bidders that are not expected to bid on this request, saving money and carbon. | general | | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> |
 | [**Request Correction**](/prebid-server/pbs-modules/request-correction.html) | Apply optional corrections to bid requests. | general | | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> |
 | [**Response Correction**](/prebid-server/pbs-modules/response-correction.html) | Apply optional corrections to bid responses. | general | | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> |
+| [**Rules Engine**](/prebid-server/pbs-modules/rules-engine.html) | Flexibly modify which bidders are participating in the auction. | general | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> |
 
 ## Installing a PBS General Module
 
