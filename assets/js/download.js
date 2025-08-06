@@ -82,6 +82,15 @@
         }
     }
 
+    function triggerDownload(blob, filename) {
+        var link = document.createElement("a");
+        link.href = window.URL.createObjectURL(blob);
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
     function submit_download() {
         $('#download-button').html('<i class="glyphicon glyphicon-send"></i> Sending Request...').addClass('disabled');
 
@@ -105,13 +114,20 @@
                 if (matches != null && matches[1])
                     filename = matches[1].replace(/['"]/g, "");
             }
-
             var jsBlob = new Blob([data], { type: "text/javascript" });
             var configData = JSON.stringify({ version: form_data.version, modules: form_data.modules }, null, 2);
 
             triggerDownload(jsBlob, filename);
-            triggerDownload(new Blob([configData], { type: "application/json" }), "prebid-config.json");
-
+            triggerDownload(new Blob([configData], { type: "application/json" }), "prebid-config.json")
+            if (window.pako) {
+                try {
+                    var gz = pako.gzip(data);
+                    var kb = (gz.length / 1024).toFixed(1);
+                    document.getElementById('package-size').innerText = 'Estimated gzipped size: ' + kb + ' kB';
+                } catch(e) {
+                    console.log('pako gzip failed', e);
+                }
+            }
             if (form_data["removedModules"].length > 0) {
                 alert(
                     "The following modules were removed from your download because they aren't present in Prebid.js version " +
