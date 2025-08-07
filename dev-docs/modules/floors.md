@@ -1434,7 +1434,7 @@ Below is a chart explaining the behavior of currency conversion, if necessary, w
 | bid.currency | bid.originalCurrency | floor.currency | result |
 |---+---+---+---+---|
 | USD | USD | USD | Bid.cpm is compared to floor. If bid meets or exceeds the floor, bid.originalCpm is sent to the ad server. |
-| USD | USD | EUR | Bid.cpm is converted to EUR then compared with floor. If bid meets or exceeds the floor, bid.originaCpm is sent to the ad server. |
+| USD | USD | EUR | Bid.cpm is converted to EUR then compared with floor. If bid meets or exceeds the floor, bid.originalCpm is sent to the ad server. |
 | USD | EUR | EUR | bid.originalCpm is compared to floor. If bid meets or exceeds the floor, bid.Cpm is sent to the ad server. |
 | USD | JPY | EUR | Bid.cpm is converted to EUR then compared with floor.  If bid meets or exceeds the floor, bid.Cpm is sent to the ad server. |
 | EUR | USD | EUR | Bid.cpm is compared to floor. If bid meets or exceeds the floor, bid.Cpm is sent to the ad server. |
