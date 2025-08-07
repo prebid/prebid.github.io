@@ -569,4 +569,4 @@ Publishers should use the `ortb2` method of setting [First Party Data](https://d
 
 ### Additional Resources
 
-Information about how Equativ supports the oRTB specification, along with additional examples, can be found [on our OpenRTB API support site](https://help.smartadserver.com/s/article/OpenRTB-API-for-suppliers-Bid-request-specification-Part-1).
+Information about how Equativ supports the oRTB specification, along with additional examples, can be found [on our OpenRTB API support site](https://help.equativ.com/open-rtb-api-integration-bid-request-specification-1).
