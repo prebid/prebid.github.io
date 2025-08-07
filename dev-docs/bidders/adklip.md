@@ -38,7 +38,7 @@ Note that the Adklip adapter expects a client-side Prebid Cache to be enabled fo
 ```js
 pbjs.setConfig({
     cache: {
-        url: 'https://prebid.adnxs.com/pbc/v1/cache'
+        url: 'https://prebid.example.com/pbc/v1/cache'
     }
 });
 ```
