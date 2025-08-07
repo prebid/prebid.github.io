@@ -7,7 +7,6 @@ tcfeu_supported: true
 media_types: banner,native,video
 usp_supported: true
 coppa_supported: true
-gpp_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 prebid_member: true
 pbjs: true
@@ -16,6 +15,16 @@ schain_supported: true
 floors_supported: true
 pbs: true
 sidebarType: 1
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
+safeframes_ok: true
+pbs_app_supported: true
+multiformat_supported: will-bid-on-any
+dsa_supported: true
+dchain_supported: false
+deals_supported: true
+fpd_supported: true
+privacy_sandbox: paapi, topics
+endpoint_compression: false
 ---
 
 ### Bid Params
