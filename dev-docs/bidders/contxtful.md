@@ -29,7 +29,7 @@ The Contxtful bidder adapter requires some setup. Contact us at [contact@contxtf
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                                                | Example                      | Type                 |
 |-------------|----------|------------------------------------------------------------|------------------------------|----------------------|
-| `placementId`      | required for Prebid and Prebid S2S | The placement identifier                                          | `'p12345678'` | `string`             |
+| `placementId`      | required | The placement identifier                                          | `'p12345678'` | `string`             |
 | `customerId`      | required for Prebid S2S | The customer identifier              | `'DEMO123456'`       | `string`           |
 
 ### User Sync
