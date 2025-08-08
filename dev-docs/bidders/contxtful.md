@@ -60,6 +60,15 @@ pbjs.setConfig({
 );
 ```
 
+### First Party Data
+
+Publishers should use the `ortb2` method of setting First Party Data. The following fields are supported:
+- `ortb2.site.*`
+- `ortb2.user.*`
+- `ortb2.device.*`
+
+AdUnit-specific data is supported using `AdUnit.ortb2Imp.ext.*`
+
 ### User Sync
 Contxtful recommends enabling [User Syncing](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing) to optimize match rate and monetization.
 
