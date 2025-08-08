@@ -32,6 +32,34 @@ The Contxtful bidder adapter requires some setup. Contact us at [contact@contxtf
 | `placementId`      | required | The placement identifier                                          | `'p12345678'` | `string`             |
 | `customerId`      | required | The customer identifier              | `'DEMO123456'`       | `string`           |
 
+### Configuration
+
+```javascript
+pbjs.setConfig({
+   "contxtful":{
+      "version":"v1",
+      "customer":"<<CUSTOMER_ID_HERE>>"
+   },
+   "realTimeData":{
+      "dataProviders":[
+         {
+            "name":"contxtful",
+            "waitForIt":true,
+            "params":{
+               "version":"v1",
+               "customer":"<<CUSTOMER_ID_HERE>>",
+               "bidders":[
+                  "contxtful"
+               ],
+               "adServerTargeting":true
+            }
+         }
+      ]
+   }
+}
+);
+```
+
 ### User Sync
 Contxtful recommends enabling [User Syncing](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing) to optimize match rate and monetization.
 
