@@ -7,7 +7,7 @@ tcfeu_supported: true
 media_types: banner,native,video
 usp_supported: true
 coppa_supported: true
-userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+userIds: all
 prebid_member: true
 pbjs: true
 gvl_id: 142
