@@ -69,6 +69,31 @@ Publishers should use the `ortb2` method of setting First Party Data. The follow
 
 AdUnit-specific data is supported using `AdUnit.ortb2Imp.ext.*`
 
+### AdUnit Format client side
+
+```javascript
+ var adUnitList = [
+  {
+    code: 'AD_UNIT_NAME_HERE',
+    mediaTypes: { /* "<< ENTER_FORMAT_HERE >> */ },
+    bids: [{
+      bidder: 'contxtful',
+      params: {
+        placementId: "<<PLACEMENT_ID_HERE>>",
+        customerId: "<<CUSTOMER_ID_HERE>>"
+      }
+    }],
+    ortb2Imp: {
+      ext: {
+        data: {
+          divId: "<<EACH_AD_UNIT_DIV_ID>>"
+        }
+      }
+    }
+  }
+]
+```
+
 ### User Sync
 Contxtful recommends enabling [User Syncing](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing) to optimize match rate and monetization.
 
