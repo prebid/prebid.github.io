@@ -30,7 +30,7 @@ The Contxtful bidder adapter requires some setup. Contact us at [contact@contxtf
 | Name        | Scope    | Description                                                | Example                      | Type                 |
 |-------------|----------|------------------------------------------------------------|------------------------------|----------------------|
 | `placementId`      | required | The placement identifier                                          | `'p12345678'` | `string`             |
-| `customerId`      | required for Prebid S2S | The customer identifier              | `'DEMO123456'`       | `string`           |
+| `customerId`      | required | The customer identifier              | `'DEMO123456'`       | `string`           |
 
 ### User Sync
 Contxtful recommends enabling [User Syncing](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing) to optimize match rate and monetization.
