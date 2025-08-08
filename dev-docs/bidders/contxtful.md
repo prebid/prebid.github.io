@@ -63,6 +63,7 @@ pbjs.setConfig({
 ### First Party Data
 
 Publishers should use the `ortb2` method of setting First Party Data. The following fields are supported:
+
 - `ortb2.site.*`
 - `ortb2.user.*`
 - `ortb2.device.*`
