@@ -53,13 +53,19 @@ The Prebid SDK renders the interstitial video ad in the OS-specific video player
 |`Playback`| **Prebid SDK** starts playback only when the ad appears on the app screen. Once the ad is removed or scrolled off the screen, the playback will be stopped. <br> <br> **Publisher** is responsible for removing or collapsing the ad slot in the application layout. |Currently, there is no public API to customize this behaviour. Open an issue or PR for the alternative approach.|
 |`Sound`| **Prebid SDK** Prebid SDK plays instream video in loud. | **Publisher** can customize the default SDK behaviour using [Ad Experience Controls](https://docs.prebid.org/prebid-mobile/modules/rendering/combined-ad-experience-controls.html) |
 
-## Rewarded Video 
+## Rewarded Ad 
 
-**Prebid SDK** implements a special ad unit for Rewarded ads, based on the interstitial ad unit, and maintains the OS-specific video player, WebView, and rewarding under the hood. The publisher is responsible for integrating the Interstitial controller into the application flow and managing app behavior in response to ad signals. 
+**Prebid SDK** implements a special ad unit for Rewarded ads, maintaining the OS-specific video player, WebView, and rewarding engine under the hood. The publisher should integrate the `RewardedAdUnit` into the application flow and manage app behavior in response to ad signals. 
+
+The following table, based on the `RewardedAdUnit` [specification](https://github.com/prebid/prebid-mobile-ios/issues/1056), describes how publishers can change its behaviour: 
 
 | Policy | Behaviour | Customization | 
 |--------|-----------|---------------|
-|Autoplay| **Prebid SDK** starts playback only when the ad appears on the app screen. Once the ad is removed or scrolled off the screen, the playback will be stopped. <br> **The publisher** is responsible for removing or collapsing the ad slot in the application layout. ||
+|`Reward`| **Prebid SDK** can signal the publisher about the type and quantity of reward coins.|**Publisher** can set the type and number of coins in the `rwdd.reward` object.|
+|`Completion`|**Prebid SDK** will inform the application once the reward time has come.|**Publisher** can set the rule when the SDK should inform the app about the reward time. Depending on the ad format, the publisher can set different rules using `rwdd.completion.banner` and `rwdd.completion.banner` objects respectively.|
+|`Close`|**Prebid SDK** will close the interstitial controller with rewarded ad according to the configuration passed in the response.|**Publisher** can set the rule how the SDK should behave once the user earned the reward, and the interstitial ad can be dismissed from the app screen. The `rwdd.close.postrewardtime` describes how much time the SDK should wait until performing the action. The action itself is described in `rwdd.close.action` object. Currently, two actions are supported - the `autoclose` means that the ad will be dismissed without user interaction, and `closebutton` means that the SDK will display the close button on top of the ad and the user will have to tap on it to dismiss the ad.|
+
+Note: Ad Experience controls of the rewarded ad can be configured in the same way as for the interstitial ad. 
 
 ## Native Ads
 
