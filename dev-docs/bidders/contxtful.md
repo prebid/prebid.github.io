@@ -121,3 +121,6 @@ pbjs.bidderSettings = {
   }
 }
 ```
+
+Note - the `userSync.filterSettings.all` field is mutually exclusive and cannot be combined with the `userSync.filterSettings.iframe`/`userSync.filterSettings.image` fields in the `userSync` config. If the fields are used together, this will be considered an invalid config and only image pixels will be permitted.
+
