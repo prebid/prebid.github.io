@@ -96,7 +96,8 @@ AdUnit-specific data is supported using `AdUnit.ortb2Imp.ext.*`
 ```
 
 ### User Sync
-Contxtful recommends enabling [User Syncing](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing) to optimize match rate and monetization.
+
+Contxtful recommends enabling [User Syncing](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig#setConfig-Configure-User-Syncing) to optimize match rate and monetization.
 
 {% include dev-docs/storageAllowed.md %}
 
@@ -106,7 +107,7 @@ pbjs.setConfig({
   userSync: {
     filterSettings: {
       iframe: {
-        bidders: ['contxtful'],
+        bidders: '*',   // '*' means all bidders
         filter: 'include'
       }
     }
