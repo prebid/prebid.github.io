@@ -46,12 +46,12 @@ hooks:
     enabled: true
   modules:
     optable-targeting:
-      api-endpoint: https://na.edge.optable.co/v2/targeting?t={TENANT}&o={ORIGIN}
+      api-endpoint: https://na.edge.optable.co/v2/targeting?t={{TENANT}}&o={ORIGIN}
 ```
 
 To obtain the endpoints for your regions - please contact [prebid@optable.co](mailto:prebid@optable.co).
 
-Note the endpoint contains 2 macros: {TENANT} and {ORIGIN} - the values for which are provided in the account-level config as `tenant` and `origin` parameters correspondingly.
+Note the endpoint contains 2 macros: {{TENANT}} and {ORIGIN} - the values for which are provided in the account-level config as `tenant` and `origin` parameters correspondingly.
 
 ### Account-Level Config
 
@@ -144,7 +144,7 @@ would result in this nesting in the JSON configuration:
 
 | Param Name         | Required | Type    | Default  value | Description                                                                                                                                                                                                                                                                                                                                                                                                                |
 |:-------------------|:---------|:--------|:---------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| api-endpoint       | yes      | string  | none           | Host-Level. Optable Targeting Edge API endpoint URL. Note it must: include {TENANT} and {ORIGIN} macros that are substituted from account-level config values |
+| api-endpoint       | yes      | string  | none           | Host-Level. Optable Targeting Edge API endpoint URL. Note it must: include {{TENANT}} and {ORIGIN} macros that are substituted from account-level config values |
 | tenant            | yes       | string  | none           | Account-Level. Your Optable tenant aka account ID. |
 | origin            | yes       | string  | none           | Account-Level. Optable data `origin` aka `source`. |
 | api-key            | no       | string  | none           | Account-Level. If the API is protected with a key - this param needs to be specified to be sent in the auth header |
