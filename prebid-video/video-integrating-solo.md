@@ -75,7 +75,7 @@ Configuring the video cache is done with [`setConfig`](/dev-docs/publisher-api-r
 ```javascript
 pbjs.setConfig({
     cache: {
-        url: 'https://prebid.adnxs.com/pbc/v1/cache'
+        url: 'https://my-pbs.example.com/cache'
         /* Or whatever your preferred video cache URL is */
     }
 });

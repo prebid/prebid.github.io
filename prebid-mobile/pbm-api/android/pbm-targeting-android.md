@@ -348,6 +348,23 @@ Parameters:
 | --- | --- | --- | --- | --- |
 | eventDelegate | required | PrebidEventDelegate | The callback for handling all requests and responses. This interface takes request and response as the JSONObject types. | `{ request, response -> ... }` |
 
+#### setDisableStatusCheck()
+
+Informs the SDK whether it should check the PBS status during initialization. This will save initialization time if the PBS endpoint is always live and handled client side.
+
+Signature:
+
+```java
+public static void setDisableStatusCheck(boolean disableStatusCheck)
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| disableStatusCheck | required | boolean | Indicates whether the SDK should opt out of the PBS status checking during initialization. Default is `false`. | `true` |
+
 ---
 
 ## Consent Management Parameters
