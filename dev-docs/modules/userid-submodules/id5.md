@@ -42,6 +42,7 @@ The following configuration parameters are available:
 | params.disableExtensions | Optional | Boolean | Set this to `true` to force turn off extensions call. Default `false` | `true` or `false` |
 | params.canCookieSync | Optional | Boolean | Set this to `true` to enable cookie syncing with other ID5 partners. See [our documentation](https://wiki.id5.io/docs/initiate-cookie-sync-to-id5) for details. Default `false` | `true` or `false` |
 | params.provider | Optional | String | An identifier provided by ID5 to technology partners who manage API deployments on behalf of their clients. Reach out to ID5 if you have questions about this parameter. | `"providerName"` |
+| params.gamTargetingPrefix | Optional | String  | When this parameter is set the ID5 module will set appropriate GAM pubads targeting tags                                                                                                                                                                                            | `"id5"`                                               |
 
 {: .alert.alert-info :}
 **NOTE:** The ID5 ID that is delivered to Prebid will be encrypted by ID5 with a rotating key to avoid unauthorized usage and to enforce privacy requirements. Therefore, we strongly recommend setting `storage.refreshInSeconds` to `2` hours (`7200` seconds) or less to ensure all demand partners receive an ID that has been encrypted with the latest key, has up-to-date privacy signals, and allows them to transact against it.
@@ -51,6 +52,19 @@ The following configuration parameters are available:
 Publishers may want to test the value of the ID5 ID with their downstream partners. While there are various ways to do this, A/B testing is a standard approach. Instead of publishers manually enabling or disabling the ID5 User ID Module based on their control group settings (which leads to fewer calls to ID5, reducing our ability to recognize the user), we have baked this in to our module directly.
 
 To turn on A/B Testing, simply edit the configuration (see above table) to enable it and set what percentage of users you would like to set for the control group. The control group is the set of user where an ID5 ID will not be exposed in to bid adapters or in the various user id functions available on the `pbjs` global. An additional value of `ext.abTestingControlGroup` will be set to `true` or `false` that can be used to inform reporting systems that the user was in the control group or not. It's important to note that the control group is user based, and not request based. In other words, from one page view to another, a user will always be in or out of the control group.
+
+Since [Prebid version 9.42.0](https://github.com/prebid/Prebid.js/releases/tag/9.42.0) an [Enrichment Lift module](https://docs.prebid.org/dev-docs/modules/enrichmentLiftMeasurement.html) is available which also supports A/B Testing. It should not be configured for ID5 UserId Module if the `params.abTesting.enabled` is set to `true`.
+
+### Tags set by GAM targeting
+
+The ID5 UserId module can set GAM targeting tags, if enabled by setting the `params.gamTargetingPrefix`. 
+The prefix used should be unique on the property - if more than one Prebid integration is used, the prefix should be different for each integration. 
+If the same prefix is used, the ID5 module will overwrite the existing GAM targeting tags.
+
+If `params.gamTargetingPrefix` is set to a non-empty value and an ID5 module has initialized, the ID5 module will set the following GAM targeting tags:
+
+- `{prefix}_id` - set to `y` if a valid id5id was present, otherwise tag is not set
+- `{prefix}_ab` - set if `abTesting` was enabled - `n` if in Normal group (with ID5 returned), `c` if in Control group (without ID5 returned)
 
 ### A Note on Using Multiple Wrappers
 If you or your monetization partners are deploying multiple Prebid wrappers on your websites, you should make sure you add the ID5 ID User ID module to *every* wrapper. Only the bidders configured in the Prebid wrapper where the ID5 ID User ID module is installed and configured will be able to pick up the ID5 ID. Bidders from other Prebid instances will not be able to pick up the ID5 ID.
@@ -72,7 +86,8 @@ pbjs.setConfig({
           enabled: true,         // false by default
           controlGroupPct: 0.1   // valid values are 0.0 - 1.0 (inclusive)
         },
-        canCookieSync: true      // optional, has effect only when externalModuleUrl is used 
+        canCookieSync: true,      // optional, has effect only when externalModuleUrl is used
+        gamTargetingPrefix: "id5" // optional, when set the ID5 module will set gam targeting paramaters with this prefix
       },
       storage: {
         type: 'html5',           // "html5" is the recommended storage type
@@ -108,10 +123,10 @@ The module provides following eids:
     ]
   },
   {
-    source: 'true-link-id5-sync.com',
+    source: 'gpid.id5-sync.com',
     uids: [
       {
-        id: 'some-publisher-true-link-id',
+        id: 'some-publisher-gp-id',
         atype: 1
       }
     ]
@@ -133,18 +148,20 @@ The module provides following eids:
 
 The id from `id5-sync.com` should be always present (though the id provided will be '0' in case of no consent or optout)
 
-The id from `true-link-id5-sync.com` will be available if the page is integrated with TrueLink (if you are an ID5 partner you can learn more at [ID5 wiki](https://wiki.id5.io/en/identitycloud/retrieve-id5-ids/true-link-integration))
+The id from `gpid.id5-sync.com` will be available if the publisher has enabled Guarded Publisher ID [ID5 wiki](https://wiki.id5.io/docs/guarded-publisher-id)
 
-The id from `uidapi.com` will be available if the partner that is used in ID5 user module has the EUID2 integration enabled (it has to be enabled on the ID5 side)
+The id from `uidapi.com` will be available if the partner used in ID5 user module has the EUID2 integration enabled (it has to be enabled on the ID5 side)
 
-### Providing TrueLinkId as a Google PPID
+Additional EIDS may be provided if the publisher has enabled bid enrichment with ID5. 
 
-TrueLinkId can be provided as a PPID - to use, it the `true-link-id5-sync.com` needs to be provided as a ppid source in prebid userSync configuration:
+### Providing Guarded Publisher ID as a Google PPID
+
+GPID can be provided as a PPID - to use, it the `gpid.id5-sync.com` needs to be provided as a ppid source in prebid userSync configuration:
 
 ```javascript
 pbjs.setConfig({
   userSync: {
-    ppid: 'true-link-id5-sync.com',
+    ppid: 'gpid.id5-sync.com',
     userIds: [],  //userIds modules should be configured here
   }
 });
