@@ -130,7 +130,7 @@ If the results of the prebid process is being determined outside of the plugin, 
         }]
     },
     "prebidConfigOptions": {
-        "cache": {"url": "https://prebid.adnxs.com/pbc/v1/cache"},
+        "cache": {"url": "https://prebid.example.com/pbc/v1/cache"},
     "   enableSendAllBids": true
     },
     "prebidTimeout": 700,
