@@ -816,7 +816,7 @@
   subgroup: 2
 
 - sbSecId: 2
-  title: UI/UX Policy
+  title: Ad Experience Specification
   link: /prebid-mobile/modules/rendering/combined-ui-ux-policy.html
   isHeader: 0
   isSectionHeader: 0
@@ -929,7 +929,7 @@
   subgroup: 3
   
 - sbSecId: 2
-  title: UI UX Policy
+  title: Ad Experience Specification
   link: /prebid-mobile/modules/rendering/combined-ui-ux-policy.html
   isHeader: 0
   isSectionHeader: 0

@@ -1,7 +1,7 @@
 ---
 
 layout: page_v2
-title: Ad Experience
+title: Ad Experience Specification
 description: Ad Experience Specification
 sidebarType: 2
 
@@ -23,6 +23,7 @@ Prebid SDK renders the banner ad in the OS-specific WebView. The publisher is re
 
 The following table describes the ad experience properties of the banner ad and how they can be changed.
 
+ {: .table .table-bordered .table-striped }
 | Policy | Behavior | Customization | 
 |--------|-----------|---------------|
 |`Autorefresh`| **Prebid SDK** refreshes the banner ad every **60 seconds**. SDK makes the bid request and changes the current creative in the ad slot if the refresh has a bid. If there is no bid, the SDK will remove the current creative from the internal ad slot and notify the publisher using the respective delegate methods. <br><br> **Publisher** is responsible for removing or collapsing the ad slot in the application layout. |**iOS**: you can change the refresh interval using [refreshInterval](https://docs.prebid.org/prebid-mobile-ios/Classes/BannerView.html#/c:@M@PrebidMobile@objc(cs)BannerView(py)refreshInterval) property. <br><br> **Android**: you can change the refresh interval using the [setAutoRefreshDelay](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/api/rendering/BannerView.html#setAutoRefreshDelay(int)) property.|
@@ -33,6 +34,7 @@ The following table describes the ad experience properties of the banner ad and 
 
 Prebid SDK renders the outstream video ad in the OS-specific video player. The publisher is responsible for integrating the `BannerAdView` into the application layout and providing the needed space according to the supported ad sizes. 
 
+ {: .table .table-bordered .table-striped }
 | Policy | Behavior | Customization | 
 |--------|-----------|---------------|
 |`Autoplay`| **Prebid SDK** starts playback only when the ad appears on the app screen. Once the ad is removed or scrolled off the screen, the playback will be stopped. <br> <br> **Publisher** is responsible for removing or collapsing the ad slot in the application layout. |Currently, there is no public API to customize this behavior. Open an issue or PR for the alternative approach.|
@@ -42,6 +44,7 @@ Prebid SDK renders the outstream video ad in the OS-specific video player. The p
 
 The Prebid SDK renders the interstitial video ad in the OS-specific video player, within the special full-screen controller. The publisher is responsible for integrating the `Interstitial` controller into the application flow and managing the app's behavior in response to ad signals. 
 
+ {: .table .table-bordered .table-striped }
 | Policy | Behavior | Customization | 
 |--------|-----------|---------------|
 | `Fullscreen` | **Prebid SDK** opens the interstitial ad in the fullscreen controller that overlaps all other application content. The iOS SDK support the SKOverlay format to show the interstitial ad for the bid with respective [configuration](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/skadnetwork.md#bid-request). <br><br> **Publisher** is responsible for implementing the callbacks for interstitial ads and managing the app state according to the ad behavior. | Currently, there is no way to customize the appearance of the interstitial ads. Open an issue or PR for the alternative approach. |
@@ -59,6 +62,7 @@ The Prebid SDK renders the interstitial video ad in the OS-specific video player
 
 The following table, based on the `RewardedAdUnit` [specification](https://github.com/prebid/prebid-mobile-ios/issues/1056), describes how publishers can change their behavior: 
 
+ {: .table .table-bordered .table-striped }
 | Policy | Behavior | Customization | 
 |--------|-----------|---------------|
 |`Reward`|**Prebid SDK** can signal the publisher about the type and quantity of reward coins.<br><br> If the `rwdd` or `reward` object is absent in the response, by **default,** SDK will send an empty object into the respective delegate method. |**Publisher** can set the type and number of coins in the `rwdd.reward` object.|
