@@ -28,7 +28,8 @@ Two modes are supported:
 ## How to Use the Module
 
 {: .alert.alert-warning :}
-**Prebid 10 :** You don't need to add the schain module explicitly starting from Prebid 10.
+Since Prebid 10, schain is treated as first party data: this module just copies `schain.config` into `ortb2.source.ext.schain`. You may provide it (or `ortb2.source.schain`) directly, removing the need for this module.
+Note that bidder-specific first party data is merged with global first party data, while up until Prebid 9 bidder-specific schains override the global schain. The simplest way to upgrade to 10 is to avoid using both.   
 
 First, build the schain module into your Prebid.js package:
 
