@@ -9,7 +9,6 @@ media_types: banner, video
 userIds: all
 gvl_id: 644
 tcfeu_supported: true
-tcf2_supported: true
 schain_supported: true
 usp_supported: true
 ortb_blocking_supported: true
