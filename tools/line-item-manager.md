@@ -38,7 +38,7 @@ This tool uses a base (default) configuration as a starting point to create line
 line_item_manager show config
 ```
 
-You can look at the full config [here](https://github.com/prebid/line-item-manager/blob/master/line_item_manager/conf.d/line_item_manager.yml). To save time and build on the default config, create a new config file of your own using the following command:
+You can look at the full config in [the example configuration](https://github.com/prebid/line-item-manager/blob/master/line_item_manager/conf.d/line_item_manager.yml). To save time and build on the default config, create a new config file of your own using the following command:
 
 ```bash
 line_item_manager show config > my_config.yml
@@ -67,7 +67,7 @@ creative: # at least one of the following types is required {video, banner}
         sizes: # list
             - height: 480
             width: 640
-        vast_xml_url: "https://prebid.adnxs.com/pbc/v1/cache?uuid=%%PATTERN:{{ hb_cache_id }}%%"
+        vast_xml_url: "https://my-pbs.example.com/cache?uuid=%%PATTERN:{{ hb_cache_id }}%%"
 ```
 
 #### Order setup
@@ -153,24 +153,24 @@ The create function has certain modifiers that can be used to do dry runs and te
 {: .table .table-bordered .table-striped }
 
 | Modifier | Type | Description |
-|----------|------|-------------|
-|--network-code | INTEGER | GAM network code, must reconcile with the network name.|
---network-name |TEXT|GAM network name, must reconcile with the network code.|
-|-k, --private-key-file |PATH |Path to json GAM credentials file. [default: gam_creds.json; required]
-|-s, --single-order||Create a single set of orders instead of orders per bidder. [default: False]
--b, --bidder-code |TEXT |Bidder code may be used multiple times.
--t, --test-run||Execute a limited number of line_items for testing and manual review. Please ensure that you archive the orders so as not to clash with the actual production orders and line items you wish to create. [default: False]
--n, --dry-run||Print commands that would be executed, but do not execute them. [default: False]
--q, --quiet||Logging is limited to warnings and errors. [default: False]
--v, --verbose||Verbose logging; use multiple times to increase verbosity. [default: False]
---skip-auto-archive||Upon failure or interruption, do NOT auto-archive already created orders. [default:False]
+| ----------|------|-------------|
+| --network-code | INTEGER | GAM network code, must reconcile with the network name. |
+| --network-name |TEXT|GAM network name, must reconcile with the network code. |
+| -k, --private-key-file |PATH |Path to json GAM credentials file. [default: gam_creds.json; required] |
+| -s, --single-order||Create a single set of orders instead of orders per bidder. [default: False] |
+| -b, --bidder-code |TEXT |Bidder code may be used multiple times. |
+| -t, --test-run||Execute a limited number of line_items for testing and manual review. Please ensure that you archive the orders so as not to clash with the actual production orders and line items you wish to create. [default: False] |
+| -n, --dry-run||Print commands that would be executed, but do not execute them. [default: False] |
+| -q, --quiet||Logging is limited to warnings and errors. [default: False] |
+| -v, --verbose||Verbose logging; use multiple times to increase verbosity. [default: False] |
+| --skip-auto-archive||Upon failure or interruption, do NOT auto-archive already created orders. [default:False] |
 
 ### Commands for _line_item_manager_
 
 {: .table .table-bordered .table-striped }
 
 | Modifier |  Description |
-|----------|-------------|
+| ----------|-------------|
 |create|Create line items|
 |show|Show resources. Options: "config" or "bidders" |
 

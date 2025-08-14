@@ -178,7 +178,7 @@ function interpretResponse(resp, req) {
 
 Each object must specify exactly one of `igb` or `config`.
 
-An example of this can be seen in the OpenX bid adapter [here](https://github.com/prebid/Prebid.js/blob/master/modules/openxBidAdapter.js) or RTB House bid adapter [here](https://github.com/prebid/Prebid.js/blob/master/modules/rtbhouseBidAdapter.js).
+An example of this can be seen in the OpenX bid adapter [here](https://github.com/prebid/Prebid.js/blob/master/modules/openxBidAdapter.js).
 
 <a id="parallel"></a>
 ## Parallel auctions

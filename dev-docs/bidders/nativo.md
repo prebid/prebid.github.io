@@ -30,13 +30,14 @@ Prebid Server primarily relies on the OpenRTB specification for its field defini
 | Name                         | Scope                               | Description                                                                                                                | Example                                             | Type      |
 |------------------------------|-------------------------------------|----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|-----------|
 | `imp.tagid`                  | required - preferred                | Represents the Ad Slot Tag ID, which is the primary identifier linked to a specific placement ID within the Nativo platform.  Read more about [tagid in the oRTB 2.6 docs](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/main/2.6.md#324---object-imp-) |  `placement_tagid_example`                          | `string`  |
-| `imp.ext.nativo.placementid` | required if no tagID                | Refers to the unique Placement ID assigned by the Nativo platform.                                                         |  `12345678`                                         | `integer` |
+| `imp.ext.nativo.placementId` | required if no tagID                | Refers to the unique Placement ID assigned by the Nativo platform.                                                         |  `12345678`                                         | `integer` |
 | `imp.ext.gpid`               | required if no other ID is provided | Represents the Ad Slot GP ID. It is another layer of identification tied to a placement ID within the Nativo platform. Read more about [gpid in the prebid docs](/features/pbAdSlot.html#the-gpid)       |  `/22888152279/publication/placement/gpid_example`  | `string`  |
 
 #### Prebid JS
 
 {: .table .table-bordered .table-striped }
-| Name       | Scope    | Description                                                                            | Example                                         | Type      |
-|------------|----------|----------------------------------------------------------------------------------------|-------------------------------------------------|-----------|
-| `ntv_url`  | required | Publication url associated with placement IDs within the Nativo platform. |  `https://publication.com/prebid_adpater.html`  | `string`  |
-| `ntv_ptd`  | optional | Refers to a list of Placement IDs assigned by the Nativo platform for the publication. |  `12345678,12345699`   | `array of integer` |
+ | Name          | Scope    | Description                                                                     | Example      | Type      |
+ |---------------|----------|---------------------------------------------------------------------------------|--------------|-----------|
+ | `placementId` | required | Publication placement ID value from the Nativo Platform                         |  `13144370`  | `integer` |
+ | `url`         | optional | Publication url value associated with placement ID value in the Nativo Platform |  `https://test-sites.internal.nativo.net/testing/prebid_adpater.html`  | `string` |
+ 

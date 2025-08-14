@@ -212,6 +212,39 @@ pbjs.que.push(function () {
 });
 ```
 
+#### Outstream Video
+
+Following the setup described [here](https://docs.prebid.org/dev-docs/show-outstream-video-ads.html), this adapter supports scenarios where the publisher does not provide a custom renderer. In such cases, the configuration shown below will work, and the outstream ad will be rendered using Equativ's default player.
+
+```javascript
+var adUnits = [
+  {
+    code: 'test-div',
+    mediaTypes: {
+      banner: {
+        sizes: [
+          [300, 250]
+        ]
+      },
+      video: {
+        context: 'outstream',
+        mimes: ['video/mp4'],
+        placement: 3,
+        playerSize: [300, 250]
+      }
+    },
+    bids: [
+      {
+        bidder: 'equativ',
+        params: {
+          networkId: 42
+        }
+      }
+    ]
+  }
+];
+```
+
 #### Native
 
 As mentioned in the **Bid Params > Usage** section, when including `'equativ'` as one of the available bidders in an adunit setup, there are two approaches to how publishers can specify parameters. The below example uses the approach using the `params` object.
@@ -348,10 +381,192 @@ pbjs.que.push(function () {
 {: .alert.alert-warning :}
 **Note**: If a demand partner of Equativ is not capable of reading an audio object, the audio object will be converted into a video object with audio mime types. There is, as of this writing, no built-in/default support for serving audio assets in Prebid, so publishers that wish to do so will need to ensure their ad server setups can process whatever hand-offs are necessary.
 
+#### Multi-formats and multi-sizes examples
+
+##### Banner, Outstream Video, and Native with different floors
+
+```javascript
+var adUnits = [
+  {
+    code: 'test-div',
+    mediaTypes: {
+      banner: {
+        sizes: [
+          [300, 250],
+          [300, 600]
+        ]
+      },
+      video: {
+        context: 'outstream',
+        mimes: ['video/mp4'],
+        placement: 3,
+        playerSize: [300, 250]
+      },
+      native: {
+        title: {
+          len: 80,
+          required: true
+        },
+        image: {
+          required: true,
+          sizes: [300, 150]
+        }
+      }
+    },
+    floors: {
+      currency: 'USD',
+      schema: {
+        fields: ['mediaType']
+      },
+      values: {
+        'banner': 1.04,
+        'video': 1.87,
+        'native': 1.35
+      }
+    },
+    bids: [
+      {
+        bidder: 'equativ',
+        params: {
+          networkId: 42
+        }
+      }
+    ]
+  }
+];
+```
+
+##### Banner, Outstream Video, and Native with one floor
+
+```javascript
+var adUnits = [
+  {
+    code: 'test-div',
+    mediaTypes: {
+      banner: {
+        sizes: [
+          [300, 250],
+          [300, 600]
+        ]
+      },
+      video: {
+        context: 'outstream',
+        mimes: ['video/mp4'],
+        placement: 3,
+        playerSize: [300, 250]
+      },
+      native: {
+        title: {
+          len: 80,
+          required: true
+        },
+        image: {
+          required: true,
+          sizes: [300, 150]
+        }
+      }
+    },
+    floors: {
+      currency: 'USD',
+      schema: {
+        fields: ['mediaType']
+      },
+      values: {
+        '*': 1.48
+      }
+    },
+    bids: [
+      {
+        bidder: 'equativ',
+        params: {
+          networkId: 42
+        }
+      }
+    ]
+  }
+];
+```
+
+##### Multiple Banner sizes with different floors
+
+```javascript
+var adUnits = [
+  {
+    code: 'test-div',
+    mediaTypes: {
+      banner: {
+        sizes: [
+          [300, 160],
+          [300, 250],
+          [300, 600]
+        ]
+      }
+    },
+    floors: {
+      currency: 'USD',
+      schema: {
+        delimiter: '|',
+        fields: ['mediaType', 'size']
+      },
+      values: {
+        'banner|300x250': 1.37,
+        'banner|300x600': 1.52,
+        'banner|*': 1.23
+      }
+    },
+    bids: [
+      {
+        bidder: 'equativ',
+        params: {
+          networkId: 42
+        }
+      }
+    ]
+  }
+];
+```
+
+##### Multiple Banner sizes with one floor
+
+```javascript
+var adUnits = [
+  {
+    code: 'test-div',
+    mediaTypes: {
+      banner: {
+        sizes: [
+          [300, 160],
+          [300, 250],
+          [300, 600]
+        ]
+      }
+    },
+    floors: {
+      currency: 'USD',
+      schema: {
+        delimiter: '|',
+        fields: ['mediaType', 'size']
+      },
+      values: {
+        'banner|*': 1.19
+      }
+    },
+    bids: [
+      {
+        bidder: 'equativ',
+        params: {
+          networkId: 42
+        }
+      }
+    ]
+  }
+];
+```
+
 ### First Party Data
 
 Publishers should use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html).
 
 ### Additional Resources
 
-Information about how Equativ supports the oRTB specification, along with additional examples, can be found [on our OpenRTB API support site](https://help.smartadserver.com/s/article/OpenRTB-API-for-suppliers-Bid-request-specification-Part-1).
+Information about how Equativ supports the oRTB specification, along with additional examples, can be found [on our OpenRTB API support site](https://help.equativ.com/open-rtb-api-integration-bid-request-specification-1).
