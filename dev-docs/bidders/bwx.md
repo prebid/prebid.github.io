@@ -15,6 +15,7 @@ floors_supported: true
 multiformat_supported: will-bid-on-any
 sidebarType: 1
 safeframes_ok: true
+gvl_id: 1151
 ---
 
 ### Prebid Server Bid Params
