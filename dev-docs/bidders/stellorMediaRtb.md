@@ -35,7 +35,3 @@ sidebarType: 1
 | `custom3`     | optional | Custom targeting field 3                                     | `'custom3'`              | `string`  |
 | `custom4`     | optional | Custom targeting field 4                                     | `'custom4'`              | `string`  |
 | `custom5`     | optional | Custom targeting field 5                                     | `'custom5'`              | `string`  |
-
-Stellor Media Rtb server-side Prebid Server adapter requires only `publisherId` and `host` parameters. But Stellor Media Rtb client-side Prebid.js adapter requires only `host`, `adUnitId`, `adUnitType`.
-
-Stellor Media Rtb server-side Prebid Server adapter supports only `banner`, `video`, `audio`, `native` media types. But Stellor Media Rtb client-side Prebid.js adapter supports only `banner` and `video` media types, doesn't support `audio` and `native`.
