@@ -31,7 +31,6 @@ aliasCode: gamoshi
 
 This adapter only requires you to provide your Inventory Id (Supply partner id), and optionally your RTB endpoint.
 
-<a name="cleanmedianet-video-object"></a>
 
 #### Video Object
 
