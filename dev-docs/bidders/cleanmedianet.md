@@ -27,10 +27,9 @@ aliasCode: gamoshi
 | `bidfloor`        | optional | Minimum acceptable bid price. Must be a positive number. | `0.5` | `number` |
 | `instl`           | optional | Interstitial flag (1 for interstitial, 0 for non-interstitial). | `1` | `integer` |
 | `pos`             | optional | Ad position on the page. | `1` | `integer` |
-| `video`           | optional | Object containing video targeting parameters. See [Video Object](#cleanmedianet-video-object) for details. | `video: { playback_method: ['auto_play_sound_off'] }` | `object` |
+| `video`           | optional | Object containing video targeting parameters. See [Video Object](#video-object) for details. | `video: { playback_method: ['auto_play_sound_off'] }` | `object` |
 
 This adapter only requires you to provide your Inventory Id (Supply partner id), and optionally your RTB endpoint.
-
 
 #### Video Object
 
