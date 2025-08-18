@@ -567,6 +567,20 @@ var adUnits = [
 
 Publishers should use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html).
 
+#### Keywords
+
+Keyword targeting capabilities are supported. To pass keywords, the following fields can be used: `ortb2.site.keywords`, `ortb2.app.keywords`, or `ortb2.dooh.keywords`.
+
+```javascript
+pbjs.setConfig({
+  ortb2: {
+    site: {
+      keywords: 'kw_1,kw_2'
+    }
+  }
+});
+```
+
 ### Additional Resources
 
 Information about how Equativ supports the oRTB specification, along with additional examples, can be found [on our OpenRTB API support site](https://help.equativ.com/open-rtb-api-integration-bid-request-specification-1).
