@@ -150,7 +150,7 @@ var adOptions =
         }]
     },
     "prebidConfigOptions": {
-        "cache": {"url": "https://prebid.adnxs.com/pbc/v1/cache"},
+        "cache": {"url": "https://prebid.example.com/pbc/v1/cache"},
         "enableSendAllBids": true
     },
     "prebidTimeout": 700,
@@ -353,7 +353,7 @@ None
     },
     "prebidConfigOptions": {
         "cache": {
-            "url": "https://prebid.adnxs.com/pbc/v1/cache"
+            "url": "https://prebid.example.com/pbc/v1/cache"
         },
         "enableSendAllBids": true
     },
