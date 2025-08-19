@@ -17,6 +17,7 @@ prebid_member: false
 pbjs: true
 pbs: true
 deals_supported: false
+enable_download: false
 sidebarType: 1
 ---
 
