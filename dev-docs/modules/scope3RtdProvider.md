@@ -23,11 +23,12 @@ The Scope3 RTD (Real-Time Data) Provider enables publishers to leverage Scope3's
 ## Overview
 
 The Scope3 RTD Provider:
-- Sends complete OpenRTB 2.x requests including extended UIDs, geo data, and device information
-- Receives AEE signals for include/exclude targeting and macros
-- Supports bidder-specific segments and deal IDs
-- Enables configurable GAM targeting keys
-- Works client-side without API keys
+
+* Sends complete OpenRTB 2.x requests including extended UIDs, geo data, and device information
+* Receives AEE signals for include/exclude targeting and macros
+* Supports bidder-specific segments and deal IDs
+* Enables configurable GAM targeting keys
+* Works client-side without API keys
 
 ## Usage
 
@@ -59,7 +60,7 @@ pbjs.setConfig({
             waitForIt: true,
             params: {
                 orgId: "your-org-id",
-                endpoint: "https://prebid.scope3.com/prebid",
+                endpoint: "<https://prebid.scope3.com/prebid>",
                 timeout: 1500,
                 bidders: ["appnexus", "rubicon", "pubmatic"],
                 includeKey: "scope3_include",
@@ -78,10 +79,11 @@ pbjs.setConfig({
 ## Configuration Parameters
 
 {: .table .table-bordered .table-striped }
+
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | orgId | String | Yes | Your Scope3 organization ID |
-| endpoint | String | No | API endpoint (default: "https://prebid.scope3.com/prebid") |
+| endpoint | String | No | API endpoint (default: `https://prebid.scope3.com/prebid`) |
 | timeout | Number | No | Request timeout in milliseconds (default: 1000) |
 | bidders | Array | No | List of bidders to target (default: all auction bidders) |
 | includeKey | String | No | GAM targeting key for include signals (default: "scope3_include") |
@@ -123,48 +125,51 @@ The Scope3 AEE returns signals in this format:
 Create GAM line items with key-value targeting using the configured keys:
 
 **Include Targeting:**
-- Key: `scope3_include` (or your configured includeKey)
-- Values: `sports_fan`, `auto_intender`, etc.
-- Operator: "is any of"
+
+* Key: `scope3_include` (or your configured includeKey)
+* Values: `sports_fan`, `auto_intender`, etc.
+* Operator: "is any of"
 
 **Exclude Targeting:**
-- Key: `scope3_exclude` (or your configured excludeKey)  
-- Values: `competitor_exposed`, etc.
-- Operator: "is none of"
+
+* Key: `scope3_exclude` (or your configured excludeKey)
+* Values: `competitor_exposed`, etc.
+* Operator: "is none of"
 
 **Macro Targeting:**
-- Key: `scope3_macro` (or your configured macroKey)
-- Values: Base64-encoded contextual data
+
+* Key: `scope3_macro` (or your configured macroKey)
+* Values: Base64-encoded contextual data
 
 ### Example Line Item Configuration
 
-```
+```text
 Creative: 300x250 Banner
 Targeting:
-  - scope3_include is any of "sports_fan", "auto_intender"
-  - scope3_exclude is none of "competitor_exposed"
-  - scope3_macro is "eyJjb250ZXh0IjogImhpZ2hfdmFsdWUifQ=="
+  * scope3_include is any of "sports_fan", "auto_intender"
+  * scope3_exclude is none of "competitor_exposed"
+  * scope3_macro is "eyJjb250ZXh0IjogImhpZ2hfdmFsdWUifQ=="
 ```
 
 ## Data Flow
 
 1. **Request**: Module sends complete OpenRTB request to Scope3 including:
-   - All extended user IDs
-   - Geo and device data
-   - Ad unit configurations
-   - Bidder list
+   * All extended user IDs
+   * Geo and device data
+   * Ad unit configurations
+   * Bidder list
 
 2. **Processing**: Scope3's AEE analyzes the request context
 
 3. **Response**: AEE returns targeting signals:
-   - Global include/exclude segments
-   - Bidder-specific segments and deals
-   - Contextual macro data
+   * Global include/exclude segments
+   * Bidder-specific segments and deals
+   * Contextual macro data
 
 4. **Application**: Module applies signals to bid request:
-   - Global targeting in `ortb2Fragments.global.site.ext.data`
-   - Bidder segments in `ortb2Fragments.bidder[].user.data`
-   - Deal IDs in ad unit `ortb2Imp.ext`
+   * Global targeting in `ortb2Fragments.global.site.ext.data`
+   * Bidder segments in `ortb2Fragments.bidder[].user.data`
+   * Deal IDs in ad unit `ortb2Imp.ext`
 
 ## Testing
 
@@ -190,19 +195,21 @@ Check the browser console for RTD provider logs and bid request modifications.
 ## Privacy Considerations
 
 The Scope3 RTD Provider:
-- Respects user consent choices
-- Only processes data necessary for contextual targeting
-- Does not store personal information
-- Complies with privacy regulations when properly configured
+
+* Respects user consent choices
+* Only processes data necessary for contextual targeting
+* Does not store personal information
+* Complies with privacy regulations when properly configured
 
 ## Support
 
 For questions about the Scope3 RTD Provider:
-- Technical issues: Open a GitHub issue in the Prebid.js repository
-- Integration support: Contact your Scope3 representative
-- Documentation: Submit PRs to improve this documentation
+
+* Technical issues: Open a GitHub issue in the Prebid.js repository
+* Integration support: Contact your Scope3 representative
+* Documentation: Submit PRs to improve this documentation
 
 ## Related Modules
 
-- [Real-Time Data Module]({{site.baseurl}}/dev-docs/modules/realTimeData.html)
-- [RTD Sub-Module Development]({{site.baseurl}}/dev-docs/add-rtd-submodule.html)
+* [Real-Time Data Module]({{site.baseurl}}/dev-docs/modules/realTimeData.html)
+* [RTD Sub-Module Development]({{site.baseurl}}/dev-docs/add-rtd-submodule.html)
