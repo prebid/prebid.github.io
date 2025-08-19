@@ -108,16 +108,19 @@ hooks:
 The module automatically detects and forwards available user identifiers:
 
 ### LiveRamp Identifiers
+
 * `user.ext.eids[]` with `source: "liveramp.com"`
 * `user.ext.rampid` field
 
 ### Encrypted Identity Envelopes
+
 * `user.ext.liveramp_idl` - ATS envelope
 * `user.ext.ats_envelope` - Alternative envelope location
 * `user.ext.rampId_envelope` - Additional envelope location
 * `ext.liveramp_idl` - Request-level envelope
 
 ### Standard Identifiers
+
 * `user.id` - Publisher user ID
 * `device.ifa` - Device advertising ID
 * Other OpenRTB standard identifiers
@@ -160,12 +163,14 @@ When enabled, segments are also added as targeting keys:
 ## Performance Optimization
 
 ### Caching Strategy
+
 * **Cache Key**: Generated from user IDs, domain, and page URL
 * **Thread Safety**: Read-write mutexes for concurrent access
 * **Memory Efficiency**: Stores only segment arrays
 * **Frequency Caps**: 60-second default TTL ensures fresh data
 
 ### HTTP Optimization
+
 * Connection pooling with keep-alive
 * HTTP/2 support when available
 * Gzip compression for responses
@@ -202,7 +207,8 @@ The module logs important events at different levels:
 * **ERROR**: Configuration issues or critical failures
 
 Example log entries:
-```
+
+```text
 INFO: Scope3 RTD: Fetched 3 segments for user
 WARN: Scope3 RTD: API timeout after 1000ms
 INFO: Scope3 RTD: Cache hit for key abc123
@@ -211,18 +217,21 @@ INFO: Scope3 RTD: Cache hit for key abc123
 ## Troubleshooting
 
 ### No Segments Returned
+
 1. Verify API key is correctly configured
 2. Check endpoint URL accessibility
 3. Ensure user identifiers are present in bid request
 4. Review server logs for API errors
 
 ### Performance Issues
+
 1. Adjust `timeout_ms` based on network latency
 2. Increase `cache_ttl_seconds` for less frequent updates
 3. Monitor cache hit rates in logs
 4. Check API response times
 
 ### Configuration Errors
+
 1. Validate YAML/JSON syntax
 2. Ensure environment variables are set
 3. Check module is compiled into PBS binary
@@ -231,6 +240,7 @@ INFO: Scope3 RTD: Cache hit for key abc123
 ## Privacy Compliance
 
 The module respects privacy signals:
+
 * Honors GDPR consent strings
 * Respects US Privacy (CCPA) signals  
 * Does not process requests when consent is denied
@@ -239,10 +249,11 @@ The module respects privacy signals:
 ## Support
 
 For technical support:
+
 * **Issues**: Open a GitHub issue in the Prebid Server repository
 * **Documentation**: Submit PRs to improve this documentation
 * **Integration Help**: Contact your Scope3 representative
-* **Email**: bokelley@scope3.com
+* **Email**: `bokelley@scope3.com`
 
 ## Related Documentation
 
