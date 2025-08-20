@@ -2,7 +2,7 @@
 layout: bidder
 title: Bidfuse
 description: Prebid Bidfuse Bidder Adapter
-biddercode: bidfuseprebid
+biddercode: bidfuse
 gpp_sids: usstate_all
 gvl_id: 1466
 tcfeu_supported: true
