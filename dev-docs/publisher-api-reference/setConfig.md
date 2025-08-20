@@ -703,12 +703,14 @@ The `targetingControls` object passed to `pbjs.setConfig` provides some options 
 {: .table .table-bordered .table-striped }
 | Attribute        | Type    | Description             |
 |------------+---------+---------------------------------|
-| auctionKeyMaxChars | integer | Specifies the maximum number of characters the system can add to ad server targeting. |
-| alwaysIncludeDeals | boolean | If [enableSendAllBids](#setConfig-Send-All-Bids) is false, set this value to `true` to ensure that deals are sent along with the winning bid |
+| auctionKeyMaxChars | Integer | Specifies the maximum number of characters the system can add to ad server targeting. |
+| alwaysIncludeDeals | Boolean | If [enableSendAllBids](#setConfig-Send-All-Bids) is false, set this value to `true` to ensure that deals are sent along with the winning bid |
 | allowTargetingKeys | Array of Strings | Selects supported default targeting keys. |
 | addTargetingKeys   | Array of Strings | Selects targeting keys to be supported in addition to the default ones |
 | allowSendAllBidsTargetingKeys | Array of Strings | Selects supported default targeting keys. |
-| allBidsCustomTargeting | boolean | Set to true to prevent custom targeting values from being set for non-winning bids |
+| allBidsCustomTargeting | Boolean | Set to true to prevent custom targeting values from being set for non-winning bids |
+| lock               | Array of Strings | Targeting keys to lock |
+| lockTimeout        | Integer          | Lock timeout in milliseconds                                   |
 
 {: .alert.alert-info :}
 Note that this feature overlaps and can be used in conjunction with [sendBidsControl.bidLimit](#setConfig-Send-Bids-Control).
@@ -909,6 +911,27 @@ config.setConfig({
 {: .no_toc}
 
 By default, non winning bids will have custom tageting values concatenated to the winning bid's custom targeting for the same key.  The `allBidsCustomTargeting` setting is a boolean that, when set to `false`, prevents custom targeting values from being set for non-winning bids. This can be useful if you want to ensure that only the winning bid has custom targeting values set.  
+
+#### Details on the lock and lockTimeout settings
+{: .no_toc }
+
+When `lock` is set, targeting set through `setTargetingForGPTAsync` or `setTargetingForAst`
+will prevent bids with the same targeting on any of the given keys from being used again until rendering is complete or
+`lockTimeout` milliseconds have passed.
+
+For example, with the following:
+
+```javascript
+pbjs.setConfig({
+  targetingControls: {
+    lock: ['hb_adid'],
+    lockTimeout: 2000
+  }
+});
+```
+
+calling `pbjs.setTargetingForGPTAsync()` will "lock" the targeted `hb_adid` until its slot renders or 2 seconds have passed, preventing subsequent calls to `setTargetingForGPTAsync` from using bids with the same `hb_adid` in the meanwhile.
+If using standard targeting `hb_adid` is unique for each bid, so this would have the effect of preventing the same bid from being used for multiple slots at the same time.      
 
 <a name="setConfig-Configure-Responsive-Ads"></a>
 
