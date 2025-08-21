@@ -2,7 +2,6 @@
 layout: page_v2
 title: 152media RTD Module
 display_name: 152media
-
 description: Real-time data enrichment from 152media
 page_type: module
 module_type: rtd
