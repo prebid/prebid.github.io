@@ -28,6 +28,8 @@ The 152media Real-time Data (RTD) module enhances programmatic advertising perfo
 
 This module is maintained by [152media](mailto:hello@152media.com) and requires the global `rtdModule` to function.
 
+{% include dev-docs/loads-external-javascript.md %}
+
 ## Usage
 
 ### Build
