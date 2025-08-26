@@ -20,10 +20,10 @@ sidebarType: 1
 
 ### Bid Params
 
+{: .table .table-bordered .table-striped }
 | Name          | Scope     | Description           | Example        | Type     |
 |---------------|-----------|-----------------------|----------------|----------|
-| `placement_id` | mandatory | Placement Id          | `110011`       | `number` |
-| `user_id`     | mandatory | Unique id for HCP     | `'1111111'`    | `string` |
+| `placement_id`| mandatory | Placement Id          | `110011`       | `number` |
 | `height`      | optional  | Height of the creative| `600`          | `number` |
 | `width`       | optional  | Width of the creative | `160`          | `number` |
 | `domain`      | optional  | Domain                | `'domain.com'` | `string` |

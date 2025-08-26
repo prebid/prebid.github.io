@@ -28,6 +28,7 @@ This page has instructions for writing your own bidder adapter.  The instruction
 * [Required Files](#bidder-adaptor-Required-Files)
 * [Designing your Bid Params](#bidder-adaptor-Designing-your-Bid-Params)
 * [HTTP Simple Requests](#bidder-adaptor-HTTP-simple-requests)
+* We recommend submitting your adapter written in TypeScript, but you can opt-out and use JavaScript
 
 <a name="bidder-adaptor-Required-Adapter-Conventions"></a>
 
@@ -50,7 +51,7 @@ The above list is **not** the full list of requirements. Failure to follow any o
 
 With each adapter submission, there are two files required to be in the pull request:
 
-* `modules/exampleBidAdapter.js`: the file containing the code for the adapter
+* `modules/exampleBidAdapter.ts`: the file containing the code for the adapter
 * `modules/exampleBidAdapter.md`: a markdown file containing key information about the adapter:
   * The contact email of the adapter's maintainer.
   * A test ad unit that will consistently return test creatives. This helps us to ensure future Prebid.js updates do not break your adapter.  Note that if your adapter supports video (instream and/or outstream context) or native, you must also provide example parameters for each type.
@@ -196,7 +197,7 @@ If your adapter interfaces with an ORTB backend, you may take advantage of Prebi
 
 ### Overview
 
-The new code will reside under the `modules` directory with the name of the bidder suffixed by 'BidAdapter', e.g., `exampleBidAdapter.js`.
+The new code will reside under the `modules` directory with the name of the bidder suffixed by 'BidAdapter', e.g., `exampleBidAdapter.ts`.
 
 Here are some guidelines for choosing a bidder code:
 
@@ -220,7 +221,7 @@ A high level example of the structure:
 import * as utils from 'src/utils';
 import { registerBidder } from 'src/adapters/bidderFactory';
 import { config } from 'src/config';
-import {BANNER, VIDEO, NATIVE} from 'src/mediaTypes.js';
+import {BANNER, VIDEO, NATIVE} from 'src/mediaTypes.ts';
 const BIDDER_CODE = 'example';
 export const spec = {
     code: BIDDER_CODE,
@@ -1138,7 +1139,7 @@ If `image` is a string, `hb_native_image` will be populated with that string (a 
 
 For some time, Prebid engineers will try to ensure that legacy-style request definitions will continue to work. However, Prebid.JS is internally converting everything to OpenRTB. So, OpenRTB is the way to go if you want to ensure your native adapter will continue to work for the long run.
 
-We assume that in the first times all adapters will only understand legacy-style native, so we expose two functions in `native.js`:
+We assume that in the first times all adapters will only understand legacy-style native, so we expose two functions in `native.ts`:
 
 * `convertOrtbRequestToProprietaryNative(bidRequests)` - this function will convert OpenRTB-style native requests to legacy format. Actually, we've already added this conversion to all adapters so they will not fail when an OpenRTB definition is used by publisher.
 
@@ -1161,7 +1162,7 @@ For example tests, see [the existing adapter test suites](https://github.com/pre
 import * as utils from 'src/utils';
 import {config} from 'src/config';
 import {registerBidder} from 'src/adapters/bidderFactory';
-import {BANNER, VIDEO, NATIVE} from 'src/mediaTypes.js';
+import {BANNER, VIDEO, NATIVE} from 'src/mediaTypes.ts';
 const BIDDER_CODE = 'example';
 export const spec = {
         code: BIDDER_CODE,
@@ -1316,7 +1317,7 @@ registerBidder(spec);
   * Fork the repo
   * Copy a file in [dev-docs/bidders](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) and name it to exactly the same as your biddercode. Add the following metadata to the header of your .md file:
     * Add 'biddercode' and set it to the code that publishers should be using to reference your bidder in an AdUnit. _This needs to be the same name as the docs file!_
-    * Add 'aliasCode' if your biddercode is not the same name as your PBJS implementation file. e.g. if your biddercode is "ex", but the file in the PBJS repo is exampleBidAdapter.js, this value needs to be "example".
+    * Add 'aliasCode' if your biddercode is not the same name as your PBJS implementation file. e.g. if your biddercode is "ex", but the file in the PBJS repo is exampleBidAdapter.ts, this value needs to be "example".
     * Add `pbjs: true`. If you also have a [Prebid Server bid adapter](/prebid-server/developers/add-new-bidder-go.html), add `pbs: true`. Default is false for both.
     * If you're on the IAB Global Vendor List (including just [Canada](https://vendor-list.consensu.org/v2/ca/vendor-list.json)), add your ID number in `gvl_id`.
     * If you support the IAB's TCF-EU consent string format and have a GVL ID, you may add `tcfeu_supported: true`. Default is false.

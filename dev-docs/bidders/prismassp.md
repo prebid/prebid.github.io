@@ -3,6 +3,7 @@ layout: bidder
 title: Prismassp
 description: Prebid Prismassp Bidder Adapter
 pbjs: true
+pbs: true
 biddercode: prismassp
 gvl_id: 965
 tcfeu_supported: true
