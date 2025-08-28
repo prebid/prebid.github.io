@@ -6,6 +6,9 @@ pbjs: true
 pbs_app_supported: false
 biddercode: alvads
 media_types: banner, video
+gdpr_supported: true
+usp_supported: true
+coppa_supported: false
 ---
 
 # Overview
