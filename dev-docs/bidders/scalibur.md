@@ -3,11 +3,28 @@ layout: bidder
 title: Scalibur
 description: Prebid Scalibur Bidder Adapter
 biddercode: scalibur
+gvlid: 1471
 media_types: banner, video
-gvlid: # Add your Global Vendor List ID if you have one
+tcfeu_supported: true
+gpp_supported: true
+usp_supported: true
+coppa_supported: true
+schain_supported: true
+dchain_supported: false
+safeframes_ok: true
+deals_supported: false
+floors_supported: true
+fpd_supported: true
+pbjs: true
+pbs: false
+prebid_member: false
+multiformat_supported: will-bid-on-any
+ortb_blocking_supported: false
+userIds: all
+pbs_app_supported: false
 ---
 
-# Scalibur Bidder
+# Scalibur Bidderkue
 
 ## Description
 
