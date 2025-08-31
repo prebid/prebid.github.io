@@ -24,7 +24,7 @@ userIds: all
 pbs_app_supported: false
 ---
 
-# Scalibur Bidderkue
+# Scalibur Bidder
 
 ## Description
 
