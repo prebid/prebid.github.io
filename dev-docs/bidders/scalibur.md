@@ -200,7 +200,7 @@ pbjs.que.push(function() {
 
 For technical support or integration assistance:
 
-- **Email**: support@scalibur.io
+- **Email**: [support@scalibur.io](mailto:support@scalibur.io)
 - **Documentation**: Contact Scalibur Support Team
 
 ## Notes
