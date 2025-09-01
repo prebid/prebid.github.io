@@ -159,6 +159,7 @@ The adapter respects floor prices set via:
 ## User Sync
 
 The Scalibur adapter supports user synchronization through:
+
 - **Iframe syncs**: For enhanced matching capabilities
 - **Image syncs**: For lightweight synchronization
 
