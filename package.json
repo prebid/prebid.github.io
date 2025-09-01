@@ -23,6 +23,8 @@
     "url": "https://github.com/AtreNet/prebid.github.io/issues"
   },
   "homepage": "https://github.com/AtreNet/prebid.github.io#readme",
+  "devDependencies": {
+  },
   "dependencies": {
     "awesomplete": "^1.1.5",
     "bootstrap": "^4.5.3",
