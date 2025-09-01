@@ -226,7 +226,7 @@ To monetize instream video, complete the following steps:
    ```javascript
    pbjs.setConfig({ 
      cache: { 
-             url: 'https://prebid.adnxs.com/pbc/v1/cache' 
+             url: 'https://my-pbs.example.com/cache'
          } 
    });
    ```

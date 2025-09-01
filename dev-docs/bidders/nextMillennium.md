@@ -8,7 +8,7 @@ usp_supported: true
 coppa_supported: true
 schain_supported: true
 dchain_supported: false
-safeframes_ok: false
+safeframes_ok: true
 deals_supported: false
 floors_supported: false
 fpd_supported: false
@@ -24,10 +24,12 @@ sidebarType: 1
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name           | Scope | Description                              | Example   | Type    |
-|----------------+-------+-----------------------------------+-----------+---------|
-| `placement_id` | required | Placement ID, provided by nextMillennium | `'12345'` | String  |
-| `group_id`     | optional | Group ID, provided by nextMillennium     | `'12345'` | String  |
+| Name           | Scope    | Description                              | Example         | Type            |
+|----------------+----------+------------------------------------------+-----------------+-----------------|
+| `placement_id` | optional | Placement ID, provided by nextMillennium | `'12345'`       | String          |
+| `group_id`     | optional | Group ID, provided by nextMillennium     | `'12345'`       | String          |
+| `adSlots`      | optional | `adSlots` is a specific location or container on a webpage where an advertisement is displayed. | `["stickytop"]` | Array of String |
+| `allowedAds`   | optional | `allowedAds` is a list of ad types or formats that are permitted to be shown in a specific ad slot. | `["skin"]`      | Array of String |
 
 Required one of the two parameters placement_id or group_id.
 
