@@ -33,7 +33,7 @@ The Scalibur Bid Adapter connects publishers to Scalibur's programmatic advertis
 **Key Features:**
 - Banner and Video (instream) ad support
 - OpenRTB 2.x compliant requests
-- Privacy regulation compliance (GDPR, CCPA, GPP, COPPA)
+- Privacy regulation compliance
 - First-party data collection and storage
 - User sync capabilities (iframe and image)
 - Supply chain transparency (schain)
@@ -42,8 +42,8 @@ The Scalibur Bid Adapter connects publishers to Scalibur's programmatic advertis
 
 
 ## Bid Params
-
-| Name          | Scope    | Description                                 | Example                | Type     |
+{: .table .table-bordered .table-striped }
+| Name | Scope | Description | Example | Type |
 |---------------|----------|---------------------------------------------|------------------------|----------|
 | `placementId` | required | Placement identifier provided by Scalibur  | `'test-placement-123'` | `string` |
 
@@ -135,15 +135,6 @@ var adUnits = [
 	}
 ];
 ```
-
-## Privacy and Compliance
-The Scalibur adapter automatically handles:
-- **GDPR**: Processes TCF consent strings and applies GDPR compliance flags
-- **CCPA/CPRA**: Handles US Privacy (usprivacy) strings according to CCPA requirements
-- **GPP**: Supports Global Privacy Platform strings and applicable regulatory sections
-- **COPPA**: Respects Children's Online Privacy Protection Act compliance settings
-
-Privacy parameters are automatically passed to the Scalibur platform and included in user sync URLs.
 ## First Party Data
 The adapter supports First Party Data (FPD) in multiple ways:
 - **Global FPD**: Automatically includes `pbjs.setConfig({ortb2: {...}})` data
@@ -163,7 +154,7 @@ The Scalibur adapter supports user synchronization through:
 - **Iframe syncs**: For enhanced matching capabilities
 - **Image syncs**: For lightweight synchronization
 
-All privacy parameters (GDPR, CCPA, GPP) are automatically included in sync requests.
+All privacy parameters are automatically included in sync requests.
 
 ## Configuration Example
 ```javascript
