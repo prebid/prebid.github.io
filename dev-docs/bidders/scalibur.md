@@ -31,6 +31,7 @@ pbs_app_supported: false
 The Scalibur Bid Adapter connects publishers to Scalibur's programmatic advertising platform. It supports both banner and video ad formats through OpenRTB 2.x protocol and provides full compliance with privacy regulations.
 
 **Key Features:**
+
 - Banner and Video (instream) ad support
 - OpenRTB 2.x compliant requests
 - Privacy regulation compliance
@@ -39,7 +40,6 @@ The Scalibur Bid Adapter connects publishers to Scalibur's programmatic advertis
 - Supply chain transparency (schain)
 - Floor pricing support
 - First Party Data (FPD) support
-
 
 ## Bid Params
 {: .table .table-bordered .table-striped }
@@ -109,47 +109,55 @@ var adUnits = [
 
 ```javascript
 var adUnits = [
-	{
-		code: 'test-multiformat-div',
-		mediaTypes: {
-			banner: {
-				sizes: [[300, 250], [728, 90]]
-			},
-			video: {
-				context: 'instream',
-				playerSize: [[300, 169]],
-				mimes: ['video/mp4'],
-				protocols: [2, 3, 5, 6],
-				minduration: 15,
-				maxduration: 30
-			}
-		},
-		bids: [
-			{
-				bidder: 'scalibur',
-				params: {
-					placementId: 'test-scl-placement'
-				}
-			}
-		]
-	}
+    {
+        code: 'test-multiformat-div',
+        mediaTypes: {
+            banner: {
+                sizes: [[300, 250], [728, 90]]
+            },
+            video: {
+                context: 'instream',
+                playerSize: [[300, 169]],
+                mimes: ['video/mp4'],
+                protocols: [2, 3, 5, 6],
+                minduration: 15,
+                maxduration: 30
+            }
+        },
+        bids: [
+            {
+                bidder: 'scalibur',
+                params: {
+                    placementId: 'test-scl-placement'
+                }
+            }
+        ]
+    }
 ];
 ```
+
 ## First Party Data
+
 The adapter supports First Party Data (FPD) in multiple ways:
+
 - **Global FPD**: Automatically includes `pbjs.setConfig({ortb2: {...}})` data
 - **AdUnit FPD**: Includes ad unit specific `ortb2Imp` data
 - **Local Storage**: Generates and stores first-party identifiers for enhanced targeting
 
 ## Supply Chain Transparency
+
 The adapter supports the Supply Chain Object (schain) for transparency in programmatic advertising transactions, helping to combat fraud and improve trust between buyers and sellers.
+
 ## Floor Prices
+
 The adapter respects floor prices set via:
+
 - Prebid.js Price Floors module
 - Ad unit level floor configuration
 - Global floor configuration
 
 ## User Sync
+
 The Scalibur adapter supports user synchronization through:
 - **Iframe syncs**: For enhanced matching capabilities
 - **Image syncs**: For lightweight synchronization
@@ -157,6 +165,7 @@ The Scalibur adapter supports user synchronization through:
 All privacy parameters are automatically included in sync requests.
 
 ## Configuration Example
+
 ```javascript
 pbjs.que.push(function() {
     pbjs.addAdUnits(adUnits);
@@ -187,11 +196,14 @@ pbjs.que.push(function() {
 ```
 
 ## Support
+
 For technical support or integration assistance:
+
 - **Email**: support@scalibur.io
 - **Documentation**: Contact Scalibur Support Team
 
 ## Notes
+
 - The adapter requires a valid `placementId` parameter provided by Scalibur
 - Video ads support instream context with standard IAB video parameters
 - Banner ads support multiple sizes including standard IAB sizes
