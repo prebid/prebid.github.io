@@ -8,7 +8,8 @@ pbs: false
 prebid_member: false
 userId: none
 gpp_sids: usstate_all
-tcfeu_supported: false
+tcfeu_supported: true
+gvl_id: 1478
 usp_supported: true
 coppa_supported: true
 schain_supported: true
