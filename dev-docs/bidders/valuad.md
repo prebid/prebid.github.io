@@ -32,4 +32,4 @@ Please reach out to your account manager or <hello@valuad.io> for more informati
 
 | Name          | Scope    | Description                    | Example    | Type      |
 |---------------|----------|--------------------------------|------------|-----------|
-| `placementId` | required | Placement ID provided by VAluad | `'10000'`  | `string`  |
+| `placementId` | required | Placement ID provided by Valuad | `'10000'`  | `string`  |
