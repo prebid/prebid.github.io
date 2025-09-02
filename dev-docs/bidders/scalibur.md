@@ -42,9 +42,10 @@ The Scalibur Bid Adapter connects publishers to Scalibur's programmatic advertis
 - First Party Data (FPD) support
 
 ## Bid Params
+
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
-|---------------|----------|---------------------------------------------|------------------------|----------|
+|------|-------|-------------|---------|------|
 | `placementId` | required | Placement identifier provided by Scalibur  | `'test-placement-123'` | `string` |
 
 ## Test Parameters
