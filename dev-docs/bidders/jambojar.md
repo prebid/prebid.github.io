@@ -38,4 +38,3 @@ multiformat_supported: will-bid-on-any
 |---------------|----------|---------------------|--------------------------------------|----------|
 | `seat`        | required | Seat value          | `'9Q20EdGxzgWdfPYShScl'`             | `string` |
 | `token`       | required | Token               | `'eKmw6alpP3zWQhRCe3flOpz0wpuwRFjW'` | `string` |
-
