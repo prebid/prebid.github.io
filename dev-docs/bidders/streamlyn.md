@@ -26,6 +26,7 @@ sidebarType: 1
 
 | Name          | Scope    | Description              | Example                  | Type     |
 |:--------------|:---------|:-------------------------|:-------------------------|:---------|
+| `host`        | required | Ad network's RTB host    | `'rtba.bidsxchange.com'` | `string` |
 | `publisherId` | required | Publisher ID             | `'12345'`                | `string` |
 | `custom1`     | optional | Custom targeting field 1 | `'custom1'`              | `string` |
 | `custom2`     | optional | Custom targeting field 2 | `'custom2'`              | `string` |
@@ -33,6 +34,6 @@ sidebarType: 1
 | `custom4`     | optional | Custom targeting field 4 | `'custom4'`              | `string` |
 | `custom5`     | optional | Custom targeting field 5 | `'custom5'`              | `string` |
 
-Streamlyn server-side Prebid Server adapter requires only `publisherId` parameter.
+Streamlyn server-side Prebid Server adapter requires only `publisherId` and `host` parameters.
 
 Streamlyn server-side Prebid Server adapter supports only `banner`, `video`, `audio`, `native` media types.
