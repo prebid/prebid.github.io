@@ -30,4 +30,5 @@ The Embi Media Bidding adapter requires setup before beginning.
 
 | Name          | Scope    | Description           | Example                | Type      |
 |:--------------|:---------|:----------------------|:-----------------------|:----------|
+| `host`        | required | Ad network's RTB host | `'bidder-embi.media'`  | `string`  |
 | `publisherId` | required | Publisher ID          | `12345`                | `integer` |
