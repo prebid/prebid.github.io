@@ -113,31 +113,34 @@ In this example, the publisher utilizes the same 'slotname' in the page for mult
 - defineSlot('/1111/homepage', [[728,90]], 'div-j98s9u9usj987665da');
 
 ```javascript
-pbjs.addAdUnits({
-    code: 'div-293rj893p9wje9we9fj',
-    ortb2Imp: {
-        ext: {
-            gpid: "/1111/homepage#300x250",
-            data: {
-                pbadslot: "/1111/homepage#300x250"
+pbjs.addAdUnits([
+    {
+        code: 'div-293rj893p9wje9we9fj',
+        ortb2Imp: {
+            ext: {
+                gpid: "/1111/homepage#300x250",
+                data: {
+                    pbadslot: "/1111/homepage#300x250"
+                }
             }
-        }
+        },
+        mediaTypes: ...
+        bids: ...
     },
-    mediaTypes: ...
-    bids: ...
-},{
-    code: 'div-j98s9u9usj987665da',
-    ortb2Imp: {
-        ext: {
-            gpid: "/1111/homepage#728x90",
-            data: {
-                pbadslot: "/1111/homepage#728x90"
+    {
+        code: 'div-j98s9u9usj987665da',
+        ortb2Imp: {
+            ext: {
+                gpid: "/1111/homepage#728x90",
+                data: {
+                    pbadslot: "/1111/homepage#728x90"
+                }
             }
-        }
-    },
-    mediaTypes: ...
-    bids: ...
-});
+        },
+        mediaTypes: ...
+        bids: ...
+    }
+]);
 ```
 
 ## Prebid Server

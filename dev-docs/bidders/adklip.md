@@ -1,8 +1,8 @@
 ---
 layout: bidder
-title: Kuantyx
-description: Kuantyx Bid Adapter
-biddercode: kuantyx
+title: Adklip
+description: Adklip Bid Adapter
+biddercode: adklip
 tcfeu_supported: false
 usp_supported: true
 media_types: video, native
@@ -21,19 +21,19 @@ aliasCode: aso
 ---
 ### Note
 
-The Kuantyx adapter requires approval and setup. Please reach out to <ssp@kuantyx.com> or visit us at [kuantyx.com](https://kuantyx.com) for more details.
+The Adklip adapter requires approval and setup. Please reach out to <george@adklip.com> or visit us at [adklip.com](https://adklip.com) for more details.
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description      | Example                     | Type      |
 |---------------|----------|------------------|-----------------------------|-----------|
-| `server`      | required | Server endpoint  | `https://srv.kntxy.com`     | `String`  |
+| `server`      | required | Server endpoint  | `https://srv.adklip.net`    | `String`  |
 | `zone`        | required | Zone ID          | `73815`                     | `Integer` |
 
 #### Video Caching
 
-Note that the Kuantyx adapter expects a client-side Prebid Cache to be enabled for video bidding.
+Note that the Adklip adapter expects a client-side Prebid Cache to be enabled for video bidding.
 
 ```js
 pbjs.setConfig({
