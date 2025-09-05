@@ -64,8 +64,8 @@ We highly recommend adding the `gptPreAuction` module to populate GPID (Global P
 
 Publishers should use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html). The following fields are supported:
 
-- `ortb2.site.*`
-- `ortb2.user.*`
+* `ortb2.site.*`
+* `ortb2.user.*`
 
 AdUnit-specific data is supported using `AdUnit.ortb2Imp.ext.*`
 
