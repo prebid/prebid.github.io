@@ -6,9 +6,8 @@ pbjs: true
 pbs: true
 biddercode: pubxai
 gvl_id: 965
-tcfeu_supported: true
 usp_supported: true
-gpp_supported: true
+gpp_sids: tcfeu
 schain_supported: true
 dchain_supported: false
 floors_supported: true
