@@ -25,5 +25,3 @@ The DXTech Header Bidding adapter requires approval from the DXTech team. Please
 |------|----------|--------------------|-------------|-----------|
 | `placementId` | required | Placement Id | `'1234abcd'` | `string`  |
 | `publisherId` | required | Publisher Id       | `'12345'`     | `string` |
-| `bidfloor` | optional | Bid Floor       | `2.3`     | `float` |
-| `bidfloorcur` | optional | Bid Floor Currency       | `'USD'`     | `string` |
