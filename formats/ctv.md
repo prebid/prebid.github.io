@@ -27,7 +27,6 @@ We encourage the community to review the draft and share feedback directly as co
 
 Your input is critical in shaping these requirements, and our goal is to incorporate community insights before we begin development in Q4.
 
-
 ## Further Reading
 
 - [Ad Server Integration with Prebid Server Architecture and Interface Recommendation](/prebid-server/use-cases/pbs-lfv.html)
