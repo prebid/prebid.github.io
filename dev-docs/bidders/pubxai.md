@@ -5,7 +5,7 @@ description: Prebid PubxAi Bidder Adapter
 pbjs: true
 pbs: true
 biddercode: pubxai
-gvl_id: 965
+gvl_id: 1485
 usp_supported: true
 gpp_sids: tcfeu
 schain_supported: true
