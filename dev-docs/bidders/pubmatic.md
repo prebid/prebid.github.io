@@ -47,7 +47,7 @@ Publishers can use Prebid.js to call PubMatic in any of the following ways:
 * **Call through our client-side adapter**: Prebid.js calls PubMatic directly from the browser using our client-side adapter.
 * **Call through our server-side adapter**: Prebid.js makes a call to Prebid Server and then Prebid Server uses our server-side adapter to call PubMatic.
 
-We highly recommend adding the `gptPreAuction` module to populate GPID (Global Placement ID) values. See the [gptPreAuction module documentation](https://docs.prebid.org/dev-docs/modules/gptPreAuction.html) for implementation details.
+We highly recommend adding the `gptPreAuction` module to populate GPID (Global Placement ID) values. See the [gptPreAuction module documentation](https://docs.prebid.org/dev-docs/modules/gpt-pre-auction.html) for implementation details.
 
 ### Bid Params
 
