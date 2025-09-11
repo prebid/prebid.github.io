@@ -17,8 +17,8 @@ media_types: banner, video, native
 multiformat_supported: will-bid-on-one
 userIds: all
 pbjs: true
-pbs: false
-pbs_app_supported: false
+pbs: true
+pbs_app_supported: true
 safeframes_ok: true
 sidebarType: 1
 ---
@@ -33,4 +33,4 @@ sidebarType: 1
 
 ### Note
 
-For the prebid.js you only need to use one parameter: either placementId or endpointId
+For the prebid server and prebid.js you only need to use one parameter: either placementId or endpointId
