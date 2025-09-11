@@ -2,6 +2,7 @@
 layout: bidder
 title: Dailymotion
 description: Dailymotion Prebid Bidder Adapter
+prebid_member: true
 pbjs: true
 pbs: false
 biddercode: dailymotion
