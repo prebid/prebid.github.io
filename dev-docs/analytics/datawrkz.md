@@ -14,7 +14,7 @@ enable_download: true
 #### Registration
 
 Using this adapter requires a **Publisher ID** and an **API Key**, issued by the Datawrkz team.  
-Please contact **pubops@datawrkz.com** to create your account and obtain credentials.
+Please contact [pubops@datawrkz.com](mailto:pubops@datawrkz.com) to create your account and obtain credentials.
 
 #### About
 
