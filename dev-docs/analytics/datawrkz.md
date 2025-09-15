@@ -13,7 +13,8 @@ enable_download: true
 
 #### Registration
 
-This module is free to use.
+Using this adapter requires a **Publisher ID** and an **API Key**, issued by the Datawrkz team.  
+Please contact **pubops@datawrkz.com** to create your account and obtain credentials.
 
 #### About
 
@@ -32,7 +33,11 @@ gulp build --modules=datawrkzAnalyticsAdapter,<other modules...>
 ```js
 pbjs.que.push(function () {
   pbjs.enableAnalytics([{
-    provider: 'datawrkzanalytics'
+    provider: 'datawrkzanalytics',
+    options: {
+      publisherId: 'YOUR_PUBLISHER_ID',
+      apiKey: 'YOUR_API_KEY'
+    }
   }]);
 });
 ```
