@@ -60,7 +60,6 @@ pbjs.setConfig({ortb2: {test: 1}})
 
 To verify that the Prebid Server is working properly with the server-side `Showheroes` adapter a `test` property can be utilized.
 
-
 ```json
 {
   "imp": [{
@@ -77,7 +76,6 @@ To verify that the Prebid Server is working properly with the server-side `Showh
   "test": 1
 }
 ```
-
 
 #### Outstream
 
