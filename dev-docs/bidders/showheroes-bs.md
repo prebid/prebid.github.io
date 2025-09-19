@@ -14,6 +14,7 @@ floors_supported: true
 fpd_supported: true
 multiformat_supported: will-bid-on-one
 sidebarType: 1
+pbs: true
 ---
 
 
@@ -53,6 +54,27 @@ Or, more easily you can mark the whole request as a test request by doing:
 
 ```javascript
 pbjs.setConfig({ortb2: {test: 1}})
+```
+
+#### Prebid Server Test Request
+
+To verify that the Prebid Server is working properly with the server-side `Showheroes` adapter a `test` property can be utilized.
+
+```json
+{
+  "imp": [{
+    "video": {},
+    "ext": {
+      "params": {
+          "unitId": "1234abcd-5678efgh"
+      }
+    }
+  }],
+  "site": {
+    "page": "{PAGE_URL}"
+  },
+  "test": 1
+}
 ```
 
 #### Outstream
