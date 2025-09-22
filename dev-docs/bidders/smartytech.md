@@ -6,9 +6,7 @@ pbjs: true
 biddercode: smartytech
 media_types: banner, video
 multiformat_supported: will-bid-on-one
-tcfeu_supported: true
 usp_supported: true
-gpp_supported: true
 coppa_supported: true
 userIds: all
 sidebarType: 1
@@ -68,15 +66,6 @@ var videoAdUnit = {
 ### User ID Support
 
 SmartyTech adapter supports all Prebid.js User ID modules. User IDs are automatically included in bid requests when available.
-
-### Privacy and Consent Support
-
-The SmartyTech adapter supports the following privacy frameworks:
-
-- **GDPR (TCF EU)**: Full support for GDPR consent strings
-- **CCPA/USP**: Support for California Consumer Privacy Act and US Privacy
-- **GPP**: Support for Global Privacy Platform
-- **COPPA**: Support for Children's Online Privacy Protection Act
 
 ### Additional Configuration
 
