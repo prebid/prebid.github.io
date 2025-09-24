@@ -78,12 +78,14 @@ For more information about the asynchronous event loop and `setTimeout`, see [Ho
 <a id="setConfig-enableTIDs"></a>
 
 ### Enable sharing of transaction IDs
-
 Prebid generates unique IDs for both auctions and ad units within auctions; these can be used by DSPs to correlate requests from different sources, which is useful for many applications but also a potential privacy concern. Since version 8 they are disabled by default (see [release notes](/dev-docs/pb8-notes.html)), and can be re-enabled with `enableTIDs`:
 
 ```javascript
 pbjs.setConfig({ enableTIDs: true });
 ```
+
+{: .alert.alert-warning :}
+Since version 10.9.0 transaction IDs are unique for each bidder and cannot be used to correlate requests from different sources, even when `enableTIDs` is set.  
 
 ### Max Requests Per Origin
 
