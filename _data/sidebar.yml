@@ -816,6 +816,14 @@
   subgroup: 2
 
 - sbSecId: 2
+  title: Ad Experience Specification
+  link: /prebid-mobile/modules/rendering/combined-ui-ux-policy.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+  
+- sbSecId: 2
   title: Ad Experience Controls
   link: /prebid-mobile/modules/rendering/combined-ad-experience-controls.html
   isHeader: 0
@@ -915,6 +923,14 @@
 - sbSecId: 2
   title: Custom Integration
   link: /prebid-mobile/modules/rendering/android-sdk-integration-pb.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+  
+- sbSecId: 2
+  title: Ad Experience Specification
+  link: /prebid-mobile/modules/rendering/combined-ui-ux-policy.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:

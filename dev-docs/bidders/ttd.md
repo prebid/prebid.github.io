@@ -43,6 +43,7 @@ Name | Scope | Description | Example | Type
 `placementId` | optional | This field is optional if GPID is passed through the GPT module <https://docs.prebid.org/dev-docs/modules/gpt-pre-auction.html>. If that module isn't used, the GPID value should be passed in this field. | `'/1111/home#header'` | `String`
 `banner` | optional | Display banner targeting parameters. See the banner section below. | `{}` | `object`
 `bidfloor` | optional | Sets a bid floor price | `0.95` | `Float`
+`customBidderEndpoint` | optional | Only set if TTD has provided a custom endpoint. If set the custom endpoint will take precedent over the hard-coded endpoints | `https://customBidderEndpoint/bid/bidder/` | `String`
 
 ### Banner Object
 
