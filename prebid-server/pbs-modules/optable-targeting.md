@@ -154,6 +154,8 @@ would result in this nesting in the JSON configuration:
 | id-prefix-order    | no       | string  | none           | Account-Level. An optional string of comma separated id prefixes that prioritizes and specifies the order in which ids are provided to Targeting API in a query string. F.e. "c,c1,id5" will guarantee that Targeting API will see id=c:...,c1:...,id5:... if these ids are provided.  id-prefixes not mentioned in this list will be added in arbitrary order after the priority prefix ids. This affects Targeting API processing logic |
 | cache.enabled    | no       | string  | false           | Account-Level. Optionally use [Prebid Cache Storage](https://docs.prebid.org/prebid-server/features/pbs-pbc-storage.html) feature - this significantly reduces the processing time when the Targeting API response has been cached |
 | cache.ttlseconds    | no       | int  | 86400           | Account-Level. The TTL in seconds for the Targeting API response to live in cache - by default is equal to 24 hours |
+| optable-inserter-eids-merge   | no       | array of strings | none  | Account-Level. List of EID source names for which the module should **merge** the incoming server-side EIDs with those returned by the Targeting API. |
+| optable-inserter-eids-replace | no       | array of strings | none  | Account-Level. List of EID source names for which the module should **replace** the incoming EID entirely with the one from the Targeting API. |
 
 ## ID Mapping
 
