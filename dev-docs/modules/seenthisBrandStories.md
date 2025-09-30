@@ -2,7 +2,7 @@
 layout: page_v2
 page_type: module
 title: Module - SeenThis Brand Stories
-description: Enable SeenThis Brand Stories ad format integration with iframe management and responsive features
+description: Enable SeenThis Brand Stories ad format integration with fullscreen support
 module_code: seenthisBrandStories
 display_name: SeenthisBrandStories
 enable_download: true
@@ -19,19 +19,13 @@ sidebarType: 1
 
 ## Overview
 
-The module enables publishers to integrate SeenThis Brand Stories ads within Prebid.js. This module provides seamless communication between the publisher's page and Brand Stories ad iframes, handling dynamic resizing, fullscreen mode, and responsive design considerations.
+The module enables publishers to integrate SeenThis Brand Stories ads within Prebid.js. This module provides communication between the publisher's page and Brand Stories ad iframes, handling dynamic resizing, fullscreen mode, and responsive design considerations.
+
 The module is bidder adapter agnostic and works with all Prebid.js adapters that serve Brand Stories creative content.
 
 ## Configuration
 
-This module requires minimal configuration. Once included in your Prebid.js build, it automatically handles Brand Stories ads when they are served.
-
-```javascript
-pbjs.setConfig({
-  // No specific configuration required for basic functionality
-  // Module will automatically detect and handle Brand Stories creatives
-});
-```
+This module requires no configuration. Once included in your Prebid.js build, it automatically handles Brand Stories ads when they are served.
 
 ## Implementation
 
@@ -40,14 +34,6 @@ pbjs.setConfig({
 1. Include the SeenThis Brand Stories module in your Prebid.js build
 2. Configure your ad units as normal - no special configuration needed
 3. The module will automatically detect Brand Stories creatives and manage their behavior
-
-### Event Handling
-
-The module automatically manages the following events:
-
-- **Modal Open/Close**: Handles when Brand Stories enter or exit fullscreen mode
-- **Resize Events**: Dynamically adjusts iframe dimensions based on content
-- **Style Updates**: Applies responsive styling including full-width and auto-height modes
 
 ## Technical Details
 
