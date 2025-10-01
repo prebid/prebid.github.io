@@ -752,7 +752,6 @@ function onIntervention({ bid, intervention }) { ... }
 1. `bid` — the winning bid object for which the intervention was detected (same shape as in other render callbacks like `onAdRenderSucceeded`).
 2. `intervention` — a browser-provided object describing the intervention. In Chromium-based browsers this typically originates from the [ReportingObserver] API with type: 'intervention' and includes a body describing the intervention details.
 
-
 ### Adding adapter aliases
 
 Use aliases if you want to reuse your adapter using other name for your partner/client, or just a shortcut name.
