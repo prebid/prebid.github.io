@@ -74,7 +74,7 @@ See the table below for the list of properties in the `mediaTypes` object of the
 | [`banner`](#adUnit.mediaTypes.banner) | At least one of the `banner`, `native`, or `video` objects are required. | Object | Defines properties of a banner ad. For examples, see [`adUnit.mediaTypes.banner`](#adUnit.mediaTypes.banner). |
 | [`native`](#adUnit.mediaTypes.native) | At least one of the `banner`, `native`, or `video` objects are required. | Object | Defines properties of a native ad. For properties, see [`adUnit.mediaTypes.native`](#adUnit.mediaTypes.native). |
 | [`video`](#adUnit.mediaTypes.video) | At least one of the `banner`, `native`, or `video` objects are required. | Object | Defines properties of a video ad. For examples, see [`adUnit.mediaTypes.video`](#adUnit.mediaTypes.video). |
-| [`audio`](#adUnit.mediaTypes.audio) | At least one of the `banner`, `native`, or `video` objects are required. | Object | Defines properties of a audio ad. For examples, see [`adUnit.mediaTypes.video`](#adUnit.mediaTypes.video). |
+| [`audio`](#adUnit.mediaTypes.audio) | At least one of the `banner`, `native`, `video` or `audio` objects are required. | Object | Defines properties of a audio ad. For examples, see [`adUnit.mediaTypes.audio`](#adUnit.mediaTypes.audio). |
 
 <a name="adUnit.mediaTypes.banner"></a>
 
