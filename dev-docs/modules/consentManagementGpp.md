@@ -54,11 +54,13 @@ Once the CMP is implemented, simply include this module into your build and add 
 Here are the parameters supported in the `consentManagement` object specific for the GPP consent module:
 
 {: .table .table-bordered .table-striped }
+
 | Param | Type | Description | Example |
 | --- | --- | --- | --- |
 | gpp | `Object` | | |
 | gpp.cmpApi | `string` | The CMP interface that is in use. Supported values are **'iab'** or **'static'**. Static allows integrations where IAB-formatted consent strings are provided in a non-standard way. Default is `'iab'`. | `'iab'` |
 | gpp.timeout | `integer` | Length of time (in milliseconds) to allow the CMP to obtain the GPP consent information. Default is `10000`. | `10000` |
+| gpp.actionTimeout | `integer` | Length of time (in milliseconds) to allow the user to take action to consent if they have not already done so. The actionTimer first waits for the CMP to load, then the actionTimeout begins for the specified duration. Default is `undefined`. | `10000` |
 | gpp.consentData | `Object` | An object representing the IAB GPP consent data being passed directly; only used when cmpApi is 'static'. Default is `undefined`. | |
 | gpp.consentData.sectionId | `integer` | Indicates the header section of the GPP consent string, recommended to be `3`. | |
 | gpp.consentData.gppVersion | `string` | The version number parsed from the header of the GPP consent string. | |

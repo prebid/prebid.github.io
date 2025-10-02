@@ -57,6 +57,7 @@ To ensure proper monetization and relevant targeting, the SDK should be enabled 
 - Describing the actions taken for the different purposeConsents values in combination with consentRequired values.
 
 {: .table .table-bordered .table-striped }
+
 |                     | deviceAccessConsent= true    | deviceAccessConsent= false     | deviceAccessConsent= undefined        |
 |---------------------|------------------------------|--------------------------------|---------------------------------------|
 |consentRequired=false<br>(gdprApplies = false)|The SDK will read and pass IDFA/AAID info to server. |The SDK will **not** read and pass IDFA/AAID info to server. | The SDK will read and pass IDFA/AAID info to server.|

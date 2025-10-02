@@ -369,7 +369,7 @@ You **cannot** set the `floorMin` parameter without specifying a `data` object. 
 | data.floorProvider | string | Optional atribute (as of prebid version 4.2) used to signal to the Floor Provider's Analytics adapter their floors are being applied. They can opt to log only floors that are applied when they are the provider. If floorProvider is supplied in both the top level of the floors object and within the data object, the data object's configuration shall prevail.| - |
 | data.currency | string | Currency of floor data. Floor Module will convert currency where necessary. See Currency section for more details. | 'USD' |
 | data.skipRate | integer | skipRate is a random function whose input value is any integer 0 through 100 to determine when to skip all floor logic, where 0 is always use floor data and 100 is always skip floor data. The use case is for publishers or floor providers to learn bid behavior when floors are applied or skipped. Analytics adapters will  have access to model version (if defined) when skipped is true to signal the Price Floors Module is in floors mode. If skipRate is supplied in both the root level of the floors object and within the data object, the skipRate configuration within the data object shall prevail. | 0 |
-| data.floorsSchemaVersion | integer | The module supports two versions of the data schema. Version 1 allows for only one model to be applied in a given data set, whereas Version 2 allows you to sample multiple models selected by supplied weights. If no schema version is provided, the module will assume version 1 for the sake of backwards compatiblity. For schema version 2 see the next section. | 1 |
+| data.floorsSchemaVersion | integer | The module supports two versions of the data schema. Version 1 allows for only one model to be applied in a given data set, whereas Version 2 allows you to sample multiple models selected by supplied weights. If no schema version is provided, the module will assume version 1 for the sake of backwards compatibility. For schema version 2 see the next section. | 1 |
 | data.modelVersion | string | Used by floor providers to train on model version performance. The expectation is a floor provider’s analytics adapter will pass the model verson back for algorithm training. | - |
 | data.modelTimestamp | integer | Epoch timestamp associated with modelVersion. Can be used to track model creation of floor file for post auction analysis.| - |
 | data.schema | object |allows for flexible definition of how floor data is formatted. | - |
@@ -436,7 +436,7 @@ You **cannot** set the `floorMin` parameter without specifying a `data` object. 
 | data.currency | string | Currency of floor data. The module will convert currency where necessary. See Currency section for more details. | 'USD' |
 | data.skipRate | integer | skipRate is a random function whose input value is any integer 0 through 100 to determine when to skip all floor logic, where 0 is always use floor data and 100 is always skip floor data. The use case is for publishers or floor providers to learn bid behavior when floors are applied or skipped. Analytics adapters will  have access to model version (if defined) when skipped is true to signal the module is in floors mode. If skipRate is supplied in both the root level of the floors object and within the data object, the skipRate configuration within the data object shall prevail.| 0 |
 | data.useFetchDataRate | integer | (PBS-Go 2.6+) useFetchDataRate is a random function whose input value is any integer 0 through 100 to determine when to skip dynamic floor data and fall back to static floor data. 0 means always use static floor data and 100 means always use dynamic floor data. The use case is for publishers or floor providers to confirm how dynamic floors data compares to static floors data. Analytics adapters will have access to the location of the actual floors data used, either "request" or "fetch". | 100 |
-| data.floorsSchemaVersion | integer | The module supports two version of the data schema. Version 1 allows for only one model to be applied in a given data set, whereas Version 2 allows you to sample multiple models selected by supplied weights. If no schema version is provided, the module will assume version 1 for the sake of backwards compatiblity.| 1 |
+| data.floorsSchemaVersion | integer | The module supports two versions of the data schema. Version 1 allows for only one model to be applied in a given data set, whereas Version 2 allows you to sample multiple models selected by supplied weights. If no schema version is provided, the module will assume version 1 for the sake of backwards compatibility.| 1 |
 | data.modelTimestamp | int | Epoch timestamp associated with modelVersion. Can be used to track model creation of floor file for post auction analysis.| - |
 | data.noFloorSignalBidders | array of strings | (PBJS 8.31+, PBS-Java 3.4+) This is an array of bidders for which to avoid sending floors. This is useful for bidders where the publishers has established different floor rules in their systems. The value can be `["*"]`. | - |
 | data.modelGroups | array of objects | Array of model objects to be used for A/B sampling multiple models. This field is only used when data.floorsSchemaVersion = 2 | - |
@@ -1295,7 +1295,7 @@ Even if a publisher is using a floors provider, they may wish to provide additio
 
 1. default floor data if dynamic data fails to load on time
 2. global floorMin: allows the publisher to constrain dynamic floors with a global min
-3. impression-level floor min (PBJS 6.24+): allows the publisher to constrain dynamic floors with an adunit-specific value
+3. impression-level floor min (PBJS 6.24+): allows the publisher to constrain dynamic floors with an adunit-specific value. Specify this in `ortb2Imp.ext.prebid.floors.floorMin` (prior to Prebid.js 8 it was `ortb2Imp.ext.prebid.floorMin`).
 
 Here's an example covering the first two scenarios:
 
@@ -1434,7 +1434,7 @@ Below is a chart explaining the behavior of currency conversion, if necessary, w
 | bid.currency | bid.originalCurrency | floor.currency | result |
 |---+---+---+---+---|
 | USD | USD | USD | Bid.cpm is compared to floor. If bid meets or exceeds the floor, bid.originalCpm is sent to the ad server. |
-| USD | USD | EUR | Bid.cpm is converted to EUR then compared with floor. If bid meets or exceeds the floor, bid.originaCpm is sent to the ad server. |
+| USD | USD | EUR | Bid.cpm is converted to EUR then compared with floor. If bid meets or exceeds the floor, bid.originalCpm is sent to the ad server. |
 | USD | EUR | EUR | bid.originalCpm is compared to floor. If bid meets or exceeds the floor, bid.Cpm is sent to the ad server. |
 | USD | JPY | EUR | Bid.cpm is converted to EUR then compared with floor.  If bid meets or exceeds the floor, bid.Cpm is sent to the ad server. |
 | EUR | USD | EUR | Bid.cpm is compared to floor. If bid meets or exceeds the floor, bid.Cpm is sent to the ad server. |

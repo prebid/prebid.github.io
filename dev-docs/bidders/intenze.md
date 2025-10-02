@@ -1,8 +1,8 @@
 ---
 layout: bidder
-title: gothamads
-description: Prebid gothamads Bidder Adaptor
-biddercode: gothamads
+title: intenze
+description: Prebid Intenze Bidder Adaptor
+biddercode: intenze
 tcfeu_supported: false
 usp_supported: true
 coppa_supported: true
@@ -24,8 +24,8 @@ userIds: all
 ---
 
 ### Note
-Gothamads will bid only on first impresion in bid request.
-The Example Bidding adapter requires setup before beginning. Please contact us at <support@gothamads.com>
+Intenze will bid only on first impresion in bid request.
+The Example Bidding adapter requires setup before beginning. Please contact us at <connect@intenze.co>
 
 ### Bid Params
 

@@ -23,3 +23,15 @@ The Missena Bidding adapter requires setup before beginning. Please contact us a
 |------------|----------|----------------------------|-----------------|----------|
 | `apiKey`   | required | Missena's publisher token  | `'PA-34745704'` | `string` |
 | `placement`   | optional | Placement Type, default: 'sticky' | `'sticky'` | `string` |
+| `formats`  | optional | An array of formats to request (banner, native, or video) | `['banner', 'video']` | `array` |
+| `settings` | optional | An object containing extra settings for the Missena adapter | `{ settingName: 'value' }` | `object` |
+
+#### Available Placement Values
+
+The `placement` parameter accepts the following values:
+
+- `sticky` - Default sticky placement
+- `header` - Header placement
+- `footer` - Static footer placement
+- `prestitial` - Full-screen ad before content loads
+- `postitial` - Full-screen ad after content loads
