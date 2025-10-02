@@ -19,10 +19,11 @@ prebid_member: false
 ortb_blocking_supported: false
 fpd_supported: true
 multiformat_supported: will-bid-on-one
+pbjs_version_notes: available in 9.9.0 and later, not in 10.x
 ---
 
 ### Note
-
+The EClickAds bidder adapter is going to be renamed to eClick in PBJS 10.x, using a bidder code of `eclick`. Please update your implementation accordingly. This bidder adapter is still available for PBJS versions 9.9.0 and later.
 The EClickAds adapter requires setup and approval from the EClick Team. Please contact us via <sales@eclick.vn> for detail.
 
 ### Bid params
