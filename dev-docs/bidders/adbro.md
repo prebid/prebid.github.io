@@ -20,4 +20,3 @@ sidebarType: 1
 | Name           | Scope    | Description           | Example   | Type      |
 |----------------|----------|-----------------------|-----------|-----------|
 | `placementId`  | required | Placement (Slot) ID   | `'1234'`  | `string`  |
-
