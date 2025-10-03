@@ -156,6 +156,7 @@ would result in this nesting in the JSON configuration:
 | cache.ttlseconds    | no       | int  | 86400           | Account-Level. The TTL in seconds for the Targeting API response to live in cache - by default is equal to 24 hours |
 | optable-inserter-eids-merge   | no       | array of strings | none  | Account-Level. List of EID source names for which the module should **merge** the incoming server-side EIDs with those returned by the Targeting API. |
 | optable-inserter-eids-replace | no       | array of strings | none  | Account-Level. List of EID source names for which the module should **replace** the incoming EID entirely with the one from the Targeting API. |
+| optable-inserter-eids-ignore | no       | array of strings | none  | Account-Level. List of EID source names for which the module should **remove** the EID entirely. |
 
 ## ID Mapping
 
