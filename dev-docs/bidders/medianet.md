@@ -36,7 +36,7 @@ endpoint_compression: false
 | `cid`      | required | The customer id provided by Media.net. | `'8CUX0H51C'` | `string` |
 | `crid`     | required | The placement id provided by Media.net | `'1234567'`   | `string` |
 | `bidfloor` | optional | Bidfloor for the impression          | `1.0`         | `float`  |
-| `video`    | required for video Ad units | Object containing video targeting parameters.  See [Video Object](#media.net-video-object) for details.|`video: { maxduration: 60 }`         | `object`  |
+| `video`    | optional for video Ad units | Object containing video targeting parameters.  See [Video Object](#media.net-video-object) for details.|`video: { maxduration: 60 }`         | `object`  |
 
 <a name="media.net-video-object"></a>
 
