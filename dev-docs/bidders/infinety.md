@@ -2,6 +2,7 @@
 layout: bidder
 title: Infinety
 description: Infinety Adaptor
+biddercode: infinety
 aliasCode: adkernel
 tcfeu_supported: true
 dsa_supported: false
