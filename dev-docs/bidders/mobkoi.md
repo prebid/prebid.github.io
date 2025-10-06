@@ -46,7 +46,7 @@ const adUnits = [
   {
     code: 'banner-ad',
     mediaTypes: {
-      banner: { sizes: [300, 200] },
+      banner: { sizes: [[300, 600]] },
     },
     bids: [
       {
@@ -63,3 +63,59 @@ pbjs.que.push(function () {
   pbjs.addAdUnits(adUnits);
 });
 ```
+
+#### User ID Module Integration
+
+For optimal targeting and yield, configure the Mobkoi User ID module alongside the bidder adapter.
+
+**Required modules:** `mobkoiBidAdapter`, `mobkoiIdSystem`, `userId`, `consentManagementTcf`, `tcfControl`
+
+```js
+pbjs.que.push(function () {
+  // Configuration for enabling the User ID module
+  pbjs.setConfig({
+    userSync: {
+      userIds: [
+        {
+          name: 'mobkoiId',
+          storage: {
+            type: 'cookie',
+            name: '_mobkoi_id',
+            expires: 30, // days
+          },
+        },
+      ],
+    },
+  });
+
+  pbjs.addAdUnits(adUnits);
+});
+```
+
+#### User Sync Configuration (Alternative)
+
+Alternatively, enable user sync without the User ID module.
+
+**Required modules:** `mobkoiBidAdapter`, `consentManagementTcf`, `tcfControl`
+
+```js
+pbjs.que.push(function () {
+  // Configuration for enabling getUserSyncs functionality
+  pbjs.setConfig({
+    userSync: {
+      filterSettings: {
+        image: {
+          bidders: ['mobkoi'],
+          filter: 'include'
+        }
+      }
+    }
+  });
+
+  pbjs.addAdUnits(adUnits);
+});
+```
+
+#### Additional Resources
+
+For comprehensive setup guidelines and detailed integration instructions, visit our [complete integration documentation](https://mobkoi.gitbook.io/docs).

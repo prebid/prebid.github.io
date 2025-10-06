@@ -75,6 +75,9 @@ The PPID in GAM (which is unrelated to the PPID UserId Submodule) has strict rul
 | Param under userSync | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | ppid | Optional | String | Must be a source from the [pbjs.getUserIdsAsEids()](#getUserIdsAsEids) array | `"pubcid.org"` |
+| autoRefresh | Optional | Boolean | Refresh IDs automatically when their configuration changes. Defaults to `false`. | `true` |
+| retainConfig | Optional | Boolean | When set to `false`, previously configured IDs are removed if they are not present in updated configuration. Defaults to `true`. | `false` |
+| enforceStorageType | Optional | Boolean | Restrict submodules to storing IDs only in the location defined by `storage.type`. | `true` |
 
 The table below has the options that are common across ID systems. See the sections below for specific configuration needed by each system and examples.
 
@@ -99,7 +102,7 @@ The table below has the options that are common across ID systems. See the secti
 
 ## Permissions
 
-Publishers can control which user ids are shared with the bid adapters they choose to work with by using the bidders array.  The bidders array is part of the User id module config, publisher may choose to send an id to some bidders but not all, the default behavior is that each user id go to all bid adapters the publisher is working with.
+Publishers can control which user ids are shared with the bid adapters they choose to work with by using the bidders array.  The bidders array is part of the User id module config, publisher may choose to send an id to some bidders but not all, the default behavior is that each user id goes to all bid adapters the publisher is working with.
 
 Use the optional `bidders` parameter to define an array of bidder codes to which this user ID may be sent.
 
