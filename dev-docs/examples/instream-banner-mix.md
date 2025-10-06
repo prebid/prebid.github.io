@@ -154,7 +154,7 @@ pbjs.que.push(function() {
     pbjs.setConfig({
         debug: true,
         cache: {
-            url: '<https://prebid.adnxs.com/pbc/v1/cache>'
+            url: '<https://my-pbs.example.com/cache>'
         }
     });
     pbjs.requestBids({
@@ -177,10 +177,14 @@ function initAdserver(bids) {
 
     // Set targeting for each display slot
     googletag.cmd.push(function() {
-        pbjs.que.push(function() {
-            pbjs.setTargetingForGPTAsync(displayAdUnitCodes);
+        if (pbjs.libLoaded) {
+            pbjs.que.push(function() {
+                pbjs.setTargetingForGPTAsync(displayAdUnitCodes);
+                googletag.pubads().refresh();
+            });
+        } else {
             googletag.pubads().refresh();
-        });
+        }
     });
 
     // Build DFP URL with targeting for videoAdUnit

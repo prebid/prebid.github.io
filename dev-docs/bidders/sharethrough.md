@@ -28,11 +28,12 @@ The Sharethrough bidder adapter requires additional setup and approval from the 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name        | Scope    | Description                                                | Example                      | Type                 |
-|-------------|----------|------------------------------------------------------------|------------------------------|----------------------|
-| `pkey`      | required | The placement key                                          | `'DfFKxpkRGPMS7A9f71CquBgZ'` | `string`             |
-| `bcat`      | optional | (deprecated) Array of blocked IAB Categories               | `['IAB1-2', 'IAB1-3']`       | `string[]`           |
-| `badv`      | optional | (deprecated) Array of blocked Advertisers by their domains | `['ford.com', 'pepsi.com']`  | `string[]`           |
+| Name            | Scope    | Description                                                                   | Example                      | Type                 |
+|-----------------|----------|-------------------------------------------------------------------------------|------------------------------|----------------------|
+| `pkey`          | required | The placement key                                                             | `'DfFKxpkRGPMS7A9f71CquBgZ'` | `string`             |
+| `bcat`          | optional | (deprecated) Array of blocked IAB Categories                                  | `['IAB1-2', 'IAB1-3']`       | `string[]`           |
+| `badv`          | optional | (deprecated) Array of blocked Advertisers by their domains                    | `['ford.com', 'pepsi.com']`  | `string[]`           |
+| `eqtvNetworkId` | optional | Optional parameter to have bid requests directed to the Equativ exchange      | `4004`                       | `integer`            |
 
 **Note**: Providing `bcat` and `badv` via Bid Params is deprecated, the First Party Data method should be preferred (see below).
 When both methods are provided (i.e. when `badv` and `bcat` are specified both as bid params and through the first party ortb2 method), first party data values will be used and bid param values will be ignored.

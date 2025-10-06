@@ -1414,7 +1414,7 @@ For example, this request:
           },
           "storedbidresponse": [
             { "bidder": "BidderA", "id": "5555555", "replaceimpid":true }
-            // note: no storedbidrespose for bidderB
+            // note: no storedbidresponse for bidderB
           ]
         }
       }

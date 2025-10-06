@@ -4,7 +4,7 @@ title: Akcelo
 description: Prebid Akcelo Bidder Adapter
 biddercode: akcelo
 pbjs: true
-pbs: false
+pbs: true
 gvl_id: none
 tcfeu_supported: false
 usp_supported: false
