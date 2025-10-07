@@ -116,6 +116,8 @@ If your ad server supports targeting creatives within the line item, it could co
 
 You’ve now added all fields required for targeting Prebid line items. You can add any other line item options you would normally use, such as additional targeting for geography. When you’ve filled in all the appropriate fields, save your line item.
 
+<a id="create-creatives" ></a>
+
 ## Create Your Creatives
 
 The process of creating your creatives will differ based on the type of creative.
@@ -131,7 +133,7 @@ We recommend using the [Prebid Universal Creative](/overview/prebid-universal-cr
 If you’re working with banner or in-renderer creatives, the HTML you’ll enter in the creatives will be similar to the following (utilizing whatever macro format is supported by your ad server):
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/%%PATTERN:hb_format%%.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@%%PATTERN:hb_ver%%/dist/%%PATTERN:hb_format%%.js"></script>
 <script>
   var ucTagData = {};
   ucTagData.adServerDomain = "";
@@ -157,6 +159,7 @@ If you’re working with banner or in-renderer creatives, the HTML you’ll ente
 * Replace `%%MACRO%%` with the appropriate macro for your ad server. (Refer to your ad server’s documentation or consult with a representative for specific details regarding the proper macros and how to use them.)
 * Replace BIDDERCODE with the appropriate code for the bidder your line item is targeting. For example, if you’re targeting BidderA, the macro variable for adId might look like `ucTagData.adId = "%%PATTERN:hb_adid_BidderA%%";`.
 * If you're hosting your own Prebid Universal Creative, make sure it's version 1.15 or later, or replace `%%PATTERN:hb_format%%.js` with `creative.js`.
+* The `hb_ver` targeting key, used above to construct the Prebid Universal Creative CDN URL, requires Prebid.js 10.11.0 or later. If that's not available, substitute `%%PATTERN:hb_ver%%` with a particular PUC version.   
 
 The example above uses the jsdelvr CDN as the domain from which the creative will serve. However, you may obtain the creative from a managed service or host it yourself. You might need to edit the creative and make adjustments to your creative settings depending on the CDN you're using.
 
