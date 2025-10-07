@@ -12,6 +12,7 @@ gpp_sids: none
 schain_supported: false
 dchain_supported: false
 userId: gemiusId
+userIds: gemiusId
 media_types: banner, video
 safeframes_ok: false
 deals_supported: false
