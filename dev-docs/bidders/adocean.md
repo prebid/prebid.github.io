@@ -8,7 +8,7 @@ dsa_supported: false
 gvl_id: 328
 usp_supported: false
 coppa_supported: false
-gpp_sids: tcfeu
+gpp_sids: none
 schain_supported: false
 dchain_supported: false
 userId: gemiusId
@@ -37,4 +37,4 @@ If you have any issues with setting up the AdOcean bidder, please contact with y
 |----------|----------|-------------------|----------------------------------------------------|----------|
 | slaveId  | required | slave ID          | `'adoceanmyaotcpiltmmnj'`                          | `string` |
 | masterId | required | master ID         | `'ek1AWtSWh3BOa_x2P1vlMQ_uXXJpJcbhsHAY5PFQjWD.D7'` | `string` |
-| emiter   | required | traffic source id | `'myao.adocean.pl'`                                | `string` |
+| emitter  | required | traffic source id | `'myao.adocean.pl'`                                | `string` |
