@@ -78,12 +78,14 @@ For more information about the asynchronous event loop and `setTimeout`, see [Ho
 <a id="setConfig-enableTIDs"></a>
 
 ### Enable sharing of transaction IDs
-
 Prebid generates unique IDs for both auctions and ad units within auctions; these can be used by DSPs to correlate requests from different sources, which is useful for many applications but also a potential privacy concern. Since version 8 they are disabled by default (see [release notes](/dev-docs/pb8-notes.html)), and can be re-enabled with `enableTIDs`:
 
 ```javascript
 pbjs.setConfig({ enableTIDs: true });
 ```
+
+{: .alert.alert-warning :}
+Since version 10.9.0 transaction IDs are unique for each bidder and cannot be used to correlate requests from different sources, even when `enableTIDs` is set.  
 
 ### Max Requests Per Origin
 
@@ -703,12 +705,14 @@ The `targetingControls` object passed to `pbjs.setConfig` provides some options 
 {: .table .table-bordered .table-striped }
 | Attribute        | Type    | Description             |
 |------------+---------+---------------------------------|
-| auctionKeyMaxChars | integer | Specifies the maximum number of characters the system can add to ad server targeting. |
-| alwaysIncludeDeals | boolean | If [enableSendAllBids](#setConfig-Send-All-Bids) is false, set this value to `true` to ensure that deals are sent along with the winning bid |
+| auctionKeyMaxChars | Integer | Specifies the maximum number of characters the system can add to ad server targeting. |
+| alwaysIncludeDeals | Boolean | If [enableSendAllBids](#setConfig-Send-All-Bids) is false, set this value to `true` to ensure that deals are sent along with the winning bid |
 | allowTargetingKeys | Array of Strings | Selects supported default targeting keys. |
 | addTargetingKeys   | Array of Strings | Selects targeting keys to be supported in addition to the default ones |
 | allowSendAllBidsTargetingKeys | Array of Strings | Selects supported default targeting keys. |
-| allBidsCustomTargeting | boolean | Set to true to prevent custom targeting values from being set for non-winning bids |
+| allBidsCustomTargeting | Boolean | Set to true to prevent custom targeting values from being set for non-winning bids |
+| lock               | Array of Strings | Targeting keys to lock |
+| lockTimeout        | Integer          | Lock timeout in milliseconds                                   |
 
 {: .alert.alert-info :}
 Note that this feature overlaps and can be used in conjunction with [sendBidsControl.bidLimit](#setConfig-Send-Bids-Control).
@@ -909,6 +913,27 @@ config.setConfig({
 {: .no_toc}
 
 By default, non winning bids will have custom tageting values concatenated to the winning bid's custom targeting for the same key.  The `allBidsCustomTargeting` setting is a boolean that, when set to `false`, prevents custom targeting values from being set for non-winning bids. This can be useful if you want to ensure that only the winning bid has custom targeting values set.  
+
+#### Details on the lock and lockTimeout settings
+{: .no_toc }
+
+When `lock` is set, targeting set through `setTargetingForGPTAsync` or `setTargetingForAst`
+will prevent bids with the same targeting on any of the given keys from being used again until rendering is complete or
+`lockTimeout` milliseconds have passed.
+
+For example, with the following:
+
+```javascript
+pbjs.setConfig({
+  targetingControls: {
+    lock: ['hb_adid'],
+    lockTimeout: 2000
+  }
+});
+```
+
+calling `pbjs.setTargetingForGPTAsync()` will "lock" the targeted `hb_adid` until its slot renders or 2 seconds have passed, preventing subsequent calls to `setTargetingForGPTAsync` from using bids with the same `hb_adid` in the meanwhile.
+If using standard targeting `hb_adid` is unique for each bid, so this would have the effect of preventing the same bid from being used for multiple slots at the same time.      
 
 <a name="setConfig-Configure-Responsive-Ads"></a>
 
@@ -1164,6 +1189,8 @@ https://my-pbs.example.com/cache?uuid=%%PATTERN:hb_uuid%%
 ``
 
 will continue to function correctly. `hb_uuid` is set to locally assigned blob UUID. If the bid wins the GAM auction and it's `videoCacheKey` (`hb_uuid`) is included in a GAM wrapper VAST XML, Prebid will update the VAST ad tag URL with the locally cached blob URL after receiving a response from Google Ad Manager.
+
+When using the local cache feature without the video module, you’ll need to retrieve the VAST XML directly by calling [getVastXml](/dev-docs/publisher-api-reference/adServers.gam.getVastXml.html).
 
 ### Instream tracking
 
