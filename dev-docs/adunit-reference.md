@@ -168,7 +168,7 @@ When using the Video Module, the mediaTypes.video properties get filled out auto
 | Name | Scope | Type | Description |
 |------------------+-------------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `context` | Recommended | String | The audio context. Defaults to 'instream'. |
-| `useCacheKey` | Optional | Boolean | Defaults to `false`. Setting this `true` will use cache url defined in global options also for outstream responses. |
+| `useCacheKey` | Optional | Boolean | Defaults to `false`. If set to `true`, the cache url defined in the global options will also be used for outstream responses. |
 | `api` | Recommended | Array[Integer] | List of supported API frameworks for this impression. If an API is not explicitly listed, it is assumed not to be supported. For list, see [OpenRTB 2.5 spec][openRTB]. If your player supports [Open Measurement][OpenMeasurement], **recommended** to set `7` for OMID-1|
 | `mimes` | Recommended | Array[String] | Content MIME types supported, e.g. `"audio/mp3"`. **Required by OpenRTB when using [Prebid Server][pbServer]**. |
 | `minduration` | Recommended | Integer | Minimum audio ad duration in seconds, see [OpenRTB 2.5 spec][openRTB]. |
