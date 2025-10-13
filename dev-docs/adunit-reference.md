@@ -161,6 +161,7 @@ When using the Video Module, the mediaTypes.video properties get filled out auto
 | `adServer.baseAdTagUrl` | required if `adServer.params` is not defined | string | Your AdServer Ad Tag. The targeting params of the winning bid will be appended. |
 | `adServer.params` | required if `adServer.baseAdTagUrl` is not defined | object | Querystring parameters that will be used to construct the video ad tag URL. |
 
+<a name="adUnit.mediaTypes.audio"></a>
 
 #### adUnit.mediaTypes.audio
 
