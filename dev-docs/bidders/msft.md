@@ -26,13 +26,14 @@ sidebarType: 1
 - [Table of Contents](#table-of-contents)
   - [Bid Params](#bid-params)
   - [Migrating from the AppNexus Bid Adapter & Bid Params](#migration-from-appnexus-bid-params)
+  - [Migrating from the AppNexus Bid Adapter & Ad Server Targeting](#migration-from-appnexus-adserver-targeting)
   - [Migrating from the AppNexus Bid Adapter & Native](#migration-from-appnexus-native)
   - [Migrating from the AppNexus Bid Adapter & Auction Level Keywords](#migration-from-appnexus-auction-level-keywords)
   - [First Party Data](#first-party-data)
   - [Debug Auction](#debug-auction)
   - [Prebid Server Test Request](#prebid-server-test-request)
 
-<!-- <a name="msft-bid-params"></a> -->
+<a name="bid-params"></a>
 
 {: .alert.alert-danger :}
 All Microsoft (formerly AppNexus/Xandr) placements included in a single call to `requestBids` must belong to the same parent Publisher.  If placements from two different publishers are included in the call, the Microsoft bidder will not return any demand for those placements. <br />
@@ -43,6 +44,7 @@ All Microsoft (formerly AppNexus/Xandr) placements included in a single call to 
 **NOTE** Either `placement_id` OR both `member` and `inv_code` are required.  Please don't specify all three together, it may impact delivery.
 
 {: .table .table-bordered .table-striped }
+
 | Name | Scope | Description | Example | Type |
 |------|-------|-------------|---------|------|
 | `placement_id` | required (see note above) | The placement ID from Microsoft Monetize.  You may identify a placement using the `inv_code` and `member` instead of a placement ID. | `11223344` | `integer` |
@@ -57,13 +59,15 @@ All Microsoft (formerly AppNexus/Xandr) placements included in a single call to 
 | `ext_imp_id` | optional | Specifies the unique identifier of an externally generated auction. | `'bacbab02626452b097f6030b3c89ac05'` | `string` |
 | `banner_frameworks` | optional | Array of integers listing API frameworks for Banner supported by the publisher. | `[1,2]` | `array of integers` |
 
-<!-- <a name="msft-migration-from-appnexus-bid-params"></a> -->
+<a name="migration-from-appnexus-bid-params"></a>
 
 #### Migrating from the AppNexus Bid Adapter & Bid Params
 
 If you are migrating from the AppNexus bid adapter, a number of the previously available AppNexus bid parameters have been deprecated as available options for the Microsoft bid parameters. These deprecated bid parameters are still available however, they're just read from other standarized locations offered within Prebid.js. This change was implemented to help us align better to the publisher-aligned features (such as First Party Data) to use a single setup for many bidders.
 
 The following table shows how the bid parameters have changed between the two adapters:
+
+{: .table .table-bordered .table-striped }
 
 | AppNexus Parameter | Microsoft Parameter | Description |
 |-------------------|-------------------|-------------|
@@ -87,13 +91,13 @@ The following table shows how the bid parameters have changed between the two ad
 | `params.ext_inv_code` | `params.ext_inv_code` | External inventory code (unchanged) |
 | `params.external_imp_id` | `params.ext_imp_id` | External impression ID (shortend to ext) |
 
-Below is an example of an adUnit setup for the `appnexus` bidder and how the same fields would look for the `msft` bidder.
+<a name="migration-from-appnexus-adserver-targeting"></a>
 
-```javascript
-test
-```
+#### Migrating from the AppNexus Bid Adapter & Ad Server Targeting
 
-<!-- <a name="msft-migration-from-appnexus-native"></a> -->
+If you are migrating from the AppNexus bid adapter and your Ad Server Line Items (or related entities) relied on bidder specific keyword targeting to the Prebid.js keys (eg hb_bidder=appnexus or hb_pb_appnexus=5.00), you will like need to adjust your setup.  Some adjustments could be creating additional line-items, updating the existing targeting, reomving targeting (if it's no longer needed), or some other variation to ensure the targeting includes the `msft` term in either the key-name or key-value.
+
+<a name="migration-from-appnexus-native"></a>
 
 #### Migrating from the AppNexus Bid Adapter & Native Ads
 
@@ -103,7 +107,7 @@ Requests using that legacy approach will **NOT** work and will need to be conver
 
 Please refer to the [Prebid.js Native Implementation Guide](https://docs.prebid.org/prebid/native-implementation.html) if you need additional information to implement the Native ORTB setup.
 
-<!-- <a name="msft-migration-from-appnexus-auction-level-keywords"></a> -->
+<a name="migration-from-appnexus-auction-level-keywords"></a>
 
 #### Migrating from the AppNexus Bid Adapter & Auction Level Keywords
 
@@ -111,7 +115,7 @@ If you are migrating from the AppNexus bid adapter, the previously available `se
 
 If you need to specify keyword-like data at the auction/request level, please instead specify that data within the appropriate area of the First Party Data section of your setup (eg `ortb2.site.keywords`).
 
-<!-- <a name="msft-fpd"></a> -->
+<a name="fpd"></a>
 
 #### First Party Data
 
@@ -119,7 +123,7 @@ Publishers should use the `ortb2` method of setting [First Party Data](https://d
 
 PBS/PSP supports all first party data fields: site, user, segments, and imp-level first party data.
 
-<!-- <a name="msft-debug-auction"></a> -->
+<a name="debug-auction"></a>
 
 #### Debug Auction
 
@@ -143,6 +147,7 @@ https://my.site.com/page/stuff.html?normal=data_here&apn_debug_enabled=true&apn_
 To view the results of the debug auction, add the `pbjs_debug=true` query string parameter and open your browser's developer console.
 
 {: .table .table-bordered .table-striped }
+
 | Name              | Description                                                     | Example               | Type             |
 |-------------------|-----------------------------------------------------------------|-----------------------|------------------|
 | `enabled`         | Toggle the debug auction to occur                               | `true`                | `boolean`        |
@@ -150,7 +155,7 @@ To view the results of the debug auction, add the `pbjs_debug=true` query string
 | `member_id`       | The ID of the member running the debug auction                  | `958`                 | `integer`        |
 | `debug_timeout`   | The timeout for the debug auction results to be returned        | `3000`                | `integer`        |
 
-<!-- <a name="msft-prebid-server-test-request"></a> -->
+<a name="prebid-server-test-request"></a>
 
 #### Prebid Server Test Request
 
