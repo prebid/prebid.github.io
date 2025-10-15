@@ -1190,6 +1190,8 @@ https://my-pbs.example.com/cache?uuid=%%PATTERN:hb_uuid%%
 
 will continue to function correctly. `hb_uuid` is set to locally assigned blob UUID. If the bid wins the GAM auction and it's `videoCacheKey` (`hb_uuid`) is included in a GAM wrapper VAST XML, Prebid will update the VAST ad tag URL with the locally cached blob URL after receiving a response from Google Ad Manager.
 
+When using the local cache feature without the video module, you’ll need to retrieve the VAST XML directly by calling [getVastXml](/dev-docs/publisher-api-reference/adServers.gam.getVastXml.html).
+
 ### Instream tracking
 
 {: .alert.alert-info :}
