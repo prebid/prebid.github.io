@@ -13,9 +13,9 @@ coppa_supported: true
 usp_supported: true
 gpp_supported: true
 floors_supported: true
-fpd_supported: false
+fpd_supported: true
 pbjs: true
-pbjs_version_notes: in closed testing with specific publishers, not intended for general widespread use
+pbjs_version_notes: initial release for testing purposes; not intended to immediately replace the appnexus adapter until performance is validated
 pbs: true
 gvl_id: 32
 sidebarType: 1
@@ -25,14 +25,14 @@ sidebarType: 1
 
 - [Table of Contents](#table-of-contents)
   - [Bid Params](#bid-params)
-  - [Migrating from AppNexus Bid Adapter & Bid Params](#migration-from-appnexus-bid-params)
-  - [Migrating from AppNexus Bid Adapter & Native](#migration-from-appnexus-native)
-  - [Migrating from AppNexus Bid Adapter & Auction Level Keywords](#migration-from-appnexus-auction-level-keywords)
+  - [Migrating from the AppNexus Bid Adapter & Bid Params](#migration-from-appnexus-bid-params)
+  - [Migrating from the AppNexus Bid Adapter & Native](#migration-from-appnexus-native)
+  - [Migrating from the AppNexus Bid Adapter & Auction Level Keywords](#migration-from-appnexus-auction-level-keywords)
   - [First Party Data](#first-party-data)
   - [Debug Auction](#debug-auction)
   - [Prebid Server Test Request](#prebid-server-test-request)
 
-<a name="msft-bid-params"></a>
+<!-- <a name="msft-bid-params"></a> -->
 
 {: .alert.alert-danger :}
 All Microsoft (formerly AppNexus/Xandr) placements included in a single call to `requestBids` must belong to the same parent Publisher.  If placements from two different publishers are included in the call, the Microsoft bidder will not return any demand for those placements. <br />
@@ -57,7 +57,7 @@ All Microsoft (formerly AppNexus/Xandr) placements included in a single call to 
 | `ext_imp_id` | optional | Specifies the unique identifier of an externally generated auction. | `'bacbab02626452b097f6030b3c89ac05'` | `string` |
 | `banner_frameworks` | optional | Array of integers listing API frameworks for Banner supported by the publisher. | `[1,2]` | `array of integers` |
 
-<a name="msft-migration-from-appnexus-bid-params"></a>
+<!-- <a name="msft-migration-from-appnexus-bid-params"></a> -->
 
 #### Migrating from the AppNexus Bid Adapter & Bid Params
 
@@ -87,7 +87,13 @@ The following table shows how the bid parameters have changed between the two ad
 | `params.ext_inv_code` | `params.ext_inv_code` | External inventory code (unchanged) |
 | `params.external_imp_id` | `params.ext_imp_id` | External impression ID (shortend to ext) |
 
-<a name="msft-migration-from-appnexus-native"></a>
+Below is an example of an adUnit setup for the `appnexus` bidder and how the same fields would look for the `msft` bidder.
+
+```javascript
+test
+```
+
+<!-- <a name="msft-migration-from-appnexus-native"></a> -->
 
 #### Migrating from the AppNexus Bid Adapter & Native Ads
 
@@ -97,7 +103,7 @@ Requests using that legacy approach will **NOT** work and will need to be conver
 
 Please refer to the [Prebid.js Native Implementation Guide](https://docs.prebid.org/prebid/native-implementation.html) if you need additional information to implement the Native ORTB setup.
 
-<a name="msft-migration-from-appnexus-auction-level-keywords"></a>
+<!-- <a name="msft-migration-from-appnexus-auction-level-keywords"></a> -->
 
 #### Migrating from the AppNexus Bid Adapter & Auction Level Keywords
 
@@ -105,7 +111,7 @@ If you are migrating from the AppNexus bid adapter, the previously available `se
 
 If you need to specify keyword-like data at the auction/request level, please instead specify that data within the appropriate area of the First Party Data section of your setup (eg `ortb2.site.keywords`).
 
-<a name="msft-fpd"></a>
+<!-- <a name="msft-fpd"></a> -->
 
 #### First Party Data
 
@@ -113,7 +119,7 @@ Publishers should use the `ortb2` method of setting [First Party Data](https://d
 
 PBS/PSP supports all first party data fields: site, user, segments, and imp-level first party data.
 
-<a name="msft-debug-auction"></a>
+<!-- <a name="msft-debug-auction"></a> -->
 
 #### Debug Auction
 
@@ -131,10 +137,8 @@ To use the cookie approach, the JSON payload for the cookie could look like:
 **NOTE** If you use this approach, you may need to grant permission to the msft Bid Adapter in the your Prebid.js config storageAllowed settings, otherwise Prebid.js will block the adapter from attempting to find/read the cookie.
 
 To use the page URL query string approach, you can append the following set of `apn_debug_...` key-value pairs to the existing page URL's query string:
-
-```
-https://my.site.com/page/stuff.html?normal=data_here&apn_debug_enabled=true&apn_debug_dongle=QWERTY&apn_debug_member_id=958&apn_debug_timeout=1000
-```
+`html
+https://my.site.com/page/stuff.html?normal=data_here&apn_debug_enabled=true&apn_debug_dongle=QWERTY&apn_debug_member_id=958&apn_debug_timeout=1000`
 
 To view the results of the debug auction, add the `pbjs_debug=true` query string parameter and open your browser's developer console.
 
@@ -146,7 +150,7 @@ To view the results of the debug auction, add the `pbjs_debug=true` query string
 | `member_id`       | The ID of the member running the debug auction                  | `958`                 | `integer`        |
 | `debug_timeout`   | The timeout for the debug auction results to be returned        | `3000`                | `integer`        |
 
-<a name="msft-prebid-server-test-request"></a>
+<!-- <a name="msft-prebid-server-test-request"></a> -->
 
 #### Prebid Server Test Request
 
