@@ -8,10 +8,10 @@ gvl_id: 1248
 tcfeu_supported: true
 schain_supported: true
 dsa_supported: true
-usp_supported: false
+usp_supported: true
 coppa_supported: true
 schain_supported: true
-gpp_sids: tcfeu, tcfca, usnat, usstate_all
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 dchain_supported: false
 userIds: all
 tcf2_supported: true
@@ -22,7 +22,7 @@ fpd_supported: true
 pbs: false
 prebid_member:false
 multiformat_supported: will-bid-on-one
-ortb_blocking_supported: 
+ortb_blocking_supported: true
 media_types: banner, video
 privacy_sandbox: no
 sidebarType: 1
