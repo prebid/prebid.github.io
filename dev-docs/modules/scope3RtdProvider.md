@@ -39,7 +39,7 @@ pbjs.setConfig({
     realTimeData: {
         auctionDelay: 100,
         dataProviders: [{
-            name: "scope3RtdProvider",
+            name: "scope3",
             waitForIt: true,
             params: {
                 orgId: "your-org-id"
@@ -56,7 +56,7 @@ pbjs.setConfig({
     realTimeData: {
         auctionDelay: 200,
         dataProviders: [{
-            name: "scope3RtdProvider",
+            name: "scope3",
             waitForIt: true,
             params: {
                 orgId: "your-org-id",
@@ -64,7 +64,7 @@ pbjs.setConfig({
                 timeout: 1500,
                 bidders: ["appnexus", "rubicon", "pubmatic"],
                 includeKey: "scope3_include",
-                excludeKey: "scope3_exclude", 
+                excludeKey: "scope3_exclude",
                 macroKey: "scope3_macro",
                 publisherTargeting: true,
                 advertiserTargeting: true,
