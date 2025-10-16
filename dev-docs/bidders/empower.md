@@ -23,7 +23,7 @@ prebid_member: false
 multiformat_supported: will-bid-on-one
 ortb_blocking_supported: true
 media_types: banner, video
-privacy_sandbox: false
+privacy_sandbox: no
 endpoint_compression: false
 
 sidebarType: 1
