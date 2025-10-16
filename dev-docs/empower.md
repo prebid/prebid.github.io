@@ -7,9 +7,24 @@ biddercode: empower
 gvl_id: 1248
 tcfeu_supported: true
 schain_supported: true
+dsa_supported: true
+usp_supported: false
+coppa_supported: true
+schain_supported: true
+gpp_sids: tcfeu, tcfca, usnat, usstate_all
+dchain_supported: false
 userIds: all
 tcf2_supported: true
+safeframes_ok: true
+deals_supported: true
+floors_supported: true
+fpd_supported: true
+pbs: false
+prebid_member:false
+multiformat_supported: will-bid-on-one
+ortb_blocking_supported: 
 media_types: banner, video
+privacy_sandbox: no
 sidebarType: 1
 ---
 
