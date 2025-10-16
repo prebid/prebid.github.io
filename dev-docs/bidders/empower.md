@@ -6,7 +6,6 @@ pbjs: true
 biddercode: empower
 gvl_id: 1248
 tcfeu_supported: true
-schain_supported: true
 dsa_supported: true
 usp_supported: true
 coppa_supported: true
@@ -20,7 +19,7 @@ deals_supported: true
 floors_supported: true
 fpd_supported: true
 pbs: false
-prebid_member:false
+prebid_member: false
 multiformat_supported: will-bid-on-one
 ortb_blocking_supported: true
 media_types: banner, video
@@ -88,5 +87,5 @@ var adUnits = [
             }
         }]
     };
-];
+]
 ```
