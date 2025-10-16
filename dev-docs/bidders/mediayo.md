@@ -1,11 +1,10 @@
 ---
 layout: bidder
-title: 360PlayVid
-description: Prebid 360PlayVid Bidder Adapter
-biddercode: 360playvid
+title: MediaYo
+description: Prebid MediaYo Bidder Adapter
+biddercode: mediayo
 gpp_sids: usstate_all
-gvl_id: none
-tcfeu_supported: true
+tcfeu_supported: false
 usp_supported: true
 coppa_supported: true
 schain_supported: true
@@ -16,7 +15,7 @@ ortb_blocking_supported: false
 media_types: banner, video, native
 multiformat_supported: will-bid-on-one
 userIds: all
-pbjs: true
+pbjs: false
 pbs: true
 pbs_app_supported: true
 safeframes_ok: true
@@ -26,6 +25,7 @@ sidebarType: 1
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name          | Scope    | Description  | Example                         | Type       |
 |---------------|----------|--------------|---------------------------------|------------|
 | `placementId` | optional | Placement Id | `'0'`                           | `'string'` |
@@ -33,4 +33,4 @@ sidebarType: 1
 
 ### Note
 
-For the prebid server and prebid.js you only need to use one parameter: either placementId or endpointId
+For the prebid server you only need to use one parameter: either `placementId` or `endpointId`

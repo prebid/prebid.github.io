@@ -1,10 +1,9 @@
 ---
 layout: bidder
-title: 360PlayVid
-description: Prebid 360PlayVid Bidder Adapter
-biddercode: 360playvid
+title: AppStockSSP
+description: Prebid AppStockSSP Bidder Adapter
+biddercode: appStockSSP
 gpp_sids: usstate_all
-gvl_id: none
 tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
@@ -14,12 +13,13 @@ floors_supported: true
 fpd_supported: false
 ortb_blocking_supported: false
 media_types: banner, video, native
-multiformat_supported: will-bid-on-one
+multiformat_supported: will-not-bid
 userIds: all
 pbjs: true
 pbs: true
 pbs_app_supported: true
 safeframes_ok: true
+gvl_id: 1223
 sidebarType: 1
 ---
 
@@ -30,7 +30,8 @@ sidebarType: 1
 |---------------|----------|--------------|---------------------------------|------------|
 | `placementId` | optional | Placement Id | `'0'`                           | `'string'` |
 | `endpointId`  | optional | Endpoint Id  | `'0'`                           | `'string'` |
+| `region`      | optional | Region (for Prebid.js) | `'us-east'` (default) or `'eu'` or `'apac'` | `'string'` |
 
 ### Note
 
-For the prebid server and prebid.js you only need to use one parameter: either placementId or endpointId
+For the prebid server and prebid.js you only need to use one parameter: either placementId or endpointId.
