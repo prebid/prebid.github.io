@@ -3,7 +3,7 @@ layout: bidder
 title: DXTech
 description: Prebid DXTech Bidder Adapter
 pbjs: true
-pbs: true
+pbs: false
 biddercode: dxtech
 media_types: banner, video
 tcfeu_supported: false
@@ -11,7 +11,13 @@ gdpr_supported: true
 usp_supported: true
 schain_supported: true
 sidebarType: 1
-
+safeframes_ok: true
+deals_supported: true
+floors_supported: true
+fpd_supported: false
+prebid_member: false
+multiformat_supported: will-bid-on-one
+ortb_blocking_supported: partial
 ---
 
 ### Integration Note
