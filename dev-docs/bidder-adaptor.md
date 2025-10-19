@@ -221,7 +221,7 @@ A high level example of the structure:
 import * as utils from 'src/utils';
 import { registerBidder } from 'src/adapters/bidderFactory';
 import { config } from 'src/config';
-import {BANNER, VIDEO, NATIVE} from 'src/mediaTypes.ts';
+import {BANNER, VIDEO, NATIVE, AUDIO} from 'src/mediaTypes.ts';
 const BIDDER_CODE = 'example';
 export const spec = {
     code: BIDDER_CODE,
@@ -238,7 +238,7 @@ export const spec = {
     onSetTargeting: function(bid) {},
     onBidderError: function({ error, bidderRequest }) {},
     onAdRenderSucceeded: function(bid) {},
-    supportedMediaTypes: [BANNER, VIDEO, NATIVE]
+    supportedMediaTypes: [BANNER, VIDEO, NATIVE, AUDIO]
 }
 registerBidder(spec);
 
