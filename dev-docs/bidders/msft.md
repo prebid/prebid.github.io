@@ -31,7 +31,6 @@ sidebarType: 1
   - [Migrating from the AppNexus Bid Adapter & Auction Level Keywords](#migration-from-appnexus-auction-level-keywords)
   - [First Party Data](#first-party-data)
   - [Debug Auction](#debug-auction)
-  - [Prebid Server Test Request](#prebid-server-test-request)
 
 <a name="bid-params"></a>
 
@@ -113,7 +112,7 @@ Please refer to the [Prebid.js Native Implementation Guide](https://docs.prebid.
 
 If you are migrating from the AppNexus bid adapter, the previously available `setConfig` option named `appnexusAuctionKeywords` is not supported within the Microsoft bid adapter.
 
-If you need to specify keyword-like data at the auction/request level, please instead specify that data within the appropriate area of the First Party Data section of your setup (eg `ortb2.site.keywords`).
+If you need to specify keyword-like data at the auction/request level, please instead specify that data within the appropriate area of the First Party Data section of your setup (eg `ortb2.site.keywords`).  If you wish to set bidder-specific First Party Data data, please refer to this [page](https://docs.prebid.org/features/firstPartyData.html#supplying-bidder-specific-data).  
 
 <a name="fpd"></a>
 
@@ -156,29 +155,3 @@ To view the results of the debug auction, add the `pbjs_debug=true` query string
 | `debug_timeout`   | The timeout for the debug auction results to be returned        | `3000`                | `integer`        |
 
 <a name="prebid-server-test-request"></a>
-
-#### Prebid Server Test Request
-
-The following test parameters can be used to verify that Prebid Server is working properly with the
-server-side Appnexus adapter. This example includes an `imp` object with an Appnexus test placement ID and sizes
-that would match with the test creative.
-
-```json
-"imp": [{
-  "id": "some-impression-id",
-  "banner": {
-    "format": [{
-      "w": 600,
-      "h": 500
-    }, {
-      "w": 300,
-      "h": 600
-    }]
-  },
-  "ext": {
-    "appnexus": {
-      "placement_id": 13144370
-    }
-  }
-}]
-```
