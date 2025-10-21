@@ -1,8 +1,8 @@
 ---
 layout: page_v2
-title: Neuwo Real-Time Data Module
-display_name: Neuwo Real-Time Data Module 
-description: Enrich bids using neuwo.ai
+title: Neuwo RTD Module
+display_name: Neuwo RTD Module 
+description: Enrich bids with contextual data from the Neuwo API.
 page_type: module
 module_type: rtd
 module_code : neuwoRtdProvider
@@ -10,48 +10,112 @@ enable_download : true
 sidebarType : 1
 ---
 
-# Neuwo Real-Time Data Module
+# Neuwo RTD Module
 
 ## Overview
 
-The Neuwo AI RTD module is an advanced AI solution for real-time data processing in the field of contextual targeting and advertising. With its cutting-edge algorithms, it allows advertisers to target their audiences with the highest level of precision based on context, while also delivering a seamless user experience.
+The Neuwo RTD provider fetches real-time contextual data from the Neuwo API. When installed, the module retrieves IAB content and audience categories relevant to the current page's content.
 
-The module provides advertisers with valuable insights and real-time contextual bidding capabilities. Whether you're a seasoned advertising professional or just starting out, Neuwo AI RTD module is the ultimate tool for contextual targeting and advertising.
+This data is then added to the bid request by populating the OpenRTB 2.x objects `ortb2.site.content.data` (for IAB Content Taxonomy) and `ortb2.user.data` (for IAB Audience Taxonomy). This enrichment allows bidders to leverage Neuwo's contextual analysis for more precise targeting and decision-making.
 
-The benefit of Neuwo AI RTD module is that it provides an alternative solution for advertisers to target their audiences and deliver relevant advertisements, as the widespread use of cookies for tracking and targeting is becoming increasingly limited.
+Here is an example scheme of the data injected into the `ortb2` object by our module:
 
-The RTD module uses cutting-edge algorithms to process real-time data, allowing advertisers to target their audiences based on contextual information, such as segments, IAB Tiers and brand safety. The RTD module is designed to be flexible and scalable, making it an ideal solution for advertisers looking to stay ahead of the curve in the post-cookie era.
+```javascript
+ortb2: {
+  site: {
+    content: {
+      // IAB Content Taxonomy data is injected here
+      data: [{
+        name: "www.neuwo.ai",
+        segment: [{
+            id: "274",
+            name: "Home & Garden",
+          },
+          {
+            id: "42",
+            name: "Books and Literature",
+          },
+          {
+            id: "210",
+            name: "Food & Drink",
+          },
+        ],
+        ext: {
+          segtax: 7,
+        },
+      }, ],
+    },
+  },
+  user: {
+    // IAB Audience Taxonomy data is injected here
+    data: [{
+      name: "www.neuwo.ai",
+      segment: [{
+          id: "49",
+          name: "Demographic | Gender | Female |",
+        },
+        {
+          id: "161",
+          name: "Demographic | Marital Status | Married |",
+        },
+        {
+          id: "6",
+          name: "Demographic | Age Range | 30-34 |",
+        },
+      ],
+      ext: {
+        segtax: 4,
+      },
+    }, ],
+  },
+}
+```
 
-Generate your token at: [neuwo.ai/generatetoken/]
+To get started, you can generate your API token at [https://neuwo.ai/generatetoken/](https://neuwo.ai/generatetoken/) or [contact us here](https://neuwo.ai/contact-us/).
 
 ## Configuration
 
-| Name       | Scope    | Description                            | Example       | Type     |
-|------------|----------|----------------------------------------|---------------|----------|
-| `name` | required | Handle of the module used in real-time data providers; for this, use 'NeuwoRTDModule' | 'NeuwoRTDModule' | static |
-| `params.publicToken` | required | Your neuwo.ai public token | `neu23-te45-idkf-44aa` (format example) | `string` |
-| `params.apiUrl` | required | Your neuwo.ai API url | `https://some-api-url.neuwo.ai/a/b/c` (format example) | `string` |
+> **Important:** You must add the domain (origin) where Prebid.js is running to the list of allowed origins in Neuwo Edge API configuration. If you have problems, [contact us here](https://neuwo.ai/contact-us/).
+
+This module is configured as part of the `realTimeData.dataProviders` object.
 
 ```javascript
-const neuwoDataProvider = {
-    name: 'NeuwoRTDModule',
-    params: {
-        publicToken: '<public token here>',
-        apiUrl: '<api url here>'
-    }
-}
-pbjs.setConfig({realTimeData: { dataProviders: [ neuwoDataProvider ]}})
+pbjs.setConfig({
+  realTimeData: {
+    dataProviders: [{
+      name: 'NeuwoRTDModule',
+      params: {
+        neuwoApiUrl: '<Your Neuwo Edge API Endpoint URL>',
+        neuwoApiToken: '<Your Neuwo API Token>',
+        iabContentTaxonomyVersion: '3.0',
+      }
+    }]
+  }
+});
 ```
+
+**Parameters**
+
+| Name                               | Type   | Required | Default | Description                                                                                       |
+| :--------------------------------- | :----- | :------- | :------ | :------------------------------------------------------------------------------------------------ |
+| `name`                             | String | Yes      |         | The name of the module, which is `NeuwoRTDModule`.                                                |
+| `params`                           | Object | Yes      |         | Container for module-specific parameters.                                                         |
+| `params.neuwoApiUrl`               | String | Yes      |         | The endpoint URL for the Neuwo Edge API.                                                               |
+| `params.neuwoApiToken`             | String | Yes      |         | Your unique API token provided by Neuwo.                                                          |
+| `params.iabContentTaxonomyVersion` | String | No       | `'3.0'` | Specifies the version of the IAB Content Taxonomy to be used. Supported values: `'2.2'`, `'3.0'`. |
 
 ## Installation
 
 ### Step 1: Install Prebid.js
 
-- Option 1: Use Prebid [Download](/download.html) page to build the Prebid.js package
-  - Include Neuwo Real-Time Data Module
+#### Option 1
 
-- Option 2: Include `neuwoRtdProvider` in build: `gulp build --modules=rtdModule,neuwoRtdProvider,...`
+Use Prebid [Download](https://docs.prebid.org/download.html) page to build the Prebid.js package and include Neuwo RTD Module
+
+#### Option 2
+
+Include `neuwoRtdProvider` in build: `gulp build --modules=rtdModule,neuwoRtdProvider,...`
 
 ### Step 2: Set configuration
 
-Enable Neuwo Real-Time Data Module using `pbjs.setConfig` in a related Javascript context. Command example is provided in Configuration section.
+Enable Neuwo Real-Time Data Module using `pbjs.setConfig` in a related Javascript context. Command example is provided in [Configuration](#configuration) section.
