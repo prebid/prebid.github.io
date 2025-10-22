@@ -221,7 +221,7 @@ A high level example of the structure:
 import * as utils from 'src/utils';
 import { registerBidder } from 'src/adapters/bidderFactory';
 import { config } from 'src/config';
-import {BANNER, VIDEO, NATIVE} from 'src/mediaTypes.ts';
+import {BANNER, VIDEO, NATIVE, AUDIO} from 'src/mediaTypes.ts';
 const BIDDER_CODE = 'example';
 export const spec = {
     code: BIDDER_CODE,
@@ -238,7 +238,7 @@ export const spec = {
     onSetTargeting: function(bid) {},
     onBidderError: function({ error, bidderRequest }) {},
     onAdRenderSucceeded: function(bid) {},
-    supportedMediaTypes: [BANNER, VIDEO, NATIVE]
+    supportedMediaTypes: [BANNER, VIDEO, NATIVE, AUDIO]
 }
 registerBidder(spec);
 
@@ -736,6 +736,21 @@ Sample data received by this function:
     }
 }
 ```
+
+### Registering on Intervention
+
+The onIntervention function will be called when the browser reports an intervention affecting a rendered creative (e.g., Chrome Heavy Ad Intervention or similar reporting APIs).
+
+#### Signature
+
+```javascript
+function onIntervention({ bid, intervention }) { ... }
+```
+
+#### Parameters
+
+1. `bid` — the winning bid object for which the intervention was detected (same shape as in other render callbacks like `onAdRenderSucceeded`).
+2. `intervention` — a browser-provided object describing the intervention. In Chromium-based browsers this typically originates from the [ReportingObserver] API with type: 'intervention' and includes a body describing the intervention details.
 
 ### Adding adapter aliases
 
