@@ -47,6 +47,7 @@ The available events are:
 | bidderError    | A bidder responded with an error | Object with the XMLHttpRequest error and the bid request object `{ error, bidderRequest }` |
 | tcf2Enforcement | There was a TCF2 enforcement action taken | `{ storageBlocked: ['moduleA', 'moduleB'], biddersBlocked: ['moduleB'], analyticsBlocked: ['moduleC'] }` |
 | bidAccepted | A bid was accepted and is about to be added to auction | Bid response object |
+| browserIntervention | The browser reported an intervention affecting a rendered creative (e.g., heavy-ad unload). | `{ bid, adId, intervention }` |
 
 The example below shows how these events can be used.
 
