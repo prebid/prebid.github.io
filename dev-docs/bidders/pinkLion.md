@@ -1,11 +1,11 @@
 ---
 layout: bidder
-title: 360PlayVid
-description: Prebid 360PlayVid Bidder Adapter
-biddercode: 360playvid
+title: PinkLion
+description: Prebid PinkLion Bidder Adapter
+biddercode: pinkLion
 gpp_sids: usstate_all
 gvl_id: none
-tcfeu_supported: true
+tcfeu_supported: false
 usp_supported: true
 coppa_supported: true
 schain_supported: true
@@ -15,7 +15,7 @@ fpd_supported: false
 ortb_blocking_supported: false
 media_types: banner, video, native
 multiformat_supported: will-bid-on-one
-userIds: all
+userIds:
 pbjs: true
 pbs: true
 pbs_app_supported: true
