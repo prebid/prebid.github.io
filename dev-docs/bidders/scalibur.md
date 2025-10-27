@@ -3,11 +3,10 @@ layout: bidder
 title: Scalibur
 description: Prebid Scalibur Bidder Adapter
 biddercode: scalibur
-gvlid: 1471
+gvl_id: 1471
 media_types: banner, video
-tcfeu_supported: true
 gpp_supported: true
-usp_supported: true
+gpp_sids: tcfeu, usstate_all, usp
 coppa_supported: true
 schain_supported: true
 dchain_supported: false
@@ -24,35 +23,21 @@ userIds: all
 pbs_app_supported: false
 ---
 
-# Scalibur Bidder
-
-## Description
-
 The Scalibur Bid Adapter connects publishers to Scalibur's programmatic advertising platform. It supports both banner and video ad formats through OpenRTB 2.x protocol and provides full compliance with privacy regulations.
 
-**Key Features:**
-
-- Banner and Video (instream) ad support
-- OpenRTB 2.x compliant requests
-- Privacy regulation compliance
-- First-party data collection and storage
-- User sync capabilities (iframe and image)
-- Supply chain transparency (schain)
-- Floor pricing support
-- First Party Data (FPD) support
-
-## Bid Params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example | Type |
-|------|-------|-------------|---------|------|
-| `placementId` | required | Placement identifier provided by Scalibur  | `'test-placement-123'` | `string` |
 
-## Test Parameters
+| Name | Scope | Type | Description | Example |
+| ---- | ----- | ---- | ----------- | ------- |
+| `placementId` | required | String | Placement identifier provided by Scalibur | `'test-placement-123'` |
+
+### Test Parameters
 
 For testing purposes, you can use the following ad unit configurations:
 
-### Banner Ad Unit
+#### Banner Ad Unit
 
 ```javascript
 var adUnits = [
@@ -75,7 +60,7 @@ var adUnits = [
 ];
 ```
 
-### Video Ad Unit
+#### Video Ad Unit
 
 ```javascript
 var adUnits = [
@@ -106,7 +91,7 @@ var adUnits = [
 ];
 ```
 
-### Multi-format Ad Unit
+#### Multi-format Ad Unit
 
 ```javascript
 var adUnits = [
@@ -137,7 +122,7 @@ var adUnits = [
 ];
 ```
 
-## First Party Data
+### First Party Data
 
 The adapter supports First Party Data (FPD) in multiple ways:
 
@@ -145,19 +130,7 @@ The adapter supports First Party Data (FPD) in multiple ways:
 - **AdUnit FPD**: Includes ad unit specific `ortb2Imp` data
 - **Local Storage**: Generates and stores first-party identifiers for enhanced targeting
 
-## Supply Chain Transparency
-
-The adapter supports the Supply Chain Object (schain) for transparency in programmatic advertising transactions, helping to combat fraud and improve trust between buyers and sellers.
-
-## Floor Prices
-
-The adapter respects floor prices set via:
-
-- Prebid.js Price Floors module
-- Ad unit level floor configuration
-- Global floor configuration
-
-## User Sync
+### User Sync
 
 The Scalibur adapter supports user synchronization through:
 
@@ -166,7 +139,7 @@ The Scalibur adapter supports user synchronization through:
 
 All privacy parameters are automatically included in sync requests.
 
-## Configuration Example
+#### Configuration Example
 
 ```javascript
 pbjs.que.push(function() {
@@ -197,16 +170,15 @@ pbjs.que.push(function() {
 });
 ```
 
-## Support
+### Support
 
 For technical support or integration assistance:
 
 - **Email**: [support@scalibur.io](mailto:support@scalibur.io)
 - **Documentation**: Contact Scalibur Support Team
 
-## Notes
+### Notes
 
-- The adapter requires a valid `placementId` parameter provided by Scalibur
 - Video ads support instream context with standard IAB video parameters
 - Banner ads support multiple sizes including standard IAB sizes
 - All requests are sent via secure HTTPS endpoints
