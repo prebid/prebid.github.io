@@ -80,7 +80,7 @@ Follow the banner creative setup instructions in [Add Creatives](https://docs.xa
 * Self-Audit the creative and confirm compliance.
 
 ```html
-<script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/#{HB_FORMAT}.js"></script>
+<script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@#{HB_VER}/dist/#{HB_FORMAT}.js"></script>
 <script>
   var ucTagData = {};
   ucTagData.adServerDomain = window.location.host;
