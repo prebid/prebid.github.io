@@ -16,7 +16,7 @@ pbjs: true
 pbs: true
 pbs_app_supported: false
 prebid_member: true
-multiformar_supported: will-bid-on-any
+multiformat_supported: true
 ortb_blocking_supported: true
 ---
 
@@ -32,11 +32,11 @@ The Contxtful bidder adapter requires some setup. Contact us at [contact@contxtf
 | `placementId`      | required | The placement identifier                                          | `'p12345678'` | `string`             |
 | `customerId`      | required | The customer identifier              | `'DEMO123456'`       | `string`           |
 
-### Configuration - Prebid.js Adatper
+### Configuration - Prebid.js Adapter
 
 n.b. It is strongly recommended that you use the bid adapter in conjunction with the contxtful RTD provider module.
 
-see: <https://docs.prebid.org/dev-docs/modules/contxtfulRtdProvider.html#overview>
+see: <https://docs.prebid.org/dev-docs/modules/contxtfulRtdProvider.html>
 
 ```javascript
 pbjs.setConfig({
@@ -65,11 +65,11 @@ pbjs.setConfig({
 );
 ```
 
-### Configuration - Prebid Server Adatper
+### Configuration - Prebid Server Adapter
 
 n.b. It is strongly recommended that you use the bid adapter in conjunction with the contxtful RTD provider module.
 
-see: <https://docs.prebid.org/dev-docs/modules/contxtfulRtdProvider.html#overview>
+see: <https://docs.prebid.org/dev-docs/modules/contxtfulRtdProvider.html>
 
 ```javascript
 pbjs.setConfig({
@@ -113,18 +113,18 @@ AdUnit-specific data is supported using `AdUnit.ortb2Imp.ext.*`
  var adUnitList = [
   {
     code: 'AD_UNIT_NAME_HERE',
-    mediaTypes: { /* "<< ENTER_FORMAT_HERE >> */ },
+    mediaTypes: { /* "<ENTER_FORMAT_HERE> */ },
     bids: [{
       bidder: 'contxtful',
       params: {
-        placementId: "<<PLACEMENT_ID_HERE>>",
-        customerId: "<<CUSTOMER_ID_HERE>>"
+        placementId: "<PLACEMENT_ID_HERE>",
+        customerId: "<CUSTOMER_ID_HERE>"
       }
     }],
     ortb2Imp: {
       ext: {
         data: {
-          divId: "<<EACH_AD_UNIT_DIV_ID>>"
+          divId: "<EACH_AD_UNIT_DIV_ID>"
         }
       }
     }
