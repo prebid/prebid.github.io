@@ -32,13 +32,17 @@ The Contxtful bidder adapter requires some setup. Contact us at [contact@contxtf
 | `placementId`      | required | The placement identifier                                          | `'p12345678'` | `string`             |
 | `customerId`      | required | The customer identifier              | `'DEMO123456'`       | `string`           |
 
-### Configuration
+### Configuration - Prebid.js Adatper
+
+n.b. It is strongly recommended that you use the bid adapter in conjunction with the contxtful RTD provider module.
+
+see: <https://docs.prebid.org/dev-docs/modules/contxtfulRtdProvider.html#overview>
 
 ```javascript
 pbjs.setConfig({
    "contxtful":{
       "version":"v1",
-      "customer":"<<CUSTOMER_ID_HERE>>"
+      "customer":"<CUSTOMER_ID_HERE>"
    },
    "realTimeData":{
       "dataProviders":[
@@ -47,9 +51,42 @@ pbjs.setConfig({
             "waitForIt":true,
             "params":{
                "version":"v1",
-               "customer":"<<CUSTOMER_ID_HERE>>",
+               "customer":"<CUSTOMER_ID_HERE>",
                "bidders":[
-                  "contxtful"
+                  "contxtful",
+                  "<ALL_BIDDER_CODES>"
+               ],
+               "adServerTargeting":true
+            }
+         }
+      ]
+   }
+}
+);
+```
+
+### Configuration - Prebid Server Adatper
+
+n.b. It is strongly recommended that you use the bid adapter in conjunction with the contxtful RTD provider module.
+
+see: <https://docs.prebid.org/dev-docs/modules/contxtfulRtdProvider.html#overview>
+
+```javascript
+pbjs.setConfig({
+   "s2sConfig":{
+      "bidders": ["contxtful", "<ALL_S2S_BIDDERS>"],
+      "<ALL_OTHER_STANDARD_KEY_VALUES>"
+   },
+   "realTimeData":{
+      "dataProviders":[
+         {
+            "name":"contxtful",
+            "waitForIt":true,
+            "params":{
+               "version":"v1",
+               "customer":"<CUSTOMER_ID_HERE>",
+               "bidders":[
+                  "<ALL_PAGE_BIDDER_CODES_INCLUDING_S2S>"
                ],
                "adServerTargeting":true
             }
