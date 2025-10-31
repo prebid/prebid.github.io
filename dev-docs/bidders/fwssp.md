@@ -40,7 +40,7 @@ The following bid params are for use with the Prebid.js bid adapter:
 | `bidfloorcur` | optional | Bid floor currency | "USD" | `string` |
 | `flags` | optional | Optional flags to include in the ad request | '+play-uapl' | `string` |
 | `mode` | optional | Request mode. Valid values are: “on-demand", "live". Default: "on-demand" | "live" | `string` |
-| `adRequestKeyValues` | optional | An object of ad request key-value pairs. | { \_fw_player_width: '1920', \_fw_player_height: '1080' } | `object` |
+| `adRequestKeyValues` | optional | An object of ad request key-value pairs. For a full list of supported key value pairs , please refer to https://hub.freewheel.tv/display/MUG/HTTP+GET+Ad+Request+-+Key+Values | { \_fw_player_width: '1920', \_fw_player_height: '1080' } | `object` |
 | `gdpr_consented_providers` | optional | List of Consented Providers. A comma-separated list of ids. | "216,229,80,359,479" | `string` |
 | `tpos` | optional | Slot time position in seconds. Default: 0 | 10 | `number` |
 | `slid` | optional | Slot custom ID. Any string with valid letters/digits/symbols. Default: "Preroll_1" | "CustomPreroll" | `string` |
