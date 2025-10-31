@@ -58,6 +58,7 @@ Here are the parameters supported in the `consentManagement` object specific for
 | Param | Type | Description | Example |
 | --- | --- | --- | --- |
 | gpp | `Object` | | |
+| gpp.enabled | `boolean` | Enables or disables the GPP consent management module. When set to `false`, Prebid does not initialize the CMP integration, does not delay auctions for consent, removes any active CMP event listeners. Defaults to `true` if not specified. | `false` |
 | gpp.cmpApi | `string` | The CMP interface that is in use. Supported values are **'iab'** or **'static'**. Static allows integrations where IAB-formatted consent strings are provided in a non-standard way. Default is `'iab'`. | `'iab'` |
 | gpp.timeout | `integer` | Length of time (in milliseconds) to allow the CMP to obtain the GPP consent information. Default is `10000`. | `10000` |
 | gpp.actionTimeout | `integer` | Length of time (in milliseconds) to allow the user to take action to consent if they have not already done so. The actionTimer first waits for the CMP to load, then the actionTimeout begins for the specified duration. Default is `undefined`. | `10000` |
@@ -116,6 +117,23 @@ Example 2: Static CMP using custom data passing.
         });
      });
 ```
+
+Example 3: Disabling the module. When disabled, Prebid.js will not fetch GPP data, will not wait for the CMP. Existing CMP listeners (if any were previously active) are cleaned up.
+
+```javascript
+    var pbjs = pbjs || {};
+    pbjs.que = pbjs.que || [];
+    pbjs.que.push(function() {
+      pbjs.setConfig({
+        consentManagement: {
+          gpp: {
+            enabled: false
+          }
+        }
+      });
+    });
+```
+
 
 ## Build the Package
 
