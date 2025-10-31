@@ -134,7 +134,6 @@ Example 3: Disabling the module. When disabled, Prebid.js will not fetch GPP dat
     });
 ```
 
-
 ## Build the Package
 
 Follow the basic build instructions in the GitHub Prebid.js repo's main [README](https://github.com/prebid/Prebid.js/blob/master/README.md). To include the consent management module, an additional option must be added to the **gulp build** command:
