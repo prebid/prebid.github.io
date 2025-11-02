@@ -15,7 +15,7 @@ media_types: banner, video
 prebid_member: false
 safeframes_ok: false
 deals_supported: false
-pbs_app_supported: false
+pbs_app_supported: true
 fpd_supported: false
 ortb_blocking_supported: false
 multiformat_supported: will-bid-on-one
