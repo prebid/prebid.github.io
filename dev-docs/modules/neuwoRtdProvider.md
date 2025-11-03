@@ -1,13 +1,13 @@
 ---
 layout: page_v2
 title: Neuwo RTD Module
-display_name: Neuwo RTD Module 
+display_name: Neuwo RTD Module
 description: Enrich bids with contextual data from the Neuwo API.
 page_type: module
 module_type: rtd
-module_code : neuwoRtdProvider
-enable_download : true
-sidebarType : 1
+module_code: neuwoRtdProvider
+enable_download: true
+sidebarType: 1
 ---
 
 # Neuwo RTD Module
@@ -71,38 +71,83 @@ ortb2: {
 }
 ```
 
-To get started, you can generate your API token at [https://neuwo.ai/generatetoken/](https://neuwo.ai/generatetoken/) or [contact us here](https://neuwo.ai/contact-us/).
+To get started, you can generate your API token at [https://neuwo.ai/generatetoken/](https://neuwo.ai/generatetoken/), send us an email to [neuwo-helpdesk@neuwo.ai](mailto:neuwo-helpdesk@neuwo.ai) or [contact us here](https://neuwo.ai/contact-us/).
 
 ## Configuration
 
-> **Important:** You must add the domain (origin) where Prebid.js is running to the list of allowed origins in Neuwo Edge API configuration. If you have problems, [contact us here](https://neuwo.ai/contact-us/).
+> **Important:** You must add the domain (origin) where Prebid.js is running to the list of allowed origins in Neuwo Edge API configuration. If you have problems, send us an email to [neuwo-helpdesk@neuwo.ai](mailto:neuwo-helpdesk@neuwo.ai) or [contact us here](https://neuwo.ai/contact-us/).
 
 This module is configured as part of the `realTimeData.dataProviders` object.
 
 ```javascript
 pbjs.setConfig({
-  realTimeData: {
-    dataProviders: [{
-      name: 'NeuwoRTDModule',
-      params: {
-        neuwoApiUrl: '<Your Neuwo Edge API Endpoint URL>',
-        neuwoApiToken: '<Your Neuwo API Token>',
-        iabContentTaxonomyVersion: '3.0',
-      }
-    }]
-  }
+    realTimeData: {
+        auctionDelay: 500, // Value can be adjusted based on the needs
+        dataProviders: [
+            {
+                name: "NeuwoRTDModule",
+                waitForIt: true,
+                params: {
+                    neuwoApiUrl: "<Your Neuwo Edge API Endpoint URL>",
+                    neuwoApiToken: "<Your Neuwo API Token>",
+                    iabContentTaxonomyVersion: "3.0",
+                },
+            },
+        ],
+    },
 });
 ```
 
 **Parameters**
 
-| Name                               | Type   | Required | Default | Description                                                                                       |
-| :--------------------------------- | :----- | :------- | :------ | :------------------------------------------------------------------------------------------------ |
-| `name`                             | String | Yes      |         | The name of the module, which is `NeuwoRTDModule`.                                                |
-| `params`                           | Object | Yes      |         | Container for module-specific parameters.                                                         |
-| `params.neuwoApiUrl`               | String | Yes      |         | The endpoint URL for the Neuwo Edge API.                                                               |
-| `params.neuwoApiToken`             | String | Yes      |         | Your unique API token provided by Neuwo.                                                          |
-| `params.iabContentTaxonomyVersion` | String | No       | `'3.0'` | Specifies the version of the IAB Content Taxonomy to be used. Supported values: `'2.2'`, `'3.0'`. |
+| Name                                | Type     | Required | Default | Description                                                                                                                                                                                                                                                                                                                |
+| :---------------------------------- | :------- | :------- | :------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`                              | String   | Yes      |         | The name of the module, which is `NeuwoRTDModule`.                                                                                                                                                                                                                                                                         |
+| `params`                            | Object   | Yes      |         | Container for module-specific parameters.                                                                                                                                                                                                                                                                                  |
+| `params.neuwoApiUrl`                | String   | Yes      |         | The endpoint URL for the Neuwo Edge API.                                                                                                                                                                                                                                                                                   |
+| `params.neuwoApiToken`              | String   | Yes      |         | Your unique API token provided by Neuwo.                                                                                                                                                                                                                                                                                   |
+| `params.iabContentTaxonomyVersion`  | String   | No       | `'3.0'` | Specifies the version of the IAB Content Taxonomy to be used. Supported values: `'2.2'`, `'3.0'`.                                                                                                                                                                                                                          |
+| `params.stripAllQueryParams`        | Boolean  | No       | `false` | If `true`, strips all query parameters from the URL before analysis. Takes precedence over other stripping options.                                                                                                                                                                                                        |
+| `params.stripQueryParamsForDomains` | String[] | No       | `[]`    | List of domains for which to strip **all** query parameters. When a domain matches, all query params are removed for that domain and all its subdomains (e.g., `'example.com'` strips params for both `'example.com'` and `'sub.example.com'`). This option takes precedence over `stripQueryParams` for matching domains. |
+| `params.stripQueryParams`           | String[] | No       | `[]`    | List of specific query parameter names to strip from the URL (e.g., `['utm_source', 'fbclid']`). Other parameters are preserved. Only applies when the domain does not match `stripQueryParamsForDomains`.                                                                                                                 |
+| `params.stripFragments`             | Boolean  | No       | `false` | If `true`, strips URL fragments (hash, e.g., `#section`) from the URL before analysis.                                                                                                                                                                                                                                     |
+
+### URL Cleaning Options
+
+The module provides optional URL cleaning capabilities to strip query parameters and/or fragments from the analyzed URL before sending it to the Neuwo API. This can be useful for privacy, caching, or analytics purposes.
+
+**Example with URL cleaning:**
+
+```javascript
+pbjs.setConfig({
+    realTimeData: {
+        auctionDelay: 500, // Value can be adjusted based on the needs
+        dataProviders: [
+            {
+                name: "NeuwoRTDModule",
+                waitForIt: true,
+                params: {
+                    neuwoApiUrl: "<Your Neuwo Edge API Endpoint URL>",
+                    neuwoApiToken: "<Your Neuwo API Token>",
+                    iabContentTaxonomyVersion: "3.0",
+
+                    // Option 1: Strip all query parameters from the URL
+                    stripAllQueryParams: true,
+
+                    // Option 2: Strip all query parameters only for specific domains
+                    // stripQueryParamsForDomains: ['example.com', 'another-domain.com'],
+
+                    // Option 3: Strip specific query parameters by name
+                    // stripQueryParams: ['utm_source', 'utm_campaign', 'fbclid'],
+
+                    // Optional: Strip URL fragments (hash)
+                    stripFragments: true,
+                },
+            },
+        ],
+    },
+});
+```
 
 ## Installation
 
