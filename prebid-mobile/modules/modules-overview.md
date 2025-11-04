@@ -17,10 +17,10 @@ This page will serve as the central location to link all modular packages, descr
 
 Some of the benefits to the modular architecture are the following:
 
--   Allows the ability to customize the Prebid SDK to the developer needs
--   Allows for the reduced size of Prebid SDK, adding only modules need
--   Allows for the community to add custom and/or 3rd party code without adding code to the core of Prebid SDK
--   Reduces the size of Prebid SDK
+- Allows the ability to customize the Prebid SDK to the developer needs
+- Allows for the reduced size of Prebid SDK, adding only modules need
+- Allows for the community to add custom and/or 3rd party code without adding code to the core of Prebid SDK
+- Reduces the size of Prebid SDK
 
 ## How It Works
 
@@ -28,20 +28,15 @@ The following diagram describes the overall architecture of modularity prior and
 
 ![Modularity](/assets/images/prebid-mobile/modules/modularity.png)
 
-
-Prior to Prebid SDK 1.12 there were two targets(PrebidMobile and PrebidMobileCore) which use the same product name and module name(PrebidMobile). These two modules are the same, they include the same source files. Since no new modules have been created prior to 1.12, new modules can be added and built 
-
 1. Set a unique product name and module name for each product:
-    * PrebidMobile instead of PrebidMobileCore. It will allows us to seamless migration because it doesn't cause breaking changes. All publishers which now use PrebidMobileCore or PrebidMobile don't need to replace module names in source files
-    * PrebidMobileFull instead of PrebidMobile. PrebidMobileFull will not include any source files it will be just a name of dependency which will be responsible to add all sub-dependencies
+     - PrebidMobile instead of PrebidMobileCore. It will allows us to seamless migration because it doesn't cause breaking changes. All publishers which now use PrebidMobileCore or PrebidMobile don't need to replace module names in source files
+     - PrebidMobileFull instead of PrebidMobile. PrebidMobileFull will not include any source files it will be just a name of dependency which will be responsible to add all sub-dependencies
 1. Set dependencies between them
 1. Edit final distribution binaries(FatFramework, CocoaPods, Carthage, SPM, cross-project dependency)
 
 Usage:
 
-```bash
+```swift
 import PrebidMobile
 import PrebidMobileRendering
 ```
-
-

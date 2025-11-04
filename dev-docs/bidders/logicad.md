@@ -9,8 +9,10 @@ biddercode: logicad
 deals_supported: false
 media_types: banner, native
 userIds: all
-gdpr_supported: false
+tcfeu_supported: false
 prebid_member: false
+sidebarType: 1
+schain_supported: true
 ---
 
 

@@ -8,13 +8,16 @@ pbs: true
 pbs_app_supported: true
 biddercode: adxcg
 media_types: native, video
-gdpr_supported: true
+tcfeu_supported: false
 userIds: id5Id, identityLink, pubCommonId, unifiedId
+sidebarType: 1
 ---
 
 ### Note
-Prebid-server activation requires setup and approval before beginning. Please reach out to your account manager or info@adxcg.com for more details.
 
+{% include dev-docs/pbjs-adapter-required-for-pbs.md %}
+
+Prebid-server activation requires setup and approval before beginning. Please reach out to your account manager or <info@adxcg.com> for more details.
 
 ### Bid Params
 

@@ -1,5 +1,7 @@
 # name of the software
 name: Prebid
+# GitHub Metadata: site.name is set in _config.yml, but many plugins and themes expect site.title to be used instead
+title: Prebid
 # current version of the software
 version: 1.0.0
 # licence of the software
@@ -85,7 +87,8 @@ collections:
 
 port: 8080
 
-exclude: ['README.md', 'LICENSE', 'bower.json', 'Gemfile.lock', 'Gemfile', 'vendor', 'node_modules', '_assets', 'mix-manifest.json', 'webpack.mix.js', 'find-ungrouped-bidders.sh' ]
+exclude: ['README.md', 'LICENSE', 'Gemfile.lock', 'Gemfile', 'vendor', 'find-ungrouped-bidders.sh' ]
+include: ['node_modules']
 
 keep_files:
   - assets/css/main-bundle.css

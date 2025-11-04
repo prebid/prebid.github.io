@@ -18,7 +18,7 @@ This page presents a sample publisher page using the General Integration Method 
 
 ## Sample Integration
 
-```
+```html
 <!doctype html>
 <html>
 <head>
@@ -57,7 +57,7 @@ This page presents a sample publisher page using the General Integration Method 
             "mediaTypes": {
                 "video": {
                     "context": "instream",
-		    "playerSize": [640,480],
+                    "playerSize": [640,480],
                     "mimes": ["video/mp4","application/javascript"],
                     "protocols": [1,2,3,4,5,6,7,8],
                     "playbackmethod": [1,2],
@@ -72,7 +72,7 @@ This page presents a sample publisher page using the General Integration Method 
             }]
         },
         "prebidConfigOptions": {
-         "cache": {"url": "https://prebid.adnxs.com/pbc/v1/cache"},
+         "cache": {"url": "https://prebid.example.com/pbc/v1/cache"},
         "enableSendAllBids": true
         },
         "prebidTimeout": 700,
@@ -93,5 +93,3 @@ This page presents a sample publisher page using the General Integration Method 
 </body>
 </html>
 ```
-
-

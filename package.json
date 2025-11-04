@@ -10,10 +10,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npm run development",
-    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "watch": "bundle exec jekyll serve",
-    "prod": "npm run production",
-    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --nide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    "postinstall": "./npm-postinstall.sh"
   },
   "repository": {
     "type": "git",
@@ -26,14 +24,6 @@
   },
   "homepage": "https://github.com/AtreNet/prebid.github.io#readme",
   "devDependencies": {
-    "browser-sync": "^2.26.13",
-    "browser-sync-webpack-plugin": "^2.0.1",
-    "cross-env": "^7.0.2",
-    "laravel-mix": "^5.0.7",
-    "resolve-url-loader": "^3.1.0",
-    "sass": "^1.27.0",
-    "sass-loader": "^8.0.2",
-    "vue-template-compiler": "^2.6.12"
   },
   "dependencies": {
     "awesomplete": "^1.1.5",

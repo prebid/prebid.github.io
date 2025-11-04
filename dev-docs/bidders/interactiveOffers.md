@@ -5,11 +5,13 @@ description: Prebid InteractiveOffers.com Bidder Adapter
 pbs: true
 pbjs: true
 biddercode: interactiveOffers
-gdpr_supported: false
+tcfeu_supported: false
 media_types: banner
+sidebarType: 1
 ---
 
-### Note:
+### Note
+
 Module that connects to interactiveOffers demand sources. Param partnerId is required.
 
 ### Bid Params

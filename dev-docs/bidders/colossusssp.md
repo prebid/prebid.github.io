@@ -8,7 +8,6 @@ schain_supported: true
 media_types: banner, video, native
 userIds: all
 gdpr: true
-fpd_supported: true
 pbjs: true
 pbs: true
 sidebarType: 1
@@ -26,4 +25,4 @@ floors_supported: true
 | `group_id`     | optional | Group Id will be generated on Colossus SSP Platform. Use instead of placement_id  | `0`        | `integer` |
 | `traffic`      | optional | Type traffic                                             | `'banner'` | `string`  |
 
-*For colossus prebid server parametres, look into colossus.md*
+*For colossus prebid server parameters, look into colossus.md*

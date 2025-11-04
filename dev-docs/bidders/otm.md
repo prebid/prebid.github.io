@@ -6,6 +6,7 @@ pbjs: true
 biddercode: otm
 floors_supported: true
 media_types: banner
+sidebarType: 1
 ---
 
 ### Bid Params

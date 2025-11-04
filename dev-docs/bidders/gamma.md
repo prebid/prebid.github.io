@@ -6,6 +6,7 @@ pbjs: true
 pbs: true
 biddercode: gamma
 media_types: video
+sidebarType: 1
 ---
 
 ### Bid Params

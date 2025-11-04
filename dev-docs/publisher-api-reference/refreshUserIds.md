@@ -1,7 +1,8 @@
 ---
 layout: api_prebidjs
 title: pbjs.refreshUserIds(options, callback)
-description: 
+description: refreshUserIds API
+sidebarType: 1
 ---
 
 
@@ -17,8 +18,7 @@ The `refreshUserIds` function allows you to force either all or a subset of user
 | options.submoduleNames | optional | Array of strings | The userId submodule names that should be refreshed. If this option is omitted, all userId submodules are refreshed. |
 | callback | optional | Function | Callback that is called after refreshing user ids has completed |
 
-
-```
+```javascript
 pbjs.refreshUserIds();
 pbjs.refreshUserIds({ submoduleNames: ['britepoolId'] }, () => console.log("Done!"));
 ```

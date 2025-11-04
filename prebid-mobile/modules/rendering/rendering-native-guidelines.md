@@ -34,7 +34,7 @@ The general integration scenario requires these steps from publishers:
     * Provide the list of [Native Assets](#components) representing the ad's structure.
     * Tune other general properties of the ad.
 4. Make a bid request.
-5. Find the winning native ad using `GAMUtils.shared.findNativeAd` or `MoPubUtils.findNativeAd`.
+5. Find the winning native ad using `GAMUtils.shared.findNativeAd`.
 6. Bind the data from the native ad response with the layout.
 
 ### Native Styles
@@ -51,7 +51,7 @@ The Prebid Rendering Module supports the original prebid's approach for renderin
 
 The ad will be rendered in the web view. The rendering engine will be the prebid's universal creative. It will load the winning bid from the prebid cache and substitute assets into the ad markup. For the more detailed info visit the Prebid's instructions about [How Native Ads Work](https://docs.prebid.org/dev-docs/show-native-ads.html#how-native-ads-work).
 
-In order to prepare the valid layout folow the instructions in the Prebid docs for [Mobile in general](https://docs.prebid.org/prebid-mobile/adops-native-setup.html) and for [Google Ad Manager](https://docs.prebid.org/adops/setting-up-prebid-native-in-dfp.html).
+In order to prepare the valid layout follow the instructions in the Prebid docs for [Google Ad Manager](/adops/gam-native.html).
 
 In the case of integration of Native Styles ads without Primary Ad Server publishers should provide the Ad Layout to the SDK. And the winning bid will be rendered right after receiving it from Prebid.
 
@@ -61,14 +61,13 @@ In the case of integration of Native Styles ads without Primary Ad Server publis
 2. Prebid Rendering Module sends the bid request.
 3. Prebid server runs the header bidding auction among preconfigured demand partners.
 3. The received creative will be rendered in the Web View of Prebid Rendering Module.
- 
+
 ## Components
 
 The Prebid Rendering Module supports all Native Ad components proclaimed by the OpenRTB specification: **title**, **image**, **video**, **data**.
 
 We strongly recommend to follow the industry best practices and requirements, especially in the case of integration with Primary Ad Server:
 
-* [OpenRTB Specification](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf)
-* [The Native Advertizing Playbook](https://www.iab.com/wp-content/uploads/2015/06/IAB-Native-Advertising-Playbook2.pdf)
-* [Google Guidelines](https://support.google.com/admanager/answer/6075370)
-* [MoPub Guidelines](https://developers.mopub.com/publishers/best-practices/native-ads/)
+- [OpenRTB Specification](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf)
+- [The Native Advertizing Playbook](https://www.iab.com/wp-content/uploads/2015/06/IAB-Native-Advertising-Playbook2.pdf)
+- [Google Guidelines](https://support.google.com/admanager/answer/6075370)

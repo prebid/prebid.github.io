@@ -5,16 +5,17 @@ description: Prebid YieldLift Bidder Adaptor
 pbjs: true
 biddercode: yieldlift
 media_types: banner
-gdpr_supported: true
+gvl_id: 866
+tcfeu_supported: true
 usp_supported: true
 schain_supported: true
+sidebarType: 1
 
 ---
 
-### Integration Note:
+### Integration Note
 
 The YieldLift Header Bidding adapter requires approval from the YieldLift team. Please reach out to  <info@yieldlift.com> for more information.
-
 
 ### Bid Params
 

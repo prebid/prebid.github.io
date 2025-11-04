@@ -4,6 +4,7 @@ title: AdSpirit
 description: Prebid AdSpirit Bidder Adapter
 pbjs: true
 biddercode: adspirit
+sidebarType: 1
 ---
 
 ### Bid Params

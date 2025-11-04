@@ -4,6 +4,7 @@ title: NinthDecimal
 pbs: true
 media_types: banner
 biddercode: ninthdecimal
+sidebarType: 1
 ---
 
 ### Bid Params

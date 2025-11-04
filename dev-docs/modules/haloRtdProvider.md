@@ -12,8 +12,9 @@ sidebarType : 1
 ---
 
 # Audigent Halo Real-time Data Submodule
+
 Audigent Halo has been rebranded as Audigent Hadron.  Please review the updated
-docs here: 
+docs here:
 
 [Audigent Hadron Real-time Data Submodule](/dev-docs/modules/hadronRtdProvider.html)
 
