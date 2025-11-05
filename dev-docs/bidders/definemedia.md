@@ -25,4 +25,4 @@ Please reach out to our account management team to get started. Contact informat
 | Name | Scope | Type    | Description                                                                                                                                                  | Example
 | ---- | ----- |---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------| -------
 | `supplierDomainName` | required | String  | The domain name of the last supplier in the chain. Under this domain a sellers.json must be available under https://${supplierDomainName}/sellers.json       | definemedia.de
-| `devMode` | optional | boolean | This parameter enables our development endpoint instead of the production endpoint. All requests done with this parameterer set to "true" are *NOT* billable | true
+| `devMode` | optional | boolean | This parameter enables our development endpoint instead of the production endpoint. All requests done with this parameter set to "true" are *NOT* billable | true
