@@ -84,7 +84,8 @@ See the table below for the list of properties in the `mediaTypes` object of the
 {: .table .table-bordered .table-striped }
 | Name | Scope | Type | Description |
 |---------+----------+---------------------------------------+-----------------------------------------------------------------------------------------|
-| `sizes` | Required | Array[Number] or Array[Array[Number]] | All sizes this ad unit can accept. Examples: `[400, 600]`, `[[300, 250], [300, 600]]`. Prebid recommends that the sizes auctioned by Prebid should be the same auctioned by AdX and GAM OpenBidding, which means AdUnit sizes should match the GPT sizes. |
+| `sizes` | Required if `format` is not provided | Array[Number] or Array[Array[Number]] | All sizes this ad unit can accept. Examples: `[400, 600]`, `[[300, 250], [300, 600]]`. Prebid recommends that the sizes auctioned by Prebid should be the same auctioned by AdX and GAM OpenBidding, which means AdUnit sizes should match the GPT sizes. |
+| `format` | Required if `sizes` is not provided | Array of ORTB [Format](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/main/2.6.md#objectformat) objects | Alternative to `sizes`, and takes precedence over it. Allows for more options, such as . | 
 | `pos` | Optional | Integer | OpenRTB page position value: 0=unknown, 1=above-the-fold, 3=below-the-fold, 4=header, 5=footer, 6=sidebar, 7=full-screen |
 | `name` | Optional | String | Name for this banner ad unit. Can be used for testing and debugging. |
 
@@ -220,6 +221,39 @@ pbjs.addAdUnits({
     },
   ],
 });
+```
+
+#### Flex banner example
+
+```javascript
+pbjs.addAdUnits({
+   code: slot.code,
+   mediaTypes: {
+     banner: {
+       expdir: [1, 2, 3, 4],
+       format: [{w: 250, h: 250}],
+       wmin: 250,
+       wmax: 375,
+       hmin: 250,
+       hmax: 250,
+     },
+   },
+   ortb2Imp: {
+     banner: {
+       ext: {
+         flexslot: {
+           wmin: 250,
+           wmax: 375,
+           hmin: 250,
+           hmax: 250
+         }
+       }
+     }
+   },
+   bids: [
+     // ...
+   ]
+})
 ```
 
 <a name="adUnit-video-example"></a>
