@@ -23,11 +23,9 @@
     "url": "https://github.com/AtreNet/prebid.github.io/issues"
   },
   "homepage": "https://github.com/AtreNet/prebid.github.io#readme",
-  "devDependencies": {
-  },
   "dependencies": {
     "awesomplete": "^1.1.5",
-    "bootstrap": "^4.5.3",
+    "bootstrap": "^4.6.2",
     "bourbon": "^7.0.0",
     "include-media": "^1.4.9",
     "popper.js": "^1.16.1"
