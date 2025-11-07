@@ -23,6 +23,7 @@ Allegro adapter: banner-only, OpenRTB 2.5, default endpoint `https://dsp.allegro
 ### Quick Use
 
 Minimal ad unit:
+
 ```javascript
 var adUnits = [{
   code: 'slot-1',
@@ -54,4 +55,4 @@ pbjs.setConfig({
 
 ### Contact
 
-For onboarding or support: the-bidders@allegro.com
+For onboarding or support: <the-bidders@allegro.com>
