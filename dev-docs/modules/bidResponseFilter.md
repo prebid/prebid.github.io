@@ -64,7 +64,7 @@ The new `mediaTypes` parameter allows you to block bids whose mediaType does not
 
 To block bids containing In-Banner Video creatives [IAB Creative Attributes 6 and 7, as defined in the AdCOM 1.0 specification](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/main/AdCOM%20v1.0%20FINAL.md#list_creativeattributes), configure the Bid Response Filter module to reject these responses.
 
-1. Restrict the ad unit to banner only and declare disallowed creative attributes (battr) directly in the ad unit definition:
+Restrict the ad unit to banner only and declare disallowed creative attributes (battr) directly in the ad unit definition:
 
 ```javascript
 const adUnit = {
@@ -78,7 +78,7 @@ const adUnit = {
 };
 ```
 
-2. Enable both the attr and mediaTypes filters in the bidResponseFilter configuration:
+Enable both the attr and mediaTypes filters in the bidResponseFilter configuration:
 
 ```javascript
 pbjs.setConfig({
