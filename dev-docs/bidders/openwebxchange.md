@@ -1,7 +1,6 @@
 ---
 layout: bidder
-deprecated: true
-notes: This adapter has been replaced by 'openweb'. Please use the 'openweb' bidder.
+pbjs_version_notes: This adapter has been replaced by 'openweb'. Please use the 'openweb' bidder.
 title: OpenWebXChange
 description: Prebid OpenWebXChange Bidder Adapter
 multiformat_supported: will-bid-on-any
