@@ -13,7 +13,7 @@ floors_supported: false
 usp_supported: false
 coppa_supported: false
 fpd_supported: false
-gpp_supported: false
+gpp_sids: none
 pbjs: true
 pbs: false
 media_types: banner
