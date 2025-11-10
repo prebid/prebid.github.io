@@ -5,7 +5,6 @@ description: Prebid Scalibur Bidder Adapter
 biddercode: scalibur
 gvl_id: 1471
 media_types: banner, video
-gpp_supported: true
 gpp_sids: tcfeu, usstate_all, usp
 coppa_supported: true
 schain_supported: true
