@@ -803,8 +803,7 @@ The targeting key names and the associated prefix value filtered by `allowTarget
 | CACHE_ID | `hb_cache_id` | yes | Network cache ID for AMP or Mobile |
 | CACHE_HOST | `hb_cache_host` | yes | |
 | ADOMAIN | `hb_adomain` | no | Set to bid.meta.advertiserDomains[0]. Use cases: report on VAST errors, set floors on certain buyers, monitor volume from a buyer, track down bad creatives. |
-| ACAT | `hb_acat` | no | Set to bid.meta.primaryCatId. Optional category targeting key that can be sent to ad servers that stores the value of the Primary IAB category ID if present. Use cases: category exclusion with an ad server order or programmatic direct deal on another ad slot (good for contextual targeting and/or brand
-safety/suitability). |
+| ACAT | `hb_acat` | no | Set to bid.meta.primaryCatId. Optional category targeting key that can be sent to ad servers that stores the value of the Primary IAB category ID if present. Use cases: category exclusion with an ad server order or programmatic direct deal on another ad slot (good for contextual targeting and/or brand safety/suitability). |
 | CRID | `hb_crid` | no | Set to bid.creativeId. Use cases: report on VAST errors, track down bad creatives. |
 | DSP | `hb_dsp` | no | Set to bid.meta.networkName, falling back to bid.meta.networkId. Optional targeting key identifying the DSP or seat |
 | title | `hb_native_title` | yes | |
