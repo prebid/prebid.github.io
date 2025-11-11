@@ -59,6 +59,7 @@ Please find below list of parameters that could be used in configuring Intent IQ
 | params.siloEnabled             | Optional | Boolean  | Determines if first-party data is stored in a siloed storage key. When set to `true`, first-party data is stored under a modified key that appends `_p_` plus the partner value rather than using the default storage key. The default value is `false`.                                                                          | `true`                                        |
 | params.groupChanged            | Optional | Function | A callback that is triggered every time the user’s A/B group is set or updated.                                                                                         |`(group) => console.log('Group changed:', group)` |
 | params.chTimeout | Optional | Number | Maximum time (in milliseconds) to wait for Client Hints from the browser before sending request. Default value is `10ms` | `30` |
+| params.abPercentage | Optional | Number | Percentage for A/B testing group. Default value is `95` | `95` |
 | params.additionalParameters | Optional | Array | This parameter allows sending additional custom key-value parameters with specific destination logic (sync, VR, winreport). Each custom parameter is defined as an object in the array. | `[ { parameterName: “abc”, parameterValue: 123, destination: [1,1,0] } ]` |
 | params.additionalParameters [0].parameterName | Required | String | Name of the custom parameter. This will be sent as a query parameter. | `"abc"` |
 | params.additionalParameters [0].parameterValue | Required | String / Number | Value to assign to the parameter. | `123` |
@@ -86,6 +87,7 @@ pbjs.setConfig({
                 sourceMetaDataExternal: 123456, // Optional parameter
                 reportMethod: "GET", // Optional parameter
                 chTimeout: 10, // Optional parameter
+                abPercentage: 95, // Optional parameter
                 additionalParameters: [ // Optional parameter
                     {
                       parameterName: "abc",
