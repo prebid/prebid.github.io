@@ -2,18 +2,27 @@
 layout: bidder
 title: Allegro
 description: Allegro Prebid Bidder Adapter
+gvl_id: 1493
 biddercode: allegro
 media_types: banner, video, native
 pbjs: true
 pbs: false
-schain_supported: true
+gpp_sids: tcfeu
 tcfeu_supported: true
-usp_supported: true
+usp_supported: false
+coppa_supported: false
+dsa_supported: false
+schain_supported: true
+dchain_supported: false
+safeframes_ok: false
+deals_supported: false
 floors_supported: true
 fpd_supported: true
-gvl_id: 1493
 multiformat_supported: will-bid-on-one
+ortb_blocking_supported: false
+prebid_member: false
 sidebarType: 1
+privacy_sandbox: no
 ---
 
 ### Overview
@@ -38,11 +47,11 @@ Request bids as usual with `pbjs.addAdUnits` and `pbjs.requestBids`.
 
 ```javascript
 pbjs.setConfig({
-  allegro: {
-    bidderUrl: 'https://dsp.allegro.pl/prebid', // override if needed
-    convertExtensionFields: true,              // map ext -> [com.google.doubleclick.*]
-    triggerImpressionPixel: false              // fire win pixel if true
-  }
+    allegro: {
+        bidderUrl: 'https://dsp.allegro.pl/prebid', // override if needed
+        convertExtensionFields: true,              // map ext -> [com.google.doubleclick.*]
+        triggerImpressionPixel: false              // fire win pixel if true
+    }
 });
 ```
 
