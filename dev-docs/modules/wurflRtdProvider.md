@@ -26,6 +26,16 @@ The WURFL RTD module enriches the Prebid.js bid request's OpenRTB 2.0 device dat
 
 SSPs and other demand partners subscribed to this service with ScientiaMobile will also receive an expanded set of device properties, including more detailed detection for iOS devices (e.g., specific iPhone and iPad model information). For a comprehensive list of available device capabilities, please refer to the [WURFL device capabilities](https://www.scientiamobile.com/capabilities/?products%5B%5D=wurfl-js) documentation.
 
+### Dependencies
+
+{: .alert.alert-info :}
+This module requires non-open source dependencies
+
+* **PBS-Java**: [WURFL OnSite Java API](https://docs.scientiamobile.com/documentation/onsite/onsite-java-api) - A commercial Java library for on-premise device detection
+* **PBS-Go**: [WURFL Infuze (libwurfl)](https://docs.scientiamobile.com/documentation/infuze/infuze-c-api-user-guide) - A commercial C library for on-premise device detection
+
+Both libraries require a license from ScientiaMobile for production use. Evaluation versions are available for testing purposes.
+
 ## A Note About User-Agent Client Hints
 
 WURFL.js is fully compatible with Chromium's User-Agent Client Hints (UA-CH) device identification mechanisms. If the User-Agent string is generic and Client Hints are not available in the HTTP request, the service will automatically request and obtain [high entropy client hint values](https://wicg.github.io/ua-client-hints/#getHighEntropyValues) from the client.
