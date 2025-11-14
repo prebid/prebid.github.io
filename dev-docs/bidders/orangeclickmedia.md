@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: OCM Media
-description: OCM Media bidder adapter
+title: OCM
+description: OrangeClickMedia bidder adapter
 biddercode: orangeclickmedia
 pbjs: true
 pbs: true
@@ -28,7 +28,7 @@ sidebarType: 1
 | Name          | Scope    | Description                                           | Example                         | Type      |
 |:--------------|:---------|:------------------------------------------------------|:--------------------------------|:----------|
 | `host`        | required | Ad network's RTB host                                 | `'scotty.orangeclickmedia.com'` | `string`  |
-| `adUnitId`    | required | Ad Unit Id will be generated on OCM Media Platform.   | `42`                            | `integer` |
+| `adUnitId`    | required | Ad Unit Id will be generated on OCM Platform.         | `42`                            | `integer` |
 | `adUnitType`  | required | Type of Ad Unit (`'video'`, `'banner'`)               | `'banner'`                      | `string`  |
 | `publisherId` | required | Publisher ID                                          | `'12345'`                       | `string`  |
 | `custom1`     | optional | Custom targeting field 1                              | `'custom1'`                     | `string`  |
@@ -37,6 +37,6 @@ sidebarType: 1
 | `custom4`     | optional | Custom targeting field 4                              | `'custom4'`                     | `string`  |
 | `custom5`     | optional | Custom targeting field 5                              | `'custom5'`                     | `string`  |
 
-OCM Media server-side Prebid Server adapter requires only `publisherId` and `host` parameters. But OCM Media client-side Prebid.js adapter requires only `host`, `adUnitId`, `adUnitType`.
+OCM server-side Prebid Server adapter requires only `publisherId` and `host` parameters. But OCM client-side Prebid.js adapter requires only `host`, `adUnitId`, `adUnitType`.
 
-OCM Media server-side Prebid Server adapter supports only `banner`, `video`, `audio`, `native` media types. But OCM Media client-side Prebid.js adapter supports only `banner` and `video` media types, doesn't support `audio` and `native`.
+OCM server-side Prebid Server adapter supports only `banner`, `video`, `audio`, `native` media types. But OCM client-side Prebid.js adapter supports only `banner` and `video` media types, doesn't support `audio` and `native`.
