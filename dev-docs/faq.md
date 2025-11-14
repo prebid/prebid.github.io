@@ -260,7 +260,22 @@ What we know about yield group feature:
 
 ## Developers
 
-### I'm a developer - how do I change the name of my module?
+### Naming of bidders and modules
+
+There are a set of naming conventions and rules that need to be followed when it comes to naming things.
+Currently the prebid documentation is not versioned, which is why we highly discourage any change in names as links, build processes and information might get lost.
+
+#### Bidder file name conventions
+
+#### Adding an alias for the same company
+
+#### Adding an alias for a whitelabel solution
+
+#### Removing an alias
+
+#### Changing an alias
+
+#### Renaming a module
 
 Sometimes the owner of a bid adapter or other kind of module wants to rename their module. However, Prebid considers module renames a
 'breaking change' -- publishers' build processes and pages could break as a result of a renaming, so Prebid's policy on renaming is:
@@ -269,6 +284,20 @@ Sometimes the owner of a bid adapter or other kind of module wants to rename the
 2. If they're basically the same code base, change the old file so that it includes the new file. This prevents duplicate maintenance of code. In general we don't approve modules including each other, but we'll approve it to avoid repetition.
 3. The docs repo should contain both names, with the old name referring to the new name. You can add the "enable_download: false" flag to prevent installations of the old name.
 4. At the next major release the old files may be removed.
+
+#### Remove a module
+
+Reasons
+
+- company is out of business
+- M&A process
+
+#### Mark a module not available for certain versions
+
+Reasons
+
+- non compliance
+- critical bug in this version
 
 ## Related Reading
 
