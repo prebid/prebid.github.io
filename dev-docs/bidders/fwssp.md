@@ -35,7 +35,7 @@ The following bid params are for use with the Prebid.js bid adapter:
 | `networkId` | required | Network ID | "96749" | `string` |
 | `profile` | required | Profile Name - The value should contain a profile name. and NOT a numeric profile ID. This can either include the network ID prefix or with the profile name alone | "96749:global-js"   | `string`   |
 | `siteSectionId` | required | Custom Site Section tag or numeric Site Section ID | "ss_12345" | `string` |
-| `videoAssetId` | required | Custom content Video Asset ID | "pause_ad_video" | `string` |
+| `videoAssetId` | optional | Custom content Video Asset ID. Default: 0 | "pause_ad_video" | `string` or `number` |
 | `bidfloor` | optional | Bid floor price | 13.2118 | `number` |
 | `bidfloorcur` | optional | Bid floor currency | "USD" | `string` |
 | `flags` | optional | Optional flags to include in the ad request | '+play-uapl' | `string` |
