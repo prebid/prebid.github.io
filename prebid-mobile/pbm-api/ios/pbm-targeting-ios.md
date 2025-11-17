@@ -585,6 +585,26 @@ Pay attention that there are certain protected fields such as `regs`, `device`, 
 - App and User first party data should use the [functions defined for those purposes](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#first-party-data)
 - See the [Prebid Server auction endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#prebid-server-ortb2-extension-summary) reference for more information about how it will process incoming fields.
 
+## ORTB Response Customization
+
+Prebid SDK allows customizing the parsing of the of and the types used to represent the ORTB respnse. Use `CustomModelObjects.registerCustomType(_:)` to specify the custom types to use and override the `init(jsonDictionary:)` with custom parsing logic.
+
+``` swift
+class MyCustomORTBBidResponse: ORTBBidResponse {
+    
+    var myCustomField: String?
+    
+    required init(jsonDictionary: [String : Any]) {
+        myCustomField = jsonDictionary["customString"] as? String
+        super.init(jsonDictionary: jsonDictionary)
+    }
+}
+
+CustomModelObjects.registerCustomType(MyCustomORTBBidResponse.self)
+```
+
+You can use this to access custom or unsupported fields from the prebid response, or to modify the response at your own risk.
+
 ## Further Reading
 
 - [Prebid Mobile Overview](/prebid-mobile/prebid-mobile.html)
