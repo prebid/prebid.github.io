@@ -16,7 +16,7 @@ pbjs: true
 pbs: true
 pbs_app_supported: false
 prebid_member: true
-multiformat_supported: true
+multiformat_supported: will-bid-on-any
 ortb_blocking_supported: true
 ---
 
