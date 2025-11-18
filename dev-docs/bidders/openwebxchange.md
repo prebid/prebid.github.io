@@ -1,9 +1,7 @@
-> ⚠️ Deprecated
->
-> The OpenWebXChange bidder has been deprecated and replaced by the `openweb` adapter.  
-> Please update your configuration to use the `openweb` bidder moving forward.
+⚠️ Deprecated
 
----
+The OpenWebXChange bidder has been deprecated and replaced by the `openweb` adapter.
+Please update your configuration to use the `openweb` bidder moving forward.
 layout: bidder
 pbjs_version_notes: This adapter has been replaced by 'openweb'. Please use the 'openweb' bidder.
 title: OpenWebXChange
