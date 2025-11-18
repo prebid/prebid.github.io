@@ -36,7 +36,7 @@ The Contxtful bidder adapter requires some setup. Contact us at [contact@contxtf
 
 n.b. It is strongly recommended that you use the bid adapter in conjunction with the contxtful RTD provider module.
 
-see: <https://docs.prebid.org/dev-docs/modules/contxtfulRtdProvider.html>
+see: <https://docs.prebid.org/dev-docs/modules/contxtfulRtdProvider>
 
 ```javascript
 pbjs.setConfig({
@@ -69,7 +69,7 @@ pbjs.setConfig({
 
 n.b. It is strongly recommended that you use the bid adapter in conjunction with the contxtful RTD provider module.
 
-see: <https://docs.prebid.org/dev-docs/modules/contxtfulRtdProvider.html>
+see: <https://docs.prebid.org/dev-docs/modules/contxtfulRtdProvider>
 
 ```javascript
 pbjs.setConfig({
