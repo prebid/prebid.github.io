@@ -3,6 +3,7 @@ layout: bidder
 title: UNIQUEST Widget
 description: Prebid UNIQUEST Widget Bidder Adapter
 biddercode : uniquest_widget
+filename : uniquestWidgetBidAdapter
 pbjs: true
 media_types: banner
 sidebarType: 1
