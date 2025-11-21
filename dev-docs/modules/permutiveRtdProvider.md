@@ -69,12 +69,11 @@ as well as enabling settings for specific use cases mentioned above (e.g. acbidd
 | params.acBidders       | String[]             | An array of bidder codes to share cohorts with in certain versions of Prebid, see below                         | `[]`               |
 | params.maxSegs         | Integer              | Maximum number of cohorts to be included in either the `permutive` or `p_standard` key-value. | `500`              |
 
-
 ### Consent
 
 If you are also using the [TCF Control Module](/dev-docs/modules/tcfControl.html), in order to prevent Permutive from being blocked, you should add their vendor ID to your CMP.
 
-Before making any updates to this configuration, please ensure that this approach aligns with internal policies and current regulations regarding consent.
+Before making any updates to your consent configuration, please ensure that your approach aligns with internal policies and current regulations regarding consent.
 
 ## Cohort Activation with Permutive RTD Module
 
