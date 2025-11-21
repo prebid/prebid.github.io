@@ -71,7 +71,7 @@ as well as enabling settings for specific use cases mentioned above (e.g. acbidd
 
 ### Consent
 
-If you are also using the [TCF Control Module](/dev-docs/modules/tcfControl.html), by default Permutive will not be blocked. If you choose to gate Permutive on their vendor id, 361, should add their vendor ID to your CMP.
+If you are also using the [TCF Control Module](/dev-docs/modules/tcfControl.html), by default Permutive will not be blocked as it will rely on the publisher purpose consents to read from storage. If you choose to gate Permutive on their vendor id, 361, should add their vendor ID to your CMP.
 
 Before making any updates to your consent configuration, please ensure that your approach aligns with internal policies and current regulations regarding consent.
 
