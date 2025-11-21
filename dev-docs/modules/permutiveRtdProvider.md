@@ -69,37 +69,10 @@ as well as enabling settings for specific use cases mentioned above (e.g. acbidd
 | params.acBidders       | String[]             | An array of bidder codes to share cohorts with in certain versions of Prebid, see below                         | `[]`               |
 | params.maxSegs         | Integer              | Maximum number of cohorts to be included in either the `permutive` or `p_standard` key-value. | `500`              |
 
-### Context
 
-While Permutive is listed as a TCF vendor (ID: 361), Permutive does not obtain consent directly from the TCF. As we act as a processor on behalf of our publishers consent is given to the Permutive SDK by the publisher, not by the [GDPR Consent Management Module](/dev-docs/modules/consentManagement.html).
+### Consent
 
-This means that if GDPR enforcement is configured within the Permutive SDK _and_ the user consent isn’t given for Permutive to fire, no cohorts will populate.
-
-If you are also using the [TCF Control Module](/dev-docs/modules/tcfControl.html), in order to prevent Permutive from being blocked, it needs to be labeled within the Vendor Exceptions.
-
-### Instructions
-
-{% include dev-docs/vendor-exception.md gvlId="361" %}
-
-1. Publisher enables rules within Prebid.js configuration. 
-2. Label Permutive as an exception, as shown below.
-
-```javascript
-[
-  {
-    purpose: 'storage',
-    enforcePurpose: true,
-    enforceVendor: true,
-    vendorExceptions: ["permutive"]
-  },
-  {
-    purpose: 'basicAds',
-    enforcePurpose: true,
-    enforceVendor: true,
-    vendorExceptions: []
-  }
-]
-```
+If you are also using the [TCF Control Module](/dev-docs/modules/tcfControl.html), in order to prevent Permutive from being blocked, you should add their vendor ID to your CMP.
 
 Before making any updates to this configuration, please ensure that this approach aligns with internal policies and current regulations regarding consent.
 
