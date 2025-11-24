@@ -532,6 +532,14 @@
   subgroup: 5
 
 - sbSecId: 1
+  title: Loading modules separately
+  link: /dev-docs/modules/index.html#loading-modules-separately
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 1
   title: External Interfaces
   link:
   isHeader: 1
