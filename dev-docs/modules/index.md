@@ -129,6 +129,7 @@ Instructions for importing modules when using the npm package can be found in th
 1. Host `build/dist` folder content on your server or CDN
 1. Check the dependencies of the modules you plan to load dynamically on the current page [Dependency tree](https://cdn.jsdelivr.net/npm/prebid.js@latest/dist/chunks/dependencies.json)
 1. Load the required modules and their dependencies using script tags:
+
 ```html
 <html>
 <head>
