@@ -128,7 +128,7 @@ Instructions for importing modules when using the npm package can be found in th
 1. Generate the main `prebid.js` file containing only the modules required across all pages: `gulp bundle --modules=<...>`
 1. Host `build/dist` folder content on your server or CDN
 1. Check the dependencies of the modules you plan to load dynamically on the current page [Dependency tree](https://cdn.jsdelivr.net/npm/prebid.js@latest/dist/chunks/dependencies.json)
-1. Load the required modules and their dependencies using script tags:
+1. Load the required modules, their dependencies using script tags:
 
 ```html
 <html>
@@ -137,6 +137,23 @@ Instructions for importing modules when using the npm package can be found in th
     <script src="https://<your-cdn>/prebid/ortbConverter.js"></script> <!-- Depedency of openxBidAdapter !-->
     <script src="https://<your-cdn>/prebid/openxBidAdapter.js"></script> <!-- Bid adapter module !-->
     <script src="https://<your-cdn>/prebid/id5IdSystem.js"></script> <!-- Another module (doesn't require any additional dependencies) !-->
+    <script src="https://<your-cdn>/prebid/prebid.js"></script> <!-- Load prebid.js last !-->
+</head>
+```
+
+### Storage control usage
+
+When working with the `storageControl` module you will need to explicitly import disclosure metadata. To do this, pair each module import with its corresponding metadata file `<module>.metadata.js`
+
+```html
+<html>
+<head>
+    <title>Page 1</title>>
+    <script src="https://<your-cdn>/prebid/ortbConverter.js"></script> <!-- Depedency of openxBidAdapter !-->
+    <script src="https://<your-cdn>/prebid/openxBidAdapter.js"></script> <!-- Bid adapter module !-->
+    <script src="https://<your-cdn>/prebid/openxBidAdapter.metadata.js"></script> <!-- Bid adapter module's metadata !-->
+    <script src="https://<your-cdn>/prebid/id5IdSystem.js"></script> <!-- Another module (doesn't require any additional dependencies) !-->
+    <script src="https://<your-cdn>/prebid/id5IdSystem.metadata.js"></script> <!-- Another module's metadata !-->
     <script src="https://<your-cdn>/prebid/prebid.js"></script> <!-- Load prebid.js last !-->
 </head>
 ```
