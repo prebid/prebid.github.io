@@ -5,19 +5,14 @@ description: Prebid TrustX Bidder Adaptor
 pbjs: true
 pbs: true
 biddercode: trustx
-aliasCode: grid
 media_types: banner, video
 multiformat_supported: will-bid-on-any
-gvl_id: 686 (grid)
-tcfeu_supported: true
 usp_supported: true
 schain_supported: true
 floors_supported: true
 userIds: all
-tcf2_supported: true
 coppa_supported: true
 fpd_supported: true
-pbjs_version_notes: 7.0 and after
 sidebarType: 1
 ---
 
@@ -28,16 +23,19 @@ sidebarType: 1
 - [Bidder Config](#bidder-config)
 - [First Party Data](#first-party-data)
 
-<a name="trustx-bid-params"></a>
-
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name           | Scope     | Description                                                                                              | Example                                   | Type      |
 |----------------|-----------|----------------------------------------------------------------------------------------------------------|-------------------------------------------|-----------|
-| `uid`          | required  | Represents the TrustX bidder system Ad Slot ID associated with the respective div id from the site page. | `42`                                      | `integer` |
-| `keywords`     | optional  | A set of key-value pairs applied to all ad slots on the page. Values can be empty.                       | `keywords: { topic: ['stress', 'fear'] }` | `object`  |
+| `uid`          | required  | Represents the TrustX bidder system Ad Slot ID. Alternative to `secid`.                                 | `42`                                      | `string`  |
+| `secid`        | required  | Alternative to `uid`. Represents the TrustX bidder system Ad Slot ID.                                     | `42`                                      | `string`  |
 | `bidFloor`     | optional  | Floor of the impression opportunity. If present in the request overrides XML info.                       | `0.8`                                     | `float`   |
+| `currency`     | optional  | Currency for bid floor. Defaults to `USD`.                                                               | `USD`                                     | `string`  |
+| `keywords`     | optional  | A set of key-value pairs applied to all ad slots on the page. Values can be empty.                       | `keywords: { topic: ['stress', 'fear'] }` | `object`  |
+| `test`         | optional  | Enable test mode to receive test creatives without real placements.                                     | `true`                                    | `boolean` |
+
+**Note:** Either `uid` or `secid` is required. The adapter also supports Prebid's Floor Module via `getFloor()` function.
 
 Parameter `keywords` must have following format:
 
@@ -63,8 +61,6 @@ Parameter `keywords` must have following format:
 }
 ```
 
-<a name="trustx-bidder-config"></a>
-
 ### Bidder Config
 
 You can allow writing in localStorage `pbjs.setBidderConfig` for the bidder `trustx`
@@ -78,20 +74,7 @@ pbjs.setBidderConfig({
 })
 ```
 
-If it will be "true" this allow TheMediaGrid Bid Adapter to write userId in first party localStorage
-
-If you want to make alias on TrustX Bid Adapter, you must set `forceBidderName` in bidderConfig as `"trustx"`.
-
-```javascript
-pbjs.setBidderConfig({
-    bidders: ["aliasName"],
-    config: {
-        forceBidderName: 'trustx'
-    }
-})
-```
-
-<a name="trustx-first-party"></a>
+If it will be "true" this allows TRUSTX Bid Adapter to write userId in first party localStorage
 
 ### First Party Data
 
@@ -106,6 +89,12 @@ Global site or user data using `setConfig()`, or Bidder-specific using `setBidde
 - `ortb2.site.cat[]`: Standard IAB OpenRTB 2.5 site.cat field. It will be sent as part of site.cat array
 - `ortb2.site.pagecat[]`: Standard IAB OpenRTB 2.5 site.pagecat field. It will be sent as part of site.cat array
 - `ortb2.site.content.genre`: Standard IAB OpenRTB 2.5 site.content.genre field
+- `ortb2.site.content.data[]`: Standard IAB OpenRTB 2.5 site.content.data field
+- `ortb2.site.content.id`: Standard IAB OpenRTB 2.5 site.content.id field
+- `ortb2.site.content.title`: Standard IAB OpenRTB 2.5 site.content.title field
+- `ortb2.source.tid`: Transaction ID from source
+- `ortb2.source.ext.schain`: Supply chain object
+- `ortb2.regs.ext.dsa`: Digital Services Act (DSA) data
 
 AdUnit-specific data using `AdUnit.ortb2Imp` supports following fields:
 
