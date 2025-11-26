@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: TrustX
-description: Prebid TrustX Bidder Adaptor
+title: TRUSTX
+description: Prebid TRUSTX Bidder Adapter
 pbjs: true
 pbs: true
 biddercode: trustx
@@ -28,8 +28,8 @@ sidebarType: 1
 {: .table .table-bordered .table-striped }
 | Name           | Scope     | Description                                                                                              | Example                                   | Type      |
 |----------------|-----------|----------------------------------------------------------------------------------------------------------|-------------------------------------------|-----------|
-| `uid`          | required* | Represents the TrustX bidder system Ad Slot ID. Alternative to `secid`.                                 | `42`                                      | `string`  |
-| `secid`        | required* | Alternative to `uid`. Represents the TrustX bidder system Ad Slot ID.                                     | `42`                                      | `string`  |
+| `uid`          | required* | Represents the TRUSTX bidder system Ad Slot ID. Alternative to `secid`.                                 | `42`                                      | `string`  |
+| `secid`        | required* | Alternative to `uid`. Represents the TRUSTX bidder system Ad Slot ID.                                     | `42`                                      | `string`  |
 | `bidFloor`     | optional  | Floor of the impression opportunity. If present in the request overrides XML info.                       | `0.8`                                     | `float`   |
 | `currency`     | optional  | Currency for bid floor. Defaults to `USD`.                                                               | `USD`                                     | `string`  |
 | `keywords`     | optional  | A set of key-value pairs applied to all ad slots on the page. Values can be empty.                       | `keywords: { topic: ['stress', 'fear'] }` | `object`  |
@@ -76,7 +76,7 @@ pbjs.setBidderConfig({
 })
 ```
 
-If it will be "true" this allows TrustX Bid Adapter to write userId in first party localStorage
+If it will be "true" this allows TRUSTX Bid Adapter to write userId in first party localStorage
 
 ### First Party Data
 
