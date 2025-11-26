@@ -28,14 +28,16 @@ sidebarType: 1
 {: .table .table-bordered .table-striped }
 | Name           | Scope     | Description                                                                                              | Example                                   | Type      |
 |----------------|-----------|----------------------------------------------------------------------------------------------------------|-------------------------------------------|-----------|
-| `uid`          | required  | Represents the TrustX bidder system Ad Slot ID. Alternative to `secid`.                                 | `42`                                      | `string`  |
-| `secid`        | required  | Alternative to `uid`. Represents the TrustX bidder system Ad Slot ID.                                     | `42`                                      | `string`  |
+| `uid`          | required* | Represents the TrustX bidder system Ad Slot ID. Alternative to `secid`.                                 | `42`                                      | `string`  |
+| `secid`        | required* | Alternative to `uid`. Represents the TrustX bidder system Ad Slot ID.                                     | `42`                                      | `string`  |
 | `bidFloor`     | optional  | Floor of the impression opportunity. If present in the request overrides XML info.                       | `0.8`                                     | `float`   |
 | `currency`     | optional  | Currency for bid floor. Defaults to `USD`.                                                               | `USD`                                     | `string`  |
 | `keywords`     | optional  | A set of key-value pairs applied to all ad slots on the page. Values can be empty.                       | `keywords: { topic: ['stress', 'fear'] }` | `object`  |
-| `test`         | optional  | Enable test mode to receive test creatives without real placements.                                     | `true`                                    | `boolean` |
+| `test`         | optional  | Enable test mode to receive test creatives without real Ad Slots.                                     | `true`                                    | `boolean` |
 
-**Note:** Either `uid` or `secid` is required. The adapter also supports Prebid's Floor Module via `getFloor()` function.
+\* Either `uid` or `secid` is required (one of them must be provided).
+
+**Note:** The adapter also supports Prebid's Floor Module via `getFloor()` function.
 
 Parameter `keywords` must have following format:
 
@@ -74,7 +76,7 @@ pbjs.setBidderConfig({
 })
 ```
 
-If it will be "true" this allows TRUSTX Bid Adapter to write userId in first party localStorage
+If it will be "true" this allows TrustX Bid Adapter to write userId in first party localStorage
 
 ### First Party Data
 
