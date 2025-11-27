@@ -35,9 +35,9 @@ Minimal ad unit:
 
 ```javascript
 var adUnits = [{
-  code: 'slot-1',
-  mediaTypes: { banner: { sizes: [[300,250]] } },
-  bids: [{ bidder: 'allegro' }]
+    code: 'slot-1',
+    mediaTypes: {banner: {sizes: [[300, 250]]}},
+    bids: [{bidder: 'allegro'}]
 }];
 ```
 
@@ -48,7 +48,7 @@ Request bids as usual with `pbjs.addAdUnits` and `pbjs.requestBids`.
 ```javascript
 pbjs.setConfig({
     allegro: {
-        bidderUrl: 'https://dsp.allegro.pl/prebid', // override if needed
+        bidderUrl: 'https://prebid.rtb.allegrogroup.com/v1/rtb/prebid/bid', // override if needed
         convertExtensionFields: true,              // map ext -> [com.google.doubleclick.*]
         triggerImpressionPixel: false              // fire win pixel if true
     }
