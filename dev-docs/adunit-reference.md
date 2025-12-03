@@ -225,6 +225,8 @@ pbjs.addAdUnits({
 
 #### Flex banner example
 
+See the [Google request object documentation](https://developers.google.com/authorized-buyers/rtb/openrtb-guide#flexslot-object) for additional details. These fields were removed from OpenRTB 2.6 but remain popular. 
+
 ```javascript
 pbjs.addAdUnits({
    code: slot.code,
