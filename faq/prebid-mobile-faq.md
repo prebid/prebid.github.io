@@ -72,7 +72,7 @@ More details available at:
 
 - [IAB OM SDK](https://iabtechlab.com/standards/open-measurement-sdk/)
 - [Prebid iOS OM SDK](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#open-measurement-sdk-omsdk-api)
-- [Prebid Android OM SDK](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html#open-measurement-sdk-omsdk-api)
+- [Prebid Android OM SDK](/prebid-mobile/pbm-api/android/pbm-targeting-android.html#open-measurement-sdk-omsdk-api)
 
 ### Does it have external dependencies?  
 
@@ -132,7 +132,7 @@ Yes.
 ### Does the SDK store any data locally on the device?  If so, what is it?
 
 If the developer calls certain functions, the SDK will store the results for future auctions. See the "Local Storage" section of
-<https://docs.prebid.org/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html>
+<https://docs.prebid.org/prebid-mobile/pbm-api/android/pbm-targeting-android.html>
 
 In all other cases SDK plays a transport role. It collects information from API (if it’s allowed by privacy settings) and sends it in the bid requests to the server. SDK uses the following datasources:
 
@@ -155,6 +155,26 @@ Also note that Prebid.org is committed to other privacy initiatives such as the 
 ### How does the SDK allow for deletion of user private data?
 
 SDK does’t commit any action on managing user data. Only publishers using SDK’s API can provide/store/remove user data.
+
+### Does SDK Provide an Apple Privacy Manifest? 
+
+No, because the Prebid SDK is an open-source SDK, that doesn't have a single domain to send bid requests.
+
+However, here is the list of items that the app developer can add to the application's privacy manifest to cover Prebid SDK activity and data consumption: 
+
+- `NSPrivacyTracking` - true. Because Prebid SDK collects IDFA. 
+- `NSPrivacyTrackingDomains` - the tracking domain for the PBS. 
+
+Pay attention - if `NSPrivacyTracking` is true, the tracking domain is provided, and the user doesn't allow the app to track him or her, iOS will block the bid requests. 
+Prebid SDK supports tracking and non-tracking endpoints. See [SDK initialization](/prebid-mobile/pbm-api/ios/code-integration-ios.html#handling-tracking-domains) for more details details.
+
+- `NSPrivacyCollectedDataTypes` array should contain the following `NSPrivacyCollectedDataType` items: `NSPrivacyCollectedDataTypePreciseLocation`, `NSPrivacyCollectedDataTypeCoarseLocation`,`NSPrivacyCollectedDataTypeDeviceID`, `NSPrivacyCollectedDataTypeProductInteraction`, `NSPrivacyCollectedDataTypeAdvertisingData`. 
+
+The values for `NSPrivacyCollectedDataTypeLinked` and `NSPrivacyCollectedDataTypeTracking` in each entry depend on your demand partners, you should consult with them to provide proper info. Neither SDK nor Server uses these data for tracking or linking.
+  
+The `NSPrivacyCollectedDataTypePurposes` array should contain `NSPrivacyCollectedDataTypePurposeThirdPartyAdvertising` and/or other purposes your demand partners require. 
+
+- `NSPrivacyAccessedAPITypes` array should contain the `NSPrivacyAccessedAPICategoryUserDefaults` item. The `NSPrivacyAccessedAPITypeReasons` for this item should contain `CA92.1` value.
 
 ## Performance
 

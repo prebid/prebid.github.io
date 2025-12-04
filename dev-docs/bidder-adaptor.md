@@ -28,6 +28,7 @@ This page has instructions for writing your own bidder adapter.  The instruction
 * [Required Files](#bidder-adaptor-Required-Files)
 * [Designing your Bid Params](#bidder-adaptor-Designing-your-Bid-Params)
 * [HTTP Simple Requests](#bidder-adaptor-HTTP-simple-requests)
+* We recommend submitting your adapter written in TypeScript, but you can opt-out and use JavaScript
 
 <a name="bidder-adaptor-Required-Adapter-Conventions"></a>
 
@@ -50,7 +51,7 @@ The above list is **not** the full list of requirements. Failure to follow any o
 
 With each adapter submission, there are two files required to be in the pull request:
 
-* `modules/exampleBidAdapter.js`: the file containing the code for the adapter
+* `modules/exampleBidAdapter.ts`: the file containing the code for the adapter
 * `modules/exampleBidAdapter.md`: a markdown file containing key information about the adapter:
   * The contact email of the adapter's maintainer.
   * A test ad unit that will consistently return test creatives. This helps us to ensure future Prebid.js updates do not break your adapter.  Note that if your adapter supports video (instream and/or outstream context) or native, you must also provide example parameters for each type.
@@ -196,7 +197,7 @@ If your adapter interfaces with an ORTB backend, you may take advantage of Prebi
 
 ### Overview
 
-The new code will reside under the `modules` directory with the name of the bidder suffixed by 'BidAdapter', e.g., `exampleBidAdapter.js`.
+The new code will reside under the `modules` directory with the name of the bidder suffixed by 'BidAdapter', e.g., `exampleBidAdapter.ts`.
 
 Here are some guidelines for choosing a bidder code:
 
@@ -220,7 +221,7 @@ A high level example of the structure:
 import * as utils from 'src/utils';
 import { registerBidder } from 'src/adapters/bidderFactory';
 import { config } from 'src/config';
-import {BANNER, VIDEO, NATIVE} from 'src/mediaTypes.js';
+import {BANNER, VIDEO, NATIVE, AUDIO} from 'src/mediaTypes.ts';
 const BIDDER_CODE = 'example';
 export const spec = {
     code: BIDDER_CODE,
@@ -235,8 +236,9 @@ export const spec = {
     onTimeout: function(timeoutData) {},
     onBidWon: function(bid) {},
     onSetTargeting: function(bid) {},
-    onBidderError: function({ error, bidderRequest }),
-    supportedMediaTypes: [BANNER, VIDEO, NATIVE]
+    onBidderError: function({ error, bidderRequest }) {},
+    onAdRenderSucceeded: function(bid) {},
+    supportedMediaTypes: [BANNER, VIDEO, NATIVE, AUDIO]
 }
 registerBidder(spec);
 
@@ -270,6 +272,24 @@ Building the request will use data from several places:
 * **BidRequest Params**: Several important parameters such as first-party data, userId, GDPR, USP, and supply chain values are on the `bidderRequest` object.
 * **Prebid Config**: Publishers can set a number of config values that bid adapters should consider reading.
 
+#### Compression Support for Outgoing Requests
+
+Prebid.js core now includes support for gzip compression of bidder request payloads (This helps reduce payload size and improve performance).
+
+Prebid will pass compressed payloads if the following criteria are met:
+
+* Participating bidders must implement compression support on their server-side endpoint before making a change in their bid adapter in Prebid.js
+* Once server-side support is present, `request.options.endpointCompression = true` needs to be set for a bidder's outgoing requests within their Prebid.js bid adapter (see the [PubMatic adapter example](https://github.com/prebid/Prebid.js/blob/master/modules/pubmaticBidAdapter.js#L730))
+* The browser must support gzip compression (Prebid core has a built-in utility function to check this)
+
+If the above criteria is met, Prebid.js core will do the following:
+
+* Gzip compress the request payload
+* Set the `Content-Type` header to `plain/text` (to avoid a preflight request)
+* Append the `gzip=1` query param to the bidder request (to signal to a bidder's server-side endpoint that the request is compressed)
+
+Note: If the Prebid.js debugging query param `?pbjs_debug=true` is present in the URL or `debug: true` has been configured in `pbjs.setConfig()`, the gzip compression feature will be disabled and all bidder requests will be sent uncompressed.
+
 #### Ad Unit Params in the validBidRequests Array
 
 Here is a sample array entry for `validBidRequests[]`:
@@ -283,6 +303,7 @@ Here is a sample array entry for `validBidRequests[]`:
   bidderRequestId: "15246a574e859f",
   bidRequestsCount: 1,
   bidderRequestsCount: 1,
+  auctionsCount: 1,
   bidderWinsCount: 0,
   userId: {...},
   userIdAsEid: {...},
@@ -303,6 +324,7 @@ Other notes:
 * **Transaction ID** (see [note](#tid-warning)) is unique for each ad unit within a call to `requestBids()`, but same across bidders. This is the ID that enables DSPs to recognize the same impression coming in from different supply sources.
 * **Bid Request Count** is the number of times `requestBids()` has been called for this ad unit.
 * **Bidder Request Count** is the number of times `requestBids()` has been called for this ad unit and bidder.
+* **Auctions Count** is the number of times `requestBids()` has been called for this ad unit excluding the duplicates generated by twin adUnits.
 * **userId** is where bidders can look for IDs offered by the various [User ID modules](/dev-docs/modules/userId.html#prebidjs-adapters).
 * **userIdAsEid** is the EID-formatted version of `userId`.
 * **ortb2** a copy of `bidderRequest.ortb2` (see below), provided here for convenience.
@@ -325,7 +347,7 @@ Here is a sample bidderRequest object:
     canonicalUrl: null,
     page: "http://mypage.org?pbjs_debug=true",
     domain: "mypage.org",
-    ref: null,
+    referer: null,
     numIframes: 0,
     reachedTop: true,
     isAmp: false,
@@ -352,13 +374,14 @@ Notes on parameters in the bidderRequest object:
 Some of the data in `ortb2` is also made available through other `bidderRequest` fields:
 
 * **refererInfo** is provided so you don't have to call any utils functions. See below for more information.
-* **gdprConsent** is the object containing data from the [GDPR ConsentManagement](/dev-docs/modules/consentManagement.html) module. For TCF2+, it will contain both the tcfString and the addtlConsent string if the CMP sets the latter as part of the TCData object.
+* **gdprConsent** is the object containing data from the [TCF ConsentManagement](/dev-docs/modules/consentManagementTcf.html) module. For TCF2+, it will contain both the tcfString and the addtlConsent string if the CMP sets the latter as part of the TCData object.
 * **uspConsent** is the object containing data from the [US Privacy ConsentManagement](/dev-docs/modules/consentManagementUsp.html) module.
 
 <a id="tid-warning"></a>
 
 {: .alert.alert-warning :}
-Since version 8, `auctionId` and `transactionId` are being migrated to `ortb2.source.tid` and `ortb2Imp.ext.tid` respectively; and are disabled by default, requiring [publisher opt-in](https://docs.prebid.org/dev-docs/pb8-notes.html#transaction-identifiers-are-now-reliable-and-opt-in).
+Since version 8, `auctionId` and `transactionId` are being migrated to `ortb2.source.tid` and `ortb2Imp.ext.tid` respectively. As of 10.9.0, these values are now generated to be unique for each bidder. They are also disabled by default, requiring [publisher opt-in](https://docs.prebid.org/dev-docs/pb8-notes.html#transaction-identifiers-are-now-reliable-and-opt-in). 
+
 When disabled, `auctionId`/`transactionId` are set to `null`; `ortb2.source.tid`/`ortb2Imp.ext.tid` are not populated. Your adapter should prefer the latter two, and be able to handle the case when they are undefined.
 
 <a name="std-param-location"></a>
@@ -368,11 +391,12 @@ When disabled, `auctionId`/`transactionId` are set to `null`; `ortb2.source.tid`
 There are a number of important values that a publisher expects to be handled in a standard way across all Prebid.js adapters:
 
 {: .table .table-bordered .table-striped }
+
 | Parameter | Description                                   | Example               |
 | ----- | ------------ | ---------- |
 | Ad Server Currency | If your endpoint supports responding in different currencies, read this value. | config.getConfig('currency.adServerCurrency') |
-| Bidder Timeout | Use if your endpoint needs to know how long the page is allowing the auction to run. | config.getConfig('bidderTimeout'); |
-| COPPA | If your endpoint supports the Child Online Privacy Protection Act, you should read this value. | config.getConfig('coppa'); |
+| Bidder Timeout | Use if your endpoint needs to know how long the page is allowing the auction to run. | bidderRequest.timeout; |
+| COPPA | If your endpoint supports the Child Online Privacy Protection Act, you should read this value. | bidderRequest.ortb2.regs.coppa; |
 | First Party Data | The publisher, as well as a number of modules, may provide [first party data](/features/firstPartyData.html) (e.g. page type). | bidderRequest.ortb2; validBidRequests[].ortb2Imp|
 | Floors | Adapters that accept a floor parameter must also support the [floors module](https://docs.prebid.org/dev-docs/modules/floors.html) | [`bidRequest.getFloor()`](/dev-docs/modules/floors.html#bid-adapter-interface) |
 | Page URL and referrer | Instead of building your own function to find the page location, domain, or referrer, look in the standard bidRequest location. | bidderRequest.refererInfo.page |
@@ -402,6 +426,7 @@ You shouldn't call your bid endpoint directly. Rather, the end result of your bu
 ServerRequest objects. These objects have this structure:
 
 {: .table .table-bordered .table-striped }
+
 | Attribute | Type             | Description                                                        | Example Value               |
 |-----------+------------------+--------------------------------------------------------------------+-----------------------------|
 | `method`  | String           | Which HTTP method should be used.                                  | `POST`                      |
@@ -483,6 +508,7 @@ particularly useful. Publishers may have analytics or security vendors with the 
 The parameters of the `bidResponse` object are:
 
 {: .table .table-bordered .table-striped }
+
 | Key          | Scope                                       | Description                                                                                                                                   | Example                              |
 |--------------+---------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------|
 | `requestId`  | Required                                    | The bid ID that was sent to `spec.buildRequests` as `bidRequests[].bidId`. Used to tie this bid back to the request.                          | 12345                                |
@@ -499,22 +525,26 @@ The parameters of the `bidResponse` object are:
 | `vastXml`    | Either this or `vastUrl` required for video | XML for VAST document to be cached for later retrieval.                                                                                       | `<VAST version="3.0">...`            |
 | `bidderCode` | Optional                                    | Bidder code to use for the response - for adapters that wish to reply on behalf of other bidders. Defaults to the code registered with [`registerBidder`](#bidder-adaptor-Overview); note that any other code will need to be [explicitly allowed by the publisher](/dev-docs/publisher-api-reference/bidderSettings.html#allowAlternateBidderCodes). | 'exampleBidder' |  
 | `dealId`     | Optional                                    | Deal ID                                                                                                                                       | `"123abc"`                           |
-| `meta`     | Optional                                    | Object containing metadata about the bid                                                                                                                                       |                           |
-| `meta.networkId`     | Optional                                    | Bidder-specific Network/DSP Id               | `"1111"`             |
-| `meta.networkName`     | Optional                                    | Network/DSP Name               | `"NetworkN"`                |
-| `meta.agencyId`     | Optional                                    | Bidder-specific Agency ID               | `"2222"`                          |
-| `meta.agencyName`     | Optional                                    | Agency Name     | `"Agency, Inc."`           |
-| `meta.advertiserId`     | Optional                                    | Bidder-specific Advertiser ID     | `"3333"`                         |
-| `meta.advertiserName`     | Optional                                    | Advertiser Name               | `"AdvertiserA"`                          |
-| `meta.advertiserDomains`     | Required(*)                                    | Array of Advertiser Domains for the landing page(s). This is an array that aligns with the OpenRTB 'adomain' field. See note below this table. | `["advertisera.com"]`     |
-| `meta.brandId`     | Optional                                    | Bidder-specific Brand ID (some advertisers may have many brands)                                                                                                   | `"4444"`                    |
-| `meta.brandName`     | Optional                                    | Brand Name                                   | `"BrandB"`                          |
-| `meta.demandSource`     | Optional                                    | Demand Source (Some adapters may functionally serve multiple SSPs or exchanges, and this would specify which)                                  | `"SourceB"`
-| `meta.dchain`     | Optional                                    | Demand Chain Object                                   | `{ 'ver': '1.0', 'complete': 0, 'nodes': [ { 'asi': 'magnite.com', 'bsid': '123456789', } ] }`                          |
-| `meta.dsa` | Optional | The [IAB DSA response object](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/dsa_transparency.md) for the Digital Services Act (DSA) | `{ 'behalf': 'sample text', 'paid': 'sample value', 'transparency': [{ 'domain': 'sample domain', 'params': [1, 2] }], 'adrender': 1 }` | 
-| `meta.primaryCatId`     | Optional                                    | Primary [IAB category ID](https://www.iab.com/guidelines/iab-quality-assurance-guidelines-qag-taxonomy/)               |  `"IAB-111"`                         |
-| `meta.secondaryCatIds`     | Optional                                    | Array of secondary IAB category IDs      | `["IAB-222","IAB-333"]`       |
-| `meta.mediaType`     | Optional                                  | "banner", "native", or "video" - this should be set in scenarios where a bidder responds to a "banner" mediaType with a creative that's actually a video (e.g. outstream) or native. | `"native"`  |
+| `meta`                   | Optional     | Object containing metadata about the bid                                                                                                                         |                                      |
+| `meta.networkId`         | Optional     | Bidder-specific Network/DSP Id               | `"1111"`             |
+| `meta.networkName`       | Optional     | Network/DSP Name               | `"NetworkN"`                |
+| `meta.agencyId`          | Optional     | Bidder-specific Agency ID               | `"2222"`                          |
+| `meta.agencyName`        | Optional     | Agency Name     | `"Agency, Inc."`           |
+| `meta.advertiserId`      | Optional     | Bidder-specific Advertiser ID     | `"3333"`                         |
+| `meta.advertiserName`    | Optional     | Advertiser Name               | `"AdvertiserA"`                          |
+| `meta.advertiserDomains` | Required(*)  | Array of Advertiser Domains for the landing page(s). This is an array that aligns with the OpenRTB 'adomain' field. See note below this table. | `["advertisera.com"]`     |
+| `meta.brandId`           | Optional     | Bidder-specific Brand ID (some advertisers may have many brands)                                                                                                   | `"4444"`                    |
+| `meta.brandName`         | Optional     | Brand Name                                   | `"BrandB"`                          |
+| `meta.demandSource`      | Optional     | Demand Source (Some adapters may functionally serve multiple SSPs or exchanges, and this would specify which)                                  | `"SourceB"`
+| `meta.dchain`            | Optional     | Demand Chain Object                                   | `{ 'ver': '1.0', 'complete': 0, 'nodes': [ { 'asi': 'magnite.com', 'bsid': '123456789', } ] }`                          |
+| `meta.dsa`               | Optional     | The [IAB DSA response object](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/dsa_transparency.md) for the Digital Services Act (DSA) | `{ 'behalf': 'sample text', 'paid': 'sample value', 'transparency': [{ 'domain': 'sample domain', 'params': [1, 2] }], 'adrender': 1 }` | 
+| `meta.primaryCatId`      | Optional     | Primary [IAB category ID](https://www.iab.com/guidelines/iab-quality-assurance-guidelines-qag-taxonomy/)               |  `"IAB-111"`                         |
+| `meta.secondaryCatIds`   | Optional     | Array of secondary IAB category IDs      | `["IAB-222","IAB-333"]`       |
+| `meta.mediaType`         | Optional     | "banner", "native", or "video" - this should be set in scenarios where a bidder responds to a "banner" mediaType with a creative that's actually a video (e.g. outstream) or native. | `"native"`  |
+| `eventtrackers`          | Optional     | Array of objects in the same format as [ORTB native section 5.8, "Event Tracker Response Object"](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf) |  `[{event: 500, method: 1, url: "https://www.example.com/track"]}]` |
+| `eventtrackers[].event`   | Required     | Event type. Prebid.js will fire tracking pixels for `500` (bid won) and `1` (bid was rendered). |    `500`      |
+| `eventtrackers[].method` | Required     | Tracking method. Prebid.js only fires image pixels (`1`)                                        |    `1`        |
+| `eventtrackers[].url`    | Required     | Tracker URL                                                                                      | `https//www.example.com/track` |
 
 {: .alert.alert-info :}
 **Note:** bid adapters must be coded to accept the 'advertiserDomains' parameter from their endpoint even if that endpoint doesn't currently respond with that value.
@@ -625,7 +655,7 @@ Sample data received by this function:
 
 The `onBidBillable` function will be called when it deems a bid to be billable. When a bid wins, it is by default also billable. That is, by default, onBidWon and onBidBillable will be called one after the other. However, a publisher can flag adUnits as being separately billable: `pbjs.addAdUnits({deferBilling: true, ...})`. Winning bids for adUnits with `deferBilling` set to true, trigger the onBidWon function but not the onBidBillable function. When appropriate (e.g. an interstitial is displayed), the publisher may then call the public API method, `pbjs.triggerBilling(winningBidObjectToBill)` passing the winning bid to be billed, which will trigger onBidBillable.
 
-Sample data received by this function (same as what is recieved for onBidWon):
+Sample data received by this function (same as what is received for onBidWon):
 
 ```javascript
 {
@@ -707,6 +737,21 @@ Sample data received by this function:
 }
 ```
 
+### Registering on Intervention
+
+The onIntervention function will be called when the browser reports an intervention affecting a rendered creative (e.g., Chrome Heavy Ad Intervention or similar reporting APIs).
+
+#### Signature
+
+```javascript
+function onIntervention({ bid, intervention }) { ... }
+```
+
+#### Parameters
+
+1. `bid` — the winning bid object for which the intervention was detected (same shape as in other render callbacks like `onAdRenderSucceeded`).
+2. `intervention` — a browser-provided object describing the intervention. In Chromium-based browsers this typically originates from the [ReportingObserver] API with type: 'intervention' and includes a body describing the intervention details.
+
 ### Adding adapter aliases
 
 Use aliases if you want to reuse your adapter using other name for your partner/client, or just a shortcut name.
@@ -735,6 +780,7 @@ spec.aliases can be an array of strings or objects.
 If the alias entry is an object, the following attributes are supported:
 
 {: .table .table-bordered .table-striped }
+
 | Name  | Scope | Description   | Type      |
 |-------|-------|---------------|-----------|
 | `code` | required | shortcode/partner name | `string` |
@@ -789,7 +835,7 @@ If your adapter supports banner and video media types, make sure to include `'ba
 
 ### Step 2: Accept video parameters and pass them to your server
 
-Video parameters are often passed in from the ad unit in a `video` object. As of Prebid 4.0 the following paramters should be read from the ad unit when available; bidders can accept overrides of the ad unit on their bidder configuration parameters but should read from the ad unit configuration when their bidder parameters are not set. Parameters one should expect on the ad unit include:
+Video parameters are often passed in from the ad unit in a `video` object. As of Prebid 4.0 the following parameters should be read from the ad unit when available; bidders can accept overrides of the ad unit on their bidder configuration parameters but should read from the ad unit configuration when their bidder parameters are not set. Parameters one should expect on the ad unit include:
 
 * mimes
 * minduration
@@ -937,7 +983,7 @@ Adapter must add following new properties to bid response
 }
 ```
 
-Appnexus Adapter uses above explained approach. You can refer [here](https://github.com/prebid/Prebid.js/blob/master/modules/appnexusBidAdapter.js)
+Appnexus Adapter uses the approach explained above. You can see an example in the [AppNexus adapter](https://github.com/prebid/Prebid.js/blob/master/modules/appnexusBidAdapter.js)
 
 Adapter must return one [IAB accepted subcategories](https://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file) if they want to support competitive separation. These IAB sub categories will be converted to Ad server industry/group. If adapter is returning their own proprietary categroy, it is the responsibility of the adapter to convert their categories into [IAB accepted subcategories](https://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file).
 
@@ -946,6 +992,7 @@ If the demand partner is going to use Prebid API for this process, their adapter
 **Params**  
 
 {: .table .table-bordered .table-striped }
+
 | Key             | Scope    | Description                                                                                        | Example                    |
 |-----------------|----------|----------------------------------------------------------------------------------------------------|----------------------------|
 | `url`             | Required | The URL to the mapping file.                                                                       | `"//example.com/mapping.json"` |
@@ -975,6 +1022,7 @@ getIabSubCategory(bidderCode, pCategory)
 **Params**
 
 {: .table .table-bordered .table-striped }
+
 | Key          | Scope    | Description                                   | Example               |
 |--------------|----------|-----------------------------------------------|-----------------------|
 | `bidderCode` | Required | BIDDER_CODE defined in spec.                  | `"sample-biddercode"` |
@@ -1107,7 +1155,7 @@ If `image` is a string, `hb_native_image` will be populated with that string (a 
 
 For some time, Prebid engineers will try to ensure that legacy-style request definitions will continue to work. However, Prebid.JS is internally converting everything to OpenRTB. So, OpenRTB is the way to go if you want to ensure your native adapter will continue to work for the long run.
 
-We assume that in the first times all adapters will only understand legacy-style native, so we expose two functions in `native.js`:
+We assume that in the first times all adapters will only understand legacy-style native, so we expose two functions in `native.ts`:
 
 * `convertOrtbRequestToProprietaryNative(bidRequests)` - this function will convert OpenRTB-style native requests to legacy format. Actually, we've already added this conversion to all adapters so they will not fail when an OpenRTB definition is used by publisher.
 
@@ -1130,7 +1178,7 @@ For example tests, see [the existing adapter test suites](https://github.com/pre
 import * as utils from 'src/utils';
 import {config} from 'src/config';
 import {registerBidder} from 'src/adapters/bidderFactory';
-import {BANNER, VIDEO, NATIVE} from 'src/mediaTypes.js';
+import {BANNER, VIDEO, NATIVE} from 'src/mediaTypes.ts';
 const BIDDER_CODE = 'example';
 export const spec = {
         code: BIDDER_CODE,
@@ -1141,7 +1189,7 @@ export const spec = {
          * Determines whether or not the given bid request is valid.
          *
          * @param {BidRequest} bid The bid params to validate.
-         * @return boolean True if this is a valid bid, and false otherwise.
+         * @return {boolean} True if this is a valid bid, and false otherwise.
          */
         isBidRequestValid: function(bid) {
             return !!(bid.params.placementId || (bid.params.member && bid.params.invCode));
@@ -1149,8 +1197,8 @@ export const spec = {
         /**
          * Make a server request from the list of BidRequests.
          *
-         * @param {validBidRequests[]} - an array of bids
-         * @return ServerRequest Info describing the request to the server.
+         * @param {BidRequest[]} validBidRequests - an array of bids
+         * @return {ServerRequest} Info describing the request to the server.
          */
         buildRequests: function(validBidRequests) {
             const payload = {
@@ -1235,7 +1283,7 @@ export const spec = {
 
     /**
      * Register bidder specific code, which will execute if bidder timed out after an auction
-     * @param {data} Containing timeout specific data
+     * @param {Object} data Containing timeout specific data
      */
     onTimeout: function(data) {
         // Bidder specifc code
@@ -1243,7 +1291,7 @@ export const spec = {
 
     /**
      * Register bidder specific code, which will execute if a bid from this bidder won the auction
-     * @param {Bid} The bid that won the auction
+     * @param {Bid} bid The bid that won the auction
      */
     onBidWon: function(bid) {
         // Bidder specific code
@@ -1251,7 +1299,7 @@ export const spec = {
 
     /**
      * Register bidder specific code, which will execute when the adserver targeting has been set for a bid from this bidder
-     * @param {Bid} The bid of which the targeting has been set
+     * @param {Bid} bid The bid of which the targeting has been set
      */
     onSetTargeting: function(bid) {
         // Bidder specific code
@@ -1259,9 +1307,18 @@ export const spec = {
 
     /**
      * Register bidder specific code, which will execute if the bidder responded with an error
-     * @param {error, bidderRequest} An object with the XMLHttpRequest error and the bid request object
+     * @param {Object} params An object with the XMLHttpRequest error and the bid request object
      */
     onBidderError: function({ error, bidderRequest }) {
+        // Bidder specific code
+    }
+
+    /**
+     * Register bidder specific code, which will execute if the ad
+     * has been rendered successfully
+     * @param {Bid} bid Bid request object
+     */
+    onAdRenderSucceeded: function(bid) {
         // Bidder specific code
     }
 }
@@ -1276,7 +1333,7 @@ registerBidder(spec);
   * Fork the repo
   * Copy a file in [dev-docs/bidders](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) and name it to exactly the same as your biddercode. Add the following metadata to the header of your .md file:
     * Add 'biddercode' and set it to the code that publishers should be using to reference your bidder in an AdUnit. _This needs to be the same name as the docs file!_
-    * Add 'aliasCode' if your biddercode is not the same name as your PBJS implementation file. e.g. if your biddercode is "ex", but the file in the PBJS repo is exampleBidAdapter.js, this value needs to be "example".
+    * Add 'aliasCode' if your biddercode is not the same name as your PBJS implementation file. e.g. if your biddercode is "ex", but the file in the PBJS repo is exampleBidAdapter.ts, this value needs to be "example".
     * Add `pbjs: true`. If you also have a [Prebid Server bid adapter](/prebid-server/developers/add-new-bidder-go.html), add `pbs: true`. Default is false for both.
     * If you're on the IAB Global Vendor List (including just [Canada](https://vendor-list.consensu.org/v2/ca/vendor-list.json)), add your ID number in `gvl_id`.
     * If you support the IAB's TCF-EU consent string format and have a GVL ID, you may add `tcfeu_supported: true`. Default is false.
@@ -1308,6 +1365,7 @@ description: Prebid example Bidder Adapter
 biddercode: example
 aliasCode: fileContainingPBJSAdapterCodeIfDifferentThenBidderCode
 tcfeu_supported: true/false
+dsa_supported: true/false
 gvl_id: none
 usp_supported: true/false
 coppa_supported: true/false
@@ -1335,6 +1393,7 @@ The Example Bidding adapter requires setup before beginning. Please contact us a
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
 | `placement`      | required | Placement id         | `'11111'`    | `string` |
@@ -1344,6 +1403,12 @@ Within a few days, the code pull request will be assigned to a developer for rev
 Once the inspection passes, the code will be merged and included with the next release. Once released, the documentation pull request will be merged.
 
 The Prebid.org [download page](/download.html) will automatically be updated with your adapter once everything's been merged.
+
+## Optional Code Update Notification
+
+The core Prebid engineering team sometimes makes changes to bid adapter files for various reasons: general refactoring, internal API changes, bug fixes, etc. If you want to receive an email alert about any changes made to your codebase, you can update the [codepath notification file](https://github.com/prebid/Prebid.js/blob/master/.github/workflows/scripts/codepath-notification). Please read the instructions in the file. In many cases, the regex will just be your biddercode, but if you have a short biddercode, you might need to be more precise or you'll get false notifications.
+
+Likewise, your bidder documentation can receive alerts by updating the [docs codepath notification file](https://github.com/prebid/prebid.github.io/blob/master/.github/workflows/scripts/codepath-notification).
 
 ## Further Reading
 

@@ -12,7 +12,6 @@ sidebarType : 1
 ---
 
 # Greenbids Realtime Module
-
 {:.no_toc}
 
 * TOC

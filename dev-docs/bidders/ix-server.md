@@ -24,9 +24,7 @@ sidebarType: 1
 privacy_sandbox: paapi
 ---
 
-
-
-## Table of contents
+### Table of contents
 
 * [Table of contents](#table-of-contents)
 * [Introduction](#introduction)
@@ -37,14 +35,13 @@ privacy_sandbox: paapi
   * [Call Index from Prebid Mobile SDK](#call-index-from-prebid-mobile-sdk)
   * [Call Index from CTV/long-form video environment](#call-index-from-ctvlong-form-video-environment)
   * [Call Index from any other server-to-server OpenRTB environment](#call-index-from-any-other-server-to-server-openrtb-environment)
+* [Receive Protected Audience API demand from Index](#paapi)
 * [Bid request parameters](#bid-request-parameters)
   * [Banner](#banner)
   * [Video](#video)
 * [Examples](#examples)
 
-<a id="introduction"></a>
-
-## Introduction
+### Introduction
 
 Publishers can use Prebid Server in any of the following ways with Index Exchange (Index). Index's adapter supports all of the following methods:
 
@@ -57,11 +54,12 @@ Publishers can use Prebid Server in any of the following ways with Index Exchang
 
 <a id="supported-media-types"></a>
 
-## Supported media types
+### Supported media types
 
 The following table lists the media types that Index supports. For information about the the Time-To-Live (TTL) for each media type, see [How Index counts impressions](https://kb.indexexchange.com/publishers/billing/how_Index_counts_impressions.htm) in our Knowledge Base.
 
 {: .table .table-bordered .table-striped }
+
 | Type      | Prebid Server support |
 | ----------- | ----------- |
 | banner      | Supported       |
@@ -70,7 +68,7 @@ The following table lists the media types that Index supports. For information a
 
 <a id="hosting-instance"></a>
 
-## Configure the Index adapter in your Prebid Server instance 
+### Configure the Index adapter in your Prebid Server instance 
 
 **Before you begin:** Contact your Index Exchange Representative to get an endpoint and setup instructions.
 
@@ -90,7 +88,7 @@ If you are hosting your own Prebid Server instance, depending on whether you are
     ```javascript
      userSync:  
       redirect:  
-       url: "https://ssum.casalemedia.com/usermatchredir?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}"
+       url: "https://ssum.casalemedia.com/usermatchredir?s=<PUBLISHER ID>&gdpr={% raw %}{{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}{% endraw %}"
      ```
 
   * Edit the below existing entry and include your publisher ID in the `s` parameter:
@@ -98,7 +96,7 @@ If you are hosting your own Prebid Server instance, depending on whether you are
      ```javascript
      userSync:  
       redirect:  
-       iframe: "https://ssum.casalemedia.com/usermatch?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}"
+       iframe: "https://ssum.casalemedia.com/usermatch?s=<PUBLISHER ID>&gdpr={% raw %}{{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}{% endraw %}"
       ```         
 
 * If you are using [Prebid Server Java](https://github.com/prebid/prebid-server-java) version, edit the `prebid-server-java` entry in the `src/main/resources/bidder-config/ix.yaml` file as follows:
@@ -118,7 +116,7 @@ If you are hosting your own Prebid Server instance, depending on whether you are
        ix: 
         usersync: 
          redirect: 
-          url: "https://ssum.casalemedia.com/usermatchredir?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}" 
+          url: "https://ssum.casalemedia.com/usermatchredir?s=<PUBLISHER ID>&gdpr={% raw %}{{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}{% endraw %}" 
     ```
 
   * Add the below entry and include your publisher ID in the `s` parameter:
@@ -128,12 +126,12 @@ If you are hosting your own Prebid Server instance, depending on whether you are
       ix: 
        usersync: 
         iframe: 
-         url: "https://ssum.casalemedia.com/usermatch?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}"
+         url: "https://ssum.casalemedia.com/usermatch?s=<PUBLISHER ID>&gdpr={% raw %}{{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}{% endraw %}"
     ```
 
 <a id="call-index"></a>
 
-## Publisher instructions to call Index through Prebid Server
+### Publisher instructions to call Index through Prebid Server
 
 If you are using an existing Prebid Server instance that is already configured to call Index, depending on whether you want to call Index from the browser, mobile app, CTV, or long-form video, follow any of the below sections to complete the Index-specific configuration.
 
@@ -180,7 +178,7 @@ To call Index from a web browser using Prebid Server, you must first configure P
     ```javascript
     pbjs.setConfig({
         cache: {
-            url: 'https://prebid.adnxs.com/pbc/v1/cache'
+            url: 'https://my-pbs.example.com/cache'
         }
     });
     ```
@@ -238,9 +236,49 @@ To request bids from Index:
       }],
 ```
 
+<a id="paapi"></a>
+
+### Receive Protected Audience API demand from Index
+
+**Info:** Starting in June 2025, Index is pausing support for the Protected Audience API. After this date, you will no longer receive Protected Audience API demand from Index, even if your inventory is configured to be eligible for it.
+
+Publishers who want to use the Protected Audience API with Prebid Server, must first set up their inventory to be eligible for Protected Audience API in Prebid.js. Prebid Server will automatically pass through the on-device auction signals received from Prebid.js to Index. To receive Protected Audience API auction demand from Index, contact your Index Representative.
+
+**Before you begin:** Depending on whether you are using the Prebid Server Go or Java code base and the Prebid.js version, you must make sure that you are using the appropriate Prebid Server version:
+
+* **For Prebid Server Go:** If you are using a Prebid.js version that is between 8.18.0 and 8.51.0, you must be using Prebid Server version 2.1.0 or later. For a Prebid.js version that is 8.52.0 or later, you must be using Prebid Server version 3.3.0 or later.
+* **For Prebid Server Java:** If you are using a Prebid.js version that is 8.18.0 or later, you must be using Prebid Server Java version 3.16.0 or later.
+
+1. Configure Prebid.js to send the `ae` field with a value of `1`. For more information on how to set up the Protected Audience API in Prebid.js, see the [Protected Audience API support](/dev-docs/bidders/ix.html#protected-audience-api-support) section in our Prebid.js documentation on the Prebid site.
+2. Prebid Server will now automatically pass through the `ae=1` field received from Prebid.js to Index. No other specific Prebid Server configuration is required.
+
+**Example:** The following is an example that illustrates how to set up Prebid Server in your Prebid.js configuration:
+
+```javascript
+    pbjs.setConfig({
+    s2sConfig: [{
+        accountId: '1',
+        bidders: ['ix'],
+        adapter: 'prebidServer',
+        enabled: true,
+        endpoint: 'https://prebid-server.example.com/openrtb2/auction',
+        syncEndpoint: 'https://prebid-server.example.com/cookie_sync',
+        timeout: 500,
+        extPrebid: {
+            cache: {
+                vastxml: { returnCreative: false }
+            },
+            targeting: {
+                pricegranularity: {"ranges": [{"max":40.00,"increment":1.00}]}
+            }
+        }
+    }]
+})
+```
+
 <a id="bid-request-parameters"></a>
 
-## Bid request parameters
+### Bid request parameters
 
 For a list of the OpenRTB fields that Index supports in bid requests, see [List of supported OpenRTB bid request fields for sellers](https://kb.indexexchange.com/publishers/openrtb_integration/list_of_supported_openrtb_bid_request_fields_for_sellers.htm#List_of_supported_OpenRTB_bid_request_fields_for_sellers). The following are the required fields for the various supported media types.
 
@@ -249,6 +287,7 @@ For a list of the OpenRTB fields that Index supports in bid requests, see [List 
 You must include these parameters at the bidder level.
 
 {: .table .table-bordered .table-striped }
+
 | Key | Scope | Type | Description |
 |---|---|---|---|
 | `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'9999990'`, `'9999991'`, `'9999992'`|
@@ -258,6 +297,7 @@ You must include these parameters at the bidder level.
 You must include these parameters at the bidder level.
 
 {: .table .table-bordered .table-striped }
+
 | Key | Scope | Type | Description |
 |---|---|---|---|
 | `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. It will be associated with the single size, if the size is provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'9999990'`, `'9999991'`, `'9999992'`<br /> **Note:** You can re-use the existing `siteId` within the same flex position or video size, if the video adapts to the containing `<div>` element.|
@@ -265,6 +305,7 @@ You must include these parameters at the bidder level.
 If you are using Index's outstream ad unit and have placed the video object at the bidder level, you must include the Index required parameters at the bidder level. You can include the optional parameters to specify the outstream ad unit configurations.
 
 {: .table .table-bordered .table-striped }
+
 | Key | Scope | Type | Description |
 |---|---|---|---|
 | `video.w` | Required | Integer | The width of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters. We strongly recommend video sizes to be `256 x 256` or greater, `300 x 250`, or `320 x 180`. |
@@ -277,7 +318,7 @@ If you are using Index's outstream ad unit and have placed the video object at t
 
 <a id="examples"></a>
 
-## Examples
+### Examples
 
 **Banner**
 

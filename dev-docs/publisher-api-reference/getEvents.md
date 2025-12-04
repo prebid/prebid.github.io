@@ -31,7 +31,8 @@ The available events are:
 | beforeBidderHttp | bidder network request is about be triggered | Array of Bid request objects |
 | bidRequested  | A bid was requested from a specific bidder | Bid request object |
 | bidResponse   | A bid response has arrived              | Bid response object |
-| seatNonBid    | Prebid Server has returned nonbid information. Must be enabled in s2sConfig.extPrebid | None |
+| pbsAnalytics    | Prebid Server has returned extra information for analytics adapters. | { [seatnonbid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#seat-non-bid), auctionId, [atag](/prebid-server/developers/module-atags.html) } |
+| seatNonBid    | DEPRECATED - use pbsAnalytics instead. Prebid Server has returned nonbid information. Must be enabled in s2sConfig.extPrebid | None |
 | bidRejected   | A bid was rejected                      | Bid response object |
 | bidAdjustment | A bid was adjusted                      | Bid response object |
 | bidWon        | A bid has won                           | Bid response object |
@@ -46,6 +47,7 @@ The available events are:
 | bidderError    | A bidder responded with an error | Object with the XMLHttpRequest error and the bid request object `{ error, bidderRequest }` |
 | tcf2Enforcement | There was a TCF2 enforcement action taken | `{ storageBlocked: ['moduleA', 'moduleB'], biddersBlocked: ['moduleB'], analyticsBlocked: ['moduleC'] }` |
 | bidAccepted | A bid was accepted and is about to be added to auction | Bid response object |
+| browserIntervention | The browser reported an intervention affecting a rendered creative (e.g., heavy-ad unload). | `{ bid, adId, intervention }` |
 
 The example below shows how these events can be used.
 

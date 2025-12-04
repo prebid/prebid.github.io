@@ -7,6 +7,7 @@ pbs: true
 biddercode: sovrn
 tcfeu_supported: true
 usp_supported: true
+gpp_supported: true
 userIds: all
 prebid_member: true
 schain_supported: true
@@ -22,7 +23,7 @@ sidebarType: 1
 | Name         | Scope    | Description          | Example          | Type     |
 |--------------|----------|----------------------|------------------|----------|
 | `tagid`      | required | The sovrn Ad Tag ID  | `'315045'`       | `string` |
-| `bidfloor`   | optional | Bid floor in dollars | `'0.04'`         | `string` |
+| `bidfloor`   | optional | Bid floor in dollars | `0.04`           | `float`  |
 | `adunitcode` | optional | Ad unit identifier   | `'example_code'` | `string` |
 
 Bid Params for video ads. These params should be added to `mediatype.video`.

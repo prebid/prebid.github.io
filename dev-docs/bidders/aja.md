@@ -8,7 +8,7 @@ biddercode: aja
 media_types: banner
 tcfeu_supported: false
 floors_supported: false
-schain_supported: false
+schain_supported: true
 dchain_supported: false
 usp_supported: false
 gpp_supported: false

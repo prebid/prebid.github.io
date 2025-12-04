@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: VRTCAL Markets, Inc.
-description: VRTCAL Markets, Inc. Bid Adapter
+title: VRTCAL Markets Inc.
+description: VRTCAL Markets Inc. Bid Adapter
 pbjs: true
 pbs: true
 media_types: banner, video, native

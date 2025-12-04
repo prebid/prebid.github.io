@@ -10,6 +10,7 @@ schain_supported: true
 media_types: banner, video, native
 safeframes_ok: true
 deals_supported: true
+pbjs: true
 pbs: true
 sidebarType: 1
 floors_supported: true
@@ -31,5 +32,5 @@ Screencore will bid on first impression in request.
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
 |---------------|----------|-----------------------|-----------|-----------|
-| `placementId` | required | placement id | `'hash'` | `string` |
-| `accountId` | required | account id | `'id'` | `string` |
+| `placementId` | optional | placement id | `'hash'` | `string` |
+| `endpointId` | optional | endpoint id | `'id'` | `string` |

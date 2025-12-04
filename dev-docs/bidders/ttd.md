@@ -10,13 +10,20 @@ coppa_supported: true
 gpp_supported: true
 schain_supported: true
 dchain_supported: false
-userIds: unifiedId, uid2
+userIds: unifiedId, uid2, liveramp
 media_types: banner, video
 floors_supported: true
 pbjs: true
-pbs: false
+pbs: true
 prebid_member: true
 sidebarType: 1
+pbs_app_supported: true
+userIds: all
+deals_supported: true
+multiformat_supported: will-not-bid
+ortb_blocking_supported: true
+gpp_sids: false
+fpd_supported: false
 ---
 
 ### Disclosure
@@ -36,6 +43,8 @@ Name | Scope | Description | Example | Type
 `placementId` | optional | This field is optional if GPID is passed through the GPT module <https://docs.prebid.org/dev-docs/modules/gpt-pre-auction.html>. If that module isn't used, the GPID value should be passed in this field. | `'/1111/home#header'` | `String`
 `banner` | optional | Display banner targeting parameters. See the banner section below. | `{}` | `object`
 `bidfloor` | optional | Sets a bid floor price | `0.95` | `Float`
+`customBidderEndpoint` | optional | Only set if TTD has provided a custom endpoint. If set the custom endpoint will take precedent over the hard-coded endpoints | `https://customBidderEndpoint/bid/bidder/` | `String`
+`useHttp2` | optional | When true, the adapter will use an endpoint that supports HTTP2. | `true` | `boolean`
 
 ### Banner Object
 
@@ -85,7 +94,7 @@ var bannerAdUnit = {
 #### `mediaTypes.video` Parameters
 
 The TTD adapter for video requires certain parameters in the AdUnit's
-[mediaTypes.video](https://docs.prebid.org/dev-docs/adunit-reference.html#adUnit.mediaTypes.video) definition. Specifically, `maxduration`, `api`, `mimes`, `placement`, and `protocols` are all required for video ad units. `playerSize`, `startdelay`, `playbackmethod`, and `pos` are recommended. `minduration`, `minbitrate`, `maxbitrate`, `skip`, `skipmin`, and `skipafter` are optional.
+[mediaTypes.video](https://docs.prebid.org/dev-docs/adunit-reference.html#adUnit.mediaTypes.video) definition. Specifically, `maxduration`, `api`, `mimes`, `plcmt`, and `protocols` are all required for video ad units. `playerSize`, `startdelay`, `playbackmethod`, and `pos` are recommended. `minduration`, `minbitrate`, `maxbitrate`, `skip`, `skipmin`, and `skipafter` are optional.
 
 Note: TTD does not currently support `adpod` video contexts.
 
@@ -101,7 +110,7 @@ var videoAdUnit = {
             playerSize: [640, 480],
             api: [1, 3],
             mimes: ['video/mp4'],
-            placement: 3,
+            plcmt: 3,
             protocols: [2, 3, 5, 6],
             startdelay: -1,
             playbackmethod: [1],

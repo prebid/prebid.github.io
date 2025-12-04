@@ -7,8 +7,7 @@ tcfeu_supported: true
 media_types: banner,native,video
 usp_supported: true
 coppa_supported: true
-gpp_supported: true
-userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+userIds: all
 prebid_member: true
 pbjs: true
 gvl_id: 142
@@ -16,23 +15,35 @@ schain_supported: true
 floors_supported: true
 pbs: true
 sidebarType: 1
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
+safeframes_ok: true
+pbs_app_supported: true
+multiformat_supported: will-bid-on-any
+dsa_supported: true
+dchain_supported: false
+deals_supported: true
+fpd_supported: true
+privacy_sandbox: paapi, topics
+endpoint_compression: false
 ---
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name       | Scope    | Description                            | Example       | Type     |
 |------------|----------|----------------------------------------|---------------|----------|
 | `cid`      | required | The customer id provided by Media.net. | `'8CUX0H51C'` | `string` |
 | `crid`     | required | The placement id provided by Media.net | `'1234567'`   | `string` |
 | `bidfloor` | optional | Bidfloor for the impression          | `1.0`         | `float`  |
-| `video`    | required for video Ad units | Object containing video targeting parameters.  See [Video Object](#media.net-video-object) for details.|`video: { maxduration: 60 }`         | `object`  |
+| `video`    | optional for video Ad units | Object containing video targeting parameters.  See [Video Object](#media.net-video-object) for details.|`video: { maxduration: 60 }`         | `object`  |
 
 <a name="media.net-video-object"></a>
 
 #### Video Object
 
 {: .table .table-bordered .table-striped }
+
 | Name       | Type    | Description   | Example|
 |------------|----------|--------------|--------|
 |mimes|array of strings|(Recommended) Specifies the video content MIME types supported; for example, video/x-ms-wmv and video/x-flv.|["video/x-ms-wmv","video/x-flv"]|
@@ -42,7 +53,7 @@ sidebarType: 1
 |h|integer|(Recommended) Specifies the height of the video player, in pixels. Required if playerSize not present in `mediaTypes.video`|480|
 |startdelay|integer |(Recommended) Specifies the start delay of the video ad|0|
 |battr|array of integers|Specifies the video creative attributes to block. Refer to section 5.3 of the IAB specification for a list of attributes.| [ 13, 14 ]|
-playbackmethod|array of integers|Specifies the allowed playback methods. If not specified, all are assumed to be allowed. Currently supported values are: `1: Autoplay, sound on`; `2: Autoplay, sound off`; `3: Click to play`; `4: Mouse over to play`|[1, 3]|
+|playbackmethod|array of integers|Specifies the allowed playback methods. If not specified, all are assumed to be allowed. Currently supported values are: `1: Autoplay, sound on`; `2: Autoplay, sound off`; `3: Click to play`; `4: Mouse over to play`|[1, 3]|
 |api| array of integers|Specifies the supported API frameworks for this impression. If an API is not explicitly listed, it is assumed not to be supported. Currently supported values are: `1: VPAID 1.0`; `2: VPAID 2.0`; `3: MRAID-1`; `4: ORMMA`; `5: MRAID-2`|[1, 2]|
 |protocols|array of integers|Array of supported video protocols. Currently supported values are: `1: VAST 1.0`; `2: VAST 2.0`; `3: VAST 3.0`; `4: VAST 1.0 Wrapper`; `5: VAST 2.0 Wrapper`; `6: VAST 3.0 Wrapper`; `7: VAST 4.0`|[1, 2]|
 |placement|integer|Placement type for the impression. Possible options: `1: In-Stream`; `2: In-banner`; `3: Outstream/In-article`; `4: In-feed`; `5: Interstitial/Slider/Floating`; `6: Long-Form`;|1|
@@ -143,3 +154,25 @@ var adUnits = [{
   }]
 }];
 ```
+
+### Protected Audience API (FLEDGE)
+
+To enable PAAPI auctions follow the instructions below:
+
+1. Add the `paapiForGpt` and `paapi` modules to your prebid bundle.
+2. Add the following configuration for the module
+
+```javascript
+pbjs.que.push(function() {
+  pbjs.setConfig({
+    paapi: {
+      enabled: true,
+      bidders: ['medianet'],
+      defaultForSlots: 1
+    }
+  });
+});
+```
+
+For a detailed guide to enabling PAAPI auctions follow Prebid's documentation 
+on [`paapiForGpt`](https://docs.prebid.org/dev-docs/modules/paapiForGpt.html)

@@ -3,19 +3,24 @@ layout: bidder
 title: Pixad
 description: Prebid Pixad Bidder Adapter.
 pbjs: true
-pbs: false
+pbs: true
 biddercode: pixad
 media_types: banner,video,native
-tcfeu_supported: false
-usp_supported: false
-coppa_supported: false
-schain_supported: false
+gvl_id: 1281 (admatic)
+tcfeu_supported: true
+usp_supported: true
+coppa_supported: true
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
+schain_supported: true
 dchain_supported: false
-userIds: criteo, id5Id, sharedId, unifiedId
+userIds: all
+prebid_member: true
+pbs_app_supported: true
 safeframes_ok: true
 floors_supported: true
 aliasCode: admatic
 multiformat_supported: will-bid-on-any
+ortb_blocking_supported: partial
 sidebarType: 1
 ---
 
@@ -26,6 +31,7 @@ Pixad header bidding adapter connects with Pixad demand sources to fetch bids fo
 ### Bid params
 
 {: .table .table-bordered .table-striped }
+
 | Name        | Scope    | Description                         | Example  | Type     |
 |-------------|----------|-------------------------------------|----------|----------|
 | `networkId` | required | The network ID from Pixad | `12345` | `number` |
@@ -75,7 +81,7 @@ var adUnits = [{
 }];
 ```
 
-## UserSync example
+### UserSync example
 
 ```javascript
 pbjs.setConfig({
