@@ -37,7 +37,6 @@ This example shows the scenario when `bidderA` and `bidderD` are excluded from a
 in Japan
 
 ```javascript
-
 {
   "enabled": true,
   "generateRulesFromBidderConfig": true,
