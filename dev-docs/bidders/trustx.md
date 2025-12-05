@@ -20,7 +20,6 @@ sidebarType: 1
 
 - [Table of Contents](#table-of-contents)
 - [Bid Params](#bid-params)
-- [Bidder Config](#bidder-config)
 - [First Party Data](#first-party-data)
 
 ### Bid Params
@@ -32,51 +31,11 @@ sidebarType: 1
 | `secid`        | required* | Alternative to `uid`. Represents the TRUSTX bidder system Ad Slot ID.                                     | `42`                                      | `integer` |
 | `bidFloor`     | optional  | Floor of the impression opportunity. If present in the request overrides XML info.                       | `0.8`                                     | `float`   |
 | `currency`     | optional  | Currency for bid floor. Defaults to `USD`.                                                               | `USD`                                     | `string`  |
-| `keywords`     | optional  | A set of key-value pairs applied to all ad slots on the page. Values can be empty.                       | `keywords: { topic: ['stress', 'fear'] }` | `object`  |
 | `test`         | optional  | Enable test mode to receive test creatives without real Ad Slots.                                     | `true`                                    | `boolean` |
 
 \* Either `uid` or `secid` is required (one of them must be provided).
 
 **Note:** The adapter also supports Prebid's Floor Module via `getFloor()` function.
-
-Parameter `keywords` must have following format:
-
-```javascript
-{
-   "site":{
-      "publisher1":[
-         {
-            "name":"SomeKeywordsBlockName",
-            "segment1Name":[
-               "segment2Value"
-            ],
-            "segment2Name":[
-               "segment2Value1",
-               "segment2Value2",
-               ...
-            ],
-            ...
-         }
-      ],
-      ...
-   }
-}
-```
-
-### Bidder Config
-
-You can allow writing in localStorage `pbjs.setBidderConfig` for the bidder `trustx`
-
-```javascript
-pbjs.setBidderConfig({
-    bidders: ["trustx"],
-    config: {
-        localStorageWriteAllowed: true
-    }
-})
-```
-
-If it will be "true" this allows TRUSTX Bid Adapter to write userId in first party localStorage
 
 ### First Party Data
 
@@ -86,10 +45,10 @@ Global site or user data using `setConfig()`, or Bidder-specific using `setBidde
 
 - `ortb2.user.data[]`: Standard IAB segment taxonomy user data
 - `ortb2.user.ext.device`: Non standard arbitrary user device
-- `ortb2.user.keywords`: Standard IAB OpenRTB 2.5 user.keywords field. It will be included in ext.keywords.user.ortb2
-- `ortb2.site.keywords`: Standard IAB OpenRTB 2.5 site.keywords field. It will be included in ext.keywords.site.ortb2
-- `ortb2.site.cat[]`: Standard IAB OpenRTB 2.5 site.cat field. It will be sent as part of site.cat array
-- `ortb2.site.pagecat[]`: Standard IAB OpenRTB 2.5 site.pagecat field. It will be sent as part of site.cat array
+- `ortb2.user.keywords`: Standard IAB OpenRTB 2.5 user.keywords field
+- `ortb2.site.keywords`: Standard IAB OpenRTB 2.5 site.keywords field
+- `ortb2.site.cat[]`: Standard IAB OpenRTB 2.5 site.cat field
+- `ortb2.site.pagecat[]`: Standard IAB OpenRTB 2.5 site.pagecat field
 - `ortb2.site.content.genre`: Standard IAB OpenRTB 2.5 site.content.genre field
 - `ortb2.site.content.data[]`: Standard IAB OpenRTB 2.5 site.content.data field
 - `ortb2.site.content.id`: Standard IAB OpenRTB 2.5 site.content.id field
