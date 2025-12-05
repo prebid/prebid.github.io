@@ -2,7 +2,7 @@
 layout: page_v2
 page_type: module
 title: Module - Shaping rules module
-description: Validates bid's ortb2 data against its meta data
+description: Including or excluding bidders in an auction depending on fetched conditions
 module_code : shapingRules
 display_name : Shaping rules module
 enable_download : true
