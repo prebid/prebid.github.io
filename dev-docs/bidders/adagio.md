@@ -23,6 +23,7 @@ safeframes_ok: true
 dchain_supported: false
 deals_supported: false
 ortb_blocking_supported: false
+endpoint_compression: true
 sidebarType: 1
 ---
 
