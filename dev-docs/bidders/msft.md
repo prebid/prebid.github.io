@@ -15,7 +15,7 @@ gpp_supported: true
 floors_supported: true
 fpd_supported: true
 pbjs: true
-pbjs_version_notes: initial release for testing purposes; not intended to immediately replace the appnexus adapter until performance is validated
+pbjs_version_notes: This adapter is new, and will ultimately replace the AppNexus adapter. We recommend careful monitoring of this replacement, and please communicate any questions or unexpected behavior.
 pbs: true
 gvl_id: 32
 sidebarType: 1
@@ -31,6 +31,9 @@ sidebarType: 1
   - [Migrating from the AppNexus Bid Adapter & Auction Level Keywords](#migration-from-appnexus-auction-level-keywords)
   - [First Party Data](#first-party-data)
   - [Debug Auction](#debug-auction)
+
+{: .alert.alert-danger :}
+This adapter is new, and will ultimately replace the AppNexus adapter. We recommend careful monitoring of this replacement, and please communicate any questions or unexpected behavior.
 
 <a name="bid-params"></a>
 

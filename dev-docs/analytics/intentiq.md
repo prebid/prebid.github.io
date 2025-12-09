@@ -17,13 +17,28 @@ No registration for this module is required.
 
 **IMPORTANT**: only effective when Intent IQ Universal ID module be installed and configured. [(How-To)](https://docs.prebid.org/dev-docs/modules/userid-submodules/intentiq.html)
 
-No additional configuration for this module is required. We will use the configuration provided for Intent IQ Universal IQ module.
+### Analytics Options
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| options.manualWinReportEnabled | Optional | Boolean | This variable determines whether the bidWon event is triggered automatically. If set to false, the event will occur automatically, and manual reporting with reportExternalWin will be disabled. If set to true, the event will not occur automatically, allowing manual reporting through reportExternalWin. The default value is false. | `false` |
+| options.reportMethod | Optional | String | Defines the HTTP method used to send the analytics report. If set to `"POST"`, the report payload will be sent in the body of the request. If set to `"GET"` (default), the payload will be included as a query parameter in the request URL. | `"GET"` |
+| options.reportingServerAddress | Optional | String | The base URL for the IntentIQ reporting server. If parameter is provided in `configParams`, it will be used. | `"https://domain.com"` |
+| options.adUnitConfig | Optional | Number |  Determines how the `placementId` parameter is extracted in the report (default is 1). Possible values: 1 – adUnitCode first, 2 – placementId first, 3 – only adUnitCode, 4 – only placementId. | `1` |
+| options.gamPredictReporting | Optional | Boolean |  This variable controls whether the GAM prediction logic is enabled or disabled. The main purpose of this logic is to extract information from a rendered GAM slot when no Prebid bidWon event is available. In that case, we take the highest CPM from the current auction and add 0.01 to that value. | `false` |
 
 #### Example Configuration
 
 ```js
 pbjs.enableAnalytics({
-    provider: 'iiqAnalytics'
+    provider: 'iiqAnalytics',
+    options: {
+        manualWinReportEnabled: false,
+        reportMethod: "GET",
+        adUnitConfig: 1,
+        gamPredictReporting: false
+    }
 });
 ```
 
@@ -32,23 +47,6 @@ pbjs.enableAnalytics({
 The reportExternalWin function allows for manual reporting, meaning that reports will not be sent automatically but only when triggered manually.
 
 To enable this manual reporting functionality, you must set the manualWinReportEnabled parameter in Intent IQ Unified ID module configuration is true. Once enabled, reports can be manually triggered using the reportExternalWin function.
-
-```js
-pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: "intentIqId",
-            params: {
-                partner: 123456,     // valid partner id
-                browserBlackList: "chrome",
-                manualWinReportEnabled: true
-            }
-        }]
-    }
-});
-```
-
-You can find more information and configuration examples in the [Intent IQ Universal ID module](https://docs.prebid.org/dev-docs/modules/userid-submodules/intentiq.html#configuration)
 
 ### Calling the reportExternalWin Function
 
