@@ -55,7 +55,7 @@ If not specified through any of the methods above, Prebid.js attempts to automat
 | `site.page` | Site URL, from `pageUrl` falling back to `location.href` | [`pageUrl` config](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Page-URL) |
 | `site.ref` | `document.referrer` | |
 | `site.domain` | Domain portion of `site.page` | |
-| `site.keywords` | Contents of `<meta name="keywords">` and `<script type="application/json+ld">`, if those tags are present on the page | [keywords config](#keywords) |
+| `site.keywords` | Contents of `<meta name="keywords">` and `<script type="application/json+ld">`, if those tags are present on the page | See [configuration options](#config) |
 | `site.publisher.domain` | Second level domain portion of `site.domain` | The second-level domain portion of `sub.example.publisher.com` is `publisher.com`|
 | `device.w` | Width of the screen in pixels |
 | `device.h` | Height of the screen in pixels |
@@ -97,7 +97,7 @@ pbjs.setConfig({
 
 <a id="uaHints"></a>
 
-#### User Agent client hints
+### User Agent client hints
 
 `device.sua` is populated with UA client hints retrieved from [`navigator.userAgentData`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/userAgentData). You can specify the list of hints using the `uaHints` option with [any available high entropy hint](https://developer.mozilla.org/en-US/docs/Web/API/NavigatorUAData#returning_high_entropy_values):
 
