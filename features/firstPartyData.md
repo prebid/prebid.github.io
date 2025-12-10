@@ -55,7 +55,7 @@ If not specified through any of the methods above, Prebid.js attempts to automat
 | `site.page` | Site URL, from `pageUrl` falling back to `location.href` | [`pageUrl` config](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Page-URL) |
 | `site.ref` | `document.referrer` | |
 | `site.domain` | Domain portion of `site.page` | |
-| `site.keywords` | Contents of `<meta name="keywords">`, if such a tag is present on the page | |
+| `site.keywords` | Contents of `<meta name="keywords">` and `<script type="application/json+ld">`, if those tags are present on the page | [keywords config](#keywords) |
 | `site.publisher.domain` | Second level domain portion of `site.domain` | The second-level domain portion of `sub.example.publisher.com` is `publisher.com`|
 | `device.w` | Width of the screen in pixels |
 | `device.h` | Height of the screen in pixels |
@@ -70,17 +70,30 @@ If not specified through any of the methods above, Prebid.js attempts to automat
 | `regs.coppa` | COPPA Regulation flag | [COPPA config](/dev-docs/publisher-api-reference/setConfig.html#setConfig-coppa)
 | `regs.ext.gpc` | Global Privacy Control setting | [Navigator.globalPrivacyControl](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/globalPrivacyControl) |
 
-Publisher-provided first party data always takes precedence for all fields; you can also set `null` to disable them. For example, the following discards the automatically collected `device.keywords`:  
+Publisher-provided first party data always takes precedence for all fields; you can also set `null` to disable them. For example, the following discards the automatically collected `site.keywords`:  
 
 ```javascript
 pbjs.setConfig({
     ortb2: {
-        device: {
+        site: {
             keywords: null
         }
     }
 })
 ```
+
+<a id="config"></a>
+
+## Configuration
+
+{: .table .table-bordered .table-striped }
+| Param | Type | Description |
+| --- | --- | --- | --- |
+| `firstPartyData` |  Object | First party data automatic collection options |
+| `firstPartyData.uaHints`  |   Array of strings | High entropy user agent hints to collect for `device.sua` (see below) |
+| `firstPartyData.keywords` | Object | `site.kewyords` automatic collection options | 
+| `firstPartyData.keywords.meta` |  Boolean | If true (the default), collect keywords from `<meta name="keyword">` tags found on the page |
+| `firstPartyData.keywords.json` |  Boolean | If true (the default), collect keywords from `<script type="application/json+ld">` tags found on the page |
 
 <a id="uaHints"></a>
 
