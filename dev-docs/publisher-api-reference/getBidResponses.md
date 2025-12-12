@@ -195,7 +195,7 @@ This function returns the bid responses at the given moment.
             "pbLg" : "5.00",
             "width" : 0,
             "requestTimestamp" : 1516315716062,
-            "creativeId" : 81589325,
+            "creativeId" : "81589325",
             "pbCg" : "",
             "adUnitCode" : "div-banner-outstream-native",
             "size" : "0x0",
