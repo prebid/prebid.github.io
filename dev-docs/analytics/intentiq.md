@@ -32,7 +32,6 @@ No registration for this module is required.
 | params.abPercentage | Optional | Number | Percentage for A/B testing group. Default value is `95` | `95` |
 | params.group | Optional | String | Define group provided by partner, possible values: `"A"`, `"B"` | `"A"` |
 
-
 #### Example Configuration
 
 ```js
