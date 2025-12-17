@@ -14,8 +14,7 @@ tcfeu_supported: true
 dsa_supported: true
 usp_supported: true
 coppa_supported: true
-gpp_supported: true
-gpp_sids: all
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 schain_supported: true
 gvl_id: 617
 prebid_member: true
