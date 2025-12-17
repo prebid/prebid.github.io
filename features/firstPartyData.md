@@ -70,7 +70,7 @@ If not specified through any of the methods above, Prebid.js attempts to automat
 | `regs.coppa` | COPPA Regulation flag | [COPPA config](/dev-docs/publisher-api-reference/setConfig.html#setConfig-coppa)
 | `regs.ext.gpc` | Global Privacy Control setting | [Navigator.globalPrivacyControl](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/globalPrivacyControl) |
 
-Publisher-provided first party data always takes precedence for all fields; you can also set `null` to disable them. For example, the following discards the automatically collected `site.keywords`:  
+Publisher-provided first party data generally takes precedence for all fields; you can also set `null` to disable them. For example, the following discards the automatically collected `site.keywords`:  
 
 ```javascript
 pbjs.setConfig({
@@ -81,6 +81,8 @@ pbjs.setConfig({
     }
 })
 ```
+
+Note however that this typically not the case for fields populated by optional modules: `consentManagementTcf` will override `regs.gdpr` and `user.consent`, `geolocationRtdProvider` will override `device.geo`, and so on.    
 
 <a id="config"></a>
 
