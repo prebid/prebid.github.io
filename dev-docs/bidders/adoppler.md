@@ -18,6 +18,6 @@ Please use the **ElementalTV** bidder documentation and biddercode going forward
 - **Bidder code:** `elementaltv`
 
 ### Notes
- - `adoppler` is maintained as an alias for backward compatibility.
- - New integrations should use `elementaltv`.
+- `adoppler` is maintained as an alias for backward compatibility.
+- New integrations should use `elementaltv`.
  
