@@ -34,7 +34,7 @@ The Prebid.js Shaping Rules module processes JSON data in the floors-syntax form
 ### Example
 
 This example shows the scenario when `bidderA` and `bidderD` are excluded from auction
-in Japan
+in Japan. It can be provided either statically or by fetching it from external endpoint
 
 ```javascript
 {
@@ -127,6 +127,7 @@ in Japan
 | `domain`          | null                            | Return publisher.domain or domain from {site, app, dooh}.                                                                                                                                                                       |
 | `domainIn`        | array of strings                | true if any supplied domain matches publisher.domain or domain.                                                                                                                                                                 |
 | `bundleIn`        | array of strings                | true if any supplied value matches app.bundle.                                                                                                                                                                                  |
+| `bundle`        | null               | return app.bundle                                                                                                                                                                                  |
 | `mediaTypeIn`     | array of strings                | true if any supplied mediaType is present in imp.                                                                                                                                                                               |
 | `adUnitCode`      | null                            | Return first of: imp.ext.gpid, imp.tagid, imp.ext.data.pbadslot, imp.ext.prebid.storedrequest.id.                                                                                                                             |
 | `adUnitCodeIn`    | array of strings                | true if any supplied string matches imp.ext.gpid, imp.tagid, imp.ext.data.pbadslot, imp.ext.prebid.storedrequest.id, imp.id.                                                                                                    |
@@ -154,11 +155,13 @@ The function argument is an array of objects, each of which may include the foll
 
 ## Module configuration
 
-### Example config
+### Configuration
+
+You can provide an external endpoint that returns a JSON object containing the rules. In this case, you should also specify the `auctionDelay` parameter, which delays the auction to allow time for the rules to be fetched.
 
 ```javascript
   pbjs.setConfig({
-    rules: {
+    shapingRules: {
         auctionDelay: 2000, // maximum time (in ms) the auction may wait for the rules endpoint to respond
         endpoint: {
             url: 'http://rules-config-endpoint.com/shaping-rules',
@@ -166,4 +169,105 @@ The function argument is an array of objects, each of which may include the foll
         }
     }
   })
+```
+
+Alternatively, you can define the rules statically by providing the configuration inline using the `rules` field:
+
+```javascript
+pbjs.setConfig({
+  shapingRules: {
+    rules: {
+      enabled: true,
+      rulesets: [
+        {
+          stage: "processed-auction-request",
+          name: "exclude-in-jpn",
+          version: "1234",
+          modelGroups: [
+            {
+              weight: 98,
+              analyticsKey: "experiment-name",
+              version: "4567",
+              schema: [
+                {
+                  function: "deviceCountryIn",
+                  args: [["JPN"]],
+                },
+              ],
+              rules: [
+                {
+                  conditions: ["true"],
+                  results: [
+                    {
+                      function: "excludeBidders",
+                      args: [
+                        {
+                          bidders: ["testBidder"],
+                          analyticsValue: "rmjpn",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  },
+});
+```
+
+The configuration also allows you to define custom schema evaluators using the `extraSchemaEvaluators` field.
+
+```javascript
+pbjs.setConfig({
+  shapingRules: {
+    extraSchemaEvaluators: {
+      browser: (args, context) => {
+        if (navigator.userAgent.includes("Chrome")) {
+          return "Chrome";
+        }
+      },
+    },
+    rules: {
+      enabled: true,
+      rulesets: [
+        {
+          stage: "processed-auction-request",
+          name: "exclude-in-jpn",
+          version: "1234",
+          modelGroups: [
+            {
+              weight: 98,
+              analyticsKey: "experiment-name",
+              version: "4567",
+              schema: [
+                {
+                  function: "browser",
+                },
+              ],
+              rules: [
+                {
+                  conditions: ["Chrome"],
+                  results: [
+                    {
+                      function: "excludeBidders",
+                      args: [
+                        {
+                          bidders: ["testBidder"],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  },
+});
 ```
