@@ -6,9 +6,8 @@ pbjs: true
 pbs: true
 biddercode: nexx360
 gvl_id: 965
-tcfeu_supported: true
 usp_supported: true
-gpp_supported: true
+gpp_sids: tcfeu
 schain_supported: true
 dchain_supported: false
 floors_supported: true
@@ -35,6 +34,10 @@ multiformat_supported: will-bid-on-any
 | `divId`       | optional | divId linked to adUnit     | `"div-1"`                                 | `string`  |
 | `adUnitName`  | optional | A code to identify adUnit  | `"header-ad"`                             | `string`  |
 | `adUnitPath`  | optional | A reference to adUnit Path | `"/12345/nexx360/Homepage/HP/Header-Ad"`  | `string`  |
+| `placement`   | optional | Nexx360 placement          | `"TEST_PLACEMENT"`                        | `string`  |
+
+You *must* only include one ID field - either `tagId` or `placement`, not both. If you have questions on which parameter to use, please reach out to your Account Manager.
+The `tagId` and `placement` are **mutually exclusive** but at least one is required. If you pass both, `tagId` takes precedence.
 
 ### Bidder Config
 

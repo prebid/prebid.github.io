@@ -85,7 +85,17 @@ pbjs.setConfig({ enableTIDs: true });
 ```
 
 {: .alert.alert-warning :}
-Since version 10.9.0 transaction IDs are unique for each bidder and cannot be used to correlate requests from different sources, even when `enableTIDs` is set.  
+From version 10.9.0 - 10.13.0 transaction IDs are unique for each bidder and cannot be used to correlate requests from different sources, even when `enableTIDs` is set.
+
+{: .alert.alert-warning :}
+From version 10.14.0+ when `enableTIDs` is set you can also pass `consistentTIDs` set to true to get transaction IDs behavior prior to version 10.9.0 (global vs bidder specific TIDs)
+
+```javascript
+pbjs.setConfig({
+  enableTIDs: true,
+  consistentTIDs : true
+});
+```
 
 ### Max Requests Per Origin
 
@@ -713,6 +723,7 @@ The `targetingControls` object passed to `pbjs.setConfig` provides some options 
 | allBidsCustomTargeting | Boolean | Set to true to prevent custom targeting values from being set for non-winning bids |
 | lock               | Array of Strings | Targeting keys to lock |
 | lockTimeout        | Integer          | Lock timeout in milliseconds                                   |
+| version            | String           | Value to set in the `hb_ver` targeting key |
 
 {: .alert.alert-info :}
 Note that this feature overlaps and can be used in conjunction with [sendBidsControl.bidLimit](#setConfig-Send-Bids-Control).
@@ -792,8 +803,7 @@ The targeting key names and the associated prefix value filtered by `allowTarget
 | CACHE_ID | `hb_cache_id` | yes | Network cache ID for AMP or Mobile |
 | CACHE_HOST | `hb_cache_host` | yes | |
 | ADOMAIN | `hb_adomain` | no | Set to bid.meta.advertiserDomains[0]. Use cases: report on VAST errors, set floors on certain buyers, monitor volume from a buyer, track down bad creatives. |
-| ACAT | `hb_acat` | no | Set to bid.meta.primaryCatId. Optional category targeting key that can be sent to ad servers that stores the value of the Primary IAB category ID if present. Use cases: category exclusion with an ad server order or programmatic direct deal on another ad slot (good for contextual targeting and/or brand
-safety/suitability). |
+| ACAT | `hb_acat` | no | Set to bid.meta.primaryCatId. Optional category targeting key that can be sent to ad servers that stores the value of the Primary IAB category ID if present. Use cases: category exclusion with an ad server order or programmatic direct deal on another ad slot (good for contextual targeting and/or brand safety/suitability). |
 | CRID | `hb_crid` | no | Set to bid.creativeId. Use cases: report on VAST errors, track down bad creatives. |
 | DSP | `hb_dsp` | no | Set to bid.meta.networkName, falling back to bid.meta.networkId. Optional targeting key identifying the DSP or seat |
 | title | `hb_native_title` | yes | |
@@ -936,6 +946,31 @@ calling `pbjs.setTargetingForGPTAsync()` will "lock" the targeted `hb_adid` unti
 If using standard targeting `hb_adid` is unique for each bid, so this would have the effect of preventing the same bid from being used for multiple slots at the same time.      
 
 <a name="setConfig-Configure-Responsive-Ads"></a>
+
+#### Details on the version setting
+{: .no_toc }
+
+Since version 10.11.0, Prebid populates the `hb_ver` targeting key with a recommended version of Prebid Universal Creative. This should be used in ad server creatives to fetch that particular version of PUC (see for example [general prebid ad server setup](/adops/adops-general-sbs.html#create-creatives)).
+
+You may set a different value for `hb_ver` using `version`:
+
+```javascript
+pbjs.setConfig({
+   targetingControls: {
+     version: '1.17.2'
+   }
+})
+```
+
+Or disable it by setting `false`: {
+
+```javascript
+pbjs.setConfig({
+  targetingControls: {
+    version: false
+  }
+})
+```
 
 ### Configure Responsive Ads
 
@@ -1189,6 +1224,8 @@ https://my-pbs.example.com/cache?uuid=%%PATTERN:hb_uuid%%
 ``
 
 will continue to function correctly. `hb_uuid` is set to locally assigned blob UUID. If the bid wins the GAM auction and it's `videoCacheKey` (`hb_uuid`) is included in a GAM wrapper VAST XML, Prebid will update the VAST ad tag URL with the locally cached blob URL after receiving a response from Google Ad Manager.
+
+When using the local cache feature without the video module, you’ll need to retrieve the VAST XML directly by calling [getVastXml](/dev-docs/publisher-api-reference/adServers.gam.getVastXml.html).
 
 ### Instream tracking
 
