@@ -12,6 +12,7 @@ coppa_supported: true
 deals_supported: true
 usp_supported: true
 gpp_supported: true
+gpp_sids: usnat, usstate_all, usp
 dsa_supported: false
 multiformat_supported: will-bid-on-any
 sidebarType: 1
