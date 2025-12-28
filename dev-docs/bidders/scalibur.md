@@ -22,7 +22,7 @@ userIds: all
 pbs_app_supported: false
 ---
 
-The Scalibur Bid Adapter connects publishers to Scalibur's programmatic advertising platform. It supports both banner and video ad formats through OpenRTB 2.6 protocol and provides full compliance with privacy regulations.
+The Scalibur Bid Adapter connects publishers to Scalibur's programmatic advertising platform. It supports both banner and video ad formats through OpenRTB 2.x protocol and provides full compliance with privacy regulations.
 
 ### Bid Params
 
