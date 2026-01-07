@@ -4,7 +4,7 @@ title: Rtb Demand
 description: Prebid Rtb Demand Bidder Adaptor
 biddercode: rtbdemand
 pbjs: true
-pbs: false
+pbs: true
 media_types: video, banner
 userIds: all
 fpd_supported: false
@@ -35,3 +35,5 @@ sidebarType: 1
 | `custom3`     | optional | Custom targeting field 3                               | `'custom3'`             | `string`  |
 | `custom4`     | optional | Custom targeting field 4                               | `'custom4'`             | `string`  |
 | `custom5`     | optional | Custom targeting field 5                               | `'custom5'`             | `string`  |
+Prebid Rtb Demand Bidder Adaptor server-side Prebid Server adapter requires only `publisherId` and `host` parameters.
+Prebid Rtb Demand Bidder Adaptor server-side Prebid Server adapter supports only `banner`, `video`, `audio`, `native` media types.
