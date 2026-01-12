@@ -69,7 +69,7 @@ If `params.gamTargetingPrefix` is set to a non-empty value and an ID5 module has
 
 ### Tags exposed via window.id5tags
 The ID5 UserId module can expose targeting tags through a global window.id5tags object, if enabled by setting params.exposeTargeting: true.
-If `params.exposeTargeting` is set to true and an ID5 module has initialized, the ID5 module will expose tags through a command queue pattern similar to googletag.cmd:
+If `params.exposeTargeting` is set to true and an ID5 module has initialized, the ID5 module will expose tags through a command queue pattern
 Publishers can queue callback functions to access tags:
 ```javascript
 window.id5tags = window.id5tags || { cmd: [] };
