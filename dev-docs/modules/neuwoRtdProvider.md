@@ -163,6 +163,7 @@ The module provides optional per-tier filtering for IAB taxonomies to control th
 **Filter Configuration:**
 
 Each tier can have two optional parameters:
+
 - `threshold` (Number): Minimum relevance score (0.0 to 1.0). Categories below this threshold are excluded.
 - `limit` (Number): Maximum number of categories to include for this tier (after filtering and sorting by relevance).
 
@@ -235,23 +236,27 @@ The Neuwo RTD module enriches bid requests with contextual data that can be acce
 Listen to the `bidRequested` event to access the enriched ORTB2 data. This event fires early in the auction lifecycle and provides direct access to the Neuwo data:
 
 ```javascript
-pbjs.que.push(function() {
-  pbjs.onEvent('bidRequested', function(bidRequest) {
+pbjs.que.push(function () {
+  pbjs.onEvent("bidRequested", function (bidRequest) {
     // The ortb2 data is available directly on the bidRequest
     const ortb2 = bidRequest.ortb2;
 
     // Extract Neuwo-specific data (from www.neuwo.ai provider)
-    const neuwoSiteData = ortb2?.site?.content?.data?.find(d => d.name === 'www.neuwo.ai');
-    const neuwoUserData = ortb2?.user?.data?.find(d => d.name === 'www.neuwo.ai');
+    const neuwoSiteData = ortb2?.site?.content?.data?.find(
+      (d) => d.name === "www.neuwo.ai"
+    );
+    const neuwoUserData = ortb2?.user?.data?.find(
+      (d) => d.name === "www.neuwo.ai"
+    );
 
     // Use the data in the application
-    console.log('Neuwo Site Content:', neuwoSiteData);
-    console.log('Neuwo User Data:', neuwoUserData);
+    console.log("Neuwo Site Content:", neuwoSiteData);
+    console.log("Neuwo User Data:", neuwoUserData);
 
     // Example: Store in a global variable for later use
     window.neuwoData = {
       siteContent: neuwoSiteData,
-      user: neuwoUserData
+      user: neuwoUserData,
     };
   });
 });
