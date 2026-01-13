@@ -63,6 +63,14 @@ We recommend defining the execution plan right in the account config so the modu
 
 ### Prerequisites
 
+{: .alert.alert-info :}
+This module requires non-open source dependencies
+
+* **PBS-Java**: [WURFL OnSite Java API](https://docs.scientiamobile.com/documentation/onsite/onsite-java-api) - A commercial Java library for on-premise device detection
+* **PBS-Go**: [WURFL Infuze (libwurfl)](https://docs.scientiamobile.com/documentation/infuze/infuze-c-api-user-guide) - A commercial C library for on-premise device detection
+
+Both libraries require a license from ScientiaMobile for production use. Evaluation versions are available for testing purposes.
+
 #### PBS-Java Prerequisites
 
 In order to compile the WURFL module in the PBS Java server bundle using a licensed WURFL API, you must follow these steps:
