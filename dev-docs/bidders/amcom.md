@@ -1,8 +1,8 @@
 ---
 layout: bidder
-title: Jambojar
-description: Jambojar Bidder Adapter
-biddercode: jambojar
+title: Amcom
+description: Amcom Bidder Adapter
+biddercode: amcom
 aliasCode : smarthub
 usp_supported: true
 coppa_supported: true
@@ -14,7 +14,7 @@ deals_supported: true
 floors_supported: true
 fpd_supported: false
 pbjs: true
-pbs: true
+pbs: false
 pbs_app_supported: true
 multiformat_supported: will-bid-on-any
 ---
