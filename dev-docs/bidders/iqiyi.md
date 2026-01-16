@@ -18,7 +18,7 @@ multiformat_supported: will-bid-on-any
 
 ### Registration
 
-The Iqiyi bidding adapter requires setup before beginning. Please contact the Iqiyi team at adsglobal@qiyi.com.
+The Iqiyi bidding adapter requires setup before beginning. Please contact the Iqiyi team at <adsglobal@qiyi.com>.
 
 ### Bid Params
 
