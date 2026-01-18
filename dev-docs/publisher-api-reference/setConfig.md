@@ -115,6 +115,14 @@ pbjs.setConfig({ maxRequestsPerOrigin: 6 });
 pbjs.setConfig({ maxRequestsPerOrigin: 1 });
 ```
 
+Note: Prebid adapters or Prebid Server instances can be omitted from this capacity check if they declare `alwaysHasCapacity: true`. See [bidder adapter configuration](/dev-docs/bidder-adaptor.html) and [Prebid Server configuration](/dev-docs/modules/prebidServer.html) for more details.
+
+Although, `maxRequestsPerOrigin` can still be forced by the publisher using:
+
+```javascript
+pbjs.setConfig({ maxRequestsPerOrigin: 1, forceMaxRequestsPerOrigin: true });
+```
+
 ### Disable Ajax Timeout
 
 <a name="setConfig-Disable-Ajax-Timeout"></a>
