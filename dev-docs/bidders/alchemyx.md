@@ -24,7 +24,6 @@ safeframes_ok: false
 deals_supported: true
 fpd_supported: true
 prebid_member: false
-privacy_sandbox: no
 sidebarType: 1
 ---
 
