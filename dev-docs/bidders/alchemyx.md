@@ -19,7 +19,7 @@ gvl_id: none
 usp_supported: false
 coppa_supported: false
 gpp_sids: none
-userId: no
+userId: none
 safeframes_ok: false
 deals_supported: true
 fpd_supported: true
