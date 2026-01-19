@@ -7,7 +7,6 @@ pbjs: true
 pbs: false
 pbs_app_supported: false
 biddercode: alchemyx
-userIds:
 media_types: banner, native, video
 schain_supported: true
 dchain_supported: false
