@@ -131,7 +131,6 @@ pbjs.setConfig({
 | `params.abTest` | Boolean | Enable A/B testing mode | `false` |
 | `params.abName` | String | A/B test name identifier | `'unknown'` |
 | `params.abSplit` | Number | Fraction of users in treatment group (0-1) | `0.8` |
-| `params.abExcludeLCE` | Boolean | Don't apply A/B testing to LCE auctions | `true` |
 
 ## Testing
 
