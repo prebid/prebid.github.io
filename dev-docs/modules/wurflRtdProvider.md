@@ -126,14 +126,12 @@ pbjs.setConfig({
 | Name | Type | Description | Default |
 |------|------|-------------|---------|
 | `name` | String | Real time data module name | Always 'wurfl' |
-| `waitForIt` | Boolean | Should be set to true for proper initialization | `false` |
-| `params` | Object | Configuration parameters for WURFL RTD | |
-| `params.altHost` | String | Alternate host for connecting to WURFL.js | |
-| `params.debug` | Boolean | Enable debug mode for troubleshooting | `false` |
-| `params.abTest` | Object | A/B testing configuration (optional) | |
-| `params.abTest.enabled` | Boolean | Enable A/B testing | `false` |
-| `params.abTest.testName` | String | Name identifier for the test | |
-| `params.abTest.splitRatio` | Number | Ratio for treatment group (0.0-1.0) | `0.5` |
+| `params` | Object | Configuration parameters | |
+| `params.altHost` | String | Alternate host to connect to WURFL.js | |
+| `params.abTest` | Boolean | Enable A/B testing mode | `false` |
+| `params.abName` | String | A/B test name identifier | `'unknown'` |
+| `params.abSplit` | Number | Fraction of users in treatment group (0-1) | `0.8` |
+| `params.abExcludeLCE` | Boolean | Don't apply A/B testing to LCE auctions | `true` |
 
 ## Testing
 
