@@ -1298,6 +1298,7 @@ The `auctionOptions` object controls aspects related to auctions.
 | `secondaryBidders` | Optional | Array of Strings | Specifies bidders that the Prebid auction will no longer wait for before determining the auction has completed. This may be helpful if you find there are a number of low performing and/or high timeout bidders in your page's rotation. |
 | `suppressStaleRender` | Optional | Boolean | When true, prevents `banner` bids from being rendered more than once. It should only be enabled after auto-refreshing is implemented correctly.  Default is false. |
 | `suppressExpiredRender` | Optional | Boolean | When true, prevent bids from being rendered if TTL is reached. Default is false.
+| `legacyRender`      | Optional | Boolean | When true, use legacy rendering logic (see [note](#legacyRender))). Default is false. | 
 
 #### Examples
 {: .no_toc}
@@ -1355,6 +1356,22 @@ PBJS performs the following actions when expired rendering is detected.
 * Emit a `EXPIRED_RENDER` event before `BID_WON` event.
 
 Expired winning bids will continue to be rendered unless `suppressExpiredRender` is set to true.  Events including `STALE_RENDER` and `BID_WON` are unaffected by this option.
+
+<a id="legacyRender"></a>
+
+#### More on Legacy Rendering
+
+Since Prebid 10.12, [`renderAd`](/dev-docs/publisher-api-reference/renderAd.html) wraps creatives in an additional iframe. This can cause problems for some creatives
+that try to reach the top window and do not expect to find the extra iframe. You may set `legacyRender: true` to revert
+to pre-10.12 rendering logic:
+
+```javascript
+pbjs.setConfig({
+  auctionOptions: {
+    legacyRender: true
+  }
+});
+```
 
 <a name="setConfig-maxNestedIframes"></a>
 
