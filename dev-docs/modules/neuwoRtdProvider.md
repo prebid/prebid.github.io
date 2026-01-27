@@ -329,4 +329,4 @@ Include `neuwoRtdProvider` in build: `gulp build --modules=rtdModule,neuwoRtdPro
 
 Enable Neuwo Real-Time Data Module using `pbjs.setConfig` in a related Javascript context. Command example is provided in [Configuration](#configuration) section.
 
-> Version **2.1.0**
+> Version **2.2.0**
