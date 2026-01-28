@@ -69,4 +69,3 @@ there is no point waiting longer than this as the auction will already have been
 If you are also using the [TCF Control Module](/dev-docs/modules/tcfControl.html), by default Permutive will not be blocked as it will rely on the publisher's consent signals to read from storage. If you choose to gate Permutive on their vendor id, 361, should add their vendor ID to your CMP and pass `enforceVendorConsent` to the module's configuration.
 
 Before making any updates to your consent configuration, please ensure that your approach aligns with internal policies and current regulations regarding consent.
-
