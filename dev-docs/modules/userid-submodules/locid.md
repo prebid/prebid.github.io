@@ -126,7 +126,7 @@ The LocID Encrypt API requires the client IP address as a parameter. Since brows
 1. Receive the request from the browser
 2. Extract the client IP from the incoming connection
 3. Forward the request to the LocID Encrypt API with the IP injected
-4. Return the response (`tx_cloc`, `stable_cloc`) to the browser
+4. Return the response (`tx_cloc`, `connection_ip`) to the browser
 
 If `altId` is configured, the module appends it as `?alt_id=<value>` to the endpoint URL.
 
@@ -158,11 +158,11 @@ The module checks for vendor consent or legitimate interest for GVLID 3384 when 
 
 The module caches the LocID using Prebid's standard storage framework. Configure storage settings via the `storage` object.
 
-The endpoint response contains two ID types:
-- `tx_cloc`: Transactional LocID (primary)
-- `stable_cloc`: Stable LocID (fallback)
+The endpoint response contains:
+- `tx_cloc`: Transactional LocID (used as the EID value)
+- `connection_ip`: The resolved client IP address (used for IP-aware cache invalidation)
 
-The module uses `tx_cloc` when available, falling back to `stable_cloc` if needed.
+The module only uses `tx_cloc` for the EID. Any `stable_cloc` in the response is ignored client-side; it is available for proxy/endpoint operators to use in their own caching strategies.
 
 ## EID Output
 
@@ -173,12 +173,12 @@ When available, the LocID is included in the bid request as:
   "source": "locid.com",
   "uids": [{
     "id": "SYybozbTuRaZkgGqCD7L7EE0FncoNUcx-om4xTfhJt36TFIAES2tF1qPH",
-    "atype": 3384
+    "atype": 1
   }]
 }
 ```
 
-The `atype` value of `3384` is required for demand partner recognition of LocID. This vendor-specific atype value follows the OpenRTB 2.6 Extended Identifiers specification.
+The `atype` value of `1` indicates a device-based identifier per the OpenRTB 2.6 Extended Identifiers specification.
 
 ## Debugging
 
