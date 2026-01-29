@@ -248,11 +248,3 @@ var adUnits = [
   }
 ];
 ```
-
-### Notes
-
-- All bid requests are sent to `https://bid.revantage.io/bid`
-- User sync requests are sent to `https://sync.revantage.io/sync`
-- The adapter uses first-price auction (`at=1`)
-- Currency is USD by default
-- Win notifications are handled via the `burl` parameter in bid responses
