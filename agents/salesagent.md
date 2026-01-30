@@ -34,7 +34,7 @@ The **AdCP Sales Agent** is a server that exposes advertising inventory to AI ag
 - **REST API**: Programmatic tenant management.
 - **Docker Deployment**: Easy setup for both local and production environments.
 
-## getting Started
+## Getting Started
 
 ### Quick Start (Evaluation)
 
