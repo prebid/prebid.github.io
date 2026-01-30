@@ -7,7 +7,7 @@ sidebarType: 10
 
 # Prebid Sales Agent
 
-The **Prebid Sales Agent** is a server that exposes advertising inventory to AI agents via the **Model Context Protocol (MCP)** and **Agent-to-Agent (A2A)** protocol. It is designed to integrate with ad servers like Google Ad Manager and provides tools for managing inventory and campaigns throughout their lifecycle.
+The Prebid Sales Agent is a server that exposes advertising inventory to AI agents via the Model Context Protocol (MCP) and Agent-to-Agent (A2A) protocol. It is designed to integrate with ad servers like Google Ad Manager and provides tools for managing inventory and campaigns throughout their lifecycle.
 
 <div class="alert alert-info" role="alert">
   For the full source code and latest updates, visit the <a href="https://github.com/prebid/salesagent">prebid/salesagent repository</a>.
