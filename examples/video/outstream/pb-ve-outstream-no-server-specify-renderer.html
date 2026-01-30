@@ -143,6 +143,22 @@ sidebarType: 4
       }];
 
       pbjs.que.push(function() {
+          pbjs.setConfig({
+            debugging: {
+              enabled: true,
+              intercept: [
+                {
+                  when: {
+                    bidder: 'appnexus',
+                  },
+                  then: {
+                    cpm: 10,
+                    mediaType: "video",
+                  }
+                }
+              ]
+            }
+          });
           pbjs.addAdUnits(adUnits);
           pbjs.requestBids({
               timeout: 1000,
