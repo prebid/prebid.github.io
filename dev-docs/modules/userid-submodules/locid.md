@@ -101,6 +101,7 @@ pbjs.setConfig({
 ## Parameters
 
 {: .table .table-bordered .table-striped }
+
 | Param | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | Module identifier. Must be `"locId"`. | `"locId"` |
@@ -159,6 +160,7 @@ The module checks for vendor consent or legitimate interest for GVLID 3384 when 
 The module caches the LocID using Prebid's standard storage framework. Configure storage settings via the `storage` object.
 
 The endpoint response contains:
+
 - `tx_cloc`: Transactional LocID (used as the EID value)
 - `connection_ip`: The resolved client IP address (used for IP-aware cache invalidation)
 
