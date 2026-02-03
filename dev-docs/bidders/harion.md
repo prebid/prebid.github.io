@@ -15,8 +15,8 @@ ortb_blocking_supported: false
 media_types: banner, video, native
 multiformat_supported: will-bid-on-one
 userIds: all
-pbjs: true
-pbs: false
+pbjs: false
+pbs: true
 pbs_app_supported: true
 safeframes_ok: true
 sidebarType: 1
