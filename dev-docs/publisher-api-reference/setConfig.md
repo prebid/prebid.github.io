@@ -133,6 +133,18 @@ Prebid core adds a timeout on XMLHttpRequest request to terminate the request on
 pbjs.setConfig({ disableAjaxTimeout: true });
 ```
 
+### Disabling Fingerprinting APIs
+
+<a name="setConfig-Disable-Fingerprinting-Apis"></a>
+
+You can disable specific browser fingerprinting APIs that Prebid may use by passing an array of API names to `disableFingerprintingApis`. This can help with privacy or compatibility in environments where certain APIs are restricted or undesirable.
+
+```javascript
+pbjs.setConfig({
+  disableFingerprintingApis: ['devicepixelratio', 'webdriver', 'resolvedOptions']
+});
+```
+
 ### Set TTL Buffer
 
 <a id="setConfig-ttlBuffer"></a>
