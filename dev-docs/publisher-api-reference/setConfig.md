@@ -85,7 +85,17 @@ pbjs.setConfig({ enableTIDs: true });
 ```
 
 {: .alert.alert-warning :}
-Since version 10.9.0 transaction IDs are unique for each bidder and cannot be used to correlate requests from different sources, even when `enableTIDs` is set.  
+From version 10.9.0 - 10.13.0 transaction IDs are unique for each bidder and cannot be used to correlate requests from different sources, even when `enableTIDs` is set.
+
+{: .alert.alert-warning :}
+From version 10.14.0+ when `enableTIDs` is set you can also pass `consistentTIDs` set to true to get transaction IDs behavior prior to version 10.9.0 (global vs bidder specific TIDs)
+
+```javascript
+pbjs.setConfig({
+  enableTIDs: true,
+  consistentTIDs : true
+});
+```
 
 ### Max Requests Per Origin
 
@@ -103,6 +113,14 @@ pbjs.setConfig({ maxRequestsPerOrigin: 6 });
 
 // to emulate pre 1-x behavior and have all auctions queue (no concurrent auctions), you can set it to `1`.
 pbjs.setConfig({ maxRequestsPerOrigin: 1 });
+```
+
+Note: Prebid adapters or Prebid Server instances can be omitted from this capacity check if they declare `alwaysHasCapacity: true`. See [bidder adapter configuration](/dev-docs/bidder-adaptor.html) and [Prebid Server configuration](/dev-docs/modules/prebidServer.html) for more details.
+
+Although, `maxRequestsPerOrigin` can still be forced by the publisher using:
+
+```javascript
+pbjs.setConfig({ maxRequestsPerOrigin: 1, forceMaxRequestsPerOrigin: true });
 ```
 
 ### Disable Ajax Timeout
@@ -145,7 +163,18 @@ Alternatively you may delay execution of the entire command queue (not just auct
 pbjs.delayPrerendering = true;
 ```
 
-Note that `delayPrerendering` is a property of the `pbjs` global and not a normal setting; this is because it takes effect before (and delays) any call to `setConfig`.  
+Note that `delayPrerendering` is a property of the `pbjs` global and not a normal setting; this is because it takes effect before (and delays) any call to `setConfig`.y  
+
+### Change yielding behavior
+
+Since version 10, Prebid yields the main browser thread while processing its command queue (`pbjs.que` / `pbjs.cmd`). This makes the browser more responsive (faster [interaction to next paint](https://web.dev/articles/inp)), but can cause issues if your code expects to run synchronously.
+
+You can disable yielding by setting `pbjs.yield = false` before loading Prebid (or - for NPM consumers - before running `processQueue`):
+
+```javascript
+pbjs = pbjs || {};
+pbjs.yield = false;
+```
 
 ### Send All Bids
 
@@ -793,8 +822,7 @@ The targeting key names and the associated prefix value filtered by `allowTarget
 | CACHE_ID | `hb_cache_id` | yes | Network cache ID for AMP or Mobile |
 | CACHE_HOST | `hb_cache_host` | yes | |
 | ADOMAIN | `hb_adomain` | no | Set to bid.meta.advertiserDomains[0]. Use cases: report on VAST errors, set floors on certain buyers, monitor volume from a buyer, track down bad creatives. |
-| ACAT | `hb_acat` | no | Set to bid.meta.primaryCatId. Optional category targeting key that can be sent to ad servers that stores the value of the Primary IAB category ID if present. Use cases: category exclusion with an ad server order or programmatic direct deal on another ad slot (good for contextual targeting and/or brand
-safety/suitability). |
+| ACAT | `hb_acat` | no | Set to bid.meta.primaryCatId. Optional category targeting key that can be sent to ad servers that stores the value of the Primary IAB category ID if present. Use cases: category exclusion with an ad server order or programmatic direct deal on another ad slot (good for contextual targeting and/or brand safety/suitability). |
 | CRID | `hb_crid` | no | Set to bid.creativeId. Use cases: report on VAST errors, track down bad creatives. |
 | DSP | `hb_dsp` | no | Set to bid.meta.networkName, falling back to bid.meta.networkId. Optional targeting key identifying the DSP or seat |
 | title | `hb_native_title` | yes | |
@@ -1013,7 +1041,7 @@ The `ortb2` JSON structure reflects the OpenRTB standard:
 
 **Scenario 2** - Auction (cross-adunit) First Party Data open to all bidders
 
-If a page needs to specify multiple different sets of top-level data (`site`, `user`, or `app`), use the `ortb2` parameter of [`requestBids`](/dev-docs/publisher-api-reference/setConfig.html) ([example](/features/firstPartyData.html#supplying-auction-specific-data)  
+If a page needs to specify multiple different sets of top-level data (`site`, `user`, or `app`), use the `ortb2` parameter of [`requestBids`](/dev-docs/publisher-api-reference/setConfig.html) ([example](/features/firstPartyData.html#supplying-auction-specific-data)).  
 
 **Scenario 3** - Global (cross-adunit) First Party Data open only to a subset of bidders
 
@@ -1281,6 +1309,7 @@ The `auctionOptions` object controls aspects related to auctions.
 | `secondaryBidders` | Optional | Array of Strings | Specifies bidders that the Prebid auction will no longer wait for before determining the auction has completed. This may be helpful if you find there are a number of low performing and/or high timeout bidders in your page's rotation. |
 | `suppressStaleRender` | Optional | Boolean | When true, prevents `banner` bids from being rendered more than once. It should only be enabled after auto-refreshing is implemented correctly.  Default is false. |
 | `suppressExpiredRender` | Optional | Boolean | When true, prevent bids from being rendered if TTL is reached. Default is false.
+| `legacyRender`     | Optional  | Boolean | When true, uses "legacy" rendering logic  (see [note](#note-legacyRender))                               |
 
 #### Examples
 {: .no_toc}
@@ -1338,6 +1367,15 @@ PBJS performs the following actions when expired rendering is detected.
 * Emit a `EXPIRED_RENDER` event before `BID_WON` event.
 
 Expired winning bids will continue to be rendered unless `suppressExpiredRender` is set to true.  Events including `STALE_RENDER` and `BID_WON` are unaffected by this option.
+
+<a id="note-legacyRender"></a>
+
+#### More on `legacyRender`
+{: .no_toc}
+
+Since Prebid 10.12, `pbjs.renderAd` wraps creatives in an additional iframe. This can cause problems for some creatives
+that try to reach the top window and do not expect to find the extra iframe. You may set `legacyRender: true` to revert
+to pre-10.12 rendering logic.
 
 <a name="setConfig-maxNestedIframes"></a>
 

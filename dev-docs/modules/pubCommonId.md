@@ -83,6 +83,7 @@ Adapters should look for `bid.crumbs.pubcid` in buildRequests() method.
       "sizes":[[300, 250], [300,600]],
       "bidId":"222187f1ef97e6",
       "bidderRequestId":"12088b9bd86f26",
+      "pageViewId": "861a2d06-e70a-4db9-8620-47d3d1f4f301",
       "auctionId":"a1a98ab2-97c9-4f42-970e-6e03040559f2"
    }
 ]

@@ -30,7 +30,7 @@ This function returns the bid responses at the given moment.
 | `responseTimestamp` | Integer | The time stamp when the bid response is received in milliseconds                                                               |                                             1444844944185 |
 | `timeToRespond`     | Integer | The amount of time for the bidder to respond with the bid                                                                       |                                                        79 |
 | `adUnitCode`        | String  | adUnitCode to get the bid responses for                                                                                         |                               "/9968336/header-bid-tag-0" |
-| `creativeId`     | Integer  | Bidder-specific creative ID | 12345678 |
+| `creativeId`     | String  | Bidder-specific creative ID | `"12345678"` |
 | `mediaType`  | String  | One of: banner, native, video | `banner` |
 | `dealId`            | String  | (Optional) If the bid is [associated with a Deal]({{site.baseurl}}/adops/deals.html), this field contains the deal ID.          |                                                 "ABC_123" |
 | `adserverTargeting`  | Object  | Contains all the adserver targeting parameters | `{ "hb_bidder": "appnexus", "hb_adid": "7a53a9d3" }` |
@@ -195,7 +195,7 @@ This function returns the bid responses at the given moment.
             "pbLg" : "5.00",
             "width" : 0,
             "requestTimestamp" : 1516315716062,
-            "creativeId" : 81589325,
+            "creativeId" : "81589325",
             "pbCg" : "",
             "adUnitCode" : "div-banner-outstream-native",
             "size" : "0x0",
