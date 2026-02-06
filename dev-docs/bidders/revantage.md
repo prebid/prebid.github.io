@@ -39,6 +39,7 @@ To use the Revantage adapter, you need to register for an account and obtain a F
 ### Banner Configuration
 
 Revantage supports standard banner ad units. The adapter will automatically use the sizes defined in your ad unit configuration.
+
 ```javascript
 var adUnits = [
   {
@@ -82,6 +83,7 @@ Revantage supports instream and outstream video. The following video parameters 
 | `linearity`      | optional    | Linearity (1=linear, 2=non-linear)               | `1`                      | `int`           |
 
 #### Video Example
+
 ```javascript
 var adUnits = [
   {
@@ -116,6 +118,7 @@ var adUnits = [
 ### User Syncing
 
 Revantage supports both iframe and pixel-based user syncing. Enable user syncing in your Prebid.js configuration:
+
 ```javascript
 pbjs.setConfig({
   userSync: {
@@ -146,6 +149,7 @@ Revantage fully supports the following privacy frameworks:
 ### First Party Data
 
 Revantage supports First Party Data via the standard `ortb2` configuration:
+
 ```javascript
 pbjs.setConfig({
   ortb2: {
@@ -178,6 +182,7 @@ pbjs.setConfig({
 ### Price Floors
 
 Revantage supports the [Prebid.js Price Floors Module](/dev-docs/modules/floors.html). Configure floors as usual and the adapter will include floor data in bid requests.
+
 ```javascript
 pbjs.setConfig({
   floors: {
@@ -202,6 +207,7 @@ pbjs.setConfig({
 ### Supply Chain (schain)
 
 Revantage passes supply chain information to demand partners. Configure schain in your Prebid.js setup:
+
 ```javascript
 pbjs.setConfig({
   schain: {
@@ -228,6 +234,7 @@ Revantage supports all Prebid.js User ID modules. User IDs are automatically pas
 ### Test Parameters
 
 Use these parameters to test the Revantage adapter:
+
 ```javascript
 var adUnits = [
   {
