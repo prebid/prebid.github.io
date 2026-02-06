@@ -6,7 +6,7 @@ biddercode: revantage
 tcfeu_supported: true
 gvl_id: none
 usp_supported: true
-gpp_supported: true
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 coppa_supported: false
 schain_supported: true
 dchain_supported: false
