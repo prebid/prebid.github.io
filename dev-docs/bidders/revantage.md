@@ -177,7 +177,7 @@ pbjs.setConfig({
 
 ### Price Floors
 
-Revantage supports the [Prebid.js Price Floors Module](https://docs.prebid.org/dev-docs/modules/floors.html). Configure floors as usual and the adapter will include floor data in bid requests.
+Revantage supports the [Prebid.js Price Floors Module](/dev-docs/modules/floors.html). Configure floors as usual and the adapter will include floor data in bid requests.
 ```javascript
 pbjs.setConfig({
   floors: {
