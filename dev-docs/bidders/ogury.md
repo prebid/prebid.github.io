@@ -82,12 +82,13 @@ Use this example configuration for enabling Ogury ad server integration on a spe
 
 #### Inventory mapping
 
-_"Inventory mapping" is only available for request coming from **web**. For **in-app** request use the "bid param" integration method._
-
 _Note: If you choose inventory mapping, you can skip specifying assetKey and adUnitId per ad unit._
 
-With inventory mapping you don't need to setup `assetKey/adUnitId` for every ad unit that you want to integrate. You use a single `id` and provide Ogury with list of sites and `ad_unit_code`s that you want to integrate and the mapping will be done on our side.
-The example configuration for this type of integration looks like this:
+With inventory mapping you don't need to setup `assetKey/adUnitId` for every ad unit that you want to integrate. You use a single `id` and provide Ogury with list of sites or bundles and `ad_unit_code`s that you want to integrate and the mapping will be done on our side.
+
+The example configuration for this type of integration looks like bellow.
+
+Web example:
 
 ```javascript
 pbjs.que.push(function () {
@@ -97,6 +98,26 @@ pbjs.que.push(function () {
                 config: {
                     ortb2: {
                         site: {
+                            publisher: {
+                                id: '$OGURY_PUBLISHER_ID',
+                            },
+                        }
+                    }
+                }
+            })
+})
+````
+
+In-app example:
+
+```javascript
+pbjs.que.push(function () {
+            // setup publisherId for ogury
+            pbjs.setBidderConfig({
+                bidders: ['ogury'],
+                config: {
+                    ortb2: {
+                        app: {
                             publisher: {
                                 id: '$OGURY_PUBLISHER_ID',
                             },
