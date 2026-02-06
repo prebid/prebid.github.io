@@ -39,7 +39,8 @@ pbjs.setConfig({
     userIds: [{
       name: 'locId',
       params: {
-        endpoint: 'https://id.example.com/locid'
+        endpoint: 'https://id.example.com/locid',
+        ipEndpoint: 'https://id.example.com/ip'  // optional: lightweight IP-only check
       },
       storage: {
         type: 'html5',
@@ -106,6 +107,8 @@ pbjs.setConfig({
 | name | Required | String | Module identifier. Must be `"locId"`. | `"locId"` |
 | params | Required | Object | Configuration parameters. | |
 | params.endpoint | Required | String | First-party LocID endpoint URL. See Endpoint Requirements below. | `"https://id.example.com/locid"` |
+| params.ipEndpoint | Optional | String | Separate lightweight endpoint returning only the connection IP. Used for IP change detection without a full tx_cloc fetch. | `"https://id.example.com/ip"` |
+| params.ipCacheTtlMs | Optional | Number | TTL for the IP cache entry in milliseconds. | `14400000` (4 hours, default) |
 | params.altId | Optional | String | Alternative identifier appended as `?alt_id=` query parameter. | `"user123"` |
 | params.timeoutMs | Optional | Number | Request timeout in milliseconds. | `800` (default) |
 | params.withCredentials | Optional | Boolean | Include credentials (cookies) on the request. | `false` (default) |
@@ -163,6 +166,15 @@ The endpoint response contains:
 - `connection_ip`: The resolved client IP address (used for IP-aware cache invalidation)
 
 The module only uses `tx_cloc` for the EID. Any `stable_cloc` in the response is ignored client-side; it is available for proxy/endpoint operators to use in their own caching strategies.
+
+### IP Change Detection
+
+The module uses a two-tier cache to detect IP changes without churning the tx_cloc identifier:
+
+- **IP cache** (default 4-hour TTL): Tracks the current connection IP in a separate localStorage key.
+- **tx_cloc cache** (configured via `storage.expires`): Stores the LocID via Prebid's userId framework.
+
+When the IP cache expires, the module refreshes the IP. If `ipEndpoint` is configured, it makes a lightweight IP-only check first and only calls the main endpoint when the IP has changed. If the IP is unchanged and the tx_cloc cache is still valid, the existing tx_cloc is reused without calling the main endpoint.
 
 ## EID Output
 
