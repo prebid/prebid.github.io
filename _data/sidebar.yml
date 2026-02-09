@@ -532,6 +532,14 @@
   subgroup: 5
 
 - sbSecId: 1
+  title: Loading modules separately
+  link: /dev-docs/modules/index.html#loading-modules-separately
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 1
   title: External Interfaces
   link:
   isHeader: 1
@@ -2030,6 +2038,35 @@
 - sbSecId: 9
   title: SharedID
   link: /identity/sharedid.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+#-------------- Prebid Agents --------------|
+
+- sbSecId: 10
+  title:
+  link:
+  isHeader: 0
+  isSectionHeader: 1
+  sectionTitle: Prebid Agents
+  sectionId: prebid-agents
+  subgroup: 1000
+  sbCollapseId: prebid-agents
+
+- sbSecId: 10
+  title: General
+  link:
+  isHeader: 1
+  headerId: agents-general
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Salesagent
+  link: /agents/salesagent.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
