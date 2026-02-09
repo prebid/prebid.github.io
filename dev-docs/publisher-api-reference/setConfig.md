@@ -163,7 +163,18 @@ Alternatively you may delay execution of the entire command queue (not just auct
 pbjs.delayPrerendering = true;
 ```
 
-Note that `delayPrerendering` is a property of the `pbjs` global and not a normal setting; this is because it takes effect before (and delays) any call to `setConfig`.  
+Note that `delayPrerendering` is a property of the `pbjs` global and not a normal setting; this is because it takes effect before (and delays) any call to `setConfig`.y  
+
+### Change yielding behavior
+
+Since version 10, Prebid yields the main browser thread while processing its command queue (`pbjs.que` / `pbjs.cmd`). This makes the browser more responsive (faster [interaction to next paint](https://web.dev/articles/inp)), but can cause issues if your code expects to run synchronously.
+
+You can disable yielding by setting `pbjs.yield = false` before loading Prebid (or - for NPM consumers - before running `processQueue`):
+
+```javascript
+pbjs = pbjs || {};
+pbjs.yield = false;
+```
 
 ### Send All Bids
 
@@ -1298,6 +1309,7 @@ The `auctionOptions` object controls aspects related to auctions.
 | `secondaryBidders` | Optional | Array of Strings | Specifies bidders that the Prebid auction will no longer wait for before determining the auction has completed. This may be helpful if you find there are a number of low performing and/or high timeout bidders in your page's rotation. |
 | `suppressStaleRender` | Optional | Boolean | When true, prevents `banner` bids from being rendered more than once. It should only be enabled after auto-refreshing is implemented correctly.  Default is false. |
 | `suppressExpiredRender` | Optional | Boolean | When true, prevent bids from being rendered if TTL is reached. Default is false.
+| `legacyRender`     | Optional  | Boolean | When true, uses "legacy" rendering logic  (see [note](#note-legacyRender))                               |
 
 #### Examples
 {: .no_toc}
@@ -1355,6 +1367,15 @@ PBJS performs the following actions when expired rendering is detected.
 * Emit a `EXPIRED_RENDER` event before `BID_WON` event.
 
 Expired winning bids will continue to be rendered unless `suppressExpiredRender` is set to true.  Events including `STALE_RENDER` and `BID_WON` are unaffected by this option.
+
+<a id="note-legacyRender"></a>
+
+#### More on `legacyRender`
+{: .no_toc}
+
+Since Prebid 10.12, `pbjs.renderAd` wraps creatives in an additional iframe. This can cause problems for some creatives
+that try to reach the top window and do not expect to find the extra iframe. You may set `legacyRender: true` to revert
+to pre-10.12 rendering logic.
 
 <a name="setConfig-maxNestedIframes"></a>
 
