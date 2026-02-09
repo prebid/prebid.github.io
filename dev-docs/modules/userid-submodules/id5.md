@@ -71,13 +71,13 @@ If `params.gamTargetingPrefix` is set to a non-empty value and an ID5 module has
 The ID5 UserId module can expose targeting tags through a global window.id5tags object, if enabled by setting params.exposeTargeting: true.
 If `params.exposeTargeting` is set to true and an ID5 module has initialized, the ID5 module will expose tags through a command queue pattern
 Publishers can queue callback functions to access tags:
+
 ```javascript
 window.id5tags = window.id5tags || { cmd: [] };
 window.id5tags.cmd.push((tags) => {
 // Use for custom analytics, targeting, etc.
 });
 ```
-
 
 ### A Note on Using Multiple Wrappers
 If you or your monetization partners are deploying multiple Prebid wrappers on your websites, you should make sure you add the ID5 ID User ID module to *every* wrapper. Only the bidders configured in the Prebid wrapper where the ID5 ID User ID module is installed and configured will be able to pick up the ID5 ID. Bidders from other Prebid instances will not be able to pick up the ID5 ID.
