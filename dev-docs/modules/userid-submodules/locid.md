@@ -6,7 +6,6 @@ useridmodule: locIdSystem
 bidRequestUserId: locId
 eidsource: locid.com
 example: '"SYybozbTuRaZkgGqCD7L7EE0FncoNUcx-om4xTfhJt36TFIAES2tF1qPH"'
-gvlid: 3384
 ---
 
 ## Overview
@@ -136,7 +135,7 @@ If `altId` is configured, the module appends it as `?alt_id=<value>` to the endp
 
 ## Privacy Handling
 
-LocID operates under Legitimate Interest (GVLID 3384). The module's privacy behavior depends on the configured privacy mode.
+LocID operates under Legitimate Interest (LI). The module's privacy behavior depends on the configured privacy mode.
 
 ### Default Behavior (allowWithoutSignals)
 
@@ -152,11 +151,11 @@ LocID operates under Legitimate Interest (GVLID 3384). The module's privacy beha
 
 When privacy signals are present, the module does not fetch or return an ID if any of the following apply:
 
-- GDPR applies and vendor permission (GVLID 3384) is denied
+- GDPR applies and vendorData is present, but consentString is missing or empty
 - US Privacy (CCPA) string indicates a processing restriction (third character is `Y`)
 - GPP signals indicate an applicable processing restriction
 
-The module checks for vendor consent or legitimate interest for GVLID 3384 when GDPR applies and vendor data is available.
+When GDPR applies and consentString is present, the module proceeds unless a framework processing restriction is signaled.
 
 ## Storage
 
@@ -192,7 +191,7 @@ When available, the LocID is included in the bid request as:
 }
 ```
 
-The `atype` value of `1` indicates a device-based identifier per the OpenRTB 2.6 Extended Identifiers specification.
+The `atype` value of `1` is the OpenRTB agent type for web environment; it is not an IAB GVL vendor ID.
 
 ## Debugging
 
