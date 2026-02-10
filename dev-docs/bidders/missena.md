@@ -5,6 +5,7 @@ description: Prebid Missena Bidder Adapter
 biddercode: missena
 gvl_id: 867
 pbjs: true
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 safeframes_ok: false
 sidebarType: 1
 ---
