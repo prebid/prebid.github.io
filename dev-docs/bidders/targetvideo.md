@@ -8,7 +8,10 @@ gvl_id: 786
 tcfeu_supported: true
 schain_supported: true
 pbjs: true
+prebid_member: true
+floors_supported: true
 sidebarType: 1
+multiformat_supported: will-bid-on-one
 ---
 
 #### Bid Params
