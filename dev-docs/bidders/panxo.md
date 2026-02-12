@@ -24,9 +24,11 @@ sidebarType: 1
 
 ### Before You Begin
 
-The Panxo adapter requires the Panxo Signal script to be installed on your page before Prebid.js loads. Please register at [app.panxo.ai](https://app.panxo.ai) to obtain your property key and Signal script endpoint.
+The Panxo adapter requires the [Panxo RTD Module](/dev-docs/modules/panxoRtdProvider.html) to be included in your Prebid.js build. The RTD module detects AI-referred traffic and enriches bid requests with classification signals that the adapter needs to participate in the auction.
 
-**Important**: Without the Signal script setting the `panxo_uid` in localStorage, the adapter will not participate in the auction.
+Please register at [app.panxo.com](https://app.panxo.com) to obtain your `siteId` (for the RTD module) and `propertyKey` (for the bid adapter).
+
+**Important**: Without the Panxo RTD module configured, the adapter will not participate in the auction.
 
 ### Bid Params
 
@@ -38,15 +40,32 @@ The Panxo adapter requires the Panxo Signal script to be installed on your page 
 
 ### Setup Example
 
-```html
-<!-- Step 1: Panxo Signal Script (MUST load before Prebid) -->
-<script async src="https://cdn.panxo-sys.com/o/YOUR_ENDPOINT_KEY"></script>
+#### Step 1: Build Prebid.js with required modules
 
-<!-- Step 2: Prebid.js -->
-<script async src="prebid.js"></script>
+Include both `panxoRtdProvider` and `panxoBidAdapter` in your Prebid.js build:
+
+```bash
+gulp build --modules=rtdModule,panxoRtdProvider,panxoBidAdapter,...
 ```
 
+Or select both **Panxo RTD Module** and **Panxo** on the Prebid [Download](/download.html) page.
+
+#### Step 2: Configure RTD module and ad units
+
 ```javascript
+pbjs.setConfig({
+    realTimeData: {
+        auctionDelay: 300,
+        dataProviders: [{
+            name: 'panxo',
+            waitForIt: true,
+            params: {
+                siteId: 'your-site-id'
+            }
+        }]
+    }
+});
+
 var adUnits = [{
     code: 'banner-ad',
     mediaTypes: {
