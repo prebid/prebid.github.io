@@ -8,7 +8,10 @@ gvl_id: 786
 tcfeu_supported: true
 schain_supported: true
 pbjs: true
+prebid_member: true
+floors_supported: true
 sidebarType: 1
+multiformat_supported: will-bid-on-one
 ---
 
 #### Bid Params
@@ -17,3 +20,4 @@ sidebarType: 1
 | Name                | Scope    | Description                                                                                                                                                                   | Example                                               | Type             |
 |---------------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|------------------|
 | `placementId`       | required | The placement ID from TargetVideo. You will get this value from your TargetVideo account manager. The placementID parameter should be a `string`.                                                    | `234234`                                            | `string`         |
+| `floor`       | optional           | Sets the global floor -- no bids will be made under this value.                                                             | `0.50`                                                                              | `float`          |
