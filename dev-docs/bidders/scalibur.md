@@ -14,7 +14,7 @@ deals_supported: false
 floors_supported: true
 fpd_supported: true
 pbjs: true
-pbs: false
+pbs: true
 prebid_member: false
 multiformat_supported: will-bid-on-any
 ortb_blocking_supported: false
@@ -31,6 +31,8 @@ The Scalibur Bid Adapter connects publishers to Scalibur's programmatic advertis
 | Name | Scope | Type | Description | Example |
 | ---- | ----- | ---- | ----------- | ------- |
 | `placementId` | required | String | Placement identifier provided by Scalibur | `'test-placement-123'` |
+| `bidfloor` | optional | Float | Fallback minimum CPM for the impression | `0.50` |
+| `bidfloorcur` | optional | String | Currency for the bid floor | `'USD'` |
 
 ### Test Parameters
 
@@ -121,6 +123,25 @@ var adUnits = [
 ];
 ```
 
+### Prebid Server Configuration (S2S)
+
+Scalibur supports Server-to-Server bidding through Prebid Server. To enable this, include `scalibur` in your `s2sConfig`.
+
+```javascript
+pbjs.setConfig({
+    s2sConfig: {
+        endpoint: 'https://prebid-server.example.com/openrtb2/auction',
+        enabled: true,
+        bidders: ['scalibur'],
+        timeout: 1000
+    }
+});
+```
+
+### Video Support
+
+The adapter supports Video via both direct VAST XML and VAST URLs. For bids returned with a VAST URL, the server-side adapter automatically generates a VAST 3.0 wrapper to ensure player compatibility.
+
 ### First Party Data
 
 The adapter supports First Party Data (FPD) in multiple ways:
@@ -131,10 +152,10 @@ The adapter supports First Party Data (FPD) in multiple ways:
 
 ### User Sync
 
-The Scalibur adapter supports user synchronization through:
+The Scalibur adapter supports user synchronization to maximize bid value:
 
-- **Iframe syncs**: For enhanced matching capabilities
-- **Image syncs**: For lightweight synchronization
+- **Client-Side**: Supports `iframe` and `image` syncs.
+- **Server-Side**: Uses `iframe` sync managed via Prebid Server's `/cookie_sync` and `/setuid` endpoints.
 
 All privacy parameters are automatically included in sync requests.
 
@@ -178,6 +199,7 @@ For technical support or integration assistance:
 
 ### Notes
 
+- **Multi-format**: Fully supports multi-format ad units by utilizing the `mtype` field in the OpenRTB response.
 - Video ads support instream context with standard IAB video parameters
 - Banner ads support multiple sizes including standard IAB sizes
 - All requests are sent via secure HTTPS endpoints
