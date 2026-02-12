@@ -8,6 +8,9 @@ gvl_id: 786
 tcfeu_supported: true
 schain_supported: true
 pbjs: true
+pbs: true
+pbs_app_supported: true
+prebid_member: true
 sidebarType: 1
 ---
 
