@@ -6,6 +6,7 @@ biddercode: missena
 gvl_id: 867
 pbjs: true
 pbs: true
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 safeframes_ok: false
 sidebarType: 1
 pbs_app_supported: true
