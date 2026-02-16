@@ -32,6 +32,11 @@ end
 
 Now run `pod install` to add the Prebid SDK to project dependencies.
 
+{: .alert.alert-warning :}
+Support for CocoaPods will be discontinued in Q2 2026. As CocoaPods is transitioning to read-only mode, it will no longer be supported for future updates. For more details, please refer to the official [announcement](https://blog.cocoapods.org/CocoaPods-Specs-Repo/).
+
+We strongly recommend that publishers migrate to Swift Package Manager (SPM) to ensure ongoing compatibility and access to future releases. Please follow the [instructions](/prebid-mobile/pbm-api/ios/code-integration-ios.html#swift-package-manager-spm) to transition your integration.
+
 ### Carthage
 
 If you are not familiar with the Carthage package builder, please refer to the project [github page](https://github.com/Carthage/Carthage) for more details.
@@ -40,6 +45,11 @@ If you are not familiar with the Carthage package builder, please refer to the p
 2. Add `github "prebid/prebid-mobile-ios" == 2.0.4-carthage` to your `Cartfile`.
 3. Run `carthage update`.
 4. Drag `PrebidMobile.xcframework` from `Carthage/Build` to `General -> Linked Frameworks and Libraries`
+
+{: .alert.alert-warning :}
+Support for Carthage will be discontinued in Q2 2026.
+
+We strongly recommend that publishers migrate to Swift Package Manager (SPM) to ensure ongoing compatibility and access to future releases. Please follow the [instructions](/prebid-mobile/pbm-api/ios/code-integration-ios.html#swift-package-manager-spm) to transition your integration.
 
 ### XCFramework
 
@@ -54,17 +64,22 @@ Starting from version `3.1.0`, PrebidMobile supports the Swift Package Manager (
 To [add the Prebid Mobile SDK package dependency](https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app#Add-a-package-dependency) using SPM, follow these steps:
 
 1. In Xcode, install the Prebid Mobile SDK by navigating to File > Add Package Dependencies...
-2. In the prompt that appears, search for the Prebid Mobile SDK GitHub repository:
+2. In the prompt that appears, use the search field to find the appropriate package based on your integration needs. Search for `Prebid Mobile SDK` to install the core SDK, or `Prebid Mobile SDK Adapters` if you need mediation adapters (GAM, AdMob, MAX).
+
+    `Prebid Mobile SDK`
+    
+    ```bash
+    https://github.com/prebid/prebid-mobile-ios-sdk.git
+    ```
+
+    `Prebid Mobile SDK Adapters`
 
     ```bash
-    https://github.com/prebid/prebid-mobile-ios.git
+    https://github.com/prebid/prebid-mobile-ios-adapters.git
     ```
-    
+
 3. Select the version of the Prebid Mobile SDK you want to use. For new projects, we recommend using the `Up to Next Major Version`.
 4. In the package selection screen, make sure to check the modules you need for your integration and link it to your application target.
-
-{: .alert.alert-info :}
-The Swift Package Manager (SPM) integration is currently marked as beta. We are actively working on refining the project structure and modularization to improve clarity, performance, and ease of integration. During this period, some modules or dependencies may be reorganized. We welcome your feedback - if you encounter any issues or have suggestions, please don't hesitate to reach out and help us shape the future of the PrebidMobile SPM support.
 
 ### Build framework from source
 
