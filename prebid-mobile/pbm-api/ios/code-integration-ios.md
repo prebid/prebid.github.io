@@ -33,7 +33,7 @@ end
 Now run `pod install` to add the Prebid SDK to project dependencies.
 
 {: .alert.alert-warning :}
-Support for CocoaPods will be discontinued in Q2 2026. As CocoaPods is transitioning to read-only mode, it will no longer be supported for future updates. For more details, please refer to the official [announcement](https://blog.cocoapods.org/CocoaPods-Specs-Repo/).
+Support for CocoaPods will be discontinued in Q4 2026. As CocoaPods is transitioning to read-only mode, it will no longer be supported for future updates. For more details, please refer to the official [announcement](https://blog.cocoapods.org/CocoaPods-Specs-Repo/).
 
 We strongly recommend that publishers migrate to Swift Package Manager (SPM) to ensure ongoing compatibility and access to future releases. Please follow the [instructions](/prebid-mobile/pbm-api/ios/code-integration-ios.html#swift-package-manager-spm) to transition your integration.
 
@@ -47,7 +47,7 @@ If you are not familiar with the Carthage package builder, please refer to the p
 4. Drag `PrebidMobile.xcframework` from `Carthage/Build` to `General -> Linked Frameworks and Libraries`
 
 {: .alert.alert-warning :}
-Support for Carthage will be discontinued in Q2 2026.
+Support for Carthage will be discontinued in Q4 2026.
 
 We strongly recommend that publishers migrate to Swift Package Manager (SPM) to ensure ongoing compatibility and access to future releases. Please follow the [instructions](/prebid-mobile/pbm-api/ios/code-integration-ios.html#swift-package-manager-spm) to transition your integration.
 
