@@ -65,7 +65,6 @@ euid: {
 }
 ```
 
-
 ## Client Refresh mode
 
 This is the recommended mode for most scenarios. In this mode, the full response body from the EUID Token Generate or Token Refresh endpoint must be provided to the module. As long as the refresh token remains valid, the module will refresh the advertising token as needed.
