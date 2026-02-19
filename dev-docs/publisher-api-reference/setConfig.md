@@ -149,7 +149,7 @@ pbjs.setConfig({
 
 <a name="setConfig-customGptSlotMatching"></a>
 
-When using GPT (Google Publisher Tag), you can set a top-level `customGptSlotMatching` function that controls how Prebid matches ad units to GPT slots. This function receives a GoogleTag slot and returns a filter function for adUnitCode. It is used by [setTargetingForGPTAsync](/dev-docs/publisher-api-reference/setTargetingForGPTAsync.html) and [GPT Pre-Auction module](/dev-docs/modules/gpt-pre-auction.html)
+When using GPT (Google Publisher Tag), you can set a top-level `customGptSlotMatching` function that controls how Prebid matches ad units to GPT slots. This function receives a GoogleTag slot and returns a filter function for adUnitCode. It is used by [setTargetingForGPTAsync](/dev-docs/publisher-api-reference/setTargetingForGPTAsync.html), the [GPT Pre-Auction module](/dev-docs/modules/gpt-pre-auction.html), [setPAAPIConfigForGPT](/dev-docs/publisher-api-reference/setPAAPIConfigForGPT.html), and the [Bid Viewability - GAM module](/dev-docs/modules/bidViewable.html).
 
 ```javascript
 pbjs.setConfig({
