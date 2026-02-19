@@ -145,6 +145,22 @@ pbjs.setConfig({
 });
 ```
 
+### Custom Slot Matching (GPT)
+
+<a name="setConfig-customGptSlotMatching"></a>
+
+When using GPT (Google Publisher Tag), you can set a top-level `customGptSlotMatching` function that controls how Prebid matches ad units to GPT slots. This function receives a GoogleTag slot and returns a filter function for adUnitCode. It is used by [setTargetingForGPTAsync](/dev-docs/publisher-api-reference/setTargetingForGPTAsync.html) and [GPT Pre-Auction module](/dev-docs/modules/gpt-pre-auction.html)
+
+```javascript
+pbjs.setConfig({
+  customGptSlotMatching: function(slot) {
+    return function(adUnitCode) {
+      return adUnitCode === slot.getAdUnitPath() || slot.getSlotElementId() === adUnitCode;
+    };
+  }
+});
+```
+
 ### Change prerendering behavior
 
 When a page is [prerendered](https://developer.chrome.com/docs/web-platform/prerender-pages), by default Prebid will delay auctions until it is activated.
