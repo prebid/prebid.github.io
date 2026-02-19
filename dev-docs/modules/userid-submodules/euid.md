@@ -64,7 +64,7 @@ euid: {
   optout: true
 }
 ```
-```
+
 
 ## Client Refresh mode
 
