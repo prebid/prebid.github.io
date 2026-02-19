@@ -100,17 +100,71 @@
 - [x] what-is-post-bid.md (converted to Docusaurus format)
 - [x] All other overview files moved (awaiting conversion)
 
+## Build Fix ⚠️ (Blocker)
+
+Build currently fails with 472 broken links from boilerplate Docusaurus template defaults:
+
+- [ ] Fix `docusaurus.config.ts` footer: `/docs/intro` → `/intro`, remove `/blog` link, update copyright
+- [ ] Fix `src/pages/index.js`: `/docs/intro` → `/intro`, update button label
+- [ ] Verify: `npm run build` passes
+
 ## Phase 4: Content Migration - Prebid.js Documentation ⏳
 
-### Step 4.1: Copy dev-docs content to docs/dev-docs/prebidjs/
+**Total: ~372 files in `dev-docs/`** (bidders already done in Phase 2)
 
-- [ ] Move file by file using git mv, preserving structure
-- [ ] Update frontmatter and links
-- [ ] Fix image and asset references
+### Step 4.0: Create migration script
+
+- [ ] Create `scripts/migrate-devdocs.mjs` for batch processing mechanical conversions
+- [ ] Script handles: frontmatter cleanup, TOC removal, CSS class removal, alert includes → admonitions, link rewrites, simple includes → inline admonitions
+- [ ] Script flags files with Liquid logic (`{% assign %}`, `{% for %}`, `site.pages`) for manual handling
+- [ ] `--dry-run` mode for previewing changes
+
+### Step 4.1: Migrate analytics adapters (68 files)
+
+- [ ] Source: `dev-docs/analytics/` → `docs/dev-docs/prebidjs/analytics/`
+- [ ] Create `_category_.json` for sidebar
+- [ ] Run migration script
+- [ ] Build and spot-check
+
+### Step 4.2: Migrate UserID submodules (63 files)
+
+- [ ] Source: `dev-docs/modules/userid-submodules/` → `docs/dev-docs/prebidjs/modules/userid-submodules/`
+- [ ] Create `_category_.json` for sidebar
+- [ ] Run migration script
+- [ ] Build and spot-check
+
+### Step 4.3: Migrate remaining modules (~57 files)
+
+- [ ] Source: `dev-docs/modules/` (excluding userid-submodules) → `docs/dev-docs/prebidjs/modules/`
+- [ ] Run migration script
+- [ ] **Manual conversion**: `modules/index.md`, `modules/userId.md` (Liquid `site.pages` logic)
+- [ ] Build and spot-check
+
+### Step 4.4: Migrate publisher API reference (51 files)
+
+- [ ] Source: `dev-docs/publisher-api-reference/` → `docs/dev-docs/prebidjs/publisher-api-reference/`
+- [ ] Run migration script
+- [ ] Build and spot-check
+
+### Step 4.5: Migrate root-level dev-docs guides (~36 files)
+
+- [ ] Source: `dev-docs/*.md` (root-level) → `docs/dev-docs/prebidjs/`
+- [ ] Individual review likely needed after script pass
+- [ ] Build and spot-check
+
+### Step 4.6: Migrate examples, plugins, requirements, internal-api (~39 files)
+
+- [ ] Source: `dev-docs/examples/`, `dev-docs/plugins/`, `dev-docs/requirements/`, `dev-docs/internal-api-reference/`
+- [ ] Examples use `{% include code/web-example.html %}` → `<IncludeTodo />` placeholders
+- [ ] Build and spot-check
+
+### Step 4.7: Final verification
+
 - [ ] Update sidebar configuration
 - [ ] Test versioning functionality
+- [ ] Grep all migrated files for leftover Jekyll syntax
 
-## Phase 5: Content Migration - Prebid Server Documentation ⏳
+## Phase 5: Content Migration - Prebid Server Documentation ⏳ (71 files)
 
 ### Step 5.1: Copy prebid-server content to docs/dev-docs/prebid-server/
 
@@ -120,7 +174,9 @@
 - [ ] Configure versioning for both Java and Go
 - [ ] Test versioning functionality
 
-## Phase 6: Content Migration - Prebid Mobile Documentation ⏳
+**Note:** 3 index files already exist as stubs in `docs/dev-docs/prebid-server/`.
+
+## Phase 6: Content Migration - Prebid Mobile Documentation ⏳ (63 files)
 
 ### Step 6.1: Copy prebid-mobile content to docs/dev-docs/prebid-mobile/
 
@@ -129,6 +185,8 @@
 - [ ] Update frontmatter and links
 - [ ] Configure versioning for both platforms
 - [ ] Test versioning functionality
+
+**Note:** 3 index files already exist as stubs in `docs/dev-docs/prebid-mobile/`.
 
 ## Phase 7: Content Migration - Guides ⏳
 
@@ -164,15 +222,17 @@
 
 ### Step 10.1: Migrate remaining content sections
 
-- [ ] features/ directory
-- [ ] troubleshooting/ directory
-- [ ] support/ directory
-- [ ] faq/ directory
-- [ ] policies/ directory
-- [ ] identity/ directory
-- [ ] prebid/ directory
-- [ ] prebid-video/ directory
-- [ ] adops/ directory
+- [ ] adops/ directory (24 files → docs/content/guides/ad-ops/)
+- [ ] prebid/ directory (9 files)
+- [ ] features/ directory (8 files)
+- [ ] support/ directory (7 files)
+- [ ] formats/ directory (7 files → docs/content/formats/)
+- [ ] prebid-video/ directory (6 files)
+- [ ] policies/ directory (5 files)
+- [ ] faq/ directory (3 files)
+- [ ] identity/ directory (3 files → docs/content/guides/identity/)
+- [ ] troubleshooting/ directory (3 files)
+- [ ] debugging/ directory (1 file)
 
 ## Phase 11: Layout and Include Components Analysis ⏳
 
@@ -275,20 +335,21 @@
 - **Phase 1**: ✅ Complete (Foundation Setup)
 - **Phase 2**: ✅ Complete (Layout and Include Components Migration)
 - **Phase 3**: ✅ Complete (Content Migration - Overview Section)
-- **Phase 4**: ⏳ Pending (Content Migration - Prebid.js)
-- **Phase 5**: ⏳ Pending (Content Migration - Prebid Server)
-- **Phase 6**: ⏳ Pending (Content Migration - Prebid Mobile)
+- **Build Fix**: ⚠️ Blocker — 2 template default links need fixing
+- **Phase 4**: ⏳ Next (Content Migration - Prebid.js, 372 files)
+- **Phase 5**: ⏳ Pending (Content Migration - Prebid Server, 71 files)
+- **Phase 6**: ⏳ Pending (Content Migration - Prebid Mobile, 63 files)
 - **Phase 7**: ⏳ Pending (Content Migration - Guides)
 - **Phase 8**: ⏳ Pending (Content Migration - Formats)
 - **Phase 9**: ⏳ Pending (Content Migration - Tools)
-- **Phase 10**: ⏳ Pending (Content Migration - Remaining Sections)
+- **Phase 10**: ⏳ Pending (Content Migration - Remaining Sections, ~76 files)
 - **Phase 11**: ⏳ Pending (Layout and Include Components Analysis)
 - **Phase 12**: ⏳ Pending (Download Page Migration)
 - **Phase 13**: ⏳ Pending (Final Cleanup and Testing)
 
 ## Next Steps
 
-1. Begin Phase 3: Migrate overview/ directory content file by file
-2. Set up development environment for testing
-3. Create backup of current documentation
-4. Start file-by-file migration process using sidebar.yml as reference
+1. Fix build blocker (2 file edits in `docusaurus.config.ts` and `src/pages/index.js`)
+2. Create migration script for batch processing (`scripts/migrate-devdocs.mjs`)
+3. Begin Phase 4 with analytics adapters (simplest batch, 68 files)
+4. Continue through Phase 4 batches in order of complexity

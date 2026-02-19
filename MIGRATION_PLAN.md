@@ -60,22 +60,51 @@ docs/
 - [x] **Step 2.3**: Identify and remove unnecessary layouts/includes
 - [x] **Step 2.4**: Move bidders directory
 
-### Phase 3: Content Migration - Overview Section
+### Phase 3: Content Migration - Overview Section ✅ (Complete)
 
-- [ ] **Step 3.1**: Migrate overview/ directory content
-  - [ ] Move overview/ files to docs/content/ using git mv
-  - [ ] Update frontmatter and links
-  - [ ] Fix image and asset references
-  - [ ] Update sidebar configuration
+- [x] **Step 3.1**: Migrate overview/ directory content
+  - [x] Move overview/ files to docs/content/ using git mv
+  - [x] Update frontmatter and links for key files (intro.mdx, intro-to-header-bidding, glossary, analytics, what-is-post-bid)
+  - [x] Remaining overview files moved, awaiting full conversion
+
+### Phase 3.5: Fix Build Blocker ⏳ (Next)
+
+The build currently fails with **472 broken links** caused by boilerplate Docusaurus template links in the footer and homepage that point to non-existent routes (`/docs/intro` and `/blog`).
+
+- [ ] **Step 3.5.1**: Fix footer links in `docusaurus.config.ts` (lines ~144-182)
+  - [ ] Change `/docs/intro` → `/intro` (the real overview page)
+  - [ ] Remove `/blog` link (blog is disabled)
+  - [ ] Update copyright from "My Project, Inc." → "Prebid.org"
+- [ ] **Step 3.5.2**: Fix homepage link in `src/pages/index.js` (line ~20)
+  - [ ] Change `/docs/intro` → `/intro`
+  - [ ] Update button label to "Get Started with Prebid"
+- [ ] **Step 3.5.3**: Verify build passes with `npm run build`
 
 ### Phase 4: Content Migration - Prebid.js Documentation
 
-- [ ] **Step 4.1**: Copy dev-docs content to docs/dev-docs/prebidjs/
-  - [ ] Move file by file using git mv, preserving structure
-  - [ ] Update frontmatter and links
-  - [ ] Fix image and asset references
-  - [ ] Update sidebar configuration
-  - [ ] Test versioning functionality
+**Scope: 372 files in `dev-docs/`** (bidders already migrated separately)
+
+Recommended approach: Create a Node.js migration script (`scripts/migrate-devdocs.mjs`) to batch-process the mechanical conversions, then run it per subdirectory.
+
+- [ ] **Step 4.0**: Create migration script for batch processing (see Conversion Patterns below)
+- [ ] **Step 4.1**: Migrate analytics adapters (68 files) — simplest, most uniform
+  - [ ] Source: `dev-docs/analytics/` → `docs/dev-docs/prebidjs/analytics/`
+  - [ ] Create `_category_.json` for sidebar label
+  - [ ] Run script, build, spot-check
+- [ ] **Step 4.2**: Migrate UserID submodules (63 files) — similarly uniform
+  - [ ] Source: `dev-docs/modules/userid-submodules/` → `docs/dev-docs/prebidjs/modules/userid-submodules/`
+  - [ ] Run script, build, spot-check
+- [ ] **Step 4.3**: Migrate remaining modules (~57 files, excluding userid-submodules)
+  - [ ] Source: `dev-docs/modules/` → `docs/dev-docs/prebidjs/modules/`
+  - [ ] **Manual conversion needed**: `modules/index.md` and `modules/userId.md` (use Liquid `site.pages` logic)
+  - [ ] Run script, build, spot-check
+- [ ] **Step 4.4**: Migrate publisher API reference (51 files) — more link-heavy
+  - [ ] Source: `dev-docs/publisher-api-reference/` → `docs/dev-docs/prebidjs/publisher-api-reference/`
+- [ ] **Step 4.5**: Migrate root-level dev-docs guides (~36 files) — most varied
+  - [ ] Individual review likely needed after script pass
+- [ ] **Step 4.6**: Migrate examples, plugins, requirements, internal-api (~39 files)
+  - [ ] Examples use `{% include code/web-example.html %}` → use `<IncludeTodo />` placeholders
+- [ ] **Step 4.7**: Update sidebar configuration and test versioning
 
 ### Phase 5: Content Migration - Prebid Server Documentation
 
@@ -166,6 +195,11 @@ docs/
 - [ ] **Step 13.5**: Performance testing
 - [ ] **Step 13.6**: Create MIGRATION.md for tracking
 
+## URL Preservation Policy
+
+- **Preserve**: `/download`, `/` (home) — these are already correctly routed in Docusaurus
+- **Don't need to preserve**: Adapter/module/dev-docs content — these get new URLs under `/dev-docs/prebidjs/` etc.
+
 ## Files to NOT Migrate
 
 - consentmanager (excluded per requirements)
@@ -182,17 +216,54 @@ docs/
 - **Convert Jekyll syntax**: Replace Liquid templates and Jekyll-specific includes with React components
 - **Replace includes with IncludeTodo component**: Use `<IncludeTodo include="{% include ... %}"/>` for unmigrated includes
 - **If a markdown file requires a React component, change its extension from `.md` to `.mdx` using `git mv`**
-- **Migrate no more than 5 files at once before reviewing**: This ensures manageable changes and allows for proper review
+- **When batch-migrating with a script, verify each batch with `npm run build` and spot-checks**
 - **Build validation**: `npm run build` should not have any errors after each migration step
+
+### Conversion Patterns (Jekyll → Docusaurus)
+
+These are the specific transformations needed for each file:
+
+| Jekyll Pattern | Docusaurus Replacement |
+|---|---|
+| `layout: page_v2` (and all layout values) | Remove entirely (Docusaurus handles via directory) |
+| `sidebarType: 1` | Remove entirely |
+| `{: .no_toc}` / `* TOC` / `{:toc}` | Remove (Docusaurus auto-generates TOC) |
+| `{: .table .table-bordered .table-striped }` | Remove (use default table styling) |
+| `{{ site.baseurl }}/path` | `/path` |
+| `{{ site.github.url }}/path` | Direct GitHub URL |
+| `.html` in internal links | Remove extension (clean URLs) |
+| `{{ site.baseurl }}/assets/images/...` | `/images/...` (static/ dir has copies) |
+| `{% include alerts/alert_warning.html content="..." %}` | `:::warning\n...\n:::` |
+| `{% include alerts/alert_note.html content="..." %}` | `:::note\n...\n:::` |
+| `{% include alerts/alert_tip.html content="..." %}` | `:::tip\n...\n:::` |
+| `{% include alerts/alert_important.html content="..." %}` | `:::caution\n...\n:::` |
+| `{% capture var %}...{% endcapture %}` + `{% include alerts/... content=var %}` | Extract captured content into `:::warning\n...\n:::` admonition (21 files, 36 instances) |
+| `{% include dev-docs/loads-external-javascript.md %}` | Inline as `:::warning Disclosure` admonition |
+| `{% include legal-warning.html %}` | `<LegalWarning />` (existing component, requires .mdx) |
+| `{% include dev-docs/vendor-exception.md %}` | Inline as `:::warning` admonition |
+| `{% include code/web-example.html ... %}` | `<IncludeTodo />` placeholder (requires .mdx) |
+| `{% assign %}`, `{% for %}`, `site.pages` | **Manual conversion** — cannot be auto-migrated |
+
+### Available React Components (in `src/components/DevDocs/`)
+
+| Component | Replaces | Import Path |
+|---|---|---|
+| `IncludeTodo` | Placeholder for any unmigrated include | `@site/src/components/IncludeTodo` |
+| `LegalWarning` | `{% include legal-warning.html %}` | `@site/src/components/DevDocs` |
+| `StorageAllowed` | Storage config warning | `@site/src/components/DevDocs` |
+| `Fingerprinting` | Fingerprinting API warning | `@site/src/components/DevDocs` |
+| `DefaultKeywordTargeting` | Keyword targeting table | `@site/src/components/DevDocs` |
+| `SendAllBidsKeywordTargeting` | Send-all-bids table | `@site/src/components/DevDocs` |
+| `PbjsAdapterRequiredForPbs` | PBS adapter requirement warning | `@site/src/components/DevDocs` |
 
 ### IncludeTodo Component
 
-The IncludeTodo component should:
+Located at `src/components/IncludeTodo.tsx`. It:
 
-- Accept an `include` prop containing the original Jekyll include string
-- Render a warning that says "this include is not yet migrated"
-- Display the include string for reference
-- Be used as a temporary placeholder while includes are being migrated to React components
+- Accepts an `include` prop containing the original Jekyll include string
+- Renders a red warning box saying "this include is not yet migrated"
+- Displays the include string in monospace for reference
+- Used as a temporary placeholder while includes are being migrated to React components
 
 ### Download Page
 
@@ -225,18 +296,73 @@ The IncludeTodo component should:
 - **Version Conflicts**: Test versioning thoroughly
 - **Performance Issues**: Monitor build times and page load speeds
 
-## Timeline Estimate
+## Files Requiring Manual Conversion
 
-- **Phase 3-10**: 4-6 weeks (Content Migration)
-- **Phase 11**: 2-3 weeks (Layout and Include Analysis)
-- **Phase 12**: 1 week (Download Page)
-- **Phase 13**: 1 week (Testing and Cleanup)
+These files use `site.pages` queries and Liquid loops — they **cannot** be handled by the migration script:
 
-**Total Estimated Time**: 8-11 weeks
+| File | Reason |
+|---|---|
+| `dev-docs/pbs-bidders.md` | `{% for %}` over `site.pages` with `{% unless %}`, `{% case %}` |
+| `dev-docs/modules/index.md` | Queries `site.pages` to list modules |
+| `dev-docs/modules/userId.md` | Queries `site.pages` to list userid submodules |
+| `dev-docs/modules/consentManagementUsp.md` | Queries bidder pages for USP support flags |
+| `dev-docs/modules/consentManagementGpp.md` | Queries bidder pages for GPP support flags |
+| `dev-docs/requirements/tcf2/PrebidSupportforEnforcingTCF2.html` | HTML file, not markdown |
+
+These will need custom MDX components or static data generated from frontmatter.
+
+## Migration Script Approach
+
+For Phase 4+, a Node.js migration script (`scripts/migrate-devdocs.mjs`) should handle the mechanical conversions in batch. The script should:
+
+1. Accept `--source`, `--dest`, and `--dry-run` arguments
+2. Apply all conversion patterns from the table above in order, including:
+   - Simple alert includes (string content) → admonitions
+   - Capture + alert pairs → extract captured content into admonitions
+   - Image path rewrites (`{{ site.baseurl }}/assets/images/` → `/images/`)
+3. Use `git mv` for file movement
+4. Rename `.md` → `.mdx` only when React components are needed
+5. Output a summary of transformations and files needing manual review
+6. Skip files with Liquid template logic (`{% assign %}`, `{% for %}`, `site.pages`) — see "Files Requiring Manual Conversion" above
+
+### Batch execution order (by complexity, simplest first):
+1. Analytics adapters (68 files) — most uniform
+2. UserID submodules (63 files) — similarly uniform
+3. Remaining modules (~57 files) — some includes
+4. Publisher API reference (51 files) — link-heavy
+5. Root-level guides (~36 files) — varied
+6. Examples, plugins, requirements (~39 files) — some need placeholders
+
+## File Count Summary
+
+| Old Location | Files | Destination | Complexity |
+|---|---|---|---|
+| `dev-docs/analytics/` | 68 | `docs/dev-docs/prebidjs/analytics/` | Low |
+| `dev-docs/modules/userid-submodules/` | 63 | `docs/dev-docs/prebidjs/modules/userid-submodules/` | Low |
+| `dev-docs/modules/` (top-level) | ~57 | `docs/dev-docs/prebidjs/modules/` | Medium |
+| `dev-docs/publisher-api-reference/` | 51 | `docs/dev-docs/prebidjs/publisher-api-reference/` | Medium |
+| `dev-docs/` (root-level guides) | ~36 | `docs/dev-docs/prebidjs/` | Medium-High |
+| `dev-docs/plugins/` | 21 | `docs/dev-docs/prebidjs/plugins/` | Medium |
+| `dev-docs/examples/` | 14 | `docs/dev-docs/prebidjs/examples/` | High (interactive) |
+| `dev-docs/requirements/` | 3 | `docs/dev-docs/prebidjs/requirements/` | Low |
+| `dev-docs/internal-api-reference/` | 1 | `docs/dev-docs/prebidjs/internal-api-reference/` | Low |
+| `prebid-server/` | 71 | `docs/dev-docs/prebid-server/` | Medium |
+| `prebid-mobile/` | 63 | `docs/dev-docs/prebid-mobile/` | Medium |
+| `adops/` | 24 | `docs/content/guides/ad-ops/` | Medium |
+| `prebid/` | 9 | `docs/content/` | Medium |
+| `features/` | 8 | `docs/content/` | Low |
+| `formats/` | 7 | `docs/content/formats/` | Low |
+| `prebid-video/` | 6 | `docs/content/` | Low |
+| `support/` | 7 | `docs/content/` | Low |
+| `policies/` | 5 | `docs/content/` | Low |
+| `faq/` | 3 | `docs/content/` | Low |
+| `identity/` | 3 | `docs/content/guides/identity/` | Low |
+| `tools/` | 3 | `docs/dev-docs/tools/` | Low |
+| `troubleshooting/` | 3 | `docs/content/` | Low |
 
 ## Next Steps
 
-1. Begin with Phase 3: Migrate overview/ directory content using git mv
-2. Set up development environment for testing
-3. Create backup of current documentation
-4. Start file-by-file migration process
+1. **Fix build blocker** (Phase 3.5) — 2 file edits to fix footer/homepage links
+2. **Create migration script** — batch-process mechanical conversions
+3. **Run Batches A-C** (analytics, userid, modules) — ~188 files, simplest content first
+4. **Continue with Batches D-F** in subsequent sessions
