@@ -88,6 +88,8 @@ Prebid.js supports fully client side integration for UID2.  See the [official UI
 
 The following parameters apply only to the Unified ID 2.0 module integration.
 
+{: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | ID value for the Unified ID 2.0 module - `"uid2"` | `"uid2"` |
@@ -96,7 +98,6 @@ The following parameters apply only to the Unified ID 2.0 module integration.
 | params.uid2ApiBase | Optional | String | Overrides the default UID2 API endpoint. | `https://prod.uidapi.com` _(default)_ |
 | value | Optional | Object | Used only if the page has a separate mechanism for storing the UID 2.0 ID. The value is an object containing the values to be sent to the adapters. In this scenario, no URL is called and nothing is added to local storage, and the tokens are **not** automatically refreshed. | `{"uid2": { "id": "eb33b0cb-8d35-4722-b9c0-1a31d4064888"}}` |
 | params.storage | Optional, Client refresh | String | Specify whether to use `cookie` or `localStorage` for module-internal storage. It is recommended to not provide this and allow the module to use the default. | `localStorage` _(default)_ |
-{: .table .table-bordered .table-striped }
 
 ## Unified ID 2.0 Examples
 
