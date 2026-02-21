@@ -71,6 +71,14 @@ If you or your monetization partners are deploying multiple Prebid wrappers on y
 
 ## ID5 ID Examples
 
+> ### NOTICE: TERMS OF SERVICE & BINDING AGREEMENT
+> ID5 provides this software and the ID5 ID Service free of charge, subject to strict data usage and privacy rules.
+>
+> By copying, installing, or initializing the ID5 API (or any ID5 Code Snippet), you and the legal entity you represent AGREE TO BE BOUND by the ID5 ID Agreement.
+>
+> - If you do not agree to the ID5 ID Agreement, you are NOT AUTHORIZED to use this code or the ID5 Service.
+> - Commercial Use: If you are a Platform, Intermediary, or intend to use ID5 Data for commercial purposes beyond the standard publisher integration, you must contact [contact@id5.io](contact@id5.io) to execute a commercial license.
+
 Publisher wants to retrieve the ID5 ID through Prebid.js
 
 ```javascript

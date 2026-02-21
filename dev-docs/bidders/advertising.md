@@ -23,6 +23,7 @@ multiformat_supported: will-bid-on-any
 prebid_member: false
 gvl_id: none
 sidebarType: 1
+pbjs_version_notes: please avoid using versions from 10.7.0 to 10.11.0
 ---
 
 ### Note
