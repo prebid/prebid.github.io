@@ -63,7 +63,7 @@ Note that bid adapters are normally denied access to device storage even when `d
 
 ### Disable fingerprinting APIs
 
-Prebid provides a privacy control named `disableFingerprintingApis` that lets publishers disable specific browser APIs commonly used for fingerprinting.
+Prebid provides a privacy control named `disableFingerprintingApis` that lets publishers disable specific browser APIs commonly used for fingerprinting according to DuckDuckGo tracker radar.
 
 When one of these APIs is disabled, Prebid returns a safe default value instead of reading the browser value:
 
