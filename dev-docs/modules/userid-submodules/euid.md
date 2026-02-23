@@ -52,16 +52,18 @@ The following example shows the response for a user that has opted out:
 
 ```json
 {
-  identity: 'optout',
-  status: 'optout'
+  "identity": "optout",
+  "status": "optout"
 }
 ```
 
 The following example shows the decoded EUID userId object:
 
 ```json
-euid: {
-  optout: true
+{
+  "euid": {
+    "optout": true
+  }
 }
 ```
 
