@@ -178,4 +178,4 @@ Additional information about the outcoming of privacy module processing can be o
 * [Prebid US Compliance Support](/features/mspa-usnat.html)
 * [US Custom Logic Privacy Module](/prebid-server/features/pbs-uscustomlogic.html)
 * [Activity Control system](/prebid-server/features/pbs-activitycontrols.html)
-* [IAB US National Privacy Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md)
+* [IAB US National Privacy Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20Multi-State%20Privacy%20Agreement%20(MSPA)%20US%20National%20Technical%20Specification.md)

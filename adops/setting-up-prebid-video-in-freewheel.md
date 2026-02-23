@@ -136,7 +136,7 @@ The scheme, host, and path should point to your Prebid Server cache. For instanc
 utilize Xandr's AppNexus cache:
 
 ```text
-https://prebid.adnxs.com/pbc/v1/cache
+https://prebid.example.com/pbc/v1/cache
 ```
 
 The query should have one key-value items:
@@ -152,13 +152,13 @@ The second macro, `#{request.keyValue(“hb_cache_id”)`, formats the unique Pr
 In real-time, when the dynamic URL is formatted it will appear like:
 
 ```text
-https://prebid.adnxs.com/pbc/v1/cache?uuid=12.00_391_30s_6c422e51-46cf-4b0a-ae41-64c61c1ca125
+https://prebid.example.com/pbc/v1/cache?uuid=12.00_391_30s_6c422e51-46cf-4b0a-ae41-64c61c1ca125
 ```
 
 In order for the above URL to format correctly ensure that the URL in the text box appears as:  
 
 ```text
-https://prebid.adnxs.com/pbc/v1/cache?uuid=#{ad.placement.name}_#{request.keyValue("hb_cache_id")}
+https://prebid.example.com/pbc/v1/cache?uuid=#{ad.placement.name}_#{request.keyValue("hb_cache_id")}
 ```
 
 Your ad ops should now be completed and set up for premium long-form video.

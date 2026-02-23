@@ -7,7 +7,7 @@ sidebarType : 5
 ---
 
 {: .alert.alert-warning :}
-51Degrees module operates using a data file. You can get started with a free Lite data file that can be downloaded [here](https://github.com/51Degrees/device-detection-data/blob/main/51Degrees-LiteV4.1.hash). The Lite file is updated monthly and detects limited device information. To access the daily updated full data file with comprehensive device information please [contact 51Degrees](https://51degrees.com/contact-us).
+51Degrees module operates using a data file. You can get started with a free Lite data file that can be downloaded from the [51Degrees data repository](https://github.com/51Degrees/device-detection-data/blob/main/51Degrees-LiteV4.1.hash). The Lite file is updated monthly and detects limited device information. To access the daily updated full data file with comprehensive device information please [contact 51Degrees](https://51degrees.com/contact-us).
 
 # 51Degrees Device Detection Module
 {:.no_toc}
@@ -43,7 +43,7 @@ pbjs.setConfig({
 
 ### Data File Updates
 
-The module operates **fully autonomously and does not make any requests to any cloud services in real time to do device detection**. This is an [on-premise data](https://51degrees.com/developers/deployment-options/on-premise-data) deployment in 51Degrees terminology. The module operates using a local data file that is loaded into memory fully or partially during operation. The data file is occasionally updated to accomodate new devices, so it is recommended to enable automatic data updates in the module configuration. Alternatively `watch_file_system` option can be used and the file may be downloaded and replaced on disk manually. See the configuration options below. 
+The module operates **fully autonomously and does not make any requests to any cloud services in real time to do device detection**. This is an [on-premise data](https://51degrees.com/developers/deployment-options/on-premise-data) deployment in 51Degrees terminology. The module operates using a local data file that is loaded into memory fully or partially during operation. The data file is occasionally updated to accommodate new devices, so it is recommended to enable automatic data updates in the module configuration. Alternatively `watch_file_system` option can be used and the file may be downloaded and replaced on disk manually. See the configuration options below.
 
 ## Setup
 
@@ -251,10 +251,11 @@ The parameter names are specified with full path using dot-notation.  F.e. `sect
 ```
 
 {: .table .table-bordered .table-striped }
+
 | PBS-Java Name | PBS-Go Name | Required| Type | Default  value | Description |
 |:-------|:-------|:------|:------|:------|:---------------------------------------|
 | `account-filter` .`allow-list` |  `account_filter` .`allow_list`  |  No | list of strings | [] (empty list) | A list of account IDs that are allowed to use this module - only relevant if enabled globally for the host. If empty, all accounts are allowed. Full-string match is performed (whitespaces and capitalization matter). |
-| `data-file` .`path`    |  `data_file` .`path`  |  **Yes** | string | null |The full path to the device detection data file. Sample file can be downloaded from [data repo on GitHub](https://github.com/51Degrees/device-detection-data/blob/main/51Degrees-LiteV4.1.hash), or get an Enterprise data file [here](https://51degrees.com/pricing). |
+| `data-file` .`path`    |  `data_file` .`path`  |  **Yes** | string | null |The full path to the device detection data file. Sample file can be downloaded from the [51Degrees data repository](https://github.com/51Degrees/device-detection-data/blob/main/51Degrees-LiteV4.1.hash), or get an Enterprise data file from the [51Degrees pricing page](https://51degrees.com/pricing). |
 | `data-file` .`make-temp-copy` | `data_file` .`make_temp_copy` | No | boolean | true | If true, the engine will create a temporary copy of the data file rather than using the data file directly. |
 | `data-file` .`update` .`auto` | `data_file` .`update` .`auto` | No | boolean | true | If enabled, the engine will periodically (at predefined time intervals - see `polling-interval` parameter) check if new data file is available. When the new data file is available engine downloads it and switches to it for device detection. If custom `url` is not specified `license_key` param is required. |
 | `data-file` .`update` .`on-startup` | `data_file` .`update` .`on_startup` | No | boolean | true | If enabled, engine will check for the updated data file right away without waiting for the defined time interval. |

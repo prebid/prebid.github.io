@@ -134,4 +134,4 @@ For example, if you had content such as "The adpod unit is only available for lo
 
 {% include alerts/alert_note.html content="The adpod unit is only available for long-form video." %}
 
-Use the Liquid `capture` command when you are creating an alert that is very long or contains HTML formating.
+Use the Liquid `capture` command when you are creating an alert that is very long or contains HTML formatting.

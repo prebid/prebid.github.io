@@ -40,6 +40,7 @@ The TCF Control Module adds the following:
 The following table details the Prebid.js activities that fall under the [Transparency and Consent Framework (TCF)](https://iabeurope.eu/iab-europe-transparency-consent-framework-policies/) scope:
 
 {: .table .table-bordered .table-striped }
+
 | In-Scope Activity | TCF Legal Basis Required | Activity | Prebid.js Version |
 | --- | --- | --- | --- |
 | Invoke usersync pixels | Purpose 1 - Store and/or access information on a device | May prevent one or more vendor usersyncs. | 3.14+ |
@@ -67,6 +68,7 @@ and (2) setConfig `consentManagement.gdpr.cmpApi` to either 'iab' or 'static'
 The following fields related to anonymizing aspects of the auction are supported in the [`consentManagement`](/dev-docs/modules/consentManagementTcf.html) object:
 
 {: .table .table-bordered .table-striped }
+
 | Param | Type | Description | Example |
 | --- | --- | --- | --- |
 | gdpr.rules | `Array of Objects` | Lets the publisher override the default behavior. | |
@@ -77,11 +79,12 @@ The following fields related to anonymizing aspects of the auction are supported
 | gdpr.rules[].softVendorExceptions | `Array of Strings` | Defines a list of biddercodes or module names that are exempt from the checking vendor signals for this purpose. Unlike with `vendorExceptions`, Purpose consent is still checked. **Note:** Prebid.org recommends working with a privacy lawyer before making enforcement exceptions for any vendor. | ["bidderA", "userID-module-B"] |
 | gdpr.rules[].eidsRequireP4Consent | `Boolean` | Only relevant on the personalizedAds `purpose`. If true, user IDs and EIDs will not be shared without evidence of consent for TCF Purpose 4. If false, evidence of consent for any of Purposes 2-10 is sufficient for sharing user IDs and EIDs. Defaults to false. See [note](#note-transmitEids) | true |
 | strictStorageEnforcement | `Boolean` | If false (the default), allows some use of storage regardless of purpose 1 consent - see [note](#strictStorageEnforcement) below | true |
+| gdpr.rules[].deferS2Sbidders | `Boolean` | If true, allows s2s bidders to bypass vendor consent check and delegate it to server. Applies only to `basicAds` rule. Defaults to true | true |
 
 Notes:
 
 * <a id="strictStorageEnforcement"></a> By default, Prebid allows some limited use of storage even when purpose 1 consent was not given: this is limited to non-PII, such as [category translation mappings](/dev-docs/modules/categoryTranslation.html), or temporary test data used to probe the browser's storage features. If `strictStorageEnforcement` is true, Purpose 1 consent will always be enforced for any access to storage.
-* To accomodate Prebid.js modules and adapters that don't have GVL IDs, the vendorExceptions list is based on Prebid.js biddercodes instead of Global Vendor List (GVL) IDs (i.e. "bidderA" instead of "12345").
+* To accommodate Prebid.js modules and adapters that don't have GVL IDs, the vendorExceptions list is based on Prebid.js biddercodes instead of Global Vendor List (GVL) IDs (i.e. "bidderA" instead of "12345").
 * An alternate way of establishing a GVL mapping is to define a 'gvlMapping' object:
 
 ```javascript
@@ -98,8 +101,7 @@ pbjs.setConfig({
 The following examples cover a range of use cases and show how Prebid.js supports
 configuration of different business rules.
 
-{: .alert.alert-warning :}
-Prebid.org recommends working with a privacy lawyer before making enforcement exceptions for any vendor.
+{% include dev-docs/vendor-exception.md %}
 
 1. Restrict device access activity and basic ads. These are the default values (in Prebid.js 4.0) if the module is included in the build.
 

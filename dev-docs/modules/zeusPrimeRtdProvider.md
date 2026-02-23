@@ -69,4 +69,4 @@ Zeus Prime requires the gamId parameter, or the Google Ad Manager Network Code, 
 
 ## Troubleshooting
 
-For troubleshooting steps and guides to assist with verifying your Zeus Prime installation, see our [installation documentation](https://zeustechnology.com/docs/installation).
+For troubleshooting steps and guides to assist with verifying your Zeus Prime installation, see our [installation documentation](https://zeustechnology.com/).

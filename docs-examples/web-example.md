@@ -84,8 +84,14 @@ function initAdserver() {
   if (pbjs.initAdserverSet) return;
   pbjs.initAdserverSet = true;
   googletag.cmd.push(function() {
-    pbjs.setTargetingForGPTAsync && pbjs.setTargetingForGPTAsync();
-    googletag.pubads().refresh();
+    if (pbjs.libLoaded) {
+      pbjs.que.push(function() {
+        pbjs.setTargetingForGPTAsync();
+        googletag.pubads().refresh();
+      });
+    } else {
+      googletag.pubads().refresh();
+    }
   });
 }
 

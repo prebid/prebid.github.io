@@ -21,6 +21,7 @@ SharedId is a convenient Prebid-owned first party identifier within the [Prebid 
 There are multiple ways to integrate SharedId on your site. See the table below for a breakout of options, and the rest of this document for detailed integration instructions.
 
 {: .table .table-bordered .table-striped }
+
 | Implementation | Description | Cookie Lifetime | Safari Cookie Lifetime | Technical Difficulty | Revenue Benefit |
 | --- | --- | --- | --- | --- | --- |
 | 3rd Party Cookie Only | No first party cookie solution. | Some Blocked | Blocked | None | Low |
@@ -149,7 +150,7 @@ removed in Prebid.js 5.0.
 
 ### Configuration
 
-You can find available configuration options for the SharedID module [here](https://docs.prebid.org/dev-docs/modules/userid-submodules/sharedid.html)
+You can find available configuration options for the SharedID module [in the SharedId user ID submodule documentation](https://docs.prebid.org/dev-docs/modules/userid-submodules/sharedid.html)
 
 ### Privacy Discussion
 
@@ -211,6 +212,7 @@ If custom configurations are needed, define the pubcid_options object before inc
 Below are the available configuration options for the PubCID script.
 
 {: .table .table-bordered .table-striped }
+
 | Parameter Name | Type | Description | | Example |
 | --- | --- | --- | --- | --- |
 | create | boolean | If true, then an id is created automatically by the script if it's missing. Default is true. If your server has a component that generates the id instead, then this should be set to false | | `true` |
@@ -218,6 +220,7 @@ Below are the available configuration options for the PubCID script.
 | extend | boolean | If true, the the expiration time is automatically extended whenever the script is executed even if the id exists already. Default is true. If false, then the id expires from the time it was initially created. | For publisher server support only. If true, the publisher's server will create the (pubcid) cookie. Default is true. | `true` |
 | pixelUrl | string (optional) | For publisher server support only. Where to call out to for a server cookie. | | `/wp-json/pubcid/v1/extend/` |
 | type | string | Type of storage. It's possible to specify one of the following: 'html5', 'cookie'. Default is 'html5' priority, aka local storage, and fall back to cookie if local storage is unavailable. | If true, the expiration time of the stored IDs will be refreshed during each page load. Default is false. | `cookie` |
+| inserter | string (optional) | Adds this value into the EID object `inserter` field. | | `myPartner` |
 
 #### Example Configurations
 

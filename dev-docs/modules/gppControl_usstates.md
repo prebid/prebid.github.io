@@ -117,7 +117,7 @@ You can also use the [Prebid.js Download](/download.html) page.
 
 - [IAB Global Privacy Platform Full Specification Repository](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform)
 - [IAB Global Privacy Platform CMP API Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Core/CMP%20API%20Specification.md)
-- [IAB Global Privacy Platform USNat string Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md)
+- [IAB Global Privacy Platform USNat string Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20Multi-State%20Privacy%20Agreement%20(MSPA)%20US%20National%20Technical%20Specification.md
 - [Prebid US Compliance Support](/features/mspa-usnat.html)
 - [Prebid Activity Controls](/dev-docs/activity-controls.html)
 - [Prebid Consent Management - US Privacy Module](/dev-docs/modules/consentManagementUsp.html)

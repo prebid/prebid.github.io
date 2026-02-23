@@ -267,3 +267,4 @@ The following list contains documentation for known supported Plugin Renderer pr
 | Company | Documentation                                                                                 |
 |-------|-----------------------------------------------------------------------------------------------|
 | Teads | [Teads Plugin Renderer Docs](https://support.teads.tv/support/solutions/articles/36000459747) |
+| InMobi | [InMobi Plugin Renderer Docs](https://support.inmobi.com/monetize/integrating-inmobi-with-mediation/prebid-plugin-renderer) |
