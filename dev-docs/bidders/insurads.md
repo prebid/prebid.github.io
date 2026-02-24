@@ -3,7 +3,7 @@ layout: bidder
 title: InsurAds
 description: Prebid InsurAds Bidder Adapter
 pbjs: true
-pbs: true
+pbs: false
 biddercode: insurads
 gvl_id: 596
 usp_supported: true
