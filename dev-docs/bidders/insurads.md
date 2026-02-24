@@ -55,7 +55,7 @@ pbjs.bidderSettings = {
 
 ### First Party Data
 
-Publishers should use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html).
+Publishers should use the `ortb2` method of setting [First Party Data](/features/firstPartyData.html).
 
 ### Test Parameters
 
