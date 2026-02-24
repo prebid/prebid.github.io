@@ -29,20 +29,21 @@ The following configuration parameters are available:
 
 {: .table .table-bordered .table-striped }
 
-| Param under userSync.userIds[] | Scope | Type | Description | Example |
-| --- | --- | --- | --- | --- |
-| name | Required | String | The name of this module: `"id5Id"` | `"id5Id"` |
-| params | Required | Object | Details for the ID5 ID. | |
-| params.partner | Required | Number | This is the ID5 Partner Number obtained from registering with ID5. | `173` |
-| params.externalModuleUrl | Optional | String | URL to the external ID5 module. Highly recommended for the best integration possible. This is additional javascript unreviewed by the prebid.js community | `https://cdn.id5-sync.com/api/1.0/id5PrebidModule.js` |
-| params.pd | Optional | String | Partner-supplied data used for linking ID5 IDs across domains. See [our documentation](https://wiki.id5.io/en/identitycloud/retrieve-id5-ids/passing-partner-data-to-id5) for details on generating the string. Omit the parameter or leave as an empty string if no data to supply | `"MT1iNTBjY..."` |
-| params.abTesting | Optional | Object | Allows publishers to easily run an A/B Test. If enabled and the user is in the Control Group, the ID5 ID will NOT be exposed to bid adapters for that request | Disabled by default |
-| params.abTesting.enabled | Optional | Boolean | Set this to `true` to turn on this feature | `true` or `false` |
-| params.abTesting.controlGroupPct | Optional | Number | Must be a number between `0.0` and `1.0` (inclusive) and is used to determine the percentage of requests that fall into the control group (and thus not exposing the ID5 ID). For example, a value of `0.20` will result in 20% of requests without an ID5 ID and 80% with an ID. | `0.1` |
-| params.disableExtensions | Optional | Boolean | Set this to `true` to force turn off extensions call. Default `false` | `true` or `false` |
-| params.canCookieSync | Optional | Boolean | Set this to `true` to enable cookie syncing with other ID5 partners. See [our documentation](https://wiki.id5.io/docs/initiate-cookie-sync-to-id5) for details. Default `false` | `true` or `false` |
-| params.provider | Optional | String | An identifier provided by ID5 to technology partners who manage API deployments on behalf of their clients. Reach out to ID5 if you have questions about this parameter. | `"providerName"` |
+| Param under userSync.userIds[] | Scope | Type    | Description | Example                                               |
+| --- | --- |---------| --- |-------------------------------------------------------|
+| name | Required | String  | The name of this module: `"id5Id"` | `"id5Id"`                                             |
+| params | Required | Object  | Details for the ID5 ID. |                                                       |
+| params.partner | Required | Number  | This is the ID5 Partner Number obtained from registering with ID5. | `173`                                                 |
+| params.externalModuleUrl | Optional | String  | URL to the external ID5 module. Highly recommended for the best integration possible. This is additional javascript unreviewed by the prebid.js community | `https://cdn.id5-sync.com/api/1.0/id5PrebidModule.js` |
+| params.pd | Optional | String  | Partner-supplied data used for linking ID5 IDs across domains. See [our documentation](https://wiki.id5.io/en/identitycloud/retrieve-id5-ids/passing-partner-data-to-id5) for details on generating the string. Omit the parameter or leave as an empty string if no data to supply | `"MT1iNTBjY..."`                                      |
+| params.abTesting | Optional | Object  | Allows publishers to easily run an A/B Test. If enabled and the user is in the Control Group, the ID5 ID will NOT be exposed to bid adapters for that request | Disabled by default                                   |
+| params.abTesting.enabled | Optional | Boolean | Set this to `true` to turn on this feature | `true` or `false`                                     |
+| params.abTesting.controlGroupPct | Optional | Number  | Must be a number between `0.0` and `1.0` (inclusive) and is used to determine the percentage of requests that fall into the control group (and thus not exposing the ID5 ID). For example, a value of `0.20` will result in 20% of requests without an ID5 ID and 80% with an ID. | `0.1`                                                 |
+| params.disableExtensions | Optional | Boolean | Set this to `true` to force turn off extensions call. Default `false` | `true` or `false`                                     |
+| params.canCookieSync | Optional | Boolean | Set this to `true` to enable cookie syncing with other ID5 partners. See [our documentation](https://wiki.id5.io/docs/initiate-cookie-sync-to-id5) for details. Default `false` | `true` or `false`                                     |
+| params.provider | Optional | String  | An identifier provided by ID5 to technology partners who manage API deployments on behalf of their clients. Reach out to ID5 if you have questions about this parameter. | `"providerName"`                                      |
 | params.gamTargetingPrefix | Optional | String  | When this parameter is set the ID5 module will set appropriate GAM pubads targeting tags                                                                                                                                                                                            | `"id5"`                                               |
+| params.exposeTargeting | Optional | boolean | When this parameter is set the ID5 module will execute `window.id5tags.cmd` callbacks for custom targeting tags                                                                                                       | `false`                                               |
 
 {: .alert.alert-info :}
 **NOTE:** The ID5 ID that is delivered to Prebid will be encrypted by ID5 with a rotating key to avoid unauthorized usage and to enforce privacy requirements. Therefore, we strongly recommend setting `storage.refreshInSeconds` to `2` hours (`7200` seconds) or less to ensure all demand partners receive an ID that has been encrypted with the latest key, has up-to-date privacy signals, and allows them to transact against it.
@@ -65,6 +66,18 @@ If `params.gamTargetingPrefix` is set to a non-empty value and an ID5 module has
 
 - `{prefix}_id` - set to `y` if a valid id5id was present, otherwise tag is not set
 - `{prefix}_ab` - set if `abTesting` was enabled - `n` if in Normal group (with ID5 returned), `c` if in Control group (without ID5 returned)
+
+### Tags exposed via window.id5tags
+The ID5 UserId module can expose targeting tags through a global window.id5tags object, if enabled by setting params.exposeTargeting: true.
+If `params.exposeTargeting` is set to true and an ID5 module has initialized, the ID5 module will expose tags through a command queue pattern
+Publishers can queue callback functions to access tags:
+
+```javascript
+window.id5tags = window.id5tags || { cmd: [] };
+window.id5tags.cmd.push((tags) => {
+// Use for custom analytics, targeting, etc.
+});
+```
 
 ### A Note on Using Multiple Wrappers
 If you or your monetization partners are deploying multiple Prebid wrappers on your websites, you should make sure you add the ID5 ID User ID module to *every* wrapper. Only the bidders configured in the Prebid wrapper where the ID5 ID User ID module is installed and configured will be able to pick up the ID5 ID. Bidders from other Prebid instances will not be able to pick up the ID5 ID.
@@ -95,7 +108,8 @@ pbjs.setConfig({
           controlGroupPct: 0.1   // valid values are 0.0 - 1.0 (inclusive)
         },
         canCookieSync: true,      // optional, has effect only when externalModuleUrl is used
-        gamTargetingPrefix: "id5" // optional, when set the ID5 module will set gam targeting paramaters with this prefix
+        gamTargetingPrefix: "id5", // optional, when set the ID5 module will set gam targeting paramaters with this prefix
+          exposeTargeting: true // optional, when set the ID5 module will execute `window.id5tags.cmd` callbacks for custom targeting tags 
       },
       storage: {
         type: 'html5',           // "html5" is the recommended storage type
