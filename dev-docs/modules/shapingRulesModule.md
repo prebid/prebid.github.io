@@ -57,7 +57,7 @@ in Japan. It can be provided either statically or by fetching it from external e
           "default": [],
           "rules": [
             {
-              "condition": ["true"],
+              "conditions": ["true"],
               "results": [
                 {
                   "function": "excludeBidders",
@@ -68,7 +68,7 @@ in Japan. It can be provided either statically or by fetching it from external e
               ]
             },
             {
-              "condition": [],
+              "conditions": [],
               "results": []
             }
           ]
@@ -105,7 +105,7 @@ in Japan. It can be provided either statically or by fetching it from external e
 | `ruleSets[].modelGroups[].schema[].args`                | Arguments for the schema function.                                                                                                         | —       |
 | `ruleSets[].modelGroups[].analyticsKey`                 | Optional key used to produce aTags, identifying experiments or optimization targets.                                                       | —       |
 | `ruleSets[].modelGroups[].rules[]`                      | Optional rule array; if absent, only the default rule is used.                                                                             | —       |
-| `ruleSets[].modelGroups[].rules[].condition[]`          | Conditions that must be met for the rule to apply.                                                                                         | —       |
+| `ruleSets[].modelGroups[].rules[].conditions[]`         | Conditions that must be met for the rule to apply.                                                                                         | —       |
 | `ruleSets[].modelGroups[].rules[].results[]`            | Resulting actions triggered when conditions are met.                                                                                       | —       |
 | `ruleSets[].modelGroups[].rules[].results[].function`   | Function defining the result action.                                                                                                       | —       |
 | `ruleSets[].modelGroups[].rules[].results[].args`       | Arguments for the result function.                                                                                                         | —       |
@@ -197,7 +197,7 @@ pbjs.setConfig({
               ],
               rules: [
                 {
-                  condition: ["true"],
+                  conditions: ["true"],
                   results: [
                     {
                       function: "excludeBidders",
@@ -252,7 +252,7 @@ pbjs.setConfig({
               ],
               rules: [
                 {
-                  condition: ["Chrome"],
+                  conditions: ["Chrome"],
                   results: [
                     {
                       function: "excludeBidders",
