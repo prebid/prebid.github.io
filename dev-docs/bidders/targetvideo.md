@@ -9,6 +9,7 @@ tcfeu_supported: true
 schain_supported: true
 pbjs: true
 prebid_member: true
+userIds: all
 floors_supported: true
 sidebarType: 1
 multiformat_supported: will-bid-on-one
