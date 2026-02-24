@@ -5,6 +5,7 @@ pbs: true
 media_types: native
 biddercode: yeahmobi
 prebid_member: true
+sidebarType: 1
 ---
 
 ### Bid Params

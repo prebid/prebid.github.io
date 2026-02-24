@@ -5,11 +5,13 @@ description: Prebid WIPES Bidder Adaptor
 pbjs: true
 biddercode: wipes
 media_types: video
+sidebarType: 1
 ---
 
-### Note:
+### Note
+
 Publishers needs to be set up and approved by WIPES team to enable this adapter.
-Please contact support@wipestream.com for further information.
+Please contact <support@wipestream.com> for further information.
 
 ### Bid Params
 

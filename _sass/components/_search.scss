@@ -1,0 +1,13 @@
+.algolia-autocomplete {
+  .algolia-docsearch-suggestion--category-header {
+    display: none !important;
+  }
+}
+
+.c-search {
+  @include media('<=990px') {
+    .DocSearch-Button {
+      margin-left: 0;
+    }
+  }
+}

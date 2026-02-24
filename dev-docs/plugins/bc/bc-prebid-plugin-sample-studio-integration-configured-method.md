@@ -21,7 +21,7 @@ This page presents a sample publisher page using the Configured Integration Meth
 
 ## Sample Integration
 
-```
+```html
 <!doctype html>
 <html>
 <head>
@@ -56,5 +56,3 @@ This page presents a sample publisher page using the Configured Integration Meth
 </body>
 </html>
 ```
-
-

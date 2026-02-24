@@ -5,12 +5,13 @@ description: iPROM Prebid Adaptor
 biddercode: iprom
 media_types: banner
 pbjs: true
-enable_download: false
-pbjs_version_notes: not in 5.x, in 6.2+
+enable_download: true
+sidebarType: 1
 ---
 
-### Prebid Server Note:
-For registration with our bidder please see our website at [www.iprom.eu](https://www.iprom.eu) or contact us at support@iprom.si.
+### Prebid Server Note
+
+For registration with our bidder please see our website at [www.iprom.eu](https://www.iprom.eu) or contact us at <support@iprom.si>.
 
 ### Bid Params
 

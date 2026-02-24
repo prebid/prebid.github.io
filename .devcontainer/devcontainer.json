@@ -1,0 +1,11 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/jekyll:2",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "rebornix.Ruby",
+        "DavidAnson.vscode-markdownlint"
+      ]
+    }
+  }
+}

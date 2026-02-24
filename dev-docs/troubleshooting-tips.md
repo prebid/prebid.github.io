@@ -11,6 +11,7 @@ sidebarType: 1
 
 
 # Tips for Troubleshooting
+
 {:.no_toc}
 
 Moved to [the PBJS Troubleshooting Guide](/troubleshooting/troubleshooting-guide.html).

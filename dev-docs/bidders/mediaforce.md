@@ -2,10 +2,11 @@
 layout: bidder
 title: MediaForce
 description: MediaForce Prebid Bidder Adapter
-media_types: banner, native 
+media_types: banner, native, video
 biddercode: mediaforce
 pbjs: true
-gdpr_supported: false
+tcfeu_supported: false
+sidebarType: 1
 ---
 
 ### Bid params

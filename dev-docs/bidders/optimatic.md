@@ -5,9 +5,10 @@ description: Prebid Optimatic Bidder Adaptor
 pbjs: true
 biddercode: optimatic
 media_types: video
+sidebarType: 1
 ---
 
-### Note:
+### Note
 
 Optimatic adapter only supports video ads.
 

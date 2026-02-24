@@ -8,5 +8,4 @@ prebid_member: true
 
 #### Registration
 
-Please visit [https://pubstack.io/?source=prebid.org-analytics](https://pubstack.io/?source=prebid.org-analytics) for more information.
-
+Please visit [pubstack.io/?source=prebid.org-analytics](https://pubstack.io/?source=prebid.org-analytics) for more information.

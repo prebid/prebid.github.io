@@ -4,19 +4,21 @@ title: PubNative
 pbs: true
 media_types: banner, video, native
 biddercode: pubnative
-gdpr_supported: true
+tcfeu_supported: false
 prebid_member: true
 schain_supported: true
 coppa_supported: true
 usp_supported: true
+sidebarType: 1
 ---
 
 ### Registration
 
 Before adding PubNative as a new bidder, there are 3 prerequisites:
+
 - As a Publisher, you need to have Prebid Mobile SDK integrated.
 - You need a configured Prebid Server (either self-hosted or hosted by 3rd party).
-- You need to be integrated with Ad Server SDK (e.g. Mopub) or internal product which communicates with Prebid Mobile SDK.
+- You need to be integrated with Ad Server SDK or internal product which communicates with Prebid Mobile SDK.
 
 Please see [documentation](https://developers.pubnative.net/docs/prebid-adding-pubnative-as-a-bidder) for more info.
 

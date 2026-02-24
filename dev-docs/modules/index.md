@@ -14,7 +14,7 @@ The core of Prebid.js contains only the foundational code needed for header bidd
 - [Analytics adapters](/overview/analytics.html)
 - Any other extensible functionality - documented on this page
 
-* TOC
+- TOC
 {:toc}
 
 {% assign module_pages = site.pages | where: "page_type", "module" %}
@@ -57,7 +57,7 @@ than others. See [the realTimeData setConfig](/dev-docs/publisher-api-reference/
     </tr>
   </thead>
   <tbody>
-{% for page in module_pages %}{% if page.recommended == true or page.vendor_specific == true %}{% continue %}{% endif %}
+{% for page in module_pages %}{% if page.recommended == true or page.vendor_specific == true or page.enable_download == false %}{% continue %}{% endif %}
     <tr>
       <td><a href="{{page.url}}"><strong>{{page.display_name}}</strong></a></td>
       <td>{{page.description}}</td>
@@ -68,6 +68,7 @@ than others. See [the realTimeData setConfig](/dev-docs/publisher-api-reference/
 </table>
 
 ## Vendor-Specific Modules
+
 These modules may require accounts with a service provider.
 <table class="table table-bordered table-striped">
   <thead>
@@ -78,7 +79,7 @@ These modules may require accounts with a service provider.
     </tr>
   </thead>
   <tbody>
-{% for page in module_pages %}{% if page.recommended == true %}{% continue %}{% endif %}{% if page.vendor_specific == true %}
+{% for page in module_pages %}{% if page.recommended == true or page.enable_download == false %}{% continue %}{% endif %}{% if page.vendor_specific == true %}
     <tr>
       <td><a href="{{page.url}}"><strong>{{page.display_name}}</strong></a></td>
       <td>{{page.description}}</td>
@@ -88,9 +89,78 @@ These modules may require accounts with a service provider.
 </tbody>
 </table>
 
+## User ID Modules
+
+UserID modules conform to a consistent set of publisher controls. The publisher can choose to run multiple user id modules, define an overall amount of time they're willing to wait for
+results. See [the userSync setConfig](/dev-docs/publisher-api-reference/setConfig.html#setConfig-ConfigureUserSyncing-UserSyncProperties) reference and the [User ID Module](/dev-docs/modules/userId) for more details.
+
+{% assign userid_module_pages = site.pages | where: "layout", "userid" %}
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Module</th>
+      <th>Description</th>
+      <th>EID Source</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for page in userid_module_pages %}
+    <tr>
+      <td><a href="{{page.url}}"><strong>{{page.title}}</strong></a></td>
+      <td>{{page.description}}</td>
+      <td>{{page.eidsource}}</td>
+    </tr>
+{% endfor %}
+</tbody>
+</table>
+
+## Loading modules separately
+
+There are situations where a publisher uses different modules depending on various factors, such as specific pages or locations. This creates the inconvenience of having to load a Prebid build that is larger than what a particular page actually needs. While it’s possible to work around this by creating separate Prebid builds for different pages, that approach doesn’t scale well. Since a Prebid build is composed of concatenated chunks, it’s possible to load modules separately, allowing you to have a main Prebid file that contains only the modules shared across all pages.
+
+### Example
+
+This is the example of loading modules separately for the self-hosted (e.g. CDN) Prebid build.
+Instructions for importing modules when using the npm package can be found in the [Readme file](https://github.com/prebid/Prebid.js/blob/master/README.md)
+
+1. Perform full Prebid build `gulp build`
+1. Generate the main `prebid.js` file containing only the modules required across all pages: `gulp bundle --modules=<...>`
+1. Host `build/dist` folder content on your server or CDN
+1. Check the dependencies of the modules you plan to load dynamically on the current page [Dependency tree](https://cdn.jsdelivr.net/npm/prebid.js@latest/dist/chunks/dependencies.json)
+1. Load the required modules, their dependencies using script tags:
+
+```html
+<html>
+<head>
+    <title>Page 1</title>>
+    <script src="https://<your-cdn>/prebid/ortbConverter.js"></script> <!-- Depedency of openxBidAdapter !-->
+    <script src="https://<your-cdn>/prebid/openxBidAdapter.js"></script> <!-- Bid adapter module !-->
+    <script src="https://<your-cdn>/prebid/id5IdSystem.js"></script> <!-- Another module (doesn't require any additional dependencies) !-->
+    <script src="https://<your-cdn>/prebid/prebid.js"></script> <!-- Load prebid.js last !-->
+</head>
+```
+
+### Storage control usage
+
+When working with the `storageControl` module you will need to explicitly import disclosure metadata. To do this, pair each module import with its corresponding metadata file `<module>.metadata.js`
+
+```html
+<html>
+<head>
+    <title>Page 1</title>>
+    <script src="https://<your-cdn>/prebid/ortbConverter.js"></script> <!-- Depedency of openxBidAdapter !-->
+    <script src="https://<your-cdn>/prebid/openxBidAdapter.js"></script> <!-- Bid adapter module !-->
+    <script src="https://<your-cdn>/prebid/openxBidAdapter.metadata.js"></script> <!-- Bid adapter module's metadata !-->
+    <script src="https://<your-cdn>/prebid/id5IdSystem.js"></script> <!-- Another module (doesn't require any additional dependencies) !-->
+    <script src="https://<your-cdn>/prebid/id5IdSystem.metadata.js"></script> <!-- Another module's metadata !-->
+    <script src="https://<your-cdn>/prebid/prebid.js"></script> <!-- Load prebid.js last !-->
+</head>
+```
+
 ## Further Reading
 
-+ [Source code of all modules](https://github.com/prebid/Prebid.js/tree/master/modules)
-+ [How to add a Bid Adapter](/dev-docs/bidder-adaptor.html)
-+ [How to add an Analytics Adapter](/dev-docs/integrate-with-the-prebid-analytics-api.html)
-+ [How to add a Real Time Data Submodule](/dev-docs/add-rtd-submodule.html)
+- [Source code of all modules](https://github.com/prebid/Prebid.js/tree/master/modules)
+- [How to add a Bid Adapter](/dev-docs/bidder-adaptor.html)
+- [How to add an Analytics Adapter](/dev-docs/integrate-with-the-prebid-analytics-api.html)
+- [How to add a Real Time Data Submodule](/dev-docs/add-rtd-submodule.html)

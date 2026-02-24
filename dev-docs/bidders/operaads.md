@@ -3,8 +3,8 @@ layout: bidder
 title: OperaAds
 description: Prebid OperaAds Bidder Adapter
 biddercode: operaads
-gdpr_supported: false
-gvl_id: none
+tcfeu_supported: true
+gvl_id: 1135
 usp_supported: false
 coppa_supported: true
 schain_supported: true
@@ -15,11 +15,12 @@ deals_supported: false
 pbjs: true
 pbs: true
 prebid_member: false
+sidebarType: 1
 ---
 
 ### Registration
 
-If you have any questions regarding set up, please reach out to your account manager or adtech-prebid-group@opera.com.
+If you have any questions regarding set up, please reach out to your account manager or <adtech-prebid-group@opera.com>.
 
 ### Bid Parameters
 

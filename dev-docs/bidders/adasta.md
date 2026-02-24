@@ -5,6 +5,7 @@ description: Prebid Adasta Media Bidder Adaptor
 pbjs: true
 biddercode: adasta
 aliasCode : appnexus
+sidebarType: 1
 ---
 
 ### Bid Params

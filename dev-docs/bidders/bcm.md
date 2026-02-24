@@ -2,19 +2,35 @@
 layout: bidder
 title: BCM
 description: BCM Bid Adapter
-pbjs: true
 biddercode: bcm
-media_types: banner, native, video
-gdpr_supported: true
+aliasCode: adkernel
+tcfeu_supported: true
+dsa_supported: false
+gvl_id: 14 (adkernel)
 usp_supported: true
+coppa_supported: true
+gpp_sids: tcfeu, usp
 schain_supported: true
-aliasCode : adkernel
+dchain_supported: false
+userId: all
+media_types: banner, video, native
+safeframes_ok: true
+deals_supported: false
+floors_supported: true
+fpd_supported: true
+pbjs: true
+pbs: false
+pbs_app_supported: false
+prebid_member: false
+multiformat_supported: will-bid-on-any
+ortb_blocking_supported: true
+privacy_sandbox: no
+sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The BCM adapter requires approval and setup. Please reach out to contact@bcm.ltd or visit us at bcm.ltd for more details.
-
+The BCM adapter requires approval and setup. Please reach out to <contact@bcm.ltd> or visit us at bcm.ltd for more details.
 
 ### Bid Params
 
@@ -22,4 +38,4 @@ The BCM adapter requires approval and setup. Please reach out to contact@bcm.ltd
 | Name     | Scope    | Description           | Example                   | Type     |
 |----------|----------|-----------------------|---------------------------|----------|
 | `host`   | required | Our Host  - Do Not Change   | `'serve.datacygnal.io'`   | `string` |
-| `zoneId` | required | Example RTB zone id   |         `'12345'`         | `string` |
+| `zoneId` | required | Example RTB zone id   |         `12345`         | `integer` |

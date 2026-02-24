@@ -5,10 +5,12 @@ description: Prebid Quantcast Bidder Adaptor
 pbjs: true
 biddercode: quantcast
 media_types: video
-gdpr_supported: true
+gvl_id: 11
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 prebid_member: true
+sidebarType: 1
 ---
 
 ### Bid Params

@@ -31,14 +31,14 @@ Adapters are defined in the `adapters` prebid configuration option.  This is an 
 
 Each adapter definition is an object, which should contain the following fields:
 
-- `id` - this is the unique identifier of the adapter.
-    - This value should be a string; it should be the same value that the adapter is going to use to store the references to itself after it has been loaded.
-    - This is also the same identifier that the Prebid plugin is going to use to communicate with the adapter once it has been loaded.
-- `url` - this is the URL that the plugin will use to load in the adapter script.
+* `id` - this is the unique identifier of the adapter.
+  * This value should be a string; it should be the same value that the adapter is going to use to store the references to itself after it has been loaded.
+  * This is also the same identifier that the Prebid plugin is going to use to communicate with the adapter once it has been loaded.
+* `url` - this is the URL that the plugin will use to load in the adapter script.
 
 ### Example Adapter Configuration
 
-```
+```javascript
  options.adapters = [{id : 'myPluginAdapter', url : 'https://my-path/my-plugin-adapter.js'}];
 ```
 
@@ -50,7 +50,7 @@ For more information about adapter configuration, see  **[Prebid Options]({{site
 
 By default, the Brightcove Prebid Plugin supports the following adapter API method:
 
-- `enablePrebidPlugin`
+* `enablePrebidPlugin`
 
 If you are customizing the general behavior of the plugin and want to support other adapter entry points, you can do so in your own build of the Prebid plugin.
 
@@ -70,86 +70,87 @@ This is a synchronous call.  This entry point should return a value as described
 
 The `enablePrebidPlugin` method of the adapter should return one of the following values:
 
-- `true`: The Prebid plugin processing has been enabled and the plugin will continue its handling of the Prebid configuration provided to it.  If everything else proceeds without any errors, then the "winning" ad should play.
-- `false`: The prebid plugin processing has been disabled.  The plugin will terminate its processing and no ad should play.
-- `pending object`: The adapter does not yet know whether to enable the Prebid plugin or not.  In this case, the contents of the `pending object` should be:
-    - timeout: The maximum time in milliseconds that the adapter is requesting that the plugin should wait for a final answer.
-    - default: A boolean (`true` or `false`) that represents the final answer from the adapter if the adapter cannot return an explicit answer before the timeout occurs.
-    - poll: A function that the plugin can use to continue to query the adapter for a final decision as often as needed during the timeout period.
-        - poll function prototype:  function()
-        - poll function will return one of the following values:
-            - true: enable the Prebid plugin as above
-            - false: disable the Prebid plugin as above
-            - null: adapter is still undecided
-        - sample pending object response:
-        ```
-            {timeout: 5000, default: true, poll: adapterPollingFunction}
-        ```
+* `true`: The Prebid plugin processing has been enabled and the plugin will continue its handling of the Prebid configuration provided to it.  If everything else proceeds without any errors, then the "winning" ad should play.
+* `false`: The prebid plugin processing has been disabled.  The plugin will terminate its processing and no ad should play.
+* `pending object`: The adapter does not yet know whether to enable the Prebid plugin or not.  In this case, the contents of the `pending object` should be:
+  * timeout: The maximum time in milliseconds that the adapter is requesting that the plugin should wait for a final answer.
+  * default: A boolean (`true` or `false`) that represents the final answer from the adapter if the adapter cannot return an explicit answer before the timeout occurs.
+  * poll: A function that the plugin can use to continue to query the adapter for a final decision as often as needed during the timeout period.
+    * poll function prototype:  function()
+    * poll function will return one of the following values:
+      * true: enable the Prebid plugin as above
+      * false: disable the Prebid plugin as above
+      * null: adapter is still undecided
+    * sample pending object response:
+
+    ```javascript
+        {timeout: 5000, default: true, poll: adapterPollingFunction}
+    ```
 
 ## Sample Plugin Code to Query Adapter
 
 The following sample code illustrates how the Prebid plugin checks for input from an adapter that implements the `enablePrebidPlugin` entry point.  You can find this code in the `AdapterManager` module in the Prebid plugin repository.
 
-```
-    var checkPluginEnabledForAdapter = function (adapterResponse, callback) {
-            var endTime = Date.now() + adapterResponse.timeout;
-            var timer = setInterval(function () {
-                if (Date.now() > endTime) {
-                              // stop checking for disabling plugin
-                              clearInterval(timer);
-                    callback(adapterResponse.default);
+```javascript
+var checkPluginEnabledForAdapter = function (adapterResponse, callback) {
+        var endTime = Date.now() + adapterResponse.timeout;
+        var timer = setInterval(function () {
+            if (Date.now() > endTime) {
+                            // stop checking for disabling plugin
+                            clearInterval(timer);
+                callback(adapterResponse.default);
+            }
+            else {
+                var enabled = adapterResponse.poll();
+                // call the callback only when we get an explicit true or false value
+                if (enabled === true || enabled === false) {
+                    clearInterval(timer);
+                    callback(enabled);
+                }
+            }
+        }, 200);
+    };
+
+    // checking the adapter response
+    // the response can be
+    // - false = disable prebid plugin
+    // - true = enable the prebid plugin processing
+    // - object indicating that the decision is not ready - this object will contain
+    //   - timeout = max time to wait in milliseconds for a decision from the adapter
+    //   - default = the answer to use if an explicit answer is not returned before the timeout
+    //   - poll = a function the plugin can use to poll the adapter repeatedly before the timeout looking for an answer
+    var adapterResponse = _adapters.enablePrebidPlugin();
+    if (adapterResponse === false) {
+        // disable prebid plugin here
+        // ...
+        return;
+    }
+    if (adapterResponse === true) {
+        // enable prebid plugin here
+        // ...
+    }
+    if (typeof adapterResponse === 'object' &&
+        adapterResponse.hasOwnProperty('timeout') &&
+        adapterResponse.hasOwnProperty('default') &&
+        adapterResponse.hasOwnProperty('poll')) {
+            checkPluginEnabledForAdapter(adapterResponse, function (enabled) {
+                if (!enabled) {
+                                            // disable prebid plugin here
+                                            // ...
                 }
                 else {
-                    var enabled = adapterResponse.poll();
-                    // call the callback only when we get an explicit true or false value
-                    if (enabled === true || enabled === false) {
-                        clearInterval(timer);
-                        callback(enabled);
-                    }
+                                            // enable prebid plugin here
+                                            // ...
                 }
-            }, 200);
-        };
-
-        // checking the adapter response
-        // the response can be
-        // - false = disable prebid plugin
-        // - true = enable the prebid plugin processing
-        // - object indicating that the decision is not ready - this object will contain
-        //   - timeout = max time to wait in milliseconds for a decision from the adapter
-        //   - default = the answer to use if an explicit answer is not returned before the timeout
-        //   - poll = a function the plugin can use to poll the adapter repeatedly before the timeout looking for an answer
-        var adapterResponse = _adapters.enablePrebidPlugin();
-        if (adapterResponse === false) {
-            // disable prebid plugin here
-            // ...
-            return;
-        }
-        if (adapterResponse === true) {
-            // enable prebid plugin here
-            // ...
-        }
-        if (typeof adapterResponse === 'object' &&
-            adapterResponse.hasOwnProperty('timeout') &&
-            adapterResponse.hasOwnProperty('default') &&
-            adapterResponse.hasOwnProperty('poll')) {
-                checkPluginEnabledForAdapter(adapterResponse, function (enabled) {
-                    if (!enabled) {
-                                              // disable prebid plugin here
-                                              // ...
-                    }
-                    else {
-                                              // enable prebid plugin here
-                                              // ...
-                    }
-                });
-        }
+            });
+    }
 ```
 
 ## Sample Adapter Code
 
 The following code is a sample adapter script which implements the `enablePrebidPlugin` entry point. The Prebid plugin will call `enablePrebidPlugin()` to query the adapter about whether the prebid process should be enabled or not.
 
-```
+```javascript
 /**
 * Example disable prebid plugin adapter.
 *

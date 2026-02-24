@@ -4,6 +4,7 @@ title: Applogy
 pbs: true
 media_types: banner
 biddercode: applogy
+sidebarType: 1
 ---
 
 ### Bid Params

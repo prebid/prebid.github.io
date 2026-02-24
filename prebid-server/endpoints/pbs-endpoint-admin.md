@@ -10,13 +10,14 @@ title: Prebid Server | Admin Endpoints
 
 There are several endpoints on the special `admin` port that a host company may utilize that aren't available to external users. This port defaults to 8060, but can be set in the `admin.port` config.
 
-* TOC
+- TOC
 {:toc}
 
 ## GET /currency/rates
 
 This endpoint exposes active currency rate converter information in the server.
 Information are:
+
 - `info.active`: true if currency converter is active
 - `info.source`: URL from which rates are fetched
 - `info.fetchingIntervalNs`: Fetching interval from source in nanoseconds
@@ -24,7 +25,9 @@ Information are:
 - `info.rates`: Internal rates values
 
 ### Sample responses
+
 #### Rate converter active
+
 ```json
 {
     "active": true,
@@ -109,6 +112,7 @@ Information are:
 ```
 
 #### Rate converter set with constant rates
+
 ```json
 {
     "active": true,
@@ -119,13 +123,14 @@ Information are:
 ```
 
 #### Rate converter not set
+
 ```json
 {
     "active": false
 }
 ```
 
-## /logging/httpinteraction
+## GET /logging/httpinteraction
 
 (PBS-Java only)
  
@@ -134,19 +139,20 @@ This endpoint turns on temporary logging of raw HTTP requests and responses, mai
 Interaction is logged at INFO level using http-interaction logback logger so make sure this logger has at least INFO or more verbose level set (logback configuration bundled in JAR file sets this logger to INFO level).
 
 Query Params
+
 - endpoint - endpoint to be affected; valid values: auction, amp; if omitted all valid endpoints will be affected
 - statusCode - specifies that only interactions resulting in this response status code should be logged; valid values: >=200 and <=500
 - account - specifies that only interactions involving this account should be logged
 - limit - number of interactions to log; there is an upper threshold for this value set in configuration
 - bidder - name of the bidder whose adapter request will be logged
 
-## /logging/changelevel
+## GET /logging/changelevel
 
 (PBS-Java only)
 
 This endpoint allows changing org.prebid.server logger level temporarily, mainly for troubleshooting production issues.
 
 Query Params
+
 - level - desired logging level to set; must be one of error, warn, info, debug
 - duration - for how long (in milliseconds) to change level before it gets reset to original; there is an upper threshold for this value set in configuration
-

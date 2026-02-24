@@ -10,6 +10,7 @@ sidebarType : 1
 ---
 
 # Demand Chain Object Module
+
 {:.no_toc}
 
 * TOC
@@ -20,7 +21,8 @@ Publishers that interact with bidders that support the [IAB Buyers.json and Dema
 ## How to Use the Module
 
 First, build the dchain module into your Prebid.js package:
-```
+
+```bash
 gulp build --modules=dchain,...
 ```
 
@@ -34,7 +36,8 @@ The module will then automatically perform validations on the dchain data, provi
 | validation | optional | string | `'strict'`: In this mode, dchain object will not be accepted by Prebid.js if it is invalid. Errors are thrown for invalid dchain object. `'relaxed'`: Errors are thrown for an invalid dchain object but the invalid dchain object is still accpeted. `'off'`: No validations are performed and dchain object is accepted as-is. The default value is `'strict'`. | 'strict' |
 
 For example:
-```
+
+```javascript
 pbjs.setConfig({
   "dchain": {
     "validation": "strict"
@@ -46,20 +49,21 @@ pbjs.setConfig({
 
 Adapters who choose to support DChain should assign their ad server's IAB compliant dchain config object to the `bid.meta.dchain` field when creating their Prebid.js bidresponse object.  When the module is enabled, this dchain object will be evaluated per the publisher's config settings.
 
-```
+```javascript
 bid.meta.dchain: {
   "complete": 0,
   "ver": "1.0",
   "ext": {...},
   "nodes": [
-  ...,
+  // ...,
   {
     "asi": "domain.com",
     "bsid": "123",
     "name": "companyname",
     ...
   },
-  ...]
+  //...
+  ]
 }
 ```
 
@@ -86,4 +90,4 @@ $(function(){
 
 ## Further Reading
 
-- [IAB Buyers.json and DemandChain Object Specification](https://iabtechlab.com/buyers-json-demand-chain/)
+* [IAB Buyers.json and DemandChain Object Specification](https://iabtechlab.com/buyers-json-demand-chain/)

@@ -5,6 +5,7 @@ description: Pilotx Prebid Adapter
 biddercode: pilotx
 media_types: banner, video
 pbjs: true
+sidebarType: 1
 ---
 
 ### Bid Params

@@ -23,7 +23,7 @@ The following is a sample Brightcove Prebid Plugin integration that invokes to t
 
 ### Sample Prebid Plugin Integration, Using Results From External Custom Header Bidding
 
-```
+```html
 <!doctype html>
 <html>
 <head>
@@ -77,5 +77,3 @@ The following is a sample Brightcove Prebid Plugin integration that invokes to t
 </body>
 </html>
 ```
-
-

@@ -17,19 +17,18 @@ sidebarType : 1
 * TOC
 {:toc}
 
-This module is intended to be used by brandmetrics (https://brandmetrics.com) partners and sets targeting keywords to bids if the browser is eligeble to see a brandmetrics survey.
+This module is intended to be used by brandmetrics (<https://brandmetrics.com>) partners and sets targeting keywords to bids if the browser is eligeble to see a brandmetrics survey.
 The module hooks in to brandmetrics events and requires a brandmetrics script to be running. The module can optionally load and initialize brandmetrics by providing the 'scriptId'- parameter.
-
 
 ## Publisher Usage
 
-1) Build the brandmetricsRtd module into the Prebid.js package with:
+1. Build the brandmetricsRtd module into the Prebid.js package with:
 
-```
-gulp build --modules=brandmetricsRtdProvider,...
-```
+    ```bash
+    gulp build --modules=brandmetricsRtdProvider,...
+    ```
 
-2) Use `setConfig` to instruct Prebid.js to initilaize the brandmetricsRtdProvider module, as specified below.
+2. Use `setConfig` to instruct Prebid.js to initilaize the brandmetricsRtdProvider module, as specified below.
 
 ### Configuration
 
@@ -53,7 +52,6 @@ pbjs.setConfig({
 
 The scriptId- parameter is provided by brandmetrics or a brandmetrics partner.
 
-
 ## Supported bidders
 
 The module currently supports the following bidders:
@@ -62,7 +60,6 @@ The module currently supports the following bidders:
 | Bidder | Id    |
 | :----- | :---- |
 | Ozone  | ozone |
-
 
 ## Parameters
 

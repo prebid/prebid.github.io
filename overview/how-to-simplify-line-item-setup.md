@@ -17,7 +17,7 @@ sidebarType: 3
 
 # How to simplify line item setup
 
-#### Let's do the math:
+## Let's do the math
 
 * Per bidder per size: $0.01 increment, capped at $10 => 1000 line items
 * 10 creative sizes
@@ -25,17 +25,13 @@ sidebarType: 3
 
 1000 x 10 x 5 = 50,000 line items and creatives for header bidding!
 
-<br>
-
-#### How to reduce the number of line items for header bidding?
+## How to reduce the number of line items for header bidding?
 
 > Prebid.js helps you use 1 set of line items for all bidders and all creatives.
 
 By removing the size and bidder dimension, the number of line items now becomes:
 
 1000 x 1 x 1 = 1000 line items! 50 times less!
-
-<br>
 
 ### Simplification 1: Remove the size dimension
 
@@ -44,7 +40,6 @@ In this section, we'll learn how to remove the creative size dimension for heade
 Let's first clarify what "different set of line items for different creative sizes" means. In this scenario, a line item's creative is only of one size. In Google Ad Manager, this looks like:
 
 ![Header Bidding Normal Line Item Creative](/assets/images/overview/line-item-creative.png){: .pb-md-img :}
-
 
 Because a site would have many creative sizes, with this setup you need X number of line item sets for X number of creative sizes.
 
@@ -55,7 +50,7 @@ There's a reason bidders recommend different set of line items for different cre
 * The $6.00 line item got picked by the line item.
 * The best your ad server can do is to RANDOMLY choose a creative. If the 300x250 one is chosen, the ad will be cut in half.
 
-#### How Prebid.js solves this problem:
+#### How Prebid.js solves this problem
 
 Prebid.js can dynamically resize the returned creative to the right size. Here's the setup:
 
@@ -67,7 +62,6 @@ Prebid.js can dynamically resize the returned creative to the right size. Here's
 * Prebid.js resize the returned creative to size 300x600 and injects the bid's cretive payload.
 
 There you go!
-
 
 ### Simplification 2: Remove the bidder dimension
 
@@ -90,7 +84,7 @@ The line item for $1.60 is chosen because it has the highest price. However, the
 
 <a name="pbjs-sends-highest-price-only"></a>
 
-#### How Prebid.js solves the problem:
+#### How Prebid.js solves the problem
 
 Prebid.js only picks the highest price bid and sends its key-value pairs to the ad server. Given the above example, Prebid.js will send:
 
@@ -100,7 +94,7 @@ Prebid.js only picks the highest price bid and sends its key-value pairs to the 
 
 This simplifies the setup and the right creative (with adId 65432) will get displayed.
 
-#### How about reporting?
+### How about reporting?
 
 It's important to understand the fill rates and CPM from different bidders. Prebid.js therefore passes in `hb_bidder`: bidderCode. This enables Google Ad Manager to report on query strings.  You can run queries like:
 
@@ -109,6 +103,6 @@ It's important to understand the fill rates and CPM from different bidders. Preb
 
 Note that because Prebid.js only sends in the highest price bid, Google Ad Manager does not see the rest of the lost bids. However, from working with publishers, we conclude that the rest of the bids do NOT matter that much. Let's say one bidder always fills at 1 penny and bids 100% of the time. Is that information helpful? Not really, only the winning bids count. We belive the above 2 queries well serve the reporting and analytics needs.
 
-### Conclusion
+## Conclusion
 
 Enjoy the much more simplified line items, creatives, and targeting setup!

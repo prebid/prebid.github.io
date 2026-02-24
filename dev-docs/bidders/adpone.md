@@ -8,6 +8,7 @@ biddercode: adpone
 deals_supported: false
 media_types: banner
 gvl_id: 799
+sidebarType: 1
 ---
 
 

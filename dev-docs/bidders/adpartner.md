@@ -5,6 +5,7 @@ description: Prebid AdPartner Bidder Adaptor
 pbjs: true
 biddercode: adpartner
 media_types: banner
+sidebarType: 1
 ---
 
 ### Bid Params
@@ -12,4 +13,4 @@ media_types: banner
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description | Example              | Type      |
 |-------------|----------|-------------|----------------------|-----------|
-| `partnerId` | required | Partner ID. | `5809`               | `integer` | 
+| `partnerId` | required | Partner ID. | `5809`               | `integer` |

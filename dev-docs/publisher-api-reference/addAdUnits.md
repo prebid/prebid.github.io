@@ -2,15 +2,16 @@
 layout: api_prebidjs
 title: pbjs.addAdUnits(Array|Object)
 description:
+sidebarType: 1
 ---
 
 
 Takes one ad unit object or an array of ad unit objects and adds them to the Prebid auction.  For usage examples, see [Examples](#addAdUnits-Examples) below and the [Getting Started]({{site.baseurl}}/dev-docs/getting-started.html) page.
 
-+ [Ad Unit Properties](#addAdUnits-AdUnitProperties)
-+ [Examples](#addAdUnits-Examples)
+* [Ad Unit Properties](#addAdUnits-AdUnitProperties)
+* [Examples](#addAdUnits-Examples)
 
-<a name="addAdUnits-AdUnitProperties">
+<a name="addAdUnits-AdUnitProperties"></a>
 
 #### Ad Unit Properties
 
@@ -21,16 +22,19 @@ See the table below for the list of properties on the ad unit.  For example ad u
 |--------------+----------+---------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `code`       | Required | String                                | Unique identifier that you create and assign to this ad unit.  Used to set query string targeting on the ad. If using GPT, we recommend setting this to slot element ID.          |
 | `sizes`      | Required | Array[Number] or Array[Array[Number]] | All the sizes that this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.  For 1.0 and later, prefer [`mediaTypes.banner.sizes`](#adUnit-banner).          |
-| `bids`       | Required | Array[Object]                         | Each bid represents a request to a bidder.  For a list of properties, see [Bids](#addAdUnits-Bids) below.                                                                         |
+| `bids`       | Optional | Array[Object]                         | Each bid represents a request to a bidder.  For a list of properties, see [Bids](#addAdUnits-Bids) below.                                                                         |
 | `mediaTypes` | Optional | Object                                | Defines one or multiple media types the ad unit supports.  For a list of properties, see [Media Types](#addAdUnits-MediaTypes) below.                                                                     |
 | `labelAny` | optional  | array<string> | An array of string labels, used for showing responsive ads.  With the `labelAny` operator, just one label has to match for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html).  |
 | `labelAll` | optional  | array<string> | An array of string labels, used for showing responsive and conditional ads. With the `labelAll` conditional, every element of the target array must match an element of the label array in order for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html).  |
+| `video`      | Optional | Object                                | Used to link an Ad Unit to the [Video Module]({{site.github.url}}/prebid-video/video-module.html). For allowed params see the [adUnit.video reference](#adUnit-video). |
 
-<a name="addAdUnits-Bids" />
+<a name="addAdUnits-Bids"></a>
 
 ##### Bids
 
 See the table below for the list of properties in the `bids` array of the ad unit.  For example ad units, see the [Examples](#addAdUnits-Examples) below.
+
+Note that `bids` is optional only for [Prebid Server stored impressions](/dev-docs/modules/prebidServer.html#stored-imp), and required in all other cases.
 
 {: .table .table-bordered .table-striped }
 
@@ -41,7 +45,7 @@ See the table below for the list of properties in the `bids` array of the ad uni
 | `labelAny` | optional  | array<string> | An array of string labels, used for showing responsive ads.  With the `labelAny` operator, just one label has to match for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html).  |
 | `labelAll` | optional  | array<string> | An array of string labels, used for showing responsive and conditional ads. With the `labelAll` conditional, every element of the target array must match an element of the label array in order for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html).  |
 
-<a name="addAdUnits-MediaTypes" />
+<a name="addAdUnits-MediaTypes"></a>
 
 ##### Media Types
 
@@ -54,19 +58,27 @@ See the table below for the list of properties in the `mediaTypes` object of the
 | `native` | optional | Object | Defines properties of a native ad.  For an example native ad unit, see [the native example below](#adUnit-native). |
 | `video`  | optional | Object | Defines properties of a video ad.  For examples, see [the video examples below](#adUnit-video).                    |
 
-<a name="addAdUnits-Examples">
+#### Video
+
+For the list of properties please visit the [adUnit.video reference]({{site.baseurl}}/dev-docs/adunit-reference.html#adUnit.video).
+
+<a name="addAdUnits-Examples"></a>
 
 #### Examples
 
-+ [Native](#adUnit-native)
-+ [Video](#adUnit-video)
-+ [Banner](#adUnit-banner)
-+ [Multi-format](#adUnit-multi-format)
+* [Ad Unit Properties](#ad-unit-properties)
+  * [Bids](#bids)
+  * [Media Types](#media-types)
+* [Video](#video)
+* [Examples](#examples)
+  * [Native](#mediatype-native)
+  * [Video](#mediatype-video)
+  * [Banner](#mediatype-banner)
+  * [Multi-format](#multi-format)
 
+<a name="adUnit-native"></a>
 
-<a name="adUnit-native">
-
-##### Native
+##### MediaType Native
 
 For an example of a native ad unit, see below.  For more detailed instructions, see [Show Native Ads]({{site.baseurl}}/dev-docs/show-native-ads.html).
 
@@ -111,11 +123,35 @@ pbjs.addAdUnits({
 
 {% include dev-docs/native-image-asset-sizes.md %}
 
-<a name="adUnit-video">
+<a name="adUnit-video"></a>
 
-##### Video
+##### MediaType Video
 
-For an example of an instream video ad unit, see below.  For more detailed instructions, see [Show Video Ads]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html).
+If using the Video Module, see below. For more information on the Video Module, see the [Video Module docs]({{site.github.url}}/prebid-video/video-module.html).
+
+```javascript
+pbjs.addAdUnits({
+    code: slot.code,
+    mediaTypes: {
+        video: {},
+    },
+    video: {
+        divId: 'playerDiv',
+        adServer: {
+            vendorCode: 'gam', // constant variable is GAM_VENDOR - see vendorCodes.js in the video library
+            baseAdTagUrl: 'https://pubads.g.doubleclick.net/gampad/ads?iu=/12345/'
+        }
+    },
+    bids: [{
+        bidder: 'appnexus',
+        params: {
+            placementId: 13232361
+        }
+    }]
+});
+```
+
+For an example of an instream video ad unit where the integration is handled on your own, see below.  For more detailed instructions, see [Show Video Ads]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html).
 
 ```javascript
 pbjs.addAdUnits({
@@ -167,9 +203,9 @@ pbjs.addAdUnit({
 })
 ```
 
-<a name="adUnit-banner">
+<a name="adUnit-banner"></a>
 
-##### Banner
+##### MediaType Banner
 
 For an example of a banner ad unit, see below.  For more detailed instructions, see [Getting Started]({{site.baseurl}}/dev-docs/getting-started.html).
 
@@ -192,7 +228,7 @@ pbjs.addAdUnits({
 })
 ```
 
-<a name="adUnit-multi-format">
+<a name="adUnit-multi-format"></a>
 
 ##### Multi-format
 
@@ -214,10 +250,10 @@ pbjs.addAdUnits({
     video: {
         context: 'outstream',
         playerSize: [640, 480],
-	mimes: ['video/mp4'],
-	protocols: [1, 2, 3, 4, 5, 6, 7, 8],
-	playbackmethod: [2],
-	skip: 1
+        mimes: ['video/mp4'],
+        protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+        playbackmethod: [2],
+        skip: 1
     },
   },
   bids: [

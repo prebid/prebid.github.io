@@ -1,7 +1,8 @@
 ---
 layout: api_prebidjs
 title: pbjs.setTargetingForAst(adUnitCode)
-description:
+description: setTargetingForAst API
+sidebarType: 1
 ---
 
 
