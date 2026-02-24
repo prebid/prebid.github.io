@@ -225,7 +225,7 @@ The configuration also allows you to define custom schema evaluators using the `
 pbjs.setConfig({
   shapingRules: {
     extraSchemaEvaluators: {
-      browser: (args, context) => {
+      browser: (args, context) => () => {
         if (navigator.userAgent.includes("Chrome")) {
           return "Chrome";
         }
