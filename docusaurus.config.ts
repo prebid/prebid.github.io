@@ -148,8 +148,12 @@ const config: Config = {
             title: "Docs",
             items: [
               {
-                label: "Tutorial",
-                to: "/docs/intro",
+                label: "Getting Started",
+                to: "/intro",
+              },
+              {
+                label: "Download",
+                to: "/download",
               },
             ],
           },
@@ -170,17 +174,13 @@ const config: Config = {
             title: "More",
             items: [
               {
-                label: "Blog",
-                to: "/blog",
-              },
-              {
                 label: "GitHub",
                 href: "https://github.com/prebid/prebid.github.io",
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Prebid.org. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,
