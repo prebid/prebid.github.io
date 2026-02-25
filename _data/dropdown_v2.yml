@@ -194,9 +194,18 @@
     sectionName: Product
     title: Multi-Format
     link: /formats/multiformat.html
-    needsDivider: 0
+    needsDivider: 1
     isHeader: 0
     isSubSectionStart: 0
+
+  - subsectionId: 4
+    sectionId: 1
+    sectionName: Product
+    title: Prebid Sales Agent
+    link: /agents/salesagent/overview.html
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 1
 
 #-------------_Support Section---------------
 
