@@ -52,7 +52,7 @@ Pull request titles must follow the [Conventional Commits](https://www.conventio
 
 ### Format
 
-```
+```text
 type(scope): description
 ```
 
@@ -78,7 +78,7 @@ The scope is optional but recommended. Use the module or area being changed (e.g
 
 Append `!` after the type/scope for breaking changes:
 
-```
+```text
 feat(api)!: rename get_products to search_products
 ```
 

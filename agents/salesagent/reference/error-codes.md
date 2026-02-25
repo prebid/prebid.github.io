@@ -186,6 +186,7 @@ transport = StreamableHttpTransport(
 ```
 
 Common mistakes:
+
 - Using `Authorization: Bearer` instead of `x-adcp-auth` for MCP connections (Bearer is for A2A)
 - Forgetting to include the header in the transport constructor
 - Using an expired or revoked token

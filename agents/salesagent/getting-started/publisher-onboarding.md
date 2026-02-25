@@ -161,7 +161,7 @@ Navigate to **Admin UI > Advertisers** to create advertiser accounts:
 | Field | Description | Example |
 |-------|-------------|---------|
 | Name | Advertiser or agency name | "Acme Corp" |
-| Contact Email | Primary contact for notifications | "media@acme.com" |
+| Contact Email | Primary contact for notifications | `media@acme.com` |
 | Status | Active or paused | `active` |
 
 ### Generating API Tokens

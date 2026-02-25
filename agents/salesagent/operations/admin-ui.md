@@ -61,6 +61,7 @@ The Admin UI dashboard provides a tenant-level overview of your Sales Agent inst
 - **Quick actions** -- Links to common tasks like creating products or generating advertiser tokens
 
 The activity feed updates in real time without page refreshes. Events include:
+
 - New media buy requests
 - Creative approval/rejection actions
 - Advertiser authentication attempts
@@ -231,6 +232,7 @@ Navigate to **Workflows > Pending Approvals** to review incoming media buy reque
 | Creatives | Associated creative assets |
 
 For each request, you can:
+
 - **Approve** -- The campaign is created in the ad server
 - **Reject** -- The buying agent receives a rejection with the reason
 - **Request changes** -- Send feedback back to the buying agent
@@ -283,6 +285,7 @@ To deactivate a tenant:
 3. Confirm the action
 
 Deactivated tenants:
+
 - Cannot authenticate via MCP or A2A
 - Are hidden from public discovery
 - Retain all historical data (campaigns, creatives, audit logs)

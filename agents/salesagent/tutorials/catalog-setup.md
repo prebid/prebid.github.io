@@ -44,7 +44,7 @@ Product descriptions are used by the AI search engine when matching advertiser b
 
 Navigate to the Admin UI:
 
-```
+```text
 http://localhost:8000/admin
 ```
 
@@ -92,7 +92,7 @@ For each pricing option, configure:
 - **Currency** -- ISO 4217 currency code (e.g., `USD`, `EUR`, `GBP`)
 - **Minimum spend** -- The minimum total spend required to book this product at this rate
 
-```
+```text
 Example:
   Model: CPM
   Rate: $12.50
@@ -135,7 +135,7 @@ Assign IAB content categories to associate the product with specific content ver
 
 Define custom key-value pairs for targeting dimensions specific to your inventory:
 
-```
+```text
 Key: section
 Values: sports, news, entertainment, lifestyle
 

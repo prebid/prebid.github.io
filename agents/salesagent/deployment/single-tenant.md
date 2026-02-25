@@ -107,6 +107,7 @@ docker compose up -d
 ```
 
 Docker Compose will:
+
 1. Pull the latest `ghcr.io/prebid/salesagent` image
 2. Start PostgreSQL and wait for it to become healthy
 3. Run database migrations automatically
@@ -187,20 +188,20 @@ To serve the Sales Agent on your own domain (e.g., `ads.yourpublisher.com`):
 1. Point your domain's DNS to the server running the Sales Agent (A record or CNAME)
 2. Update the Nginx configuration in `nginx.conf` with your domain:
 
-```nginx
-server {
-    listen 80;
-    server_name ads.yourpublisher.com;
+    ```nginx
+    server {
+        listen 80;
+        server_name ads.yourpublisher.com;
 
-    location / {
-        proxy_pass http://adcp-server:8000;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
+        location / {
+            proxy_pass http://adcp-server:8000;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
     }
-}
-```
+    ```
 
 3. Update the tenant's custom domain in the Admin UI under **Settings > Custom Domain**
 

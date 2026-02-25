@@ -55,6 +55,7 @@ docker compose up -d
 ```
 
 Docker Compose will start:
+
 - **PostgreSQL** on port 5432 (internal)
 - **Sales Agent** on port 8000 (exposed)
 
@@ -169,6 +170,7 @@ docker compose logs salesagent
 ```
 
 Common issues:
+
 - **Database connection refused** -- Ensure PostgreSQL is running and `DATABASE_URL` is correct
 - **Port 8000 already in use** -- Stop the conflicting service or change the port mapping in `docker-compose.yml`
 - **Migration errors** -- Try removing volumes and restarting: `docker compose down -v && docker compose up -d`
@@ -176,6 +178,7 @@ Common issues:
 ### MCP endpoint returns 401
 
 Ensure you are passing the auth token in the correct header:
+
 - MCP: `x-adcp-auth: test-token`
 - A2A: `Authorization: Bearer test-token`
 
