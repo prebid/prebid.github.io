@@ -163,10 +163,10 @@ For production authentication, configure an SSO provider:
 https://sales-agent.fly.dev/auth/oidc/callback
 ```
 
-3. In the Admin UI, go to **Settings > SSO Configuration**
-4. Enter the Client ID and Client Secret
-5. Save and test the login flow
-6. Disable test mode:
+1. In the Admin UI, go to **Settings > SSO Configuration**
+1. Enter the Client ID and Client Secret
+1. Save and test the login flow
+1. Disable test mode:
 
 ```bash
 fly secrets unset ADCP_AUTH_TEST_MODE --app sales-agent

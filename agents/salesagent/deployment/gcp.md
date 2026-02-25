@@ -90,6 +90,7 @@ gcloud run deploy sales-agent \
 
 {: .alert.alert-danger :}
 **Two flags are mandatory for the Sales Agent to function on Cloud Run:**
+
 - `--no-cpu-throttling` -- The Sales Agent runs background services (MCP server, A2A server, scheduled tasks). Without this flag, Cloud Run throttles the CPU between requests, causing these services to stall.
 - `--min-instances=1` -- Keeps at least one instance warm at all times. Without this, cold starts cause MCP clients and A2A integrations to time out.
 
@@ -200,10 +201,10 @@ https://sales-agent-HASH-uc.a.run.app/auth/oidc/callback
 
 Replace the URL with your actual Cloud Run service URL.
 
-3. In the Admin UI, go to **Settings > SSO Configuration**
-4. Enter the Client ID and Client Secret
-5. Save and test the login flow
-6. Disable test mode:
+1. In the Admin UI, go to **Settings > SSO Configuration**
+1. Enter the Client ID and Client Secret
+1. Save and test the login flow
+1. Disable test mode:
 
 ```bash
 gcloud run services update sales-agent \
@@ -352,8 +353,8 @@ If your database password contains special characters and the app cannot connect
 gcloud sql connect sales-agent-db --user=postgres
 ```
 
-2. URL-encode all special characters in the `DATABASE_URL`
-3. Update the environment variable:
+1. URL-encode all special characters in the `DATABASE_URL`
+1. Update the environment variable:
 
 ```bash
 gcloud run services update sales-agent \
