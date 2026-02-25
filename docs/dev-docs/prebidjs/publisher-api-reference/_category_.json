@@ -1,0 +1,8 @@
+{
+  "label": "Publisher API Reference",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "Prebid.js Publisher API reference documentation"
+  }
+}
