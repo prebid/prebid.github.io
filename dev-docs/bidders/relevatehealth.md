@@ -54,3 +54,30 @@ var adUnits = [
             }
         ];
 ```
+
+#### First Party Data
+
+In release 4.30 and later, publishers should use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html). The following fields are supported:
+
+* ortb2.user.id
+* ortb2.user.buyeruid
+* ortb2.user.keywords
+* ortb2.user.ext.*
+
+Example first party data that's available to all bidders and all adunits:
+
+```javascript
+pbjs.setConfig({
+  ortb2: {
+    user: {
+      id: 123456789,        // Unique pseudonymized ID for the user (e.g., NPI).
+      buyeruid: 987654321,  // DSP-assigned user ID for identity resolution.
+      keywords: "kw1,kw2",  // Interest or specialty tags (e.g., oncology, cardiology)
+      ext: {
+        key1: "values",    // Custom healthcare metadata (e.g., icd10), single or comma seperated.
+        key2: "values"     // Additional campaign context (e.g., ndc), single or comma seperated.
+      }
+    }
+  }
+});
+```

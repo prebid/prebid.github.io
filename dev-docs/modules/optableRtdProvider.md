@@ -5,7 +5,7 @@ display_name: Optable RTD Module
 description: Optable Real Time Data Module
 page_type: module
 module_type: rtd
-module_code : optable
+module_code : optableRtdProvider
 enable_download : true
 vendor_specific: true
 sidebarType : 1

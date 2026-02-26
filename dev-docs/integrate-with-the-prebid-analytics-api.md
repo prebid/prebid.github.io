@@ -37,6 +37,28 @@ For instructions on integrating an analytics provider, see the next section.
 
 ![Prebid Analytics Architecture Diagram]({{ site.baseurl }}/assets/images/prebid-analytics-architecture.png){: .pb-md-img :}
 
+## Analytics Labels
+
+Prebid events can carry an object of **analytics labels** that annotate the payload with experiment, rollout, or troubleshooting context. Labels are available to every analytics adapter in two places:
+
+* as a top-level `labels` object that combines every active label
+* as `args.analyticsLabels` inside the event payload so adapters that only inspect the args can still read them
+
+Publishers can declare their own labels with standard configuration:
+
+```javascript
+pbjs.setConfig({
+  analyticsLabels: {
+    experiment_1: 'group_a',
+    releaseTrain: 'B'
+  }
+});
+```
+
+Modules can also contribute labels by calling `setLabels` from `AnalyticsAdapter`. One example is the [Enrichment Lift Measurement Module](/dev-docs/modules/enrichmentLiftMeasurement.html), which attaches the active A/B test configuration so analytics adapters can report on each test run. All labels defined by publishers or modules are merged together before being delivered to analytics adapters.
+
+Analytics adapters that want to use this metadata simply read either `event.labels` or `event.args.analyticsLabels` in their `track` implementation.
+
 ## Creating an Analytics Module
 
 Working with any Prebid project requires using Github. In general, we recommend the same basic workflow for any project:

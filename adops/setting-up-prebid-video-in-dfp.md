@@ -29,7 +29,7 @@ For complete instructions on setting up Prebid line items in Google Ad Manager, 
 {: .alert.alert-info :}
 For engineering setup instructions, see [Show Video Ads with a Google Ad Manager Video Tag](/dev-docs/show-video-with-a-dfp-video-tag.html).
 
-Each VAST creative contains a URL that points to the cached VAST XML. (This is because most video players can only work with a URL that returns VAST XML.) When setting up video creatives, it's important to understand where the VAST XML is stored for each of your bidders. The most common place to store VAST XML is the AppNexus cache, but some bidders (such as RubiconProject and SpotX) use their own cache services. To support such bidders, see [Multiple Cache Locations](#multiple-cache-locations) below.
+Each VAST creative contains a URL that points to the cached VAST XML. (This is because most video players can only work with a URL that returns VAST XML.) When setting up video creatives, it's important to understand where the VAST XML is stored for each of your bidders. Prebid.js supports server-side, client-side, and local caching as outlined in [pbjs.setConfig documentation](/dev-docs/publisher-api-reference/setConfig.html#client-side-caching-of-vast-xml). See [Multiple Cache Locations](#multiple-cache-locations) below for details on bidder-specific cache locations.
 
 ## Single Cache Location
 
@@ -55,7 +55,7 @@ Google Ad Manager will show you a warning stating that fetching VAST from the cr
 
 If you’re using a Send Top Price Bid configuration, then the VAST URL will be the same for each bidder:
 
-`https://prebid.adnxs.com/pbc/v1/cache?uuid=%%PATTERN:hb_uuid%%`
+`https://my-pbs.example.com/cache?uuid=%%PATTERN:hb_uuid%%`
 
 or
 
@@ -63,7 +63,7 @@ or
 
 If you’re using Send All Bids, the VAST URL will include the bidder-specific targeting variable. Be sure to replace `BIDDERCODE` with the actual bidder code for your bidders:
 
-`https://prebid.adnxs.com/pbc/v1/cache?uuid=%%PATTERN:hb_uuid_BIDDERCODE%%`
+`https://my-pbs.example.com/cache?uuid=%%PATTERN:hb_uuid_BIDDERCODE%%`
 
 or
 
@@ -73,11 +73,11 @@ or
 
 If your creative is for long-form (OTT) video, you must include a prefix in your VAST URL. For example (Send Top Price Bid):
 
-`https://prebid.adnxs.com/pbc/v1/cache?uuid=50.00_news_30s_%%PATTERN:hb_cache_id%%`
+`https://my-pbs.example.com/cache?uuid=50.00_news_30s_%%PATTERN:hb_cache_id%%`
 
 or (Send All Bids):
 
-`https://prebid.adnxs.com/pbc/v1/cache?uuid=50.00_news_30s_%%PATTERN:hb_cache_id_BIDDERCODE%%`
+`https://my-pbs.example.com/cache?uuid=50.00_news_30s_%%PATTERN:hb_cache_id_BIDDERCODE%%`
 
 In these examples, the `uuid` is set to the value of the `hb_pb_cat_dur` key you target in your line item. This value consists of the price bucket, label (for competitive exculsions), and video duration. In this example we've specified a price bucket of `50.00`, a label of `news`, and a duration of `30s`. See [GAM with Prebid Step by Step](/adops/step-by-step.html#targeting) for more information.
 
@@ -86,7 +86,7 @@ In these examples, the `uuid` is set to the value of the `hb_pb_cat_dur` key you
 
 The resulting creative should look something like the following:
 
-![GAM Video Creative Setup](/assets/images/ad-ops/gam-sbs/appnexus_vast_tag.png)
+![GAM Video Creative Setup](/assets/images/ad-ops/gam-sbs/gam-tag-setup.png)!
 
 {:start="7"}
 7. If you're using jsdelivr, set your **Associated ad technology provider**:

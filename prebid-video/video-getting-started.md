@@ -41,7 +41,7 @@ If you’re using another ad server:
 Follow the instructions for your ad server to create line items for the in-player integration. The primary points to keep in mind as you set up your line items include:
 
 - Line items must target Prebid key-values.
-- The VAST creative URL must be in the format `https://prebid.adnxs.com/pbc/v1/cache?uuid={hb_cache_id}`, where `{hb_cache_id}` is the value passed to the ad server from Prebid.js.
+- The VAST creative URL must be in the format `https://my-pbs.example.com/cache?uuid={hb_cache_id}`, where `{hb_cache_id}` is the value passed to the ad server from Prebid.js.
 
 #### In-renderer Integration
 

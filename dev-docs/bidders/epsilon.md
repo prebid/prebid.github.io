@@ -89,7 +89,7 @@ Example first party data configuration that is available to all adUnits
 pbjs.setConfig({
     debug: true,
     cache: {
-    url: 'https://prebid.adnxs.com/pbc/v1/cache'
+    url: 'https://prebid.example.com/pbc/v1/cache'
     },
     ortb2: { 
         site: { 

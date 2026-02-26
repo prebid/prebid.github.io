@@ -1,13 +1,12 @@
 ---
 layout: bidder
-title: Mobupps
-description: Prebid Mobupps Bidder Adapter
+title: AlchemyX
+description: Prebid AlchemyX Bidder Adapter
 aliasCode: adverxo
 pbjs: true
-pbs: true
-pbs_app_supported: true
-biddercode: mobupps
-userIds:
+pbs: false
+pbs_app_supported: false
+biddercode: alchemyx
 media_types: banner, native, video
 schain_supported: true
 dchain_supported: false
@@ -20,18 +19,17 @@ gvl_id: none
 usp_supported: false
 coppa_supported: false
 gpp_sids: none
-userId: no
+userId: none
 safeframes_ok: false
 deals_supported: true
 fpd_supported: true
 prebid_member: false
-privacy_sandbox: no
 sidebarType: 1
 ---
 
 ### Note
 
-The Mobupps Bidding adapter requires setup and approval before beginning. Please reach out to <mobupps.prebid@adverxo.com> for
+The AlchemyX Bidding adapter requires setup and approval before beginning. Please reach out to <prebid@alchemyx.io> for
 more details.
 
 ### Bid Params
@@ -39,8 +37,8 @@ more details.
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
 |----------|----------|-----------------------|---------------------------|----------|
-| `adUnitId`   | required | Unique identifier for the ad unit in Mobupps platform. | `1` | `integer` |
-| `auth`       | required | Authentication token provided by Mobupps platform for the AdUnit. | `'61336e75e414c77c367eq5c47c2599ce80a8032b'` | `string` |
+| `adUnitId`   | required | Unique identifier for the ad unit in AlchemyX platform. | `1` | `integer` |
+| `auth`       | required | Authentication token provided by AlchemyX platform for the AdUnit. |`'61336e75e414c77c367eq5c47c2599ce80a8032b'` | `string` |
 
 ### Setting First Party Data (FPD)
 
@@ -73,7 +71,7 @@ pbjs.setConfig({
 
 ### ORTB Blocking
 
-Mobupps supports the next blocking parameters:
+AlchemyX supports the next blocking parameters:
 
 - Blocked advertisers list (`badv`) is an array of domains as strings.
 - Blocked apps list (`bapp`) is an array of apps names as strings, for mobile apps in Google Play Store, these should be
@@ -94,11 +92,11 @@ pbjs.setConfig({
 });
 ```
 
-#### ORTB Blocking specific only to the Mobupps bidder
+#### ORTB Blocking specific only to the AlchemyX bidder
 
 ```javascript
 pbjs.setBidderConfig({
-    bidders: ['mobupps'], // Or alias
+    bidders: ['alchemyx'],
     config: {
         ortb2: {
             badv: ["domain1.com", "domain2.com"],

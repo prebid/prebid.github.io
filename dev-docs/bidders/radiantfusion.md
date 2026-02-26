@@ -1,8 +1,8 @@
 ---
 layout: bidder
-title: VimayX
-description: VimayX Bidder Adapter
-biddercode: vimayX
+title: RadiantFusion
+description: RadiantFusion Bidder Adapter
+biddercode: radiantfusion
 aliasCode : smarthub
 usp_supported: true
 coppa_supported: true
