@@ -1,0 +1,37 @@
+{
+  "totalFiles": 4,
+  "transformed": 4,
+  "flaggedManual": [
+    {
+      "file": "docs/dev-docs/prebidjs/plugins/cross-player-prebid-component/cross-player-api.mdx",
+      "issues": [
+        "2 remaining Liquid tag(s)"
+      ]
+    },
+    {
+      "file": "docs/dev-docs/prebidjs/plugins/cross-player-prebid-component/cross-player-config.mdx",
+      "issues": [
+        "2 remaining Liquid tag(s)"
+      ]
+    }
+  ],
+  "skippedManual": [],
+  "skippedConflict": [],
+  "renamedToMdx": [
+    "docs/dev-docs/prebidjs/plugins/cross-player-prebid-component/cross-player-api.mdx",
+    "docs/dev-docs/prebidjs/plugins/cross-player-prebid-component/cross-player-config.mdx"
+  ],
+  "transformations": {
+    "frontmatterLinesRemoved": 12,
+    "tocMarkersRemoved": 2,
+    "cssClassesRemoved": 1,
+    "inlineAlertsConverted": 1,
+    "alertIncludesConverted": 0,
+    "captureAlertConverted": 1,
+    "linksRewritten": 41,
+    "imagesRewritten": 0,
+    "includesInlined": 0,
+    "componentIncludes": 0,
+    "fallbackIncludes": 2
+  }
+}

@@ -26,6 +26,10 @@ const config: Config = {
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "ignore", // FIXME change this later in the migration process
 
+  markdown: {
+    format: 'detect', // .md files use CommonMark, .mdx files use MDX
+  },
+
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
   // to replace "en" with "zh-Hans".

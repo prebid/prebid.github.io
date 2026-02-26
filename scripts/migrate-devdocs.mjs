@@ -280,6 +280,96 @@ function rewriteLinks(body, stats) {
   return result;
 }
 
+/** Stage 7b: Escape autolinks for MDX compatibility */
+function escapeAutolinks(body, stats) {
+  let result = body;
+
+  // MDX v3 parses <email@domain> as JSX tags. Convert to markdown links.
+  const emailPattern = /<([\w.+-]+@[\w.-]+\.\w+)>/g;
+  const emailMatches = result.match(emailPattern);
+  if (emailMatches) {
+    stats.linksRewritten += emailMatches.length;
+    result = result.replace(emailPattern, '[$1](mailto:$1)');
+  }
+
+  // MDX v3 also can't parse <https://url> autolinks. Convert to markdown links.
+  const urlPattern = /<(https?:\/\/[^>]+)>/g;
+  const urlMatches = result.match(urlPattern);
+  if (urlMatches) {
+    stats.linksRewritten += urlMatches.length;
+    result = result.replace(urlPattern, '[$1]($1)');
+  }
+
+  return result;
+}
+
+/** Stage 7c: Convert indented code blocks to fenced code blocks for MDX */
+function convertIndentedCodeBlocks(body, stats) {
+  // MDX v3 may evaluate indented code blocks as expressions.
+  // Convert 4-space indented blocks to fenced code blocks.
+  const lines = body.split('\n');
+  const result = [];
+  let inCodeBlock = false;
+  let codeLines = [];
+  let inFencedBlock = false;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
+    // Track fenced code blocks to avoid double-converting
+    if (line.match(/^```/)) {
+      inFencedBlock = !inFencedBlock;
+      if (inCodeBlock) {
+        // Flush accumulated indented code before the fence
+        result.push('```');
+        result.push(...codeLines.map(l => l.replace(/^ {4}/, '')));
+        result.push('```');
+        codeLines = [];
+        inCodeBlock = false;
+      }
+      result.push(line);
+      continue;
+    }
+
+    if (inFencedBlock) {
+      result.push(line);
+      continue;
+    }
+
+    const isIndented = line.match(/^ {4}\S/);
+    const isBlank = line.trim() === '';
+
+    if (isIndented && !inCodeBlock) {
+      // Start of indented code block
+      inCodeBlock = true;
+      codeLines = [line];
+    } else if (inCodeBlock && (isIndented || (isBlank && i + 1 < lines.length && lines[i + 1].match(/^ {4}\S/)))) {
+      // Continue indented code block (including blank lines within)
+      codeLines.push(line);
+    } else if (inCodeBlock) {
+      // End of indented code block
+      result.push('```');
+      result.push(...codeLines.map(l => l.replace(/^ {4}/, '')));
+      result.push('```');
+      stats.linksRewritten += 0; // Not tracked separately, but block was converted
+      codeLines = [];
+      inCodeBlock = false;
+      result.push(line);
+    } else {
+      result.push(line);
+    }
+  }
+
+  // Flush any remaining code block
+  if (inCodeBlock) {
+    result.push('```');
+    result.push(...codeLines.map(l => l.replace(/^ {4}/, '')));
+    result.push('```');
+  }
+
+  return result.join('\n');
+}
+
 /** Stage 8: Rewrite image paths */
 function rewriteImages(body, stats) {
   let result = body;
@@ -460,6 +550,16 @@ function processFile(srcPath, destPath) {
 
   // Stage 7: Rewrite links
   body = rewriteLinks(body, report.transformations);
+
+  // Stage 7b: Escape autolinks for MDX
+  body = escapeAutolinks(body, report.transformations);
+
+  // Stage 7c: Convert indented code blocks to fenced code blocks
+  // DISABLED: With markdown.format: 'detect' in docusaurus.config.ts,
+  // .md files use CommonMark which handles indented code blocks fine.
+  // .mdx files shouldn't have this transformation as it corrupts
+  // indented fenced blocks inside list items.
+  // body = convertIndentedCodeBlocks(body, report.transformations);
 
   // Stage 8: Rewrite image paths
   body = rewriteImages(body, report.transformations);

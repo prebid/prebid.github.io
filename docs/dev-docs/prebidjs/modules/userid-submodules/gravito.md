@@ -1,0 +1,37 @@
+---
+title: GRAVITO ID by Gravito Ltd.
+description: GRAVITO ID by Gravito Ltd. User ID sub-module
+useridmodule: gravitoIdSystem
+bidRequestUserId:
+eidsource:
+example:
+---
+
+
+Gravito ID, provided by [Gravito Ltd.](https://gravito.net), is ID for ad targeting by using 1st party cookie.
+Please contact Gravito Ltd. for using this ID.
+
+Add the Gravito ID to your Prebid.js Package with:
+
+```bash
+gulp build --modules=gravitoIdSystem
+```
+
+## Gravito ID Configuration
+
+
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module | `"gravitompId"` |
+
+## Gravito ID Example
+
+```javascript
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: 'gravitompId'
+        }]
+    }
+});
+```

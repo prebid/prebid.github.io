@@ -1354,8 +1354,6 @@ The Example Bidding adapter requires setup before beginning. Please contact us a
 
 ### Bid Params
 
-{: .table .table-bordered .table-striped }
-
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
 | `placement`      | required | Placement id         | `'11111'`    | `string` |
