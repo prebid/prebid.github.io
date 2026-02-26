@@ -178,7 +178,7 @@ To call Index from a web browser using Prebid Server, you must first configure P
     ```javascript
     pbjs.setConfig({
         cache: {
-            url: 'https://prebid.adnxs.com/pbc/v1/cache'
+            url: 'https://my-pbs.example.com/cache'
         }
     });
     ```

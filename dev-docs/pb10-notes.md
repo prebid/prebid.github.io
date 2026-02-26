@@ -92,6 +92,13 @@ The following modules have been removed from Prebid.js as part of the 10.0 relea
 * Tests now target Chrome 109 as the minimum version. `not dead` was added to the babel target.
 * **The `pbYield` helper was added and greedy rendering is disabled by default.**
 
+## `Schain` is now first party data
+
+* Publishers should provide schain as first party data in `ortb2.source.schain` or `ortb2.source.ext.schain`.
+* The schain module is no longer necessary and has been updated to simply copy `schain` configuration into first party data; it will be removed in the future.
+* Adapters should look for schain in `ortb2.source.ext.schain`.
+* Like all first party data, **bidder-specific schains are now merged with the global schain**, where previously they would replace it. Publishers setting both global and bidder-specific schains will need to make changes; the simplest way to address this is to use only bidder-specific schains.            
+
 ## API Changes
 
 * The `ADPOD` mediatype has received a deprecation warning.

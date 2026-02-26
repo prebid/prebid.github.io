@@ -67,7 +67,7 @@ creative: # at least one of the following types is required {video, banner}
         sizes: # list
             - height: 480
             width: 640
-        vast_xml_url: "https://prebid.adnxs.com/pbc/v1/cache?uuid=%%PATTERN:{{ hb_cache_id }}%%"
+        vast_xml_url: "https://my-pbs.example.com/cache?uuid=%%PATTERN:{{ hb_cache_id }}%%"
 ```
 
 #### Order setup
