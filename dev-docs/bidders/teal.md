@@ -18,13 +18,14 @@ gpp_supported: true
 gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 userIds: all
 safeframes_ok: true
-media_types: banner
+media_types: banner, native, video
 pbjs: true
-pbs: false
+pbs: true
 multiformat_supported: will-bid-on-any
 ortb_blocking_supported: true
 privacy_sandbox: no
 sidebarType: 1
+endpoint_compression: true
 ---
 
 ### Bid Params
