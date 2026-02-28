@@ -1,0 +1,8 @@
+{
+  "label": "Info",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Info endpoint documentation"
+  }
+}

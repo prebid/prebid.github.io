@@ -1,0 +1,8 @@
+{
+  "label": "OpenRTB2",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "OpenRTB 2.x endpoint documentation"
+  }
+}

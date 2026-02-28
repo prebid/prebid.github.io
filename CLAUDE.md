@@ -92,7 +92,7 @@ See these docs for full details:
 - **MIGRATION_SUMMARY.md** — Current state summary with what's done and what's next
 - **MIGRATION_TRACKING.md** — Detailed per-phase checklist with file-level tracking
 
-**Current state**: Phases 1-3 complete. Build blocked by 2 template default links. Phase 4 (Prebid.js, 372 files) is next.
+**Current state**: Phases 1-5 complete (~367 Prebid.js + 70 Prebid Server files migrated). Build blocked by 2 template default links. 5 files deferred from Phase 4 (need custom MDX components for Liquid `site.pages` queries). Phase 6 (Prebid Mobile, 63 files) is next.
 
 ## Migration Rules
 

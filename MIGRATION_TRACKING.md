@@ -108,73 +108,130 @@ Build currently fails with 472 broken links from boilerplate Docusaurus template
 - [ ] Fix `src/pages/index.js`: `/docs/intro` → `/intro`, update button label
 - [ ] Verify: `npm run build` passes
 
-## Phase 4: Content Migration - Prebid.js Documentation ⏳
+## Phase 4: Content Migration - Prebid.js Documentation ✅ (Mostly Complete)
 
 **Total: ~372 files in `dev-docs/`** (bidders already done in Phase 2)
 
-### Step 4.0: Create migration script
+### Step 4.0: Create migration script ✅
 
-- [ ] Create `scripts/migrate-devdocs.mjs` for batch processing mechanical conversions
-- [ ] Script handles: frontmatter cleanup, TOC removal, CSS class removal, alert includes → admonitions, link rewrites, simple includes → inline admonitions
-- [ ] Script flags files with Liquid logic (`{% assign %}`, `{% for %}`, `site.pages`) for manual handling
-- [ ] `--dry-run` mode for previewing changes
+- [x] Create `scripts/migrate-devdocs.mjs` for batch processing mechanical conversions
+- [x] Script handles: frontmatter cleanup, TOC removal, CSS class removal, alert includes → admonitions, link rewrites, simple includes → inline admonitions
+- [x] Script flags files with Liquid logic (`{% assign %}`, `{% for %}`, `site.pages`) for manual handling
+- [x] `--dry-run` mode for previewing changes
 
-### Step 4.1: Migrate analytics adapters (68 files)
+### Step 4.1: Migrate analytics adapters (68 files) ✅
 
-- [ ] Source: `dev-docs/analytics/` → `docs/dev-docs/prebidjs/analytics/`
-- [ ] Create `_category_.json` for sidebar
-- [ ] Run migration script
-- [ ] Build and spot-check
+- [x] Source: `dev-docs/analytics/` → `docs/dev-docs/prebidjs/analytics/` (69 files including _category_.json)
+- [x] Create `_category_.json` for sidebar
+- [x] Run migration script
+- [x] Build and spot-check
 
-### Step 4.2: Migrate UserID submodules (63 files)
+### Step 4.2: Migrate UserID submodules (63 files) ✅
 
-- [ ] Source: `dev-docs/modules/userid-submodules/` → `docs/dev-docs/prebidjs/modules/userid-submodules/`
-- [ ] Create `_category_.json` for sidebar
-- [ ] Run migration script
-- [ ] Build and spot-check
+- [x] Source: `dev-docs/modules/userid-submodules/` → `docs/dev-docs/prebidjs/modules/userid-submodules/` (64 files including _category_.json)
+- [x] Create `_category_.json` for sidebar
+- [x] Run migration script
+- [x] Build and spot-check
 
-### Step 4.3: Migrate remaining modules (~57 files)
+### Step 4.3: Migrate remaining modules (~57 files) ⚠️ Mostly Complete
 
-- [ ] Source: `dev-docs/modules/` (excluding userid-submodules) → `docs/dev-docs/prebidjs/modules/`
-- [ ] Run migration script
-- [ ] **Manual conversion**: `modules/index.md`, `modules/userId.md` (Liquid `site.pages` logic)
-- [ ] Build and spot-check
+- [x] Source: `dev-docs/modules/` (excluding userid-submodules) → `docs/dev-docs/prebidjs/modules/` (115 files migrated)
+- [x] Run migration script
+- [x] Build and spot-check
+- [ ] **Deferred — Manual conversion needed**: 4 files remain in `dev-docs/modules/` requiring custom MDX components or a Docusaurus plugin to replace Liquid `site.pages` queries:
+  - `modules/index.md` — dynamically queries all module pages by `page_type: "module"` frontmatter, generates 4 filtered tables (Recommended, General, Vendor-Specific, User ID modules)
+  - `modules/userId.md` — queries all pages with `layout: "userid"`, generates User ID Sub-Modules table and dynamically builds valid `name` values list
+  - `modules/consentManagementUsp.md` — queries bidder pages for USP support flags
+  - `modules/consentManagementGpp.md` — queries bidder pages for GPP support flags
 
-### Step 4.4: Migrate publisher API reference (51 files)
+### Step 4.4: Migrate publisher API reference (51 files) ✅
 
-- [ ] Source: `dev-docs/publisher-api-reference/` → `docs/dev-docs/prebidjs/publisher-api-reference/`
-- [ ] Run migration script
-- [ ] Build and spot-check
+- [x] Source: `dev-docs/publisher-api-reference/` → `docs/dev-docs/prebidjs/publisher-api-reference/` (52 files including _category_.json)
+- [x] Run migration script
+- [x] Build and spot-check
 
-### Step 4.5: Migrate root-level dev-docs guides (~36 files)
+### Step 4.5: Migrate root-level dev-docs guides (~36 files) ✅
 
-- [ ] Source: `dev-docs/*.md` (root-level) → `docs/dev-docs/prebidjs/`
-- [ ] Individual review likely needed after script pass
-- [ ] Build and spot-check
+- [x] Source: `dev-docs/*.md` (root-level) → `docs/dev-docs/prebidjs/` (41 files migrated)
+- [x] Individual review likely needed after script pass
+- [x] Build and spot-check
+- [ ] **Deferred**: `dev-docs/pbs-bidders.md` remains — uses `{% for %}` over `site.pages` with `{% unless %}`, `{% case %}` (listed in "Files Requiring Manual Conversion")
 
-### Step 4.6: Migrate examples, plugins, requirements, internal-api (~39 files)
+### Step 4.6: Migrate examples, plugins, requirements, internal-api (~39 files) ✅
 
-- [ ] Source: `dev-docs/examples/`, `dev-docs/plugins/`, `dev-docs/requirements/`, `dev-docs/internal-api-reference/`
-- [ ] Examples use `{% include code/web-example.html %}` → `<IncludeTodo />` placeholders
-- [ ] Build and spot-check
+- [x] Source: `dev-docs/examples/`, `dev-docs/plugins/`, `dev-docs/requirements/`, `dev-docs/internal-api-reference/`
+- [x] Examples use `{% include code/web-example.html %}` → `<IncludeTodo />` placeholders
+- [x] Build and spot-check
+- **Minor remainders** (non-markdown assets, not blocking):
+  - `dev-docs/examples/intercept-banner-not-for-prod.js` — JS file, not a doc page
+  - `dev-docs/plugins/bc/` and `dev-docs/plugins/cross-player-prebid-component/` — subdirectory content (already migrated to `docs/`)
+  - `dev-docs/requirements/tcf2/PrebidSupportforEnforcingTCF2.html` + 2 images — HTML file, needs manual review (listed in "Files Requiring Manual Conversion")
 
-### Step 4.7: Final verification
+### Step 4.7: Final verification ⏳
 
 - [ ] Update sidebar configuration
 - [ ] Test versioning functionality
 - [ ] Grep all migrated files for leftover Jekyll syntax
 
-## Phase 5: Content Migration - Prebid Server Documentation ⏳ (71 files)
+### Phase 4 Deferred Items — Files Requiring Custom Components
 
-### Step 5.1: Copy prebid-server content to docs/dev-docs/prebid-server/
+These 5 files use Liquid `site.pages` queries to dynamically generate content at build time. They need a **Docusaurus plugin or custom MDX component** that reads from a static JSON manifest (similar to how `tocPlugin` generates `bidders.json`). Conversion options:
 
-- [ ] Move file by file using git mv, preserving structure
-- [ ] Separate Java and Go documentation
-- [ ] Update frontmatter and links
-- [ ] Configure versioning for both Java and Go
-- [ ] Test versioning functionality
+1. **Plugin approach**: Extend `_plugins/toc-plugin.ts` (or create a new plugin) to scan module/userid frontmatter at build time and output a `modules.json` manifest. Then create MDX components that import and render from the JSON.
+2. **Static data approach**: Generate a one-time `modules.json` from the existing frontmatter, commit it, and build MDX components that render from it. Requires manual updates when modules are added/removed.
+3. **Hardcoded tables**: Least maintainable — paste current table data directly. Breaks on any module addition.
 
-**Note:** 3 index files already exist as stubs in `docs/dev-docs/prebid-server/`.
+| File | Liquid Pattern | Data Needed |
+|---|---|---|
+| `modules/index.md` | `site.pages \| where: "page_type", "module"` | All module pages with `recommended`, `vendor_specific`, `enable_download`, `module_type` fields |
+| `modules/userId.md` | `site.pages \| where: "layout", "userid"` | All userid pages with `useridmodule`, `bidRequestUserId`, `eidsource`, `example` fields |
+| `modules/consentManagementUsp.md` | Queries bidder pages for USP support | Bidder pages with USP-related frontmatter |
+| `modules/consentManagementGpp.md` | Queries bidder pages for GPP support | Bidder pages with GPP-related frontmatter |
+| `dev-docs/pbs-bidders.md` | `{% for %}` over `site.pages` with `{% unless %}`, `{% case %}` | Bidder pages with PBS-related frontmatter |
+
+## Phase 5: Content Migration - Prebid Server Documentation ✅ (70 files migrated)
+
+### Step 5.0: Pre-migration setup ✅
+
+- [x] Created 10 `_category_.json` files for sidebar organization (overview, use-cases, features, endpoints, endpoints/openrtb2, endpoints/info, developers, hosting, pbs-modules, versions)
+- [x] Skipped root-level `hosted-servers.md` (duplicate of `hosting/hosted-servers.md`)
+- [x] Old `java/` and `go/` stub directories left in place (harmless, can clean up later)
+
+### Step 5.1: Run migration script (10 batches) ✅
+
+- [x] `overview/` (3 files) — 2 renamed to `.mdx` for Vimeo `<IncludeTodo />`
+- [x] `use-cases/` (6 files)
+- [x] `features/` (18 files) — 4 renamed to `.mdx` for `<LegalWarning />`
+- [x] `endpoints/` top-level (9 files)
+- [x] `endpoints/openrtb2/` (4 files) — 1 renamed to `.mdx` for `<LegalWarning />`
+- [x] `endpoints/info/` (1 file)
+- [x] `developers/` (13 files) — 3 flagged for `{%raw%}` tags
+- [x] `hosting/` (4 files)
+- [x] `pbs-modules/` (9 files)
+- [x] `versions/` (3 files)
+
+### Step 5.2: Post-migration fixes ✅
+
+- [x] Stripped `{%raw%}/{%endraw%}` tags from 4 files (~30 occurrences)
+- [x] Rewrote `/prebid-server/` links → `/dev-docs/prebid-server/` (~318 occurrences)
+- [x] Rewrote `/dev-docs/modules/` etc. → `/dev-docs/prebidjs/modules/` (~55 cross-section links)
+- [x] Stripped `{:class="pb-xlg-img"}` and `{: .pb-lg-img :}` image CSS markers (14 occurrences)
+- [x] Fixed MDX issues: self-closing `<br/>`, `<img />`, escaped `{lat,lon}`, wrapped bare braces in backticks
+- [x] Created new landing page `docs/dev-docs/prebid-server/index.md`
+- [x] Left 2 links to `/dev-docs/pbs-bidders` as-is (deferred Phase 4 file)
+
+### Step 5.3: Build validation ✅
+
+- [x] `npm run build` compiles successfully (Server + Client)
+- [x] No broken link errors
+- [x] Broken anchor warnings are non-blocking (from TOC heading ID changes across pre-existing Phase 3 files)
+- [x] Spot-checked critical files: `pbs-endpoint-auction.md`, `add-new-bidder-go.md`, `pbs-modules/index.md`, `pbs-feature-idx.md`
+
+### Remaining known issues
+
+- ~33 links to unmigrated sections (`/overview/`, `/formats/`, `/adops/`, `/faq/`, `/prebid-mobile/`) — will be fixed when those sections migrate (Phases 6-10)
+- 2 links to `/dev-docs/pbs-bidders` — deferred Phase 4 file
+- Broken anchor warnings from Phase 3 overview files (non-blocking)
 
 ## Phase 6: Content Migration - Prebid Mobile Documentation ⏳ (63 files)
 
@@ -336,8 +393,8 @@ Build currently fails with 472 broken links from boilerplate Docusaurus template
 - **Phase 2**: ✅ Complete (Layout and Include Components Migration)
 - **Phase 3**: ✅ Complete (Content Migration - Overview Section)
 - **Build Fix**: ⚠️ Blocker — 2 template default links need fixing
-- **Phase 4**: ⏳ Next (Content Migration - Prebid.js, 372 files)
-- **Phase 5**: ⏳ Pending (Content Migration - Prebid Server, 71 files)
+- **Phase 4**: ✅ Mostly Complete (Content Migration - Prebid.js) — 5 files deferred, need custom components for Liquid `site.pages` queries
+- **Phase 5**: ✅ Complete (Content Migration - Prebid Server, 70 files migrated)
 - **Phase 6**: ⏳ Pending (Content Migration - Prebid Mobile, 63 files)
 - **Phase 7**: ⏳ Pending (Content Migration - Guides)
 - **Phase 8**: ⏳ Pending (Content Migration - Formats)
@@ -350,6 +407,6 @@ Build currently fails with 472 broken links from boilerplate Docusaurus template
 ## Next Steps
 
 1. Fix build blocker (2 file edits in `docusaurus.config.ts` and `src/pages/index.js`)
-2. Create migration script for batch processing (`scripts/migrate-devdocs.mjs`)
-3. Begin Phase 4 with analytics adapters (simplest batch, 68 files)
-4. Continue through Phase 4 batches in order of complexity
+2. Convert Phase 4 deferred files (5 files needing custom MDX components/plugin for `site.pages` queries)
+3. Begin Phase 6: Prebid Mobile documentation (63 files)
+4. Continue through Phases 7-10 for remaining content sections

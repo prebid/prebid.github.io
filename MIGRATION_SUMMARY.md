@@ -91,6 +91,41 @@
    - `intro-video.mdx` — vimeo-iframe include
    - `analytics-video.mdx` — vimeo-iframe include
 
+### Phase 4: Content Migration - Prebid.js Documentation - MOSTLY COMPLETE
+
+1. **Migration script created** (`scripts/migrate-devdocs.mjs`) for batch processing
+2. **All batches migrated** (~367 files moved and converted):
+   - Analytics adapters (69 files) → `docs/dev-docs/prebidjs/analytics/`
+   - UserID submodules (64 files) → `docs/dev-docs/prebidjs/modules/userid-submodules/`
+   - Remaining modules (115 files) → `docs/dev-docs/prebidjs/modules/`
+   - Publisher API reference (52 files) → `docs/dev-docs/prebidjs/publisher-api-reference/`
+   - Root-level dev-docs guides (41 files) → `docs/dev-docs/prebidjs/`
+   - Examples, plugins, requirements, internal-api → respective subdirectories
+3. **5 files deferred** — require custom MDX components to replace Liquid `site.pages` queries:
+   - `dev-docs/modules/index.md` — dynamically lists all modules in filtered tables
+   - `dev-docs/modules/userId.md` — dynamically lists all UserID sub-modules
+   - `dev-docs/modules/consentManagementUsp.md` — queries bidders for USP support
+   - `dev-docs/modules/consentManagementGpp.md` — queries bidders for GPP support
+   - `dev-docs/pbs-bidders.md` — queries bidder pages with complex Liquid logic
+4. **Recommended approach for deferred files**: Extend `_plugins/toc-plugin.ts` to scan module/userid frontmatter and output `modules.json`, then create MDX components that render from this data
+
+### Phase 5: Content Migration - Prebid Server Documentation - COMPLETE
+
+1. **70 files migrated** from `prebid-server/` → `docs/dev-docs/prebid-server/` using the existing migration script
+   - 10 subdirectories: overview, use-cases, features, endpoints (+ openrtb2, info), developers, hosting, pbs-modules, versions
+   - 7 files renamed to `.mdx` (6 for `<LegalWarning />`, 2 for Vimeo `<IncludeTodo />`)
+   - 10 `_category_.json` files created for sidebar organization
+2. **Post-migration fixes applied**:
+   - Stripped `{%raw%}/{%endraw%}` tags from 4 files (~30 occurrences)
+   - Rewrote ~318 internal PBS link prefixes (`/prebid-server/` → `/dev-docs/prebid-server/`)
+   - Rewrote ~55 cross-section links to migrated Prebid.js paths (`/dev-docs/modules/` → `/dev-docs/prebidjs/modules/`)
+   - Fixed MDX compatibility: self-closing HTML tags, escaped bare braces, stripped image CSS markers
+3. **Build passes** — compiled successfully with no broken link errors
+4. **1 root file skipped** (`prebid-server/hosted-servers.md`) — duplicate of `hosting/hosted-servers.md`
+5. **Known remaining issues**:
+   - ~33 links to unmigrated sections (`/overview/`, `/formats/`, `/adops/`, etc.) — will resolve in Phases 6-10
+   - 2 links to `/dev-docs/pbs-bidders` — deferred Phase 4 file
+
 ## Current Build Status
 
 **Build FAILS** with 472 broken links. Root cause: default Docusaurus template links in the footer (`/docs/intro`, `/blog`) that appear on every page. These are boilerplate — not real Prebid URLs. Fix requires 2 edits to `docusaurus.config.ts` and `src/pages/index.js`.
@@ -135,23 +170,13 @@ Fix 2 files with boilerplate Docusaurus template links causing build failure:
 - `docusaurus.config.ts` footer: `/docs/intro` → `/intro`, remove `/blog` link, update copyright
 - `src/pages/index.js`: `/docs/intro` → `/intro`, update button label
 
-### Phase 4: Content Migration - Prebid.js Documentation (372 files)
+### Phase 4 Deferred: Convert 5 files with Liquid `site.pages` queries
 
-Recommended approach: create a Node.js migration script (`scripts/migrate-devdocs.mjs`) for batch processing, then run per subdirectory in order of complexity:
+These files dynamically generate content from other pages' frontmatter. Need custom Docusaurus plugin/MDX components. Recommended approach: extend `_plugins/toc-plugin.ts` to generate `modules.json` similar to `bidders.json`.
 
-| Batch | Source | Files | Complexity |
-|---|---|---|---|
-| A | `dev-docs/analytics/` | 68 | Low — most uniform |
-| B | `dev-docs/modules/userid-submodules/` | 63 | Low — consistent template |
-| C | `dev-docs/modules/` (top-level) | ~57 | Medium — some includes, 2 files need manual Liquid conversion |
-| D | `dev-docs/publisher-api-reference/` | 51 | Medium — link-heavy |
-| E | `dev-docs/` (root-level guides) | ~36 | Medium-High — varied |
-| F | `dev-docs/examples/`, `plugins/`, `requirements/`, `internal-api-reference/` | ~39 | Mixed — examples need `<IncludeTodo />` |
-
-### Phase 5-10: Content Migration - Other Sections
+### Phase 6-10: Content Migration - Remaining Sections
 
 1. **File-by-file migration process**
-   - Prebid Server documentation (71 files: prebid-server/ → docs/dev-docs/prebid-server/)
    - Prebid Mobile documentation (63 files: prebid-mobile/ → docs/dev-docs/prebid-mobile/)
    - Guides content (guide/ → docs/content/guides/)
    - Formats content (formats/ → docs/content/formats/)
@@ -212,8 +237,8 @@ Recommended approach: create a Node.js migration script (`scripts/migrate-devdoc
 - **Phase 2**: ✅ Complete
 - **Phase 3**: ✅ Complete
 - **Build Fix**: ⚠️ Blocker — 2 file edits needed (template defaults)
-- **Phase 4**: ⏳ Next — Prebid.js (372 files, script-assisted)
-- **Phase 5**: ⏳ Pending — Prebid Server (71 files)
+- **Phase 4**: ✅ Mostly Complete — ~367 files migrated, 5 deferred (need custom components for `site.pages` queries)
+- **Phase 5**: ✅ Complete — Prebid Server (70 files migrated)
 - **Phase 6**: ⏳ Pending — Prebid Mobile (63 files)
 - **Phase 7-10**: ⏳ Pending — Guides, Formats, Tools, Remaining (~58 files)
 - **Phase 11**: ⏳ Pending

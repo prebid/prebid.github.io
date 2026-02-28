@@ -1,0 +1,8 @@
+{
+  "label": "Versions",
+  "position": 8,
+  "link": {
+    "type": "generated-index",
+    "description": "Version information for Prebid Server Go and Java"
+  }
+}
