@@ -1,0 +1,461 @@
+---
+title: GAM with Prebid Rendering
+description: Integration of Prebid Rendering module whith Google Ad Manager  
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import RewardedConfig from '@site/docs/dev-docs/prebid-mobile/_partials/rewarded-server-side-configuration.mdx';
+
+<!-- markdownlint-disable-file MD046 -->
+
+# Prebid SDK iOS with the GAM Prebid-Rendered Integration Method
+
+
+## Overview
+
+This how-to guide covers the 'Prebid-Rendered' approach for integrating the Prebid SDK into your app with the GMA SDK. It utilizes:
+
+- **Prebid SDK** and **Prebid server** to handle the bidding and auction process.
+- **GAM** and the **Google Mobile Ads (GMA) SDK** manage the ad inventory and select the winning ad to display.
+- **Prebid SDK** renders display ads when a Prebid bid wins.
+- **GMA SDK** renders ads when a Prebid bid wins.
+
+If you do not have GMA SDK in the app yet, refer to the [Google Integration Documentation](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/quick-start).
+
+### Alternative Approaches
+
+Another way to integrate GAM into your app is with the [GAM Bidding-Only integration](/dev-docs/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api).
+
+Tradeoffs between these integration approaches:
+
+| Aspect | Bidding-Only Integration | Prebid-Rendered Integration |
+| --- |:---:|:---:|
+| App code has direct access to bids | ![check](/images/icons/icon-check-green.png) | |
+| Support for MRAID 3.0 | | ![check](/images/icons/icon-check-green.png) |
+| Support for SKAdnetwork | | ![check](/images/icons/icon-check-green.png) |
+| Loads data from Prebid Cache | ![check](/images/icons/icon-check-green.png) | |
+| Supports instream video | ![check](/images/icons/icon-check-green.png) | |
+| Triggers billing and Notice URLs | ![check](/images/icons/icon-check-green.png) | |
+| Supports Third Party Rendering libraries | | ![check](/images/icons/icon-check-green.png) |
+
+**Notes:**
+
+- On one hand, using Prebid Cache reduces the amount of data that must be sent to the mobile device -- the body of the creative does not need to be transmitted for bids. On the other hand, though, when a bid wins in the ad server, the body of the creative must be retrieved from the cache.
+- It is possible to mix-and-match implementations within an app. e.g. you could implement instream video with the Bidding-Only approach and other adunits with Prebid-Rendered.
+
+### Prerequisites
+
+The GAM Prebid-Rendered Integration method assumes that you have the following components:
+
+- **Google Ad Manager Account** - A GAM account allows you to manage and serve ads within your mobile app. Within this account you'll need to configure your inventory and create orders for serving ads within your app. This involves defining ad units (spaces within your app where ads will be displayed) and setting up orders and line items to deliver ads to those units. See [Prebid's AdOps Guide](/adops/before-you-start) for more information.
+- **Google Mobile Ads (GMA) SDK** - This refers to the software development kit provided by Google. You need to ensure that you have the latest version of the GMA SDK supported by Prebid SDK. This SDK integration is necessary to communicate with the ad server and display ads in your app.
+- **Prebid SDK** - You will need the latest version of the Prebid Mobile SDK for either [Android](/dev-docs/prebid-mobile/pbm-api/android/code-integration-android) or [iOS](/dev-docs/prebid-mobile/pbm-api/ios/code-integration-ios).
+- **Prebid Server** - You will need a cluster of servers running [Prebid Server](/dev-docs/prebid-server/use-cases/pbs-sdk). You can set up your own Prebid Server or work with a [Prebid Server managed service](https://prebid.org/managed-services/). Prebid Server provides you with the following:
+  - Configuration storage - rather than hardcoding all the details of your current business arrangements in the app, Prebid Server stores which bidders you're currently working with, their inventory details, and other settings that can be changed without updating your app.
+  - Server-side auction - the server will make the connections to multiple auction bidding partners so the app doesn't have to.
+  - Privacy regulation tools - the server can help your legal team meet different regulatory needs in different jurisdictions by configuring various protocols and anonyimization activities.
+
+## How it Works
+
+Here's how the ad bidding-auction-rendering process works in this integration scenario.
+
+![GAM Prebid-Rendered Integration Details](/images/prebid-mobile/mobile-details-gam-prebid-rendered.png)
+
+1. Prebid SDK calls Prebid Server which supplies one or more bids.
+1. PBSDK adds targeting values to GMA SDK.
+1. GMA SDK calls GAM, which makes the ad decision.
+1. If a 3rd party HTML creative is chosen (banner, native, interstitial, non-instream video):
+    1. GMA SDK writes HTML to a webview, loading google_mobile_app_ads.js.
+    1. This script triggers a "PrebidAppEvent".
+    1. Which in turn triggers PBSDK to handle the rendering of the creative:
+        1. PBSDK fires the Prebid Server win event.
+        1. If a 3rd party rendering SDK is in use, PBSDK calls it for rendering.
+        1. Otherwise, it writes the creative into an iframe into an internal WebView, replaceing the GAMSDK's WebView.
+            1. Injects mraid.js into the webview to listen for events from MRAID: change size, etc.
+            1. Sends data to the creative (e.g. 'viewable') which may trigger impression tracking within the creative.
+            1. Starting from v3.0.0, the SDK hits the billing and notice urls (burl and nurl).
+1. If a video VastUrl creative is chosen (rewarded video only):
+    1. The GMA SDK uses the platform video player which loads the special VAST file from the Prebid CDN.
+    1. Prebid SDK watches VAST events for "&lt;AdTitle&gt;PrebidAppEvent&lt;/AdTitle&gt;". When it sees this, it takes over the rendering:
+        1. PBSDK fires the PBS win event. Starting from v3.0.0, the SDK also hits the billing and notice urls (burl and nurl).
+        1. If the response indicates a 3rd party rendering SDK, PBSDK will call it.
+        1. Otherwise:
+            1. PDBSK renders with the platform-standard VAST player.
+            1. It uses the VAST from the bid response, not from Prebid Cache.
+            1. The player fires any Impression tags in the VAST.
+            1. PBSDK handles MRAID events.
+            1. The app is called to handle the reward.
+1. If an In-App Native format is chosen:
+    1. The GMA SDK delegates the rendering of native to the App and PBSDK when a special signal is specified.
+    1. The app code gets the native assets from PBSDK. The app is coded to render the ad.
+        1. PBSDK fires the eventtrackers when appropriate.
+        1. The PBS win event is fired. Starting from v3.0.0, the SDK also hits the billing and notice urls (burl and nurl).
+1. Open Measurement events are handled directly by the Prebid SDK.
+    1. If a 3rd party rendering SDK is used to render, then it will handle Open Measurement.
+
+## Major Integration Steps
+
+Assuming your app already has AdUnits integrated with the GMA SDK, the technical implementation of Prebid mobile into your app will involve these major steps:
+
+1. [Initialize the Prebid SDK](/dev-docs/prebid-mobile/pbm-api/ios/code-integration-ios) - create a connection to your Prebid Server.
+2. [Set Global Parameters](/dev-docs/prebid-mobile/pbm-api/ios/pbm-targeting-ios) - let bidders know important data about the page, privacy consent, and other settings.
+3. Work with your Prebid Server team to create the adunit configIds that will be used in the app.
+4. Set up GAM orders, line items, and creatives. See [AdOps guidance](#ad-operations-guidance)
+5. Link Prebid AdUnit code to your GMA AdUnits - for any adunits that your business team wants to connect to Prebid with the configIds generated in Step 3. See the [adunit-specific instructions](#adunit-specific-instructions) below.
+
+## Ad Operations Guidance
+
+The AdOps team will need to create line items in GAM. The creatives used depend on which media formats your adunits utilize:
+
+| AdUnit Format | Line Item Targeting | Creative Type | Prebid Cache? | Ad Ops Details |
+| --- | --- | --- | --- | --- |
+| HTML banner, interstitial banner or video, non-instream video | hb_pb | 3rd party HTML that loads google_mobile_app_ads.js | no | [link](/adops/mobile-rendering-gam-line-item-setup#third-party-html) |
+| Instream Video | hb_pb, hb_format=video, inventoryType in (instream, mobile app) | VastUrl pointing to Prebid Cache | yes | [link](/adops/setting-up-prebid-video-in-dfp) |
+| Rewarded Video | hb_pb, hb_format=video, inventoryType in (instream, mobile app), rewarded adunits | VastUrl pointing to prebid-mobile-rewarded-vast.xml | no | [link](/adops/mobile-rendering-gam-line-item-setup#rewarded-video) |
+| In-app native | hb_pb, hb_format=native | GAM native | no | [link](/adops/gam-native#create-a-new-native-creative) |
+
+Notes:
+
+- Instream video requires the [Bidding-Only](/dev-docs/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api) application coding integration approach. However, the line item setup is the same.
+- You may need up to 4 sets of line items to support Prebid Mobile depending on adunit types. If you also run Prebid.js or AMP, please see [line item considerations](/adops/line-item-creation) for more information.
+- Discuss the Prebid Cache column with the Prebid Server team. They can set up the "top-level stored request" for your account to cache or not cache requests as needed.
+
+### Rendering and Tracking
+
+This information may be useful when comparing data across various reporting systems:
+
+| Scenario | 3pHTML Creative | VastUrl Creative | GAM Native Creative |
+| --- | --- | --- | --- |
+| Rendering Method | js in iframe fires an event | GMA SDK player | App code with data from PBSDK |
+| Fires Prebid win event | always | never | always |
+| Fires Prebid imp event | always | VAST impression tag | never |
+| Fires OpenRTB burl | always (1) | n/a | never |
+| Fires OpenRTB nurl | always (1) |  n/a | never |
+| Fires OpenMeasurement events | PBSDK |  n/a | PBSDK |
+
+Notes:
+
+1. OpenRTB `burl` and `nurl` are utilized in a PrebidMobile SDK v3.0.0.
+
+## Event Handlers
+
+First, a little bit of setup is needed.
+
+### Integrate Event Handlers
+
+Prebid SDK provides rendering integration into the GMA SDK setup with the [app events](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/banner#app_events) mechanism. To integrate Prebid Event Handlers into your app, add the following line to your Podfile:
+
+```pod
+pod 'PrebidMobileGAMEventHandlers'
+```
+
+### Event Handlers Initialization
+
+:::warning
+**Warning:** GMA SDK is a closed library that sometimes works in unexpected ways. The `GADMobileAds.sharedInstance().start()` should be called in all bundles where it is used. Otherwise, GMA SDK won't load the ads with an error of: `adView:didFailToReceiveAdWithError: SDK tried to perform a networking task before being initialized.`
+:::
+
+To avoid this error add the following line to your app right after initialization of GMA SDK:
+
+```swift
+GAMUtils.shared.initializeGAM()
+```
+
+## AdUnit-Specific instructions
+
+This section covers integration details for different ad formats. In each scenario, you'll be asked for a `configId` - this is a key worked out with your Prebid Server provider. It's used at runtime to pull in the bidders and parameters specific to this adunit. Depending on your Prebid Server partner, it may be a UUID or constructed out of parts like an account number and adunit name.
+
+### Banners
+
+#### Display Banners
+
+Integration example:
+
+```swift
+// 1. Create an Event Handler
+let eventHandler = GAMBannerEventHandler(adUnitID: GAM_AD_UNIT_ID,
+                                         validGADAdSizes: [NSValueFromGADAdSize(adSize)])
+       
+// 2. Create a Banner View
+let banner = BannerView(configID: CONFIG_ID,
+                        eventHandler: eventHandler)
+
+banner.delegate = self
+
+addBannerToUI(banner: banner)
+        
+// 3. Load an Ad
+banner.loadAd()
+```
+
+##### Step 1: Create Event Handler
+
+To create the `GAMBannerEventHandler` you should provide:
+
+- a **GAM Ad Unit Id** 
+- the list of available **sizes** for this ad unit.
+
+##### Step 2: Create Ad View
+
+`BannerView` - is a view that will display the particular ad. It should be added to the UI. To create a BannerView you should provide:
+
+- `configID` - an ID of Stored Impression on the Prebid server
+- `eventHandler` - the instance of the banner event handler
+
+You should also add the instance of `BannerView` to the UI.
+
+##### Step 3: Load the Ad
+
+Call the method `loadAd()` which will:
+
+- make a bid request to Prebid Server.
+- render the winning bid on display.
+
+#### Banner Video (non-instream)
+
+For non-instream **Banner Video** you also need to specify the ad format:
+
+```swift
+banner.adFormat = .video
+```
+
+The rest of the code will be the same as for integration of Display Banner.
+
+#### Migrating banners from a Bidding-Only integration
+
+GAM setup:
+
+1. Leave the original order and ad units as is. They are not relevant for the rendering approach but they will serve ads for released applications.
+2. Create new GAM ad unit.
+3. Setup new [GAM Order](/adops/mobile-rendering-gam-line-item-setup) for rendering approach.
+
+Integration:
+
+1. Replace the `AdManagerBannerView` with `BannerView` in the UI. 
+2. Implement the protocol `BannerViewDelegate` in the ViewController.
+3. Remove usage of `AdManagerBannerView`, `AdManagerRequest`, and implementation of the `GoogleMobileAds.BannerViewDelegate`.
+4. Remove original `BannerAdUnit`.
+5. Follow the instructions to integrate [Banner API](#banners).
+
+### Interstitials
+
+Integration example:
+
+```swift
+// 1. Create Event Handler
+let eventHandler = GAMInterstitialEventHandler(adUnitID: GAM_AD_UNIT_ID)
+    
+// 2. Create Interstitial Ad Unit
+interstitial = InterstitialRenderingAdUnit(configID: CONFIG_ID,
+                                           minSizePercentage: MIN_SIZE_PERC,
+                                           eventHandler: eventHandler)
+    
+interstitial.delegate = self
+    
+// 3. Load an Ad
+interstitial.loadAd()
+
+/// .......
+
+// 4. Show Ad
+if interstitial.isReady {
+    interstitial.show(from: self)
+}
+
+```
+
+The **default** ad format for interstitial is **.banner**. In order to make a `multiformat bid request`, set the respective values in the `adFormats` property.
+
+```swift
+// Make bid request for video ad                                     
+adUnit?.adFormats = [.video]
+
+// Make bid request for both video amd disply ads                                     
+adUnit?.adFormats = [.video, .banner]
+
+// Make bid request for banner ad (default behaviour)                                     
+adUnit?.adFormats = [.banner]
+
+```
+
+#### Step 1: Create Event Handler
+
+To create an event handler you should provide a **GAM Ad Unit**.
+
+#### Step 2: Create Interstitial Ad Unit
+
+Initialize the `InterstitialRenderingAdUnit` with properties:
+
+- `configID` - an ID of Stored Impression on the Prebid server
+- `minSizePercentage` - specifies the minimum width and height percent an ad may occupy of a device’s real estate.
+- `eventHandler` - the instance of the interstitial event handler
+
+> **NOTE:** the `minSizePercentage` - plays an important role in the bidding process for display ads. If provided space is not enough demand partners won't respond with bids.
+
+#### Step 3: Load the Ad
+
+Call the method `loadAd()` which will make a bid request to Prebid Server.
+
+#### Step 4: Show the Ad when it is ready
+
+Wait for the Prebid Server to return an ad and show it to the user in any suitable time.
+
+```swift
+// MARK: InterstitialAdUnitDelegate
+    
+func interstitialDidReceiveAd(_ interstitial: InterstitialAdUnit) {
+    // Now the ad is ready for display
+}
+```
+
+#### Migrating interstitials from a Bidding-Only integration
+
+GAM setup:
+
+1. Leave the original order and ad units as is. They are not relevant for the rendering approach but they will serve ads for released applications.
+2. Create a new GAM ad unit.
+3. Setup the new [GAM Order](/dev-docs/prebid-mobile/modules/rendering/ios-sdk-integration-gam) for rendering approach.
+
+Integration:
+
+1. Replace the `AdManagerInterstitialAd` with `InterstitialRenderingAdUnit` in the View Controller. 
+2. Implement the protocol `InterstitialAdUnitDelegate` in the View Controller.
+3. Remove usage of `AdManagerInterstitialAd`, `AdManagerRequest`.
+4. Remove original `InterstitialAdUnit`.
+5. Follow the instructions to integrate [Interstitial API](#interstitials).
+
+### Rewarded
+
+<RewardedConfig />
+
+#### Integration example
+
+```swift
+ // 1. Create an Event Handler
+let eventHandler = GAMRewardedEventHandler(adUnitID: GAM_AD_UNIT_ID)
+    
+// 2. Create an Ad Unit
+rewardedAd = RewardedAdUnit(configID: CONFIG_ID, eventHandler: eventHandler)
+    
+rewardedAd.delegate = self
+    
+// 3. Load an Ad
+rewardedAd.loadAd()
+
+/// .......
+
+// 4. Display Ad
+if rewardedAd.isReady {
+    rewardedAd.show(from: self)
+}
+
+```
+
+The proccess for displaying the Rewarded Ad is the same as for the Interstitial Ad. 
+
+To be notified when a user earns a reward - implement the method of `RewardedAdUnitDelegate`:
+
+```swift
+func rewardedAdUserDidEarnReward(_ rewardedAd: RewardedAdUnit, reward: PrebidReward) {}
+```
+
+##### Step 1: Create Event Handler
+
+The reward object is stored in the `RewardedAdUnit`:
+
+<Tabs>
+  <TabItem value="gma12" label="GMA SDK v12" default>
+
+```swift
+if let reward = rewardedAd.reward as? GoogleMobileAds.AdReward {
+    // ...
+}
+```
+
+  </TabItem>
+  <TabItem value="gma11" label="GMA SDK v11">
+
+```swift
+if let reward = rewardedAd.reward as? GADAdReward {
+    // ...
+}
+```
+
+  </TabItem>
+</Tabs>
+
+To create an event handler you should provide a **GAM Ad Unit ID**.
+
+##### Step 2: Create Rewarded Ad Unit
+
+Create the `RewardedAdUnit` object with parameters:
+
+- `configID` - an ID of Stored Impression on the Prebid server
+- `eventHandler` - the instance of rewarded event handler
+
+##### Step 3: Load the Ad
+
+Call the `loadAd()` method which will make a bid request to Prebid server.
+
+##### Step 4: Show the Ad when it is ready
+
+Wait for the ad to load and display it to the user in any suitable time.
+
+```swift
+// MARK: RewardedAdUnitDelegate
+    
+func rewardedAdDidReceiveAd(_ rewardedAd: RewardedAdUnit) {
+    // Now the ad is ready for display
+}
+```
+
+###### Step 4: Handle the reward
+
+Handle the reward in the appropriate method. 
+
+``` swift
+// MARK: RewardedAdUnitDelegate
+
+func rewardedAdUserDidEarnReward(_ rewardedAd: RewardedAdUnit, reward: PrebidReward) {
+    let type = reward.type
+    let count = reward.count
+    let ext = reward.ext
+        
+    // Process the reward
+}
+```
+
+#### Migrating Rewarded Video from a Bidding-Only integration
+
+GAM setup:
+
+1. Leave the original order and ad units as is. They are not relevant for the rendering approach but they will serve ads for released applications.
+2. Create a new GAM ad unit.
+3. Setup the new [GAM Order](/dev-docs/prebid-mobile/modules/rendering/ios-sdk-integration-gam) for rendering approach.
+
+Integration:
+
+1. Replace the `RewardedAd` with `RewardedAdUnit` in the View Controller. 
+2. Implement the protocol `RewardedAdUnitDelegate` in the View Controller.
+3. Remove usage of `AdManagerRequest`.
+4. Remove original `RewardedVideoAdUnit`.
+5. Follow the instructions to integrate [Rewarded API](#rewarded).
+
+## Additional Ad Unit Configuration
+
+### Ad Position
+
+The `adPosition` property allows developers to specify the position of the ad within the publisher's content. This property maps to the `pos` field in the OpenRTB specification under the `imp[].banner` or `imp[].video` objects, depending on the ad format. The possible values for this field could be found in the [respective specification](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/main/AdCOM%20v1.0%20FINAL.md#list--placement-positions-).
+
+You can set `adPosition` by using the following property:
+
+```swift
+adUnit.adPosition = .footer
+```
+
+## Further Reading
+
+- [Prebid Mobile Overview](/dev-docs/prebid-mobile/prebid-mobile)
+- [Prebid SDK iOS Integration](/dev-docs/prebid-mobile/pbm-api/ios/code-integration-ios)
+- [Prebid SDK iOS Global Parameters](/dev-docs/prebid-mobile/pbm-api/ios/pbm-targeting-ios)

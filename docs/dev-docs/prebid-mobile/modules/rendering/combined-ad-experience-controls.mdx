@@ -1,0 +1,299 @@
+---
+
+title: Ad Experience Controls
+description: Customization of ad expirience
+
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<!-- markdownlint-disable-file MD046 -->
+
+# Ad Experience Controls
+
+If you use Prebid SDK to render the winning bid you can customize behaviour using the following API.
+
+
+## Rendering Controls
+
+The following properties enable rendering customization of Video Interstitial Ads.
+
+### Max Video Duration
+
+This setting determines the longest video duration allowed, measured in seconds. When using the Prebid SDK, this value is sent in the `imp.video.maxduration` object of the bid request. If the `<Duration>` in the VAST tag received is longer than this set maximum, the SDK won't load the video file, the ad won't load, and an error message will appear.
+
+<Tabs>
+  <TabItem value="kotlin" label="Kotlin" default>
+
+  |**API Object**         | `InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
+  |**Ad Unit Property**   | `adUnit.setMaxVideoDuration(seconds)`|
+  |**Server Property**    | `maxvideoduration` |
+  |**Default Value**      | `3600 seconds`|
+
+  </TabItem>
+  <TabItem value="swift" label="Swift">
+
+  |**API Object**         |`InterstitialRenderingAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedAdUnit` |
+  |**Ad Unit Property**   | `adUnit.videoParameters.maxDuration`|
+  |**Server Property**    | `maxvideoduration` |
+  |**Default Value**      | `3600 seconds`|
+
+  </TabItem>
+</Tabs>
+
+### Application Muted
+
+This option lets you switch the sound on or off during playback.
+
+<Tabs>
+  <TabItem value="kotlin" label="Kotlin" default>
+
+  |**API Object**         | `InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
+  |**Ad Unit Property**   | `adUnit.setIsMuted(true)`|
+  |**Server Property**    | `ismuted` |
+  |**Default Value**      | `false`|
+
+  </TabItem>
+  <TabItem value="swift" label="Swift">
+
+  |**API Object**         |`InterstitialRenderingAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedAdUnit` |
+  |**Ad Unit Property**   | `adUnit.isMuted`|
+  |**Server Property**    | `ismuted` |
+  |**Default Value**       | `false`|
+
+  </TabItem>
+</Tabs>
+
+### Close Button Area
+
+This setting determines the percentage of the device screen that the close button should cover.
+
+<Tabs>
+  <TabItem value="kotlin" label="Kotlin" default>
+
+  |**API Object**         | `InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
+  |**Ad Unit Property**   | `adUnit.setCloseButtonArea(factor)`|
+  |**Server Property**    | `closebuttonarea` |
+  |**Allowed Values**     | `0..1`|
+  |**Default Size**       | `70dp`|
+
+  Customization Example
+
+  |**Default**|**Custom**|
+  |![Close Button Area - Default](/images/prebid-mobile/modules/rendering/ad-experience/android-close-button-area-default.jpg)|![Close Button Area - Custom](/images/prebid-mobile/modules/rendering/ad-experience/android-close-button-area-custom.jpg)|
+
+  </TabItem>
+  <TabItem value="swift" label="Swift">
+
+  |**API Object**         |`InterstitialRenderingAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedAdUnit` |
+  |**Ad Unit Property**   | `adUnit.closeButtonArea`|
+  |**Server Property**    | `closebuttonarea` |
+  |**Allowed Values**     | `0..1`|
+  |**Default Value**      | `0.1`|
+
+  Customization Example
+
+  |**Default**|**Custom**|
+  |![Close Button Area - Default](/images/prebid-mobile/modules/rendering/ad-experience/ios-close-button-area-010.png)|![Close Button Area - Custom](/images/prebid-mobile/modules/rendering/ad-experience/ios-close-button-area-020.png)|
+
+  </TabItem>
+</Tabs>
+
+### Close Button Position
+
+This setting controls where the close button appears on the screen.
+
+<Tabs>
+  <TabItem value="kotlin" label="Kotlin" default>
+
+  |**API Object**         |`InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
+  |**Ad Unit Property**   | `adUnit.setCloseButtonPosition(Position.TOP_LEFT)`|
+  |**Server Property**    | `closebuttonposition` |
+  |**Allowed Values**     | `Position.TOP_LEFT, Position.TOP_RIGHT`|
+  |**Default Value**      | `Position.TOP_RIGHT`|
+
+  Customization Example
+
+  |**Default**|**Custom**|
+  |![Close Button Position - Default](/images/prebid-mobile/modules/rendering/ad-experience/android-close-button-position-default.jpg)|![Close Button Position - Custom](/images/prebid-mobile/modules/rendering/ad-experience/android-close-button-position-custom.jpg)|
+
+  </TabItem>
+  <TabItem value="swift" label="Swift">
+
+  |**API Object**         |`InterstitialRenderingAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedAdUnit` |
+  |**Ad Unit Property**   | `adUnit.closeButtonPosition`|
+  |**Server Property**    | `closebuttonposition` *|
+  |**Allowed Values**     | `topLeft, topRight`|
+  |**Default Value**      | `topRight`|
+
+  Customization Example
+
+  |**Default**|**Custom**|
+  |![Close Button Position - Default](/images/prebid-mobile/modules/rendering/ad-experience/ios-close-button-area-010.png)|![Close Button Position - Custom](/images/prebid-mobile/modules/rendering/ad-experience/ios-close-button-possition-top-left.png)|
+
+  </TabItem>
+</Tabs>
+
+### Skip Button Area
+
+This setting determines the percentage of the device screen that the skip button should cover.
+
+<Tabs>
+  <TabItem value="kotlin" label="Kotlin" default>
+
+  |**API Object**         |`InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
+  |**Ad Unit Property**   | `adUnit.setSkipButtonArea(factor)`|
+  |**Server Property**    | `skipbuttonarea` |
+  |**Allowed Values**     | `0..1`|
+  |**Default Value**      | `70dp`|
+
+  </TabItem>
+  <TabItem value="swift" label="Swift">
+
+  |**API Object**         |`InterstitialRenderingAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedAdUnit` |
+  |**Ad Unit Property**   | `adUnit.skipButtonArea`|
+  |**Server Property**    | `skipbuttonarea` |
+  |**Allowed Values**     | `0..1`|
+  |**Default Value**      | `0.1`|
+
+  </TabItem>
+</Tabs>
+
+Customization Example
+
+
+|**Default**|**Custom**|
+|![Close Button Position - Default](/images/prebid-mobile/modules/rendering/ad-experience/android-skip-button-area-default.jpg)|![Close Button Position - Custom](/images/prebid-mobile/modules/rendering/ad-experience/android-skip-button-area-custom.jpg)|
+
+### Skip Button Position
+
+This control sets the position of the skip button.
+
+<Tabs>
+  <TabItem value="kotlin" label="Kotlin" default>
+
+  |**API Object**         |`InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
+  |**Ad Unit Property**   | `adUnit.setSkipButtonPosition(Position.TOP_LEFT)`|
+  |**Server Property**    | `skipbuttonposition` |
+  |**Allowed Values**     | `Position.TOP_LEFT, Position.TOP_RIGHT`|
+  |**Default Value**      | `Position.TOP_RIGHT`|
+
+  Customization Example
+
+  |**Default**|**Custom**|
+  |![Close Button Position - Default](/images/prebid-mobile/modules/rendering/ad-experience/android-skip-button-position-default.jpg)|![Close Button Position - Custom](/images/prebid-mobile/modules/rendering/ad-experience/android-skip-button-position-custom.jpg)|
+
+  </TabItem>
+  <TabItem value="swift" label="Swift">
+
+  |**API Object**         |`InterstitialRenderingAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedAdUnit` |
+  |**Ad Unit Property**   | `adUnit. skipButtonPosition`|
+  |**Server Property**    | `skipbuttonposition` |
+  |**Allowed Values**     | `topLeft, topRight`|
+  |**Default Value**      | `topLeft`|
+
+  Customization Example
+
+  |**Default**|**Custom**|
+  |![Close Button Position - Default](/images/prebid-mobile/modules/rendering/ad-experience/ios-skip-button-possition-top-left.png)|![Close Button Position - Custom](/images/prebid-mobile/modules/rendering/ad-experience/ios-skip-button-possition-top-right.png)|
+
+  </TabItem>
+</Tabs>
+
+### Skip Delay
+
+This setting determines the number of seconds after the start of playback before the skip or close button should appear.
+
+<Tabs>
+  <TabItem value="kotlin" label="Kotlin" default>
+
+  |**API Object**         |`InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
+  |**Ad Unit Property**   | `adUnit.setSkipDelay(seconds)`|
+  |**Server Property**    | `skipdelay` |
+  |**Default Value**      | `10 seconds`|
+
+  </TabItem>
+  <TabItem value="swift" label="Swift">
+
+  |**API Object**         |`InterstitialRenderingAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedAdUnit` |
+  |**Ad Unit Property**   | `adUnit.skipDelay`|
+  |**Server Property**    | `skipdelay` |
+  |**Default Value**      | `10 seconds`|
+
+  </TabItem>
+</Tabs>
+
+### Sound Button
+
+This option switches on or off the visibility of the sound/mute button for users.
+
+<Tabs>
+  <TabItem value="kotlin" label="Kotlin" default>
+
+  |**API Object**         |`InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
+  |**Ad Unit Property**   | `adUnit.setIsSoundButtonVisible(true)`|
+  |**Server Property**    | *not supported*|
+  |**Default Value**      | `false`|
+
+  Customization Example
+
+  |**Custom**|
+  |![Close Button Area - Default](/images/prebid-mobile/modules/rendering/ad-experience/android-sound-button.jpg)|
+
+  </TabItem>
+  <TabItem value="swift" label="Swift">
+
+  |**API Object**         |`InterstitialRenderingAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedAdUnit` |
+  |**Ad Unit Property**   | `adUnit.isSoundButtonVisible`|
+  |**Server Property**    | *not supported*|
+  |**Default Value**      | `false`|
+
+  Customization Example
+
+  |**Default**|**Custom**|
+  |![Close Button Area - Default](/images/prebid-mobile/modules/rendering/ad-experience/ios-close-button-area-010.png)|![Close Button Area - Custom](/images/prebid-mobile/modules/rendering/ad-experience/ios-mute-button-visible.png)|
+
+  </TabItem>
+</Tabs>
+
+### Code Example
+
+Here is how you can implement all the API's to customize your ad.
+
+<Tabs>
+  <TabItem value="kotlin" label="Kotlin" default>
+
+  ```kotlin
+  adUnit = MediationInterstitialAdUnit(
+      activity,
+      configId,
+      EnumSet.of(AdUnitFormat.BANNER),
+      mediationUtils
+  )
+
+  adUnit?.setMaxVideoDuration(30)
+  adUnit?.setCloseButtonArea(0.1)
+  adUnit?.setSkipDelay(5)
+  adUnit?.setSkipButtonArea(0.1)
+  adUnit?.setSkipButtonPosition(Position.TOP_RIGHT)
+  adUnit?.setCloseButtonPosition(Position.TOP_LEFT)
+  ```
+
+  </TabItem>
+  <TabItem value="swift" label="Swift">
+
+  ```swift
+  interstitialController = InterstitialRenderingAdUnit(configID: prebidConfigId,
+                                                        minSizePercentage: CGSize(width: 30, height: 30))
+  interstitialController?.delegate = self
+  interstitialController?.videoParameters.maxDuration = SingleContainerInt(integerLiteral: 30)
+  interstitialController?.closeButtonArea = 0.1
+  interstitialController?.skipDelay = 5
+  interstitialController?.skipButtonArea = 0.1
+  interstitialController?.skipButtonPosition = .topRight
+  interstitialController?.closeButtonPosition = .topRight
+  ```
+
+  </TabItem>
+</Tabs>

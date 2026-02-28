@@ -1,0 +1,589 @@
+---
+title: Integrating Prebid SDK iOS with AdMob
+description: Integrating Prebid SDK iOS with AdMob
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import RewardedConfig from '@site/docs/dev-docs/prebid-mobile/_partials/rewarded-server-side-configuration.mdx';
+
+<!-- markdownlint-disable-file MD046 -->
+
+# Prebid SDK iOS with AdMob Integration Method
+
+## Overview
+
+Here's how to integrate the Prebid SDK with [Google AdMob](https://admob.google.com/home/).
+
+### Prerequisites
+
+These are the required components:
+
+- **AdMob Account** - This account allows you to manage and serve ads within your mobile app. Within this account you'll need to configure your inventory for serving ads within your app.
+- **GMA SDK** - This SDK integration is necessary to communicate with the AdMob service.
+- **Prebid SDK** - You will need the latest version of the Prebid Mobile SDK for either [Android](/dev-docs/prebid-mobile/pbm-api/android/code-integration-android) or [iOS](/dev-docs/prebid-mobile/pbm-api/ios/code-integration-ios).
+- **Prebid Server** - You will need a cluster of servers running [Prebid Server](/dev-docs/prebid-server/use-cases/pbs-sdk). You can set up your own Prebid Server or work with a [Prebid Server managed service](https://prebid.org/managed-services/). Prebid Server provides you with the following:
+  - Configuration storage - rather than hardcoding all the details of your current business arrangements in the app, Prebid Server stores which bidders you're currently working with, their inventory details, and other settings that can be changed without updating your app.
+  - Server-side auction - the server will make the connections to multiple auction bidding partners so the app doesn't have to.
+  - Privacy regulation tools - the server can help your legal team meet different regulatory needs in different jurisdictions by configuring various protocols and anonyimization activities.
+
+## How it Works
+
+Here's how the ad bidding-auction-rendering process works in this integration scenario.
+
+![Rendering with AdMob](/images/prebid-mobile/modules/rendering/prebid-in-app-bidding-overview-admob.png)
+
+**Steps 1-2** Prebid SDK makes a bid request. Prebid Server runs an auction and returns the winning bid.
+
+**Step 3** GMA SDK makes an ad request. AdMob returns the mediation chain with respective ad sources.
+
+**Step 4** For each Prebid ad source, the GMA SDK sequentially instantiates a Prebid adapter function.
+
+**Step 5** The adapter function verifies the targeting keywords of the winning bid and the server properties of the given ad source. If they match the adapter will render the winning bid. Otherwise, it will immediately fail with a "no ad" error and the next ad source will instantiate the same adapter but for another set of server params.
+
+## Major Integration Steps
+
+Assuming your app is already integrated with the [GMA SDK](https://developers.google.com/admob/android/quick-start), the technical implementation of Prebid mobile into your app will involve these major steps:
+
+1. [Initialize the Prebid SDK](/dev-docs/prebid-mobile/pbm-api/ios/code-integration-ios) - create a connection to your Prebid Server.
+2. [Set Global Parameters](/dev-docs/prebid-mobile/pbm-api/ios/pbm-targeting-ios) - let bidders know important data about the page, privacy consent, and other settings.
+3. Work with your Prebid Server team to create the adunit configIds that will be used in the app.
+4. Set up AdMob Mediation Groups and Custom Events. See [AdOps guidance](#ad-operations-guidance)
+5. Link Prebid SDK AdUnit code to your app's AdUnits for the adunits that your business team wants to connect to Prebid with the configIds generated in Step 3. See the [adunit-specific instructions](#adunit-specific-instructions) below.
+
+## Ad Operations Guidance
+
+The Ad Operations team will need to create a [Mediation Group in AdMob](/adops/mobile-rendering-admob-line-item-setup).
+
+### Rendering and Tracking
+
+This information may be useful when comparing data across various reporting systems:
+
+| Scenario | Tracked? |
+| --- | --- |
+| Fires Prebid win event | yes |
+| Fires Prebid imp event | yes |
+| Fires OpenRTB burl | yes (1) |
+| Fires OpenRTB nurl | yes (1) |
+| Fires OpenMeasurement events | yes |
+
+Notes:
+
+1. OpenRTB `burl` and `nurl` are utilized in a PrebidMobile SDK v3.0.0.
+
+## Setup
+
+Prebid SDK is integrated into AdMob setup thru custom adapters. To integrate Prebid Adapters into your app, add the following line to your Podfile:
+
+```pod
+pod 'PrebidMobileAdMobAdapters'
+```
+
+### Initialization
+
+:::warning
+**Warning:** The `GADMobileAds.sharedInstance().start()` should be called in the adapters bundle, otherwise, GMA SDK won't load the ads with error: `adView:didFailToReceiveAdWithError: SDK tried to perform a networking task before being initialized.`
+:::
+
+To avoid the error add the following line to your app right after initialization of GMA SDK:
+
+```swift
+AdMobUtils.initializeGAD()
+```
+
+## Adunit Specific Instructions
+
+### Banners
+
+**Integration example(Swift)**:
+
+<Tabs>
+  <TabItem value="gma12" label="GMA SDK v12" default>
+
+```swift
+// 1. Create a GADRequest
+let gadRequest = Request()
+
+// 2. Create a BannerView
+gadBanner = GoogleMobileAds.BannerView(adSize: adSizeFor(cgSize: AD_SIZE))
+gadBanner.adUnitID = AD_UNIT_ID
+gadBanner.delegate = self
+gadBanner.rootViewController = self
+
+// Add GMA SDK banner view to the app UI
+bannerView.addSubview(gadBanner)
+
+// 3. Create an AdMobMediationBannerUtils
+mediationDelegate = AdMobMediationBannerUtils(gadRequest: gadRequest, bannerView: gadBanner)
+
+// 4. Create a MediationBannerAdUnit
+prebidAdMobMediaitonAdUnit = MediationBannerAdUnit(
+    configID: CONFIG_ID,
+    size: AD_SIZE,
+    mediationDelegate: mediationDelegate
+)
+
+// 5. Make a bid request to Prebid Server
+prebidAdMobMediaitonAdUnit.fetchDemand { [weak self] result in
+    PrebidDemoLogger.shared.info("Prebid demand fetch for AdMob \(result.name())")
+
+    // 6. Load ad
+    self?.gadBanner.load(gadRequest)
+}
+```
+
+  </TabItem>
+  <TabItem value="gma11" label="GMA SDK v11">
+
+```swift
+// 1. Create GADRequest and GADBannerView
+gadRequest = GADRequest()
+
+gadBanner = GADBannerView(adSize: AD_SIZE)
+gadBanner.delegate = self
+gadBanner.rootViewController = self
+
+gadBanner.adUnitID = AD_UNIT_ID
+
+// 2. Create an AdMobMediationBannerUtils
+mediationDelegate = AdMobMediationBannerUtils(gadRequest: gadRequest, bannerView: gadBanner)
+
+// 3. Create the MediationBannerAdUnit
+prebidAdMobMediaitonAdUnit = MediationBannerAdUnit(configID: CONFIG_ID,
+                                                   size: AD_SIZE,
+                                                   mediationDelegate: mediationDelegate)
+
+// 4. Make a bid request
+prebidAdMobMediaitonAdUnit.fetchDemand { [weak self] result in
+
+// 5. Make an ad request to AdMob
+    self?.gadBanner.load(self?.gadRequest)
+}
+```
+
+  </TabItem>
+</Tabs>
+
+#### Step 1: Create Request and BannerView
+
+This step is the same as for the original [AdMob integration](https://developers.google.com/admob/ios/banner). You don't have to make any modifications here.
+
+#### Step 2: Create AdMobMediationBannerUtils
+
+The `AdMobMediationBannerUtils` is a helper class, which performs certain utility work for the `MediationBannerAdUnit`, such as passing the targeting keywords to the adapters and checking the visibility of the ad view.
+
+#### Step 3: Create MediationBannerAdUnit
+
+The `MediationBannerAdUnit` is part of Prebid mediation API. This class is responsible for making a bid request and providing the winning bid and targeting keywords to mediating SDKs.
+
+#### Step 4: Make bid request
+
+The `fetchDemand` method makes a bid request to a Prebid server and returns a result in a completion handler.
+
+#### Step 5: Make an Ad Request
+
+Make a regular AdMob's ad request. Everything else will be handled by Prebid adapters.
+
+### Interstitials
+
+**Integration example(Swift)**:
+
+<Tabs>
+  <TabItem value="gma12" label="GMA SDK v12" default>
+
+```swift
+// 1. Create a Request
+let gadRequest = Request()
+
+// 2. Create an AdMobMediationInterstitialUtils
+let mediationDelegate = AdMobMediationInterstitialUtils(gadRequest: gadRequest)
+
+// 3. Create a MediationInterstitialAdUnit
+admobAdUnit = MediationInterstitialAdUnit(
+    configId: CONFIG_ID,
+    mediationDelegate: mediationDelegate
+)
+
+// 4. Make a bid request to Prebid Server
+admobAdUnit?.fetchDemand(completion: { [weak self] result in
+    PrebidDemoLogger.shared.info("Prebid demand fetch for AdMob \(result.name())")
+
+    // 5. Load the interstitial ad
+    InterstitialAd.load(
+        with: AD_UNIT_ID,
+        request: gadRequest
+    ) { [weak self] ad, error in
+        guard let self = self else { return }
+
+        if let error = error {
+            PrebidDemoLogger.shared.error("\(error.localizedDescription)")
+            return
+        }
+
+        // 6. Present the interstitial ad
+        self.interstitial = ad
+        self.interstitial?.fullScreenContentDelegate = self
+        self.interstitial?.present(from: self)
+    }
+})
+```
+
+  </TabItem>
+  <TabItem value="gma11" label="GMA SDK v11">
+
+```swift
+// 1. Create GADRequest
+gadRequest = GADRequest()
+
+// 2. Create AdMobMediationInterstitialUtils
+let mediationDelegate = AdMobMediationInterstitialUtils(gadRequest: self.gadRequest)
+
+// 3. Create MediationInterstitialAdUnit
+admobAdUnit = MediationInterstitialAdUnit(configId: CONFIG_ID, mediationDelegate: mediationDelegate)
+
+// 4. Make a bid request
+admobAdUnit?.fetchDemand(completion: { [weak self]result in
+
+// 5. Make an ad request to AdMob
+GADInterstitialAd.load(withAdUnitID: AD_UNIT_ID, request: self?.gadRequest) { [weak self] ad, error in
+    guard let self = self else { return }
+    if let error = error {
+        PBMLog.error(error.localizedDescription)
+        return
+    }
+
+        // 6. Present the interstitial ad
+        self.interstitial = ad
+        self.interstitial?.fullScreenContentDelegate = self
+        self.interstitial?.present(fromRootViewController: self)
+    }
+})
+```
+
+  </TabItem>
+</Tabs>
+
+The **default** ad format for interstitial is **.banner**. In order to make a `multiformat bid request`, set the respective values into the `adFormats` property.
+
+```swift
+// Make bid request for video ad
+adUnit?.adFormats = [.video]
+
+// Make bid request for both video amd banner ads
+adUnit?.adFormats = [.video, .banner]
+
+// Make bid request for banner ad (default behaviour)
+adUnit?.adFormats = [.banner]
+```
+
+#### Step 1: Create Request
+
+This step is the same as for the original [AdMob integration](https://developers.google.com/admob/ios/interstitial#swift). You don't have to make any modifications here.
+
+#### Step 2: Create AdMobMediationInterstitialUtils
+
+The `AdMobMediationInterstitialUtils` is a helper class, which performs certain utility work for the `MediationInterstitialAdUnit`, such as passing the targeting keywords to adapters and checking the visibility of the ad view.
+
+#### Step 3: Create MediationInterstitialAdUnit
+
+The `MediationInterstitialAdUnit` is part of the Prebid mediation API. This class is responsible for making a bid request and providing a winning bid to the mediating SDKs.
+
+#### Step 4: Make bid request
+
+The `fetchDemand` method makes a bid request to a Prebid server and provides a result in a completion handler.
+
+#### Step 5: Make an Ad Request
+
+Make a regular AdMob's ad request. Everything else will be handled by GMA SDK and prebid adapters.
+
+#### Steps 6: Display an ad
+
+Once you receive the ad it will be ready for display. Follow the [AdMob instructions](https://developers.google.com/admob/ios/interstitial#swift) for displaying an ad.
+
+### Rewarded
+
+<RewardedConfig />
+
+**Integration example(Swift)**:
+
+<Tabs>
+  <TabItem value="gma12" label="GMA SDK v12" default>
+
+```swift
+// 1. Create a Request
+let request = Request()
+
+// 2. Create an AdMobMediationRewardedUtils
+mediationDelegate = AdMobMediationRewardedUtils(gadRequest: request)
+
+// 3. Create a MediationRewardedAdUnit
+admobRewardedAdUnit = MediationRewardedAdUnit(
+    configId: CONFIG_ID,
+    mediationDelegate: mediationDelegate
+)
+
+// 4. Make a bid request to Prebid Server
+admobRewardedAdUnit.fetchDemand { [weak self] result in
+    guard let self = self else { return }
+    PrebidDemoLogger.shared.info("Prebid demand fetch for AdMob \(result.name())")
+
+    // 5. Load the rewarded ad
+    RewardedAd.load(with: AD_UNIT_ID, request: request) { [weak self] ad, error in
+        guard let self = self else { return }
+
+        if let error = error {
+            Log.error(error.localizedDescription)
+            return
+        }
+
+        // 6. Present the rewarded ad
+        self.gadRewardedAd = ad
+        self.gadRewardedAd?.fullScreenContentDelegate = self
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
+            self.gadRewardedAd?.present(
+                from: self,
+                userDidEarnRewardHandler: {
+                    print("User did earn reward.")
+                }
+            )
+        }
+    }
+}
+```
+
+  </TabItem>
+  <TabItem value="gma11" label="GMA SDK v11">
+
+```swift
+// 1. Create GADRequest
+let request = GADRequest()
+
+// 2. Create AdMobMediationInterstitialUtils
+let mediationDelegate = AdMobMediationRewardedUtils(gadRequest: request)
+
+// 3. Create MediationInterstitialAdUnit
+admobRewardedAdUnit = MediationRewardedAdUnit(configId: CONFIG_ID, mediationDelegate: mediationDelegate)
+
+// 4. Make a bid request
+admobRewardedAdUnit.fetchDemand { [weak self] result in
+    guard let self = self else { return }
+
+// 5. Make an ad request to AdMob
+GADRewardedAd.load(withAdUnitID: AD_UNIT_ID, request: request) { [weak self] ad, error in
+    guard let self = self else { return }
+    if let error = error {
+        PBMLog.error(error.localizedDescription)
+        return
+    }
+
+    // 6. Present the interstitial ad
+    self.gadRewardedAd = ad
+    self.gadRewardedAd?.fullScreenContentDelegate = self
+    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
+        self.gadRewardedAd?.present(fromRootViewController: self, userDidEarnRewardHandler: {
+            print("Reward user")
+        })
+    }
+    }
+}
+```
+
+  </TabItem>
+</Tabs>
+
+The process of displaying the rewarded ad is the same as for displaying an Interstitial Ad.
+
+To be notified when a user earns a reward follow the [AdMob intructions](https://developers.google.com/admob/ios/rewarded#show_the_ad).
+
+#### Step 1: Create Request
+
+This step is the same as for the original [AdMob integration](https://developers.google.com/admob/ios/rewarded). You don't have to make any modifications here.
+
+#### Step 2: Create MediationRewardedAdUnit
+
+The `AdMobMediationRewardedUtils` is a helper class, which performs certain utility work for the `MediationRewardedAdUnit`, like passing the targeting keywords to the adapters.
+
+#### Step 3: Create MediationInterstitialAdUnit
+
+The `MediationRewardedAdUnit` is part of the Prebid mediation API. This class is responsible for making a bid request and providing a winning bid and targeting keywords to the adapters.
+
+#### Step 4: Make bid request
+
+The `fetchDemand` method makes a bid request to the a Prebid server and provides a result in a completion handler.
+
+#### Step 5: Make an Ad Request
+
+Make a regular AdMob's ad request. Everything else will be handled by GMA SDK and prebid adapters.
+
+#### Steps 6: Display an ad
+
+Once the rewarded ad is received you can display it. Follow the [AdMob instructions](https://developers.google.com/admob/ios/rewarded#swift) for displaying an ad.
+
+### Native Ads
+
+:::warning
+**Warning:** If you use Native Ads you **must** integrate AdMob Adapters via the source files instead of cocoapods integration or standalone framework.
+:::
+
+In order to integrate AdMob adapters just add the adapters' source files to your app project.
+
+**Integration example(Swift)**:
+
+<Tabs>
+  <TabItem value="gma12" label="GMA SDK v12" default>
+
+```swift
+// 1. Create a Request
+let gadRequest = Request()
+
+// 2. Create an AdMobMediationNativeUtils
+mediationDelegate = AdMobMediationNativeUtils(gadRequest: gadRequest)
+
+// 3. Create a MediationNativeAdUnit
+admobMediationNativeAdUnit = MediationNativeAdUnit(
+    configId: CONFIG_ID,
+    mediationDelegate: mediationDelegate
+)
+
+// 4. Configure MediationNativeAdUnit
+admobMediationNativeAdUnit.addNativeAssets(nativeRequestAssets)
+admobMediationNativeAdUnit.setContextType(.Social)
+admobMediationNativeAdUnit.setPlacementType(.FeedContent)
+admobMediationNativeAdUnit.setContextSubType(.Social)
+admobMediationNativeAdUnit.addEventTracker(eventTrackers)
+
+// 5. Make a bid request to Prebid Server
+admobMediationNativeAdUnit.fetchDemand { [weak self] result in
+    guard let self = self else { return }
+    PrebidDemoLogger.shared.info("Prebid demand fetch for AdMob \(result.name())")
+
+    // 6. Load the native ad
+    self.adLoader = AdLoader(
+        adUnitID: AD_UNIT_ID,
+        rootViewController: self,
+        adTypes: [ .native ],
+        options: nil
+    )
+
+    self.adLoader?.delegate = self
+
+    self.adLoader?.load(gadRequest)
+}
+```
+
+  </TabItem>
+  <TabItem value="gma11" label="GMA SDK v11">
+
+```swift
+// 1. Create GAD Request
+gadRequest = GADRequest()
+
+// 2. Create AdMobMediationNativeUtils
+mediationDelegate = AdMobMediationNativeUtils(gadRequest: gadRequest)
+
+// 3. Create and configure MediationNativeAdUnit
+nativeAdUnit = MediationNativeAdUnit(configId: prebidConfigId,
+                                     mediationDelegate: mediationDelegate!)
+
+nativeAdUnit.setContextType(ContextType.Social)
+nativeAdUnit.setPlacementType(PlacementType.FeedContent)
+nativeAdUnit.setContextSubType(ContextSubType.Social)
+
+// 4. Set up assets for bid request
+nativeAdUnit.addNativeAssets(nativeAssets)
+
+// 5. Set up event tracker for bid request
+nativeAdUnit.addEventTracker(eventTrackers)
+
+// 6. Make a bid request
+nativeAdUnit.fetchDemand { [weak self] result in
+    guard let self = self else { return }
+
+    // 7. Load AdMob Native ad
+    self.adLoader = GADAdLoader(adUnitID: AD_UNIT_ID,
+                                rootViewController: self.rootController,
+                                adTypes: [ .native ],
+                                options: nil)
+
+    self.adLoader?.delegate = self
+
+    self.adLoader?.load(self.gadRequest)
+}
+```
+
+  </TabItem>
+</Tabs>
+
+#### Step 1: Create a Request
+
+Prepare the `Request` object before you make a bid request. It will be needed for the Prebid mediation utils.
+
+#### Step 2: Create AdMobMediationNativeUtils
+
+The `AdMobMediationNativeUtils` is a helper class, which performs certain utility work for `MediationNativeAdUnit`, like passing the targeting keywords to adapters and checking the visibility of the ad view.
+
+#### Step 3: Create and configure MediationNativeAdUnit
+
+The `MediationNativeAdUnit` is part of the Prebid mediation API. This class is responsible for making a bid request and providing a winning bid and targeting keywords to the adapters. For better targeting you should provide additional properties like `contextType` and `placementType`.
+
+#### Step 4: Set up assets for bid request
+
+The bid request for native ads should have the description of any expected assets. The full spec for the native template can be found in the [Native Ad Specification from IAB](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf).
+
+Example of creating the assets array:
+
+```swift
+let image = NativeAssetImage(minimumWidth: 200, minimumHeight: 50, required: true)
+image.type = ImageAsset.Main
+
+let icon = NativeAssetImage(minimumWidth: 20, minimumHeight: 20, required: true)
+icon.type = ImageAsset.Icon
+
+let title = NativeAssetTitle(length: 90, required: true)
+
+let body = NativeAssetData(type: DataAsset.description, required: true)
+
+let cta = NativeAssetData(type: DataAsset.ctatext, required: true)
+
+let sponsored = NativeAssetData(type: DataAsset.sponsored, required: true)
+
+return [icon, title, image, body, cta, sponsored]
+```
+
+#### Step 5: Set up event tracker for bid request
+
+The bid request for mative ads may have a description of expected event trackers. The full spec for the Native template can be found in the [Native Ad Specification from IAB](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf).
+
+The example of creating the event trackers array:
+
+```swift
+let eventTrackers = [
+    NativeEventTracker(event: EventType.Impression, methods: [EventTracking.Image,EventTracking.js])
+]
+```
+
+#### Step 6: Make a bid request
+
+The `fetchDemand` method makes a bid request to Prebid server and provides a result in a completion handler.
+
+#### Step 7: Load AdMob Native ad
+
+Now just load a native ad from AdMob according to the [AdMob instructions](https://developers.google.com/admob/ios/native/start).
+
+## Additional Ad Unit Configuration
+
+### Ad Position
+
+The `adPosition` property allows developers to specify the position of the ad within the publisher's content. This property maps to the `pos` field in the OpenRTB specification under the `imp[].banner` or `imp[].video` objects, depending on the ad format. The possible values for this field could be found in the [respective specification](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/main/AdCOM%20v1.0%20FINAL.md#list--placement-positions-).
+
+You can set `adPosition` by using the following property:
+
+```swift
+adUnit.adPosition = .footer
+```
+
+## Further Reading
+
+- [Prebid Mobile Overview](/dev-docs/prebid-mobile/prebid-mobile)
+- [Prebid SDK iOS Integration](/dev-docs/prebid-mobile/pbm-api/ios/code-integration-ios)
+- [Prebid SDK iOS Global Parameters](/dev-docs/prebid-mobile/pbm-api/ios/pbm-targeting-ios)
