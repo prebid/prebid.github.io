@@ -33,7 +33,6 @@ Note: The T-Advertising Solutions Bidding adapter requires setup and approval fr
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-
-Name | Scope | Description | Example | Type
---- | --- | --- | --- | ----
-`publisherId` | required | The publisher ID | `'1427ab10f2e448057ed3b422'` | `String`
+| Name          | Scope    | Description      | Example                      | Type     |
+|---------------|----------|------------------|------------------------------|----------|
+| `publisherId` | required | The publisher ID | `'1427ab10f2e448057ed3b422'` | `String` |
