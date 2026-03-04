@@ -238,7 +238,8 @@ export const spec = {
     onSetTargeting: function(bid) {},
     onBidderError: function({ error, bidderRequest }) {},
     onAdRenderSucceeded: function(bid) {},
-    supportedMediaTypes: [BANNER, VIDEO, NATIVE, AUDIO]
+    supportedMediaTypes: [BANNER, VIDEO, NATIVE, AUDIO],
+    alwaysHasCapacity: true // When true, this bidder will be omitted in checking if origin has http capacity
 }
 registerBidder(spec);
 
@@ -1190,6 +1191,7 @@ export const spec = {
         code: BIDDER_CODE,
     gvlid: 0000000000,
     supportedMediaTypes: [BANNER, VIDEO, NATIVE],
+    alwaysHasCapacity: true,
         aliases: [{code: "myAlias", gvlid: 99999999999} ],
         /**
          * Determines whether or not the given bid request is valid.
