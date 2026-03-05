@@ -23,7 +23,7 @@ The `getEvents` method returns a copy of all emitted events since the page loade
 The available events are:
 
 {: .table .table-bordered .table-striped }
-| Event         | Description                             | Callback Arguments |
+| Event         | Description                             | Event argument |
 | --- | --- | --- |
 | auctionInit   | The auction has started                 | Object containing auction details |
 | auctionEnd    | The auction has ended                   | Object containing auction details |
@@ -38,7 +38,7 @@ The available events are:
 | bidWon        | A bid has won                           | Bid response object |
 | bidTimeout    | A bid timed out                         | Array of objects with timed out bids |
 | setTargeting  | Targeting has been set                  | Hash of targeting values |
-| requestBids   | Bids have been requested from adapters (i.e. pbjs.requestBids() was called) | None |
+| requestBids   | Bids have been requested from adapters (i.e. pbjs.requestBids() was called) | The argument passed to [`requestBids`](https://docs.prebid.org/dev-docs/publisher-api-reference/requestBids.html), except that `adUnits` and `adUnitCodes` are always set and reflect the ad units involved in the auction. Event handlers may not modify `adUnitCodes`. |
 | addAdUnits    | Ad units have been added to the auction | None |
 | adRenderFailed| Ad rendering failed | Object containing 'reason' and 'message' |
 | adRenderSucceeded | Ad rendering succeeded| Object containing 'doc', 'bid', and 'adId'. 'doc' is the DOM root containing the ad and may be `null` if it was rendered in a cross-origin iframe. This event indicates that the render function did not generate an error, it does not guarantee that tracking for this event has occurred yet.|
