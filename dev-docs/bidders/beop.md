@@ -3,7 +3,7 @@ layout: bidder
 title: BeOp
 description: BeOp Bidder Adaptor
 pbjs: true
-pbs: false
+pbs: true
 media_types: banner
 biddercode: beop
 tcfeu_supported: true
@@ -21,7 +21,7 @@ safeframes_ok: false
 deals_supported: false
 fpd_supported: true
 prebid_member: false
-multiformat_supported: will-bid-on-one
+multiformat_supported: will-bid-on-any
 ortb_blocking_supported: false
 privacy_sandbox: no
 ---
@@ -30,7 +30,9 @@ privacy_sandbox: no
 
 The BeOp bidder adapter requires an `accountId` or `networkId`, which you can retrieve from your BeOp platform dashboard (as a publisher, reseller, or media group). To activate BeOp demand on your account, please contact your account manager or reach out to <publishers@beop.io>.
 
-### Bid Params
+BeOp is available in both **Prebid.js** (client-side) and **Prebid Server** (server-side). You can use BeOp via Prebid Server when Prebid.js calls a Prebid Server host, or in server-to-server OpenRTB setups.
+
+### Bid Params (Prebid.js)
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
@@ -39,6 +41,20 @@ The BeOp bidder adapter requires an `accountId` or `networkId`, which you can re
 | `networkPartnerId` | optional | Your internal network partner ID (used for advanced partner tracking) | `'MY-WEBSITE-123'` | `string` |
 | `currency` | optional | Preferred bidding currency (defaults to `'EUR'`) | `'EUR'` or `'USD'` | `string` |
 | `keywords` | optional | Contextual keywords string or array to help target your campaign | `'cars, racing'` or `['cars', 'racing']` | `string/array` |
+
+### Prebid Server
+
+The BeOp Prebid Server adapter supports the same account models as the Prebid.js adapter. Use either **publisher mode** (`pid`) or **network mode** (`nid` + `ntpnid`).
+{: .table .table-bordered .table-striped }
+| Name | Scope | Description | Example | Type |
+|------|--------|-------------|---------|------|
+| `pid` | required (publisher) | BeOp publisher ID (same as `accountId` in Prebid.js) | `'5a8af500c9e77c00017e4cad'` | `string` |
+| `nid` | required (network) | BeOp network ID (same as `networkId` in Prebid.js). Use together with `ntpnid`. | `'5a8af500c9e77c00017e4cad'` | `string` |
+| `ntpnid` | required (network) | Network partner ID (same as `networkPartnerId` in Prebid.js). Use together with `nid`. | `'MY-WEBSITE-123'` | `string` |
+
+Either provide `pid` **or** the pair `nid` + `ntpnid`.
+
+If you host Prebid Server and need to enable the BeOp adapter, add BeOp to your bidders configuration. For endpoint or setup questions, contact <supply>.
 
 ### User Syncs
 
@@ -75,6 +91,8 @@ Thanks to BeOp’s unique interactive formats, publishers benefit not only from 
 
 ### Test Parameters
 
+**Prebid.js**
+
 ```js
 var adUnits = [
   {
@@ -99,4 +117,23 @@ var adUnits = [
     ],
   },
 ];
+```
+
+**Prebid Server** - 
+
+```json
+"properties": {
+    "pid": {
+      "type": "string",
+      "description": "BeOp publisher ID"
+    },
+    "nid": {
+      "type": "string",
+      "description": "BeOp Network ID"
+    },
+    "ntpnid": {
+      "type": "string",
+      "description": "Network partner ID"
+    }
+  },
 ```
