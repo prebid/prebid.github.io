@@ -96,22 +96,22 @@ adType: 'banner' // Specifies the type of ad served
 ```
 
 {: .table .table-bordered .table-striped }
-| Field              | Data Type | Description                                                                                                                                      | Example                       | Mandatory |
+| Field | Data Type | Description | Example | Mandatory |
 |--------------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------|-----------|
-| biddingPlatformId   | Integer   | Specify the platform in which this ad impression was rendered – 1 – Prebid, 2 – Amazon, 3 – Google, 4 – Open RTB (including your local Prebid server) | 1                             | Yes       |
-| partnerAuctionId    | String    | Use this when you are running multiple auction solutions across your assets and have a unified identifier for auctions                            | 3d44542d-xx-4662-xxxx-4xxxx3d8e | No        |
-| bidderCode          | String    | Specifies the name of the bidder that won the auction as reported by Prebid and all other bidding platforms                                       | newAppnexus                   | Yes       |
-| prebidAuctionId     | String    | Specifies the identifier of the Prebid auction. Leave empty or undefined if Prebid is not the bidding platform                                   | 3513ce01-de02-490b-9d87-bfc137697f82  |     No    |
-| cpm                 | Decimal   | Cost per mille of the impression as received from the demand-side auction (without modifications or reductions)                                   | 5.62                          | Yes       |
-| currency            | String    | Currency of the auction                                                                                                                          | USD                           | Yes       |
-| originalCpm         | Decimal   | Leave empty or undefined if Prebid is not the bidding platform                                                                                    | 5.5                           | No        |
-| originalCurrency    | String    | Currency of the original auction                                                                                                                 | USD                           | No        |
-| status              | String    | Status of the impression. Leave empty or undefined if Prebid is not the bidding platform                                                          | rendered                      | No        |
-| placementId         | String    | Unique identifier of the ad unit on the webpage that showed this ad                                                                               | div-1                         | No        |
-| adType              | String    | Specifies the type of ad served. Possible values: “banner“, “video“, “native“, “audio“.                                                           | banner                        | No        |
+| biddingPlatformId | Integer | Specify the platform in which this ad impression was rendered – 1 – Prebid, 2 – Amazon, 3 – Google, 4 – Open RTB (including your local Prebid server) | 1 | Yes |
+| partnerAuctionId | String | Use this when you are running multiple auction solutions across your assets and have a unified identifier for auctions | 3d44542d-xx-4662-xxxx-4xxxx3d8e | No |
+| bidderCode | String | Specifies the name of the bidder that won the auction as reported by Prebid and all other bidding platforms | newAppnexus | Yes |
+| prebidAuctionId | String | Specifies the identifier of the Prebid auction. Leave empty or undefined if Prebid is not the bidding platform | 3513ce01-de02-490b-9d87-bfc137697f82 | No |
+| cpm | Decimal | Cost per mille of the impression as received from the demand-side auction (without modifications or reductions) | 5.62 | Yes |
+| currency | String | Currency of the auction | USD | Yes |
+| originalCpm | Decimal | Leave empty or undefined if Prebid is not the bidding platform | 5.5 | No |
+| originalCurrency | String | Currency of the original auction | USD | No |
+| status | String | Status of the impression. Leave empty or undefined if Prebid is not the bidding platform | rendered | No |
+| placementId | String | Unique identifier of the ad unit on the webpage that showed this ad | div-1 | No |
+| adType | String | Specifies the type of ad served. Possible values: “banner“, “video“, “native“, “audio“. | banner | No |
 
 To report the auction win, call the function as follows:
 
 ```js
-window.intentIqAnalyticsAdapter_[partner_id].reportExternalWin(reportData)
+window.intentIqAnalyticsAdapter_[partner_id].reportExternalWin(reportData);
 ```
