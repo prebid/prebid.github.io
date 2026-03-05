@@ -95,7 +95,7 @@ pos: 0 // The following values are defined in the ORTB 2.5 spec
 ```
 
 {: .table .table-bordered .table-striped }
-| Field              | Data Type | Description                                                                                                                                      | Example                       | Mandatory |
+| Field | Data Type | Description | Example | Mandatory |
 |--------------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------|-----------|
 | biddingPlatformId   | Integer   | Specify the platform in which this ad impression was rendered – 1 – Prebid, 2 – Amazon, 3 – Google, 4 – Open RTB (including your local Prebid server) | 1                             | Yes       |
 | partnerAuctionId    | String    | Use this when you are running multiple auction solutions across your assets and have a unified identifier for auctions                            | 3d44542d-xx-4662-xxxx-4xxxx3d8e | No        |
@@ -114,5 +114,5 @@ pos: 0 // The following values are defined in the ORTB 2.5 spec
 To report the auction win, call the function as follows:
 
 ```js
-window.intentIqAnalyticsAdapter_[partner_id].reportExternalWin(reportData)
+window.intentIqAnalyticsAdapter_[partner_id].reportExternalWin(reportData);
 ```
