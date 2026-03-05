@@ -2055,6 +2055,8 @@
   subgroup: 1000
   sbCollapseId: prebid-agents
 
+#---- General ----|
+
 - sbSecId: 10
   title: General
   link:
@@ -2065,8 +2067,485 @@
   subgroup: 0
 
 - sbSecId: 10
-  title: Salesagent
-  link: /agents/salesagent.html
+  title: Overview
+  link: /agents/salesagent/overview.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Architecture & Protocols
+  link: /agents/salesagent/architecture.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: "Protocols: MCP vs A2A"
+  link: /agents/salesagent/protocols.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Glossary
+  link: /agents/salesagent/glossary.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+#---- Getting Started ----|
+
+- sbSecId: 10
+  title: Getting Started
+  link:
+  isHeader: 1
+  headerId: agents-getting-started
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Quick Start
+  link: /agents/salesagent/getting-started/quickstart.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Publisher Onboarding
+  link: /agents/salesagent/getting-started/publisher-onboarding.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Buy-Side Integration
+  link: /agents/salesagent/getting-started/buy-side-integration.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Configuration Reference
+  link: /agents/salesagent/getting-started/configuration.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+#---- Tools & Schemas ----|
+
+- sbSecId: 10
+  title: Tools & Schemas
+  link:
+  isHeader: 1
+  headerId: agents-tools
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Tool Reference
+  link: /agents/salesagent/tools/tool-reference.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: get_adcp_capabilities
+  link: /agents/salesagent/tools/get-adcp-capabilities.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: get_products
+  link: /agents/salesagent/tools/get-products.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: list_creative_formats
+  link: /agents/salesagent/tools/list-creative-formats.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: create_media_buy
+  link: /agents/salesagent/tools/create-media-buy.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: update_media_buy
+  link: /agents/salesagent/tools/update-media-buy.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: get_media_buys
+  link: /agents/salesagent/tools/get-media-buys.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: sync_creatives
+  link: /agents/salesagent/tools/sync-creatives.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: list_creatives
+  link: /agents/salesagent/tools/list-creatives.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: get_media_buy_delivery
+  link: /agents/salesagent/tools/get-media-buy-delivery.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: list_authorized_properties
+  link: /agents/salesagent/tools/list-authorized-properties.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: update_performance_index
+  link: /agents/salesagent/tools/update-performance-index.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Workflow Tools
+  link: /agents/salesagent/tools/workflow-tools.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: sync_catalogs (Planned)
+  link: /agents/salesagent/tools/sync-catalogs.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: provide_performance_feedback (Planned)
+  link: /agents/salesagent/tools/provide-performance-feedback.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: sync_event_sources (Planned)
+  link: /agents/salesagent/tools/sync-event-sources.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: log_event (Planned)
+  link: /agents/salesagent/tools/log-event.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Content Standards (Planned)
+  link: /agents/salesagent/tools/content-standards.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: API Schema Reference
+  link: /agents/salesagent/schemas/api-schemas.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Database Models
+  link: /agents/salesagent/schemas/database-models.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: AdCP Protocol Types
+  link: /agents/salesagent/schemas/adcp-types.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+#---- Deployment & Operations ----|
+
+- sbSecId: 10
+  title: Deployment & Operations
+  link:
+  isHeader: 1
+  headerId: agents-deployment
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Deployment Overview
+  link: /agents/salesagent/deployment/deployment-overview.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Single-Tenant Deployment
+  link: /agents/salesagent/deployment/single-tenant.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Multi-Tenant Deployment
+  link: /agents/salesagent/deployment/multi-tenant.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Deploy to Fly.io
+  link: /agents/salesagent/deployment/fly-io.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Deploy to GCP
+  link: /agents/salesagent/deployment/gcp.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Admin UI Guide
+  link: /agents/salesagent/operations/admin-ui.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Security Model
+  link: /agents/salesagent/operations/security.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Monitoring & Audit Logging
+  link: /agents/salesagent/operations/monitoring.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+#---- Integrations ----|
+
+- sbSecId: 10
+  title: Integrations
+  link:
+  isHeader: 1
+  headerId: agents-integrations
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: GAM Adapter
+  link: /agents/salesagent/integrations/gam.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Custom Adapter
+  link: /agents/salesagent/integrations/custom-adapter.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Mock Adapter
+  link: /agents/salesagent/integrations/mock-adapter.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: AdCP Ecosystem
+  link: /agents/salesagent/integrations/adcp-ecosystem.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+#---- Tutorials ----|
+
+- sbSecId: 10
+  title: Tutorials
+  link:
+  isHeader: 1
+  headerId: agents-tutorials
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Campaign Lifecycle
+  link: /agents/salesagent/tutorials/campaign-lifecycle.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Catalog Setup
+  link: /agents/salesagent/tutorials/catalog-setup.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Testing with Mock Adapter
+  link: /agents/salesagent/tutorials/mock-testing.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+#---- Developers ----|
+
+- sbSecId: 10
+  title: Developers
+  link:
+  isHeader: 1
+  headerId: agents-developers
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Dev Environment Setup
+  link: /agents/salesagent/developers/dev-setup.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Source Architecture
+  link: /agents/salesagent/developers/source-architecture.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Testing Guide
+  link: /agents/salesagent/developers/testing.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Database Migrations
+  link: /agents/salesagent/developers/migrations.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Contributing
+  link: /agents/salesagent/developers/contributing.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+#---- Reference ----|
+
+- sbSecId: 10
+  title: Reference
+  link:
+  isHeader: 1
+  headerId: agents-reference
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Error Codes
+  link: /agents/salesagent/reference/error-codes.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: AdCP Cross-References
+  link: /agents/salesagent/reference/adcp-cross-references.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
