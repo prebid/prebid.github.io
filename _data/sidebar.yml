@@ -2042,3 +2042,32 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
+
+#-------------- Prebid Agents --------------|
+
+- sbSecId: 10
+  title:
+  link:
+  isHeader: 0
+  isSectionHeader: 1
+  sectionTitle: Prebid Agents
+  sectionId: prebid-agents
+  subgroup: 1000
+  sbCollapseId: prebid-agents
+
+- sbSecId: 10
+  title: General
+  link:
+  isHeader: 1
+  headerId: agents-general
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Salesagent
+  link: /agents/salesagent.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
