@@ -35,9 +35,9 @@ No registration for this module is required.
 | options.browserBlackList        | Optional | String   | This is the name of a browser that can be added to a blacklist.| `"chrome"`|
 | options.domainName              | Optional | String   | Specifies the domain of the page in which the IntentIQ object is currently running and serving the impression. This domain will be used later in the revenue reporting breakdown by domain. For example, cnn.com. It identifies the primary source of requests to the IntentIQ servers, even within nested web pages.| `"currentDomain.com"`|
 | options. additionalParams | Optional | Array | This parameter allows sending additional custom key-value parameters with specific destination logic (sync, VR, winreport). Each custom parameter is defined as an object in the array. | `[ { parameterName: “abc”, parameterValue: 123, destination: [1,1,0] } ]` |
-| options. additionalParams[0].parameterName | Required | String | Name of the custom parameter. This will be sent as a query parameter. | `"abc"` |
-| options. additionalParams[0].parameterValue | Required | String / Number | Value to assign to the parameter. | `123` |
-| options. additionalParams[0].destination | Required | Array | Array of numbers either `1` or `0`. Controls where this parameter is sent `[sendWithSync, sendWithVr, winreport]`. | `[1, 0, 0]` |
+| options. additionalParams[0].parameterName | Optional | String | Name of the custom parameter. This will be sent as a query parameter. | `"abc"` |
+| options. additionalParams[0].parameterValue | Optional | String / Number | Value to assign to the parameter. | `123` |
+| options. additionalParams[0].destination | Optional | Array | Array of numbers either `1` or `0`. Controls where this parameter is sent `[sendWithSync, sendWithVr, winreport]`. | `[1, 0, 0]` |
 
 #### Example Configuration
 
@@ -95,12 +95,12 @@ pos: 0 // The following values are defined in the ORTB 2.5 spec
 ```
 
 {: .table .table-bordered .table-striped }
-| Field              | Data Type | Description                                                                                                                                      | Example                       | Mandatory |
+| Field | Data Type | Description | Example | Mandatory |
 |--------------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------|-----------|
 | biddingPlatformId   | Integer   | Specify the platform in which this ad impression was rendered – 1 – Prebid, 2 – Amazon, 3 – Google, 4 – Open RTB (including your local Prebid server) | 1                             | Yes       |
 | partnerAuctionId    | String    | Use this when you are running multiple auction solutions across your assets and have a unified identifier for auctions                            | 3d44542d-xx-4662-xxxx-4xxxx3d8e | No        |
 | bidderCode          | String    | Specifies the name of the bidder that won the auction as reported by Prebid and all other bidding platforms                                       | newAppnexus                   | Yes       |
-| prebidAuctionId     | String    | Specifies the identifier of the Prebid auction. Leave empty or undefined if Prebid is not the bidding platform                                   |                               |         |
+| prebidAuctionId | String | Specifies the identifier of the Prebid auction. Leave empty or undefined if Prebid is not the bidding platform | 3513ce01-de02-490b-9d87-bfc137697f82 | No |
 | cpm                 | Decimal   | Cost per mille of the impression as received from the demand-side auction (without modifications or reductions)                                   | 5.62                          | Yes       |
 | currency            | String    | Currency of the auction                                                                                                                          | USD                           | Yes       |
 | originalCpm         | Decimal   | Leave empty or undefined if Prebid is not the bidding platform                                                                                    | 5.5                           | No        |
@@ -114,5 +114,5 @@ pos: 0 // The following values are defined in the ORTB 2.5 spec
 To report the auction win, call the function as follows:
 
 ```js
-window.intentIqAnalyticsAdapter_[partner_id].reportExternalWin(reportData)
+window.intentIqAnalyticsAdapter_[partner_id].reportExternalWin(reportData);
 ```
