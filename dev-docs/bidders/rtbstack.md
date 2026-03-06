@@ -37,8 +37,8 @@ pbjs.setBidderConfig({
 {: .table .table-bordered .table-striped }
 | Name                | Scope    | Description                                                                                | Example                      | Type     |
 |---------------------|----------|--------------------------------------------------------------------------------------------|------------------------------|----------|
-| `tagId`        | required |The unique identifier of the ad placement. Will be used for comparison of statistics.                             | 51772                        | `int`    |
-| `kvTargeting`       | optional | Key/Value - a pair of the unique values that will be used for the custom targeting option. | {key1: value2, key2: value2} | `object` |
+| `tagId`        | required |The unique identifier of the ad placement. Will be used for comparison of statistics.                             | `51772`                        | `int`    |
+| `kvTargeting`       | optional | Key/Value - a pair of the unique values that will be used for the custom targeting option. | `{key1: value2, key2: value2}` | `object` |
 
 #### Bid Example
 
@@ -62,9 +62,9 @@ The RTB Stack adapter allows publishers to connect to RTB Stack demand through P
 {: .table .table-bordered .table-striped }
 | Name                | Scope    | Description                                                                                | Example                      | Type     |
 |---------------------|----------|--------------------------------------------------------------------------------------------|------------------------------|----------|
-| `route`             | required | Full RTB Stack route URL used to derive the RTB Stack endpoint. This URL typically includes the region host and query parameters such as client, endpoint, and ssp. | https://us-adx-example.rtb-stack.com/prebid?client=44e2d241-5051-4b58-8ac6-f17e13732339&ssp=3&endpoint=777   | `string`    |
-| `tagId`             | required | The unique identifier of the ad placement. Will be used for comparison of statistics.     | 12345 | `string` |
-| `customParams`      | optional | Key/Value - a pair of the unique values that will be used for the custom targeting option.     | {key1: value2, key2: value2} | `object` |
+| `route`             | required | Full RTB Stack route URL used to derive the RTB Stack endpoint. This URL typically includes the region host and query parameters such as client, endpoint, and ssp. | `https://us-adx-example.rtb-stack.com/prebid?client=44e2d241-5051-4b58-8ac6-f17e13732339&ssp=3&endpoint=777`   | `string`    |
+| `tagId`             | required | The unique identifier of the ad placement. Will be used for comparison of statistics.     | `12345` | `string` |
+| `customParams`      | optional | Key/Value - a pair of the unique values that will be used for the custom targeting option.     | `{key1: value2, key2: value2}` | `object` |
 
 #### Bid Example
 
