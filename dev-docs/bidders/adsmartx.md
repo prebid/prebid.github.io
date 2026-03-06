@@ -15,12 +15,13 @@ pbjs: true
 pbs: true
 ---
 
-# Overview
+### Overview
 
-AdSmartx is a digital advertising platform that supports banner and video ads through its Prebid.js adapter. The adapter uses OpenRTB standards for request and response formatting.
+AdSmartX is a digital advertising platform that supports banner and video ads through its Prebid.js adapter. The adapter uses OpenRTB standards for request and response formatting.
 
-# Bid Params
+### Bid Params
 
+{: .table .table-bordered .table-striped }
 | Name         | Scope              | Type             | Description                                | Example                 |
 |--------------|--------------------|------------------|--------------------------------------------|-------------------------|     
 | `bidFloor`   | optional           | string           | Bid Floor                                  | `'0.01'`|
