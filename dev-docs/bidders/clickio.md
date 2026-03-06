@@ -23,7 +23,6 @@ prebid_member: false
 sidebarType: 1
 ---
 
-
 ### Note
 
 The Clickio bid adapter connects to Clickio's demand platform using OpenRTB 2.5 standard. This adapter supports banner advertising.
@@ -36,4 +35,3 @@ To get started, simply replace the ``said`` with the ID assigned to you.
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
 | `said`      | required | Site Area ID         | `'11111'`    | `string` |
-
