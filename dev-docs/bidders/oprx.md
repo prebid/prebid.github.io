@@ -28,7 +28,7 @@ privacy_sandbox: no
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description            | Example    | Type      |
 |---------------|----------|------------------------|------------|-----------|
-| `placementId` | required | Placement ID           | `11111`    | `integer` |
+| `placement_id`| required | Placement ID           | `11111`    | `integer` |
 | `key`         | required | Key                    | `'abc123'` | `string`  |
 | `width`       | optional | Banner Width           | `123`      | `integer` |
 | `height`      | optional | Banner Height          | `456`      | `integer` |
