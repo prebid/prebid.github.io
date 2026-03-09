@@ -54,10 +54,9 @@ pbjs.setConfig({
 
 {: .table .table-bordered .table-striped }
 
-| Name              | Type    | Description                                                       | Default        |
-| :---------------- | :------ | :---------------------------------------------------------------- |:-------------- |
+| Name              | Type    | Description                                                       | Default              |
+| :---------------- | :------ | :---------------------------------------------------------------- |:-------------------- |
 | name              | String  | Real time data module name                                        | Always 'insuradsRtd' |
-| waitForIt         | Boolean | Should be `true` if there's an `auctionDelay` defined (optional)  | `false`        |
-| params            | Object  |                                                                   |                |
-| params.publicId   | String  | Your InsurAds public ID (required)                                |                |
-
+| waitForIt         | Boolean | Should be `true` if there's an `auctionDelay` defined (optional)  | `false`              |
+| params            | Object  |                                                                   |                      |
+| params.publicId   | String  | Your InsurAds public ID (required)                                |                      |
