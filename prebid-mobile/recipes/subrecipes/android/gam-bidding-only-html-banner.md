@@ -20,9 +20,14 @@ private fun createAd() {
     adUnit?.setAutoRefreshInterval(refreshTimeSeconds)
 
     // 2. Configure banner parameters
-    val parameters = BannerBaseAdUnit.Parameters()
+    val parameters = BannerParameters()
     parameters.api = listOf(Signals.Api.MRAID_3, Signals.Api.OMID_1)
-    adUnit?.parameters = parameters
+    adUnit?.bannerParameters = parameters
+
+    // 2. Configure banner parameters for PrebidMobile 2.5 
+    // val parameters = BannerBaseAdUnit.Parameters()
+    // parameters.api = listOf(Signals.Api.MRAID_3, Signals.Api.OMID_1)
+    // adUnit?.parameters = parameters
 
    // For multi-size request
    adUnit?.addAdditionalSize(728, 90)
@@ -45,6 +50,9 @@ private fun createAd() {
     }
 }
 ```
+
+{: .alert.alert-warning :}
+Starting from PrebidMobile `3.0.0` the `BannerBaseAdUnit.Parameters` class is removed. Use `BannerParameters` class instead.
 
 It may be necessary to implement AdListener to adjust banner view size according to the creative size, for the case where there are several ad sizes supported. This logic is not needed for a single size banner: 
 

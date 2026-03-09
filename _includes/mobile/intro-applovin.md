@@ -50,11 +50,11 @@ This information may be useful when comparing data across various reporting syst
 | Scenario | Tracked? |
 | --- | --- |
 | Fires Prebid win event | yes |
-| Fires Prebid imp event | no |
-| Fires OpenRTB burl | no (1) |
-| Fires OpenRTB nurl | no (1) |
+| Fires Prebid imp event | yes |
+| Fires OpenRTB burl | yes (1) |
+| Fires OpenRTB nurl | yes (1) |
 | Fires OpenMeasurement events | yes |
 
 Notes:
 
-1. OpenRTB burl and nurl will be utilized in a future release.
+1. OpenRTB `burl` and `nurl` are utilized in a PrebidMobile SDK v3.0.0.

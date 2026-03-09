@@ -226,7 +226,7 @@ To monetize instream video, complete the following steps:
    ```javascript
    pbjs.setConfig({ 
      cache: { 
-             url: 'https://prebid.adnxs.com/pbc/v1/cache' 
+             url: 'https://my-pbs.example.com/cache'
          } 
    });
    ```
@@ -373,6 +373,8 @@ pbjs.addAdUnits({
 <a id="protected-audience-api-support"></a>
 
 ### Protected Audience API support
+
+**Info:** Starting in June 2025, Index is pausing support for the Protected Audience API. After this date, you will no longer receive Protected Audience API demand from Index, even if your inventory is configured to be eligible for it.
 
 **Before you begin:**
 

@@ -184,7 +184,7 @@ pbjs.que.push(function(){
     pbjs.addAdUnits(videoAdUnit);
     pbjs.setConfig({
         cache: {
-            url: 'https://prebid.adnxs.com/pbc/v1/cache'
+            url: 'https://my-pbs.example.com/cache'
         },
         adpod: {
             brandCategoryExclusion: true

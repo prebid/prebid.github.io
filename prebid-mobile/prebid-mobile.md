@@ -8,13 +8,21 @@ sidebarType: 2
 # Prebid Mobile Overview
 {:.no_toc}
 
-Prebid Mobile is an open-source library fir iOS and Android that provides an end-to-end header bidding solution for mobile app publishers.
+Prebid Mobile is an open-source library for iOS and Android that provides an end-to-end header bidding solution for mobile app publishers.
+
+---- 
 
 {: .alert.alert-info :}
-The Prebid Mobile team is pleased to announce that we're getting ready
-to start building the next major version. Please see the
-[plan for Prebid Mobile 3.0](/prebid-mobile/docs/Prebid_Mobile_3_0_0.pdf)
-and provide feedback to <support@prebid.org>.
+The Prebid Mobile team is pleased to inform you that `Prebid Mobile 3.0` is live.
+
+Here is what you need to know first about the new version:
+
+- [3.0 Updates Overview](updates-3.0/sdk-key-features.html).
+- API Changes: [iOS](updates-3.0/ios/api-changes.html), [Android](updates-3.0/android/api-changes.html).
+
+Provide feedback to <support@prebid.org>.
+
+---- 
 
 - TOC
 {:toc}
@@ -170,7 +178,7 @@ Follow these steps to integrate the rendering API:
 Currently Prebid Mobile SDK doesn't offer direct analytics capabilities. While we build out analytics in Prebid Server to support the SDK, some options are:
 
 - Generate analytics from the ad server, as key metrics are available there if the line items are broken out by bidder.
-- Integrate an analytics package directly into the app. You may have one already that can accomodate header bidding metrics.
+- Integrate an analytics package directly into the app. You may have one already that can accommodate header bidding metrics.
 - Utilize a server-side [analytics module for Prebid Server](/prebid-server/developers/pbs-build-an-analytics-adapter.html).
 
 ## Further Reading

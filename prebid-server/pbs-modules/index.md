@@ -36,6 +36,8 @@ The full list of modules:
 | [**Greenbids Real Time Data**](/prebid-server/pbs-modules/greenbids-real-time-data.html) | Filters out bidders that are not expected to bid on this request, saving money and carbon. | general | | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> |
 | [**Request Correction**](/prebid-server/pbs-modules/request-correction.html) | Apply optional corrections to bid requests. | general | | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> |
 | [**Response Correction**](/prebid-server/pbs-modules/response-correction.html) | Apply optional corrections to bid responses. | general | | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> |
+| [**Optable Targeting**](/prebid-server/pbs-modules/optable-targeting.html) | Enrich `user.ext.eids`, `user.ext.data`. | general | | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> |
+| [**WURFL Device Detection**](/prebid-server/pbs-modules/wurfl-device-detection.html) | Enriches an incoming OpenRTB request with WURFL Device Data | general | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> |
 
 ## Installing a PBS General Module
 
@@ -221,14 +223,17 @@ PBS-Java 3.16 introduced a new A/B testing framework that applies to any module.
                ... abtest config for other modules ...
             }],
             "endpoints": {
-                "/openrtb2/auction": {
-                    ...
-                 }
+              ...
             }
-        ]
-     ]
-]
+        }
+     }
+}
 ```
+
+{: .alert.alert-info :}
+If the execution plans defined at the default account level are acceptable, but a specific account wants to test a module,
+just add the `hooks.execution-plan.abtests` object and then `hooks.execution-plan.endpoints: {}`. The empty `endpoints` object will be merged
+at runtime with the account default. Leaving the account-specific endpoints completely empty will result in an error.
 
 These are the parameters accepted within the `abtests` object:
 

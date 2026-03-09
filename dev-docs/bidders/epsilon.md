@@ -5,7 +5,7 @@ description: Epsilon Prebid Bidder Adaptor (formerly Conversant)
 pbjs: true
 pbs: true
 biddercode: conversant
-media_types: banner, video, audio
+media_types: banner, video, audio, native
 tcfeu_supported: true
 userIds: criteo, id5Id, identityLink, liveIntentId, parrableId, pubCommonId, unifiedId, publinkId
 prebid_member: true
@@ -89,7 +89,7 @@ Example first party data configuration that is available to all adUnits
 pbjs.setConfig({
     debug: true,
     cache: {
-    url: 'https://prebid.adnxs.com/pbc/v1/cache'
+    url: 'https://prebid.example.com/pbc/v1/cache'
     },
     ortb2: { 
         site: { 

@@ -150,7 +150,7 @@ A URL provided by a bidder requesting to be notified when their bid did not win 
 
 ### Notice URL (nurl)
 
-A URL provided by a bidder as an alternate source of the creative. See the [nurl FAQ entry](/faq/prebid-server-faq.html#how-does-the-notice-url-work-for-prebid-server) for Prebid-specfic details.
+A URL provided by a bidder as an alternate source of the creative. See the [nurl FAQ entry](/faq/prebid-server-faq.html#how-does-the-notice-url-work-for-prebid-server) for Prebid-specific details.
 
 ## Prebid Mobile
 

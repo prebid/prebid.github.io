@@ -100,7 +100,7 @@ pbjs.que.push(function() {
     pbjs.setConfig({
         /* Or whatever your preferred video cache URL is */
         cache: {
-            url: 'https://prebid.adnxs.com/pbc/v1/cache'
+            url: 'https://my-pbs.example.com/cache'
         }
     });
 

@@ -35,6 +35,7 @@ To opt out of InMobi ads on web inventory the user needs to visit the Opt-out pa
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
 | `plc`         | required | Placement ID          | `'1234'`  | `string`  |
+| `bidfloor`    | optional | Bid Floor             | `1.09`    | `float`   |
 
 ### First Party Data
 

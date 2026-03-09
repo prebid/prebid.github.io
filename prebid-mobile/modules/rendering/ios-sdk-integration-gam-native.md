@@ -173,7 +173,7 @@ let assets = [
 ]
 ```
 
-See the full description of NativeAdConfiguration options [here](rendering-native-ad-configuration.md).
+See the full description of NativeAdConfiguration options in the [NativeAdConfiguration guide](rendering-native-ad-configuration.md).
 
 ### Step 4: Load the Ad
 

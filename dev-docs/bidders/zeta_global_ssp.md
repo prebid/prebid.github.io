@@ -13,6 +13,7 @@ schain_supported: true
 fpd_supported: true
 usp_supported: true
 coppa_supported: true
+gpp_supported: true
 userIds: all
 prebid_member: true
 gvl_id: 469

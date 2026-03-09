@@ -109,7 +109,7 @@ The following is a sample JSON definition of the plugin configuration defining c
     },
     "prebidConfigOptions" : {
         "cache": {
-            "url": "https://prebid.adnxs.com/pbc/v1/cache"
+            "url": "https://prebid.example.com/pbc/v1/cache"
         },
         "enableSendAllBids" : true
     },
@@ -204,7 +204,7 @@ The following is a sample JSON definition of the plugin configuration defining c
     },
     "prebidConfigOptions" : {
         "cache": {
-            "url": "https://prebid.adnxs.com/pbc/v1/cache"
+            "url": "https://prebid.example.com/pbc/v1/cache"
         },
         "enableSendAllBids" : true
     },
@@ -310,7 +310,7 @@ The following is a sample JSON definition of the plugin configuration defining c
     },
     "prebidConfigOptions" : {
         "cache": {
-            "url": "https://prebid.adnxs.com/pbc/v1/cache"
+            "url": "https://prebid.example.com/pbc/v1/cache"
         },
         "enableSendAllBids" : true
     },
@@ -406,7 +406,7 @@ The following is a sample JSON definition of the plugin configuration defining c
     },
     "prebidConfigOptions" : {
         "cache": {
-            "url": "https://prebid.adnxs.com/pbc/v1/cache"
+            "url": "https://prebid.example.com/pbc/v1/cache"
         },
         "enableSendAllBids" : true
     },
@@ -502,7 +502,7 @@ The following is a sample JSON definition of the plugin configuration defining c
     },
     "prebidConfigOptions" : {
         "cache": {
-            "url": "https://prebid.adnxs.com/pbc/v1/cache"
+            "url": "https://prebid.example.com/pbc/v1/cache"
         },
         "enableSendAllBids" : true
     },
