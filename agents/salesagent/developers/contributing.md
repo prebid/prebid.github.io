@@ -63,7 +63,7 @@ All commit messages must follow the [Conventional Commits](https://www.conventio
 
 ### Format
 
-```
+```text
 <type>: <short description>
 
 <optional body>
@@ -88,7 +88,7 @@ All commit messages must follow the [Conventional Commits](https://www.conventio
 
 For breaking changes, add `!` after the type or include `BREAKING CHANGE:` in the footer:
 
-```
+```text
 feat!: rename format_ids to format_identifiers across all schemas
 
 BREAKING CHANGE: The `format_ids` field in Product and Creative schemas
@@ -100,7 +100,7 @@ Breaking changes trigger a major version bump (x.0.0).
 
 ### Examples
 
-```
+```text
 feat: add audio creative format support to sync_creatives
 
 Adds validation and processing for audio creative formats (MP3, WAV, FLAC)
@@ -108,7 +108,7 @@ in the sync_creatives tool. Includes format-specific duration and bitrate
 validation.
 ```
 
-```
+```text
 fix: prevent negative budget values in create_media_buy
 
 The create_media_buy _impl function now raises AdCPValidationError when
@@ -118,11 +118,11 @@ through to the adapter.
 Closes #142
 ```
 
-```
+```text
 chore: upgrade ruff to 0.8.0 and fix new lint rules
 ```
 
-```
+```text
 test: add structural guard for adapter capabilities declaration
 ```
 

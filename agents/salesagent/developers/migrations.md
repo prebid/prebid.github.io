@@ -371,7 +371,7 @@ The `get_db_session()` context manager:
 
 When two developers create migrations from the same parent revision, Alembic detects a branch:
 
-```
+```text
 FAILED: Multiple head revisions are present
 ```
 

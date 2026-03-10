@@ -27,13 +27,13 @@ All execution operations require a valid principal token. The publisher creates 
 
 Include the token in every request using one of these headers:
 
-```
+```text
 x-adcp-auth: your-principal-token
 ```
 
 or:
 
-```
+```text
 Authorization: Bearer your-principal-token
 ```
 
@@ -189,7 +189,7 @@ The REST API provides standard HTTP endpoints for programmatic access.
 
 ### Base URL
 
-```
+```text
 https://publisher.salesagent.example.com/api/v1
 ```
 

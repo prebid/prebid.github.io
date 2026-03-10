@@ -16,6 +16,7 @@ sidebarType: 10
 All request and response objects in the Sales Agent are defined as Pydantic models in `src/core/schemas/`. This page documents every model and enum, organised by domain. Field types use Python type annotation syntax; `None`-able fields are shown with `| None` and include their default value.
 
 See individual tool pages for usage context:
+
 - [Discovery Tools](../tools/discovery-tools.html)
 - [Media Buy Tools](../tools/media-buy-tools.html)
 - [Creative Tools](../tools/creative-tools.html)

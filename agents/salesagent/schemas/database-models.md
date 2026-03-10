@@ -17,7 +17,7 @@ The Sales Agent persists all state in a PostgreSQL database using SQLAlchemy ORM
 
 ## Entity-Relationship Overview
 
-```
+```text
 ┌──────────┐      1:N      ┌───────────┐      1:N      ┌──────────────┐
 │  Tenant   │──────────────►│ Principal  │──────────────►│  MediaBuy    │
 └──────────┘               └───────────┘               └──────────────┘

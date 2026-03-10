@@ -95,7 +95,7 @@ The Sales Agent implements the MCP protocol using the [FastMCP](https://github.c
 
 ### Endpoint
 
-```
+```text
 POST /mcp/
 ```
 
@@ -158,7 +158,7 @@ The Sales Agent implements the [A2A protocol](https://google.github.io/A2A/) usi
 
 ### Endpoint
 
-```
+```text
 POST /a2a
 ```
 
@@ -166,7 +166,7 @@ POST /a2a
 
 The A2A protocol uses an AgentCard for service discovery. The Sales Agent serves this at the standard well-known path:
 
-```
+```text
 GET /.well-known/agent.json
 ```
 
@@ -229,7 +229,7 @@ The Sales Agent also provides a standard REST API built with FastAPI for traditi
 
 ### Endpoint Prefix
 
-```
+```text
 /api/v1
 ```
 

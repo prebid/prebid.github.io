@@ -277,6 +277,7 @@ def _get_products_impl(req: GetProductsRequest, identity: ResolvedIdentity) -> G
 ```
 
 Rules enforced by structural test guards:
+
 - `_impl` functions must never import transport-specific types
 - `_impl` functions must take `ResolvedIdentity`, not `Context` or `ToolContext`
 - `_impl` functions must raise `AdCPError`, never `ToolError`
@@ -315,6 +316,7 @@ raise AdCPValidationError(
 ```
 
 Recovery classifications:
+
 - `terminal` — Cannot be retried (e.g., authentication failure)
 - `user` — Agent should modify the request and retry (e.g., validation error)
 - `transient` — Temporary failure, safe to retry (e.g., ad server timeout)

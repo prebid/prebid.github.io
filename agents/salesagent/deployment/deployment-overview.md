@@ -133,7 +133,7 @@ In most deployments nginx on port 8000 is the only port exposed externally. The 
 
 The container entrypoint runs a Python orchestrator that starts all services:
 
-```
+```bash
 /app/.venv/bin/python scripts/deploy/run_all_services.py
 ```
 

@@ -17,7 +17,7 @@ sidebarType: 10
 
 The Sales Agent exposes a health check endpoint at:
 
-```
+```text
 GET /health
 ```
 
