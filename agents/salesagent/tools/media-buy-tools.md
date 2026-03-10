@@ -21,7 +21,7 @@ See the [Tool Reference](tool-reference.html) for general information about auth
 
 A media buy moves through the following statuses:
 
-```
+```text
                  ┌─────────────────────────────┐
                  │      create_media_buy        │
                  └──────────┬──────────────────┘
@@ -212,7 +212,7 @@ Returns the full updated media buy object with the same structure as `CreateMedi
 
 **Request:**
 
-```
+```text
 PUT /media_buy/mb_a1b2c3d4
 ```
 

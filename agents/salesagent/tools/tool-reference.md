@@ -95,7 +95,7 @@ Agents should inspect the <code>recovery</code> field to decide their next actio
 
 The tools work together to implement the full AdCP media buy lifecycle:
 
-```
+```text
 Discovery                    Execution                    Reporting
 ─────────                    ─────────                    ─────────
 get_adcp_capabilities   ──►  create_media_buy        ──►  get_media_buys

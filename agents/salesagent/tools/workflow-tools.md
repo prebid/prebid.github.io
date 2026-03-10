@@ -46,7 +46,7 @@ Tasks are persisted as `WorkflowStep` records in the database, each linked to a 
 
 When a tenant's `approval_mode` requires manual approval for media buys, the following flow occurs:
 
-```
+```text
 create_media_buy (status: pending_activation)
        │
        ▼
@@ -63,7 +63,7 @@ create_media_buy (status: pending_activation)
 
 When `human_review_required` is set on the tenant or the automated content-standards score falls between the auto-approve and auto-reject thresholds:
 
-```
+```text
 sync_creatives (creative status: processing)
        │
        ▼

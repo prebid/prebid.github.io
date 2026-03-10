@@ -19,7 +19,7 @@ See the [Tool Reference](tool-reference.html) for general information about auth
 
 ## Creative Lifecycle
 
-```
+```text
   sync_creatives              Tenant policy               Ad serving
   (upload/update)             (auto or manual)
   ─────────────               ──────────────              ──────────
