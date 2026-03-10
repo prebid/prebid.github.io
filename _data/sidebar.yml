@@ -2071,3 +2071,341 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
+
+- sbSecId: 10
+  title: Architecture
+  link: /agents/salesagent/architecture.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Glossary
+  link: /agents/salesagent/glossary.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+#---- Getting Started ----|
+
+- sbSecId: 10
+  title: Getting Started
+  link:
+  isHeader: 1
+  headerId: agents-getting-started
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 10
+  title: Quick Start
+  link: /agents/salesagent/getting-started/quickstart.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 10
+  title: Publisher Onboarding
+  link: /agents/salesagent/getting-started/publisher-onboarding.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 10
+  title: Buy-Side Integration
+  link: /agents/salesagent/getting-started/buy-side-integration.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 10
+  title: Configuration Reference
+  link: /agents/salesagent/getting-started/configuration.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+#---- Tools & Schemas ----|
+
+- sbSecId: 10
+  title: Tools & Schemas
+  link:
+  isHeader: 1
+  headerId: agents-tools
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 10
+  title: Tool Reference
+  link: /agents/salesagent/tools/tool-reference.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 10
+  title: Discovery Tools
+  link: /agents/salesagent/tools/discovery-tools.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 10
+  title: Media Buy Tools
+  link: /agents/salesagent/tools/media-buy-tools.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 10
+  title: Creative Tools
+  link: /agents/salesagent/tools/creative-tools.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 10
+  title: Workflow Tools
+  link: /agents/salesagent/tools/workflow-tools.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 10
+  title: Performance Tools
+  link: /agents/salesagent/tools/performance-tools.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 10
+  title: Signal Tools
+  link: /agents/salesagent/tools/signals-tools.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 10
+  title: API Schemas
+  link: /agents/salesagent/schemas/api-schemas.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 10
+  title: Database Models
+  link: /agents/salesagent/schemas/database-models.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+#---- Deployment & Operations ----|
+
+- sbSecId: 10
+  title: Deployment & Operations
+  link:
+  isHeader: 1
+  headerId: agents-deployment
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 10
+  title: Deployment Overview
+  link: /agents/salesagent/deployment/deployment-overview.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 10
+  title: Single-Tenant Deployment
+  link: /agents/salesagent/deployment/single-tenant.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 10
+  title: Multi-Tenant Deployment
+  link: /agents/salesagent/deployment/multi-tenant.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 10
+  title: Deploy to Fly.io
+  link: /agents/salesagent/deployment/fly-io.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 10
+  title: Deploy to GCP
+  link: /agents/salesagent/deployment/gcp.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 10
+  title: Admin UI Guide
+  link: /agents/salesagent/operations/admin-ui.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 10
+  title: Security Model
+  link: /agents/salesagent/operations/security.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 10
+  title: Monitoring & Audit Logging
+  link: /agents/salesagent/operations/monitoring.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+#---- Integrations ----|
+
+- sbSecId: 10
+  title: Integrations
+  link:
+  isHeader: 1
+  headerId: agents-integrations
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 4
+
+- sbSecId: 10
+  title: Google Ad Manager
+  link: /agents/salesagent/integrations/gam.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 4
+
+- sbSecId: 10
+  title: Kevel
+  link: /agents/salesagent/integrations/kevel.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 4
+
+- sbSecId: 10
+  title: Triton Digital
+  link: /agents/salesagent/integrations/triton-digital.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 4
+
+- sbSecId: 10
+  title: Broadstreet
+  link: /agents/salesagent/integrations/broadstreet.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 4
+
+- sbSecId: 10
+  title: Mock Adapter
+  link: /agents/salesagent/integrations/mock-adapter.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 4
+
+- sbSecId: 10
+  title: Custom Adapter
+  link: /agents/salesagent/integrations/custom-adapter.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 4
+
+#---- Tutorials ----|
+
+- sbSecId: 10
+  title: Tutorials
+  link:
+  isHeader: 1
+  headerId: agents-tutorials
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 10
+  title: Campaign Lifecycle
+  link: /agents/salesagent/tutorials/campaign-lifecycle.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+#---- Developers ----|
+
+- sbSecId: 10
+  title: Developers
+  link:
+  isHeader: 1
+  headerId: agents-developers
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 6
+
+- sbSecId: 10
+  title: Dev Environment Setup
+  link: /agents/salesagent/developers/dev-setup.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 6
+
+- sbSecId: 10
+  title: Testing Guide
+  link: /agents/salesagent/developers/testing.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 6
+
+- sbSecId: 10
+  title: Database Migrations
+  link: /agents/salesagent/developers/migrations.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 6
+
+- sbSecId: 10
+  title: Contributing
+  link: /agents/salesagent/developers/contributing.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 6
