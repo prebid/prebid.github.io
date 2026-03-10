@@ -173,11 +173,12 @@ Only port 8000 (nginx) should be exposed to the public internet. Internal ports 
 | Port | Service | Exposure |
 | --- | --- | --- |
 | 8000 | nginx | Public (external traffic) |
-| 8080 | FastAPI / MCP | Internal (Docker network only) |
-| 8001 | Admin UI (direct) | Internal (Docker network only) |
-| 8091 | A2A (direct) | Internal (Docker network only) |
+| 8080 | FastAPI unified app | Internal (Docker network only) |
 | 5432 | PostgreSQL | Internal (Docker network only) |
 {: .table .table-bordered .table-striped }
+
+{: .alert.alert-info :}
+As of v1.5.0, all protocols (MCP, A2A, REST, Admin UI) are served by a single FastAPI process on port 8080. Ports 8001 and 8091 from the legacy multi-process architecture are no longer used.
 
 ### Cloud Deployments
 

@@ -86,9 +86,6 @@ result = await client.call_tool("get_adcp_capabilities")
     "get_media_buy_delivery",
     "sync_creatives",
     "list_creatives",
-    "list_tasks",
-    "get_task",
-    "complete_task",
     "update_performance_index"
   ]
 }
@@ -569,97 +566,29 @@ processing --> pending_review --> approved
 
 ## Step 7: Handle Approval Workflows
 
-The media buy created a workflow task for publisher review, and the creatives are pending review. Call `list_tasks` to see all pending tasks, then `complete_task` to approve them.
+The media buy created a workflow task for publisher review, and the creatives are pending review. Workflow approvals are handled by the publisher through the Admin UI (or via Slack notifications if `hitl_webhook_url` is configured). The buying agent polls for status changes.
 
-### List Pending Tasks
+### Waiting for Approval
 
-```python
-result = await client.call_tool("list_tasks", {
-    "status": "pending"
-})
-```
-
-```json
-{
-  "tasks": [
-    {
-      "id": "task-review-001",
-      "type": "publisher_review",
-      "status": "pending",
-      "media_buy_id": "mb-a1b2c3d4-5678-9012-3456-789012345678",
-      "description": "Review and approve media buy: TechCorp Developer Tool Launch - Q2 2026",
-      "details": {
-        "total_budget": 5000.00,
-        "packages": 2,
-        "flight": "2026-04-01 to 2026-04-30"
-      },
-      "created_at": "2026-03-09T14:30:00Z"
-    },
-    {
-      "id": "task-creative-001",
-      "type": "creative_review",
-      "status": "pending",
-      "media_buy_id": "mb-a1b2c3d4-5678-9012-3456-789012345678",
-      "description": "Review creative assets for TechCorp Developer Tool Launch",
-      "details": {
-        "creative_count": 2,
-        "formats": ["300x250", "728x90"]
-      },
-      "created_at": "2026-03-09T14:35:00Z"
-    }
-  ],
-  "total": 2
-}
-```
-
-### Approve the Media Buy
-
-This is the human-in-the-loop (HITL) step. In a production environment, a publisher ad ops team member would review the campaign details and approve or reject it. For this tutorial, we will approve both tasks.
+In a production environment, a publisher ad ops team member reviews the campaign in the Admin UI under **Workflow Tasks** and approves or rejects it. For testing, use the `X-Auto-Advance: true` header to bypass manual approval.
 
 ```python
-# Approve the media buy
-result = await client.call_tool("complete_task", {
-    "task_id": "task-review-001",
-    "status": "completed",
-    "comment": "Approved. Campaign meets all requirements. Budget and targeting look good."
-})
-```
+# Poll until the media buy is approved
+import asyncio
 
-```json
-{
-  "task": {
-    "id": "task-review-001",
-    "type": "publisher_review",
-    "status": "completed",
-    "completed_at": "2026-03-09T14:40:00Z",
-    "completed_by": "test-principal",
-    "comment": "Approved. Campaign meets all requirements. Budget and targeting look good."
-  }
-}
-```
-
-### Approve the Creatives
-
-```python
-# Approve the creatives
-result = await client.call_tool("complete_task", {
-    "task_id": "task-creative-001",
-    "status": "completed",
-    "comment": "Creatives approved. Brand guidelines followed, landing page verified."
-})
-```
-
-```json
-{
-  "task": {
-    "id": "task-creative-001",
-    "type": "creative_review",
-    "status": "completed",
-    "completed_at": "2026-03-09T14:42:00Z",
-    "completed_by": "test-principal",
-    "comment": "Creatives approved. Brand guidelines followed, landing page verified."
-  }
-}
+while True:
+    result = await client.call_tool("get_media_buys", {
+        "media_buy_ids": [media_buy_id]
+    })
+    status = result["media_buys"][0]["status"]
+    if status in ("approved", "active", "delivering"):
+        print(f"Media buy approved! Status: {status}")
+        break
+    elif status in ("rejected", "canceled"):
+        print(f"Media buy {status}.")
+        break
+    print(f"Current status: {status} — waiting for publisher review...")
+    await asyncio.sleep(30)
 ```
 
 ### Understanding HITL Workflows
@@ -1159,33 +1088,26 @@ async def run_campaign_lifecycle() -> None:
         })
         print_result(result)
 
-        # Step 7: Handle approval workflows
-        print_step(7, "Handle Approval Workflows")
+        # Step 7: Wait for approval workflows
+        # In production, publisher approves via Admin UI.
+        # In testing, use X-Auto-Advance: true header to skip.
+        print_step(7, "Wait for Approval Workflows")
 
-        # List pending tasks
-        print("\nListing pending tasks...")
-        result = await client.call_tool("list_tasks", {
-            "status": "pending"
-        })
-        print_result(result)
-
-        # Approve the media buy
-        print("\nApproving media buy...")
-        result = await client.call_tool("complete_task", {
-            "task_id": "task-review-001",
-            "status": "completed",
-            "comment": "Approved. Campaign meets all requirements.",
-        })
-        print_result(result)
-
-        # Approve the creatives
-        print("\nApproving creatives...")
-        result = await client.call_tool("complete_task", {
-            "task_id": "task-creative-001",
-            "status": "completed",
-            "comment": "Creatives approved. Brand guidelines followed.",
-        })
-        print_result(result)
+        print("\nPolling media buy status...")
+        import asyncio
+        while True:
+            result = await client.call_tool("get_media_buys", {
+                "media_buy_ids": [media_buy_id],
+            })
+            status = result["media_buys"][0]["status"]
+            if status in ("approved", "active", "delivering"):
+                print(f"Media buy approved! Status: {status}")
+                break
+            elif status in ("rejected", "canceled"):
+                print(f"Media buy {status}.")
+                break
+            print(f"Status: {status} — waiting...")
+            await asyncio.sleep(10)
 
         # Step 8: Monitor campaign status
         print_step(8, "Monitor Campaign Status")
@@ -1258,7 +1180,8 @@ if __name__ == "__main__":
 
 - [Buy-Side Integration](/agents/salesagent/getting-started/buy-side-integration.html) -- Build a production AI buying agent
 - [Tool Reference](/agents/salesagent/tools/tool-reference.html) -- Complete reference for all MCP tools
-- [Discovery Tools](/agents/salesagent/tools/discovery-tools.html) -- Deep dive into capabilities, products, formats, and properties
-- [Media Buy Tools](/agents/salesagent/tools/media-buy-tools.html) -- Full request/response details for campaign operations
+- [get_products](/agents/salesagent/tools/get-products.html) -- Product catalog search
+- [create_media_buy](/agents/salesagent/tools/create-media-buy.html) -- Campaign creation parameters and response
+- [get_media_buy_delivery](/agents/salesagent/tools/get-media-buy-delivery.html) -- Delivery metrics and pacing
 - [Deployment Overview](/agents/salesagent/deployment/deployment-overview.html) -- Deploy to production on Fly.io or Google Cloud Run
 - [Development Environment Setup](/agents/salesagent/developers/dev-setup.html) -- Set up a local development environment

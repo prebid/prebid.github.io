@@ -13,7 +13,7 @@ sidebarType: 10
 
 ## Overview
 
-The Prebid Sales Agent uses [Alembic](https://alembic.sqlalchemy.org/) for database schema migrations, backed by [SQLAlchemy 2.0](https://www.sqlalchemy.org/) as the ORM. The project contains over 150 migration files that track the complete evolution of the database schema from initial creation through every feature addition, rename, and optimization.
+The Prebid Sales Agent uses [Alembic](https://alembic.sqlalchemy.org/) for database schema migrations, backed by [SQLAlchemy 2.0](https://www.sqlalchemy.org/) as the ORM. The project contains 156 migration files that track the complete evolution of the database schema from initial creation through every feature addition, rename, and optimization.
 
 Migrations are stored in the `alembic/versions/` directory. Each migration file contains an `upgrade()` function (to apply the change) and a `downgrade()` function (to reverse it), enabling both forward and backward movement through the schema history.
 

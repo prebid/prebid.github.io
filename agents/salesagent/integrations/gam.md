@@ -92,9 +92,7 @@ The GAM adapter supports the following default media channels:
 |---------|-------------|
 | `display` | Standard banner and rich media display ads |
 | `olv` | Online video (pre-roll, mid-roll, post-roll) |
-| `video` | Video advertising across platforms |
 | `social` | Social media inventory |
-| `search` | Search advertising inventory |
 
 ## Capabilities
 
@@ -110,7 +108,7 @@ The GAM adapter declares the following capabilities via its `AdapterCapabilities
 | Dynamic Products | Yes | Products that dynamically reference GAM inventory |
 | All Pricing Models | Yes | CPM, CPC, CPD, and other GAM-supported pricing models |
 | Webhooks | No | Use polling-based delivery reporting instead |
-| Real-Time Reporting | No | Reporting is pulled on demand via the GAM Reporting API |
+| Real-Time Reporting | No | Reporting pulled on demand via the GAM Reporting API |
 
 ## How It Works
 

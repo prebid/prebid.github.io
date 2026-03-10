@@ -78,7 +78,7 @@ Apply all database schema migrations using Alembic:
 uv run alembic upgrade head
 ```
 
-This runs over 150 migration files that build the complete schema, including tables for tenants, principals, products, media buys, creatives, workflow steps, audit logs, and more.
+This runs 156 migration files that build the complete schema, including tables for tenants, principals, products, media buys, creatives, workflow steps, audit logs, and more.
 
 <div class="alert alert-info" role="alert">
   Migrations run automatically on startup when using Docker (via the <code>db-init</code> service). You only need to run them manually when developing without Docker or after pulling new migration files.
@@ -126,7 +126,7 @@ uv run python scripts/deploy/run_all_services.py
 
 This starts the unified FastAPI application on port 8080 with all sub-applications mounted:
 
-- `/mcp/` -- FastMCP Server (SSE transport)
+- `/mcp/` -- FastMCP Server (StreamableHTTP transport)
 - `/a2a` -- A2A Server (JSON-RPC 2.0)
 - `/admin` -- Flask Admin UI
 - `/api/v1` -- REST API
@@ -310,16 +310,16 @@ from src.core.exceptions import AdCPValidationError, AdCPNotFoundError
 # Raise with recovery hint for the calling agent
 raise AdCPValidationError(
     message="Budget exceeds tenant maximum",
-    recovery="user",  # "terminal", "user", or "transient"
+    recovery="correctable",  # "terminal", "correctable", or "transient"
     details={"max_budget": 50000, "requested": 75000}
 )
 ```
 
 Recovery classifications:
 
-- `terminal` — Cannot be retried (e.g., authentication failure)
-- `user` — Agent should modify the request and retry (e.g., validation error)
-- `transient` — Temporary failure, safe to retry (e.g., ad server timeout)
+- `terminal` — Cannot be retried (e.g., authentication failure, authorization denied)
+- `correctable` — Agent should modify the request and retry (e.g., validation error, policy violation)
+- `transient` — Temporary failure, safe to retry with backoff (e.g., ad server timeout, rate limit)
 
 ### Adapter Delegation
 
@@ -345,7 +345,7 @@ agent = Agent(model=model, system_prompt="...")
 result = await agent.run(prompt)
 ```
 
-Supported providers: Google Gemini (default), Anthropic Claude, OpenAI, Groq, Mistral, Cohere.
+Supported providers: Google Gemini (default), OpenAI, Anthropic Claude, Groq, and AWS Bedrock.
 
 ## Troubleshooting
 

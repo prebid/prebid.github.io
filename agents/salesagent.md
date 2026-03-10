@@ -1,7 +1,7 @@
 ---
 layout: page_v2
 title: Prebid Sales Agent
-description: Reference implementation of the AdCP Media Buy protocol enabling AI agents to discover and purchase advertising inventory
+description: Server connecting AI buying agents to ad servers via AdCP
 sidebarType: 10
 ---
 
@@ -11,57 +11,40 @@ sidebarType: 10
 - TOC
 {:toc}
 
-## What Is the Sales Agent
+## Overview
 
-The Prebid Sales Agent is a reference implementation server that exposes publisher advertising inventory to AI agents through the [Ad Context Protocol (AdCP)](https://docs.adcontextprotocol.org/docs/intro). It acts as the bridge between AI buying agents and ad servers like Google Ad Manager, Kevel, Triton Digital, and Broadstreet.
+The Prebid Sales Agent is a server that connects AI buying agents to publisher ad servers using the [Ad Context Protocol (AdCP)](https://docs.adcontextprotocol.org/docs/intro). It handles product discovery, campaign creation, creative management, and delivery reporting across multiple ad servers through a single interface.
 
-The Sales Agent supports three transport protocols — MCP (Model Context Protocol), A2A (Agent-to-Agent), and REST — so AI agents can discover products, create campaigns, upload creatives, and monitor delivery through a standardized interface regardless of the underlying ad server.
+The Sales Agent supports three transport protocols: MCP (Model Context Protocol), A2A (Agent-to-Agent), and REST. All three call the same business logic layer, so behavior is identical regardless of which protocol an agent uses.
 
-<div class="alert alert-info" role="alert">
-  For the full source code and latest updates, visit the <a href="https://github.com/prebid/salesagent">prebid/salesagent repository</a>.
-</div>
+{: .alert.alert-info :}
+The Sales Agent is built on AdCP v3.6 and requires Python 3.12+. For the source code and latest updates, see the [prebid/salesagent repository](https://github.com/prebid/salesagent).
 
-## Key Features
+## Features
 
-### For AI Agents
+- **Product discovery** -- searches products by relevance to the agent's query using natural language briefs or structured filters.
+- **Campaign creation** -- creates media buys with targeting, budgets, and flight dates through a workflow that works across ad servers.
+- **Creative management** -- uploads, validates, and tracks approval of creative assets. Supports AI provenance metadata.
+- **Delivery reporting** -- provides impression, spend, CTR, viewability, and pacing data from the underlying ad server.
+- **Multi-tenant isolation** -- each publisher's data is isolated via composite primary keys and tenant-scoped queries.
+- **Ad server adapters** for Google Ad Manager, Kevel, Triton Digital, and Broadstreet, plus a Mock adapter for testing.
+- **Admin dashboard** -- web UI with SSE-powered live activity feed, product catalog management, and advertiser configuration.
+- **Workflow approvals** -- human-in-the-loop approval for media buys and creatives, with configurable auto-approve thresholds.
+- **Authentication** -- per-tenant SSO configuration supporting Google, Microsoft, Okta, Auth0, and Keycloak OIDC providers.
+- **Audit logging** -- tracks every tool invocation with tenant, principal, operation, and outcome.
+- **Adapter pattern** -- abstract interface for adding new ad server integrations.
 
-- **Product Discovery**: Search for advertising products using natural language briefs or structured filters. AI-powered ranking matches agent intent to publisher inventory.
-- **Campaign Creation**: Create media buys with targeting, budgets, and flight dates through a normalized workflow that works across any ad server.
-- **Creative Management**: Upload, validate, and track approval of creative assets. Supports AI provenance metadata for EU AI Act compliance.
-- **Performance Monitoring**: Access real-time delivery metrics including impressions, spend, CTR, viewability, and pacing data.
-- **Signal Activation**: Leverage audience signals from external data providers to improve campaign targeting.
+## Architecture
 
-### For Publishers
-
-- **Multi-Tenant System**: Complete data isolation per publisher with composite primary keys and tenant-scoped database queries.
-- **Five Ad Server Adapters**: Production integrations with Google Ad Manager, Kevel, Triton Digital, Broadstreet, and a Mock adapter for testing.
-- **Admin Dashboard**: Full-featured web UI with SSE-powered live activity feed, product catalog management, and advertiser configuration.
-- **Workflow Management**: Human-in-the-loop approval system for media buys and creatives with configurable auto-approve thresholds.
-- **Flexible Authentication**: Per-tenant SSO configuration supporting Google, Microsoft, Okta, Auth0, and Keycloak OIDC providers.
-- **Audit Logging**: Complete operational history tracking every tool invocation with tenant, principal, operation, and outcome details.
-
-### For Developers
-
-- **MCP Protocol**: FastMCP-based tool interface for direct integration with AI assistants like Claude Desktop.
-- **A2A Protocol**: JSON-RPC 2.0 Agent-to-Agent protocol with AgentCard discovery and task lifecycle management.
-- **REST API**: Standard HTTP endpoints for programmatic access to all tools.
-- **Docker Deployment**: Single-command setup for local development; guides for Fly.io and Google Cloud Run production deployments.
-- **Adapter Pattern**: Clean abstract interface for adding new ad server integrations.
-
-## Architecture at a Glance
-
-The Sales Agent follows a four-layer architecture with strict separation of concerns:
+The Sales Agent follows a four-layer architecture:
 
 ```text
 ┌─────────────────────────────────────────────────────┐
 │  Transport Layer (MCP / A2A / REST)                 │
-│  FastMCP SSE │ JSON-RPC 2.0 │ FastAPI               │
 ├─────────────────────────────────────────────────────┤
 │  Auth & Identity Resolution                         │
-│  Token extraction → ResolvedIdentity                │
 ├─────────────────────────────────────────────────────┤
 │  Business Logic (_impl functions)                   │
-│  Transport-agnostic │ Takes ResolvedIdentity        │
 ├─────────────────────────────────────────────────────┤
 │  Adapter Layer                                      │
 │  GAM │ Kevel │ Triton │ Broadstreet │ Mock          │
@@ -71,9 +54,9 @@ The Sales Agent follows a four-layer architecture with strict separation of conc
    Ad Server APIs
 ```
 
-All three transports call the same `_impl` business logic functions, ensuring identical behavior regardless of protocol. This is enforced by structural test guards.
+All three transports call the same `_impl` functions, ensuring identical behavior regardless of protocol. This is enforced by structural test guards.
 
-For full details, see [Architecture & Protocols](/agents/salesagent/architecture.html).
+For details on the protocol layer, database schema, and adapter design, see [Architecture](/agents/salesagent/architecture.html).
 
 ## Quick Start
 
@@ -89,10 +72,10 @@ Access services at `http://localhost:8000`:
 | Service | URL | Notes |
 |---------|-----|-------|
 | Admin UI | `/admin` | Test login with `test_super_admin@example.com` / `test123` |
-| MCP Server | `/mcp/` | FastMCP SSE endpoint |
+| MCP Server | `/mcp/` | StreamableHTTP endpoint |
 | A2A Server | `/a2a` | JSON-RPC 2.0 endpoint |
 | Health Check | `/health` | Service readiness |
-| Agent Card | `/.well-known/agent.json` | A2A discovery |
+| Agent Card | `/.well-known/agent-card.json` | A2A discovery |
 
 Test the MCP interface:
 
@@ -101,39 +84,45 @@ uvx adcp http://localhost:8000/mcp/ --auth test-token list_tools
 uvx adcp http://localhost:8000/mcp/ --auth test-token get_products
 ```
 
+{: .alert.alert-warning :}
+The default test credentials are for local development only. Configure per-tenant SSO through the Admin UI before exposing the service externally. See [Security](/agents/salesagent/operations/security.html).
+
 For complete setup instructions, see the [Quick Start Guide](/agents/salesagent/getting-started/quickstart.html).
 
 ## The AdContext Protocol (AdCP)
 
-The Sales Agent is built on the **Ad Context Protocol (AdCP)**, an open standard that normalizes how AI agents interact with advertising platforms. AdCP sits on top of standard AI interaction protocols (MCP and A2A) and defines:
+The Sales Agent implements the [Ad Context Protocol (AdCP)](https://docs.adcontextprotocol.org/docs/intro), an open standard that defines how AI agents interact with advertising platforms. AdCP sits on top of MCP and A2A and defines tool semantics for:
 
-- **Product Discovery** (`get_products`): Search for ad products using natural language or structured filters.
-- **Media Buying** (`create_media_buy`): Normalized proposal, booking, and management workflow.
-- **Creative Management** (`sync_creatives`): Standardized creative upload, validation, and approval.
-- **Signal Activation** (`get_signals`, `activate_signal`): Audience data integration for better targeting.
-- **Performance Reporting** (`get_media_buy_delivery`): Unified delivery metrics across ad servers.
+- **Product discovery** (`get_products`) -- search for ad products using natural language or structured filters.
+- **Media buying** (`create_media_buy`) -- proposal, booking, and management workflow.
+- **Creative management** (`sync_creatives`) -- creative upload, validation, and approval tracking.
+- **Delivery reporting** (`get_media_buy_delivery`) -- delivery metrics across ad servers.
 
-<div class="alert alert-info" role="alert">
-  For the complete AdCP specification, visit <a href="https://docs.adcontextprotocol.org/docs/intro">docs.adcontextprotocol.org</a>.
-</div>
-
-### Typical Campaign Workflow
+### Typical Workflow
 
 1. **Discovery**: Agent calls `get_products` with a brief like "video ads targeting US sports fans" and receives matching products with pricing.
 2. **Planning**: Agent calls `create_media_buy` with selected products, budget, targeting, and flight dates.
-3. **Creative Upload**: Agent calls `sync_creatives` to upload ad assets matching the required formats.
+3. **Creative upload**: Agent calls `sync_creatives` to upload ad assets matching the required formats.
 4. **Review**: Publisher reviews the proposal (automated or human-in-the-loop depending on configuration).
 5. **Execution**: Sales Agent pushes approved orders to the configured ad server.
 6. **Monitoring**: Agent polls `get_media_buy_delivery` for impression, spend, and pacing data.
 
+## Limitations
+
+{: .alert.alert-warning :}
+The Sales Agent is under active development. Not all ad server adapters have reached production status. Check the [GitHub repository](https://github.com/prebid/salesagent) for the latest supported features and known issues.
+
+- The Broadstreet adapter is in design phase and not yet production-ready.
+- Signal tools (audience data discovery and activation) are not part of the Sales Agent. These are handled by dedicated signals agents.
+- Some Admin UI configuration workflows require direct config file editing.
+
 ## Further Reading
 
-- [Architecture & Protocols](/agents/salesagent/architecture.html) — System design, protocol comparison, database schema
-- [Quick Start](/agents/salesagent/getting-started/quickstart.html) — Docker setup in 2 minutes
-- [Publisher Onboarding](/agents/salesagent/getting-started/publisher-onboarding.html) — End-to-end publisher setup
-- [Buy-Side Integration](/agents/salesagent/getting-started/buy-side-integration.html) — Connect an AI buying agent
-- [Tool Reference](/agents/salesagent/tools/tool-reference.html) — Complete catalog of all MCP tools
-- [Signal Tools](/agents/salesagent/tools/signals-tools.html) — Audience signal discovery and activation
-- [Deployment Overview](/agents/salesagent/deployment/deployment-overview.html) — Docker, Fly.io, and GCP options
-- [Glossary](/agents/salesagent/glossary.html) — Key terms and definitions
-- [Contributing](/agents/salesagent/developers/contributing.html) — How to contribute to the project
+- [Architecture](/agents/salesagent/architecture.html) -- system design, protocol comparison, database schema
+- [Quick Start](/agents/salesagent/getting-started/quickstart.html) -- Docker setup in under 5 minutes
+- [Publisher Onboarding](/agents/salesagent/getting-started/publisher-onboarding.html) -- end-to-end publisher setup
+- [Buy-Side Integration](/agents/salesagent/getting-started/buy-side-integration.html) -- connect an AI buying agent
+- [Tool Reference](/agents/salesagent/tools/tool-reference.html) -- complete catalog of all MCP tools
+- [Deployment Overview](/agents/salesagent/deployment/deployment-overview.html) -- Docker, Fly.io, and GCP options
+- [Glossary](/agents/salesagent/glossary.html) -- key terms and definitions
+- [Contributing](/agents/salesagent/developers/contributing.html) -- how to contribute to the project

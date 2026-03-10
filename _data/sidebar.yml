@@ -2065,7 +2065,7 @@
   subgroup: 0
 
 - sbSecId: 10
-  title: Salesagent
+  title: Sales Agent
   link: /agents/salesagent.html
   isHeader: 0
   isSectionHeader: 0
@@ -2075,6 +2075,14 @@
 - sbSecId: 10
   title: Architecture
   link: /agents/salesagent/architecture.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Protocols
+  link: /agents/salesagent/protocols.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -2134,7 +2142,7 @@
 #---- Tools & Schemas ----|
 
 - sbSecId: 10
-  title: Tools & Schemas
+  title: Tools & Reference
   link:
   isHeader: 1
   headerId: agents-tools
@@ -2151,48 +2159,96 @@
   subgroup: 2
 
 - sbSecId: 10
-  title: Discovery Tools
-  link: /agents/salesagent/tools/discovery-tools.html
+  title: get_adcp_capabilities
+  link: /agents/salesagent/tools/get-adcp-capabilities.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
 
 - sbSecId: 10
-  title: Media Buy Tools
-  link: /agents/salesagent/tools/media-buy-tools.html
+  title: get_products
+  link: /agents/salesagent/tools/get-products.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
 
 - sbSecId: 10
-  title: Creative Tools
-  link: /agents/salesagent/tools/creative-tools.html
+  title: list_creative_formats
+  link: /agents/salesagent/tools/list-creative-formats.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
 
 - sbSecId: 10
-  title: Workflow Tools
-  link: /agents/salesagent/tools/workflow-tools.html
+  title: list_authorized_properties
+  link: /agents/salesagent/tools/list-authorized-properties.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
 
 - sbSecId: 10
-  title: Performance Tools
-  link: /agents/salesagent/tools/performance-tools.html
+  title: create_media_buy
+  link: /agents/salesagent/tools/create-media-buy.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
 
 - sbSecId: 10
-  title: Signal Tools
-  link: /agents/salesagent/tools/signals-tools.html
+  title: update_media_buy
+  link: /agents/salesagent/tools/update-media-buy.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 10
+  title: get_media_buys
+  link: /agents/salesagent/tools/get-media-buys.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 10
+  title: get_media_buy_delivery
+  link: /agents/salesagent/tools/get-media-buy-delivery.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 10
+  title: sync_creatives
+  link: /agents/salesagent/tools/sync-creatives.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 10
+  title: list_creatives
+  link: /agents/salesagent/tools/list-creatives.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 10
+  title: update_performance_index
+  link: /agents/salesagent/tools/update-performance-index.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 10
+  title: Error Codes
+  link: /agents/salesagent/reference/error-codes.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:

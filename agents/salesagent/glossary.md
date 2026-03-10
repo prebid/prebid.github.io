@@ -31,7 +31,7 @@ A dataclass describing what features a specific adapter supports, such as invent
 
 ### AgentCard
 
-An A2A discovery document served at `/.well-known/agent.json` that describes an agent's capabilities, supported tools, and authentication requirements. Buyer agents use the AgentCard to learn how to interact with a Sales Agent instance.
+An A2A discovery document served at `/.well-known/agent-card.json` that describes an agent's capabilities, supported tools, and authentication requirements. Buyer agents use the AgentCard to learn how to interact with a Sales Agent instance.
 
 ### Audit Log
 
@@ -81,13 +81,13 @@ A namespaced creative format identifier consisting of two parts: `agent_url` (th
 
 ### HITL (Human-in-the-Loop)
 
-An approval workflow where a human publisher reviews and approves or rejects media buys or creatives before they go live. HITL is managed through the workflow tools (`list_tasks`, `get_task`, `complete_task`) and can be configured per-tenant.
+An approval workflow where a human publisher reviews and approves or rejects media buys or creatives before they go live. HITL is managed through the Admin UI workflow queue and optional Slack notifications via `hitl_webhook_url`, and can be configured per-tenant.
 
 ## M
 
 ### MCP (Model Context Protocol)
 
-A protocol for AI assistant tool integration that the Sales Agent uses as its primary interface. The Sales Agent implements MCP via FastMCP with HTTP/SSE transport, allowing AI assistants to discover and invoke tools through a standardized protocol.
+A protocol for AI assistant tool integration that the Sales Agent uses as its primary interface. The Sales Agent implements MCP via FastMCP with StreamableHTTP transport, allowing AI assistants to discover and invoke tools through a standardized protocol.
 
 ### Media Buy
 
@@ -157,7 +157,7 @@ The architectural principle that all transports (MCP, A2A, REST) call the same `
 
 ### Workflow Step
 
-A task in the human-in-the-loop approval system. Workflow steps have types such as `creative_approval` and `manual_approval`, and progress through states including `pending`, `completed`, and `failed`. They are managed via the workflow tools.
+A task in the human-in-the-loop approval system. Workflow steps have types such as `creative_approval` and `manual_approval`, and progress through states including `pending`, `completed`, and `failed`. They are managed through the Admin UI workflow queue.
 
 ## Further Reading
 

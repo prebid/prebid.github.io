@@ -370,7 +370,7 @@ External creative format provider configuration. When `list_creative_formats` is
 
 ### SignalsAgent
 
-External audience signal provider configuration. When `get_signals` is called, the system queries all enabled signals agents.
+External audience signal provider configuration. When dynamic products request signal data, the system queries all enabled signals agents.
 
 | Column | Type | Constraints | Description |
 | --- | --- | --- | --- |
@@ -439,4 +439,4 @@ Several columns use PostgreSQL `JSONB` for flexible structured data:
 
 - [API Schema Reference](api-schemas.html) -- Pydantic models that map to these database models
 - [Tool Reference](../tools/tool-reference.html) -- Tools that read and write these models
-- [Workflow Tools](../tools/workflow-tools.html) -- WorkflowStep usage details
+- [Architecture](../architecture.html) -- Workflow approval design

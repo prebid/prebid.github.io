@@ -17,6 +17,9 @@ The Broadstreet integration connects the Prebid Sales Agent to the [Broadstreet]
 
 The adapter is identified by `adapter_name: "broadstreet"` and is implemented as a multi-module package under `src/adapters/broadstreet/`.
 
+{: .alert.alert-warning :}
+The Broadstreet adapter is in design phase and not yet production-ready. The module structure and API client exist but the integration has not been validated against a live Broadstreet account. Use the [Mock Adapter](/agents/salesagent/integrations/mock-adapter.html) for testing until this adapter reaches production status.
+
 ## Prerequisites
 
 Before configuring the Broadstreet integration, ensure you have:

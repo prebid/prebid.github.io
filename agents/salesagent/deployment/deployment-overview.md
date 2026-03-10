@@ -122,12 +122,13 @@ The Sales Agent exposes several internal ports. Your deployment platform must ro
 | Port | Service | Description |
 | --- | --- | --- |
 | 8000 | nginx reverse proxy | External entry point; proxies to internal services |
-| 8080 | FastAPI / MCP | Unified application (MCP, A2A, REST API, Admin UI) |
-| 8001 | Admin UI (direct) | Flask admin interface (typically accessed via nginx) |
-| 8091 | A2A (direct) | Agent-to-Agent JSON-RPC endpoint (typically accessed via nginx) |
+| 8080 | FastAPI unified app | All protocols: MCP, A2A, REST API, Admin UI |
 {: .table .table-bordered .table-striped }
 
-In most deployments nginx on port 8000 is the only port exposed externally. The other ports are internal to the Docker network.
+{: .alert.alert-info :}
+As of v1.5.0, the application uses a single unified process on port 8080. Ports 8001 (Admin UI) and 8091 (A2A) from the legacy multi-process architecture are no longer used.
+
+In most deployments nginx on port 8000 is the only port exposed externally.
 
 ## Application Entrypoint
 

@@ -278,7 +278,7 @@ from src.core.errors import AdCPValidationError
 
 async def create_media_buy_impl(identity, budget):
     if budget <= 0:
-        raise AdCPValidationError("Budget must be positive", recovery="user")
+        raise AdCPValidationError("Budget must be positive", recovery="correctable")
 
 # WRONG
 from fastmcp.exceptions import ToolError

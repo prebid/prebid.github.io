@@ -139,7 +139,7 @@ services:
       retries: 3
 
   postgres:
-    image: postgres:16
+    image: postgres:17
     environment:
       POSTGRES_USER: salesagent
       POSTGRES_PASSWORD: salesagent
@@ -197,7 +197,7 @@ docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 
 ## Nginx Configuration
 
-The Sales Agent includes an nginx reverse proxy that handles TLS termination, SSE support, and path-based routing to the FastAPI application.
+The Sales Agent includes an nginx reverse proxy that handles TLS termination, streaming support, and path-based routing to the FastAPI application.
 
 ### Default Configuration
 
@@ -211,17 +211,17 @@ upstream app {
 server {
     listen 8000;
 
-    # SSE support — disable buffering for streaming responses
+    # Streaming support — disable buffering for streaming responses
     proxy_buffering off;
     proxy_cache off;
     proxy_set_header Connection '';
     proxy_http_version 1.1;
     chunked_transfer_encoding off;
 
-    # MCP endpoint (SSE transport)
+    # MCP endpoint (StreamableHTTP transport)
     location /mcp/ {
         proxy_pass http://app/mcp/;
-        proxy_read_timeout 86400s;    # 24h for long-lived SSE connections
+        proxy_read_timeout 86400s;    # 24h for long-lived streaming connections
         proxy_send_timeout 86400s;
     }
 
@@ -279,18 +279,18 @@ server {
 }
 ```
 
-### SSE Considerations
+### Streaming Considerations
 
-The MCP protocol uses Server-Sent Events (SSE) for streaming. Key nginx settings for SSE:
+The MCP protocol uses StreamableHTTP for streaming. Key nginx settings for streaming responses:
 
-- `proxy_buffering off` — Disables response buffering so SSE events are forwarded immediately.
-- `proxy_cache off` — Prevents caching of SSE streams.
-- `proxy_read_timeout 86400s` — Allows long-lived SSE connections (24 hours).
+- `proxy_buffering off` — Disables response buffering so streaming events are forwarded immediately.
+- `proxy_cache off` — Prevents caching of streaming responses.
+- `proxy_read_timeout 86400s` — Allows long-lived streaming connections (24 hours).
 - `proxy_http_version 1.1` — Required for chunked transfer encoding.
 - `Connection ''` — Prevents nginx from closing the connection prematurely.
 
 <div class="alert alert-info" role="alert">
-  If you skip the built-in nginx (<code>SKIP_NGINX=true</code>) and use an external reverse proxy (e.g., Cloudflare, AWS ALB), ensure it supports SSE with the settings above. Many CDNs buffer responses by default, which breaks SSE.
+  If you skip the built-in nginx (<code>SKIP_NGINX=true</code>) and use an external reverse proxy (e.g., Cloudflare, AWS ALB), ensure it supports streaming responses with the settings above. Many CDNs buffer responses by default, which breaks streaming.
 </div>
 
 ## Per-Tenant Configuration via Admin UI

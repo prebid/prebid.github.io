@@ -115,7 +115,7 @@ The Agent-to-Agent (A2A) protocol is designed for agent-to-agent orchestration u
 Before sending requests, fetch the AgentCard to discover the agent's capabilities:
 
 ```bash
-curl https://publisher.salesagent.example.com/.well-known/agent.json
+curl https://publisher.salesagent.example.com/.well-known/agent-card.json
 ```
 
 The AgentCard returns the agent's identity, supported skills (including four auth-optional discovery skills), authentication requirements, and endpoint URLs.
@@ -239,8 +239,7 @@ curl https://publisher.salesagent.example.com/api/v1/media-buys/mb-001/delivery 
 | GET | `/api/v1/media-buys/{id}/delivery` | Required | Delivery metrics |
 | POST | `/api/v1/media-buys/{id}/creatives` | Required | Sync creatives |
 | GET | `/api/v1/media-buys/{id}/creatives` | Required | List creatives |
-| GET | `/api/v1/tasks` | Required | List workflow tasks |
-| POST | `/api/v1/tasks/{id}/complete` | Required | Complete a task |
+| POST | `/api/v1/performance-index` | Required | Update performance index |
 
 ## Discovery Workflow
 
@@ -329,39 +328,13 @@ delivery = await client.call_tool("get_media_buy_delivery", {
 # Returns: impressions, clicks, spend, CTR, viewability, pacing data
 ```
 
-## Handling Workflow Tasks
+## Handling Approval Workflows
 
-Publishers may configure human-in-the-loop approval for media buys and creatives. When approval is required, the Sales Agent creates workflow tasks.
-
-### Polling for Tasks
-
-```python
-tasks = await client.call_tool("list_tasks", {})
-for task in tasks:
-    print(f"Task {task['id']}: {task['type']} — {task['status']}")
-```
-
-### Getting Task Details
-
-```python
-task = await client.call_tool("get_task", {"task_id": "task-001"})
-```
-
-### Completing a Task
-
-Principals can complete tasks that are assigned to them (e.g., providing additional information requested by the publisher):
-
-```python
-result = await client.call_tool("complete_task", {
-    "task_id": "task-001",
-    "action": "approve",
-    "comment": "Creatives updated per publisher feedback"
-})
-```
+Publishers may configure human-in-the-loop approval for media buys and creatives. When approval is required, the media buy enters `pending_activation` status and publishers review it through the Admin UI or Slack notifications.
 
 ### Waiting for Publisher Approval
 
-If the task requires publisher action (e.g., reviewing a media buy proposal), your agent should poll periodically:
+Your agent should poll the media buy status periodically:
 
 ```python
 import asyncio
@@ -487,29 +460,36 @@ asyncio.run(run_campaign())
 
 The Sales Agent returns structured errors with codes and recovery classifications.
 
-### Error Codes
+### Error Types
+
+All errors are subclasses of `AdCPError` and include a `recovery` hint for the calling agent.
 
 {: .table .table-bordered .table-striped }
-| Code | Name | HTTP Status | Description |
-|------|------|-------------|-------------|
-| `AUTH_REQUIRED` | Authentication Required | 401 | No valid token provided |
-| `AUTH_INVALID` | Invalid Token | 401 | Token is expired or revoked |
-| `FORBIDDEN` | Forbidden | 403 | Token valid but lacks permission for this operation |
-| `NOT_FOUND` | Not Found | 404 | Requested resource does not exist |
-| `VALIDATION_ERROR` | Validation Error | 422 | Request parameters failed validation |
-| `POLICY_VIOLATION` | Policy Violation | 422 | Request violates publisher advertising policies |
-| `BUDGET_EXCEEDED` | Budget Exceeded | 422 | Requested budget exceeds configured limits |
-| `ADAPTER_ERROR` | Ad Server Error | 502 | The underlying ad server returned an error |
-| `INTERNAL_ERROR` | Internal Error | 500 | Unexpected server error |
+| Error Class | HTTP Status | Description |
+|-------------|-------------|-------------|
+| `AdCPAuthenticationError` | 401 | No valid token provided or token expired/revoked |
+| `AdCPAuthorizationError` | 403 | Token valid but lacks permission for this operation |
+| `AdCPNotFoundError` | 404 | Requested resource does not exist |
+| `AdCPValidationError` | 422 | Request parameters failed validation |
+| `AdCPPolicyError` | 422 | Request violates publisher advertising policies |
+| `AdCPBudgetError` | 422 | Requested budget exceeds configured limits |
+| `AdCPAdapterError` | 502 | The underlying ad server returned an error |
+| `AdCPConfigurationError` | 500 | Server misconfiguration (e.g., missing adapter) |
+| `AdCPRateLimitError` | 429 | Too many requests |
+| `AdCPInternalError` | 500 | Unexpected server error |
+
+For the full error catalog with format examples across all protocols, see the [Error Codes Reference](/agents/salesagent/reference/error-codes.html).
 
 ### Recovery Classification
+
+Each error carries a `recovery` hint:
 
 {: .table .table-bordered .table-striped }
 | Classification | Meaning | Action |
 |---------------|---------|--------|
-| **terminal** | The request cannot succeed as-is | Change parameters and retry (e.g., policy violation, validation error) |
-| **user** | User action required | Prompt the user or wait for publisher approval (e.g., auth required, forbidden) |
-| **transient** | Temporary failure | Retry with exponential backoff (e.g., ad server timeout, internal error) |
+| **terminal** | The request cannot succeed as-is | Do not retry (e.g., authentication failure, authorization denied) |
+| **correctable** | The request can succeed with changes | Modify parameters and retry (e.g., validation error, policy violation, budget exceeded) |
+| **transient** | Temporary failure | Retry with exponential backoff (e.g., ad server timeout, rate limit, internal error) |
 
 ### Example Error Response (MCP)
 

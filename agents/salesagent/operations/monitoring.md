@@ -104,8 +104,8 @@ When `LOGFIRE_TOKEN` is set, the application emits structured log events to the 
 
 | Platform | Command |
 | --- | --- |
-| Docker | `docker compose logs adcp-server` |
-| Docker (follow) | `docker compose logs -f adcp-server` |
+| Docker | `docker compose logs salesagent` |
+| Docker (follow) | `docker compose logs -f salesagent` |
 | Fly.io | `fly logs --app adcp-sales` |
 | Cloud Run | `gcloud run services logs read adcp-sales --region=us-central1` |
 | Logfire | Logfire web dashboard at `https://logfire.pydantic.dev/` |
@@ -141,7 +141,7 @@ Every operation performed through the Sales Agent is recorded in the `audit_logs
 | Media Buys | `create_media_buy`, `update_media_buy`, `get_media_buys`, `get_media_buy_delivery` |
 | Creatives | `sync_creatives`, `list_creatives` |
 | Discovery | `get_adcp_capabilities`, `get_products`, `list_creative_formats`, `list_authorized_properties` |
-| Workflows | `list_tasks`, `get_task`, `complete_task` |
+| Workflows | `workflow_approved`, `workflow_rejected`, `workflow_created` (Admin UI operations) |
 | Performance | `update_performance_index` |
 | Admin | `create_tenant`, `update_tenant`, `create_principal`, `update_product`, `update_settings` |
 | Authentication | `token_validated`, `token_rejected`, `token_expired`, `sso_login`, `sso_login_failed` |

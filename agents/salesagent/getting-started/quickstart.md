@@ -50,10 +50,10 @@ Once the containers are running, verify that all services are accessible at `htt
 | Service | URL | Purpose |
 |---------|-----|---------|
 | Admin UI | [http://localhost:8000/admin](http://localhost:8000/admin) | Publisher administration dashboard |
-| MCP Server | [http://localhost:8000/mcp/](http://localhost:8000/mcp/) | FastMCP SSE endpoint for AI agents |
+| MCP Server | [http://localhost:8000/mcp/](http://localhost:8000/mcp/) | FastMCP StreamableHTTP endpoint for AI agents |
 | A2A Server | [http://localhost:8000/a2a](http://localhost:8000/a2a) | JSON-RPC 2.0 Agent-to-Agent endpoint |
 | Health Check | [http://localhost:8000/health](http://localhost:8000/health) | Service readiness status |
-| Agent Card | [http://localhost:8000/.well-known/agent.json](http://localhost:8000/.well-known/agent.json) | A2A discovery document |
+| Agent Card | [http://localhost:8000/.well-known/agent-card.json](http://localhost:8000/.well-known/agent-card.json) | A2A discovery document |
 
 ## Test Credentials
 
@@ -80,7 +80,7 @@ The easiest way to interact with the Sales Agent is through the `adcp` CLI tool,
 uvx adcp http://localhost:8000/mcp/ --auth test-token list_tools
 ```
 
-This returns the registered MCP tools including `get_adcp_capabilities`, `get_products`, `list_creative_formats`, `sync_creatives`, `list_creatives`, `create_media_buy`, `update_media_buy`, `get_media_buys`, `get_media_buy_delivery`, `list_authorized_properties`, `get_signals`, `activate_signal`, `list_tasks`, `get_task`, `complete_task`, and `update_performance_index`.
+This returns the 11 registered MCP tools: `get_adcp_capabilities`, `get_products`, `list_creative_formats`, `list_authorized_properties`, `create_media_buy`, `update_media_buy`, `get_media_buys`, `get_media_buy_delivery`, `sync_creatives`, `list_creatives`, and `update_performance_index`.
 
 ### Browse Products
 
@@ -117,7 +117,7 @@ uvx adcp http://localhost:8000/mcp/ --auth test-token create_media_buy \
 The response includes:
 
 - A `media_buy_id` for tracking the campaign
-- Current `status` (typically `proposed` until publisher approval)
+- Current `status` (typically `pending_activation` until publisher approval)
 - Any `workflow_tasks` that require completion (e.g., publisher review)
 
 ## Connecting an AI Agent

@@ -61,14 +61,13 @@ services:
     command: ["python", "-m", "alembic", "upgrade", "head"]
     restart: "no"
 
-  adcp-server:
+  salesagent:
     image: adcp-sales-agent:latest
     depends_on:
       db-init:
         condition: service_completed_successfully
     ports:
       - "8080:8080"
-      - "8001:8001"
     environment:
       DATABASE_URL: postgresql+asyncpg://adcp:changeme@postgres:5432/adcp_sales
       DATABASE_QUERY_TIMEOUT: "30"
@@ -91,7 +90,7 @@ services:
   proxy:
     image: nginx:alpine
     depends_on:
-      adcp-server:
+      salesagent:
         condition: service_healthy
     ports:
       - "8000:8000"
@@ -185,7 +184,7 @@ events {
 
 http {
     upstream adcp_backend {
-        server adcp-server:8080;
+        server salesagent:8080;
     }
 
     server {
@@ -306,7 +305,7 @@ curl http://localhost:8080/health
 Check the logs for the failing service:
 
 ```bash
-docker compose logs adcp-server
+docker compose logs salesagent
 docker compose logs db-init
 ```
 
@@ -314,7 +313,7 @@ Common causes:
 
 - **Database not ready**: Ensure the `postgres` service is healthy before `db-init` runs. The `depends_on` condition handles this, but check `docker compose logs postgres` if issues persist.
 - **Migration failure**: Check `docker compose logs db-init` for Alembic errors. A failed migration may require manual intervention.
-- **Port conflict**: Ensure ports 5432, 8000, 8080, 8001, and 8091 are not in use by other services.
+- **Port conflict**: Ensure ports 5432, 8000, and 8080 are not in use by other services.
 
 ### Health check fails
 
@@ -325,7 +324,7 @@ curl -v http://localhost:8080/health
 If the health endpoint returns an error, the most likely cause is a database connectivity issue. Verify:
 
 ```bash
-docker compose exec adcp-server python -c "import asyncio; print('Python OK')"
+docker compose exec salesagent python -c "import asyncio; print('Python OK')"
 docker compose exec postgres pg_isready -U adcp
 ```
 

@@ -151,7 +151,7 @@ docker run -d --name salesagent-test-db \
   -e POSTGRES_DB=salesagent_test \
   -e POSTGRES_PASSWORD=test \
   -p 5433:5432 \
-  postgres:16
+  postgres:17
 ```
 
 ### Database Fixtures

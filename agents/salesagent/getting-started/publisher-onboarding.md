@@ -84,7 +84,7 @@ Navigate to **Settings > Ad Server** in the Admin UI to select and configure you
 {: .table .table-bordered .table-striped }
 | Adapter | Channels | Requirements |
 |---------|----------|-------------|
-| **Google Ad Manager** | Display, Video | GAM API access, OAuth credentials, GCP project |
+| **Google Ad Manager** | Display, OLV, Social | GAM API access, OAuth credentials, GCP project |
 | **Kevel** | Display | Kevel API key |
 | **Triton Digital** | Audio | Triton Digital account credentials |
 | **Broadstreet** | Display | Broadstreet API credentials |
@@ -274,9 +274,9 @@ When using `auto-approve` mode, the AI review agent evaluates each creative and 
 When human approval is required, the system creates workflow tasks that appear in:
 
 - The Admin UI under **Workflow Tasks**
-- The MCP/A2A/REST APIs via `list_tasks`, `get_task`, and `complete_task`
+- Slack notifications via `hitl_webhook_url` (if configured)
 
-AI agents can poll for task status and notify their operators when approval is needed.
+AI agents can poll media buy status via `get_media_buys` and notify their operators when approval is needed.
 
 ## Step 10: Test with Mock Adapter
 

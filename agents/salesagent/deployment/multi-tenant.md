@@ -50,10 +50,10 @@ Tenants can also set a `virtual_host` field for fully custom domains (e.g., `ads
 
 ### Example Docker Compose Override
 
-Add these environment variables to your `adcp-server` service:
+Add these environment variables to your `salesagent` service:
 
 ```yaml
-adcp-server:
+salesagent:
   environment:
     ADCP_MULTI_TENANT: "true"
     BASE_DOMAIN: "adcp.yourplatform.com"
@@ -110,7 +110,7 @@ events {
 
 http {
     upstream adcp_backend {
-        server adcp-server:8080;
+        server salesagent:8080;
     }
 
     # Wildcard server block for all tenant subdomains
@@ -263,7 +263,7 @@ For high-traffic deployments:
 
 The FastAPI application is stateless and can be scaled horizontally:
 
-- Run multiple `adcp-server` instances behind a load balancer
+- Run multiple `salesagent` instances behind a load balancer
 - Ensure all instances share the same `ENCRYPTION_KEY` and `DATABASE_URL`
 - nginx or an external load balancer handles request routing
 

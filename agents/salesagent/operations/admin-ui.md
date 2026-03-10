@@ -13,9 +13,9 @@ sidebarType: 10
 
 ## Overview
 
-The Admin UI is a Flask-based web application that provides a graphical interface for managing every aspect of the Prebid Sales Agent. It is served at the `/admin` path and supports Google OAuth authentication in production or test mode for development.
+The Admin UI is a Flask-based web application that provides a graphical interface for managing every aspect of the Prebid Sales Agent. It is served at the `/admin` path and supports per-tenant OIDC SSO (Google, Microsoft, Okta, Auth0, Keycloak) in production or test mode for development.
 
-The Admin UI is composed of approximately 20 blueprints, each responsible for a functional area:
+The Admin UI is composed of approximately 26 blueprints, each responsible for a functional area:
 
 | Blueprint | Purpose |
 | --- | --- |
@@ -50,7 +50,7 @@ The Admin UI is composed of approximately 20 blueprints, each responsible for a 
 
 The Admin UI is available at the `/admin` path of your deployment:
 
-- **Docker**: `http://localhost:8000/admin` (via nginx) or `http://localhost:8001/admin` (direct)
+- **Docker**: `http://localhost:8000/admin` (via nginx)
 - **Fly.io**: `https://your-app.fly.dev/admin`
 - **Cloud Run**: `https://your-service-url.run.app/admin`
 - **Multi-tenant**: `https://tenant.yourdomain.com/admin`
@@ -60,7 +60,7 @@ The Admin UI is available at the `/admin` path of your deployment:
 | Method | When to Use | Configuration |
 | --- | --- | --- |
 | Test Mode | Development and initial setup | Set `ADCP_AUTH_TEST_MODE=true` |
-| Google OAuth | Production single-tenant | Set `GAM_OAUTH_CLIENT_ID` and `GAM_OAUTH_CLIENT_SECRET` |
+| Per-Tenant OIDC | Production | Configure via Admin UI > Settings > SSO |
 | Per-Tenant OIDC | Production multi-tenant | Configure via Admin UI > Settings > SSO |
 {: .table .table-bordered .table-striped }
 
@@ -235,8 +235,8 @@ Each pending task displays:
 
 | Action | Effect |
 | --- | --- |
-| Approve | The pending operation proceeds (`complete_task` with `status=completed`). The media buy is created in the ad server. |
-| Reject | The operation is cancelled (`complete_task` with `status=failed`). The buying agent is notified. |
+| Approve | The pending operation proceeds and the media buy is created in the ad server. |
+| Reject | The operation is cancelled and the buying agent is notified. |
 | Request Changes | The buying agent receives feedback and can resubmit |
 {: .table .table-bordered .table-striped }
 
@@ -294,7 +294,7 @@ Creative agents are external services that define creative format specifications
 
 Navigate to **Settings** > **Signals Agents** to configure external audience signal sources.
 
-Signals agents are external services that provide audience segments for targeting. They enrich the Sales Agent's capabilities by providing additional data for targeting and optimization. When the `get_signals` tool is called, the system queries all enabled signals agents and aggregates the results. Dynamic products also query signals agents during variant generation.
+Signals agents are external services that provide audience segments for targeting. They enrich the Sales Agent's capabilities by providing additional data for targeting and optimization. The system queries all enabled signals agents and aggregates the results when dynamic products generate targeted variants based on buyer briefs.
 
 ### Registering a Signals Agent
 
