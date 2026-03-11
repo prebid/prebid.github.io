@@ -25,7 +25,7 @@ Each page impression is classified by **actor type** (`vat`) and **confidence ti
 
 The module automates VAI loading, timing, and signal injection:
 
-* **ORTB2 enrichment** — VAI signals are split across `site.ext.vai` (domain provenance), `user.ext.vai` (actor classification + signed assertion), and `imp[].ext.vai` (pageview correlation), available to all ORTB2-native bid adapters.
+* **ORTB2 enrichment** — VAI signals are split across `site.ext.data.vai` (domain provenance), `user.ext.data.vai` (actor classification + signed assertion), and `imp[].ext.vai` (pageview correlation), available to all ORTB2-native bid adapters.
 * **GAM targeting** — `vai_vat` and `vai_act` key-value pairs are set per ad unit for Google Ad Manager line item targeting.
 * **Graceful degradation** — if VAI is unavailable or times out, the auction proceeds normally without enrichment.
 
@@ -82,17 +82,19 @@ VAI supports two hosting modes for the loader script:
 
 ## Output
 
-### ORTB2 — `site.ext.vai` (Domain Provenance)
+### ORTB2 — `site.ext.data.vai` (Domain Provenance)
 
-Fields that describe the assertion context. The `dom` value can be cryptographically verified through the signed `jws` in `user.ext.vai`.
+Fields that describe the assertion context. The `dom` value can be cryptographically verified through the signed `jws` in `user.ext.data.vai`.
 
 ```json
 {
   "site": {
     "ext": {
-      "vai": {
-        "iss": "paywalls.net",
-        "dom": "example.com"
+      "data": {
+        "vai": {
+          "iss": "paywalls.net",
+          "dom": "example.com"
+        }
       }
     }
   }
@@ -106,7 +108,7 @@ Fields that describe the assertion context. The `dom` value can be cryptographic
 | `iss` | Issuer — bare domain (e.g. `paywalls.net`) |
 | `dom` | Domain the assertion covers |
 
-### ORTB2 — `user.ext.vai` (Actor Classification)
+### ORTB2 — `user.ext.data.vai` (Actor Classification)
 
 Fields that describe the classified actor and the signed assertion:
 
@@ -114,12 +116,14 @@ Fields that describe the classified actor and the signed assertion:
 {
   "user": {
     "ext": {
-      "vai": {
-        "iss": "paywalls.net",
-        "mstk": "01J4X9K2ABCDEF01234567",
-        "vat": "HUMAN",
-        "act": "ACT-1",
-        "jws": "eyJhbGciOiJFZERTQSIs..."
+      "data": {
+        "vai": {
+          "iss": "paywalls.net",
+          "mstk": "01J4X9K2ABCDEF01234567",
+          "vat": "HUMAN",
+          "act": "ACT-1",
+          "jws": "eyJhbGciOiJFZERTQSIs..."
+        }
       }
     }
   }
