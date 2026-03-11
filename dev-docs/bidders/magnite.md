@@ -221,9 +221,6 @@ pbjs.setConfig({
 
 ### Migration from Rubicon
 
-{: .alert .alert-info :}
-This section is under construction. Detailed migration guidance will be provided soon.
-
 The Magnite adapter (`bidder: "magnite"`) is designed as the next-generation replacement for the Rubicon adapter (`bidder: "rubicon"`). It uses a modern OpenRTB integration that is simpler and easier to maintain.
 
 Key points for migrating:
@@ -232,4 +229,37 @@ Key points for migrating:
 - The adapter accepts configuration from both `magnite` and `rubicon` config namespaces during the transition.
 - Update `bidder: "rubicon"` to `bidder: "magnite"` in your ad unit configurations.
 
-<!-- TODO: Add detailed migration steps -->
+#### Preserving Existing GAM Line Items
+
+If you are migrating from the Rubicon adapter and your Google Ad Manager (GAM) line items rely on bidder-specific key-value targeting (e.g., `hb_bidder=rubicon` or `hb_pb_rubicon`), you can avoid updating your ad server setup by aliasing the Magnite adapter as `rubicon`. This causes bids from the Magnite adapter to be reported under the `rubicon` bidder code, preserving compatibility with your existing line items.
+
+```javascript
+pbjs.aliasBidder('magnite', 'rubicon');
+```
+
+Then use the alias in your ad unit configuration:
+
+```javascript
+var adUnit = {
+    code: 'test-div',
+    mediaTypes: {
+        banner: {
+            sizes: [[300, 250]]
+        }
+    },
+    bids: [{
+        bidder: 'rubicon',
+        params: {
+            accountId: 14062,
+            siteId: 70608,
+            zoneId: 498816
+        }
+    }]
+};
+```
+
+With this approach, Prebid.js will use the Magnite adapter under the hood but send targeting keys as `hb_bidder=rubicon`, `hb_pb_rubicon`, etc., so your existing GAM line items continue to work without changes.
+
+{: .alert.alert-info :}
+The `rubicon` alias is **not** included as a default alias of the Magnite adapter by design. This allows publishers to include both the Magnite and Rubicon adapters in the same Prebid.js build for A/B testing during migration. However, for production use after migration, the recommended approach is to build Prebid.js with only the Magnite adapter (without the Rubicon adapter) and use `pbjs.aliasBidder('magnite', 'rubicon')` as shown above. This avoids potential conflicts between the two adapters.
+
