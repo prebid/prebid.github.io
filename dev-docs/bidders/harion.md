@@ -16,8 +16,8 @@ media_types: banner, video, native
 multiformat_supported: will-bid-on-one
 userIds: all
 pbjs: false
-pbs: true
-pbs_app_supported: true
+pbs: false
+pbs_app_supported: false
 safeframes_ok: true
 sidebarType: 1
 gvl_id: 1406
