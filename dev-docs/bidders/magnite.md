@@ -262,4 +262,3 @@ With this approach, Prebid.js will use the Magnite adapter under the hood but se
 
 {: .alert.alert-info :}
 The `rubicon` alias is **not** included as a default alias of the Magnite adapter by design. This allows publishers to include both the Magnite and Rubicon adapters in the same Prebid.js build for A/B testing during migration. However, for production use after migration, the recommended approach is to build Prebid.js with only the Magnite adapter (without the Rubicon adapter) and use `pbjs.aliasBidder('magnite', 'rubicon')` as shown above. This avoids potential conflicts between the two adapters.
-
