@@ -25,14 +25,25 @@ sidebarType: 1
 
 {: .table .table-bordered .table-striped }
 
-| Name               | Scope    | Description                              | Example                           | Type      |
-| ------------------ | -------- | ---------------------------------------- | --------------------------------- | --------- |
-| `aps.accountID`    | required | APS-provided ID                          | `1234`                            | `string`  |
-| `aps.debugURL`     | optional | Bid endpoint                             | `https://example.com/bid`         | `string`  |
-| `aps.debug`        | optional | Toggle to enable / disable debug mode    | `true`                            | `boolean` |
-| `aps.renderMethod` | optional | Debug mode render method                 | `fif`                             | `string`  |
-| `aps.creativeURL`  | optional | Creative rendering URL                   | `https://example.com/creative.js` | `string`  |
-| `aps.telemetry`    | optional | Toggle to enable / disable APS telemetry | `true`                            | `boolean` |
+| Name                      | Scope    | Description                              | Example                           | Type      |
+| ------------------------- | -------- | ---------------------------------------- | --------------------------------- | --------- |
+| `aps.accountID`           | required | APS-provided ID                          | `1234`                            | `string`  |
+| `aps.debugURL`            | optional | Bid endpoint                             | `https://example.com/bid`         | `string`  |
+| `aps.debug`               | optional | Toggle to enable / disable debug mode    | `true`                            | `boolean` |
+| `aps.renderMethod`        | optional | Debug mode render method                 | `fif`                             | `string`  |
+| `aps.creativeURL`         | optional | Creative rendering URL                   | `https://example.com/creative.js` | `string`  |
+| `aps.telemetry`           | optional | Toggle to enable / disable APS telemetry | `true`                            | `boolean` |
+| `ortb2.regs.ext.agerange` | optional | US Age Law Compliance Value              | `3` (refer to the table below)    | `number`  |
+
+#### Agerange Values
+
+| Legally Defined Age Category | Simplified Category | Enumerated Value |
+| ---------------------------- | ------------------- | ---------------- |
+| Child (Under 13)             | Child               | 1                |
+| Young Teenager (13-15)       | Teen                | 2                |
+| Older Teenager (16-17)       | Teen                | 2                |
+| Adult (18+)                  | Adult               | 3                |
+| Unknown                      | Unknown             | 0                |
 
 ### Bid Params
 
