@@ -76,7 +76,7 @@ BeOp supports iframe and pixel-based user syncs using the `getUserSyncs` method.
 
 ### Cookie Usage
 
-BeOp sets a first-party cookie `beopid` for frequency capping and user session purposes. This ID is anonymized and used to improve campaign performance, capping logic, and personalization within publisher domains.
+BeOp sets a first-party cookie `caudid` (Collective Audience user ID) for frequency capping and user session purposes. The value is a 24-character hex string (ObjectID-style). This ID is anonymized and used to improve campaign performance, capping logic, and personalization within publisher domains.
 
 ### First-Party Data Support
 
