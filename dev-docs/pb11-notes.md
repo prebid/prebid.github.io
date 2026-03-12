@@ -36,15 +36,15 @@ The following modules have been removed from Prebid.js as part of the 11.0 relea
 | Module                          | Notes                          |
 |:--------------------------------|:-------------------------------|
 | `adpod`                         |                                |
-| `categoryTranslation`           |                                |
+| `categoryTranslation`           | Adpod submodule                |
 | `dfpAdServerVideo`              | Use `gamAdServerVideo` instead |
-| `dfpAdpod`                      |                                |
+| `dfpAdpod`                      | Adpod submodule                |
 | `dmdIdSystem`                   |                                |
 | `express`                       |                                |
 | `freeWheelAdserverVideo`        |                                |
-| `gamAdpod`                      |                                |
+| `gamAdpod`                      | Adpod submodule                |
 | `intersectionRtdProvider`       |                                |
-| `optableBidAdapter`             |                                |
+| `optableBidAdapter`             | No longer useful without PAAPI |
 | `paapi`                         |                                |
 | `paapiForGpt`                   |                                | 
 | `topLevelPaapi`                 |                                |
