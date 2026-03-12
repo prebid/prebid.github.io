@@ -20,10 +20,10 @@ This document describes the changes included for Prebid.js version 11.0.
 2. Adpod is no longer supported.
 3. PAAPI is no longer supported.
 4. The `addAdUnits`, `bidAccepted`, and `seatNonBid` events have been removed.
-7. Bids whose `mediaType` does not match their request's `mediaTypes` are now rejected as invalid.
+5. Bids whose `mediaType` does not match their request's `mediaTypes` are now rejected as invalid.
 6. The `storageControl` module now defaults to strict enforcement.
-6. [setTargetingForGPTAsync](/dev-docs/publisher-api-reference/setTargetingForGPTAsync.html) no longer takes a `customSlotMatching` argument; the configuration options `bidViewability.customMatchFunction` and `gptPreAuction.customGptSlotMatching` have been removed. The replacement is a single new configuration option `customGptSlotMatching`. 
-6. The way viewability is calculated and signaled has been overhauled.
+7. [setTargetingForGPTAsync](/dev-docs/publisher-api-reference/setTargetingForGPTAsync.html) no longer takes a `customSlotMatching` argument; the configuration options `bidViewability.customMatchFunction` and `gptPreAuction.customGptSlotMatching` have been removed. The replacement is a single new configuration option `customGptSlotMatching`. 
+8. The way viewability is calculated and signaled has been overhauled.
 
 <a id="removed-modules"></a>
 
