@@ -49,7 +49,7 @@ Optional initialization parameters:
 {: .table .table-bordered .table-striped }
 | Param | Required? | Type | Description | Example |
 | enabled | no | boolean | allows turning off of module. Default value is true | true |
-| customGptSlotMatching | no | function | GPT slot matching function should match the customSlotMatching function sent to [setTargetingForGptAsync](/dev-docs/publisher-api-reference/setTargetingForGPTAsync.html) | |
+| customGptSlotMatching | no | function | REMOVED in 11.0; use [customGptSlotMatching](/dev-docs/publisher-api-reference/setConfig.html#customGptSlotMatching) instead. GPT slot matching function should match the customSlotMatching function sent to [setTargetingForGptAsync](/dev-docs/publisher-api-reference/setTargetingForGPTAsync.html) | |
 | useDefaultPreAuction | no | boolean | (PBJS 6.5+) If true, use default behavior for determining GPID and PbAdSlot. Defaults to false. | true |
 | customPreAuction | no | function | (PBJS 6.5+) Custom function for defining the GPID and PbAdSlot. | |
 | customPbAdSlot | no | function | Custom PB AdSlot function. (Note, this function will be deprecated in the future.) | |

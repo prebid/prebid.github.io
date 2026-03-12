@@ -48,6 +48,7 @@ The default logic used to find a matching Prebid.js bid for a GPT slot is
 | `bidViewability` | Required | Object | Configuration object |
 | `bidViewability.enabled` | Required | Boolean | when set to true, the module will emit BID_VIEWABLE when applicable. Default: `false` |
 | `bidViewability.firePixels` | Optional | Boolean | when set to true, will fire the urls mentioned in `bid.vurls` which should be array of URLs. Default: `false` |
+| `bidViewability.customMatchFunction` | Optional | function(bid, slot) | REMOVED in 11.0; use [customGptSlotMatching](/dev-docs/publisher-api-reference/setConfig.html#customGptSlotMatching) instead. This function will be used to find the matching winning bid for the GPT slot. See above for the default. |
 
 ## Example of setting module config
 

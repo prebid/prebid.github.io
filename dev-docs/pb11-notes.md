@@ -20,7 +20,9 @@ This document describes the changes included for Prebid.js version 11.0.
 2. Adpod is no longer supported.
 3. PAAPI is no longer supported.
 4. The `addAdUnits`, `bidAccepted`, and `seatNonBid` events have been removed.
-5. The `storageControl` module now defaults to strict enforcement.
+7. Bids whose `mediaType` does not match their request's `mediaTypes` are now rejected as invalid.
+6. The `storageControl` module now defaults to strict enforcement.
+6. [setTargetingForGPTAsync](/dev-docs/publisher-api-reference/setTargetingForGPTAsync.html) no longer takes a `customSlotMatching` argument; the configuration options `bidViewability.customMatchFunction` and `gptPreAuction.customGptSlotMatching` have been removed. The replacement is a single new configuration option `customGptSlotMatching`. 
 6. The way viewability is calculated and signaled has been overhauled.
 
 <a id="removed-modules"></a>
@@ -58,6 +60,21 @@ The following events have been removed and will no longer trigger callbacks regi
 * `bidAccepted`: use `bidResponse` instead.
 * `seatNonBid`: use `pbsAnalytics` instead.
 
+## Stricter mediaType enforcement
+
+Bids that declare a `mediaType` not present in their ad unit's `mediaTypes` are now rejected as invalid. This validation can be turned off by setting `auctionOptions.rejectInvalidMediaTypes` to `false`.
+
+Bids that do not declare any `mediaType` are assumed to be `'banner'`; you may require an explicit mediaType with `auctionOptions.rejectUnknownMediaTypes`. If enabled, bids that do not set `mediaType` will also be rejected as invalid. For example:
+
+```javascript
+pbjs.setConfig({
+  auctionOptions: {
+    rejectInvalidMediaTypes: false, // allow bids on the wrong format
+    rejectUnknownMediaTypes: true   // disallow bids that do not declare their format
+  }
+})
+```
+
 ## Strict storageControl enforcement
 
 The [storageControl](/dev-docs/modules/storageControl.html) module now defaults to strict enforcement; including it will cause undisclosed storage use to fail instead of just logging a warning. You may revert to warning only with
@@ -69,6 +86,14 @@ pbjs.setConfig({
   }
 })
 ```
+
+## `customGptSlotMatching`
+
+A new configuration option `customSlotMatching` is replacing the following:
+
+* the second argument of [setTargetingForGPTAsync](/dev-docs/publisher-api-reference/setTargetingForGPTAsync.html);
+* the `customGptSlotMatching` configuration option of [gptPreAuction](/dev-docs/modules/gpt-pre-auction.html);
+* the `customMatchFunction` configuration option of [bidViewability](/dev-docs/modules/bidViewable.md).
 
 <a id="viewability-overhaul"><a>
 

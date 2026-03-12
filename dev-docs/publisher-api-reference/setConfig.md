@@ -1317,6 +1317,24 @@ pbjs.setConfig({
 {: .alert.alert-warning :}
 In PBJS 4.29 and earlier, don't add the `ortb2` level here -- just `site` directly. Oh, and please upgrade. 4.29 was a long time ago.
 
+<a id="customGptSlotMatching"></a>
+
+### Custom GPT slot matching
+
+By default, Prebid matches ad units to GPT slots by code, i.e. a GPT `slot` corresponds to a Prebid `adUnit` if `slot.getAdUnitPath() === adUnit.code`. You can provide a custom matching function to override this, for example:
+
+```javascript
+pbjs.setConfig({
+  customGptSlotMatching: function(slot) {
+    return function(adUnitCode) {
+      return slot.getAdUnitPath() === adUnitCode
+    }
+  }
+})
+```
+
+`customGptSlotMatching` should be a function accepting a single GPT [Slot](https://developers.google.com/publisher-tag/reference#googletag.Slot). It should return another function accepting a single string representing an ad unit code. The inner function should return true if the givne slot matches the given ad unit code. 
+
 <a name="setConfig-auctionOptions"></a>
 
 ### Auction Options
