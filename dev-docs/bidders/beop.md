@@ -80,6 +80,8 @@ BeOp sets a first-party cookie `caudid` (Collective Audience user ID) for freque
 
 BeOp also sets a first-party cookie **`caudid_date`** storing the timestamp (milliseconds since epoch) when the user ID was first set. This supports publisher-driven requests to reset user state for a given date range. Same duration (1 year) as `caudid`.
 
+The **bid endpoint** (response to `/bid`) may set a cookie **`caud_hb_throttle`** on the Collective Audience domain (e.g. `hb.collectiveaudience.co`). Max-Age is 120 seconds. This cookie is used so the next request does not enter infrastructure directly from the Cloudflare snippet (throttling). It is only set when there are no bids and when throttling is allowed (e.g. consent or non-GDPR).
+
 ### First-Party Data Support
 
 BeOp fully supports First-Party Data (FPD) and leverages it to enhance both targeting and audience intelligence for publishers.
