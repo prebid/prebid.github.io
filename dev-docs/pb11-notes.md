@@ -95,7 +95,7 @@ pbjs.setConfig({
 
 ## `customGptSlotMatching`
 
-A new configuration option `customSlotMatching` is replacing the following:
+A new configuration option `customGptSlotMatching` is replacing the following:
 
 * the second argument of [setTargetingForGPTAsync](/dev-docs/publisher-api-reference/setTargetingForGPTAsync.html);
 * the `customGptSlotMatching` configuration option of [gptPreAuction](/dev-docs/modules/gpt-pre-auction.html);
