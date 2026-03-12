@@ -25,6 +25,12 @@ This document describes the changes included for Prebid.js version 11.0.
 7. [setTargetingForGPTAsync](/dev-docs/publisher-api-reference/setTargetingForGPTAsync.html) no longer takes a `customSlotMatching` argument; the configuration options `bidViewability.customMatchFunction` and `gptPreAuction.customGptSlotMatching` have been removed. The replacement is a single new configuration option `customGptSlotMatching`. 
 8. The way viewability is calculated and signaled has been overhauled.
 
+## Adapter summary
+
+1. A new utility function, `getAdUnitElement`, should be used to link an ad unit / bid request / bid response to its DOM element.
+2. DNT (`navigator.doNotTrack`) is no longer supported. The `getDNT()` utility function now always return `false`.
+3. Typescript is now preferred over Javascript. New modules should provide types for their public interface. 
+
 <a id="removed-modules"></a>
 
 ## Removed Modules
