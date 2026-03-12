@@ -47,7 +47,7 @@ The following modules have been removed from Prebid.js as part of the 11.0 relea
 | `dfpAdpod`                      | Adpod submodule                |
 | `dmdIdSystem`                   |                                |
 | `express`                       |                                |
-| `freeWheelAdserverVideo`        |                                |
+| `freeWheelAdserverVideo`        | Adpod submodule                |
 | `gamAdpod`                      | Adpod submodule                |
 | `intersectionRtdProvider`       |                                |
 | `optableBidAdapter`             | No longer useful without PAAPI |
