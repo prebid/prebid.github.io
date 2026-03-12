@@ -99,7 +99,7 @@ A new configuration option `customSlotMatching` is replacing the following:
 
 * the second argument of [setTargetingForGPTAsync](/dev-docs/publisher-api-reference/setTargetingForGPTAsync.html);
 * the `customGptSlotMatching` configuration option of [gptPreAuction](/dev-docs/modules/gpt-pre-auction.html);
-* the `customMatchFunction` configuration option of [bidViewability](/dev-docs/modules/bidViewable.md).
+* the `customMatchFunction` configuration option of [bidViewability](/dev-docs/modules/bidViewable.html).
 
 <a id="viewability-overhaul"><a>
 
@@ -127,8 +127,8 @@ Adapters can retrieve the element using the `getAdUnitElement` utility function.
 
 To determine viewability of an ad rendered on the page, publishers can choose one of two optional modules:
 
-* [`bidViewability`](/dev-docs/modules/bidViewable.md) only works with GPT ad units, and relies on its `impressionViewable` events;
-* [`bidViewabilityIO`](/dev-docs/modules/bidViewableIO.md) approximates the same viewability criteria (IAB's MRC 50%) using [`IntersectionObserver`](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API).
+* [`bidViewability`](/dev-docs/modules/bidViewable.html) only works with GPT ad units, and relies on its `impressionViewable` events;
+* [`bidViewabilityIO`](/dev-docs/modules/bidViewableIO.html) approximates the same viewability criteria (IAB's MRC 50%) using [`IntersectionObserver`](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API).
  
 When a bid is deemed viewable, both modules now:
 
