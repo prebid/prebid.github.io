@@ -96,11 +96,11 @@ Adapters can retrieve the element using the `getAdUnitElement` utility function.
 
 To determine viewability of an ad rendered on the page, publishers can choose one of two optional modules:
 
- - [`bidViewability`](/dev-docs/modules/bidViewable.md) only works with GPT ad units, and relies on its `impressionViewable` events;
- - [`bidViewabilityIO`](/dev-docs/modules/bidViewableIO.md) approximates the same viewability criteria (IAB's MRC 50%) using [`IntersectionObserver`](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API).
+* [`bidViewability`](/dev-docs/modules/bidViewable.md) only works with GPT ad units, and relies on its `impressionViewable` events;
+* [`bidViewabilityIO`](/dev-docs/modules/bidViewableIO.md) approximates the same viewability criteria (IAB's MRC 50%) using [`IntersectionObserver`](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API).
  
 When a bid is deemed viewable, both modules now:
 
- * fire a `bidViewable` event
- * run the relevant adapter's `onBidViewable` method
- * trigger "viewable-mrc50" (`event: 2`) event trackers in the bid's `eventtracker` array.
+* fire a `bidViewable` event
+* run the relevant adapter's `onBidViewable` method
+* trigger "viewable-mrc50" (`event: 2`) event trackers in the bid's `eventtracker` array.
