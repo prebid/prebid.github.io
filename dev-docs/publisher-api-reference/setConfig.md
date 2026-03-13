@@ -1346,8 +1346,10 @@ The `auctionOptions` object controls aspects related to auctions.
 |----------+---------+--------+---------------------------------------------------------------------------------------|
 | `secondaryBidders` | Optional | Array of Strings | Specifies bidders that the Prebid auction will no longer wait for before determining the auction has completed. This may be helpful if you find there are a number of low performing and/or high timeout bidders in your page's rotation. |
 | `suppressStaleRender` | Optional | Boolean | When true, prevents `banner` bids from being rendered more than once. It should only be enabled after auto-refreshing is implemented correctly.  Default is false. |
-| `suppressExpiredRender` | Optional | Boolean | When true, prevent bids from being rendered if TTL is reached. Default is false.
+| `suppressExpiredRender` | Optional | Boolean | When true, prevent bids from being rendered if TTL is reached. Default is false. |
 | `legacyRender`     | Optional  | Boolean | When true, uses "legacy" rendering logic  (see [note](#note-legacyRender))                               |
+| `rejectUnknownMediaTypes` | Optional | Boolean | Since Pbjs 11, When true, reject bids when the adapter response omits `mediaType` for an ad unit that has explicit `mediaTypes` configured. Default is false. |
+| `rejectInvalidMediaTypes` | Optional | Boolean | Since Pbjs 11, When true, reject bids when response `mediaType` does not match one of the ad unit's configured `mediaTypes`. Default is true. |
 
 #### Examples
 {: .no_toc}
