@@ -38,6 +38,21 @@ This function returns the bid responses at the given moment.
 | `status`  | String  | Status of the bid. Possible values: targetingSet, rendered | `"targetingSet"` |
 | `statusMessage`     | String  | The bid's status message                                                                                                        | "Bid returned empty or error response" or "Bid available" |
 | `ttl`  | Integer  | How long (in seconds) this bid is considered valid. See this [FAQ entry]({{site.github.url}}/dev-docs/faq.html#does-prebidjs-cache-bids) for more info. | `300` |
+| `meta` | Object | (Optional) Contains additional meta information about the bid. | `{ "advertiserDomains": [ "wherewindsmeetgame.com" ] }` |
+| `meta.advertiserDomains` | String[] | (Optional) Array with the advertiser domains | |
+| `meta.advertiserId` | String | (Optional) The id of the advertiser | |
+| `meta.advertiserName` | String | (Optional) The name of the advertiser | |
+| `meta.agencyId` | String | (Optional) The id of the agency | |
+| `meta.agencyName` | String | (Optional) The name of the agency | |
+| `meta.brandId` | String | (Optional) The id of the brand | |
+| `meta.brandName` | String | (Optional) The name of the brand | |
+| `meta.dchain` | String | (Optional)  | |
+| `meta.demandSource` | String | (Optional)  | |
+| `meta.mediaType` | String | (Optional)  | |
+| `meta.networkId` | String | (Optional) The id of the network | |
+| `meta.networkName` | String | (Optional) The name of the network | |
+| `meta.primaryCatId` | String | (Optional)  | |
+| `meta.secondaryCatIds` | String[] | (Optional)  | |
 
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
