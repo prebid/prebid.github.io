@@ -59,6 +59,26 @@ This can be useful in GDPR, CCPA, COPPA or other privacy scenarios where a publi
 
 Note that bid adapters are normally denied access to device storage even when `deviceAccess` is `true`; see the [`storageAllowed` bidder setting](/dev-docs/publisher-api-reference/bidderSettings.html#deviceAccess).
 
+<a id="setConfig-disableFingerprintingApis"></a>
+
+### Disable fingerprinting APIs
+
+Prebid provides a privacy control named `disableFingerprintingApis` that lets publishers disable specific browser APIs commonly used for fingerprinting according to DuckDuckGo tracker radar.
+
+When one of these APIs is disabled, Prebid returns a safe default value instead of reading the browser value:
+
+* `devicepixelratio`: returns `1`
+* `webdriver`: returns `false`
+* `resolvedoptions`: returns an empty timezone string `''`
+
+```javascript
+pbjs.setConfig({
+  disableFingerprintingApis: ['devicepixelratio', 'webdriver', 'resolvedoptions']
+});
+```
+
+Values are matched case-insensitively.
+
 <a name="setConfig-Bidder-Timeouts"></a>
 
 ### Bidder Timeouts
@@ -115,6 +135,14 @@ pbjs.setConfig({ maxRequestsPerOrigin: 6 });
 pbjs.setConfig({ maxRequestsPerOrigin: 1 });
 ```
 
+Note: Prebid adapters or Prebid Server instances can be omitted from this capacity check if they declare `alwaysHasCapacity: true`. See [bidder adapter configuration](/dev-docs/bidder-adaptor.html) and [Prebid Server configuration](/dev-docs/modules/prebidServer.html) for more details.
+
+Although, `maxRequestsPerOrigin` can still be forced by the publisher using:
+
+```javascript
+pbjs.setConfig({ maxRequestsPerOrigin: 1, forceMaxRequestsPerOrigin: true });
+```
+
 ### Disable Ajax Timeout
 
 <a name="setConfig-Disable-Ajax-Timeout"></a>
@@ -155,7 +183,18 @@ Alternatively you may delay execution of the entire command queue (not just auct
 pbjs.delayPrerendering = true;
 ```
 
-Note that `delayPrerendering` is a property of the `pbjs` global and not a normal setting; this is because it takes effect before (and delays) any call to `setConfig`.  
+Note that `delayPrerendering` is a property of the `pbjs` global and not a normal setting; this is because it takes effect before (and delays) any call to `setConfig`.y  
+
+### Change yielding behavior
+
+Since version 10, Prebid yields the main browser thread while processing its command queue (`pbjs.que` / `pbjs.cmd`). This makes the browser more responsive (faster [interaction to next paint](https://web.dev/articles/inp)), but can cause issues if your code expects to run synchronously.
+
+You can disable yielding by setting `pbjs.yield = false` before loading Prebid (or - for NPM consumers - before running `processQueue`):
+
+```javascript
+pbjs = pbjs || {};
+pbjs.yield = false;
+```
 
 ### Send All Bids
 
@@ -1022,7 +1061,7 @@ The `ortb2` JSON structure reflects the OpenRTB standard:
 
 **Scenario 2** - Auction (cross-adunit) First Party Data open to all bidders
 
-If a page needs to specify multiple different sets of top-level data (`site`, `user`, or `app`), use the `ortb2` parameter of [`requestBids`](/dev-docs/publisher-api-reference/setConfig.html) ([example](/features/firstPartyData.html#supplying-auction-specific-data)  
+If a page needs to specify multiple different sets of top-level data (`site`, `user`, or `app`), use the `ortb2` parameter of [`requestBids`](/dev-docs/publisher-api-reference/setConfig.html) ([example](/features/firstPartyData.html#supplying-auction-specific-data)).  
 
 **Scenario 3** - Global (cross-adunit) First Party Data open only to a subset of bidders
 
@@ -1044,7 +1083,7 @@ To register a video player with Prebid, you must use `setConfig` to set a `video
 {: .table .table-bordered .table-striped }
 
 | Field | Required? | Type | Description |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | video.providers[] | yes | array of objects | List of Provider configurations. You must define a provider configuration for each player instance that you would like integrate with. |
 | video.providers[] .vendorCode | yes | number | The identifier of the Video Provider vendor (i.e. 1 for JW Player, 2 for videojs, etc). Allows Prebid to know which submodule to instantiate. |
 | video.providers[].divId | yes | string | The HTML element id of the player or its placeholder div. All analytics events for that player will reference this ID. Additionally, used to indicate which HTLM element must contain the Video Player instance when instantiated. |
@@ -1278,6 +1317,24 @@ pbjs.setConfig({
 {: .alert.alert-warning :}
 In PBJS 4.29 and earlier, don't add the `ortb2` level here -- just `site` directly. Oh, and please upgrade. 4.29 was a long time ago.
 
+<a id="customGptSlotMatching"></a>
+
+### Custom GPT slot matching
+
+By default, Prebid matches ad units to GPT slots by code, i.e. a GPT `slot` corresponds to a Prebid `adUnit` if `slot.getAdUnitPath() === adUnit.code`. You can provide a custom matching function to override this, for example:
+
+```javascript
+pbjs.setConfig({
+  customGptSlotMatching: function(slot) {
+    return function(adUnitCode) {
+      return slot.getAdUnitPath() === adUnitCode
+    }
+  }
+})
+```
+
+`customGptSlotMatching` should be a function accepting a single GPT [Slot](https://developers.google.com/publisher-tag/reference#googletag.Slot). It should return another function accepting a single string representing an ad unit code. The inner function should return true if the givne slot matches the given ad unit code. 
+
 <a name="setConfig-auctionOptions"></a>
 
 ### Auction Options
@@ -1289,7 +1346,10 @@ The `auctionOptions` object controls aspects related to auctions.
 |----------+---------+--------+---------------------------------------------------------------------------------------|
 | `secondaryBidders` | Optional | Array of Strings | Specifies bidders that the Prebid auction will no longer wait for before determining the auction has completed. This may be helpful if you find there are a number of low performing and/or high timeout bidders in your page's rotation. |
 | `suppressStaleRender` | Optional | Boolean | When true, prevents `banner` bids from being rendered more than once. It should only be enabled after auto-refreshing is implemented correctly.  Default is false. |
-| `suppressExpiredRender` | Optional | Boolean | When true, prevent bids from being rendered if TTL is reached. Default is false.
+| `suppressExpiredRender` | Optional | Boolean | When true, prevent bids from being rendered if TTL is reached. Default is false. |
+| `legacyRender`     | Optional  | Boolean | When true, uses "legacy" rendering logic  (see [note](#note-legacyRender))                               |
+| `rejectUnknownMediaTypes` | Optional | Boolean | Since Pbjs 11, When true, reject bids when the adapter response omits `mediaType` for an ad unit that has explicit `mediaTypes` configured. Default is false. |
+| `rejectInvalidMediaTypes` | Optional | Boolean | Since Pbjs 11, When true, reject bids when response `mediaType` does not match one of the ad unit's configured `mediaTypes`. Default is true. |
 
 #### Examples
 {: .no_toc}
@@ -1348,6 +1408,15 @@ PBJS performs the following actions when expired rendering is detected.
 
 Expired winning bids will continue to be rendered unless `suppressExpiredRender` is set to true.  Events including `STALE_RENDER` and `BID_WON` are unaffected by this option.
 
+<a id="note-legacyRender"></a>
+
+#### More on `legacyRender`
+{: .no_toc}
+
+Since Prebid 10.12, `pbjs.renderAd` wraps creatives in an additional iframe. This can cause problems for some creatives
+that try to reach the top window and do not expect to find the extra iframe. You may set `legacyRender: true` to revert
+to pre-10.12 rendering logic.
+
 <a name="setConfig-maxNestedIframes"></a>
 
 ### maxNestedIframes
@@ -1398,7 +1467,7 @@ The controls publishers have over the RTD modules:
 {: .table .table-bordered .table-striped }
 
 | Field | Required? | Type | Description |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | realTimeData.auctionDelay | no | integer | Defines the maximum amount of time, in milliseconds, the header bidding auction will be delayed while waiting for a response from the RTD modules as a whole group. The default is 0 ms delay, which means that RTD modules need to obtain their data when the page initializes. |
 | realTimeData.dataProviders[].waitForIt | no | boolean | Setting this value to true flags this RTD module as "important" enough to wait the full auction delay period. Once all such RTD modules have returned, the auction will proceed even if there are other RTD modules that have not yet responded. The default is `false`. |
 
@@ -1452,12 +1521,12 @@ pbjs.setConfig({
 {: .table .table-bordered .table-striped }
 
 | Field | Required? | Type | Description |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | topics.maxTopicCaller | no | integer | Defines the maximum numbers of Bidders Iframe which needs to be loaded on the publisher page. Default is 1 which is hardcoded in Module. Eg: topics.maxTopicCaller is set to 3. If there are 10 bidders configured along with their iframe URLS, random 3 bidders iframe URL is loaded which will call TOPICS API. If topics.maxTopicCaller is set to 0, it will load random 1(default) bidder iframe atleast. |
-| topics.bidders | no | Array of objects  | Array of topics callers with the iframe locations and other necessary informations like bidder(Bidder code) and expiry. Default Array of topics in the module itself.|
-| topics.bidders[].bidder | yes | string  | Bidder Code of the bidder(SSP).  |
-| topics.bidders[].iframeURL | yes | string  | URL which is hosted on bidder/SSP/third-party domains which will call Topics API.  |
-| topics.bidders[].expiry | no | integer  | Max number of days where Topics data will be persist. If Data is stored for more than mentioned expiry day, it will be deleted from storage. Default is 21 days which is hardcoded in Module. |
+| topics.bidders | no | Array of objects | Array of topics callers with the iframe locations and other necessary informations like bidder(Bidder code) and expiry. Default Array of topics in the module itself. |
+| topics.bidders[].bidder | yes | string | Bidder Code of the bidder(SSP). |
+| topics.bidders[].iframeURL | yes | string | URL which is hosted on bidder/SSP/third-party domains which will call Topics API. |
+| topics.bidders[].expiry | no | integer | Max number of days where Topics data will be persist. If Data is stored for more than mentioned expiry day, it will be deleted from storage. Default is 21 days which is hardcoded in Module. |
 
 <a id="setConfig-performanceMetrics"></a>
 
