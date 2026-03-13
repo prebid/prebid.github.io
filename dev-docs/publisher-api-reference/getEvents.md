@@ -30,23 +30,23 @@ The available events are:
 | beforeRequestBids | Bids are about to be requested from adapters (added in 3.x) | Array of adunits in the auction |
 | beforeBidderHttp | bidder network request is about be triggered | Array of Bid request objects |
 | bidRequested  | A bid was requested from a specific bidder | Bid request object |
-| bidResponse   | A bid response has arrived              | Bid response object |
+| bidResponse   | A bid response has been added to an auction             | Bid response object |
 | pbsAnalytics    | Prebid Server has returned extra information for analytics adapters. | { [seatnonbid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#seat-non-bid), auctionId, [atag](/prebid-server/developers/module-atags.html) } |
-| seatNonBid    | DEPRECATED - use pbsAnalytics instead. Prebid Server has returned nonbid information. Must be enabled in s2sConfig.extPrebid | None |
+| seatNonBid    | Removed in 11.0 - use `pbsAnalytics` instead. Prebid Server has returned nonbid information. Must be enabled in s2sConfig.extPrebid | None |
 | bidRejected   | A bid was rejected                      | Bid response object |
 | bidAdjustment | A bid was adjusted                      | Bid response object |
 | bidWon        | A bid has won                           | Bid response object |
 | bidTimeout    | A bid timed out                         | Array of objects with timed out bids |
 | setTargeting  | Targeting has been set                  | Hash of targeting values |
 | requestBids   | Bids have been requested from adapters (i.e. pbjs.requestBids() was called) | The argument passed to [`requestBids`](https://docs.prebid.org/dev-docs/publisher-api-reference/requestBids.html), except that `adUnits` and `adUnitCodes` are always set and reflect the ad units involved in the auction. Event handlers may not modify `adUnitCodes`. |
-| addAdUnits    | Ad units have been added to the auction | None |
+| addAdUnits    | Removed in 11.0 - use `auctionInit` instead. Ad units have been added to the auction. Removed in 11.0. | None |
 | adRenderFailed| Ad rendering failed | Object containing 'reason' and 'message' |
 | adRenderSucceeded | Ad rendering succeeded| Object containing 'doc', 'bid', and 'adId'. 'doc' is the DOM root containing the ad and may be `null` if it was rendered in a cross-origin iframe. This event indicates that the render function did not generate an error, it does not guarantee that tracking for this event has occurred yet.|
 | auctionDebug  | An error was logged to the console | Object containing 'type' and 'arguments' |
 | bidderDone    | A bidder has signaled they are done responding | Bid request object |
 | bidderError    | A bidder responded with an error | Object with the XMLHttpRequest error and the bid request object `{ error, bidderRequest }` |
 | tcf2Enforcement | There was a TCF2 enforcement action taken | `{ storageBlocked: ['moduleA', 'moduleB'], biddersBlocked: ['moduleB'], analyticsBlocked: ['moduleC'] }` |
-| bidAccepted | A bid was accepted and is about to be added to auction | Bid response object |
+| bidAccepted | Removed in 11.0 - use `bidResponse` instead. A bid was accepted and is about to be added to auction | Bid response object |
 | browserIntervention | The browser reported an intervention affecting a rendered creative (e.g., heavy-ad unload). | `{ bid, adId, intervention }` |
 
 The example below shows how these events can be used.
