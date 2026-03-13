@@ -49,7 +49,6 @@ Optional initialization parameters:
 {: .table .table-bordered .table-striped }
 | Param | Required? | Type | Description | Example |
 | enabled | no | boolean | allows turning off of module. Default value is true | true |
-| customGptSlotMatching | no | function | GPT slot matching function should match the customSlotMatching function sent to [setTargetingForGptAsync](/dev-docs/publisher-api-reference/setTargetingForGPTAsync.html) | |
 | useDefaultPreAuction | no | boolean | (PBJS 6.5+) If true, use default behavior for determining GPID and PbAdSlot. Defaults to false. | true |
 | customPreAuction | no | function | (PBJS 6.5+) Custom function for defining the GPID and PbAdSlot. | |
 | customPbAdSlot | no | function | Custom PB AdSlot function. (Note, this function will be deprecated in the future.) | |
@@ -66,10 +65,6 @@ pbjs.setConfig({
         ...
         return "customPbAdSlot";
     },
-    customGptSlotMatching: function(gptSlotObj) {
-        ...
-        return true; // or false
-    },
     mcmEnabled: true
     }
 });
@@ -80,7 +75,7 @@ pbjs.setConfig({
 When this module is turned on, it uses the BEFORE_REQUEST_BIDS event to insert functionality that:
 
 * loops through each adunit in the auction
-* maps the PBJS adunit to the GPT slot using the same algorithm as setTargetingForGPTAsync including customGptSlotMatching
+* maps the PBJS adunit to the GPT slot using the same algorithm as setTargetingForGPTAsync; custom slot matching can be set via top-level [customGptSlotMatching](/dev-docs/publisher-api-reference/setConfig.html#setConfig-customGptSlotMatching) in setConfig
 
 ### Defining the AdServer name and adslot
 
