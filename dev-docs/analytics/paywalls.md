@@ -24,6 +24,17 @@ If VAI is unavailable, both values are `UNKNOWN`.
 {: .alert.alert-info :}
 The companion [Paywalls RTD Provider](/dev-docs/modules/paywallsRtdProvider.html) injects VAI into ORTB2 and GAM targeting. The analytics adapter independently reads the same `window.__PW_VAI__` global and routes classification to your analytics tool of choice.
 
+#### Prerequisites
+
+Load vai.js **before** Prebid.js initializes so that `window.__PW_VAI__` is populated when auctions run:
+
+```html
+<script src="/pw/vai.js"></script>
+<script src="prebid.js"></script>
+```
+
+The adapter does **not** inject vai.js itself. See [VAI Documentation](https://paywalls.net/docs/publishers/vai) for setup details.
+
 #### Build
 
 ```bash
@@ -44,7 +55,6 @@ gulp build --modules=rtdModule,paywallsRtdProvider,paywallsAnalyticsAdapter
 | :--- | :--- | :---- | :---------- | :------ |
 | provider | `String` | Required | Must be `'paywalls'` | — |
 | options.output | `String` | Optional | Output mode: `'gtag'`, `'dataLayer'`, or `'callback'` | `'callback'` |
-| options.scriptUrl | `String` | Optional | URL of the VAI loader script | `'/pw/vai.js'` |
 | options.samplingRate | `Number` | Optional | Fraction of page views that emit analytics (0.0–1.0) | `1.0` |
 | options.callback | `Function` | Optional | Called with the metrics object when output is `'callback'` | `null` |
 
@@ -116,26 +126,6 @@ pbjs.enableAnalytics([{
     samplingRate: 0.1  // emit on ~10% of page views
   }
 }]);
-```
-
-#### Activity Controls
-
-The adapter uses `loadExternalScript` to inject `vai.js`. If your activity configuration restricts external scripts, allow the `paywalls` component:
-
-```javascript
-pbjs.setConfig({
-  allowActivities: {
-    loadExternalScript: {
-      default: false,
-      rules: [{
-        condition: function (params) {
-          return params.componentName === 'paywalls';
-        },
-        allow: true
-      }]
-    }
-  }
-});
 ```
 
 #### Privacy

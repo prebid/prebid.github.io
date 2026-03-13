@@ -23,11 +23,23 @@ Each page impression is classified by **actor type** (`vat`) and **confidence ti
 
 ## Overview
 
-The module automates VAI loading, timing, and signal injection:
+The module reads VAI classification from `window.__PW_VAI__` (populated by the publisher's vai.js script) and injects it into bid requests and ad server targeting:
 
 * **ORTB2 enrichment** — VAI signals are split across `site.ext.data.vai` (domain provenance), `user.ext.data.vai` (actor classification + signed assertion), and `imp[].ext.vai` (pageview correlation), available to all ORTB2-native bid adapters.
 * **GAM targeting** — `vai_vat` and `vai_act` key-value pairs are set per ad unit for Google Ad Manager line item targeting.
-* **Graceful degradation** — if VAI is unavailable or times out, the auction proceeds normally without enrichment.
+* **Graceful degradation** — if VAI is unavailable (publisher did not load vai.js, or it returned an invalid/expired response), the auction proceeds normally without enrichment.
+
+## Prerequisites
+
+Load vai.js **before** Prebid.js initializes so that `window.__PW_VAI__` is populated when the RTD module runs:
+
+```html
+<script src="/pw/vai.js"></script>
+<script src="prebid.js"></script>
+```
+
+{: .alert.alert-warning :}
+The module does **not** inject vai.js itself. Publishers must add the script tag to their page. See [VAI Documentation](https://paywalls.net/docs/publishers/vai) for setup details.
 
 ## Integration
 
@@ -47,14 +59,9 @@ This module is configured as part of the `realTimeData.dataProviders` object:
 ```javascript
 pbjs.setConfig({
   realTimeData: {
-    auctionDelay: 500,
     dataProviders: [
       {
-        name: 'paywalls',
-        waitForIt: true,
-        params: {
-          scriptUrl: '/pw/vai.js'
-        }
+        name: 'paywalls'
       }
     ]
   }
@@ -68,17 +75,6 @@ pbjs.setConfig({
 | Name | Type | Scope | Description | Default |
 | :--- | :--- | :---- | :---------- | :------ |
 | name | `String` | Required | RTD sub module name | Always `'paywalls'` |
-| waitForIt | `Boolean` | Optional | Should be `true` when `auctionDelay` is set | `false` |
-| params | `Object` | Optional | Provider configuration | `{}` |
-| params.scriptUrl | `String` | Optional | URL of the VAI loader script | `'/pw/vai.js'` |
-| params.timeout | `Number` | Optional | Max ms to wait for VAI before releasing the auction | `100` |
-
-### Hosting Modes
-
-VAI supports two hosting modes for the loader script:
-
-* **Publisher-hosted** (preferred) — The script is served from the publisher's own domain via a CDN or server integration. Use the default relative path `'/pw/vai.js'`. This keeps requests same-origin, avoids CORS, and ensures the assertion's `dom` claim matches the inventory domain.
-* **Paywalls-hosted** — The script is served from `https://paywalls.net/pw/vai.js`. Set `scriptUrl` to the full URL. This requires paywalls.net configuration before usage. **Note:** The domain provenance claim (`dom`) will reflect `paywalls.net` rather than the inventory domain, which may affect SSP verification and buyer trust.
 
 ## Output
 
@@ -175,27 +171,11 @@ The module sets key-value pairs on every ad unit for Google Ad Manager targeting
 
 These are available via `pbjs.getAdserverTargeting()` and are compatible with standard GPT integration.
 
-## Activity Controls
+## How It Works
 
-The module uses `loadExternalScript` to inject `vai.js`. If your activity configuration denies external scripts by default, explicitly allow the `paywalls` component:
-
-```javascript
-pbjs.setConfig({
-  allowActivities: {
-    loadExternalScript: {
-      default: false,
-      rules: [
-        {
-          condition: function (params) {
-            return params.componentName === 'paywalls';
-          },
-          allow: true
-        }
-      ]
-    }
-  }
-});
-```
+1. **`init()`** — Always returns `true`; the module is always available.
+2. **`getBidRequestData()`** — Reads `window.__PW_VAI__`. If a valid, unexpired payload is found, merges ORTB2 fragments (`site.ext.data.vai`, `user.ext.data.vai`, `imp[].ext.vai`) and calls back immediately. If VAI is absent or invalid, calls back without enrichment.
+3. **`getTargetingData()`** — Returns `{ vai_vat, vai_act }` for each ad unit from the current VAI payload.
 
 ## Privacy
 
@@ -203,12 +183,6 @@ pbjs.setConfig({
 * **No PII** — The classification is based on aggregate session-level behavioral signals, not personal data.
 * **Browser-side only** — All signal extraction runs in the browser; no data leaves the page except the classification result.
 * **Signed assertions** — SSPs can independently verify the `jws` via the JWKS endpoint pulled from the JWS header (typically `https://example.com/pw/jwks.json`).
-
-## How It Works
-
-1. **`init()`** — Checks `window.__PW_VAI__` and `localStorage` for an existing VAI payload. If present and unexpired, caches it for immediate use.
-2. **`getBidRequestData()`** — If cached VAI exists, merges ORTB2 and calls back immediately (fast path). Otherwise, injects `vai.js` via `loadExternalScript`, sets up a callback hook, and polls until timeout (slow path). On timeout, the auction proceeds without enrichment.
-3. **`getTargetingData()`** — Returns `{ vai_vat, vai_act }` for each ad unit from the current VAI payload.
 
 ## Support
 
