@@ -7,6 +7,7 @@ pbs: true
 biddercode: sovrn
 tcfeu_supported: true
 usp_supported: true
+gpp_supported: true
 userIds: all
 prebid_member: true
 schain_supported: true

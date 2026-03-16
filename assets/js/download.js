@@ -86,6 +86,8 @@
         $('#download-button').html('<i class="glyphicon glyphicon-send"></i> Sending Request...').addClass('disabled');
 
         var form_data = get_form_data();
+        const removedModules = form_data.removedModules;
+        delete form_data.removedModules;
         $.ajax({
             type: "POST",
             url: "https://js-download.prebid.org/download",
@@ -112,12 +114,12 @@
             triggerDownload(jsBlob, filename);
             triggerDownload(new Blob([configData], { type: "application/json" }), "prebid-config.json");
 
-            if (form_data["removedModules"].length > 0) {
+            if (removedModules.length > 0) {
                 alert(
                     "The following modules were removed from your download because they aren't present in Prebid.js version " +
                     form_data["version"] +
                     ": " +
-                    JSON.stringify(form_data["removedModules"])
+                    JSON.stringify(removedModules)
                 );
             }
         })
@@ -179,7 +181,7 @@
             });
 
         return {
-            modules: renameModules(version, modules),
+            modules: renameModules(version, modules).filter(mod => !removedModules.includes(mod)),
             version,
             removedModules,
         };

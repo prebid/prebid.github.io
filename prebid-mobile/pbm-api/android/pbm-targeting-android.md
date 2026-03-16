@@ -348,6 +348,23 @@ Parameters:
 | --- | --- | --- | --- | --- |
 | eventDelegate | required | PrebidEventDelegate | The callback for handling all requests and responses. This interface takes request and response as the JSONObject types. | `{ request, response -> ... }` |
 
+#### setDisableStatusCheck()
+
+Informs the SDK whether it should check the PBS status during initialization. This will save initialization time if the PBS endpoint is always live and handled client side.
+
+Signature:
+
+```java
+public static void setDisableStatusCheck(boolean disableStatusCheck)
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| disableStatusCheck | required | boolean | Indicates whether the SDK should opt out of the PBS status checking during initialization. Default is `false`. | `true` |
+
 ---
 
 ## Consent Management Parameters
@@ -777,6 +794,25 @@ Parameters:
 | --- | --- | --- | --- | --- |
 | latitude | required | double | The device latitude. | 40.71 |
 | longitude | required | double | The device longitude. | 74.01 |
+
+### setLocationDecimalPrecision()
+
+Sets the decimal precision for location coordinates (latitude/longitude) in geo-targeting. This helps control the precision of location data sent in ad requests for privacy purposes.
+
+Signature:
+
+```kotlin
+void setLocationDecimalPrecision(Int? precision)
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| precision | optional | integer | Number of decimal places to keep, or null for no limit. Values outside the 0-6 range will be clamped to valid range. Default is `null`| 2 |
+
+Related function: getLocationDecimalPrecision().
 
 ---
 
