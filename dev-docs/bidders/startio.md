@@ -155,13 +155,13 @@ For integration support, contact <prebid@start.io>.
 
 {: .table .table-bordered .table-striped }
 
-| Param under userSync.userIds[] | Scope | Type | Description | Example          |
-| --- | --- | --- | --- |------------------|
-| `name` | required | String | The name of this module. | `"startioId"`    |
-| `storage` | required | Object | Storage configuration for the user ID. |                  |
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| `name` | required | String | The name of this module. | `"startioId"` |
+| `storage` | required | Object | Storage configuration for the user ID. | |
 | `storage.type` | required | String | Type of storage: `"cookie"`, `"html5"`, or `"cookie&html5"`. | `"cookie&html5"` |
-| `storage.name` | required | String | The name used to store the user ID. | `"startioId"`    |
-| `storage.expires` | optional | Number | Number of days before the stored ID expires. Defaults to `90`. | `90`             |
+| `storage.name` | required | String | The name used to store the user ID. | `"startioId"` |
+| `storage.expires` | optional | Number | Number of days before the stored ID expires. Defaults to `90`. | `90` |
 
 ### Additional Notes
 
