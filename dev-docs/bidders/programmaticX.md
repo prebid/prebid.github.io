@@ -20,7 +20,7 @@ fpd_supported: false
 ortb_blocking_supported: false
 multiformat_supported: will-bid-on-one
 pbjs: true
-pbs: false
+pbs: true
 sidebarType: 1
 gvl_id: 1344
 ---

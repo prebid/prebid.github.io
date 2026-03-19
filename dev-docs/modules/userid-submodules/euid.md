@@ -48,6 +48,25 @@ The following sample is fictitious, but shows what the token response object loo
 
 When this full data structure is provided, the module automatically refreshes the token periodically, as long as the refresh token hasn't expired.
 
+The following example shows the response for a user that has opted out:
+
+```json
+{
+  "identity": "optout",
+  "status": "optout"
+}
+```
+
+The following example shows the decoded EUID userId object:
+
+```json
+{
+  "euid": {
+    "optout": true
+  }
+}
+```
+
 ## Client Refresh mode
 
 This is the recommended mode for most scenarios. In this mode, the full response body from the EUID Token Generate or Token Refresh endpoint must be provided to the module. As long as the refresh token remains valid, the module will refresh the advertising token as needed.
