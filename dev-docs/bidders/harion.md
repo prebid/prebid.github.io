@@ -34,4 +34,3 @@ gvl_id: 1406
 ### Note
 
 For the prebid server and prebid.js you only need to use one parameter: either `placementId` or `endpointId`.
-
