@@ -44,6 +44,7 @@ Name | Scope | Description | Example | Type
 `banner` | optional | Display banner targeting parameters. See the banner section below. | `{}` | `object`
 `bidfloor` | optional | Sets a bid floor price | `0.95` | `Float`
 `customBidderEndpoint` | optional | Only set if TTD has provided a custom endpoint. If set the custom endpoint will take precedent over the hard-coded endpoints | `https://customBidderEndpoint/bid/bidder/` | `String`
+`useHttp2` | optional | When true, the adapter will use an endpoint that supports HTTP2. | `true` | `boolean`
 
 ### Banner Object
 
