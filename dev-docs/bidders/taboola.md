@@ -11,7 +11,7 @@ coppa_supported: true
 gpp_supported: true
 schain_supported: false
 dchain_supported: true
-media_types: banner
+media_types: banner, native
 gvl_id: 42
 prebid_member: true
 floors_supported: true
@@ -27,8 +27,7 @@ sidebarType: 1
 
 ### Note
 
-- Prebid.js Supports `display` format only.
-- Prebid Server Supports `native+display` formats.
+- Both Prebid.js and Prebid Server Support `native+display` formats.
 - Uses `OpenRTB` standard.
 
 ### Bidder Config
