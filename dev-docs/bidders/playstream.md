@@ -34,6 +34,7 @@ The adapter sends a **POST** request to:
 ## Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name            | Scope    | Description                                                              | Example                        | Type     |
 |:----------------|:---------|:-------------------------------------------------------------------------|:-------------------------------|:---------|
 | `host`          | required | Playstream bidder host (hostname only; no protocol/path)                 | `'exchange.ortb.net'`          | `string` |
