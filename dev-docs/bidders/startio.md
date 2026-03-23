@@ -5,7 +5,7 @@ biddercode: startio
 description: Prebid Start.io Adapter
 tcfeu_supported: true
 coppa_supported: true
-gpp_supported: true
+gpp_supported: false
 userIds: startioId
 floors_supported: true
 media_types: banner, video, native
