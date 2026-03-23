@@ -3,7 +3,7 @@ layout: bidder
 title: Blasto
 description: Prebid Blasto Bidder Adaptor
 biddercode: blasto
-tcfeu_supported: false
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
@@ -17,10 +17,12 @@ sidebarType: 1
 floors_supported: true
 prebid_member: false
 fpd_supported: false
-gvl_id: none
+gvl_id: 1381
 multiformat_supported: will-bid-on-one
 ortb_blocking_supported: true
 userIds: all
+gpp_supported: true
+endpoint_compression: false
 ---
 
 ### Note
