@@ -9,6 +9,7 @@ multiformat_supported: will-bid-on-one
 userIds: all
 fpd_supported: true
 tcfeu_supported: true
+gvl_id: 1524
 usp_supported: some
 coppa_supported: some
 schain_supported: true
@@ -41,12 +42,8 @@ The adapter sends a **POST** request to:
 | `type`          | required | Type of request: `'video'` or `'banner'`                                 | `'banner'`                     | `string` |
 | `price`         | optional | Bid floor in `USD` only (defaults to Playstream dashboard configuration) | `0.5`                          | `number` |
 | `ip`            | optional | User IP (targeting)                                                      | `'192.168.1.1'`                | `string` |
-| `latitude`      | optional | User latitude (targeting)                                                | `23.21`                        | `number` |
-| `longitude`     | optional | User longitude (targeting)                                               | `-23.21`                       | `number` |
 | `maxAdDuration` | optional | Max ad pod duration (seconds)                                            | `120`                          | `number` |
 | `maxSlotPerPod` | optional | Max ad slots per pod                                                     | `3`                            | `number` |
-| `gdpr`          | optional | GDPR flag (`0` or `1`)                                                   | `0`                            | `number` |
-| `consent`       | optional | GDPR consent string (tcString)                                           | `''`                           | `string` |
 
 ## Required Params
 
@@ -73,7 +70,7 @@ It does **not** support `native` or `audio`.
 
 ## Privacy Support Notes
 
-- **TCF-EU (GDPR):** If Prebid populates consent into `ortb2.regs` / `ortb2.user.ext.consent`, the adapter forwards it. Optional `gdpr`/`consent` bidder params can be used as overrides if you support them server-side.
+- **TCF-EU (GDPR):** If Prebid populates consent into `ortb2.regs` / `ortb2.user.ext.consent`, the adapter forwards it.
 - **USP/CCPA & COPPA:** If these signals are present in `ortb2.regs` (or related fields), they will be forwarded as part of the OpenRTB request.
 
 ## schain Support
