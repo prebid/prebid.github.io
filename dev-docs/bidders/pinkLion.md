@@ -4,8 +4,8 @@ title: PinkLion
 description: Prebid PinkLion Bidder Adapter
 biddercode: pinkLion
 gpp_sids: usstate_all
-gvl_id: none
-tcfeu_supported: false
+gvl_id: 354
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
