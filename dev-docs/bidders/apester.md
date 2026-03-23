@@ -1,36 +1,81 @@
 ---
 layout: bidder
 title: Apester
-description: Apester Bidder Adaptor
+description: Prebid Apester Bidder Adaptor
 biddercode: apester
-pbjs: true
-pbs: false
-media_types: video, banner
-userIds: all
-fpd_supported: false
+filename: apesterBidAdapter
+userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 tcfeu_supported: false
 usp_supported: true
-coppa_supported: true
+gvl_id: 354
+coppa_supported: false
 schain_supported: true
+gpp_supported: true
+floors_supported: true
+media_types: banner, video
 prebid_member: false
-ortb_blocking_supported: true
+safeframes_ok: false
+deals_supported: false
+pbs_app_supported: false
+fpd_supported: false
+ortb_blocking_supported: false
 multiformat_supported: will-bid-on-one
-floors_supported: false
-aliasCode: limelightDigital
+pbjs: true
+pbs: true
 sidebarType: 1
 ---
 
-### Bid Params
+### Bid Params for Prebid.js
 
 {: .table .table-bordered .table-striped }
 
-| Name         | Scope    | Description                                       | Example                  | Type      |
-|:-------------|:---------|:--------------------------------------------------|:-------------------------|:----------|
-| `host`       | required | Ad network's RTB host                             | `'apester-exchange.com'` | `string`  |
-| `adUnitId`   | required | Ad Unit Id will be generated on Apester Platform. | `42`                     | `integer` |
-| `adUnitType` | required | Type of Ad Unit (`'video'`, `'banner'`)           | `'banner'`               | `string`  |
-| `custom1`    | optional | Custom targeting field 1                          | `'custom1'`              | `string`  |
-| `custom2`    | optional | Custom targeting field 2                          | `'custom2'`              | `string`  |
-| `custom3`    | optional | Custom targeting field 3                          | `'custom3'`              | `string`  |
-| `custom4`    | optional | Custom targeting field 4                          | `'custom4'`              | `string`  |
-| `custom5`    | optional | Custom targeting field 5                          | `'custom5'`              | `string`  |
+| Name       | Scope    | Description                                                                              | Example                      | Type     |
+|------------|----------|------------------------------------------------------------------------------------------|------------------------------|----------|
+| `cId`      | required | The connection ID from Apester.                                                          | `'562524b21b1c1f08117fc7f9'` | `string` |
+| `pId`      | required | The publisher ID from Apester (pbjs only).                                               | `'59ac17c192832d0011283fe3'` | `string` |
+| `bidFloor` | optional | The minimum bid value desired. Apester will not respond with bids lower than this value. | `0.90`                       | `float`  |
+
+#### Bid Params for Prebid Server
+
+{: .table .table-bordered .table-striped }
+
+| Name       | Scope    | Description                                                                              | Example                      | Type     |
+|------------|----------|------------------------------------------------------------------------------------------|------------------------------|----------|
+| `cId`      | required | The connection ID from Apester.                                                          | `'562524b21b1c1f08117fc7f9'` | `string` |
+
+### Example
+
+  ```javascript
+var adUnits = [{
+    code: 'banner-div',
+    mediaTypes: {
+        banner: {
+            sizes: [
+                [300, 250],
+                [728, 90]
+            ]
+        }
+    },
+    bids: [{
+        bidder: 'apester',
+        params: {
+            cId: '562524b21b1c1f08117fc7f9', // Required - PROVIDED DURING SETUP...
+            pId: '59ac17c192832d0011283fe3', // Required - PROVIDED DURING SETUP...
+            bidFloor: 1.23                   // Optional
+        }
+    }]
+}
+];
+
+// configure pbjs to enable user syncing
+pbjs.setConfig({
+    userSync: {
+        filterSettings: {
+            iframe: {
+                bidders: 'apester',
+                filter: 'include'
+            }
+        }
+    }
+});
+```
