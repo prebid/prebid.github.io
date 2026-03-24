@@ -3,7 +3,7 @@ layout: bidder
 title: Displayio
 description: Prebid Displayio Bidder Adapter
 biddercode: displayio
-media_types: banner, video
+media_types: banner, video, audio, native
 tcfeu_supported: true
 usp_supported: true
 safeframes_ok: true
