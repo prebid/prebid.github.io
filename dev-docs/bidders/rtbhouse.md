@@ -6,7 +6,7 @@ gvl_id: 16
 tcfeu_supported: true
 usp_supported: false
 coppa_supported: false
-gpp_sids: none
+gpp_supported: true
 dsa_supported: true
 pbjs: true
 pbs: true

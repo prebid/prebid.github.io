@@ -79,6 +79,7 @@ The following fields related to anonymizing aspects of the auction are supported
 | gdpr.rules[].softVendorExceptions | `Array of Strings` | Defines a list of biddercodes or module names that are exempt from the checking vendor signals for this purpose. Unlike with `vendorExceptions`, Purpose consent is still checked. **Note:** Prebid.org recommends working with a privacy lawyer before making enforcement exceptions for any vendor. | ["bidderA", "userID-module-B"] |
 | gdpr.rules[].eidsRequireP4Consent | `Boolean` | Only relevant on the personalizedAds `purpose`. If true, user IDs and EIDs will not be shared without evidence of consent for TCF Purpose 4. If false, evidence of consent for any of Purposes 2-10 is sufficient for sharing user IDs and EIDs. Defaults to false. See [note](#note-transmitEids) | true |
 | strictStorageEnforcement | `Boolean` | If false (the default), allows some use of storage regardless of purpose 1 consent - see [note](#strictStorageEnforcement) below | true |
+| gdpr.rules[].deferS2Sbidders | `Boolean` | If true, allows s2s bidders to bypass vendor consent check and delegate it to server. Applies only to `basicAds` rule. Defaults to true | true |
 
 Notes:
 

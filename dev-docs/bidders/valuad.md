@@ -8,7 +8,8 @@ pbs: false
 prebid_member: false
 userId: none
 gpp_sids: usstate_all
-tcfeu_supported: false
+tcfeu_supported: true
+gvl_id: 1478
 usp_supported: true
 coppa_supported: true
 schain_supported: true
@@ -31,4 +32,4 @@ Please reach out to your account manager or <hello@valuad.io> for more informati
 
 | Name          | Scope    | Description                    | Example    | Type      |
 |---------------|----------|--------------------------------|------------|-----------|
-| `placementId` | required | Placement ID provided by VAluad | `'10000'`  | `string`  |
+| `placementId` | required | Placement ID provided by Valuad | `'10000'`  | `string`  |

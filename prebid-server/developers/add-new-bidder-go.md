@@ -778,6 +778,7 @@ The second argument, `requestInfo`, is for extra information and helper methods 
 - `requestInfo.PbsEntryPoint` to access the entry point of the bid request, commonly used to determine if the request is for AMP or for a [Long Form Video Ad Pod](/dev-docs/modules/adpod.html).
 - `requestInfo.GlobalPrivacyControlHeader` to read the value of the `Sec-GPC` Global Privacy Control (GPC) header of the bid request.
 - `requestInfo.ConvertCurrency` a method to perform currency conversions.
+- `requestInfo.PageViewId` is the unique identifier for the page view (one load of Prebid.js); can also be refreshed programmatically. Shared across all requests and responses within the page view, for the same bidder. Different bidders see a different page view ID.
 
 The `MakeRequests` method is expected to return a slice (similar to a C# `List` or a Java `ArrayList`) of `adapters.RequestData` objects representing the HTTP calls to be sent to your bidding server and a slice of type `error` for any issues encountered creating them. If there are no HTTP calls or if there are no errors, please return `nil` for both return values. Please do not add `nil` items in the slices.
 

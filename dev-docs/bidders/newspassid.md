@@ -8,6 +8,7 @@ gvl_id: 1317
 tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
+gpp_supported: true
 schain_supported: true
 userIds: all
 safeframes_ok: true
@@ -38,7 +39,7 @@ This requires setup on the NewsPassID provider's end before beginning. Don't hes
 
 ### Integration
 
-#### Step 1: Add your NewsPassID accountId to the Prebid.js bidder config before users syncs and initial ads are requested (Recommended)
+#### Step 1: Configure NewsPassID publisher ID in global pbjs config to enable user syncs (Recommended)
 
 ```javascript
 window.pbjs = window.pbjs || { que: [] };
@@ -67,7 +68,7 @@ const adUnits = [
         bidder: 'newspassid',
         params: {
             publisherId: 'test-publisher', /* an ID to identify the publisher account  - required if you skip step 1 */
-            placementId: 'test-group1' /* An ID used to identify the ad placement configuration within a publisher account - required */                          
+            placementId: 'test-group1' /* An ID used to identify the ad placement configuration - required */                          
         }
       }
     ]

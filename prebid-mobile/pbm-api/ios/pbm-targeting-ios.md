@@ -65,6 +65,7 @@ Prebid.shared.customStatusEndpoint="https://pbs.example.com/v2/status"
 | includeWinners | optional | boolean | ORTB | If `true`, Prebid sdk will add `includewinners` flag inside the targeting object described in [PBS Documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . Default is `false`. | `true` |
 | includeBidderKeys | optional | boolean | ORTB | If `true`, Prebid sdk will add `includebidderkeys` flag inside the targeting object described in [PBS Documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . Default is `false`. | `true` |
 | eventDelegate | optional | PrebidEventDelegate | init | Sets an event delegate to handle all auction requests and responses. It allows to collect some statistical data. Note that the SDK stores this callback as a weak reference so you need to store a reference to it. | `class PrebidEventDelegateTestsMockDelegate: PrebidEventDelegate { func prebidBidRequestDidFinish(requestData: Data?, responseData: Data?) { ... } }` |
+| shouldDisableStatusCheck | optional | boolean | init | If `true`, the SDK will not check the PBS status during initialization. This will save initialization time if the PBS endpoint is always live and handled client side. Default is `false`. | `true` |
 
 ### Prebid Class Global Methods
 
@@ -540,6 +541,7 @@ Note that several of the properties noted here are also mentioned above for othe
 | subjectToGDPR | discouraged | boolean | ? | Defines whether this request is in-scope for European privacy regulations. See [above](/prebid-mobile/pbm-api/ios/pbm-targeting-ios#gdpr--tcf-eu) for more information. | `true` |
 | gdprConsentString | discouraged | string | both | See the [GDPR settings](/prebid-mobile/pbm-api/ios/pbm-targeting-ios#gdpr--tcf-eu) section above. | |
 | purposeConsents | discouraged | string | both | See the [GDPR settings](/prebid-mobile/pbm-api/ios/pbm-targeting-ios#gdpr--tcf-eu) section above. | |
+| locationPrecision | optional | NSNumber | both | Number of decimal places to use when rounding latitude/longitude for device geolocation. Default is nil. (full precision) | `NSNumber(value: 2)` |
 
 ### Targeting Class Methods
 

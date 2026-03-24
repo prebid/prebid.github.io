@@ -96,6 +96,6 @@ Prebid Mobile introduces enhanced support and configuration of video ads, includ
 
 ## API Cleanup
 
-Documentation: [iOS](/prebid-mobile/updates-3.0/ios/updates-3.0.html), [Android](/prebid-mobile/updates-3.0/android/updates-3.0.html)
+Documentation: [iOS](/prebid-mobile/updates-3.0/ios/api-changes.html), [Android](/prebid-mobile/updates-3.0/android/api-changes.html)
 
 In the 3.0 release, the Prebid Mobile SDK gets rid of all previously deprecated methods in order to keep the API clean and minimalistic. Instead of using Ad Unit and configuration properties, the Prebid SDK encourages publishers to use methods to set [Arbitrary OpenRTB](#arbitrary-openrtb) parameters.
