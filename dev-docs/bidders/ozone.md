@@ -12,9 +12,13 @@ deals_supported: true
 schain_supported: true
 coppa_supported: true
 usp_supported: true
+gpp_supported: true
+gpp_sids: tcfeu, usnat, usstate_all, usp
 floors_supported: true
 prebid_member: true
 sidebarType: 1
+fpd_supported: true
+privacy_sandbox: paapi, topics
 
 ---
 

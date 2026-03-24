@@ -166,11 +166,10 @@ Mediakeys fully supports the following [Prebid.js Modules](https://docs.prebid.o
 {: .table .table-bordered .table-striped }
 | Module                                                                                                | Scope                       |
 |-------------------------------------------------------------------------------------------------------|-----------------------------|
-| [Consent Management - GDPR](https://docs.prebid.org/dev-docs/modules/consentManagement.html)          | Required in Europe          |
+| [Consent Management - GDPR](https://docs.prebid.org/dev-docs/modules/consentManagementTcf.html)          | Required in Europe          |
 | [Consent Management - US Privacy](https://docs.prebid.org/dev-docs/modules/consentManagementUsp.html) | Required in US - California |
 | [Supply Chain Object](https://docs.prebid.org/dev-docs/modules/schain.html)                           | Required for all traffic    |
 | [Instream Tracking](https://docs.prebid.org/dev-docs/modules/instreamTracking.html)                   | Required for Instream Video |
-| [First Party Data Enrichment](https://docs.prebid.org/dev-docs/modules/enrichmentFpdModule.html)      | Recommended for all traffic |
 
 Publishers must utilize the required modules in described scope to be able to receive bid responses.
 

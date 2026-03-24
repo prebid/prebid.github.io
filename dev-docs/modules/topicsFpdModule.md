@@ -55,15 +55,34 @@ pbjs.setConfig({
     userSync: {
         // ...,
         topics: { 
-            maxTopicCaller: 3, // SSP rotation 
+            maxTopicCaller: 4,
             bidders: [{
                 bidder: 'pubmatic',
-                iframeURL: 'https://ads.pubmatic.com/AdServer/js/topics/topics_frame.html',
-                expiry: 7 // Configurable expiry days
-            },{
-                bidder: 'appnexus',
-                iframeURL: 'https://appnexus.com:8080/topics/fpd/topic.html', // dummy URL
-                expiry: 7 // Configurable expiry days
+                iframeURL: 'https://ads.pubmatic.com/AdServer/js/topics/topics_frame.html'
+            }, {
+                bidder: 'rtbhouse',
+                iframeURL: 'https://topics.authorizedvault.com/topicsapi.html'
+            }, {
+                bidder: 'openx',
+                iframeURL: 'https://pa.openx.net/topics_frame.html'
+            }, {
+                bidder: 'improvedigital',
+                iframeURL: 'https://hb.360yield.com/privacy-sandbox/topics.html'
+            }, {
+                bidder: 'onetag',
+                iframeURL: 'https://onetag-sys.com/static/topicsapi.html'
+            }, {
+                bidder: 'taboola',
+                iframeURL: 'https://cdn.taboola.com/libtrc/static/topics/taboola-prebid-browsing-topics.html'
+            }, {
+                bidder: 'discovery',
+                iframeURL: 'https://api.popin.cc/topic/prebid-topics-frame.html'
+            }, {
+                bidder: 'undertone',
+                iframeURL: 'https://creative-p.undertone.com/spk-public/topics_frame.html'
+            }, {
+                bidder: 'vidazoo',
+                iframeURL: 'https://static.vidazoo.com/topics_api/topics_frame.html'
             }]
         }
         // ...

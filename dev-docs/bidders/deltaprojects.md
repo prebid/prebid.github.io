@@ -20,6 +20,7 @@ will always bid and log values in the agreed upon currency, utilizing the curren
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name           | Scope    | Description                                                              | Example         | Type     |
 |----------------|----------|--------------------------------------------------------------------------|-----------------|----------|
 | `publisherId`  | required | Publisher ID from Delta Projects. Contact <publishers@deltaprojects.com>   | `'4'`           | `string` |
@@ -32,7 +33,7 @@ will always bid and log values in the agreed upon currency, utilizing the curren
 
 #### Banner
 
-```
+```javascript
 var adUnits = [
   {
     code: 'adunit-code',

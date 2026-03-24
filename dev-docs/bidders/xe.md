@@ -5,15 +5,16 @@ description: Prebid Xe.works Bidder Adaptor
 biddercode: xe
 media_types: banner, video
 coppa_supported: true
-tcfeu_supported: false
+tcfeu_supported: true
 usp_supported: true
-prebid_member: false
+prebid_member: true
 pbjs: true
 pbs: true
 schain_supported: true
 floors_supported: true
 multiformat_supported: will-bid-on-any
 sidebarType: 1
+gvl_id: 1383
 ---
 
 ### Note

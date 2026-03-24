@@ -12,7 +12,6 @@ sidebarType: 1
 ---
 
 # Pubx.ai RTD Module
-
 {:.no_toc}
 
 * TOC
@@ -48,18 +47,20 @@ pbjs.setConfig({
     ...,
     realTimeData: {
         auctionDelay: AUCTION_DELAY,
-        dataProviders: {
-            name: "pubxai",
-            waitForIt: true,
-            params: {
-                pubxId: `<publisher_id>`,
-                endpoint: `<publisher_endpoint>`, // (optional)
-                floorMin: `<floorMin>`, // (optional)
-                enforcement: `<enforcement>`, // (optional)
-                data: `<defaultConfig>` // (optional)
-            }
-        }
-    }
+        dataProviders: [
+            {
+                name: "pubxai",
+                waitForIt: true,
+                params: {
+                    pubxId: `<publisher_id>`,
+                    endpoint: `<publisher_endpoint>`, // (optional)
+                    floorMin: `<floorMin>`, // (optional)
+                    enforcement: `<enforcement>`, // (optional)
+                    data: `<defaultConfig>` // (optional)
+                },
+            },
+        ],
+    },
     // rest of the config
     ...,
 });

@@ -12,7 +12,6 @@ sidebarType : 1
 ---
 
 # Digital Garage Keyword Module
-
 {:.no_toc}
 
 * TOC

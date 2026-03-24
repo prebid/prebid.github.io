@@ -11,6 +11,7 @@ coppa_supported: true
 usp_supported: true
 pbjs: true
 pbs: false
+pbjs_version_notes: removed in 9.0
 sidebarType: 1
 ---
 

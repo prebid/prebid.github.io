@@ -11,6 +11,7 @@ schain_supported: true
 coppa_supported: true
 usp_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+pbjs_version_notes: removed in 9.0
 sidebarType: 1
 ---
 

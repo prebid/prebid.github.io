@@ -111,6 +111,7 @@ Here's the list of the 'potentially restricted activities' that Prebid.js core c
 | Name           | Description | Effect when denied | Additional parameters |
 |----------------|-------------|---------------------------|--------------------------------|
 | `accessDevice` | A component wants to use device storage  | Storage is disabled | [`storageType`](#params-accessDevice) |
+| `accessRequestCredentials` | A component wants to [include credentials](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#including_credentials) (notably, cookies) in a request. Available since version 10. | Credentials are excluded | None |  
 | `enrichEids` | A user ID or RTD submodule wants to add user IDs to outgoing requests | User IDs are discarded | None |
 | `enrichUfpd` | A Real-Time Data (RTD) submodule wants to add user first-party data to outgoing requests (`user.data` in ORTB) | User FPD is discarded | None |
 | `fetchBids`  | A bid adapter wants to participate in an auction | Bidder is removed from the auction | [`configName`](#params-fetchBids) |
@@ -120,6 +121,7 @@ Here's the list of the 'potentially restricted activities' that Prebid.js core c
 | `transmitPreciseGeo` | A bid adapter or RTD submodule wants to access and/or transmit precise geolocation data to their endpoint | Component is allowed only 2-digit precision for latitude and longitude  | [`configName`](#params-fetchBids) |
 | `transmitTid` | A bid adapter or RTD submodule wants to access and/or transmit globally unique transaction IDs to their endpoint | Transaction IDs are hidden from the component | [`configName`](#params-fetchBids) |
 | `transmitUfpd` | A bid adapter or RTD submodule wants to access and/or transmit user FPD to their endpoint | User FPD is hidden from the component | [`configName`](#params-fetchBids) |
+| `loadExternalScript` | A bid adapter, analytics adapter, or module wants to load external script | Module is not allowed to load external script from `adloader.js` | None |
 
 <a id="parameters"></a>
 
@@ -152,7 +154,7 @@ For example, this rule would allow bidderX to perform the activity if no higher 
 Activity control rules in Prebid.js can be created by two main sources:
 
 * Publisher `setConfig({allowActivities})` as in the examples shown here. When set this way, rules are considered the highest priority value of 1.
-* Modules can set activity control rules, e.g. [usersync](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing), [bidderSettings](/dev-docs/publisher-api-reference/bidderSettings.html), the [GPP](/dev-docs/modules/consentManagementGpp.html) or [GDPR](/dev-docs/modules/gdprEnforcement.html) modules. Rules set by modules have a less urgent priority of 10.
+* Modules can set activity control rules, e.g. [usersync](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing), [bidderSettings](/dev-docs/publisher-api-reference/bidderSettings.html), the [GPP](/dev-docs/modules/consentManagementGpp.html) or [GDPR](/dev-docs/modules/tcfControl.html) modules. Rules set by modules have a less urgent priority of 10.
 
 When rules are processed, they are sorted by priority, and all rules of the same priority are considered to happen at the same time. The details:
 
@@ -234,7 +236,7 @@ If `allow` is not defined, the rule is assumed to assert **true** (i.e. allow th
 
 #### Always include a particular bidder in auctions
 
-This is similiar to the 'vendor exception' feature of the [GDPR Enforcement Module](/dev-docs/modules/gdprEnforcement.html). This would always allow bidderA to participate in the auction, even without explicit consent in GDPR scenarios. It might indicate, for instance, that this is a 'first party bidder'.
+This is similar to the 'vendor exception' feature of the [TCF Control Module](/dev-docs/modules/tcfControl.html). This would always allow bidderA to participate in the auction, even without explicit consent in GDPR scenarios. It might indicate, for instance, that this is a 'first party bidder'.
 
 ```javascript
 pbjs.setConfig({

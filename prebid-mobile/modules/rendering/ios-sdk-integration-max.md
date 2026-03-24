@@ -1,41 +1,29 @@
 ---
 layout: page_v2
-title: AppLovin MAX Integration
-description: Integration of Prebid Rendering module whith AppLovin MAX 
+title: Integrating Prebid SDK iOS with AppLovin MAX
+description: Integrating Prebid SDK iOS with AppLovin MAX
 sidebarType: 2
 ---
 
-# AppLovin MAX Integration
+# Prebid SDK iOS with AppLovin MAX Integration Method
 {:.no_toc}
 
-The integration of Prebid Mobile with AppLovin MAX assumes that publisher has a MAX account and has integrated the AppLovin MAX SDK into the app.
-
-See the [AppLovin MAX Documentation](https://dash.applovin.com/documentation/mediation/ios/getting-started/integration) for the MAX integration details.
-
-* TOC
+- TOC
 {:toc}
 
-## MAX Integration Overview
+{% include mobile/intro-applovin.md platform="ios" %}
 
-![Rendering with AppLovin MAX as the Primary Ad Server](/assets/images/prebid-mobile/modules/rendering/prebid-in-app-bidding-overview-max.png)
-
-**Steps 1-2** Prebid SDK makes a bid request. Prebid Server runs an auction and returns the winning bid.
-
-**Step 3** MAX SDK makes an ad request. MAX returns the waterfall with respective placements.
-
-**Step 4** For each Prebid placement, the MAX SDK sequentially instantiates an adapter. 
-
-**Step 5** The adapter verifies the targeting keywords of the winning bid and the custom properties of the given placement. If they match the adapter will render the winning bid. Otherwise, the adpater will immediately fail with a "no ad" error and the next placement will instantiate the same adapter but for another custom properties. 
-
-## Integrate Prebid Adapters
+## Setup
 
 Prebid SDK is integrated into AppLovin MAX setup thru custom adapters. To integrate Prebid adapters into your app add the following line to your Podfile:
 
-```
+```swift
 pod 'PrebidMobileMAXAdapters'
 ```
 
-## Banner API
+## Adunit Specific Instructions
+
+### Banners
 
 Integration example:
 
@@ -65,11 +53,10 @@ adUnit?.fetchDemand { [weak self] result in
 
 This step is the same as for the original [MAX integration](https://dash.applovin.com/documentation/mediation/ios/getting-started/banners#loading-a-banner). You don't have to make any modifications here.
 
-
 #### Step 2: Create MAXMediationBannerUtils
 {:.no_toc}
 
-The `MAXMediationBannerUtils ` is a helper class, which performs certain utilty work for the `MediationBannerAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
+The `MAXMediationBannerUtils` is a helper class, which performs certain utility work for the `MediationBannerAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
 
 #### Step 3: Create MediationBannerAdUnit
 {:.no_toc}
@@ -86,7 +73,7 @@ The `fetchDemand` method makes a bid request to Prebid Server and provides a res
 
 Make a regular MAX's ad request. Everything else will be handled by prebid adapters.
 
-## Interstitial API
+### Interstitials
 
 Integration example:
 
@@ -136,11 +123,10 @@ adUnit?.adFormats = [.banner]
 
 This step is the same as for the original [MAX integration](https://dash.applovin.com/documentation/mediation/ios/getting-started/interstitials). You don't have to make any modifications here.
 
-
 #### Step 2: Create MAXMediationInterstitialUtils
 {:.no_toc}
 
-The `MAXMediationInterstitialUtils` is a helper class, which performs certain utilty work for the `MediationInterstitialAdUnit `, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
+The `MAXMediationInterstitialUtils` is a helper class, which performs certain utility work for the `MediationInterstitialAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
 
 #### Step 3: Create MediationInterstitialAdUnit
 {:.no_toc}
@@ -162,9 +148,11 @@ Now you should make a regular MAX's ad request. Everything else will be handled 
 
 Once you receive the ad it will be ready for display. Follow the [MAX instructions](https://dash.applovin.com/documentation/mediation/ios/getting-started/interstitials#showing-an-interstitial-ad) for displaying an ad. 
 
-## Rewarded API
+### Rewarded
 
-Integration example:
+{% include mobile/rewarded-server-side-configuration.md %}
+
+#### Integration example
 
 ```swift
 // 1. Get an instance of MARewardedAd
@@ -190,38 +178,37 @@ The process for displaying the rewarded ad is the same as for displaying the Int
 
 To be notified when a user earns a reward follow the [MAX intructions](https://dash.applovin.com/documentation/mediation/ios/getting-started/rewarded-ads#loading-a-rewarded-ad).
 
-#### Step 1: Get an instance of MARewardedAd
+##### Step 1: Get an instance of MARewardedAd
 {:.no_toc}
 
 This step is the same as for the original [MAX integration](https://dash.applovin.com/documentation/mediation/ios/getting-started/rewarded-ads). You don't have to make any modifications here.
 
-
-#### Step 2: Create MAXMediationRewardedUtils
+##### Step 2: Create MAXMediationRewardedUtils
 {:.no_toc}
 
-The `MAXMediationRewardedUtils` is a helper class, which performs certain utilty work for the `MediationRewardedAdUnit`, like passing the targeting keywords to the adapters.
+The `MAXMediationRewardedUtils` is a helper class, which performs certain utility work for the `MediationRewardedAdUnit`, like passing the targeting keywords to the adapters.
 
-#### Step 3: Create MediationRewardedAdUnit
+##### Step 3: Create MediationRewardedAdUnit
 {:.no_toc}
 
 The `MediationRewardedAdUnit` is a part of the Prebid Mediation API. This class is responsible for making a bid request and providing a winning bid and targeting keywords to the adapters.  
 
-#### Step 4: Make bid request
+##### Step 4: Make bid request
 {:.no_toc}
 
 The `fetchDemand` method makes a bid request to the Prebid Server and provides a result in a completion handler.
 
-#### Step 5: Make an Ad Reuest
+##### Step 5: Make an Ad Reuest
 {:.no_toc}
 
 Make a regular MAX's ad request. Everything else will be handled by GMA SDK and prebid adapters.
 
-#### Steps 6: Display an ad
+##### Steps 6: Display an ad
 {:.no_toc}
 
 Once the rewarded ad is received you can display it. Follow the [MAX instructions](https://dash.applovin.com/documentation/mediation/ios/getting-started/rewarded-ads#showing-a-rewarded-ad) for the details. 
 
-## Native Ads
+### Native Ads
 
 Integration example:
 
@@ -263,12 +250,12 @@ Prepare the `MANativeAdLoader` object before you make a bid request. It will be 
 #### Step 2: Create MAXMediationNativeUtils
 {:.no_toc}
 
-The `MAXMediationNativeUtils` is a helper class, which performs certain utilty work for `MediationNativeAdUnit`, like passing the targeting keywords to adapters and checking the visibility of the ad view.
+The `MAXMediationNativeUtils` is a helper class, which performs certain utility work for `MediationNativeAdUnit`, like passing the targeting keywords to adapters and checking the visibility of the ad view.
 
 #### Step 3: Create and configure MediationNativeAdUnit
 {:.no_toc}
 
-The `MediationNativeAdUnit` is a part of the Prebid Mediation API. This class is responsible for making a bid request and providing a winning bid and targeting keywords to the adapters. Fot the better targetting you should provide additional properties like `conteaxtType` and `placemantType`. 
+The `MediationNativeAdUnit` is a part of the Prebid Mediation API. This class is responsible for making a bid request and providing a winning bid and targeting keywords to the adapters. For better targeting you should provide additional properties like `contextType` and `placementType`.
  
 #### Step 4: Set up assets for bid request
 {:.no_toc}
@@ -277,7 +264,7 @@ The bid request for native ads should have the description of expected assets. T
 
 The example of creating the assets array:
 
-```
+```swift
 let image = NativeAssetImage(minimumWidth: 200, minimumHeight: 50, required: true)
 image.type = ImageAsset.Main
 
@@ -302,7 +289,7 @@ The bid request for mative ads may have a descrition of expected event trackers.
 
 The example of creating the event trackers array:
 
-```
+```swift
 let eventTrackers = [
     NativeEventTracker(event: EventType.Impression,
                        methods: [EventTracking.Image,EventTracking.js])
@@ -318,3 +305,13 @@ The `fetchDemand` method makes a bid request to Prebid Server and provides a res
 {:.no_toc}
 
 Load a native ad from MAX according to the [MAX instructions](https://dash.applovin.com/documentation/mediation/ios/getting-started/native-manual#load-the-native-ad). 
+
+## Additional Ad Unit Configuration
+
+{% include mobile/rendering-adunit-config-ios.md %}
+
+## Further Reading
+
+- [Prebid Mobile Overview](/prebid-mobile/prebid-mobile)
+- [Prebid SDK iOS Integration](/prebid-mobile/pbm-api/ios/code-integration-ios)
+- [Prebid SDK iOS Global Parameters](/prebid-mobile/pbm-api/ios/pbm-targeting-ios)

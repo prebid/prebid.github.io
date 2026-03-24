@@ -2,7 +2,6 @@
 layout: page_v2
 sidebarType: 5
 title: Prebid Server | Developers | Adding a Module
-
 ---
 
 # Prebid Server - Adding a Module
@@ -11,7 +10,7 @@ title: Prebid Server | Developers | Adding a Module
 This document guides you through the process of developing a module for host companies to plug into their instance of Prebid Server.
 We encourage you to look at existing modules for working examples. You can also ask us questions by [submitting a GitHub issue](https://github.com/prebid/prebid-server/issues/new).
 
-* TOC
+- TOC
 {:toc }
 
 ## Overview
@@ -68,10 +67,11 @@ Here's a description of the Stages of a PBS request that modules can tap into fo
 | Entrypoint | Hook functions can see the raw request before PBS has processed or validated anything | auction, amp, video | A/B testing of account parameters, Alternate account validation, AMP pre-processing |
 | Raw Auction Request | Validations have been done, but no enrichments | auction, amp, video | A/B testing of StoredRequests, Advanced device detection, Traffic Quality |
 | Processed Auction Request | Any stored requests have been merged in and all PBS enrichments are done | auction, amp, video | Inject First Party Data, Channel determination, Bid floors, Bidder optimization |
-| Bidder Request | The request has been customized for a particular bidder in the auction | auction, amp, video | Bidder-specific bcat/badv, Bidder-specific deals |
-| Raw Bidder Response | Hook functions can get access to the unprocessed bidder response | auction, amp, video | Response validations |
+| Bidder Request | The request has been customized for a particular bidder in the auction. Note that the module will be called in parallel for each bidder in the auction. | auction, amp, video | Bidder-specific bcat/badv, Bidder-specific deals |
+| Raw Bidder Response | Hook functions can get access to the unprocessed bidder response. Note that the module will be called in parallel for each bidder in the auction. | auction, amp, video | Response validations |
 | All Processed Bid Responses | All bids are back and PBS-core bid validations are done. | auction, amp, video | Creative validation, advanced bid validations. |
-| Auction Response | Last step before the response goes back to the client | auction, amp, video | Inject ad server targeting, alternate auction winner logic |
+| Auction Response | Last chance to modify the bid auction response | auction, amp, video | Inject ad server targeting, alternate auction winner logic |
+| Exitpoint | (PBS-Java 3.16+) Last step before the response goes back to the client. Specify the response headers and body | auction, amp, video | Create a VAST response instead of OpenRTB. |
 
 ### 3. Figure Out Which Stages You're Going to Hook Into
 
@@ -142,6 +142,7 @@ to the PBS host company. Examples:
 If your module either utilizes or supplies user-level data like User First Party Data or precise geographic information, it must adhere to the framework supplied by the [Activity Controls](/prebid-server/features/pbs-activitycontrols.html).
 
 For instance:
+
 - if your module is going to supply user-level data (e.g. "job title") to bid adapters, it must check permissions for the `enrichUfpd` activity.
 - if your module is going to forward the entire ORTB request to an endpoint, it must check the `transmitUfpd` and `transmitPreciseGeo` activity permissions.
 
@@ -173,7 +174,7 @@ The details of the implementation depend on the platform.
 Other rules for open source PBS pull request:
 
 - Unit test coverage must exceed 90%.
-- A maintainer email address must be provided and be a group, not an individual. e.g. "support@example.com rather than jsmith@example.com
+- A maintainer email address must be provided and be a group, not an individual. e.g. <support@example.com> rather than <jsmith@example.com>
 
 ### 10. Write the Module Documentation
 
@@ -184,7 +185,7 @@ create a file in /prebid-server/pbs-modules. You can start by copying one of the
 - Prerequisites: any necessary account activation, other required modules, etc.
 - Configuration: both init and runtime
 - Analytics Tag support
-- Privacy Support: disclose whether the module has user privacy implications and support for TCF-EU, TCF-CA, CCPA, MSPA, etc.
+- Privacy Support: disclose whether the module has user privacy implications and support for TCF-EU, TCF-CA, CCPA, etc.
 
 ### 11. Submit the Pull Requests
 

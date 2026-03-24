@@ -127,7 +127,7 @@ It is important to notice that the compliant formats you set on `isSupportRender
 
 ### Original API
 
-The Plugin Renderer feature does not work with [GAM Original API](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.md) since the ad rendering does not happen in the Prebid SDK but externally. Despite that if you are using the regular GAM integration it will work fine.
+The Plugin Renderer feature does not work with [GAM Original API](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html) since the ad rendering does not happen in the Prebid SDK but externally. Despite that if you are using the regular GAM integration it will work fine.
 
 ## Ad Event Listeners
 An optional dedicated generic ad event listener is offered in case of the existing event listeners are insufficient to keep your ad consumer fully aware of your ad lifecycle.
@@ -267,3 +267,4 @@ The following list contains documentation for known supported Plugin Renderer pr
 | Company | Documentation                                                                                 |
 |-------|-----------------------------------------------------------------------------------------------|
 | Teads | [Teads Plugin Renderer Docs](https://support.teads.tv/support/solutions/articles/36000459747) |
+| InMobi | [InMobi Plugin Renderer Docs](https://support.inmobi.com/monetize/integrating-inmobi-with-mediation/prebid-plugin-renderer) |

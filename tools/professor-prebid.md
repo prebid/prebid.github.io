@@ -9,12 +9,19 @@ sidebarType: 8
 
 {:.no_toc}
 
-* TOC
+- TOC
 {:toc}
 
 ## Introduction
 
 Professor Prebid is an open source Chrome extension to allow easy debugging and troubleshooting on publisher websites using Prebid.js.
+
+{% include vimeo-iframe.html id="1003776317" title="1003776317" %}
+
+Further Content:
+
+- [Transcript of this video](/tools/prof-prebid-video.html)
+- [Prebid.js Config Documentation](/dev-docs/publisher-api-reference/setConfig.html)
 
 ## Installation
 
@@ -47,10 +54,10 @@ Finally, you can also spot who is the winning bidder and whether its ad was rend
 
 This screen allows you to verify and compare all the bids placed via Prebid.js and their metadata including:
 
-* Bid value
-* Bid currency
-* Response time
-* Adserver Targeting keywords
+- Bid value
+- Bid currency
+- Response time
+- Adserver Targeting keywords
 
 ![Professor Prebid bids screen](/assets/images/tools/professor-prebid-5.png)
 
@@ -58,11 +65,11 @@ This screen allows you to verify and compare all the bids placed via Prebid.js a
 
 This view shows you the auction's main milestones:
 
-* Auction start timestamp
-* Bidders calling sequence and timestamp
-* Each bidder response time
-* Timeout threshold
-* Auction end timestamp
+- Auction start timestamp
+- Bidders calling sequence and timestamp
+- Each bidder response time
+- Timeout threshold
+- Auction end timestamp
 
 ![Professor Prebid timeline screen](/assets/images/tools/professor-prebid-6.png)
 
@@ -72,11 +79,11 @@ Professor Prebid renders different timeline views using the auction id as key. T
 
 You will find here the main modules and their configuration:
 
-* Price Granularity: low/medium/high/auto/dense/custom
-* Bidder settings: calling order, timeout, …
-* Prebid Server: id, bidders, endpoints, …
-* CMP: Support different compliance frameworks (TCF, CCPA...), encoded consent string, decoded consent string
-* User ID modules
+- Price Granularity: low/medium/high/auto/dense/custom
+- Bidder settings: calling order, timeout, …
+- Prebid Server: id, bidders, endpoints, …
+- CMP: Support different compliance frameworks (TCF, CCPA...), encoded consent string, decoded consent string
+- User ID modules
 
 ![Professor Prebid config screen](/assets/images/tools/professor-prebid-7.png)
 
@@ -90,11 +97,11 @@ This view displays the configuration and the outcome of the different id provide
 
 This tab provides advanced troubleshooting tools:
 
-* Shortcut to GAM console
-* Activation of Prebid Debug data on console
-* Bid filtering: allowlist of bidders
-* Bid CPM override
-* Adunit overlay: shows details about the winner over the creative on page
+- Shortcut to GAM console
+- Activation of Prebid Debug data on console
+- Bid filtering: allowlist of bidders
+- Bid CPM override
+- Adunit overlay: shows details about the winner over the creative on page
 
 ![Professor Prebid tools screen](/assets/images/tools/professor-prebid-9.png)
 
@@ -118,12 +125,12 @@ The goal of this tool doesn’t attempt to fix scenarios where compliance params
 {: .alert.alert-info :}
 Note: It is advised when testing User Sync URL's that you clear cookies relative to the domain you are testing. This will ensure that results are in-line with an initial visit to the current page. Additionally, the first resource matching the root URL will be used to generate the initiator request chain.
 
-* With the Professor Prebid extension on, open the Chrome developer tools by right-clicking anywhere on a webpage and selecting `Inspect`.
-* Navigate to the `Profressor Prebid` panel (top-right), then to the `Network Inspector` tab in the submenu directly below.
-* Enable the feature by sliding the toggle below.
-* Enter a User Sync root URL to listen for as the page loads to generate a request chain from, then click the "Set URL" button. For example, `https://ads.pubmatic.com/AdServer/js/user_sync.html?kdntuid=1&p=159096&us_privacy=1YNY`
-* Close the developer tools window, re-open the Chrome Dev Tools again (for changes to reflect, a new instance of the developer tools is required) and navigate back to `Professor Prebid --> Network Inspector`
-* Lastly, click the <img width="20" src="/assets/images/tools/professor-prebid-13.png" /> icon (top-right). This will refresh the page and generate a new initiator request chain below (If one is present for the provided User Sync Root URL).
+- With the Professor Prebid extension on, open the Chrome developer tools by right-clicking anywhere on a webpage and selecting `Inspect`.
+- Navigate to the `Profressor Prebid` panel (top-right), then to the `Network Inspector` tab in the submenu directly below.
+- Enable the feature by sliding the toggle below.
+- Enter a User Sync root URL to listen for as the page loads to generate a request chain from, then click the "Set URL" button. For example, `https://ads.pubmatic.com/AdServer/js/user_sync.html?kdntuid=1&p=159096&us_privacy=1YNY`
+- Close the developer tools window, re-open the Chrome Dev Tools again (for changes to reflect, a new instance of the developer tools is required) and navigate back to `Professor Prebid --> Network Inspector`
+- Lastly, click the <img width="20" src="/assets/images/tools/professor-prebid-13.png" alt="screenshot"/> icon (top-right). This will refresh the page and generate a new initiator request chain below (If one is present for the provided User Sync Root URL).
 
 The UI of the User Sync Network Inspector:
 
@@ -142,9 +149,9 @@ Note: `redirectsTo` means a resource explicitly redirected to another resource. 
 
 This tool will detect which Prebid.js build is currently running on a publisher page and then compare it against the latest Prebid.js build that has been released. In doing so, the following data will be displayed:
 
-* How much time has passed since the currently used Prebid.js build has been released.
-* An approximate number count of new features, maintenance updates and bug fixes that have been deployed since the most recent Prebid.js release compared to the currently used Prebid.js build.
-* Explicit release notes for all releases ranging from the currently used Prebid.js build detected on a publisher page to the latest Prebid.js release.
+- How much time has passed since the currently used Prebid.js build has been released.
+- An approximate number count of new features, maintenance updates and bug fixes that have been deployed since the most recent Prebid.js release compared to the currently used Prebid.js build.
+- Explicit release notes for all releases ranging from the currently used Prebid.js build detected on a publisher page to the latest Prebid.js release.
 
 ![Prebid.js Analyzer Tool](/assets/images/tools/professor-prebid-14.png)
 
@@ -152,13 +159,13 @@ The version analyzer tool can be accessed 2 ways:
 
 Scenario #1
 
-* Open Professor Prebid from it's Chrome Extension icon (Top-Right of the Chrome tab window)
-* Within the `ADUNITS` tab (selected by default), click the `Version` tab below (displayed in the format: `Version: vX.XX.X}`)
+- Open Professor Prebid from it's Chrome Extension icon (Top-Right of the Chrome tab window)
+- Within the `ADUNITS` tab (selected by default), click the `Version` tab below (displayed in the format: `Version: vX.XX.X}`)
 
 Scenario #2
 
-* Open Professor Prebid from the Chrome Devtools (Right-Click anywhere on a publisher page, select `Inspect` and then click `Professor Prebid` from the tab menu on the top-right of the Chrome Devtools window)
-* Then select `VERSION` from the menu below.
+- Open Professor Prebid from the Chrome Devtools (Right-Click anywhere on a publisher page, select `Inspect` and then click `Professor Prebid` from the tab menu on the top-right of the Chrome Devtools window)
+- Then select `VERSION` from the menu below.
 
 ## How can I submit a feature request ?
 
@@ -168,10 +175,10 @@ Please open an GitHub issue on [github.com/prebid/professor-prebid/issues](https
 
 Please submit a GitHub issue on [github.com/prebid/professor-prebid/issues](https://github.com/prebid/professor-prebid/issues) providing as much details as possible:
 
-* Steps to reproduce the issue
-* Example of website where you face the issue
-* Professor Prebid version
+- Steps to reproduce the issue
+- Example of website where you face the issue
+- Professor Prebid version
 
 ## Related Reading
 
-* [Prebid.js troubleshooting guide](/troubleshooting/troubleshooting-guide.html)
+- [Prebid.js troubleshooting guide](/troubleshooting/troubleshooting-guide.html)

@@ -1,36 +1,39 @@
 ---
 layout: bidder
-title: AdsInteractive
-description: Prebid AdsInteractive Bidder Adapter
+title: Ads Interactive
+description: Prebid Ads Interactive Bidder Adapter
+aliasCode: ads_interactive
 biddercode: adsinteractive
-media_types: banner
+gpp_sids: usstate_all
+gvl_id: 1212
+tcfeu_supported: true
+usp_supported: true
+coppa_supported: true
+schain_supported: true
+deals_supported: false
+floors_supported: true
+fpd_supported: false
+ortb_blocking_supported: false
+media_types: banner, video, native
+multiformat_supported: will-bid-on-one
+userIds: all
 pbjs: true
 pbs: true
-deals_supported: false
-gpp_supported: true
-tcfeu_supported: true
-gvl_id: 1212
-usp_supported: false
-coppa_supported: false
-userIds: all
-schain_supported: false
-dchain_supported: false
-safeframes_ok: false
-floors_supported: false
-fpd_supported: false
-pbs_app_supported: false
-prebid_member: false
-multiformat_supported: will-not-bid
-ortb_blocking_supported: false
+pbs_app_supported: true
+safeframes_ok: true
+prebid_member: true
+sidebarType: 1
 ---
-
-### Registration
-
-The AdsInteractive adapter requires setup and approval. Please reach out to <it@adsinteractive.com> to setup your account.
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description  | Example   | Type     |
-|---------------|----------|--------------|-----------|----------|
-| `adUnit` | required | adUnit tag name | `'example_adunit_1'` | `string` |
+| Name          | Scope    | Description         | Example                      | Type       |
+|---------------|----------|---------------------|------------------------------|------------|
+| `placementId` | optional | Placement Id        | `'0'`                        | `'string'` |
+| `endpointId`  | optional | Endpoint Id         | `'0'`                        | `'string'` |
+| `adUnit`      | optional | (deprecated) adUnit | `'example_adunit_1'`         | `'string'`   |
+
+### Note
+
+For the prebid server and prebid.js you only need to use one parameter: either placementId or endpointId.

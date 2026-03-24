@@ -19,6 +19,7 @@ pbs_app_supported: false
 fpd_supported: false
 ortb_blocking_supported: false
 multiformat_supported: will-bid-on-one
+enable_download: false
 pbjs: true
 sidebarType: 1
 ---
@@ -26,13 +27,14 @@ sidebarType: 1
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name       | Scope    | Description                                                                               | Example                      | Type     |
 |------------|----------|-------------------------------------------------------------------------------------------|------------------------------|----------|
 | `cId`      | required | The connection ID from Illumin.                                                          | `'562524b21b1c1f08117fc7f9'` | `string` |
 | `pId`      | required | The publisher ID from Illumin.                                                           | `'59ac17c192832d0011283fe3'` | `string` |
 | `bidFloor` | optional | The minimum bid value desired. Illumin will not respond with bids lower than this value. | `0.90`                       | `float`  |
 
-## Example
+### Example
 
   ```javascript
 var adUnits = [{

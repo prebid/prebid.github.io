@@ -3,6 +3,9 @@ layout: userid
 title: European Unified ID
 description: European Unified ID User ID sub-module
 useridmodule: euidIdSystem
+bidRequestUserId: euid
+eidsource:
+example: '"1111"'
 ---
 
 European Unified ID (EUID) is an open-source identity solution built for the open internet and based on the Unified ID 2.0 solution. It leverages encrypted email data to provide a privacy-conscious, secure, and accurate identity standard designed to meet market requirements in Europe and the UK.
@@ -11,8 +14,9 @@ EUID relies on user consent before an ID can be added to the bid stream. Consent
 
 To add EUID to your Prebid.js package, run the following:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=euidIdSystem
+```
 
 ## European Unified ID Registration
 
@@ -43,6 +47,25 @@ The following sample is fictitious, but shows what the token response object loo
 ```
 
 When this full data structure is provided, the module automatically refreshes the token periodically, as long as the refresh token hasn't expired.
+
+The following example shows the response for a user that has opted out:
+
+```json
+{
+  "identity": "optout",
+  "status": "optout"
+}
+```
+
+The following example shows the decoded EUID userId object:
+
+```json
+{
+  "euid": {
+    "optout": true
+  }
+}
+```
 
 ## Client Refresh mode
 
@@ -103,6 +126,12 @@ pbjs.setConfig({
 
 There is a server-only mode where the value of the advertising token can be provided either directly (see the `value` parameter in the [European Unified ID Configuration](#european-unified-id-configuration) section) or via a cookie. In this mode, no attempt is made to automatically refresh the token.
 
+For a server-side integration, you can create a smaller Prebid.js build by disabling client-side integration functionality. To do this, pass the `--disable UID2_CSTG` flag:
+
+```bash
+    gulp build --modules=euidIdSystem --disable UID2_CSTG
+```
+
 ### Cookie-based server-only mode
 
 To use the cookie-based server-only mode, set a cookie named `__euid_advertising_token` to the value of the advertising token only, as shown in this fictitious example:
@@ -140,11 +169,16 @@ pbjs.setConfig({
 });
 ```
 
+## European Unified ID Client Side Integration for Prebid.js
+
+Prebid.js supports fully client side integration for EUID.  See the [official EUID documentation](https://euid.eu/docs/guides/integration-prebid) for the most up-to-date integration instructions.
+
 ## European Unified ID Configuration
 
 The following parameters apply only to the European Unified ID module integration.
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | ID value for the EUID module - `"euid"` | `"euid"` |

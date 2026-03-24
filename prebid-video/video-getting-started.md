@@ -30,22 +30,22 @@ Start by reading [Ad Ops Getting Started](/adops/before-you-start.html). This wi
 
 One thing to keep in mind as you set up your line items is price granularity. Be sure to communicate your price granularity requirements to your developers, as they might need to define custom configuration settings, depending on your granularity.
 
-#### Instream
+#### In-player Integration
 
-If you already have a Prebid integration for banner, you must create a separate set of ad server line items to enable Prebid to monetize instream video.
+If you already have a Prebid integration for banner, you must create a separate set of ad server line items to enable the Prebid [in-player integration of video ads](/prebid-video/video-overview#in-player-integration).
 
 If you’re using Google Ad Manager as your ad server:
 Once you understand the general setup requirements, follow the instructions for video-specific line item setup in [Setting Up Prebid Video in Google Ad Manager](/adops/setting-up-prebid-video-in-dfp.html).
 
 If you’re using another ad server:
-Follow the instructions for your ad server to create line items for instream video content.  The primary points to keep in mind as you set up your line items include:
+Follow the instructions for your ad server to create line items for the in-player integration. The primary points to keep in mind as you set up your line items include:
 
 - Line items must target Prebid key-values.
-- The VAST creative URL must be in the format `https://prebid.adnxs.com/pbc/v1/cache?uuid={hb_cache_id}`, where `{hb_cache_id}` is the value passed to the ad server from Prebid.js.
+- The VAST creative URL must be in the format `https://my-pbs.example.com/cache?uuid={hb_cache_id}`, where `{hb_cache_id}` is the value passed to the ad server from Prebid.js.
 
-#### Outstream
+#### In-renderer Integration
 
-If you already have a Prebid integration for banner, you don’t need to do anything differently for outstream video. Outstream units use the same creative and line item targeting setup as banner creatives. See the [Step by Step Guide to Google Ad Manager Setup](/adops/step-by-step.html) for instructions. (If you’re not using Google Ad Manager as your ad server, follow your ad server’s guidelines for setting up your line items.)
+If you already have a Prebid integration for banner, you don’t need to do anything differently to integrate ads through the [in-renderer integration](/prebid-video/video-overview#in-renderer-integration). [No-content/standalone ad units](/formats/video) use the same creative and line item targeting setup as banner creatives. See the [Step by Step Guide to Google Ad Manager Setup](/adops/step-by-step) for instructions. (If you’re not using Google Ad Manager as your ad server, follow your ad server’s guidelines for setting up your line items.)
 
 {: .alert.alert-info :}
 **Prebid Server** If you’ve decided to conduct your header bidding auctions server-side rather than on the client, you need to have a Prebid Server account or set up your own. See the [Prebid Server Overview](/prebid-server/overview/prebid-server-overview.html) to begin your integration.
@@ -56,7 +56,7 @@ If you already have a Prebid integration for banner, you don’t need to do anyt
 
 Your first step to implementing header bidding for video is to [download Prebid.js](/download.html). Before downloading, select the adapters you want to include. (You can add more adapters later.)
 
-- Include at least one bid adapter that supports video. Find a list of eligible adapters [here](/dev-docs/bidders.html#bidder-video-native).
+- Include at least one bid adapter that supports video. Find a list of eligible adapters in [the video bidders table](/dev-docs/bidders.html#bidder-video-native).
 - If Google Ad Manager is your ad server, you must include the [Google Ad Manager Video module](/dev-docs/publisher-api-reference/adServers.dfp.buildVideoUrl.html).
 - If you’ll be integrating with Prebid Server, be sure to include “Prebid Server” in the list of adapters.
 

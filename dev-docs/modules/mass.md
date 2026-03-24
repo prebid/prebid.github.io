@@ -10,7 +10,6 @@ sidebarType : 1
 ---
 
 # MASS Module
-
 {:.no_toc}
 
 * TOC

@@ -4,6 +4,7 @@ title: myTarget
 description: Prebid myTarget Bidder Adapter
 pbjs: true
 biddercode: mytarget
+pbjs_version_notes: removed in 9.0
 sidebarType: 1
 ---
 

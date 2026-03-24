@@ -1,18 +1,17 @@
 ---
 layout: page_v2
-title: Browsi Viewability Module
-display_name: Browsi Viewability
-description: Browsi Real Time Viewability
+title: Browsi RTD Module
+display_name: Browsi RTD Module
+description: Browsi Real Time Module
 page_type: module
 module_type: rtd
-module_code : browsiRtdProvider
-enable_download : true
+module_code: browsiRtdProvider
+enable_download: true
 vendor_specific: true
 sidebarType : 1
 ---
 
-# Browsi Viewability Module
-
+# Browsi RTD Module
 {:.no_toc}
 
 * TOC
@@ -20,19 +19,24 @@ sidebarType : 1
 
 ## Overview
 
-The Browsi Viewability module provides viewability predictions for ad slots on the page.
-To use this module, you'll need to work with [Browsi](https://gobrowsi.com) to get
-an account and receive instructions on how to set up your pages and ad server.
+Browsi’s RTD module for Prebid.js provides real-time insights and predictive signals to optimize bid requests and ad delivery.
+This module leverages Browsi's AI models to give publishers access to:
+
+* **Real-time predictions for GAM**: Enhance ad placements and maximize revenue by leveraging viewability and revenue predictions as key values in GAM ad requests.
+* **Enhanced bid request signals**: Augment bid requests with additional contextual, behavioral, and engagement signals to improve demand partner performance.
+* **Dynamic ad serving optimization**: Enable smarter ad delivery strategies based on predicted user behavior and page context.
+
+## Integration
 
 Implementation works like this:
 
-1. Build the Browsi module into the Prebid.js package with:
+1. Build the Browsi modules into the Prebid.js package with:
 
     ```bash
-    gulp build --modules=browsiRtdProvider&...
+    gulp build --modules=browsiRtdProvider,browsiAnalyticsAdapter
     ```
 
-2. Use `setConfig` to instruct the browser to obtain the viewability data in parallel with the header bidding auction
+2. Use `setConfig` to instruct the browser to obtain Browsi’s predictive signals in parallel with the header bidding auction
 
 ## Configuration
 
@@ -40,16 +44,17 @@ This module is configured as part of the `realTimeData.dataProviders` object:
 
 ```javascript
 pbjs.setConfig({
-    "realTimeData": {
-        dataProviders:[{          
-            "name": "browsi",
-            "params": {
-                "url": "testUrl.com",   // get params values
-                "siteKey": "testKey",   // from Browsi
-                "pubKey": "testPub",    //
-                "keyName":"bv"          //
-            }
-        }]
+   realTimeData: {
+       auctionDelay : 3000,
+       dataProviders: [{
+           name: "browsi",
+           params: {
+               url: "domain.com",
+               siteKey: "SITE",
+               pubKey: "PUB",
+               waitForIt: true
+           }
+       }]
     }
 });
 ```
@@ -64,22 +69,9 @@ Syntax details:
 | params.siteKey  |String   |Site key|   |
 | params.pubKey  |String   |Publisher key|   |
 | params.url  |String   |Server URL|   |
-| params.keyName  |String   |Key value name| Optional. Defaults to 'bv'. |
+| params.keyName  |String   |GAM key value name for the viewability prediction| Optional. Defaults to ‘browsiViewability’. |
+| params.waitForIt  |boolean   |Allow waiting for data| true |
 
 ## Output
 
-For each ad slot, the module returns expected viewability prediction in a JSON format.
-When the data is received, it calls `pbjs.setTargetingForGPT` to set the defined `keyName` for each adunit.
-
-Example:
-
-```json
-{
-  "slotA":{
-      "p":0.56,   // ad server targeting variable (e.g. bv) for slotA is 0.56
-  },
-  "slotB":{
-      "p":0.824,  // ad server targeting variable (e.g. bv) for slotB is 0.824
-  }
-}
-```
+For each ad slot, the module generates predictive signals in JSON format, assigns key-value pairs for viewability and revenue predictions via `pbjs.setTargetingForGPT`, and embeds the full JSON in the bid request under `<bidder>.ortb2Imp.ext.data.browsi`.

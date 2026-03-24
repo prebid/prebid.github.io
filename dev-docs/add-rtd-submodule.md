@@ -123,7 +123,7 @@ submodule('realTimeData', subModuleObject);
 
 Several of the interfaces get a `userConsent` object. It's an object that carries these attributes:
 
-* [gdpr](/dev-docs/modules/consentManagement.html#bidder-adapter-gdpr-integration) - GDPR
+* [gdpr](/dev-docs/modules/consentManagementTcf.html#bidder-adapter-gdpr-integration) - GDPR
 * [usp](/dev-docs/modules/consentManagementUsp.html#bidder-adapter-us-privacy-integration) - US Privacy (aka CCPA)
 * [coppa](/dev-docs/publisher-api-reference/setConfig.html#setConfig-coppa) - the Child Online Privacy Protection Act
 

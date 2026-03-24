@@ -16,6 +16,7 @@ Please visit [growthcode.io](https://growthcode.io/) for more information.
 
 #### Analytics Options
 
+{: .table .table-bordered .table-striped }
 | Param enableAnalytics | Scope    | Type   | Description                                             | Example                  |
 |-----------------------|----------|--------|---------------------------------------------------------|--------------------------|
 | provider              | Required | String | The name of this Adapter.                               | `"growthCodeAnalytics"`  |

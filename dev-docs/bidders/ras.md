@@ -13,6 +13,7 @@ floors_supported: false
 fpd_supported: false
 sidebarType: 1
 multiformat_supported: will-bid-on-one
+pbjs_version_notes: removed in 9.0
 ---
 
 

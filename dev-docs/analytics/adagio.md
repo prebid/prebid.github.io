@@ -21,6 +21,10 @@ The Adagio Analytics adapter requires setup and approval from the Adagio team. P
   pbjs.que.push(function () {
     pbjs.enableAnalytics({
       provider: 'adagio',
+      options: {
+        organizationId: '1000', // Required. Provided by Adagio
+        site: 'my-website', // Required. Provided by Adagio
+      }
     });
   });
 ```

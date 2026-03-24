@@ -6,11 +6,14 @@ biddercode: colossusssp
 usp_supported: true
 schain_supported: true
 media_types: banner, video, native
-userIds: britepoolid, identityLink, unifiedId, id5Id, uid2
+userIds: all
 gdpr: true
 pbjs: true
-pbs: false
+pbs: true
 sidebarType: 1
+coppa_supported: true
+floors_supported: true
+
 ---
 
 ### Prebid.JS Bid Params
@@ -22,4 +25,4 @@ sidebarType: 1
 | `group_id`     | optional | Group Id will be generated on Colossus SSP Platform. Use instead of placement_id  | `0`        | `integer` |
 | `traffic`      | optional | Type traffic                                             | `'banner'` | `string`  |
 
-*For colossus prebid server parametres, look into colossus.md*
+*For colossus prebid server parameters, look into colossus.md*

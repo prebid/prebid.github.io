@@ -10,14 +10,14 @@ coppa_supported: false
 gpp_supported: false
 schain_supported: false
 dchain_supported: false
-media_types: banner
+media_types: banner, video
 safeframes_ok: false
 deals_supported: true
 floors_supported: true
 pbjs: true
 pbs: false
 prebid_member: false
-multiformat_supported: will-not-bid
+multiformat_supported: will-bid-on-one
 ortb_blocking_supported: partial
 sidebarType: 1
 ---

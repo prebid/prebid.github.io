@@ -28,6 +28,7 @@ sidebarType: 1
   - [Video Object](#video-object)
   - [User Object](#user-object)
   - [App Object](#app-object)
+  - [Video Bid params and Video MediaTypes params](#video-bid-params-and-video-mediatypes-params)
   - [Custom Targeting keys](#custom-targeting-keys)
   - [Auction Level Keywords](#auction-level-keywords)
   - [Passing Keys Without Values](#passing-keys-without-values)
@@ -40,10 +41,13 @@ sidebarType: 1
 <a name="appnexus-bid-params"></a>
 
 {: .alert.alert-danger :}
-All AppNexus (Xandr) placements included in a single call to `requestBids` must belong to the same parent Publisher.  If placements from two different publishers are included in the call, the AppNexus bidder will not return any demand for those placements. <br />
+All AppNexus (Microsoft/Xandr) placements included in a single call to `requestBids` must belong to the same parent Publisher.  If placements from two different publishers are included in the call, the AppNexus bidder will not return any demand for those placements. <br />
 *Note: This requirement does not apply to adapters that are [aliasing](/dev-docs/publisher-api-reference/aliasBidder.html) the AppNexus adapter.*
 
 #### Bid Params
+
+{: .alert.alert-danger :}
+Starting with Prebid.js version 9.0, an update was made to the `appnexusBidAdapter.js` file to remove the support for the `transformBidParams` function.  Previously this standard adapter function was used in conjunction of Prebid.js > PBS requests to modify any bid params for that bidder to the bid param format used by the PBS endpoint.  Part of the changes for 9.0 in general were to remove these functions from the client-side adapter files, in order to reduce the build size of Prebid.js for those publishers who wanted to make the PBS requests.  In the case of our adapter, we instead created a new module named `anPspParamsConverter` that would mimic behavior of the `transformBidParams` function.  There's no setup instructions needed on the Prebid.js configs, the module only needs to be included in the Prebid.js build file and it will perform the needed steps.  If you have any questions on this change, please reach out to your Microsoft representative and they can help.
 
 {: .alert.alert-danger :}
 Starting with Prebid.js version 7.36.0, an update was made to the `appnexusBidAdapter.js` file to support bid params in a lower-case underscore format (eg `invCode` to `inv_code`) similar to how the params are formatted for the Prebid Server AppNexus bidder.  This change was implemented to streamline publisher setups for both projects instead of maintaining separate versions of the same params depending on what setup is used.
@@ -61,10 +65,10 @@ The table below will reflect both formats, though it's recommended to use the lo
 | `user`                                          | optional | Object that specifies information about an external user. See [User Object](#appnexus-user-object) for details.                                                               | `user: { age: 25, gender: 0, dnt: true}`              | `object`         |
 | `allowSmallerSizes` or `allow_smaller_sizes`               | optional | If `true`, ads smaller than the values in your ad unit's `sizes` array will be allowed to serve. Defaults to `false`.                                                         | `true`                                                | `boolean`        |
 | `usePaymentRule` (PBJS) or `use_pmt_rule` (PBS+PBJS) | optional | If `true`, Appnexus will return net price to Prebid.js after publisher payment rules have been applied.                                                                       | `true`                                                | `boolean`        |
-| `keywords`                                      | optional | A set of key-value pairs applied to all ad slots on the page.  Mapped to [buy-side segment targeting](https://monetize.xandr.com/docs/segment-targeting) (login required). A maximum of 100 key/value pairs can be defined at the page level. Each tag can have up to 100 additional key/value pairs defined. Values can be empty. See [Passing Keys Without Values](#appnexus-no-value) below for examples. If you want to pass keywords for all adUnits, see [Auction Level Keywords](#appnexus-auction-keywords) for an example. Note that to use keyword with the Prebid Server adapter, that feature must be enabled for your account by an AppNexus account manager. | `keywords: { genre: ['rock', 'pop'] }`                | `object`         |
+| `keywords`                                      | optional | A set of key-value pairs applied to all ad slots on the page.  Mapped to [buy-side segment targeting](https://learn.microsoft.com/en-us/xandr/monetize/segment-targeting) (login required). A maximum of 100 key/value pairs can be defined at the page level. Each tag can have up to 100 additional key/value pairs defined. Values can be empty. See [Passing Keys Without Values](#appnexus-no-value) below for examples. If you want to pass keywords for all adUnits, see [Auction Level Keywords](#appnexus-auction-keywords) for an example. Note that to use keyword with the Prebid Server adapter, that feature must be enabled for your account by an AppNexus account manager. | `keywords: { genre: ['rock', 'pop'] }`                | `object`         |
 | `video`                                         | optional | Object containing video targeting parameters.  See [Video Object](#appnexus-video-object) for details.                                                                        | `video: { playback_method: ['auto_play_sound_off'] }` | `object`         |
 | `app`                                           | optional | Object containing mobile app parameters.  See the [App Object](#appnexus-app-object) for details.                                                                      | `app : { id: 'app-id'}`                               | `object`         |
-| `reserve`                                       | optional | Sets a floor price for the bid that is returned. If floors have been configured in the AppNexus Console, those settings will override what is configured here unless 'Reserve Price Override' is checked. See [Xandr docs](https://docs.xandr.com/bundle/monetize_monetize-standard/page/topics/create-a-floor-rule.html)                | `0.90`                                                | `float`          |
+| `reserve`                                       | optional | Sets a floor price for the bid that is returned. If floors have been configured in the AppNexus Console, those settings will override what is configured here unless 'Reserve Price Override' is checked. See [Microsoft Learn](https://learn.microsoft.com/en-us/xandr/monetize/create-a-floor-rule)                | `0.90`                                                | `float`          |
 | `position`                                      | optional | Identify the placement as above or below the fold.  Allowed values: Unknown: `unknown`; Above the fold: `above`; Below the fold: `below`                                      | `'above'`                                               | `string`        |
 | `trafficSourceCode` or `traffic_source_code`         | optional | Specifies the third-party source of this impression.                                                                                                                          | `'my_traffic_source'`                                 | `string`         |
 | `supplyType` or `supply_type`                      | optional | Indicates the type of supply for this placement. Possible values are `web`, `mobile_web`, `mobile_app`                                                                        | `'web'`                                               | `string`         |
@@ -77,12 +81,14 @@ The table below will reflect both formats, though it's recommended to use the lo
 
 #### Video Object
 
+For details on how these video params work with the params set in the adUnit.mediaTypes.video object, see [Video Bid params and Video MediaTypes params](#appnexus-video-params) section below.
+
 {: .table .table-bordered .table-striped }
 | Name              | Description                                                                                                                                                                                                                                  | Type             |
 |-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|
 | `minduration` | Integer that defines the minimum video ad duration in seconds. | `integer` |
 | `maxduration` | Integer that defines the maximum video ad duration in seconds. | `integer` |
-|`context` | A string that indicates the type of video ad requested.  Allowed values: `"pre_roll"`; `"mid_roll"`; `"post_roll"`; `"outstream"`. | `string` |
+|`context` | A string that indicates the type of video ad requested.  Allowed values: `"pre_roll"`; `"mid_roll"`; `"post_roll"`; `"outstream"`; `"in-banner"`, `"in-feed"`, `"interstitial"`, `"accompanying_content_pre_roll"`, `"accompanying_content_mid_roll"`, `"accompanying_content_post_roll"`. | `string` |
 | `skippable` | Boolean which, if `true`, means the user can click a button to skip the video ad.  Defaults to `false`. | `boolean` |
 |`skipoffset`| Integer that defines the number of seconds until an ad can be skipped.  Assumes `skippable` setting was set to `true`. | `integer` |
 | `playback_method` | A string that sets the playback method supported by the publisher.  Allowed values: `"auto_play_sound_on"`; `"auto_play_sound_off"`; `"click_to_play"`; `"mouse_over"`; `"auto_play_sound_unknown"`. | `string` |
@@ -146,6 +152,16 @@ pbjs.bidderSettings = {
   }
 }
 ```
+
+<a name="appnexus-video-params"></a>
+
+#### Video Bid params and Video MediaTypes params
+
+It is possible to have setup video params within the adUnit's AppNexus bid object as well as in the adUnit's `mediaTypes.video` object.  In this case, there is a set of logic that the AppNexus bid adapter follows to resolve which values should be passed along to the ad server request.  Generally speaking, the adapter prefers the values from bid param video object over the mediaTypes video object, in order to preserve historical setups.  So for instance, if the playbackmethod field was set in both locations, then the bid params `playback_method` would be chosen over the mediaTypes `playbackmethod`.  If there are different fields set between the two locations and they don't overlap, then the `mediaTypes.video` params would be included along with the bid params.
+
+To note - not all the fields between the two locations have a single direct comparison, nor are all fields from the `mediaTypes.video` object are supported by the ad server endpoint.  The fields/values set in the `mediaTypes.video` object follow the OpenRTB convention, while our bid params follow the convention for the ad server endpoint (which is **not** a straight OpenRTB endpoint).  The AppNexus bid adapter converts the matching fields from the `mediaTypes.video` object where there is a correlation to help support as much as possible.  For example, to help infer the `context` field, the adapter will look to the `mediaTypes.video.plcmt`, `mediaTypes.video.startdelay`, and `mediaTypes.video.placement` fields to help determine the appropriate `context` value.  The `startdelay` field is included here to help clarify the type of instream video that is used (ie pre/mid/post-roll).  
+
+If you want to transition from video bid params to use the `mediaTypes.video` params (to simplify the adUnit setup), please contact your AppNexus contact to help identify the proper fields/values are populated to ensure a smooth transition.
 
 <a name="appnexus-auction-keywords"></a>
 

@@ -52,37 +52,54 @@ If not specified through any of the methods above, Prebid.js attempts to automat
 {: .table .table-bordered .table-striped }
 | Field | Value | Notes |
 |-----------+--------------|
-| `site.page` | Site URL, from `pageUrl` falling back to `location.href` | [`pageUrl` config](/dev-docs/publisher-api-reference/setConfig.md#setConfig-Page-URL) |
+| `site.page` | Site URL, from `pageUrl` falling back to `location.href` | [`pageUrl` config](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Page-URL) |
 | `site.ref` | `document.referrer` | |
 | `site.domain` | Domain portion of `site.page` | |
-| `site.keywords` | Contents of `<meta name="keywords">`, if such a tag is present on the page | |
+| `site.keywords` | Contents of `<meta name="keywords">` and `<script type="application/json+ld">`, if those tags are present on the page | See [configuration options](#config) |
 | `site.publisher.domain` | Second level domain portion of `site.domain` | The second-level domain portion of `sub.example.publisher.com` is `publisher.com`|
-| `device.w` | Viewport width |
-| `device.h` | Viewport height |
+| `device.w` | Width of the screen in pixels |
+| `device.h` | Height of the screen in pixels |
 | `device.dnt` | Do Not Track setting | [Navigator.doNotTrack](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/doNotTrack) |
 | `device.language` | User's language | [Navigator.language](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/language) |
 | `device.ua` | User agent | [Navigator.userAgent](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/userAgent) |
 | `device.sua` | User agent client hints | [uaHints config](#uaHints) |  
+| `device.ext.vpw` | Viewport width in pixels |
+| `device.ext.vph` | Viewport height in pixels |
 | `device.ext.webdriver`| `true` if the browser declares to be an automation tool | [Navigator.webdriver](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/webdriver) |
 | `device.ext.cdep`| Google Chrome cookie deprecation label | [Chrome-facilitated testing](https://developers.google.com/privacy-sandbox/setup/web/chrome-facilitated-testing) |
-| `regs.coppa` | COPPA Regulation flag | [COPPA config](/dev-docs/publisher-api-reference/setConfig.md#setConfig-coppa)
+| `regs.coppa` | COPPA Regulation flag | [COPPA config](/dev-docs/publisher-api-reference/setConfig.html#setConfig-coppa)
 | `regs.ext.gpc` | Global Privacy Control setting | [Navigator.globalPrivacyControl](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/globalPrivacyControl) |
 
-Publisher-provided first party data always takes precedence for all fields; you can also set `null` to disable them. For example, the following discards the automatically collected `device.keywords`:  
+Publisher-provided first party data generally takes precedence for all fields; you can also set `null` to disable them. For example, the following discards the automatically collected `site.keywords`:  
 
 ```javascript
 pbjs.setConfig({
     ortb2: {
-        device: {
+        site: {
             keywords: null
         }
     }
 })
 ```
 
+Note however that this typically not the case for fields populated by optional modules: `consentManagementTcf` will override `regs.gdpr` and `user.consent`, `geolocationRtdProvider` will override `device.geo`, and so on.    
+
+<a id="config"></a>
+
+## Configuration
+
+{: .table .table-bordered .table-striped }
+| Param | Type | Description |
+| --- | --- | --- | --- |
+| `firstPartyData` |  Object | First party data automatic collection options |
+| `firstPartyData.uaHints`  |   Array of strings | High entropy user agent hints to collect for `device.sua` (see below) |
+| `firstPartyData.keywords` | Object | `site.kewyords` automatic collection options | 
+| `firstPartyData.keywords.meta` |  Boolean | If true (the default), collect keywords from `<meta name="keyword">` tags found on the page |
+| `firstPartyData.keywords.json` |  Boolean | If true (the default), collect keywords from `<script type="application/json+ld">` tags found on the page |
+
 <a id="uaHints"></a>
 
-#### User Agent client hints
+### User Agent client hints
 
 `device.sua` is populated with UA client hints retrieved from [`navigator.userAgentData`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/userAgentData). You can specify the list of hints using the `uaHints` option with [any available high entropy hint](https://developer.mozilla.org/en-US/docs/Web/API/NavigatorUAData#returning_high_entropy_values):
 
@@ -188,7 +205,7 @@ pbjs.setConfig({
 
 {: .alert.alert-warning :}
 Note that supplying first party **user** data may require special
-consent in certain regions. By default, Prebid's [gdprEnforcement](/dev-docs/modules/gdprEnforcement.html) module does **not** police the passing
+consent in certain regions. By default, Prebid's [tcfControl](/dev-docs/modules/tcfControl.html) module does **not** police the passing
 of user data, but can optionally do so if the `personalizedAds` rule is enabled.
 
 {: .alert.alert-warning :}
@@ -268,24 +285,6 @@ pbjs.addAdUnits({
     },
     ...
 });
-```
-
-You may also specify adUnit-specific transaction IDs using `ortb2Imp.ext.tid`, and Prebid will use them instead of generating random new ones. This is useful if you are auctioning the same slots through multiple header bidding libraries. Note: you must take care to not re-use the same transaction IDs across different ad units or auctions. Here's a simplified example passing a tid through the [requestBids](/dev-docs/publisher-api-reference/requestBids.html) function:
-
-```javascript
-const tid = crypto.randomUUID();
-pbjs.requestBids({
-   adUnits: [{
-    code: 'test-div',
-    // ...
-    ortb2Imp: {
-        ext: {
-          tid: tid
-        }
-    }
-   }]
-});
-// reuse `tid` when auctioning `test-div` through some other header bidding wrapper   
 ```
 
 {: .alert.alert-info :}

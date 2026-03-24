@@ -3,6 +3,10 @@ layout: userid
 title: BritePool
 description: BritePool User ID sub-module
 useridmodule: britepoolIdSystem
+enable_download: false
+bidRequestUserId: britepoolid
+eidsource: britepool.com
+example: '"1111"'
 ---
 
 {: .alert.alert-warning :}
@@ -13,8 +17,9 @@ integration partners (such as PubMatic), are able to maximize revenues without c
 
 Add it to your Prebid.js package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=britepoolIdSystem
+```
 
 ## BritePool Registration
 
@@ -23,6 +28,7 @@ Please reach out to [prebid@britepool.com](mailto:prebid@britepool.com) and requ
 ## BritePool Configuration
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | `"britepoolId"` | `"britepoolId"` |
