@@ -15,6 +15,7 @@ fpd_supported: true
 multiformat_supported: will-bid-on-one
 sidebarType: 1
 pbs: true
+endpoint_compression: true
 ---
 
 {: .alert.alert-danger :}
@@ -197,3 +198,22 @@ pbjs.que.push(function () {
 ```
 
 You can use this example and place in the `hello_world` gpt integration test page
+
+### Endpoint Compression
+
+This adapter utilizes gzip compression support built into Prebid.js core. For more information, see [Compression Support for Outgoing Requests](https://docs.prebid.org/dev-docs/bidder-adaptor.html#compression-support-for-outgoing-requests)
+
+#### Disabling Compression
+
+You can disable gzip compression at the bidder level using `pbjs.setBidderConfig`. Set the `gzipEnabled` value to false:
+
+```javascript
+pbjs.que.push(function () {
+  pbjs.setBidderConfig({
+    bidders: ['showheroes'],
+    config: {
+      gzipEnabled: false
+    }
+  });
+});
+```
