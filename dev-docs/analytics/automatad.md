@@ -2,7 +2,7 @@
 layout: analytics
 title: Automatad
 description: Automatad Prebid Analytics Adapter
-modulecode: automatadAnalytics
+modulecode: automatad
 tcfeu_supported: false
 usp_supported: false
 coppa_supported: false
