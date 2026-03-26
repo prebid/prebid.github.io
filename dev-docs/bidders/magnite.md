@@ -26,7 +26,7 @@ sidebarType: 1
 
 ### Registration
 
-The Magnite adapter requires setup and approval from the Magnite team, even for existing accounts. Please reach out to your account manager or <header-bidding@magnite.com> for more information.
+For existing DV+ Accounts transitioning from the Rubicon adapter to the Magnite adapter, you can use your existing Account, Site, Zone ids, with new line items and orders. Please reach out to your account manager if you have additional questions
 
 ### Bid Params
 
