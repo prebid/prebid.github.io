@@ -117,29 +117,29 @@ In order to make a bid request for the native ads you should provide a descripti
 #### NativeAssetImage
 {:.no_toc}
 
-{: .table .table-bordered .table-striped }
 | Type | Scope | Description |
-|-------|--------|---------|
+| ------- | -------- | ----------- |
 | Main | Optional | The image that will be displayed in the native ad. Include a value for `minimumWidth` and `minimumHeight`. Ensure that the `NativeAssetImage.type` is set to ImageAsset.Main |
 | Icon | Optional | The icon that will be displayed with the native ad. Include a value for `minimumWidth` and `minimumHeight`. Ensure that the `NativeAssetImage.type` is set to ImageAsset.Icon. |
+{: .table .table-bordered .table-striped }
 
 #### NativeAssetData
 {:.no_toc}
 
-{: .table .table-bordered .table-striped }
 | Type | Scope | Description |
-|-------|--------|---------|
+| ------- | -------- | ----------- |
 | Description | Optional | The content to appear with the ad. Ensure that the type is set to `DataAsset.description`. |
 | ctatext | Optional | The text for the call to action button of the native ad. Ensure that the type is set to `DataAsset.ctatext`. |
 | Sponsored | Optional | The sponsor (brand) of the native ad. Ensure that the type is set to `DataAsset.sponsored`. |
+{: .table .table-bordered .table-striped }
 
 #### NativeAssetTitle
 {:.no_toc}
 
-{: .table .table-bordered .table-striped }
 | Type | Scope | Description |
-|-------|--------|---------|
+| ------- | -------- | ----------- |
 | Title | Optional | The title of the native ad. |
+{: .table .table-bordered .table-striped }
 
 ### Other Native parameters
 
