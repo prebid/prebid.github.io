@@ -59,13 +59,14 @@ pbjs.setConfig({
 ## Parameters
 
 {: .table .table-bordered .table-striped }
-| Name                | Type     | Scope    | Description                                |
-|---------------------|----------|----------|--------------------------------------------|
-| `version`           | `String` | Required | Specifies the version of the Contxtful Receptivity API. |
-| `customer`          | `String` | Required | Your unique customer identifier.           |
-| `hostname`          | `String` | Optional | Target URL for CONTXTFUL external JavaScript file. Default is "api.receptivity.io". Changing default behaviour is not recommended. Please reach out to [contact@contxtful.com](mailto:contact@contxtful.com) if you experience issues. |
-| `adServerTargeting` | `Boolean`| Optional | Enables the `getTargetingData` to inject targeting value in ad units. Setting to true enables the feature, false disables the feature. Default is true      |
-| `bidders`           | `Array`  | Optional | Setting this array enables Receptivity in the `ortb2` object through `getBidRequestData` for all the listed `bidders`. Default is `[]` (an empty array). RECOMMENDED : Add all the bidders active like this `["bidderCode1", "bidderCode", "..."]` |
+
+| Name                | Type      | Scope    | Description                                                                                                                                                                                                                                      |
+|---------------------|-----------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `version`           | `String`  | Required | Specifies the version of the Contxtful Receptivity API.                                                                                                                                                                                          |
+| `customer`          | `String`  | Required | Your unique customer identifier.                                                                                                                                                                                                                 |
+| `hostname`          | `String`  | Optional | Target URL for CONTXTFUL external JavaScript file. Default is "api.receptivity.io". Changing default behaviour is not recommended. Please reach out to [contact@contxtful.com](mailto:contact@contxtful.com) if you experience issues.           |
+| `adServerTargeting` | `Boolean` | Optional | Enables the `getTargetingData` to inject targeting value in ad units. Setting to true enables the feature, false disables the feature. Default is true.                                                                                          |
+| `bidders`           | `Array`   | Optional | Setting this array enables Receptivity in the `ortb2` object through `getBidRequestData` for all the listed `bidders`. Default is `[]` (an empty array). RECOMMENDED: Add all the bidders active like this `["bidderCode1", "bidderCode", "..."]`|
 
 ## Usage: Injection in Ad Servers
 

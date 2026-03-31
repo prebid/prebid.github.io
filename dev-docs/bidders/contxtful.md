@@ -21,17 +21,18 @@ multiformat_supported: will-bid-on-any
 ortb_blocking_supported: true
 ---
 
-### Note
+## Note
 
 The Contxtful bidder adapter requires some setup. Contact us at [contact@contxtful.com](mailto:contact@contxtful.com)
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name        | Scope    | Description                                                | Example                      | Type                 |
-|-------------|----------|------------------------------------------------------------|------------------------------|----------------------|
-| `placementId`      | required | The placement identifier                                          | `'p12345678'` | `string`             |
-| `customerId`      | required | The customer identifier              | `'DEMO123456'`       | `string`           |
+
+| Name           | Scope    | Description                  | Example        | Type     |
+|----------------|----------|------------------------------|----------------|----------|
+| `placementId`  | required | The placement identifier     | `'p12345678'`  | `string` |
+| `customerId`   | required | The customer identifier      | `'DEMO123456'` | `string` |
 
 ### Configuration - Prebid.js Adapter
 
