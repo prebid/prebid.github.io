@@ -3,7 +3,8 @@ layout: bidder
 title: Contxtful
 description: Prebid Contxtful Bidder Adapter
 biddercode: contxtful
-tcfeu_supported: false
+gvl_id: 1569
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true

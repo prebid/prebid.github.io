@@ -7,6 +7,8 @@ page_type: module
 module_type: rtd
 module_code : contxtfulRtdProvider
 enable_download : true
+gvl_id: 1569
+gdpr_supported: true
 vendor_specific: true
 sidebarType : 1
 ---
