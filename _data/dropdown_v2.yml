@@ -147,13 +147,22 @@
   - subsectionId: 3
     sectionId: 1
     sectionName: Product
+    title: Prebid Sales Agent
+    link: /agents/salesagent.html
+    needsDivider: 1
+    isHeader: 0
+    isSubSectionStart: 1
+
+  - subsectionId: 4
+    sectionId: 1
+    sectionName: Product
     title: Formats
     link: /formats/formats.html
     needsDivider: 0
     isHeader: 0
     isSubSectionStart: 1
 
-  - subsectionId: 3
+  - subsectionId: 4
     sectionId: 1
     sectionName: Product
     title: Display
@@ -162,7 +171,7 @@
     isHeader: 0
     isSubSectionStart: 0
 
-  - subsectionId: 3
+  - subsectionId: 4
     sectionId: 1
     sectionName: Product
     title: Video
@@ -171,7 +180,7 @@
     isHeader: 0
     isSubSectionStart: 0
 
-  - subsectionId: 3
+  - subsectionId: 4
     sectionId: 1
     sectionName: Product
     title: Native
@@ -180,7 +189,7 @@
     isHeader: 0
     isSubSectionStart: 0
 
-  - subsectionId: 3
+  - subsectionId: 4
     sectionId: 1
     sectionName: Product
     title: AMP
@@ -189,7 +198,7 @@
     isHeader: 0
     isSubSectionStart: 0
 
-  - subsectionId: 3
+  - subsectionId: 4
     sectionId: 0
     sectionName: Product
     title: Multi-Format
