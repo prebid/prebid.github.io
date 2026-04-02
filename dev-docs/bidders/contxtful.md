@@ -62,6 +62,9 @@ pbjs.setConfig({
             }
          }
       ]
+   },
+   "gvlMapping":{
+       "contxtful": 1569
    }
 }
 );
@@ -94,6 +97,9 @@ pbjs.setConfig({
             }
          }
       ]
+   },
+   "gvlMapping":{
+       "contxtful": 1569
    }
 }
 );
