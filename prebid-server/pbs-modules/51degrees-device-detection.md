@@ -19,7 +19,7 @@ sidebarType : 5
 
 The 51Degrees module enriches an incoming OpenRTB request with [51Degrees Device Data](https://51degrees.com/documentation/_device_detection__overview.html).
 
-The module sets the following fields of the device object: `make`, `model`, `os`, `osv`, `h`, `w`, `ppi`, `pxratio` - interested bidder adapters may use these fields as needed.  In addition the module sets `device.ext.fiftyonedegrees_deviceId` to a permanent device ID which can be rapidly looked up in on premise data exposing over 250 properties including the device age, chip set, codec support, and price, operating system and app/browser versions, age, and embedded features.
+The module sets the following fields of the device object: `make`, `model`, `hwv`, `os`, `osv`, `h`, `w`, `ppi`, `pxratio` - interested bidder adapters may use these fields as needed.  In addition the module sets `device.ext.fiftyonedegrees_deviceId` to a permanent device ID which can be rapidly looked up in on premise data exposing over 250 properties including the device age, chip set, codec support, and price, operating system and app/browser versions, age, and embedded features.
 
 ## Operation Details
 
@@ -322,7 +322,8 @@ curl http://localhost:8080/openrtb2/auction --data @extra/modules/fiftyone-devic
                      "ua": "Mozilla/5.0 (Linux; Android 11; SM-G998W) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Mobile Safari/537.36",
 +                    "devicetype": 1,
 +                    "make": "Samsung",
-+                    "model": "SM-G998W",
++                    "model": "Galaxy",
++                    "hwv": "S21 Ultra 5G",
                      "os": "Android",
                      "osv": "11.0",
                      "h": 3200,
