@@ -1,8 +1,8 @@
 ---
 layout: bidder
-title: Nuba
-description: Prebid Nuba Bidder Adapter
-biddercode: nuba
+title: DPAI
+description: Prebid DPAI Bidder Adapter
+biddercode: dpai
 gpp_sids: usstate_all
 tcfeu_supported: false
 usp_supported: true
@@ -16,8 +16,8 @@ media_types: banner, video, native
 multiformat_supported: will-bid-on-one
 userIds: all
 pbjs: true
-pbs: true
-pbs_app_supported: true
+pbs: false
+pbs_app_supported: false
 safeframes_ok: true
 sidebarType: 1
 ---
