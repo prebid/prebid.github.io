@@ -68,6 +68,10 @@ as well as enabling settings for specific use cases mentioned above (e.g. acbidd
 | params                 | Object               |                                                                                               | -                  |
 | params.acBidders       | String[]             | An array of bidder codes to share cohorts with in certain versions of Prebid, see below                         | `[]`               |
 | params.maxSegs         | Integer              | Maximum number of cohorts to be included in either the `permutive` or `p_standard` key-value. | `500`              |
+| params.bidders         | Object               | Per-bidder configuration for custom cohort sources. Keys are bidder codes.                    | `{ msft: { customCohorts: { source: 'ls', key: '_papns' } } }` |
+| params.bidders.\<bidder\>.customCohorts | Object | Custom cohorts source configuration for a specific bidder.                                   | -                  |
+| params.bidders.\<bidder\>.customCohorts.source | String | Storage type to read custom cohorts from. Currently only `'ls'` (localStorage) is supported. | -                  |
+| params.bidders.\<bidder\>.customCohorts.key | String | The localStorage key to read custom cohorts from.                                          | -                  |
 
 ### Context
 
@@ -132,10 +136,13 @@ Currently, bidders with known support for custom cohort targeting are:
 
 * Xandr
 * Magnite
+* Microsoft (msft)
 
 When enabling the respective Activation for a cohort in Permutive, this module will automatically attach that cohort ID to the bid request.
 There is no need to enable individual bidders in the module configuration, it will automatically reflect which SSP integrations you have enabled in your Permutive dashboard.
 Permutive cohorts will be sent in the permutive key-value.
+
+**Note:** Publishers migrating from the `appnexus` bidder to `msft` should add `msft` to the `acBidders` array (or via the Permutive platform). The module automatically reads custom cohorts for `msft` from the same localStorage key used by `appnexus`.
 
 ### _Enabling Advertiser Cohorts_
 
