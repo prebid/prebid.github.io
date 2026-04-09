@@ -10,16 +10,16 @@ schain_supported: true
 sidebarType: 1
 ---
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 
-| Name | Scope | Description | Example | Type |
-|------|-------|-------------|---------|------|
-| `adUnitToken` | required | Ad unit token provided by Asterio. | `'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'` | `string` |
-| `pos` | optional | Ad position hint. Allowed values follow OpenRTB position conventions, e.g. above the fold: `1`, below the fold: `3`, middle of the fold: `7`. | `1` | `integer` |
+| Name          | Scope    | Description                                                                                                                                  | Example                                  | Type      |
+|---------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------|-----------|
+| `adUnitToken` | required | Ad unit token provided by Asterio.                                                                                                           | `'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'` | `string`  |
+| `pos`         | optional | Ad position hint. Allowed values follow OpenRTB position conventions, e.g. above the fold: `1`, below the fold: `3`, middle of the fold: `7`. | `1`                                      | `integer` |
 
-### Banner Test Ad Unit
+## Banner Test Ad Unit
 
 ```javascript
 var adUnits = [{
@@ -38,7 +38,7 @@ var adUnits = [{
 }];
 ```
 
-### Video Test Ad Unit
+## Video Test Ad Unit
 
 ```javascript
 var adUnits = [{
