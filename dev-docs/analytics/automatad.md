@@ -7,7 +7,7 @@ tcfeu_supported: false
 usp_supported: false
 coppa_supported: false
 prebid_member: false
-enable_download: false
+enable_download: true
 ---
 
 #### Instructions for usage
