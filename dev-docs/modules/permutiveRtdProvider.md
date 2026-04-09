@@ -61,17 +61,17 @@ as well as enabling settings for specific use cases mentioned above (e.g. acbidd
 
 {: .table .table-bordered .table-striped }
 
-| Name                   | Type                 | Description                                                                                   | Default            |
-| ---------------------- | -------------------- | --------------------------------------------------------------------------------------------- | ------------------ |
-| name                   | String               | This should always be `permutive`                                                             | -                  |
-| waitForIt              | Boolean              | Should be `true` if there's an `auctionDelay` defined (optional)                              | `false`            |
-| params                 | Object               |                                                                                               | -                  |
-| params.acBidders       | String[]             | An array of bidder codes to share cohorts with in certain versions of Prebid, see below                         | `[]`               |
-| params.maxSegs         | Integer              | Maximum number of cohorts to be included in either the `permutive` or `p_standard` key-value. | `500`              |
-| params.bidders         | Object               | Per-bidder configuration for custom cohort sources. Keys are bidder codes.                    | `{ msft: { customCohorts: { source: 'ls', key: '_papns' } } }` |
-| params.bidders.\<bidder\>.customCohorts | Object | Custom cohorts source configuration for a specific bidder.                                   | -                  |
-| params.bidders.\<bidder\>.customCohorts.source | String | Storage type to read custom cohorts from. Currently only `'ls'` (localStorage) is supported. | -                  |
-| params.bidders.\<bidder\>.customCohorts.key | String | The localStorage key to read custom cohorts from.                                          | -                  |
+| Name                                           | Type                 | Description                                                                                    | Default                                                         |
+| ---------------------------------------------- | -------------------- | ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| name                                           | String               | This should always be `permutive`                                                              | -                                                               |
+| waitForIt                                      | Boolean              | Should be `true` if there's an `auctionDelay` defined (optional)                               | `false`                                                         |
+| params                                         | Object               |                                                                                                | -                                                               |
+| params.acBidders                               | String[]             | An array of bidder codes to share cohorts with in certain versions of Prebid, see below        | `[]`                                                            |
+| params.maxSegs                                 | Integer              | Maximum number of cohorts to be included in either the `permutive` or `p_standard` key-value.  | `500`                                                           |
+| params.bidders                                 | Object               | Per-bidder configuration for custom cohort sources. Keys are bidder codes.                     | `{ msft: { customCohorts: { source: 'ls', key: '_papns' } } }`  |
+| params.bidders.\<bidder\>.customCohorts        | Object               | Custom cohorts source configuration for a specific bidder.                                     | -                                                               |
+| params.bidders.\<bidder\>.customCohorts.source | String               | Storage type to read custom cohorts from. Currently only `'ls'` (localStorage) is supported.   | -                                                               |
+| params.bidders.\<bidder\>.customCohorts.key    | String               | The localStorage key to read custom cohorts from.                                              | -                                                               |
 
 ### Context
 
