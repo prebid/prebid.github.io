@@ -66,7 +66,7 @@ as well as enabling settings for specific use cases mentioned above (e.g. acbidd
 | name                   | String               | This should always be `permutive`                                                             | -                  |
 | waitForIt              | Boolean              | Should be `true` if there's an `auctionDelay` defined (optional)                              | `false`            |
 | params                 | Object               |                                                                                               | -                  |
-| params.acBidders       | String[]             | An array of bidder codes to share cohorts with in certain versions of Prebid, see below                         | `[]`               |
+| params.acBidders       | String[]             | An array of bidder codes to share cohorts with in certain versions of Prebid, see below       | `[]`               |
 | params.maxSegs         | Integer              | Maximum number of cohorts to be included in either the `permutive` or `p_standard` key-value. | `500`              |
 
 ### Consent
