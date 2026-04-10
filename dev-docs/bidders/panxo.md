@@ -24,7 +24,7 @@ ortb_blocking_supported: false
 sidebarType: 1
 ---
 
-## Before You Begin
+### Before You Begin
 
 The Panxo adapter requires the [Panxo RTD Module](/dev-docs/modules/panxoRtdProvider.html) to be included in your Prebid.js build. The RTD module detects AI-referred traffic and enriches bid requests with classification signals that the adapter needs to participate in the auction.
 
@@ -32,7 +32,7 @@ Please register at [app.panxo.com](https://app.panxo.com) to obtain your `siteId
 
 **Important**: Without the Panxo RTD module configured, the adapter will not participate in the auction.
 
-## Bid Params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 
@@ -41,9 +41,9 @@ Please register at [app.panxo.com](https://app.panxo.com) to obtain your `siteId
 | `propertyKey` | required | Property identifier from Panxo dashboard | `'abc123def456'` | `string` |
 | `floor` | optional | Minimum CPM floor price in USD | `0.50` | `number` |
 
-## Setup Example
+### Setup Example
 
-### Step 1: Build Prebid.js with required modules
+#### Step 1: Build Prebid.js with required modules
 
 Include both `panxoRtdProvider` and `panxoBidAdapter` in your Prebid.js build:
 
@@ -53,7 +53,7 @@ gulp build --modules=rtdModule,panxoRtdProvider,panxoBidAdapter,...
 
 Or select both **Panxo RTD Module** and **Panxo** on the Prebid [Download](/download.html) page.
 
-### Step 2: Configure RTD module and ad units
+#### Step 2: Configure RTD module and ad units
 
 ```javascript
 pbjs.setConfig({
@@ -85,14 +85,14 @@ var adUnits = [{
 }];
 ```
 
-## First Party Data
+### First Party Data
 
 This adapter supports First Party Data via `ortb2`:
 
 - `ortb2.site.*` (name, cat, content, keywords, etc.)
 - `ortb2.user.*` (data, ext)
 
-## User Sync
+### User Sync
 
 Panxo supports pixel-based user sync:
 
@@ -109,11 +109,11 @@ pbjs.setConfig({
 });
 ```
 
-## Prebid Server
+### Prebid Server
 
 Panxo supports server-side bidding through Prebid Server. The Panxo RTD module must still be configured in Prebid.js on the client side, as it detects AI-referred traffic and injects the user identifier that Prebid Server forwards to the Panxo endpoint.
 
-### Prebid Server Configuration
+#### Prebid Server Configuration
 
 ```yaml
 adapters:
@@ -121,11 +121,11 @@ adapters:
     endpoint: "https://panxo-sys.com/openrtb/2.5/bid"
 ```
 
-### Client-Side Requirements for PBS
+#### Client-Side Requirements for PBS
 
 When using Prebid Server, the Panxo RTD module runs on the client and enriches the OpenRTB request with `device.ext.panxo`, which PBS forwards to the Panxo adapter. No additional client-side configuration is required beyond the standard RTD module setup shown above.
 
-## Additional Notes
+### Additional Notes
 
 - **Net Revenue**: Bids are returned as net revenue.
 - **TTL**: 300 seconds (5 minutes)
