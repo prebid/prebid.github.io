@@ -14,13 +14,15 @@ sidebarType: 1
 
 ## Overview
 
-This Real-Time Data (RTD) submodule reads **Agentic Audiences** embedding data from browser storage (localStorage or cookies) and merges it into the outbound bid request as OpenRTB `user.data` entries. It follows the community extension [**Agentic Audiences in OpenRTB**](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/agentic-audiences.md) (see [IAB Tech Lab — Agentic Audiences](https://iabtechlab.com/standards/agentic-audiences/) and the [reference repository](https://github.com/IABTechLab/agentic-audiences)).
+This Real-Time Data (RTD) submodule reads **Agentic Audiences** embedding data from browser storage (localStorage, with cookie fallback) and merges it into the outbound bid request via `ortb2Fragments.global`. It follows the community extension [**Agentic Audiences in OpenRTB**](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/agentic-audiences.md) (see [IAB Tech Lab — Agentic Audiences](https://iabtechlab.com/standards/agentic-audiences/) and the [reference repository](https://github.com/IABTechLab/agentic-audiences)).
 
-You can configure **multiple providers** under a single module: each key in `params.providers` becomes the `name` on one `Data` object in `user.data`, with segments built from that provider’s stored payload. No separate Prebid module is required per vendor—only this submodule plus the correct `storageKey` for wherever each partner’s script writes data.
+The module injects **one** OpenRTB `Data` object under `user.data`: `name` is always the submodule id `agenticAudience`, and `segment` is built from the stored `entries` array. Embedding fields from each stored entry are placed under **`segment.ext.aa`** (`ver`, `vector`, `dimension`, `model`, `type`); optional `id` and `name` on the segment come from the stored entry when present. Fields are copied **without validation or coercion**.
+
+Implementation reference: [Prebid.js PR #14626](https://github.com/prebid/Prebid.js/pull/14626).
 
 ## Integration
 
-1. Build the module into your Prebid.js bundle. The parent [**rtdModule**](/dev-docs/publisher-api-reference/setConfig.html#setConfig-realTimeData) is required. You may list both explicitly, or rely on `agenticAudienceAdapter` being registered as an RTD submodule so builds that include only `agenticAudienceAdapter` still pull in `rtdModule`:
+1. Build the module into your Prebid.js bundle. The parent [**rtdModule**](/dev-docs/publisher-api-reference/setConfig.html#setConfig-realTimeData) is required. `agenticAudienceAdapter` is listed in `modules/.submodules.json`, so builds that include only `agenticAudienceAdapter` still pull in `rtdModule`:
 
    ```bash
    gulp build --modules=rtdModule,agenticAudienceAdapter,...
@@ -38,39 +40,100 @@ pbjs.setConfig({
       name: 'agenticAudience',
       waitForIt: true,
       params: {
-        providers: {
-          partner_a: { storageKey: '_example_agentic_audiences_a_' },
-          partner_b: { storageKey: '_example_agentic_audiences_b_' }
-        }
+        storageKey: '_my_agentic_audience_' // optional; see below
       }
     }]
   }
 });
 ```
 
-The `realTimeData.dataProviders[]` entry for this submodule uses **`name: 'agenticAudience'`** (the RTD submodule name). Other fields such as `auctionDelay` and `waitForIt` are generic RTD behavior; see [Publisher Real-Time Data Configuration](/dev-docs/publisher-api-reference/setConfig.html#setConfig-realTimeData).
+Use **`name: 'agenticAudience'`** in `realTimeData.dataProviders[]` so the RTD core loads this submodule. Other fields such as `auctionDelay` and `waitForIt` are generic RTD behavior; see [Publisher Real-Time Data Configuration](/dev-docs/publisher-api-reference/setConfig.html#setConfig-realTimeData).
 
 ### Parameters under `params`
 
 {: .table .table-bordered .table-striped }
 | Parameter | Type | Description |
 | :-- | :-- | :-- |
-| `providers` | object | **Required** for initialization. Map from a provider label (string) to per-provider settings. The object key becomes `user.data[].name` in the bid request. If `providers` is missing, not a plain object, or has no enumerable keys, the submodule does not inject data. |
-| `providers.<label>.storageKey` | string | Key used for `localStorage`; if absent there, the cookie API is tried. If missing or falsy for a given label, that provider is skipped (no `user.data` row for it). |
+| `storageKey` | string | Optional. Key used for `localStorage` and, if nothing is found there, for the cookie API. If omitted or an empty string, the module uses the default key **`_agentic_audience_`** (exported as `DEFAULT_STORAGE_KEY` in the module source). |
 
-Provider labels are **chosen by the publisher** (or by convention with a data partner). The module does not whitelist names.
+`init` always returns success; if storage is missing, invalid, or has no mappable segments, the module simply does not merge `user` into `ortb2Fragments.global`.
 
 ## Storage format
 
-The value at each `storageKey` is expected to be **Base64-encoded JSON** (as produced by the Agentic Audiences client storage format). After `atob` and `JSON.parse`, the payload should include an **`entries`** array. Each entry is mapped to one OpenRTB `Segment` with standard `id` and `name` where present, and Agentic Audiences fields placed under `segment.ext` (`ver`, `vector`, `dimension`, `model`, `type`) as defined in the [OpenRTB extension](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/agentic-audiences.md). The module does not validate or re-encode vectors; consumers should follow the extension for decoding (Float32 little-endian per value, Base64).
+The value at the resolved storage key must be a **string**: Base64-encoded JSON (`atob` + `JSON.parse`). The parsed object must include an **`entries`** array. Each element should be a plain object; the module maps it to an OpenRTB segment as follows:
+
+- `id`, `name` → segment `id`, `name` (optional; may be undefined if absent in storage)
+- `ver`, `vector`, `dimension`, `model`, `type` → `segment.ext.aa.*` (passed through as-is; no normalization)
+
+Invalid Base64/JSON or a missing/non-array `entries` field results in no injection.
 
 ## OpenRTB output shape
 
-For each configured provider that yields at least one mappable segment, the submodule appends one element to `user.data`, in the order of `Object.keys(params.providers)` (typical object insertion order). Structure matches the extension’s single- and multi-provider examples: one `Data` object per provider with `name` and `segment[]`, and embedding metadata in each segment’s `ext`.
+When at least one segment is produced, the module **`mergeDeep`s** into `reqBidsConfigObj.ortb2Fragments.global` approximately:
 
-## GDPR / TCF
+```json
+{
+  "user": {
+    "data": [
+      {
+        "name": "agenticAudience",
+        "segment": [
+          {
+            "id": "seg-1",
+            "name": "identity-contextual",
+            "ext": {
+              "aa": {
+                "ver": "1.0.0",
+                "vector": "<Base64 Float32 LE per OpenRTB extension>",
+                "dimension": 10,
+                "model": "sbert-mini-ctx-001",
+                "type": [1, 2]
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+```
 
-The submodule reads first-party storage. It is registered with Prebid’s **vendorless GVL** handling so that, when [TCF control](/dev-docs/modules/tcfControl.html) is used, enforcement aligns with other publisher-scoped storage modules (publisher purpose consent rather than a specific advertising vendor). See the [FAQ on vendorless GVL](/dev-docs/faq.html) for context.
+Downstream consumers should expect the **`ext.aa`** object as emitted by this submodule (see the [OpenRTB community extension](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/agentic-audiences.md) for semantic definitions of the embedding fields).
+
+## Privacy / storage access
+
+Reads go through Prebid’s **storage manager** for the RTD module type and submodule name `agenticAudience`, so access respects the same activity and consent controls as other RTD submodules in your build.
+
+### TCF: `gvlMapping` for `agenticAudience`
+
+If you use [TCF Control](/dev-docs/modules/tcfControl.html) (or related GDPR consent settings) and the submodule is treated as an unknown vendor, map the **submodule name** `agenticAudience` to the correct **IAB Global Vendor List (GVL) ID** for the party whose storage or data processing applies (for example, the embedding provider). Use the real integer from the GVL instead of placeholders.
+
+`gvlMapping` only:
+
+```javascript
+pbjs.setConfig({
+  gvlMapping: {
+    agenticAudience: XXX,
+  },
+});
+```
+
+(`XXX` stands in for your vendor’s numeric GVL ID.)
+
+Together with `realTimeData` (same `setConfig` call or a later one; Prebid merges top-level keys):
+
+```javascript
+pbjs.setConfig({
+  gvlMapping: {
+    agenticAudience: 123, // example only — use your vendor’s GVL ID
+  },
+  realTimeData: {
+    dataProviders: [{ name: 'agenticAudience', params: {} }],
+  },
+});
+```
+
+See the [`gvlMapping` note](/dev-docs/modules/tcfControl.html) on the TCF Control module page for general behavior.
 
 ## Testing
 
