@@ -52,6 +52,7 @@ Use **`name: 'agenticAudience'`** in `realTimeData.dataProviders[]` so the RTD c
 ### Parameters under `params`
 
 {: .table .table-bordered .table-striped }
+
 | Parameter | Type | Description |
 | :-- | :-- | :-- |
 | `storageKey` | string | Optional. Key used for `localStorage` and, if nothing is found there, for the cookie API. If omitted or an empty string, the module uses the default key **`_agentic_audience_`** (exported as `DEFAULT_STORAGE_KEY` in the module source). |
