@@ -1,8 +1,9 @@
 ---
 layout: bidder
-title: 1accord
-description: Prebid 1accord Bidder Adapter
+title: 1Accord
+description: Prebid 1Accord Bidder Adapter
 pbjs: true
+pbs: true
 biddercode: 1accord
 aliasCode : nexx360
 gvl_id: 965 (nexx360)
@@ -19,6 +20,7 @@ safeframes_ok: true
 deals_supported: true
 sidebarType: 1
 fpd_supported: true
+multiformat_supported: will-bid-on-any
 
 ---
 

@@ -7,7 +7,7 @@ sidebarType: 1
 
 Configure GPT slots to use PAAPI. 
 
-**Kind**: static method of pbjs API. Only available when the [fledgeForGpt module](/dev-docs/modules/fledgeForGpt.html) is installed.
+**Kind**: static method of pbjs API. Only available when the [paapiForGpt module](/dev-docs/modules/paapiForGpt.html) is installed.
 
 **Parameters**:
 
@@ -17,6 +17,7 @@ Configure GPT slots to use PAAPI.
 | options | Optional | `Object` |  |
 | options.adUnitCode | Optional | `String` | Ad unit filter; if provided, only configure the GPT slot that matches this ad unit |
 | options.auctionId | Optional | `String` | Auction filter; if provided, only configure GPT slots with PAAPI configs from this auction |
+| customSlotMatching | Optional | `Function` | Custom slot matching function - of the same type used by [setTargetingForGPTAsync](/dev-docs/publisher-api-reference/setTargetingForGPTAsync.html) |
 
 **Example**:
 

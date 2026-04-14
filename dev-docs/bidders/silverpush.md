@@ -27,6 +27,7 @@ The Silverpush Bidding adapter requires setup before beginning. Please contact u
 #### Banner
 
 {: .table .table-bordered .table-striped }
+
 |       Name     |    Scope    |                 Description                |    Example    |     Type     |
 | -------------- | ----------- | ------------------------------------------ | ------------- | ------------ |
 | `publisherId` | required | Publisher id provided by silverpush | "123456" | String |
@@ -37,6 +38,7 @@ The Silverpush Bidding adapter requires setup before beginning. Please contact u
 The following banner parameters are supported here so publishers may fully declare their banner inventory:
 
 {: .table .table-bordered .table-striped }
+
 |    Name   |    Scope    |                      Description                                  |  Example  |    Type   |
 | --------- | ------------| ----------------------------------------------------------------- | --------- | --------- |
 | sizes | required | Avalaible sizes supported for banner ad unit | [ [300, 250], [300, 600] ] | [[Integer, Integer], [Integer, Integer]] |
@@ -64,6 +66,7 @@ const adUnits = [{
 #### Video
 
 {: .table .table-bordered .table-striped }
+
 | Name | Scope | Description | Example | Type |
 | ---- | ----- | ----------- | ------- | ---- |
 | `publisherId` | required | Publisher id provided by silverpush | "123456" | String |
@@ -74,6 +77,7 @@ const adUnits = [{
 The following video parameters are supported here so publishers may fully declare their video inventory:
 
 {: .table .table-bordered .table-striped }
+
 |    Name   |    Scope    |                      Description                                  |  Example  |    Type   |
 | --------- | ------------| ----------------------------------------------------------------- | --------- | --------- |
 | context | required | instream or outstream |"outstream" | string |
@@ -128,7 +132,7 @@ Publishers should use the `ortb2` method of setting First Party Data. The follow
 
 - ortb2.user.ext.data
 
-## Prebid Server
+### Prebid Server
 
 ```javascript
 pbjs.setConfig({
@@ -157,5 +161,5 @@ pbjs.setConfig({
 });
 ```
 
-## Additional Details
+### Additional Details
 For any queries, reach us at <prebid@silverpush.co>.

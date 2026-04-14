@@ -19,19 +19,21 @@ Background information:
 
 It can be added to you Prebid.js package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build –modules=userId,oneKeyIdSystem
+```
 
 ⚠️ This module works with a RTD module. Both must be configured. See the [OneKey RTD Module](/dev-docs/modules/oneKeyRtdProvider.html).
 
 ## OneKey Registration
 
 OneKey is a community based Framework with a decentralized approach.
-Go to [onekey.community](https://onekey.community/) for more details.
+Go to onekey.community for more details.
 
 ## OneKey Configuration
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module | `"oneKeyData"` |

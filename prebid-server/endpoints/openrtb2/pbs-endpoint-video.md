@@ -25,7 +25,7 @@ The process is similar to [Prebid.js client side](/prebid-video/video-long-form.
 1. Application makes request for a video stream.
 2. An SSAI Server sends a video request to PBS, specifying the pod requirements.
 3. PBS sends a request for bids to selected demand partners by relaying OpenRTB requests to them.
-4. Demand partners return a bid response to PBS. If competitive seperation is enabled, PBS peforms [category translation](/dev-docs/modules/categoryTranslation.html) on each bid. Whether category translation is required or not, the bids are stored in prebid cache.
+4. Demand partners return a bid response to PBS. If competitive separation is enabled, PBS performs [category translation](/dev-docs/modules/categoryTranslation.html) on each bid. Whether category translation is required or not, the bids are stored in prebid cache.
 5. PBS generates key-value pairs that are comprised of price, category, and duration values. The key is `hb_pb_cat_dur` and each component of the key name after the `hb` represents a related value.  
 &nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;  `_pb` represents the price bucket.

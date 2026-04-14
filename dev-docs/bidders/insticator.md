@@ -14,6 +14,7 @@ floors_supported: true
 media_types: banner, video
 multiformat_supported: will-bid-on-any
 pbjs: true
+pbs: true
 gvl_id: 910
 sidebarType: 1
 userIds: all

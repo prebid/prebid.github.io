@@ -3,7 +3,9 @@ layout: bidder
 title: Optidigital
 description: Prebid Optidigital Bidder Adapter
 biddercode: optidigital
+prebid_member: true
 pbjs: true
+pbs: true
 floors_supported: true
 tcfeu_supported: true
 tcf2_supported: true

@@ -12,8 +12,6 @@ sidebarType : 1
 
 # Freewheel Module
 
-{:.no_toc}
-
 This module returns the targeting key value pairs for the FreeWheel ad server.
 
 ## How to use the module
@@ -60,6 +58,15 @@ pbjs.adServers.freewheel.getTargeting({
   ]
 }
 ```
+
+### Parameters
+
+{: .table .table-bordered .table-striped }
+
+| Name | Type | Description | Required | Default |
+| :--- | :--- | :--- | :--- | :--- |
+| `codes` | Array<string> | AdUnit codes to retrieve targeting for | yes | n/a |
+| `callback` | Function | Function invoked with error and targeting map | yes | n/a |
 
 The values returned by `getTargeting` are concatenation of CPM, industy code, and video duration. FreeWheel SDK will send those values to FreeWheel Ad Server within the following query:
 

@@ -25,7 +25,7 @@ ortb_blocking_supported: false
 
 ### Note
 
-The OwnAdX Bidding adapter requires setup before beginning. Please contact us at [support@techbravo.com](support@techbravo.com)
+The OwnAdX Bidding adapter requires setup before beginning. Please contact us at <support@techbravo.com>.
 
 ### Bid Params
 

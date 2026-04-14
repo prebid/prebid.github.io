@@ -13,10 +13,13 @@ coppa_supported: true
 gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 schain_supported: true
 dchain_supported: false
-userIds: criteo, id5Id, sharedId, unifiedId
+userIds: all
+prebid_member: true
+pbs_app_supported: true
 safeframes_ok: true
 floors_supported: true
 multiformat_supported: will-bid-on-any
+ortb_blocking_supported: partial
 sidebarType: 1
 ---
 
@@ -27,6 +30,7 @@ AdMatic header bidding adapter connects with AdMatic demand sources to fetch bid
 ### Bid params
 
 {: .table .table-bordered .table-striped }
+
 | Name         | Scope    | Description                        | Example    | Type     |
 |--------------|----------|------------------------------------|------------|----------|
 | `networkId` | required | The network ID from AdMatic | `12345` | `number` |
@@ -76,7 +80,7 @@ var adUnits = [{
 }];
 ```
 
-## UserSync example
+### UserSync example
 
 ```javascript
 pbjs.setConfig({

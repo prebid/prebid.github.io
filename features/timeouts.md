@@ -18,6 +18,15 @@ pages to delay the ad server call for just long enough to get bids, but
 not so long as to reduce overall revenue. This delay is controlled by
 a number of timeouts and adjustments.
 
+{% include vimeo-iframe.html id="1014195522" title="1014195522" %}
+
+Related content:
+
+- [Transcript of this video](/features/timeouts-video.html)
+- [Prebid.js Impression Flow](/prebid/prebidjs-flow-video.html)
+
+## Different kinds of timeouts
+
 This diagram summarizes timeouts in Prebid.js and Prebid Server:
 
 ![Timeout](/assets/images/dev-docs/prebid-timeouts.png){:class="pb-xlg-img"}

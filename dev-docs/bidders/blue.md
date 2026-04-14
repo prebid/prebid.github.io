@@ -27,3 +27,4 @@ The bidder requires setup before usage. Please get in touch with our publisher t
 | Name | Scope | Description | Example | Type |
 |---------------|----------|---------------------|---------------|----------|
 | `publisherId` | required | Unique publisher ID | `'ABCDEF'` | `string` |
+| `placementId` | optional | Unique placement ID | `'ABCDEF'` | `string` |

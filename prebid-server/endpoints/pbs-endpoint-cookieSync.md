@@ -9,7 +9,7 @@ title: Prebid Server | Endpoints | /cookie_sync
 
 This endpoint is used to initiate cookie syncs.
 
-## Invoking /cookie_sync
+## POST /cookie_sync
 
 Generally, two clients invoke the /cookie_sync endpoint:
 

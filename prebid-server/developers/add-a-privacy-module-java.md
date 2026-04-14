@@ -280,3 +280,42 @@ public class MyPrivacyModule implements PrivacyModule, Loggable {
     }
 }
 ```
+
+## Privacy Trace Log and Analytics
+
+The privacy module interface logs information that analytics adapters may want to consume. For example, if you're an analytics provider
+and want to check whether there was a skipRate config present, you can read the log for `skipped:true` and log however your analytics requires.
+
+For example:
+
+```json
+         {
+            "description": "Invocation of Activity Infrastructure.",
+            "activity": "transmitUfpd",
+            "activity_invocation_payload": {
+              "component_type": "BIDDER",
+              "component_name": "bidderA"
+            }
+          },
+          {
+            "description": "Setting the default invocation result.",
+            "allow_by_default": true
+          },
+          {
+            "description": "Processing rule.",
+            "rule_configuration": {
+              "and": [
+                {
+                  "privacy_module": "iab.usgeneral",
+                  "skipped": true,
+                  "result": "ABSTAIN"
+                }
+              ]
+            },
+            "result": "ABSTAIN"
+          },
+```
+
+## Further Reading
+
+* [Building a privacy module](/prebid-server/developers/add-a-privacy-module.html)

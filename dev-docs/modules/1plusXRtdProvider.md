@@ -12,7 +12,6 @@ sidebarType : 1
 ---
 
 # 1plusX RTD Module
-
 {:.no_toc}
 
 * TOC
@@ -47,7 +46,8 @@ pbjs.setConfig({
             params: {
                 customerId: 'acme',
                 bidders: ['appnexus', 'rubicon'],
-                timeout: TIMEOUT
+                timeout: TIMEOUT,
+                fpidStorageType: 'html5'
             }
         }]
     }
@@ -57,6 +57,7 @@ pbjs.setConfig({
 ## Parameters
 
 {: .table .table-bordered .table-striped }
+
 | Name              | Type          | Description                                                      | Default           |
 | :---------------- | :------------ | :--------------------------------------------------------------- |:----------------- |
 | name              | String        | Real time data module name                                       | Always '1plusX'   |
@@ -65,3 +66,4 @@ pbjs.setConfig({
 | params.customerId | String        | Your 1plusX customer id                                          |                   |
 | params.bidders    | Array<string> | List of bidders for which you would like data to be set          |                   |
 | params.timeout    | Integer       | timeout (ms)                                                     | 1000ms            |
+| params.fpidStorageType | String | Where to read the first party id ('html5' or 'cookie') | 'html5' |

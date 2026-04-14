@@ -13,7 +13,7 @@ sidebarType : 1
 {:.no_toc}
 
 * TOC
-  {:toc}
+{:toc}
 
 ## Overview
 
@@ -30,7 +30,7 @@ pbjs.setConfig({
       regs: {
           ext: {
               dsa: {
-                  dsarequired: 2,  
+                  dsarequired: 2,
                   pubrender: 0
                   // ...
               }
@@ -39,6 +39,15 @@ pbjs.setConfig({
   }
 })
 ```
+
+### Parameters
+
+{: .table .table-bordered .table-striped }
+
+| Name | Type | Description | Required | Default |
+| :--- | :--- | :--- | :--- | :--- |
+| `dsarequired` | Integer | Indicates if DSA transparency information must be included (`0` = not required, `2` = required but advertiser may render, `3` = required and advertiser must render) | yes | n/a |
+| `pubrender` | Integer | Signals publisher rendering capabilities (`0` = cannot render, `2` = will render) | yes | n/a |
 
 This module will then enforce that:
 

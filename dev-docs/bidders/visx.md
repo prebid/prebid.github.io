@@ -87,7 +87,7 @@ The YOC VIS.X Prebid.js adapter responds with VAST XML (in the `vastXml` field) 
 ```javascript
 pbjs.setConfig({
         cache: {
-            url: 'https://prebid.adnxs.com/pbc/v1/cache'
+            url: 'https://prebid.example.com/pbc/v1/cache'
         }
 });
 ```
@@ -96,13 +96,15 @@ pbjs.setConfig({
 
 - In Prebid's `bidderSettings`, the `storageAllowed` parameter must be set to **true**. In Prebid v7.0 and later, `storageAllowed` defaults to false, so you will need to explicitly set this value to true.
 
-    ```javascript
+{% include dev-docs/storageAllowed.md %}
+
+```javascript
         pbjs.bidderSettings = {
             visx: {
                 storageAllowed: true
             }
         }
-    ```
+```
 
 ### Bid params
 

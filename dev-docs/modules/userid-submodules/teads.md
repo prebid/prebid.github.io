@@ -4,6 +4,9 @@ title: Teads ID
 description: Teads ID User ID sub-module
 useridmodule: teadsIdSystem
 pbjs_version_notes: please avoid using v7.20.0 and v7.21.0
+bidRequestUserId: teadsId
+eidsource: teads.com
+example: '"1111"'
 ---
 
 
@@ -20,6 +23,7 @@ gulp build --modules=userId,teadsIdSystem
 Then configure the teadsId in your `userSync` configuration.  
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | `"teadsId"` | `"teadsId"` |
