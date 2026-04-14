@@ -8,7 +8,8 @@ pbs: true
 media_types: video, banner
 userIds: all
 fpd_supported: false
-tcfeu_supported: false
+tcfeu_supported: true
+gvl_id: 1358
 usp_supported: true
 coppa_supported: true
 schain_supported: true

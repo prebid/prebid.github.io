@@ -17,7 +17,7 @@ deals_supported: true
 floors_supported: true
 fpd_supported: false
 pbjs: true
-pbs: false
+pbs: true
 prebid_member: false
 multiformat_supported: will-bid-on-one
 ortb_blocking_supported: true
@@ -31,6 +31,8 @@ sidebarType: 1
 |---------------|----------|-----------------------|-----------|-----------|
 | `placementId` | required | Placement id | `'ed8a9c16-88ea-4724-aa0d-013c3e595e49'` | `string` |
 | `bidfloor` | optional | Floor price | `2.5` | `float` |
+| `viewabilityPercentage` | optional | The viewability percentage during the action time must be a value between 0 and 1 | `0.25` | `float` |
+| `viewabilityContainerIdentifier` | optional | The container ID for viewability measurement | `'#containerID'` | `string` |
 
 ### Media Types
 
@@ -126,6 +128,8 @@ var adUnits = [
         params: {
           placementId: "e4984e88-9ff4-45a3-8b9d-33aabcad634e", // required
           bidfloor: 2.5, // optional
+          viewabilityPercentage: 0.25, // optional - 25% in view
+          viewabilityContainerIdentifier: '#containerID', // optional
         },
       },
       // Add more bidders and their parameters as needed

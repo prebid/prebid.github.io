@@ -41,5 +41,5 @@ The bidder will NOT set any cookies. The bidder will also try to read from Cooki
 |-----------------|----------|--------------------------------------|-------------------------------------------------|----------|
 | `placementId`   | required | The Invibes placement ID             | `'1234567'`                                     | `string` |
 | `domainId`      | optional | Id of domain                         | `1001`                                          | `integer`|
-| `customEndpoint`| optional | Custom test domain                   | `https://bid.videostep.com/Bid/VideoAdContent`  | `integer`|
+| `customEndpoint`| optional | Custom test domain                   | `https://bid.videostep.com/Bid/VideoAdContent`  | `string` |
 | `debug`         | optional | Debug paramentes (only prebid server)| `{ "testBvid": "1234", "testLog": true }`       | `object` |

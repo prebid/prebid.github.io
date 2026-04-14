@@ -81,4 +81,4 @@ To exclude the header bidders from the auction:
 - Select the header bidding demand source and appropriate targeting.
 - To exclude certain formats from Header Bidding Trafficking, you can create an
   inventory exclusion that targets the relevant hb_format key-value. Header 
-  Bidding Trafficking supports display and outstream video, but not native ads.
+  Bidding Trafficking supports display and in-renderer (formerly "outstream") video, but not native ads.

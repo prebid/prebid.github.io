@@ -15,7 +15,7 @@ sidebarType: 1
 {: .alert.alert-warning :}
 glimpse is probably a defunct bidder, as the glimpseportal.io domain is no longer active.
 
-## Overview
+### Overview
 
 ```text
 Module Name: Glimpse Protocol Bid Adapter
@@ -23,19 +23,20 @@ Module Type: Bidder Adapter
 Maintainer: support@glimpseportal.io
 ```
 
-## Description
+### Description
 
 Glimpse protects consumer privacy while allowing precise targeting. This module connects publishers
 to Glimpse Protocol's demand sources via Prebid.js.
 
-## Supported Media Types
+### Supported Media Types
 
 {: .table .table-bordered .table-striped }
+
 | Type | Sizes |
 | -------- | ----------------------------------------- |
 | `Banner` | 300x250, 300x600, 320x50, 728x90, 970x250 |
 
-## Setup
+### Setup
 
 ### Prerequisites
 
@@ -50,13 +51,14 @@ Before you start, you will need to build a `prebid.js` file with the Glimpse mod
 <script async src="https://<PUBLISHER_DOMAIN>/prebid.js"></script>
 ```
 
-## Configuration
+### Configuration
 
 ### Bid Requests
 
 Our adapter expects the following values in the `params` block of each bid request:
 
 {: .table .table-bordered .table-striped }
+
 | Name | Scope | Type | Description | Example |
 | ----- | -------- | ------ | --------------------------------------------------------------------------------------------------- | ---------------------- |
 | `pid` | Required | string | A unique identifier representing an ad unit. It is provided by Glimpse when registering an ad unit. | 'glimpse-placement-id' |
@@ -123,8 +125,8 @@ pbjs.que.push(() => {
 })
 ```
 
-## FAQs
+### FAQs
 
-### Can you provide additional support?
+#### Can you provide additional support?
 
 Of course! You can check the Glimpse Prebid Adapter documentation or reach out to us at <support@glimpseportal.io>.

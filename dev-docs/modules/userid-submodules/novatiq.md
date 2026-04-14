@@ -3,6 +3,9 @@ layout: userid
 title: Novatiq Hyper ID
 description: Novatiq Hyper ID User ID sub-module
 useridmodule: novatiqIdSystem
+bidRequestUserId: novatiqId
+eidsource: novatiq.com
+example: '"1111"'
 ---
 
 
@@ -12,8 +15,9 @@ The [Novatiq](https://www.novatiq.com) proprietary dynamic Hyper ID is a unique,
 
 Enable by adding the Novatiq submodule to your Prebid.js package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=novatiqIdSystem,userId
+```
 
 Module activation and configuration:
 
@@ -39,7 +43,8 @@ pbjs.setConfig({
 
 ## Parameters for the Novatiq Module
 
-<div class="table-responsive" markdown="1">
+{: .table .table-bordered .table-striped }
+
 | Param  | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | Module identification: `"novatiq"` | `"novatiq"` |
@@ -53,8 +58,6 @@ pbjs.setConfig({
 | params.urlParams.useStandardUuid | Optional | Boolean | Use a standard UUID format, or the Novatiq UUID format | `false` |
 | params.urlParams.useSspId | Optional | Boolean | Send the sspid (sourceid) along with the sync request <br > Makes the params.sourceid optional if set | `false` |
 | params.urlParams.useSspHost | Optional | Boolean | Send the ssphost along with the sync request | `false` |
-{: .table .table-bordered .table-striped }
-</div>
 
 ## Novatiq Hyper ID with Prebid SharedID Support
 
@@ -62,8 +65,9 @@ You can make use of the Prebid.js SharedId module as follows.
 
 Enable by adding the Novatiq and SharedId submodule to your Prebid.js package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=novatiqIdSystem,userId
+```
 
 Module activation and configuration:
 

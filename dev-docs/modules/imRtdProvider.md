@@ -11,7 +11,6 @@ sidebarType : 1
 ---
 
 # Intimate Merger Real time Data Provider
-
 {:.no_toc}
 
 * TOC

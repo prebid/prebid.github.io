@@ -50,30 +50,112 @@ pbjs.que.push(function() {
 
 {% assign analytics_pages = site.pages | where: "layout", "analytics" %}
 
-<ul>
+## Search for analytics adapters
+
+<input type="text" id="autocomplete-filter" class="autocomplete-filter">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.js" integrity="sha512-HcBl0GSJvt4Qecm4srHapirUx0HJDi2zYXm6KUKNNUGdTIN9cBwakVZHWmRVj4MKgy1AChqhWGYcMDbRKgO0zg==" crossorigin="anonymous"></script>
+<script>
+var AutocompleteList = [{% for page in analytics_pages %}{ label: '{{ page.title }}', value: '{{ page.url }}' },{% endfor %}];
+</script>
+<script src="{{site.baseurl}}/assets/js/autocomplete.js"></script>
+<div class="c-analytic-list-group" markdown="1">
+
+## Full List
+
+### #-A
+<ul class="c-analytic-list">
 {% for page in analytics_pages %}
-<li>
-<a href="#{{ page.modulecode }}">{{ page.title }}</a>
-</li>
+  {% assign firstletter = page.title | slice:0 | downcase %}
+  {% unless firstletter == "0" or firstletter == "1" or firstletter == "2" or firstletter == "3" or firstletter == "4" or firstletter == "5" or firstletter == "6" or firstletter == "7" or firstletter == "8" or firstletter == "9" or firstletter == "a" %}{% continue %}{% endunless %}
+  <li>
+  <a href="{{ page.url }}">{{ page.title }}</a>
+  </li>
 {% endfor %}
 </ul>
 
-## Analytics Adapter Documentation
+### B-C
 
+<ul class="c-analytic-list">
 {% for page in analytics_pages %}
-<div class="bs-docs-section" markdown="1">
-<a name="{{ page.modulecode }}" ></a>
-<h3>{{ page.title }}</h3>
-<h4>Features</h4>
-
-{: .table .table-bordered .table-striped }
-| **Module Code** | {{ page.modulecode }} | **Prebid.org Member** | {% if page.prebid_member == true %}yes{% else %}no{% endif %} |
-| **GDPR Support** | {% if page.tcfeu_supported == true %}yes{% elsif page.tcfeu_supported == false %}no{% else %}Check with vendor{% endif %} | **USP/CCPA Support** | {% if page.usp_supported == true %}yes{% elsif page.usp_supported == false %}no{% else %}Check with vendor{% endif %} |
-| **IAB GVL ID** | {% if page.gvl_id %}{{page.gvl_id}}{% else %}Check with vendor{% endif %} | **COPPA Support** | {% if page.coppa_supported == true %}yes{% elsif page.coppa_supported == false %}no{% else %}Check with vendor{% endif %} |
-
-{{ page.content }}
-</div>
+  {% assign firstletter = page.title | slice:0 | downcase %}
+  {% unless firstletter == "b" or firstletter == "c" %}{% continue %}{% endunless %}
+  <li>
+  <a href="{{ page.url }}">{{ page.title }}</a>
+  </li>
 {% endfor %}
+</ul>
+
+### D-G
+
+<ul class="c-analytic-list">
+{% for page in analytics_pages %}
+  {% assign firstletter = page.title | slice:0 | downcase %}
+  {% unless firstletter == "d" or firstletter == "e" or firstletter == "f" or firstletter == "g" %}{% continue %}{% endunless %}
+  <li>
+  <a href="{{ page.url }}">{{ page.title }}</a>
+  </li>
+{% endfor %}
+</ul>
+
+### H-L
+
+<ul class="c-analytic-list">
+{% for page in analytics_pages %}
+  {% assign firstletter = page.title | slice:0 | downcase %}
+  {% unless firstletter == "h" or firstletter == "i" or firstletter == "j" or firstletter == "k" or firstletter == "l" %}{% continue %}{% endunless %}
+  <li>
+  <a href="{{ page.url }}">{{ page.title }}</a>
+  </li>
+{% endfor %}
+</ul>
+
+### M-O
+
+<ul class="c-analytic-list">
+{% for page in analytics_pages %}
+  {% assign firstletter = page.title | slice:0 | downcase %}
+  {% unless firstletter == "m" or firstletter == "n" or firstletter == "o" %}{% continue %}{% endunless %}
+  <li>
+  <a href="{{ page.url }}">{{ page.title }}</a>
+  </li>
+{% endfor %}
+</ul>
+
+### P-R
+
+<ul class="c-analytic-list">
+{% for page in analytics_pages %}
+  {% assign firstletter = page.title | slice:0 | downcase %}
+  {% unless firstletter == "p" or firstletter == "q" or firstletter == "r" %}{% continue %}{% endunless %}
+  <li>
+  <a href="{{ page.url }}">{{ page.title }}</a>
+  </li>
+{% endfor %}
+</ul>
+
+### S-T
+
+<ul class="c-analytic-list">
+{% for page in analytics_pages %}
+  {% assign firstletter = page.title | slice:0 | downcase %}
+  {% unless firstletter == "s" or firstletter == "t" %}{% continue %}{% endunless %}
+  <li>
+  <a href="{{ page.url }}">{{ page.title }}</a>
+  </li>
+{% endfor %}
+</ul>
+
+### U-Z
+
+<ul class="c-analytic-list">
+{% for page in analytics_pages %}
+  {% assign firstletter = page.title | slice:0 | downcase %}
+  {% unless firstletter == "u" or firstletter == "v" or firstletter == "w" or firstletter == "x" or firstletter == "y" or firstletter == "z" %}{% continue %}{% endunless %}
+  <li>
+  <a href="{{ page.url }}">{{ page.title }}</a>
+  </li>
+{% endfor %}
+</ul>
 
 ## Related Topics
 

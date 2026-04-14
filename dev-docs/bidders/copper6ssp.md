@@ -4,7 +4,8 @@ title: Copper6SSP
 description: Prebid Copper6SSP Bidder Adapter
 biddercode: copper6ssp
 gpp_sids: usstate_all
-tcfeu_supported: false
+gvl_id: 1356
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
@@ -16,7 +17,7 @@ media_types: banner, video, native
 multiformat_supported: will-bid-on-one
 userIds: all
 pbjs: true
-pbs: false
+pbs: true
 pbs_app_supported: true
 safeframes_ok: true
 sidebarType: 1

@@ -3,6 +3,9 @@ layout: userid
 title: FTrack ID from Flashtalking By Mediaocean
 description: FTrack ID from Flashtalking By Mediaocean User ID sub-module
 useridmodule: ftrackIdSystem
+bidRequestUserId: n/a
+eidsource: n/a
+example: '"1111"'
 ---
 
 The FTrack Identity Framework (["FTrack"](https://www.flashtalking.com/identity-framework#FTrack)) User ID Module allows publishers to take advantage of Flashtalking's FTrack ID during the bidding process.
@@ -44,6 +47,7 @@ pbjs.setConfig({
 ```
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | :-- | :-- | :-- | :-- | :-- |
 | name | Required | String | The name of this module: `"FTrack"` | `"FTrack"` |

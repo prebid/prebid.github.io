@@ -22,7 +22,7 @@ ortb_blocking_supported: false
 sidebarType: 1
 ---
 
-## Description
+### Description
 
 This module connects publishers to AIDEM demand.
 
@@ -31,6 +31,7 @@ This module is GDPR and CCPA compliant, and no 3rd party userIds are allowed.
 ### Global Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name          | Scope    | Description         | Example    | Type     |
 |---------------|----------|---------------------|------------|----------|
 | `siteId`      | required | Unique site ID      | `'ABCDEF'` | `String` |
@@ -41,6 +42,7 @@ This module is GDPR and CCPA compliant, and no 3rd party userIds are allowed.
 #### Banner Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name       | Scope    | Description              | Example                   | Type    |
 |------------|----------|--------------------------|---------------------------|---------|
 | `sizes`    | required | List of the sizes wanted | `[[300, 250], [300,600]]` | `Array` |
@@ -48,6 +50,7 @@ This module is GDPR and CCPA compliant, and no 3rd party userIds are allowed.
 #### Video Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name          | Scope    | Description                             | Example         | Type      |
 |---------------|----------|-----------------------------------------|-----------------|-----------|
 | `context`     | required | One of instream, outstream, adpod       | `'instream'`    | `String`  |
@@ -60,6 +63,7 @@ This module is GDPR and CCPA compliant, and no 3rd party userIds are allowed.
 #### Additional Config
 
 {: .table .table-bordered .table-striped }
+
 | Name                | Scope    | Description                                             | Example | Type      |
 |---------------------|----------|---------------------------------------------------------|---------|-----------|
 | `coppa`             | optional | Child Online Privacy Protection Act                     | `true`  | `Boolean` |
@@ -68,6 +72,7 @@ This module is GDPR and CCPA compliant, and no 3rd party userIds are allowed.
 #### Consent Management Object
 
 {: .table .table-bordered .table-striped }
+
 | Name   | Scope    | Description                                                                                      | Example | Type     |
 |--------|----------|--------------------------------------------------------------------------------------------------|---------|----------|
 | `gdpr` | optional | GDPR Object see [Prebid.js doc](https://docs.prebid.org/dev-docs/modules/consentManagementTcf.html) | `{}`    | `Object` |
@@ -182,12 +187,13 @@ pbjs.que.push(function (){
 ### Supported Media Types
 
 {: .table .table-bordered .table-striped }
+
 | Type   | Support                                                            |
 |--------|--------------------------------------------------------------------|
 | Banner | Support all [AIDEM Sizes](https://kb.aidem.com/ssp/lists/adsizes/) |
 | Video  | Support all [AIDEM Sizes](https://kb.aidem.com/ssp/lists/adsizes/) |
 
-## Setup / Dev Guide
+### Setup / Dev Guide
 
 ```shell
 nvm use
@@ -210,9 +216,9 @@ gulp test --file "test/spec/modules/aidemBidAdapter_spec.js"
 
 For video: gulp serve --modules=aidemBidAdapter,dfpAdServerVideo
 
-## FAQs
+### FAQs
 
-### How do I view AIDEM bid request?
+#### How do I view AIDEM bid request?
 
 Navigate to a page where AIDEM is setup to bid. In the network tab,
 search for requests to `zero.aidemsrv.com/bid/request`.

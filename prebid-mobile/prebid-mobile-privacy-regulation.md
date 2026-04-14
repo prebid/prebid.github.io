@@ -47,7 +47,7 @@ Publishers are responsible for providing notice, transparency and choice and col
 All vendor SDKs (including mediation SDKs) are responsible for looking up approved vendor and consent information on their own.
 
 - [iOS - Targeting Parameters](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
-- [Android - Targeting Parameters](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html)
+- [Android - Targeting Parameters](/prebid-mobile/pbm-api/android/pbm-targeting-android.html)
 
 ### Sending Device Information
 
@@ -57,6 +57,7 @@ To ensure proper monetization and relevant targeting, the SDK should be enabled 
 - Describing the actions taken for the different purposeConsents values in combination with consentRequired values.
 
 {: .table .table-bordered .table-striped }
+
 |                     | deviceAccessConsent= true    | deviceAccessConsent= false     | deviceAccessConsent= undefined        |
 |---------------------|------------------------------|--------------------------------|---------------------------------------|
 |consentRequired=false<br>(gdprApplies = false)|The SDK will read and pass IDFA/AAID info to server. |The SDK will **not** read and pass IDFA/AAID info to server. | The SDK will read and pass IDFA/AAID info to server.|

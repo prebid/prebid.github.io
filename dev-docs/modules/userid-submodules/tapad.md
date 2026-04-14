@@ -3,6 +3,9 @@ layout: userid
 title: Tapad ID
 description: Tapad ID User ID sub-module
 useridmodule: tapadIdSystem
+bidRequestUserId: tapadId
+eidsource: tapad.com
+example: '"1111"'
 ---
 
 
@@ -15,12 +18,14 @@ Tapad’s Privacy landing page containing links to region-specific Privacy Notic
 
 Add it to your Prebid.js package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=userId,tapadIdSystem
+```
 
 ## Tapad ID Configuration
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | `"tapadId"` | `"tapadId"` |

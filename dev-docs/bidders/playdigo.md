@@ -4,7 +4,8 @@ title: Playdigo
 description: Prebid Playdigo Bidder Adapter
 biddercode: playdigo
 gpp_sids: usstate_all
-tcfeu_supported: false
+gvl_id: 1302
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true

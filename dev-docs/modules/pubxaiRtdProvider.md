@@ -12,7 +12,6 @@ sidebarType: 1
 ---
 
 # Pubx.ai RTD Module
-
 {:.no_toc}
 
 * TOC

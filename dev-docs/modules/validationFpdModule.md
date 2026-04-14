@@ -65,5 +65,4 @@ and if it exists, certain fields will be removed.
 # Related Reading
 
 - [Prebid.js First Party Data feature](/features/firstPartyData.html)
-- [First Party Data Enrichment Module](/dev-docs/modules/enrichmentFpdModule)
 - [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf)

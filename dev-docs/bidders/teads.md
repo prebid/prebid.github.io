@@ -12,7 +12,7 @@ tcfeu_supported: true
 dsa_supported: true
 usp_supported: true
 schain_supported: true
-userIds: uid2Id, identityLinkId, lotamePanoramaId, id5Id, criteoId, connectId, quantcastId, publinkId, sharedId, merkleId, kinessoId
+userIds: uid2Id, identityLinkId, lotamePanoramaId, id5Id, criteoId, connectId, publinkId, sharedId, merkleId, kinessoId
 media_types: banner, video
 gvl_id: 132
 deals_supported: true
@@ -24,6 +24,10 @@ gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 fpd_supported: false
 sidebarType: 1
 ---
+
+### Disclosure
+
+{% include dev-docs/fingerprinting.md %}
 
 ### Notes
 

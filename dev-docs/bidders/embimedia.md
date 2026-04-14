@@ -3,7 +3,7 @@ layout: bidder
 title: Embi Media
 description: Prebid Embi Media Bidder Adaptor
 biddercode: embimedia
-pbjs: false
+pbjs: true
 pbs: true
 media_types: banner, video, audio, native
 userIds: all

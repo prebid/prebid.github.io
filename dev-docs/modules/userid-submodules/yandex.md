@@ -3,6 +3,9 @@ layout: userid
 title: Yandex ID
 description: Yandex User ID sub-module
 useridmodule: yandexIdSystem
+bidRequestUserId: yandexId
+eidsource: yandex.com
+example: '"1111"'
 ---
 
 Yandex ID module is designed to improve the personalization of ads for publishers' users. This documentation provides information about the Yandex User ID module, and instructions to install it. 
@@ -11,8 +14,9 @@ Yandex ID module is designed to improve the personalization of ads for publisher
 
 Add the module to your Prebid.js package:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=yandexIdSystem
+```
 
 ## Step 2. Enable Yandex ID
 
@@ -35,3 +39,5 @@ pbjs.setConfig({
     },
 });
 ```
+
+**Storage Requirements**: Yandex ID requires the storage object to specify cookie `type`, name `_ym_uid`, and an expiration of at least 30 days.

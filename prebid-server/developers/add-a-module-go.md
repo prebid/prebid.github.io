@@ -52,8 +52,8 @@ import (
     "context"
     "encoding/json"
 
-    "github.com/prebid/prebid-server/hooks/hookstage"
-    "github.com/prebid/prebid-server/modules/moduledeps"
+    "github.com/prebid/prebid-server/v3/hooks/hookstage"
+    "github.com/prebid/prebid-server/v3/modules/moduledeps"
 )
 
 func Builder(config json.RawMessage, deps moduledeps.ModuleDeps) (interface{}, error) {
@@ -121,15 +121,20 @@ The supported stages are described in the [general module overview](/prebid-serv
 
 These are the available hooks that can be implemented in a module:
 
-- github.com/prebid/prebid-server/hooks/hookstage.Entrypoint
-- github.com/prebid/prebid-server/hooks/hookstage.RawAuctionRequest
-- github.com/prebid/prebid-server/hooks/hookstage.ProcessedAuctionRequest
-- github.com/prebid/prebid-server/hooks/hookstage.BidderRequest
-- github.com/prebid/prebid-server/hooks/hookstage.RawBidderResponse
-- github.com/prebid/prebid-server/hooks/hookstage.AllProcessedBidResponses
-- github.com/prebid/prebid-server/hooks/hookstage.AuctionResponse
+- github.com/prebid/prebid-server/v3/hooks/hookstage.Entrypoint
+- github.com/prebid/prebid-server/v3/hooks/hookstage.RawAuctionRequest
+- github.com/prebid/prebid-server/v3/hooks/hookstage.ProcessedAuctionRequest
+- github.com/prebid/prebid-server/v3/hooks/hookstage.BidderRequest
+- github.com/prebid/prebid-server/v3/hooks/hookstage.RawBidderResponse
+- github.com/prebid/prebid-server/v3/hooks/hookstage.AllProcessedBidResponses
+- github.com/prebid/prebid-server/v3/hooks/hookstage.AuctionResponse
 
 In a module it is not necessary to implement all mentioned interfaces but at least one is required by your functionality.
+
+Notes:
+
+- Modules at the `BidderRequest` and `RawBidderResponse` stages are called in parallel for each bidder.
+- Modules that want to change the request context in the `BidderRequest` or `RawBidderResponse` stages should also supply an `Entrypoint` hook that returns a module context with a [sync.Map](https://pkg.go.dev/sync#Map) entry. See the example below.
 
 ### Examples
 
@@ -139,7 +144,7 @@ In a module it is not necessary to implement all mentioned interfaces but at lea
     import (
         "context"
 
-        "github.com/prebid/prebid-server/hooks/hookstage"
+        "github.com/prebid/prebid-server/v3/hooks/hookstage"
     )
 
     type Module struct{}
@@ -202,8 +207,8 @@ In a module it is not necessary to implement all mentioned interfaces but at lea
     import (
         "context"
 
-        "github.com/prebid/prebid-server/hooks/hookstage"
-        "github.com/prebid/prebid-server/hooks/hookanalytics"
+        "github.com/prebid/prebid-server/v3/hooks/hookstage"
+        "github.com/prebid/prebid-server/v3/hooks/hookanalytics"
     )
 
     func (m Module) HandleBidderRequestHook(
@@ -238,7 +243,34 @@ In a module it is not necessary to implement all mentioned interfaces but at lea
     }
     ```
 
-More test implementations for each hook can be found in unit-tests at [github.com/prebid/prebid-server/tree/master/modules/prebid/ortb2blocking](https://github.com/prebid/prebid-server/tree/master/modules/prebid/ortb2blocking) folder.
+4. Writing to the module context from the `BidderRequest` or `RawBidderResponse` stages requires synchronization between parallel instances of a module. The recommended approach is for the module to supply an `Entrypoint` hook that returns a module context with a [sync.Map](https://pkg.go.dev/sync#Map) entry.
+
+In the `Entrypoint` stage:
+
+```go
+return hookstage.HookResult[hookstage.EntrypointPayload]{
+  ModuleContext: hookstage.ModuleContext{
+    dealsContextKey:      &sync.Map{},
+    blockingDataParamKey: &sync.Map{},
+    impsContextKey:       &sync.Map{},
+  },
+}
+```
+
+In the `BidderRequest` or `RawBidderResponse` stage:
+
+```go
+    ...
+    miCtx.ModuleContext[dealsContextKey].(*sync.Map)
+    ...
+```
+
+{:start="5"}
+5. More test implementations for each hook can be found in unit-tests at [github.com/prebid/prebid-server/tree/master/modules/prebid/ortb2blocking](https://github.com/prebid/prebid-server/tree/master/modules/prebid/ortb2blocking) folder.
+
+### Optional Code Update Notification
+
+The core Prebid engineering team sometimes makes changes to module files for various reasons: general refactoring, internal API changes, bug fixes, etc. If you want to receive an email alert about any changes made to your codebase, you can update the [codepath notification file](https://github.com/prebid/prebid-server/blob/master/.github/workflows/scripts/codepath-notification). Please read the instructions in the file. In many cases, the regex will just be your modulecode, but if you have a short modulecode, you might need to be more precise or you'll get false notifications.
 
 ### Configuration
 

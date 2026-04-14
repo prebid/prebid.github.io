@@ -5,7 +5,7 @@ description: Prebid RiseXChange Bidder Adapter
 multiformat_supported: will-bid-on-any
 pbjs: true
 biddercode: risexchange
-media_types: banner, video
+media_types: banner, video, native
 schain_supported: true
 coppa_supported: true
 pbs: false
@@ -25,9 +25,10 @@ The RiseXChange adapter requires setup and approval. Please reach out to [prebid
 
 ### Bid Parameters
 
-#### Banner, Video
+#### Banner, Video, Native
 
 {: .table .table-bordered .table-striped }
+
 | Name | Scope | Type | Description | Example
 | ---- | ----- | ---- | ----------- | -------
 | `org` | required | String |  RiseXChange publisher Id  | "1234567890abcdef12345678"
@@ -35,9 +36,8 @@ The RiseXChange adapter requires setup and approval. Please reach out to [prebid
 | `placementId` | optional | String |  A unique placement identifier  | "12345678"
 | `testMode` | optional | Boolean |  This activates the test mode  | false
 | `rtbDomain` | optional | String |  Sets the seller end point    | "www.test.com"
-| `is_wrapper` | private | Boolean |  Please don't use unless your account manager asked you to    | false
 
-## Example
+### Example
 
 ```javascript
 var adUnits = [{
@@ -94,5 +94,10 @@ We recommend setting UserSync by iframe for monetization.
 
 ### Versions
 
-Prebid versions 5.0-5.3 are not supported
-Banner >= 6.14.0
+Prebid versions 5.0-5.3 are not supported.
+
+Banner >= 6.14.0.
+
+Native >= 9.27.0.
+
+Multi-format requests >= 9.27.0.
