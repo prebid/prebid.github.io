@@ -3,13 +3,12 @@ layout: page_v2
 page_type: module
 title: Module - Google Ad Manager Video
 description: Required for serving instream video through Google Ad Manager.
-module_code : dfpAdServerVideo
+module_code : gamAdServerVideo
 display_name : Google Ad Manager Video Support
 enable_download : true
 vendor_specific: true
 sidebarType : 1
 ---
-
 
 
 # Google Ad Manager Video
@@ -27,7 +26,10 @@ The standard options:
 
 ## Step 2: Integrate into your prebid.js configuration
 
-The method exposes the [`pbjs.adServers.dfp.buildVideoUrl`]({{site.baseurl}}/dev-docs/publisher-api-reference/adServers.dfp.buildVideoUrl.html) method to use. For an example, see the DFP video guide linked below.
+This module exposes the following methods:
+
+- [`pbjs.adServers.gam.buildVideoUrl`](/dev-docs/publisher-api-reference/adServers.dfp.buildVideoUrl.html)
+- [`pbjs.adServers.gam.getVastXml`](/dev-docs/publisher-api-reference/adServers.dfp.getVastXml.html)
 
 # Further Reading
 
