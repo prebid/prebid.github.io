@@ -82,8 +82,7 @@ For full details on video ad unit parameters, see [Ad Unit Reference for Video](
 
 By default, Prebid.js caps all CPMs at $20.  As a video seller, you may expect to see CPMs over $20.  In order to receive those bids, you'll need to implement custom price buckets setting the [priceGranularity](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Price-Granularity) object in the `setConfig` method.
 
-For instructions and sample code, see [Custom Price Granularity Buckets
-](/dev-docs/examples/custom-price-buckets.html).
+For instructions and sample code, see [Custom Price Granularity Buckets](/dev-docs/examples/custom-price-buckets.html).
 
 ### 3. Request bids, build video URL
 
@@ -234,10 +233,10 @@ See [below](#examples) for more examples.
 
 The way this works is:
 
-- when Prebid receives a video bid, it stores its VAST document in the browser as a [blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob), and updates its `.videoCacheKey` with the ID of that blob; 
-- `getVastXml` first makes a request to GAM (using the URL returned by `getVideoUrl`); 
-- If a Prebid bid wins the GAM auction (and the line items are set up as described in [GAM Step by Step - Video Creatives](/adops/setting-up-prebid-video-in-dfp.md)), the response will contain a VAST URL with a cache key that matches a blob ID;
-- `getVastXml` scans the response for such URLs, and replaces them with an inlined copy of the matching VAST XML from blob storage.    
+* when Prebid receives a video bid, it stores its VAST document in the browser as a [blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob), and updates its `.videoCacheKey` with the ID of that blob; 
+* `getVastXml` first makes a request to GAM (using the URL returned by `getVideoUrl`); 
+* If a Prebid bid wins the GAM auction (and the line items are set up as described in [GAM Step by Step - Video Creatives](/adops/setting-up-prebid-video-in-dfp.md)), the response will contain a VAST URL with a cache key that matches a blob ID;
+* `getVastXml` scans the response for such URLs, and replaces them with an inlined copy of the matching VAST XML from blob storage.    
 
 This means that you can migrate an existing setup using a 3rd party cache service to local caching without any changes in GAM (the VAST URLs in GAM creatives are ignored except for the cache key portion).
 
