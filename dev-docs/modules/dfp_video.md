@@ -28,8 +28,8 @@ The standard options:
 
 This module exposes the following methods:
 
-- [`pbjs.adServers.gam.buildVideoUrl`](/dev-docs/publisher-api-reference/adServers.dfp.buildVideoUrl.html)
-- [`pbjs.adServers.gam.getVastXml`](/dev-docs/publisher-api-reference/adServers.dfp.getVastXml.html)
+- [`pbjs.adServers.gam.buildVideoUrl`](/dev-docs/publisher-api-reference/adServers.gam.buildVideoUrl.html)
+- [`pbjs.adServers.gam.getVastXml`](/dev-docs/publisher-api-reference/adServers.gam.getVastXml.html)
 
 # Further Reading
 
