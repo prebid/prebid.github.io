@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
-title: pbjs.adServers.dfp.buildVideoUrl(options)
-description: adServers.dfp.buildVideoUrl API
+title: pbjs.adServers.gam.buildVideoUrl(options)
+description: adServers.gam.buildVideoUrl API
 sidebarType: 1
 ---
 
@@ -11,9 +11,9 @@ The Google Ad Manager implementation of this function requires including the `ga
 
 This method combines publisher-provided parameters with Prebid.js targeting parameters to build a Google Ad Manager video ad tag URL that can be used by a video player.
 
-#### Argument Reference
+## Argument Reference
 
-##### The `options` object
+### The `options` object
 
 {: .table .table-bordered .table-striped }
 | Field    | Type   | Description                                                                                                                                                                        |
@@ -26,7 +26,7 @@ This method combines publisher-provided parameters with Prebid.js targeting para
 {: .alert.alert-warning :}
 One or both of options.params and options.url is required. In other words, you may pass in one, the other, or both, but not neither.
 
-##### The `options.params` object
+### The `options.params` object
 
 {: .table .table-bordered .table-striped }
 | Field             | Type   | Description                                                                                                                 | Example                                         |
@@ -37,7 +37,7 @@ One or both of options.params and options.url is required. In other words, you m
 
 For more information on any of these params, see [the Google Ad Manager video tag documentation](https://support.google.com/admanager/answer/1068325).
 
-#### Examples
+## Examples
 
 There are several different ways to build up your video URL, as shown in the examples below:
 
