@@ -59,6 +59,26 @@ This can be useful in GDPR, CCPA, COPPA or other privacy scenarios where a publi
 
 Note that bid adapters are normally denied access to device storage even when `deviceAccess` is `true`; see the [`storageAllowed` bidder setting](/dev-docs/publisher-api-reference/bidderSettings.html#deviceAccess).
 
+<a id="setConfig-disableFingerprintingApis"></a>
+
+### Disable fingerprinting APIs
+
+Prebid provides a privacy control named `disableFingerprintingApis` that lets publishers disable specific browser APIs commonly used for fingerprinting according to DuckDuckGo tracker radar.
+
+When one of these APIs is disabled, Prebid returns a safe default value instead of reading the browser value:
+
+* `devicepixelratio`: returns `1`
+* `webdriver`: returns `false`
+* `resolvedoptions`: returns an empty timezone string `''`
+
+```javascript
+pbjs.setConfig({
+  disableFingerprintingApis: ['devicepixelratio', 'webdriver', 'resolvedoptions']
+});
+```
+
+Values are matched case-insensitively.
+
 <a name="setConfig-Bidder-Timeouts"></a>
 
 ### Bidder Timeouts
@@ -1063,7 +1083,7 @@ To register a video player with Prebid, you must use `setConfig` to set a `video
 {: .table .table-bordered .table-striped }
 
 | Field | Required? | Type | Description |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | video.providers[] | yes | array of objects | List of Provider configurations. You must define a provider configuration for each player instance that you would like integrate with. |
 | video.providers[] .vendorCode | yes | number | The identifier of the Video Provider vendor (i.e. 1 for JW Player, 2 for videojs, etc). Allows Prebid to know which submodule to instantiate. |
 | video.providers[].divId | yes | string | The HTML element id of the player or its placeholder div. All analytics events for that player will reference this ID. Additionally, used to indicate which HTLM element must contain the Video Player instance when instantiated. |
@@ -1133,10 +1153,11 @@ pbjs.setConfig({
 
 ### Client-side Caching of VAST XML
 
-When serving video ads, VAST XML creatives must be cached so the
+When serving video ads, VAST XML creatives are commonly cached so the
 video player can retrieve them when it's ready. Players don't obtain the VAST XML from
 the JavaScript DOM in Prebid.js, but rather expect to be given a URL where it can
-be retrieved. There are three different flows possible with Prebid.js around VAST XML caching:
+be retrieved. If your player can render VAST XML directly, you can set `cache.allowVastXmlOnly`
+to bypass the cache requirement. There are different flows possible with Prebid.js around VAST XML handling:
 
 * Server-side caching:  
   Some video bidders (e.g. Rubicon Project) always cache the VAST XML on their servers as part of the bid. They provide a 'videoCacheKey', which is used in conjunction with the VAST URL in the ad server to retrieve the correct VAST XML when needed. In this case, Prebid.js has nothing else to do. As of Prebid.js 4.28, a publisher may specify the `ignoreBidderCacheKey` flag to re-cache these bids somewhere else using a VAST wrapper.
@@ -1153,6 +1174,7 @@ be retrieved. There are three different flows possible with Prebid.js around VAS
 | cache.timeout | no | number | Timeout (in milliseconds) for network requests to the cache |
 | cache.vasttrack | no | boolean | Passes additional data to the url, used for additional event tracking data. Defaults to `false`. |
 | cache.ignoreBidderCacheKey | no | boolean | If the bidder supplied their own cache key, setting this value to true adds a VAST wrapper around that URL, stores it in the cache defined by the `url` parameter, and replaces the original video cache key with the new one. This can dramatically simplify ad server setup because it means all VAST creatives reside behind a single URL. The tradeoff: this approach requires the video player to unwrap one extra level of VAST. Defaults to `false`. |
+| cache.allowVastXmlOnly | no | boolean | When `true`, allows rendering VAST XML without requiring use of a cache. Useful for players that can consume VAST XML directly. Defaults to `false`. |
 | cache.batchSize | no | number | Enables video cache requests to be batched by a specified amount (defaults to 1) instead of making a single request per each video. |
 | cache.batchTimeout | no | number | Used in conjunction with `batchSize`, `batchTimeout` specifies how long to wait in milliseconds before sending a batch video cache request based on the value for `batchSize` (if present). A batch request will be made whether the `batchSize` amount was reached or the `batchTimeout` timer runs out. `batchTimeout` defaults to 0. |
 
@@ -1176,6 +1198,16 @@ pbjs.setConfig({
         cache: {
             url: 'https://my-pbs.example.com/cache',
             ignoreBidderCacheKey: true
+        }
+});
+```
+
+If your player can render raw VAST XML and you do not want to require caching, you can set:
+
+```javascript
+pbjs.setConfig({
+        cache: {
+            allowVastXmlOnly: true
         }
 });
 ```
@@ -1297,6 +1329,24 @@ pbjs.setConfig({
 {: .alert.alert-warning :}
 In PBJS 4.29 and earlier, don't add the `ortb2` level here -- just `site` directly. Oh, and please upgrade. 4.29 was a long time ago.
 
+<a id="customGptSlotMatching"></a>
+
+### Custom GPT slot matching
+
+By default, Prebid matches ad units to GPT slots by code, i.e. a GPT `slot` corresponds to a Prebid `adUnit` if `slot.getAdUnitPath() === adUnit.code`. You can provide a custom matching function to override this, for example:
+
+```javascript
+pbjs.setConfig({
+  customGptSlotMatching: function(slot) {
+    return function(adUnitCode) {
+      return slot.getAdUnitPath() === adUnitCode
+    }
+  }
+})
+```
+
+`customGptSlotMatching` should be a function accepting a single GPT [Slot](https://developers.google.com/publisher-tag/reference#googletag.Slot). It should return another function accepting a single string representing an ad unit code. The inner function should return true if the givne slot matches the given ad unit code. 
+
 <a name="setConfig-auctionOptions"></a>
 
 ### Auction Options
@@ -1308,8 +1358,10 @@ The `auctionOptions` object controls aspects related to auctions.
 |----------+---------+--------+---------------------------------------------------------------------------------------|
 | `secondaryBidders` | Optional | Array of Strings | Specifies bidders that the Prebid auction will no longer wait for before determining the auction has completed. This may be helpful if you find there are a number of low performing and/or high timeout bidders in your page's rotation. |
 | `suppressStaleRender` | Optional | Boolean | When true, prevents `banner` bids from being rendered more than once. It should only be enabled after auto-refreshing is implemented correctly.  Default is false. |
-| `suppressExpiredRender` | Optional | Boolean | When true, prevent bids from being rendered if TTL is reached. Default is false.
-| `legacyRender`     | Optional  | Boolean | When true, uses "legacy" rendering logic  (see [note](#note-legacyRender))                               |
+| `suppressExpiredRender` | Optional | Boolean | When true, prevent bids from being rendered if TTL is reached. Default is false. |
+| `legacyRender`     | Optional  | Boolean | When true, uses "legacy" rendering logic  (see [note](#legacyRender))                               |
+| `rejectUnknownMediaTypes` | Optional | Boolean | Since Pbjs 11, When true, reject bids when the adapter response omits `mediaType` for an ad unit that has explicit `mediaTypes` configured. Default is false. |
+| `rejectInvalidMediaTypes` | Optional | Boolean | Since Pbjs 11, When true, reject bids when response `mediaType` does not match one of the ad unit's configured `mediaTypes`. Default is true. |
 
 #### Examples
 {: .no_toc}
@@ -1368,14 +1420,21 @@ PBJS performs the following actions when expired rendering is detected.
 
 Expired winning bids will continue to be rendered unless `suppressExpiredRender` is set to true.  Events including `STALE_RENDER` and `BID_WON` are unaffected by this option.
 
-<a id="note-legacyRender"></a>
+<a id="legacyRender"></a>
 
-#### More on `legacyRender`
-{: .no_toc}
+#### More on Legacy Rendering
 
-Since Prebid 10.12, `pbjs.renderAd` wraps creatives in an additional iframe. This can cause problems for some creatives
+Since Prebid 10.12, [`renderAd`](/dev-docs/publisher-api-reference/renderAd.html) wraps creatives in an additional iframe. This can cause problems for some creatives
 that try to reach the top window and do not expect to find the extra iframe. You may set `legacyRender: true` to revert
-to pre-10.12 rendering logic.
+to pre-10.12 rendering logic:
+
+```javascript
+pbjs.setConfig({
+  auctionOptions: {
+    legacyRender: true
+  }
+});
+```
 
 <a name="setConfig-maxNestedIframes"></a>
 
@@ -1427,7 +1486,7 @@ The controls publishers have over the RTD modules:
 {: .table .table-bordered .table-striped }
 
 | Field | Required? | Type | Description |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | realTimeData.auctionDelay | no | integer | Defines the maximum amount of time, in milliseconds, the header bidding auction will be delayed while waiting for a response from the RTD modules as a whole group. The default is 0 ms delay, which means that RTD modules need to obtain their data when the page initializes. |
 | realTimeData.dataProviders[].waitForIt | no | boolean | Setting this value to true flags this RTD module as "important" enough to wait the full auction delay period. Once all such RTD modules have returned, the auction will proceed even if there are other RTD modules that have not yet responded. The default is `false`. |
 
@@ -1481,12 +1540,12 @@ pbjs.setConfig({
 {: .table .table-bordered .table-striped }
 
 | Field | Required? | Type | Description |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | topics.maxTopicCaller | no | integer | Defines the maximum numbers of Bidders Iframe which needs to be loaded on the publisher page. Default is 1 which is hardcoded in Module. Eg: topics.maxTopicCaller is set to 3. If there are 10 bidders configured along with their iframe URLS, random 3 bidders iframe URL is loaded which will call TOPICS API. If topics.maxTopicCaller is set to 0, it will load random 1(default) bidder iframe atleast. |
-| topics.bidders | no | Array of objects  | Array of topics callers with the iframe locations and other necessary informations like bidder(Bidder code) and expiry. Default Array of topics in the module itself.|
-| topics.bidders[].bidder | yes | string  | Bidder Code of the bidder(SSP).  |
-| topics.bidders[].iframeURL | yes | string  | URL which is hosted on bidder/SSP/third-party domains which will call Topics API.  |
-| topics.bidders[].expiry | no | integer  | Max number of days where Topics data will be persist. If Data is stored for more than mentioned expiry day, it will be deleted from storage. Default is 21 days which is hardcoded in Module. |
+| topics.bidders | no | Array of objects | Array of topics callers with the iframe locations and other necessary informations like bidder(Bidder code) and expiry. Default Array of topics in the module itself. |
+| topics.bidders[].bidder | yes | string | Bidder Code of the bidder(SSP). |
+| topics.bidders[].iframeURL | yes | string | URL which is hosted on bidder/SSP/third-party domains which will call Topics API. |
+| topics.bidders[].expiry | no | integer | Max number of days where Topics data will be persist. If Data is stored for more than mentioned expiry day, it will be deleted from storage. Default is 21 days which is hardcoded in Module. |
 
 <a id="setConfig-performanceMetrics"></a>
 

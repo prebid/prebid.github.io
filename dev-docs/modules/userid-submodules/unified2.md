@@ -49,6 +49,25 @@ The following sample is fictitious, but shows what the token response object loo
 
 When this full data structure is provided, the module automatically refreshes the token periodically, as long as the refresh token hasn't expired.
 
+The following example shows the response for a user that has opted out:
+
+```json
+{
+  "identity": "optout",
+  "status": "optout"
+}
+```
+
+The following example shows the decoded UID2 userId object:
+
+```json
+{
+  "uid2": {
+    "optout": true
+  }
+}
+```
+
 ## Unified ID 2.0 Server-Only Mode
 
 There is a server-only mode where the value of the advertising token can be provided either directly (see the `value` parameter in the [Unified ID 2.0 Configuration](#unified-id-20-configuration) section) or via a cookie. In this mode, no attempt is made to automatically refresh the token.
