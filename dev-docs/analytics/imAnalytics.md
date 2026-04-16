@@ -28,7 +28,7 @@ To enable the IM Analytics adapter, configure it in your Prebid.js setup. Use `i
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| `cid` | required | number | 5126 | The Customer ID provided by Intimate Merger. |
+| `cid` | optional | number | 5126 | The Customer ID provided by Intimate Merger. |
 | `waitTimeout` | optional | number | 1500 | Wait time in milliseconds before sending batched requests. (Default: 1500) |
 
 ### Example Configuration
@@ -37,7 +37,7 @@ To enable the IM Analytics adapter, configure it in your Prebid.js setup. Use `i
 pbjs.enableAnalytics({
     provider: 'imAnalytics',
     options: {
-        /* Required: Customer ID */
+        /* Optional: Customer ID. Set the Customer ID assigned to you. */
         cid: 5126,
         /* Optional: Wait 2 seconds */
         waitTimeout: 2000
