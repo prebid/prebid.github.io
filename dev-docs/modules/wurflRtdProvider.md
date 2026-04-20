@@ -163,7 +163,7 @@ WURFL RTD adds comprehensive device information to the bid request. The `ortb2.d
     "language": "it",
     "make": "Apple",
     "model": "iPhone 16e",
-    "devicetype": 1,
+    "devicetype": 4,
     "os": "iOS",
     "osv": "18.3",
     "hwv": "iPhone 16e",
