@@ -42,7 +42,7 @@ sidebarType: 1
 |------------|----------|------------------------------------------------------------------------------------------|------------------------------|----------|
 | `cId`      | required | The connection ID from Adnimation.                                                          | `'562524b21b1c1f08117fc7f9'` | `string` |
 
-### Example
+#### Example
 
   ```javascript
 var adUnits = [{
