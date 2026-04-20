@@ -3,13 +3,13 @@ layout: bidder
 title: Adnimation
 description: Prebid Adnimation Bidder Adaptor
 biddercode: adnimation
-filename: adnimationBidAdapter
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 tcfeu_supported: false
 usp_supported: true
 coppa_supported: false
 schain_supported: true
 gpp_supported: true
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 floors_supported: true
 media_types: banner, video
 prebid_member: false
