@@ -25,7 +25,7 @@ pbs: true
 sidebarType: 1
 ---
 
-### Bid Params for Prebid.js
+## Bid Params for Prebid.js
 
 {: .table .table-bordered .table-striped }
 
@@ -35,7 +35,7 @@ sidebarType: 1
 | `pId`      | required | The publisher ID from Apester (pbjs only).                                               | `'59ac17c192832d0011283fe3'` | `string` |
 | `bidFloor` | optional | The minimum bid value desired. Apester will not respond with bids lower than this value. | `0.90`                       | `float`  |
 
-#### Bid Params for Prebid Server
+## Bid Params for Prebid Server
 
 {: .table .table-bordered .table-striped }
 
