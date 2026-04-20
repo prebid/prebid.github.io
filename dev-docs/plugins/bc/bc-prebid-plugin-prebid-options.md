@@ -325,7 +325,7 @@ None
 
 Parameters used when using Google Ad Manager as the ad server.
 
-See prebid.org documentation for [buildVideoUrl](/dev-docs/publisher-api-reference/adServers.dfp.buildVideoUrl.html)
+See prebid.org documentation for [buildVideoUrl](/dev-docs/publisher-api-reference/adServers.gam.buildVideoUrl.html)
 
 **Acceptable Values:**
 

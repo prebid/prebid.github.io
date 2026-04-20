@@ -346,6 +346,43 @@ When set, bids are only kept in memory for the duration of their actual TTL life
 
 Put another way, this setting doesn't define each bid's TTL, but rather controls how long it's kept around in memory for analytics purposes.
 
+### Minimum cache TTL for targeted bids
+
+<a id="setConfig-minTargetedBidCacheTTL"></a>
+
+When using `minBidCacheTTL` to limit how long bids stay in memory, bids that have already been sent to the ad server (targeting set) can expire before the ad is rendered. This often happens with GPT lazy load or other delayed render: the ad is requested and targeting is set, but the slot only renders when the user scrolls. If the bid is dropped from cache before render, you may see "cannot find ad" (or similar) errors.
+
+Use **`minTargetedBidCacheTTL`** to give targeted bids a longer (or unlimited) cache time than other bids:
+
+```javascript
+pbjs.setConfig({
+  minBidCacheTTL: 30,               // drop non-targeted bids after 30s
+  minTargetedBidCacheTTL: Infinity  // keep targeted bids until page unload (lazy-load / long-delay render)
+});
+```
+
+* When set, it overrides `minBidCacheTTL` only for bids that have had **targeting set** (e.g. sent to GPT via `setTargetingForGPTAsync` / `setTargetingForGPT`).
+* When unset, all bids use `minBidCacheTTL` (current behavior).
+* Use a number (seconds) for a longer but finite TTL, or `Infinity` to keep targeted bids for the life of the page.
+
+#### Publisher choices when using bid cache TTL
+{: .no_toc}
+
+If you use `minBidCacheTTL` (with or without `minTargetedBidCacheTTL`), you are making a tradeoff between memory and ad availability. Be explicit about what should happen when:
+
+1. A bid expires after targeting but before render
+   * Rely on `minTargetedBidCacheTTL` so targeted bids stay in cache until render, or
+   * Accept that the slot may show no ad / blank, or
+   * Run a new auction when the slot is about to render (e.g. in a lazy-load callback).
+
+2. Bids are dropped for memory saving
+   * Decide whether you prefer lower memory (shorter TTL) or fewer "missing ad" cases (longer TTL or `minTargetedBidCacheTTL`).
+
+#### SSP / revenue note
+{: .no_toc}
+
+Bids have a TTL from the bidder/SSP. If an ad is rendered **after** that TTL, the SSP may treat the bid as expired and may not attribute revenue. Keeping bids in Prebid's cache longer (e.g. with `minTargetedBidCacheTTL`) does not change the SSP's own TTL. Use this setting when the delay is on your side (e.g. lazy load), not to extend the SSP's idea of when the bid is valid.
+
 ### Event history TTL
 
 <a id="setConfig-eventHistoryTTL"></a>
@@ -1153,10 +1190,11 @@ pbjs.setConfig({
 
 ### Client-side Caching of VAST XML
 
-When serving video ads, VAST XML creatives must be cached so the
+When serving video ads, VAST XML creatives are commonly cached so the
 video player can retrieve them when it's ready. Players don't obtain the VAST XML from
 the JavaScript DOM in Prebid.js, but rather expect to be given a URL where it can
-be retrieved. There are three different flows possible with Prebid.js around VAST XML caching:
+be retrieved. If your player can render VAST XML directly, you can set `cache.allowVastXmlOnly`
+to bypass the cache requirement. There are different flows possible with Prebid.js around VAST XML handling:
 
 * Server-side caching:  
   Some video bidders (e.g. Rubicon Project) always cache the VAST XML on their servers as part of the bid. They provide a 'videoCacheKey', which is used in conjunction with the VAST URL in the ad server to retrieve the correct VAST XML when needed. In this case, Prebid.js has nothing else to do. As of Prebid.js 4.28, a publisher may specify the `ignoreBidderCacheKey` flag to re-cache these bids somewhere else using a VAST wrapper.
@@ -1173,6 +1211,7 @@ be retrieved. There are three different flows possible with Prebid.js around VAS
 | cache.timeout | no | number | Timeout (in milliseconds) for network requests to the cache |
 | cache.vasttrack | no | boolean | Passes additional data to the url, used for additional event tracking data. Defaults to `false`. |
 | cache.ignoreBidderCacheKey | no | boolean | If the bidder supplied their own cache key, setting this value to true adds a VAST wrapper around that URL, stores it in the cache defined by the `url` parameter, and replaces the original video cache key with the new one. This can dramatically simplify ad server setup because it means all VAST creatives reside behind a single URL. The tradeoff: this approach requires the video player to unwrap one extra level of VAST. Defaults to `false`. |
+| cache.allowVastXmlOnly | no | boolean | When `true`, allows rendering VAST XML without requiring use of a cache. Useful for players that can consume VAST XML directly. Defaults to `false`. |
 | cache.batchSize | no | number | Enables video cache requests to be batched by a specified amount (defaults to 1) instead of making a single request per each video. |
 | cache.batchTimeout | no | number | Used in conjunction with `batchSize`, `batchTimeout` specifies how long to wait in milliseconds before sending a batch video cache request based on the value for `batchSize` (if present). A batch request will be made whether the `batchSize` amount was reached or the `batchTimeout` timer runs out. `batchTimeout` defaults to 0. |
 
@@ -1196,6 +1235,16 @@ pbjs.setConfig({
         cache: {
             url: 'https://my-pbs.example.com/cache',
             ignoreBidderCacheKey: true
+        }
+});
+```
+
+If your player can render raw VAST XML and you do not want to require caching, you can set:
+
+```javascript
+pbjs.setConfig({
+        cache: {
+            allowVastXmlOnly: true
         }
 });
 ```
@@ -1317,6 +1366,24 @@ pbjs.setConfig({
 {: .alert.alert-warning :}
 In PBJS 4.29 and earlier, don't add the `ortb2` level here -- just `site` directly. Oh, and please upgrade. 4.29 was a long time ago.
 
+<a id="customGptSlotMatching"></a>
+
+### Custom GPT slot matching
+
+By default, Prebid matches ad units to GPT slots by code, i.e. a GPT `slot` corresponds to a Prebid `adUnit` if `slot.getAdUnitPath() === adUnit.code`. You can provide a custom matching function to override this, for example:
+
+```javascript
+pbjs.setConfig({
+  customGptSlotMatching: function(slot) {
+    return function(adUnitCode) {
+      return slot.getAdUnitPath() === adUnitCode
+    }
+  }
+})
+```
+
+`customGptSlotMatching` should be a function accepting a single GPT [Slot](https://developers.google.com/publisher-tag/reference#googletag.Slot). It should return another function accepting a single string representing an ad unit code. The inner function should return true if the givne slot matches the given ad unit code. 
+
 <a name="setConfig-auctionOptions"></a>
 
 ### Auction Options
@@ -1328,8 +1395,10 @@ The `auctionOptions` object controls aspects related to auctions.
 |----------+---------+--------+---------------------------------------------------------------------------------------|
 | `secondaryBidders` | Optional | Array of Strings | Specifies bidders that the Prebid auction will no longer wait for before determining the auction has completed. This may be helpful if you find there are a number of low performing and/or high timeout bidders in your page's rotation. |
 | `suppressStaleRender` | Optional | Boolean | When true, prevents `banner` bids from being rendered more than once. It should only be enabled after auto-refreshing is implemented correctly.  Default is false. |
-| `suppressExpiredRender` | Optional | Boolean | When true, prevent bids from being rendered if TTL is reached. Default is false.
-| `legacyRender`     | Optional  | Boolean | When true, uses "legacy" rendering logic  (see [note](#note-legacyRender))                               |
+| `suppressExpiredRender` | Optional | Boolean | When true, prevent bids from being rendered if TTL is reached. Default is false. |
+| `legacyRender`     | Optional  | Boolean | When true, uses "legacy" rendering logic  (see [note](#legacyRender))                               |
+| `rejectUnknownMediaTypes` | Optional | Boolean | Since Pbjs 11, When true, reject bids when the adapter response omits `mediaType` for an ad unit that has explicit `mediaTypes` configured. Default is false. |
+| `rejectInvalidMediaTypes` | Optional | Boolean | Since Pbjs 11, When true, reject bids when response `mediaType` does not match one of the ad unit's configured `mediaTypes`. Default is true. |
 
 #### Examples
 {: .no_toc}
@@ -1388,14 +1457,21 @@ PBJS performs the following actions when expired rendering is detected.
 
 Expired winning bids will continue to be rendered unless `suppressExpiredRender` is set to true.  Events including `STALE_RENDER` and `BID_WON` are unaffected by this option.
 
-<a id="note-legacyRender"></a>
+<a id="legacyRender"></a>
 
-#### More on `legacyRender`
-{: .no_toc}
+#### More on Legacy Rendering
 
-Since Prebid 10.12, `pbjs.renderAd` wraps creatives in an additional iframe. This can cause problems for some creatives
+Since Prebid 10.12, [`renderAd`](/dev-docs/publisher-api-reference/renderAd.html) wraps creatives in an additional iframe. This can cause problems for some creatives
 that try to reach the top window and do not expect to find the extra iframe. You may set `legacyRender: true` to revert
-to pre-10.12 rendering logic.
+to pre-10.12 rendering logic:
+
+```javascript
+pbjs.setConfig({
+  auctionOptions: {
+    legacyRender: true
+  }
+});
+```
 
 <a name="setConfig-maxNestedIframes"></a>
 
