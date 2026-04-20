@@ -3,7 +3,6 @@ layout: bidder
 title: Apester
 description: Prebid Apester Bidder Adaptor
 biddercode: apester
-filename: apesterBidAdapter
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 tcfeu_supported: false
 usp_supported: true
