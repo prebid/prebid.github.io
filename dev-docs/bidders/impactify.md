@@ -28,7 +28,7 @@ The Impactify adapter requires setup and validation from the Impactify team. Sim
 | ----------- | -------- | ------------------------------------------------------------------------------------------------------ | -------------------------------- | -------- |
 | `accountId` | required | Impactify publisher ID.                                                                                | `'1234'`                         | `string` |
 | `appId`     | required | Impactify inventory ID.                                                                                | `'example.com'`                  | `string` |
-| `format`    | required | Impactify ad format. Use `screen` for rich media and banner, and `player` for instream video.         | `'screen'`                       | `string` |
+| `format`    | required | Impactify ad format. Use `screen` for rich media and banner, and `player` for instream video.          | `'screen'`                       | `string` |
 | `style`     | required | Impactify ad style. Supported values depend on the integration type. See below.                        | `'impact'`                       | `string` |
 | `size`      | optional | Impactify ad size.                                                                                     | `'300x250'`                      | `string` |
 | `render`    | optional | Render options. See sub-options below.                                                                 | `{ bottom: 10, expandAd: true }` | `object` |
