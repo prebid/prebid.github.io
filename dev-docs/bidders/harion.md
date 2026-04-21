@@ -1,10 +1,10 @@
 ---
 layout: bidder
-title: DPAI
-description: Prebid DPAI Bidder Adapter
-biddercode: dpai
+title: harion
+description: Prebid Harion Bidder Adapter
+biddercode: harion
 gpp_sids: usstate_all
-tcfeu_supported: false
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
@@ -15,11 +15,12 @@ ortb_blocking_supported: false
 media_types: banner, video, native
 multiformat_supported: will-bid-on-one
 userIds: all
-pbjs: true
-pbs: true
-pbs_app_supported: true
+pbjs: false
+pbs: false
+pbs_app_supported: false
 safeframes_ok: true
 sidebarType: 1
+gvl_id: 1406
 ---
 
 ### Bid Params
@@ -32,4 +33,4 @@ sidebarType: 1
 
 ### Note
 
-For the prebid server and prebid.js you only need to use one parameter: either placementId or endpointId
+For the prebid server and prebid.js you only need to use one parameter: either `placementId` or `endpointId`.
