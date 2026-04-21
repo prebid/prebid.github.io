@@ -18,18 +18,18 @@ sidebarType: 1
 
 ### Note
 
-The Impactify adapter requires setup and validation from the Impactify team. Simply email us your contact details at <support@impactify.io> and we'll make sure we connect with you within 48h.
+The Impactify adapter requires setup and validation from the Impactify team. Simply email us your contact details at <support@impactify.io> and we'll make sure we connect with you within 48 hours.
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
 |------|-------|-------------|---------|------|
-| `accountId` | required | Impactify publisher ID | `'1234'` | `string` |
-| `appId` | required | Impactify inventory ID | `'example.com'` | `string` |
-| `style` | required | Impactify ad style | `'impact'` | `string` |
-| `format` | required | Impactify ad format | `'screen'` | `string` |
-| `size` | optional | Impactify ad size | `'300x250'` | `string` |
+| `accountId` | required | Impactify publisher ID. | `'1234'` | `string` |
+| `appId` | required | Impactify inventory ID. | `'example.com'` | `string` |
+| `format` | required | Impactify ad format. Use `screen` for rich media and banner, and `player` for instream video. | `'screen'` | `string` |
+| `style` | required | Impactify ad style. Supported values depend on the integration type. See below. | `'impact'` | `string` |
+| `size` | optional | Impactify ad size. | `'300x250'` | `string` |
 | `render` | optional | Render options. See sub-options below. | `{ bottom: 10, expandAd: true }` | `object` |
 
 #### `render` sub-options
@@ -44,120 +44,139 @@ The Impactify adapter requires setup and validation from the Impactify team. Sim
 | `onAdEventName` | optional | Name of the browser event fired when an ad is rendered. | `'impactifyAdLoaded'` | `string` |
 | `onNoAdEventName` | optional | Name of the browser event fired when no ad is returned. | `'impactifyNoAd'` | `string` |
 
-### Formats
+### Integration Types
 
-Impactify supports the following format styles:
+Impactify supports three integration types:
 
-- **impact (`outstream`)**: sticky at the bottom.
-- **inline (`outstream`)**: in-content then sticky at the bottom on scroll.
-- **skyline (`outstream`)**: in-content then sticky at the top on scroll.
-- **static (`banner/instream/outstream`)**: in-content (not sticky).
+- **Rich media formats**: for Impactify rich media experiences using `format: "screen"` with styles such as `impact`, `inline`, `skyline`, or `static`.
+- **Instream Video**: for standard instream video using `format: "player"`.
+- **Banner**: for standard banner placements, typically using `format: "screen"` with `style: "static"`.
 
-### Media Types
+### Rich media formats
 
-#### Banner
+Use this integration for rich media placements.
 
-Banner ads are supported with standard IAB sizes.
+#### Supported styles
+
+- **impact**: sticky at the bottom.
+- **inline**: in-content, then sticky at the bottom on scroll.
+- **skyline**: in-content, then sticky at the top on scroll.
+- **static**: in-content, non-sticky.
 
 ```javascript
-var bannerAdUnit = [
-    {
-        code: "Publisher DIV",
-        mediaTypes: {
-            banner: {
-                sizes: [
-                    [300, 250],
-                    [336, 280]
-                ]
-            }
-        },
-        bids: [
-            {
-                bidder: "impactify",
-                params: {
-                    accountId: "YOUR_ACCOUNTID_HERE",
-                    appId: "YOUR_APPID_HERE",
-                    format: "screen",
-                    style: "static",
-                }
-            }
-        ]
-    }
+var impactAdUnit = [
+  {
+    code: "Publisher DIV",
+    mediaTypes: {
+      banner: {
+        sizes: [[1, 1]]
+      }
+    },
+    bids: [
+      {
+        bidder: "impactify",
+        params: {
+          accountId: "YOUR_ACCOUNTID_HERE",
+          appId: "YOUR_APPID_HERE",
+          format: "screen",
+          style: "impact"
+        }
+      }
+    ]
+  }
+];
+
+//For inline, skyline or static style placements
+var richMediAdUnit = [
+  {
+    code: "Publisher DIV",
+    mediaTypes: {
+      banner: {
+        sizes: [[336, 280]]
+      }
+    },
+    bids: [
+      {
+        bidder: "impactify",
+        params: {
+          accountId: "YOUR_ACCOUNTID_HERE",
+          appId: "YOUR_APPID_HERE",
+          format: "screen",
+          style: "inline" // or "skyline" or "static"
+        }
+      }
+    ]
+  }
 ];
 ```
 
-#### Video
+### Instream Video
 
-Video ads are supported.
+Use this integration for instream video only.
 
 ```javascript
 var instreamAdUnit = [
-    {
-      code: "Publisher DIV",
-      mediaTypes: {
-        video: {
-          context: "instream",
-          mimes: ["video/mp4", "video/webm", "application/javascript"],
-          minduration: 1,
-          maxduration: 35,
-          protocols: [2, 3, 5, 6, 7, 8, 11, 12, 13, 14],
-          api: [2, 7, 8],
-          placement: 1,
-          plcmt: 1,
-          startdelay: 0,
-          w: 640,
-          h: 360,
-          playbackmethod: [1, 2, 6],
-          skip: 1
+  {
+    code: "Publisher DIV",
+    mediaTypes: {
+      video: {
+        context: "instream",
+        playerSize: [640, 360],
+        mimes: ["video/mp4", "video/webm", "application/javascript"],
+        minduration: 1,
+        maxduration: 35,
+        protocols: [2, 3, 5, 6, 7, 8, 11, 12, 13, 14],
+        api: [2, 7, 8],
+        placement: 1,
+        plcmt: 1,
+        startdelay: 0,
+        playbackmethod: [1, 2, 6],
+        skip: 1
+      }
+    },
+    bids: [
+      {
+        bidder: "impactify",
+        params: {
+          accountId: "YOUR_ACCOUNTID_HERE",
+          appId: "YOUR_APPID_HERE",
+          format: "player"
         }
-      },
-      bids: [
-        {
-          bidder: "impactify",
-          params: {
-            accountId: "YOUR_ACCOUNTID_HERE",
-            appId: "YOUR_APPID_HERE",
-            format: "player",
-            style: "static"
-          }
-        }
-      ]
-    }
-  ];
+      }
+    ]
+  }
+];
+```
 
-  var outstreamAdUnit = [
-    {
-      code: "Publisher DIV",
-      mediaTypes: {
-        video: {
-          context: "outstream",
-          mimes: ["video/mp4", "video/webm", "application/javascript"],
-          minduration: 1,
-          maxduration: 35,
-          protocols: [2, 3, 5, 6, 7, 8, 11, 12, 13, 14],
-          api: [2, 7, 8],
-          placement: 4,
-          plcmt: 4,
-          startdelay: 0,
-          w: 640,
-          h: 360,
-          playbackmethod: [1, 2, 6],
-          skip: 1
+### Banner
+
+Use this integration for standard banner placements with standard IAB sizes.
+
+```javascript
+var bannerAdUnit = [
+  {
+    code: "Publisher DIV",
+    mediaTypes: {
+      banner: {
+        sizes: [
+          [300, 250],
+          [336, 280]
+        ]
+      }
+    },
+    bids: [
+      {
+        bidder: "impactify",
+        params: {
+          accountId: "YOUR_ACCOUNTID_HERE",
+          appId: "YOUR_APPID_HERE",
+          format: "screen",
+          style: "static"
         }
-      },
-      bids: [
-        {
-          bidder: "impactify",
-          params: {
-            accountId: "YOUR_ACCOUNTID_HERE",
-            appId: "YOUR_APPID_HERE",
-            format: "screen",
-            style: "impact"
-          }
-        }
-      ]
-    }
-  ];
+      }
+    ]
+  }
+];
 ```
 
 ### Configuration
@@ -181,7 +200,7 @@ pbjs.setConfig({
   userSync: {
     filterSettings: {
       iframe: {
-        bidders: '*',      // '*' represents all bidders
+        bidders: '*',
         filter: 'include'
       }
     }
