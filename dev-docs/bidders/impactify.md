@@ -6,6 +6,7 @@ pbjs: true
 pbs: true
 biddercode: impactify
 tcfeu_supported: true
+tcf2_supported: true
 usp_supported: true
 schain_supported: true
 coppa_supported: true
