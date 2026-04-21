@@ -17,33 +17,33 @@ gvl_id: 606
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 The Impactify adapter requires setup and validation from the Impactify team. Simply email us your contact details at <support@impactify.io> and we'll make sure we connect with you within 48 hours.
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example | Type |
-|------|-------|-------------|---------|------|
-| `accountId` | required | Impactify publisher ID. | `'1234'` | `string` |
-| `appId` | required | Impactify inventory ID. | `'example.com'` | `string` |
-| `format` | required | Impactify ad format. Use `screen` for rich media and banner, and `player` for instream video. | `'screen'` | `string` |
-| `style` | required | Impactify ad style. Supported values depend on the integration type. See below. | `'impact'` | `string` |
-| `size` | optional | Impactify ad size. | `'300x250'` | `string` |
-| `render` | optional | Render options. See sub-options below. | `{ bottom: 10, expandAd: true }` | `object` |
+| Name        | Scope    | Description                                                                                             | Example                          | Type     |
+| ----------- | -------- | ------------------------------------------------------------------------------------------------------- | -------------------------------- | -------- |
+| `accountId` | required | Impactify publisher ID.                                                                                 | `'1234'`                         | `string` |
+| `appId`     | required | Impactify inventory ID.                                                                                 | `'example.com'`                  | `string` |
+| `format`    | required | Impactify ad format. Use `screen` for rich media and banner, and `player` for instream video.         | `'screen'`                       | `string` |
+| `style`     | required | Impactify ad style. Supported values depend on the integration type. See below.                       | `'impact'`                       | `string` |
+| `size`      | optional | Impactify ad size.                                                                                      | `'300x250'`                      | `string` |
+| `render`    | optional | Render options. See sub-options below.                                                                  | `{ bottom: 10, expandAd: true }` | `object` |
 
 #### `render` sub-options
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example | Type |
-|------|-------|-------------|---------|------|
-| `top` | optional | Top offset used for ad rendering. | `10` | `number` |
-| `bottom` | optional | Bottom offset used for ad rendering. | `10` | `number` |
-| `expandAd` | optional | Enables ad expansion behavior when supported. | `true` | `boolean` |
-| `location` | optional | Changes the position of the player. | `'top-left'` | `string` |
-| `onAdEventName` | optional | Name of the browser event fired when an ad is rendered. | `'impactifyAdLoaded'` | `string` |
-| `onNoAdEventName` | optional | Name of the browser event fired when no ad is returned. | `'impactifyNoAd'` | `string` |
+| Name              | Scope    | Description                                                  | Example                | Type      |
+| ----------------- | -------- | ------------------------------------------------------------ | ---------------------- | --------- |
+| `top`             | optional | Top offset used for ad rendering.                            | `10`                   | `number`  |
+| `bottom`          | optional | Bottom offset used for ad rendering.                         | `10`                   | `number`  |
+| `expandAd`        | optional | Enables ad expansion behavior when supported.                | `true`                 | `boolean` |
+| `location`        | optional | Changes the position of the player.                          | `'top-left'`           | `string`  |
+| `onAdEventName`   | optional | Name of the browser event fired when an ad is rendered.      | `'impactifyAdLoaded'`  | `string`  |
+| `onNoAdEventName` | optional | Name of the browser event fired when no ad is returned.      | `'impactifyNoAd'`      | `string`  |
 
 ### Integration Types
 
