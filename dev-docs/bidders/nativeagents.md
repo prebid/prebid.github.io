@@ -22,7 +22,7 @@ safeframes_ok: true
 sidebarType: 1
 ---
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description  | Example                         | Type       |
@@ -30,6 +30,6 @@ sidebarType: 1
 | `placementId` | optional | Placement Id | `'0'`                           | `'string'` |
 | `endpointId`  | optional | Endpoint Id  | `'0'`                           | `'string'` |
 
-### Note
+## Note
 
 For the prebid server and prebid.js you only need to use one parameter: either placementId or endpointId
