@@ -110,7 +110,7 @@ pbjs.que.push(function() {
         adUnitCode: videoAdUnit[0].code,
         timeout: 1500,
         callback: function (error, bids) {
-          var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
+          var videoUrl = pbjs.adServers.gam.buildVideoUrl({
             ...
           });
 ​

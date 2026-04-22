@@ -38,11 +38,11 @@ Note: The Trade Desk Header Bidding adapter requires setup and approval before b
 | Name | Scope | Description | Example | Type |
 | --- | --- | --- | --- | --- |
 | `supplySourceId` | required | The TTD-provided supply source name. | `'supplier'` | `String` |
-| `publisherId` | required | The publisher ID. If there is a sellers.json, this should be the same as the seller_id in the sellers.json for the site being trafficked. If there is no sellers.json, this should be hardcoded to "1". | `'1427ab10f2e448057ed3b422'` | `String` |
+| `publisherId` | required | The publisher ID. If there is a sellers.json, this should be the same as the seller_id in the sellers.json for the site being trafficked. If there is no sellers.json, this should be hardcoded to "1". | 1427ab10f2e448057ed3b422 | `String` |
 | `placementId` | optional | This field is optional if GPID is passed through the GPT module <https://docs.prebid.org/dev-docs/modules/gpt-pre-auction.html>. If that module isn't used, the GPID value should be passed in this field. | `'/1111/home#header'` | `String` |
 | `banner` | optional | Display banner targeting parameters. See the banner section below. | `{}` | `object` |
 | `bidfloor` | optional | Sets a bid floor price | `0.95` | `Float` |
-| `customBidderEndpoint` | optional | Only set if TTD has provided a custom endpoint. If set the custom endpoint will take precedent over the hard-coded endpoints | `https://customBidderEndpoint/bid/bidder/` | `String` |
+| `customBidderEndpoint` | optional | Only set if TTD has provided a custom endpoint. If set the custom endpoint will take precedent over the hard-coded endpoints | `https://custom/bid/` | `String` |
 
 ## Banner Object
 
@@ -54,7 +54,7 @@ The following banner parameters are supported:
 | --- | --- | --- | --- | --- |
 | `expdir` | optional | Directions in which the banner may expand. See "Expandable Direction" in the [OpenRTB 2.5 docs](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) for possible values. | `[1, 3]` | `Array[integer]` |
 
-## `mediaTypes.banner` Parameters
+### `mediaTypes.banner` Parameters
 
 The TTD adapter for banner uses certain parameters in the AdUnit's
 [mediaTypes.banner](https://docs.prebid.org/dev-docs/adunit-reference.html#adUnit.mediaTypes.banner) definition. Specifically, `sizes` is required for banner ad units. `pos` is recommended.
@@ -90,7 +90,7 @@ var bannerAdUnit = {
 
 ## Video
 
-## `mediaTypes.video` Parameters
+### `mediaTypes.video` Parameters
 
 The TTD adapter for video requires certain parameters in the AdUnit's
 [mediaTypes.video](https://docs.prebid.org/dev-docs/adunit-reference.html#adUnit.mediaTypes.video) definition. Specifically, `maxduration`, `api`, `mimes`, `plcmt`, and `protocols` are all required for video ad units. `playerSize`, `startdelay`, `playbackmethod`, and `pos` are recommended. `minduration`, `minbitrate`, `maxbitrate`, `skip`, `skipmin`, and `skipafter` are optional.
