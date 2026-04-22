@@ -36,6 +36,7 @@ Optional configuration options are:
 | Param | Type | Description | Example |
 | --- | --- | --- | --- |
 | gpp.mspa | `Object` | | |
+| gpp.mspa.restrictActivities | `Array` | A list of [activities](/dev-docs/activity-controls.html#activities) to be restricted in addition to the [default restrictions](/features/mspa-usnat.html#usnat-activity-restrictions). If specified, and if not already restricted, they will be treated similarly to `syncUser`. | `['accessDevice']` |
 | gpp.mspa.sids | `Array` | GPP SIDs that should be covered by activity restrictions. Defaults to all US state SIDs (`[8, 9, 10, 11, 12]`). This is the only value needed for normal operation. Other options are for special cases and future-proofing. | `[8, 9]` |
 | gpp.mspa.sections | `Object` | Map from section ID to per-section configuration options | `{8: {name: 'usca'}}` |
 | gpp.mspa.sections.name | `String` | GPP API name to use for the section. Defaults to the names given listed under [section information -> section IDs](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/Section%20Information.md#section-ids). This option would only be used if your CMP has named their sections in a non-standard way. | `uscav3` |
