@@ -19,12 +19,12 @@ pbs_app_supported: false
 floors_supported: true
 ---
 
-# Note
+## Note
 
 Please reach out to your seedtag account team before using this plugin.  
 The publisher id 0000-0000-01 returns demo responses.
 
-# Bid Params (pbjs)
+## Bid Params (pbjs)
 
 {: .table .table-bordered .table-striped }
 
@@ -35,7 +35,7 @@ The publisher id 0000-0000-01 returns demo responses.
 | `placement`       | optional            | Adunit placement, posibles values: inScreen, inArticle                         | inScreen              | `string` |
 | `integrationType` | optional            | IntegrationType. Posibles values: publisherToken, ronId                        | publisherToken        | `string` |
 
-# Bid Params (pbs)
+## Bid Params (pbs)
 
 {: .table .table-bordered .table-striped }
 
@@ -45,7 +45,7 @@ The publisher id 0000-0000-01 returns demo responses.
 | `publisherId`     | optional            | The publisher id (required for RON id integration).                            | 00000                 | `string` |
 | `integrationType` | optional            | IntegrationType. Posibles values: ronId (not set in other case)                | ronId                 | `string` |
 
-# InScreen example
+## InScreen example
 
 The integration for Seedtag uses banner mediaTypes for all types of creatives (display/video)
 
@@ -73,7 +73,7 @@ const adUnits = [
 ]
 ```
 
-# InArticle example
+## InArticle example
 
 The integration for Seedtag uses banner mediaTypes for all types of creatives (display/video)
 
@@ -101,7 +101,7 @@ const adUnits = [
 ]
 ```
 
-# InBanner example
+## InBanner example
 
 ```js
 const adUnits = [
@@ -127,7 +127,7 @@ const adUnits = [
 ]
 ```
 
-# inStream example
+## inStream example
 
 ```js
 var adUnits = [{
