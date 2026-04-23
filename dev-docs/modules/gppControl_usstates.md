@@ -44,6 +44,20 @@ Optional configuration options are:
 
 ### Examples
 
+#### Disable device access on user opt-out
+
+```javascript
+pbjs.setConfig({
+  consentManagement: {
+    gpp: {
+      mspa: {
+        restrictActivities: ['accessDevice', 'accessRequestCredentials']
+      }
+    }
+  }
+})
+```
+
 #### Enable activity controls for certain sections only
 
 ```javascript

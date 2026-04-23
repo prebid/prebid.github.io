@@ -40,6 +40,20 @@ Optional configuration options are:
 | gpp.mspa | `Object` | | |
 | gpp.mspa.restrictActivities | `Array` | A list of [activities](/dev-docs/activity-controls.html#activities) to be restricted in addition to the [default restrictions](/features/mspa-usnat.html#usnat-activity-restrictions). If specified, and if not already restricted, they will be treated similarly to `syncUser`. | `['accessDevice']` |
 
+### Example: disable device access on user opt-out
+
+```javascript
+pbjs.setConfig({
+  consentManagement: {
+    gpp: {
+      mspa: {
+        restrictActivities: ['accessDevice', 'accessRequestCredentials']
+      }
+    }
+  }
+})
+```
+
 ## Build the Package
 
 Follow the basic build instructions in the GitHub Prebid.js repo's main [README](https://github.com/prebid/Prebid.js/blob/master/README.md). To include the consent management module and the GPP Control - USNat module, an additional option must be added to the **gulp build** command:
