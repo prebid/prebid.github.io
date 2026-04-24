@@ -3,10 +3,11 @@ layout: analytics
 title: IM Analytics
 description: IM Analytics Adapter for Prebid.js
 modulecode: imAnalytics
-gdpr_supported: true
+gdpr_supported: false
 usp_supported: true
 gpp_supported: true
 coppa_supported: true
+enable_download: true
 ---
 
 ## Description
