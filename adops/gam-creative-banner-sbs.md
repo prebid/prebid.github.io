@@ -155,6 +155,18 @@ Note: You can ignore the “Sorry, we don’t recognize this tag” warning. GAM
 {:start="10"}
 10. Click **Save and preview**.
 
+### PUC Configuration
+
+#### Mobile Impression Tracker
+
+By default, PUC tracks the impression URL (burl) for the mobile platforms by injecting MRAID JS script and checking its visibility. 
+However, there is Open Measurement option that tracks the impression URL using the mobile native implementation of the Open Measurement SDK. 
+When this option is active it sends the impression request right after the native SDK detects an impression.
+
+```js
+  ucTagData.mobileImpressionTracker = "open_measurement";
+```
+
 ## Prebid Dynamic Creative
 
 The process for the Prebid Dynamic Creative is exactly the same except
