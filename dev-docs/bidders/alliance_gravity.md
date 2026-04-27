@@ -13,7 +13,7 @@ deals_supported: true
 floors_supported: true
 fpd_supported: false
 pbjs: true
-pbs: false
+pbs: true
 pbs_app_supported: true
 prebid_member: false
 multiformat_supported: will-bid-on-one
@@ -24,6 +24,6 @@ privacy_sandbox: no
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description       | Example   | Type     |
-|---------------|----------|-------------------|-----------|----------|
-| `srid`        | required | Stored Request ID | `'1234'` | `string` |
+| Name          | Scope    | Description  | Example   | Type     |
+|---------------|----------|--------------|-----------|----------|
+| `placementId` | required | Placement ID | `'1234'`  | `string` |
