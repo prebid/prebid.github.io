@@ -143,7 +143,7 @@ The free tier provides 1,000 unique content signatures per publisher domain per 
 
 ## Privacy
 
-The module uses Prebid's `getStorageManager` for localStorage access, which enforces GDPR/TCF consent. If consent is denied, caching is disabled but the module still functions (API calls are made on each page load instead). Article text is sent to the Encypher API for signing but is not stored on Encypher's servers. Only content hashes and metadata are persisted.
+The module uses Prebid's `getStorageManager` for localStorage access, which enforces GDPR/TCF consent. If consent is denied, caching is disabled and Path C (auto-sign) is skipped entirely, so no page content leaves the browser. When consent is granted but caching is unavailable, the module falls back to API calls on each page load. Article text sent to the Encypher API for signing is not stored on Encypher's servers. Only content hashes and metadata are persisted. A 2-second timeout ensures the module never blocks the auction.
 
 ## Further Reading
 
