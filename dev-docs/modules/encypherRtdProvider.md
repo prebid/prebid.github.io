@@ -1,4 +1,4 @@
--
+---
 layout: page_v2
 title: Encypher Real Time Data Provider
 display_name: Encypher C2PA Content Provenance
@@ -9,12 +9,12 @@ module_code: encypherRtdProvider
 enable_download: true
 vendor_specific: true
 sidebarType: 1
--
+---
 
 # Encypher RTD Provider
 {:.no_toc}
 
-* TOC
+- TOC
 {:toc}
 
 ## Description
@@ -57,8 +57,9 @@ pbjs.setConfig({
 ### Parameters
 
 {: .table .table-bordered .table-striped }
+
 | Name | Scope | Type | Description |
-|-|-|-|-|
+| - | - | - | - |
 | `name` | Required | String | Must be `'encypher'` |
 | `waitForIt` | Optional | Boolean | Set to `true` to delay the auction until provenance data is available. Default: `false` |
 | `params` | Optional | Object | Configuration parameters (see below) |
@@ -113,8 +114,9 @@ The following object is placed at `ortb2Fragments.global.site.ext.data.c2pa`:
 ```
 
 {: .table .table-bordered .table-striped }
+
 | Field | Type | Description |
-|-|-|-|
+| - | - | - |
 | `manifest_url` | String | URL to retrieve the C2PA manifest |
 | `verified` | Boolean | `true` if provenance was successfully verified or signed |
 | `signer_tier` | String | Signing identity tier (see table below) |
@@ -128,8 +130,9 @@ The following object is placed at `ortb2Fragments.global.site.ext.data.c2pa`:
 The `signer_tier` field tells DSPs how the content was authenticated:
 
 {: .table .table-bordered .table-striped }
+
 | Tier | Meaning |
-|-|-|
+| - | - |
 | `byok` | Publisher signed with their own key (strongest identity) |
 | `connected` | Publisher authenticated with Encypher and signed at publish time |
 | `encypher_free` | Content was auto-signed by Encypher at first pageview (no publisher authentication) |
