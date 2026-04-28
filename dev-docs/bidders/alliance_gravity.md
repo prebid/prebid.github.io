@@ -24,6 +24,6 @@ privacy_sandbox: no
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description  | Example   | Type     |
-|---------------|----------|--------------|-----------|----------|
-| `placementId` | required | Placement ID | `'1234'`  | `string` |
+| Name   | Scope    | Description  | Example   | Type     |
+|--------|----------|--------------|-----------|----------|
+| `srid` | required | Placement ID | `'1234'`  | `string` |
