@@ -48,9 +48,9 @@ The following table details the Prebid.js activities that fall under the [Transp
 | Read and write data to device | Purpose 1 - Store and/or access information on a device | May prevent one or more adapters or modules from being able to read or write cookies or localstorage in the user's browser. | 3.14+ |
 | Perform header bidding auction | Purpose 2 - Basic ads | May prevent one or more bid adapters from participating in the auction. | 4.0+ |
 | Transmit user first party data to partners | Purpose 4 -  Personalized ads | May prevent  one or more modules from receiving user first party data | 8.16+ |
-| Transmit Extended User IDs to partners | Depends on configuration (see [note](#note-transmitEids))| May prevent one or more modules from receiving user IDs and EIDs. | 8.16+ |
+| Transmit Extended User IDs to partners | Depends on configuration (see [note](#note-transmitEids)) | May prevent one or more modules from receiving user IDs and EIDs. | 8.16+ |
 | Invoke analytics adapters | Purpose 7 - Measurement | May prevent one or more analytics adapters from participating in the auction. | 4.x+ |
-| Transmit precise geolocation data to partners | Specal Feature 1 - Use precise geolocation data |  May cause geolocation data to be truncated for one or more modules | 8.16+ |
+| Transmit precise geolocation data to partners | Specal Feature 1 - Use precise geolocation data | May cause geolocation data to be truncated for one or more modules | 8.16+ |
 
 ## Page Integration
 
