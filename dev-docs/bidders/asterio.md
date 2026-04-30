@@ -6,7 +6,7 @@ biddercode: asterio
 pbjs: true
 pbs: false
 media_types: banner, video
-tcfeu_supported: true
+tcfeu_supported: false
 dsa_supported: false
 gvl_id: none
 usp_supported: false
