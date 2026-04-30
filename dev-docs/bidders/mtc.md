@@ -6,9 +6,9 @@ pbjs: true
 pbs: false
 biddercode: mtc
 gvl_id: none
-tcfeu_supported: true
+tcfeu_supported: false
 usp_supported: true
-gpp_sids: tcfeu
+gpp_sids: none
 schain_supported: true
 dchain_supported: false
 floors_supported: true
