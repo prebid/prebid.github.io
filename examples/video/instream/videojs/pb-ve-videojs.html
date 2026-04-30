@@ -92,31 +92,30 @@ sidebarType: 4
       };
 
       pbjs.que.push(function() {
-          pbjs.addAdUnits(videoAdUnit);
+        pbjs.addAdUnits(videoAdUnit);
 
-          pbjs.setConfig({
-              debug: true,
-              cache: {
-                  url: 'https://prebid.example.com/pbc/v1/cache'
-              }
-          });
+        pbjs.setConfig({
+          debug: true,
+          cache: {
+            useLocal: true
+          }
+        });
 
-          pbjs.requestBids({
-              bidsBackHandler: function(bids) {
-                  var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
-                      adUnit: videoAdUnit,
-                      params: {
-                          iu: '/19968336/prebid_cache_video_adunit',
-                          cust_params: {
-                              section: 'blog',
-                              anotherKey: 'anotherValue'
-                          },
-                          output: 'vast'
-                      }
-                  });
-                  invokeVideoPlayer(videoUrl);
-              }
-          });
+        pbjs.requestBids({
+          bidsBackHandler: function (bids) {
+            window.invokeVideoPlayer((callback) => {
+              pbjs.adServers.gam.getVastXml({
+                bid: bids.video1.bids[0],
+                adUnit: videoAdUnit,
+                params: {
+                  iu: '/41758329/localcache',
+                },
+              }).then(vastXml => {
+                callback(null, vastXml)
+              })
+            });
+          },
+        });
       });
 
   &lt;/script&gt;
@@ -148,50 +147,48 @@ sidebarType: 4
       page_load_time = new Date().getTime() - performance.timing.navigationStart;
       console.log(page_load_time + "ms -- Player loaded!");
 
-      function invokeVideoPlayer(url) {
+    function invokeVideoPlayer = function (getVastXml) {
+      page_load_time =
+        new Date().getTime() - performance.timing.navigationStart;
 
-          page_load_time = new Date().getTime() - performance.timing.navigationStart;
-          console.log(page_load_time + "ms -- Prebid VAST url = " + url);
+      /* Access the player instance by calling videojs() and passing
+         in the player's ID. Add a ready listener to make sure the
+         player is ready before interacting with it. */
 
-          /* Access the player instance by calling videojs() and passing
-             in the player's ID. Add a ready listener to make sure the
-             player is ready before interacting with it. */
+      videojs("vid1").ready(function () {
 
-          videojs("vid1").ready(function() {
+        page_load_time = new Date().getTime() - performance.timing.navigationStart;
+        console.log(page_load_time + "ms -- Player is ready!");
 
-              page_load_time = new Date().getTime() - performance.timing.navigationStart;
-              console.log(page_load_time + "ms -- Player is ready!");
+      /* PASS SETTINGS TO VAST PLUGIN
 
-              /* PASS SETTINGS TO VAST PLUGIN
+         Pass in a JSON object to the player's vastClient (defined
+         by the VAST/VPAID plugin we're using). The requires an
+         adTagUrl, which will be the URL returned by Prebid. You
+         can view all the options available for the vastClient
+         here:
 
-                 Pass in a JSON object to the player's vastClient (defined
-                 by the VAST/VPAID plugin we're using). The requires an
-                 adTagUrl, which will be the URL returned by Prebid. You
-                 can view all the options available for the vastClient
-                 here:
+         https://github.com/MailOnline/videojs-vast-vpaid#options */
 
-                 https://github.com/MailOnline/videojs-vast-vpaid#options */
+        var player = this;
+        var vastAd = player.vastClient({
+          adTagXML: getVastXml,
+          playAdAlways: true,
+          verbosity: 4,
+          vpaidFlashLoaderPath: "https://github.com/MailOnline/videojs-vast-vpaid/blob/RELEASE/bin/VPAIDFlash.swf?raw=true",
+          autoplay: true,
+        });
 
-              var player = this;
-              var vastAd = player.vastClient({
-                  adTagUrl: url,
-                  playAdAlways: true,
-                  verbosity: 4,
-                  vpaidFlashLoaderPath: "https://github.com/MailOnline/videojs-vast-vpaid/blob/RELEASE/bin/VPAIDFlash.swf?raw=true",
-                  autoplay: true
-              });
+        page_load_time = new Date().getTime() - performance.timing.navigationStart;
+        console.log(page_load_time + "ms -- Prebid VAST tag inserted!");
 
-              page_load_time = new Date().getTime() - performance.timing.navigationStart;
-              console.log(page_load_time + "ms -- Prebid VAST tag inserted!");
+        player.muted(true);
+        player.play();
 
-              player.muted(true);
-              player.play();
-
-              page_load_time = new Date().getTime() - performance.timing.navigationStart;
-              console.log(page_load_time + "ms -- invokeVideoPlayer complete!");
-
-          });
-      }
+        page_load_time = new Date().getTime() - performance.timing.navigationStart;
+        console.log(page_load_time + "ms -- invokeVideoPlayer complete!");
+      });
+    }
 
   &lt;/script&gt;
         </pre>
@@ -212,10 +209,9 @@ sidebarType: 4
     page_load_time = new Date().getTime() - performance.timing.navigationStart;
     console.log(page_load_time + "ms -- Player loaded!");
 
-    window.invokeVideoPlayer = function (url) {
+    window.invokeVideoPlayer = function (getVastXml) {
       page_load_time =
         new Date().getTime() - performance.timing.navigationStart;
-      console.log(page_load_time + "ms -- Prebid VAST url = " + url);
 
       /* Access the player instance by calling videojs()` and passing
                      in the player's ID. Add a `ready` listener to make sure the
@@ -238,12 +234,13 @@ sidebarType: 4
 
         var player = this;
         var vastAd = player.vastClient({
-          adTagUrl: url,
+          adTagXML: getVastXml,
           playAdAlways: true,
           verbosity: 4,
           vpaidFlashLoaderPath:
             "https://github.com/MailOnline/videojs-vast-vpaid/blob/RELEASE/bin/VPAIDFlash.swf?raw=true",
           autoplay: true,
+          adCancelTimeout: 10000
         });
 
         page_load_time =
@@ -258,6 +255,5 @@ sidebarType: 4
         console.log(page_load_time + "ms -- invokeVideoPlayer complete!");
       });
     };
-    window.resolveVideoJS();
   }
 </script>

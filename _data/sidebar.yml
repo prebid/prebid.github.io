@@ -913,6 +913,22 @@
   subgroup: 3
 
 - sbSecId: 2
+  title: Google Next-Gen SDK Bidding-Only Integration
+  link: /prebid-mobile/pbm-api/android/android-sdk-integration-nextgen-original-api.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 2
+  title: Google Next-Gen SDK Prebid-Rendered Integration
+  link: /prebid-mobile/modules/rendering/android-sdk-integration-nextgen.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 2
   title: AdMob
   link: /prebid-mobile/modules/rendering/android-sdk-integration-admob.html
   isHeader: 0
