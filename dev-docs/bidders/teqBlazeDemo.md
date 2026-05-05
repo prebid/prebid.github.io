@@ -33,4 +33,5 @@ sidebarType: 1
 
 ## Note
 
-For the prebid server and prebid.js you only need to use one parameter: either placementId or endpointId
+This adapter is for internal testing only and should not be used for production integrations. \
+For the prebid server and prebid.js you only need to use one parameter: either placementId or endpointId.
