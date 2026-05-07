@@ -26,7 +26,7 @@ safeframes_ok: true
 | `floor`         | optional | Minimum CPM in USD. Floors module is preferred.      | `0.50`      | `number` |
 | `floorCurrency` | optional | Currency for the floor param. Defaults to `USD`.     | `'EUR'`     | `string` |
 
-### Note                                                                                                                       
+### Note
 
 Adelerate is not currently registered on the IAB Europe Global Vendor List, so this adapter does not declare a `gvlid`.
 Under GDPR, Prebid core will withhold bid requests and user syncs to this bidder unless the publisher's CMP setup explicitly permits.
