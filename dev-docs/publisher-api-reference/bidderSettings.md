@@ -48,6 +48,7 @@ Some sample scenarios where publishers may wish to alter the default settings:
 | allowAlternateBidderCodes | standard or adapter-specific | 6.23.0 | true in v6.x <br /> false from v7.0| Allow adapters to bid with alternate bidder codes. |  
 | allowedAlternateBidderCodes | standard or adapter-specific | 6.23.0 | n/a | Array of bidder codes for which an adapter can bid. <br />`undefined` or `['*']` will allow adapter to bid with any bidder code. |
 | adjustAlternateBids | standard or adapter-specific | 7.48.0 | false | Optionally allow alternate bidder codes to use an adapter's bidCpmAdjustment function by default instead of the standard bidCpmAdjustment function if present (note: if a bidCpmAdjustment function exists for the alternate bidder code within bidderSettings, then this will be used instead of falling back to the adapter's bidCpmAdjustment function). |
+| bidDesirabilityAdjustment | standard or adapter-specific | 11.12.0 | n/a | Function returning a numeric desirability score used to rank bids relative to one another (higher is more desirable). If not set, invalid, or throws, falls back to CPM. |
 
 ##### 2.1. adserverTargeting
 
@@ -343,5 +344,36 @@ pbjs.bidderSettings = {
 ```
 
 In the above example, if PubMatic were to return the "groupm" bidder code then the bidCpmAdjustment function under `pubmatic` would be used instead of what is available under `standard`.
+
+##### 2.11. bidDesirabilityAdjustment
+
+This optional function allows publishers to influence bid ranking using a custom desirability score instead of relying only on CPM ordering.
+
+The function signature is:
+
+`bidDesirabilityAdjustment(cpm, bid, bidRequest) => number`
+
+Where:
+
+* `cpm` is the bid CPM
+* `bid` is the bid object
+* `bidRequest` is the request context for the bid
+
+Bids are ranked by this returned score, with higher values considered more desirable.
+
+If `bidDesirabilityAdjustment` is not set, is not a valid function, or throws an exception at runtime, Prebid falls back to the default sorting metric: bid CPM.
+
+```javascript
+pbjs.bidderSettings = {
+  standard: {
+    bidDesirabilityAdjustment: function(cpm, bid, bidRequest) {
+      // Example: slightly prefer faster bids while keeping CPM as the base signal.
+      const responseTime = bid && bid.timeToRespond ? bid.timeToRespond : 0;
+      const speedBonus = responseTime > 0 ? Math.max(0, 0.2 - responseTime / 5000) : 0;
+      return cpm + speedBonus;
+    }
+  }
+};
+```
 
 <hr class="full-rule" />
