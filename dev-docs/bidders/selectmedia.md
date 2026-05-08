@@ -1,73 +1,38 @@
 ---
 layout: bidder
-title: Select Media Display
-description: Prebid Select Media Bidder Adapter
-pbjs: true
-media_types: banner,video
-tcfeu_supported: true
-gpp_supported: true
+title: Selectmedia
+description: Prebid Selectmedia Bidder Adapter
 biddercode: selectmedia
-aliasCode: adtelligent
+gpp_sids: usstate_all
+tcfeu_supported: true
+usp_supported: true
+coppa_supported: true
+schain_supported: true
+deals_supported: false
+floors_supported: true
+fpd_supported: false
+ortb_blocking_supported: false
+media_types: banner, video, native
+multiformat_supported: will-bid-on-one
+userIds: all
+pbjs: true
+pbs: true
+pbs_app_supported: false
+safeframes_ok: true
 sidebarType: 1
 gvl_id: 775
 ---
 
-### Bid params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name  | Scope    | Description                     | Example  | Type      |
-|-------|----------|---------------------------------|----------|-----------|
-| `aid` | required | The traffic source ID | `232131` | `integer` |
 
-### Test Parameters
+| Name          | Scope    | Description            | Example                         | Type       |
+|---------------|----------|------------------------|---------------------------------|------------|
+| `placementId` | optional | Placement Id           | `'0'`                           | `'string'` |
+| `endpointId`  | optional | Endpoint Id            | `'0'`                           | `'string'` |
+| `region`      | optional | Region (for Prebid.js) | `'us-east'` (default) or `'eu'` | `'string'` |
 
-``` javascript
-    var adUnits = [
+## Note
 
-      // Video instream adUnit
-      {
-        code: 'div-test-div',
-        sizes: [[640, 480]],
-        mediaTypes: {
-          video: {
-            context: 'instream'
-          }
-        },
-        bids: [{
-          bidder: 'selectmedia',
-          params: {
-            aid: 331133
-          }
-        }]
-      },
-
-      // Video outstream adUnit
-      {
-        code: 'outstream-test-div',
-        sizes: [[640, 480]],
-        mediaTypes: {
-          video: {
-            context: 'outstream'
-          }
-        },
-        bids: [{
-          bidder: 'selectmedia',
-          params: {
-            aid: 331133
-          }
-        }]
-      },
-
-      // Banner adUnit
-      {
-        code: 'div-test-div',
-        sizes: [[300, 250]],
-        bids: [{
-          bidder: 'selectmedia',
-          params: {
-            aid: 350975
-          }
-        }]
-      }
-    ];
-```
+For the prebid server and prebid.js you only need to use one parameter: either placementId or endpointId.
