@@ -6,7 +6,7 @@ sidebarType: 1
 ---
 
 
-#### 1. Overview
+## 1. Overview
 
 The bidderSettings object provides a way to define some behaviors for the
 platform and specific adapters. The basic structure is a 'standard' section with defaults for all adapters, and then one or more adapter-specific sections that override behavior for that bidder:
@@ -33,7 +33,7 @@ Some sample scenarios where publishers may wish to alter the default settings:
 * passing additional information to the ad server
 * adjusting the bid CPM sent to the ad server
 
-#### 2. Bidder Setting Attributes
+## 2. Bidder Setting Attributes
 
 {: .table .table-bordered .table-striped }
 | Attribute | Scope | Version | Default | Description |
@@ -45,12 +45,12 @@ Some sample scenarios where publishers may wish to alter the default settings:
 | suppressEmptyKeys | standard or adapter-specific | 0.13.0 | false | If custom adserverTargeting functions are specified that may generate empty keys, this can be used to suppress them. |
 | allowZeroCpmBids | standard or adapter-specific | 6.2.0 | false | Would allow bids with a 0 CPM to be accepted by Prebid.js and could be passed to the ad server. |
 | storageAllowed | standard or adapter-specific | 6.13.0 | true in 6.x, false after 7.0 | Allow use of cookies and/or local storage. |  
-| allowAlternateBidderCodes | standard or adapter-specific | 6.23.0 | true in v6.x <br /> false from v7.0| Allow adapters to bid with alternate bidder codes. |  
+| allowAlternateBidderCodes | standard or adapter-specific | 6.23.0 | true in v6.x <br /> false from v7.0 | Allow adapters to bid with alternate bidder codes. |  
 | allowedAlternateBidderCodes | standard or adapter-specific | 6.23.0 | n/a | Array of bidder codes for which an adapter can bid. <br />`undefined` or `['*']` will allow adapter to bid with any bidder code. |
 | adjustAlternateBids | standard or adapter-specific | 7.48.0 | false | Optionally allow alternate bidder codes to use an adapter's bidCpmAdjustment function by default instead of the standard bidCpmAdjustment function if present (note: if a bidCpmAdjustment function exists for the alternate bidder code within bidderSettings, then this will be used instead of falling back to the adapter's bidCpmAdjustment function). |
 | bidDesirabilityAdjustment | standard or adapter-specific | 11.12.0 | n/a | Function returning a numeric desirability score used to rank bids relative to one another (higher is more desirable). If not set, invalid, or throws, falls back to CPM. |
 
-##### 2.1. adserverTargeting
+### 2.1. adserverTargeting
 
 As described in the [AdOps documentation]({{site.baseurl}}/adops/before-you-start.html), Prebid has a recommended standard
 set of ad server targeting that works across bidders. This standard targeting approach is
@@ -145,7 +145,7 @@ pbjs.bidderSettings = {
 }
 ```
 
-In other words, the above config sends 2 pairs of key/value strings targeting for every AppNexus bid and for every ad unit. The 1st pair would be `apn_pbMg` => the value of `bidResponse.pbMg`. The 2nd pair would be `apn_adId` => the value of `bidResponse.adId`. You can find the bidResponse object documentation [here](/troubleshooting/troubleshooting-guide.html#common-bid-response-parameters).
+In other words, the above config sends 2 pairs of key/value strings targeting for every AppNexus bid and for every ad unit. The 1st pair would be `apn_pbMg` => the value of `bidResponse.pbMg`. The 2nd pair would be `apn_adId` => the value of `bidResponse.adId`. You can find the [bidResponse object documentation](/troubleshooting/troubleshooting-guide.html#common-bid-response-parameters).
 
 Note that sendStandardTargeting is set to false so that the standard Prebid targeting (hb_bidder, etc.) aren't also sent to the ad server.
 
@@ -181,7 +181,7 @@ pbjs.bidderSettings = {
 }
 ```
 
-##### 2.2. bidCpmAdjustment
+### 2.2. bidCpmAdjustment
 
 Some bidders return gross prices instead of the net prices (what the publisher will actually
 get paid). For example, a publisher's net price might be 15% below the returned gross price.
@@ -209,7 +209,7 @@ pbjs.bidderSettings = {
 
 In the above example, the AOL bidder will inherit from "standard" adserverTargeting keys, so that you don't have to define the targeting keywords again.
 
-##### 2.3. inverseBidAdjustment
+### 2.3. inverseBidAdjustment
 
 When using [price floors](/dev-docs/modules/floors.html), Prebid attempts to calculate the inverse of `bidCpmAdjustment`, so that the floor values it requests from SSPs take into account how the bid will be adjusted.
 For example, if the adjustment is `bidCpm * .85` as above, floors are adjusted by `bidFloor * 1 / .85`.
@@ -232,7 +232,7 @@ pbjs.bidderSettings = {
 };
 ```
 
-##### 2.4. sendStandardTargeting
+### 2.4. sendStandardTargeting
 
 This boolean flag minimizes key/value pairs sent to the ad server when
 adapter-specific targeting is specified. By default, the platform will send both adapter-specific adServerTargeting as well as the standard adServerTargeting.
@@ -242,11 +242,11 @@ suppress the standard targeting for adapters that define their own.
 
 See the [example above](#key-targeting-specific-bidder) for example usage.
 
-##### 2.5. suppressEmptyKeys
+### 2.5. suppressEmptyKeys
 
 If a custom adServerTargeting function can return an empty value, this boolean flag can be used to avoid sending those empty values to the ad server.
 
-##### 2.6. allowZeroCpmBids
+### 2.6. allowZeroCpmBids
 
 By default, 0 CPM bids are ignored by Prebid.js entirely.  However if there's a valid business reason to allow these bids, this setting can be enabled to allow
 either specific bid adapter(s) or all bid adapters the permission for these bids to be processed by Prebid.js and potentially sent to the respective ad server
@@ -254,7 +254,7 @@ either specific bid adapter(s) or all bid adapters the permission for these bids
 
 <a id="storageAllowed"></a>
 
-##### 2.7. storageAllowed
+### 2.7. storageAllowed
 
 This setting defines if the bid adapter can access browser cookies or local storage. Allowed values are:
 
@@ -272,13 +272,13 @@ Note that:
 
 <a id="allowAlternateBidderCodes" />
 
-##### 2.8. allowAlternateBidderCodes
+### 2.8. allowAlternateBidderCodes
 
 If this flag is set to `true`, bidders that have not been explicitly requested in [`adUnit.bids`](../adunit-reference.html#adunitbids) may take part in the auction.
 <br />Default value is `true` in version 6.x
 <br />Default value will be `false` from version 7.0
 
-##### 2.9. allowedAlternateBidderCodes
+### 2.9. allowedAlternateBidderCodes
 
 This array will work in conjunction with `allowAlternateBidderCodes`. In this array, you can specify the names of the bidder for which an adapter can accept the bid. If the value is not specified for the array or `[‘*’]` is specified, Prebid will accept bids of all the bidders for the given adapter.
 
@@ -311,7 +311,7 @@ pbjs.bidderSettings = {
 In the above example, `groupm` bid will have a bid adjustment of 80% since the `bidCpmAdjustment` function says so.<br />
 If `appnexus` bids with another bidder code, say `appnexus2`. This bidder code will adjust the bid cpm to 95% because it will apply the `bidCpmAdjustment` function from `standard` setting, since the `bidCpmAdjustment` is missing for given bidder code I.e `appnexus2`
 
-##### 2.10. adjustAlternateBids
+### 2.10. adjustAlternateBids
 
 Optionally allow alternate bidder codes originating from a specific bid adapter to fallback to that same adapter's bidCpmAdjustment function. When adjustAlternateBids is set to true, the prioity of which bidCpmAdjustment function to utilize will be as follows based on what is present within the bidderSettings object:
 
@@ -345,7 +345,7 @@ pbjs.bidderSettings = {
 
 In the above example, if PubMatic were to return the "groupm" bidder code then the bidCpmAdjustment function under `pubmatic` would be used instead of what is available under `standard`.
 
-##### 2.11. bidDesirabilityAdjustment
+### 2.11. bidDesirabilityAdjustment
 
 This optional function allows publishers to influence bid ranking using a custom desirability score instead of relying only on CPM ordering.
 
