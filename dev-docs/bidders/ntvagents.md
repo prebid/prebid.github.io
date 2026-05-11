@@ -2,7 +2,7 @@
 layout: bidder
 title: Native Agents
 description: Prebid Native Agents Bidder Adapter
-biddercode: nativeagents
+biddercode: ntvagents
 gpp_sids: usstate_all
 tcfeu_supported: false
 usp_supported: true
