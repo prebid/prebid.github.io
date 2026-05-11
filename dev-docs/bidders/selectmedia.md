@@ -23,7 +23,7 @@ sidebarType: 1
 gvl_id: 775
 ---
 
-## Bid Params
+## Prebid Server Bid Params
 
 {: .table .table-bordered .table-striped }
 
@@ -31,9 +31,17 @@ gvl_id: 775
 |---------------|----------|----------------------------|-----------------------|------------|
 | `placementId` | optional | Placement Id               | `'0'`                 | `'string'` |
 | `endpointId`  | optional | Endpoint Id                | `'0'`                 | `'string'` |
-| `region`      | required | Region for Prebid.js only. | `'us-east'` or `'eu'` | `'string'` |
+
+## Prebid JS Bid Params
+
+{: .table .table-bordered .table-striped }
+
+| Name          | Scope    | Description  | Example               | Type       |
+|---------------|----------|--------------|-----------------------|------------|
+| `placementId` | optional | Placement Id | `'0'`                 | `'string'` |
+| `endpointId`  | optional | Endpoint Id  | `'0'`                 | `'string'` |
+| `region`      | required | Region       | `'us-east'` or `'eu'` | `'string'` |
 
 ## Note
 
 For the prebid server and prebid.js you only need to use one parameter: either placementId or endpointId.
-The `region` parameter is required only for prebid.js
