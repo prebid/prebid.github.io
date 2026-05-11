@@ -27,12 +27,13 @@ gvl_id: 775
 
 {: .table .table-bordered .table-striped }
 
-| Name          | Scope    | Description            | Example                         | Type       |
-|---------------|----------|------------------------|---------------------------------|------------|
-| `placementId` | optional | Placement Id           | `'0'`                           | `'string'` |
-| `endpointId`  | optional | Endpoint Id            | `'0'`                           | `'string'` |
-| `region`      | optional | Region (for Prebid.js) | `'us-east'` (default) or `'eu'` | `'string'` |
+| Name          | Scope    | Description                | Example               | Type       |
+|---------------|----------|----------------------------|-----------------------|------------|
+| `placementId` | optional | Placement Id               | `'0'`                 | `'string'` |
+| `endpointId`  | optional | Endpoint Id                | `'0'`                 | `'string'` |
+| `region`      | required | Region for Prebid.js only. | `'us-east'` or `'eu'` | `'string'` |
 
 ## Note
 
 For the prebid server and prebid.js you only need to use one parameter: either placementId or endpointId.
+The `region` parameter is required only for prebid.js
