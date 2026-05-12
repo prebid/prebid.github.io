@@ -3,6 +3,8 @@ layout: bidder
 title: DEFINE MEDIA
 description: Prebid DEFINE MEDIA Bidder Adapter
 biddercode: defineMedia
+redirect_from:
+	- /dev-docs/bidders/definemedia.html
 tcfeu_supported: true
 gvl_id: 440
 media_types: banner
