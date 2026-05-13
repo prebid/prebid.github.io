@@ -21,7 +21,7 @@ ortb_blocking_supported: true
 privacy_sandbox: no
 ---
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name   | Scope    | Description  | Example  | Type     |
