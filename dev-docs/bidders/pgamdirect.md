@@ -124,7 +124,7 @@ The adapter forwards only what Prebid.js supplies:
 
 No cookies are set on the publisher's domain by this adapter.
 
-### Migrating from pgamssp
+## Migrating from pgamssp
 
 Publishers already integrated via [pgamssp](/dev-docs/bidders/pgamssp.html) can run both adapters in parallel during the migration window:
 
