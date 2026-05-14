@@ -3,7 +3,7 @@ layout: bidder
 title: ShowHeroes
 description: Prebid ShowHeroes Bidder Adapter
 pbjs: true
-biddercode: showheroes-bs
+biddercode: showheroes
 media_types: video, banner
 gvl_id: 111
 tcfeu_supported: true
@@ -17,31 +17,33 @@ sidebarType: 1
 pbs: true
 ---
 
+{: .alert.alert-danger :}
+Showheroes bid adapter is going to be renamed in the Prebid.js version 12, from `showheroes-bs` to `showheroes`
 
-
-### bid params
+## bid params
 
 {: .table .table-bordered .table-striped }
+
 | Name        | Scope                            | Description                         | Example                                  | Type      |
 |-------------|----------------------------------|-------------------------------------|------------------------------------------|-----------|
-| `unitId`    | required                         | ShowHeroes MAX unit ID              | `'1234abcd-5678efgh'`                     | `string`  |
+| `unitId`    | required                         | ShowHeroes MAX unit ID              | `'1234abcd-5678efgh'`                    | `string`  |
 
 All other parameters should be sent inside openRTB request.
 
-### openRTB2 support
+## openRTB2 support
 
 {: .alert.alert-danger :}
 Starting with Prebid.js version 9.18 ShowHeores bidder adapter is requesting bids via openRTB protocol.  
 Publishers can use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html). Bidder supports all first-party data fields: site, user, segments, and imp-level first-party data.
 
-### testing
+## testing
 
 While developing or testing locally, you can request a test request by marking the openRTB as a test.
-To do that specifically for `showheroes-Bs` you can do:
+To do that specifically for `showheroes` you can do:
 
 ```javascript
 pbjs.setBidderConfig({
-  bidders: ['showheroesBs'],
+  bidders: ['showheroes'],
   config: {
     ortb2: {
       test:1
@@ -56,7 +58,7 @@ Or, more easily you can mark the whole request as a test request by doing:
 pbjs.setConfig({ortb2: {test: 1}})
 ```
 
-#### Prebid Server Test Request
+### Prebid Server Test Request
 
 To verify that the Prebid Server is working properly with the server-side `Showheroes` adapter a `test` property can be utilized.
 
@@ -77,7 +79,7 @@ To verify that the Prebid Server is working properly with the server-side `Showh
 }
 ```
 
-#### Outstream
+### Outstream
 
 Example of adunit configuration for the outstream unit:
 
@@ -105,7 +107,7 @@ var adUnits = [
             },
         },
         bids: [{
-            bidder: "showheroes-bs",
+            bidder: "showheroes",
             params: {
                 unitId: "1234abcd-5678efgh",
             }
@@ -121,7 +123,7 @@ pbjs.que.push(function () {
 
 You could use this example and place it in .html example pages inside the Prebid.js repository.
 
-#### instream
+### instream
 
 Example of adunit configuration for the instream unit:
 
@@ -137,7 +139,7 @@ var videoAdUnit = {
         },
         bids: [
           {
-            bidder: 'showheroesBs',
+            bidder: 'showheroes',
             params: {
               unitId: "1234abcd-5678efgh",
           }
@@ -164,7 +166,7 @@ pbjs.que.push(function(){
 
 You could use this example and place it in the `test/pages/instream.html` example page inside the Prebid.js repository.
 
-#### banner
+### banner
 
 Example of adunit configuration for banner ads:
 
@@ -180,7 +182,7 @@ var adUnits = [
           }
         },
         bids: [{
-            bidder: "showheroes-bs",
+            bidder: "showheroes",
             params: {
                 unitId: "1234abcd-5678efgh",
             }

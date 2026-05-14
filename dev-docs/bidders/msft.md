@@ -67,6 +67,10 @@ All Microsoft (formerly AppNexus/Xandr) placements included in a single call to 
 
 If you are migrating from the AppNexus bid adapter, a number of the previously available AppNexus bid parameters have been deprecated as available options for the Microsoft bid parameters. These deprecated bid parameters are still available however, they're just read from other standarized locations offered within Prebid.js. This change was implemented to help us align better to the publisher-aligned features (such as First Party Data) to use a single setup for many bidders.
 
+The Microsoft Bid Adapter connects to Microsoft's advertising exchange for bids. This adapter supports banner, video (instream and outstream), and native ad formats using OpenRTB 2.5 standards.
+
+For reference, here is the IAB OpenRTB 2.5 [specification](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf)
+
 The following table shows how the bid parameters have changed between the two adapters:
 
 {: .table .table-bordered .table-striped }
@@ -92,6 +96,11 @@ The following table shows how the bid parameters have changed between the two ad
 | `params.pub_click` | `params.pubclick` | Publisher click URL (dropped underscore to align to endpoint) |
 | `params.ext_inv_code` | `params.ext_inv_code` | External inventory code (unchanged) |
 | `params.external_imp_id` | `params.ext_imp_id` | External impression ID (shortend to ext) |
+
+#### Keywords 
+With the AppNexus adapter, keywords followed this format: keyname=keyvalue1,keyvalue2,keyvalue3
+
+In the Microsoft Bid Adapter, the new required format is: keyname=keyvalue1,keyname=keyvalue2,keyname=keyvalue3
 
 <a name="migration-from-appnexus-adserver-targeting"></a>
 
