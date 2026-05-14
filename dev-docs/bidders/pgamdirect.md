@@ -24,7 +24,7 @@ privacy_sandbox: paapi
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 PGAM Direct is the self-hosted server-to-server OpenRTB adapter operated by PGAM Media LLC. For the legacy TeqBlaze-hosted integration, see [pgamssp](/dev-docs/bidders/pgamssp.html). We plan to migrate publishers from pgamssp to pgamdirect over 2026; both will coexist on the bidders list during that window.
 
