@@ -2,6 +2,8 @@
 <html lang="en" class="html--no-js">
   <head>
     {% include head--common.html %} {% include prebidjs-non-prod.html %}
+    {% include loadScript.html %}
+    {% include video/mock-video-bid.html %}
 
     <!--pbjs and player code -->
 
@@ -15,78 +17,67 @@
       rel="stylesheet"
     />
     <!-- videojs-vast-vpaid -->
-    <script type="text/plain" class="cmplazyload" data-cmp-purpose="c51">
-      window.runVideoJSCode();
-    </script>
-    <script
-      type="text/plain"
-      class="cmplazyload"
-      data-cmp-purpose="c51"
-      data-cmp-src="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.4.0/video.js"
-    ></script>
-    <script
-      type="text/plain"
-      class="cmplazyload"
-      data-cmp-purpose="c51"
-      data-cmp-src="https://cdnjs.cloudflare.com/ajax/libs/videojs-vast-vpaid/2.0.2/videojs_5.vast.vpaid.min.js"
-    ></script>
+    <script type="text/javascript" class="cmplazyload" data-cmp-purpose="c51">
+      loadScript('https://cdnjs.cloudflare.com/ajax/libs/video.js/6.4.0/video.js')
+        .then(() => loadScript('https://cdnjs.cloudflare.com/ajax/libs/videojs-vast-vpaid/2.0.2/videojs_5.vast.vpaid.min.js'))
+        .then(() => {
+          window.runVideoJSCode();
+          window.pbjs = window.pbjs || {};
+          pbjs.que = pbjs.que || [];
 
-    <script>
-      var pbjs = pbjs || {};
-      pbjs.que = pbjs.que || [];
+          /* Prebid video ad unit */
 
-      /* Prebid video ad unit */
-
-      var videoAdUnit = {
-        code: "video1",
-        mediaTypes: {
-          video: {
-            context: "instream",
-            playerSize: [640, 480],
-            mimes: ["video/mp4"],
-            protocols: [1, 2, 3, 4, 5, 6, 7, 8],
-            playbackmethod: [2],
-            skip: 1,
-          },
-        },
-        bids: [
-          {
-            bidder: "appnexus",
-            params: {
-              placementId: 13232361,
+          var videoAdUnit = {
+            code: 'video1',
+            mediaTypes: {
+              video: {
+                context: 'instream',
+                playerSize: [640, 480],
+                mimes: ['video/mp4'],
+                protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+                playbackmethod: [2],
+                skip: 1,
+              },
             },
-          },
-        ],
-      };
-
-      pbjs.que.push(function () {
-        pbjs.addAdUnits(videoAdUnit);
-
-        pbjs.setConfig({
-          debug: true,
-          cache: {
-            url: "https://prebid.example.com/pbc/v1/cache",
-          },
-        });
-
-        pbjs.requestBids({
-          bidsBackHandler: function (bids) {
-            var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
-              adUnit: videoAdUnit,
-              params: {
-                iu: "/19968336/prebid_cache_video_adunit",
-                cust_params: {
-                  section: "blog",
-                  anotherKey: "anotherValue",
+            bids: [
+              {
+                bidder: 'appnexus',
+                params: {
+                  placementId: 13232361,
                 },
-                output: "vast",
+              },
+            ],
+          };
+
+          pbjs.que.push(function () {
+            pbjs.addAdUnits(videoAdUnit);
+
+            pbjs.setConfig({
+              debug: true,
+              cache: {
+                useLocal: true
               },
             });
-            window.invokeVideoPlayer(videoUrl);
-          },
-        });
+
+            pbjs.requestBids({
+              bidsBackHandler: function (bids) {
+                window.invokeVideoPlayer((callback) => {
+                  pbjs.adServers.gam.getVastXml({
+                    bid: bids.video1.bids[0],
+                    adUnit: videoAdUnit,
+                    params: {
+                      iu: '/41758329/localcache',
+                    },
+                  }).then(vastXml => {
+                    callback(null, vastXml)
+                  })
+                });
+              },
+            });
+          });
       });
     </script>
+
   </head>
 
   <body></body>
