@@ -2,6 +2,9 @@
 layout: bidder
 title: PGAM Direct
 description: Prebid PGAM Direct Bidder Adapter
+redirect_from:
+	- /dev-docs/bidders/pgam
+	- /dev-docs/bidders/pgammedia
 biddercode: pgamdirect
 gvl_id: 1353
 tcfeu_supported: true
