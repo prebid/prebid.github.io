@@ -23,7 +23,7 @@ sidebarType: 1
 gvl_id: 775
 ---
 
-## Prebid Server Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 
@@ -31,16 +31,6 @@ gvl_id: 775
 |---------------|----------|----------------------------|-----------------------|------------|
 | `placementId` | optional | Placement Id               | `'0'`                 | `'string'` |
 | `endpointId`  | optional | Endpoint Id                | `'0'`                 | `'string'` |
-
-## Prebid JS Bid Params
-
-{: .table .table-bordered .table-striped }
-
-| Name          | Scope    | Description  | Example               | Type       |
-|---------------|----------|--------------|-----------------------|------------|
-| `placementId` | optional | Placement Id | `'0'`                 | `'string'` |
-| `endpointId`  | optional | Endpoint Id  | `'0'`                 | `'string'` |
-| `region`      | required | Region       | `'us-east'` or `'eu'` | `'string'` |
 
 ## Note
 
