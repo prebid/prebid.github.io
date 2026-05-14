@@ -46,7 +46,7 @@ Key differences from pgamssp:
 | `placementId` | optional | Free-text placement identifier; mapped to `imp.tagid` on the bid request | `'leaderboard-728x90'`     | `string`  |
 | `bidfloor`    | optional | Per-placement USD bidfloor; bidder still enforces its own minimum        | `1.25`                     | `number`  |
 
-### Example — Banner
+## Example — Banner
 
 ```javascript
 pbjs.addAdUnits([{
