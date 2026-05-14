@@ -2,6 +2,9 @@
 layout: bidder
 title: PGAM Direct
 description: Server-to-server OpenRTB 2.6 adapter from PGAM Media (self-hosted). Dynamic floors, transparent margins, schain integrity. Related — pgamssp (legacy, TeqBlaze-hosted).
+redirect_from:
+  - /dev-docs/bidders/pgam
+  - /dev-docs/bidders/pgammedia
 biddercode: pgamdirect
 media_types: banner, video, native
 gvl_id: 1353
