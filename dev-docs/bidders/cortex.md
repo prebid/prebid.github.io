@@ -4,7 +4,7 @@ title: Cortex
 description: Prebid Cortex Adapter
 biddercode: cortex
 gpp_sids: usstate_all
-tcfeu_supported: true
+tcfeu_supported: false
 usp_supported: true
 coppa_supported: true
 schain_supported: true
