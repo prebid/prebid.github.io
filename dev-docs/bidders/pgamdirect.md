@@ -37,7 +37,7 @@ Key differences from pgamssp:
 - HMAC-signed `burl` / `nurl` to defeat pixel replay
 - Account onboarding via `orgId` issued by PGAM Media; reach out to your account manager for yours
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                                                              | Example                    | Type      |
