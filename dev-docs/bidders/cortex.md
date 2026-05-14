@@ -30,6 +30,6 @@ sidebarType: 1
 | `placementId` | optional | Placement Id | `'0'`   | `'string'` |
 | `endpointId`  | optional | Endpoint Id  | `'0'`   | `'string'` |
 
-### Note
+## Note
 
 For the prebid server you only need to use one parameter: either `placementId` or `endpointId`
