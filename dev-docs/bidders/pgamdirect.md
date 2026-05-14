@@ -92,7 +92,7 @@ pbjs.addAdUnits([{
 }]);
 ```
 
-### Example — Native
+## Example — Native
 
 ```javascript
 pbjs.addAdUnits([{
