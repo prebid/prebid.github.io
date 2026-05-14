@@ -27,7 +27,7 @@ multiformat_supported: will-bid-on-any
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                | Example                                   | Type      |
 |---------------|----------|----------------------------|--------------------------------------     |-----------|
-| `tagId`       | required*| Media Tradecraft tag ID    | `"testnexx"`                              | `string`  |
+| `tagId`       | required*| Media Tradecraft tag ID    | `"textmtrc"`                              | `string`  |
 | `placement`   | required*| Media Tradecraft placement | `"test.com_header_ad"`                    | `string`  |
 
 *You *must* only include one ID field - either `tagId` or `placement`, not both. If you have questions on which parameter to use, please reach out to your Account Manager.
@@ -66,7 +66,7 @@ var adUnits = [
       bids: [{
          bidder: 'mtc',
          params: {
-            tagId: 'testnexx'
+            tagId: 'textmtrc'
          }
        }]
    },
@@ -82,7 +82,7 @@ var adUnits = [
         bids: [{
             bidder: 'mtc',
             params: {
-               tagId: 'testnexx'
+               tagId: 'textmtrc'
             }
         }]
     },
@@ -105,7 +105,7 @@ var adUnits = [
         bids: [{
             bidder: 'mtc',
             params: {
-               tagId: 'testnexx'
+               tagId: 'textmtrc'
             }
         }]
     }
