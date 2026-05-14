@@ -3,8 +3,8 @@ layout: bidder
 title: PGAM Direct
 description: Prebid PGAM Direct Bidder Adapter
 redirect_from:
-	- /dev-docs/bidders/pgam
-	- /dev-docs/bidders/pgammedia
+  - /dev-docs/bidders/pgam
+  - /dev-docs/bidders/pgammedia
 biddercode: pgamdirect
 gvl_id: 1353
 tcfeu_supported: true
@@ -25,17 +25,17 @@ multiformat_supported: will-bid-on-any
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 PGAM Direct is PGAM Media LLC's self-hosted SSP adapter, operating against our own OpenRTB 2.6 infrastructure at `rtb.pgammedia.com`. PGAM Media also maintains [`pgamssp`](/dev-docs/bidders/pgamssp.html), our legacy TeqBlaze-hosted integration. Both adapters are actively maintained during the 2026 migration window; new integrations should prefer `pgamdirect`.
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description                                                                                           | Example             | Type     |
-|---------------|----------|-------------------------------------------------------------------------------------------------------|---------------------|----------|
-| `orgId`       | required | Publisher slug issued during onboarding. Passed on every bid request so PGAM can route + report.      | `'pgam-acme-pub'`  | `string` |
-| `placementId` | required | Placement reference for the ad slot. Must match a placement configured on the publisher's account.    | `'hdr-300x250'`    | `string` |
+| Name          | Scope    | Description                                                                                        | Example           | Type     |
+|---------------|----------|----------------------------------------------------------------------------------------------------|-------------------|----------|
+| `orgId`       | required | Publisher slug issued during onboarding. Passed on every bid request so PGAM can route + report.   | `'pgam-acme-pub'` | `string` |
+| `placementId` | required | Placement reference for the ad slot. Must match a placement configured on the publisher's account. | `'hdr-300x250'`   | `string` |
 
 ### Example
 
