@@ -64,7 +64,7 @@ pbjs.addAdUnits([{
 }]);
 ```
 
-### Example — Video (instream)
+## Example — Video (instream)
 
 ```javascript
 pbjs.addAdUnits([{
