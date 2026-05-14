@@ -43,6 +43,7 @@ See the table below for the list of properties on the ad unit. For example ad un
 | `video` | Optional | Object | Used to link an Ad Unit to the [Video Module][videoModule]. For allowed params see the [adUnit.video reference](#adunitvideo). |
 | `deferBilling` | Optional | Boolean | Used by a publisher to flag adUnits as being separately billable. This allows for a publisher to trigger billing manually for winning bids. See [pbjs.triggerBilling](/dev-docs/publisher-api-reference/triggerBilling.html) and [onBidBillable](/dev-docs/bidder-adaptor.html#registering-on-bid-billable) for more info. |
 | `bidLimit` | Optional | Number | Used by a publisher to set a bid limit for this ad unit |
+| `element`  | Optional | HTMLElement | A DOM element corresponding to this ad unit, used for viewability measurements. Defaults to `document.getElementById(code)` |    
 
 <a name="adUnit.bids"></a>
 
