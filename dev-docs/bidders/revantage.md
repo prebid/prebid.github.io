@@ -3,7 +3,7 @@ layout: bidder
 title: Revantage
 description: Prebid Revantage Bidder Adapter
 biddercode: revantage
-tcfeu_supported: false
+tcfeu_supported: true
 gvl_id: 1588
 usp_supported: true
 gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
