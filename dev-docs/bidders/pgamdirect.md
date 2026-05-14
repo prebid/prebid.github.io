@@ -111,7 +111,7 @@ pbjs.addAdUnits([{
 }]);
 ```
 
-### Privacy
+## Privacy
 
 The adapter forwards only what Prebid.js supplies:
 
