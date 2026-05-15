@@ -1,8 +1,8 @@
 ---
 layout: bidder
-title: adsmovil
-description: Prebid Adsmovil Adapter
-biddercode: adsmovil
+title: harion
+description: Prebid Harion Bidder Adapter
+biddercode: harion
 gpp_sids: usstate_all
 tcfeu_supported: true
 usp_supported: true
@@ -20,15 +20,16 @@ pbs: true
 pbs_app_supported: true
 safeframes_ok: true
 sidebarType: 1
+gvl_id: 1406
 ---
 
 ## Bid Params
 
-{:.table .table-bordered .table-striped}
-| Name          | Scope    | Description  | Example | Type     |
-|---------------|----------|--------------|---------|----------|
-| `placementId` | optional | Placement Id | `'0'`   | `string` |
-| `endpointId`  | optional | Endpoint Id  | `'0'`   | `string` |
+{: .table .table-bordered .table-striped }
+| Name          | Scope    | Description  | Example                         | Type       |
+|---------------|----------|--------------|---------------------------------|------------|
+| `placementId` | optional | Placement Id | `'0'`                           | `'string'` |
+| `endpointId`  | optional | Endpoint Id  | `'0'`                           | `'string'` |
 
 ## Note
 

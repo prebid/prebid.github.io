@@ -1,8 +1,8 @@
 ---
 layout: bidder
-title: DPAI
-description: Prebid DPAI Bidder Adapter
-biddercode: dpai
+title: TeqBlazeDemo
+description: Prebid TeqBlazeDemo Bidder Adapter
+biddercode: tqblz_demo
 gpp_sids: usstate_all
 tcfeu_supported: false
 usp_supported: true
@@ -16,20 +16,22 @@ media_types: banner, video, native
 multiformat_supported: will-bid-on-one
 userIds: all
 pbjs: true
-pbs: true
-pbs_app_supported: true
+pbs: false
+pbs_app_supported: false
 safeframes_ok: true
 sidebarType: 1
 ---
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name          | Scope    | Description  | Example                         | Type       |
 |---------------|----------|--------------|---------------------------------|------------|
 | `placementId` | optional | Placement Id | `'0'`                           | `'string'` |
 | `endpointId`  | optional | Endpoint Id  | `'0'`                           | `'string'` |
 
-### Note
+## Note
 
-For the prebid server and prebid.js you only need to use one parameter: either placementId or endpointId
+This adapter is for internal testing only and should not be used for production integrations. \
+For the prebid server and prebid.js you only need to use one parameter: either placementId or endpointId.
