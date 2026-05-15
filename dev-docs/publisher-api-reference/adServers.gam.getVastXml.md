@@ -7,7 +7,7 @@ sidebarType: 1
 
 
 {: .alert.alert-info :}
-The Google Ad Manager implementation of this function requires including the dfpAdServerVideo module in your Prebid.js build.
+The Google Ad Manager implementation of this function requires including the `gamAdServerVideo` module in your Prebid.js build.
 
 This method extends the behavior of `buildVideoUrl` by not only constructing the Google Ad Manager video ad tag URL, but also fetching and processing the resulting VAST wrapper returned by GAM.
 
