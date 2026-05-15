@@ -37,3 +37,4 @@ The Ferio bidder adapter requires setup before beginning. Please contact <prebid
 | --------------- | ---------- | ------------------------------------ | ----------------------------------- | ---------- |
 | `publisherId` | required | Publisher ID on the Ferio platform | `'pubwZR87JRDZSf6V'` | `string` |
 | `adUnitId` | required | Ad unit ID on the Ferio platform | `'e38ea96e-d044-4973-9c2b-fb3fc7a901be'` | `string` |
+| `tenantId` | required | Tenant ID on the Ferio platform | `'anyclip-pbjs'` | `string` |
