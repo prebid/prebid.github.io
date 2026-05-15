@@ -81,4 +81,3 @@ var videoUrl = pbjs.adServers.gam.buildVideoUrl({
 
 {: .alert.alert-warning :}
 In the event of collisions, querystring values passed via `options.params` take precedence over those passed via `options.url`.
-
