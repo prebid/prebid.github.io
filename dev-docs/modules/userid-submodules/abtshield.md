@@ -44,6 +44,8 @@ pbjs.setConfig({
 });
 ```
 
+
+{: .table .table-bordered .table-striped }
 | Param | Scope | Type | Description |
 | --- | --- | --- | --- |
 | `params.sid` | Required | String | Service ID obtained from abtshield.com. |
