@@ -19,11 +19,12 @@ This document describes the changes included for Prebid.js version 10.0.
 1. A large number of obsolete modules have been removed. Many modules have changed name. See below for the list.
 2. The legacy method of native targeting keys, `sendTargetingKeys`, has been removed.
 3. `pbadslot` has been removed from the preAuction module. Use `ortb2Imp.ext.gpid` instead.
-4. The API methods `getBidResponses` and `getNoBidsForAdUnitCode` now return arrays of bids.
-5. TypeScript support has landed and Node.js 20+ is required to build.
-6. Using Prebid as an NPM dependency no longer requires using Babel or Prebid's Babel settings.
-7. `targetingControls.allBidsCustomTargeting` now defaults to `false`, this prevents custom targeting values from being set for non-winning bids.
-8. Storage use disclosures can now be enforced and catalogued 
+4. The API methods `getBidResponsesForAdUnitCode` and `getNoBidsForAdUnitCode` now return arrays of bids.
+5. The API methods `getBidResponses` and `getNoBids` now return an object with an array of bids for each ad unit.
+6. TypeScript support has landed and Node.js 20+ is required to build.
+7. Using Prebid as an NPM dependency no longer requires using Babel or Prebid's Babel settings.
+8. `targetingControls.allBidsCustomTargeting` now defaults to `false`, this prevents custom targeting values from being set for non-winning bids.
+9. Storage use disclosures can now be enforced and catalogued 
 
 ## Removed Modules
 
@@ -32,7 +33,7 @@ The following modules have been removed from Prebid.js as part of the 10.0 relea
 {: .table .table-bordered .table-striped }
 
 | Module | Replacement |
-|:-----------------------------|:-------------------------|
+| :----------------------------- | :------------------------- |
 | dfpAdServerVideo | gamAdServerVideo |
 | dfpAdPod | gamAdPod |
 | telariaBidAdapter | |

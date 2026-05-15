@@ -10,7 +10,7 @@ This function returns the bid responses at the given moment.
 
 **Kind**: static method of `pbjs`.
 
-**Returns**: `object` - map | object that contains the bidResponses.
+**Returns**: `object` - map | object that contains for each ad unit the array of bid responses. For backwards compatibility, the arrays expose the array also under the `.bids` property.
 
 **Returned Object Params**:
 
@@ -36,7 +36,6 @@ This function returns the bid responses at the given moment.
 | `adserverTargeting`  | Object  | Contains all the adserver targeting parameters | `{ "hb_bidder": "appnexus", "hb_adid": "7a53a9d3" }` |
 | `native`  | Object  | Contains native key value pairs. | `{ "title": "", "body": "" }` |
 | `status`  | String  | Status of the bid. Possible values: targetingSet, rendered | `"targetingSet"` |
-| `statusMessage`     | String  | The bid's status message                                                                                                        | "Bid returned empty or error response" or "Bid available" |
 | `ttl`  | Integer  | How long (in seconds) this bid is considered valid. See this [FAQ entry]({{site.github.url}}/dev-docs/faq.html#does-prebidjs-cache-bids) for more info. | `300` |
 | `meta` | Object | (Optional) Contains additional meta information about the bid. | `{ "advertiserDomains": [ "wherewindsmeetgame.com" ] }` |
 | `meta.advertiserDomains` | String[] | (Optional) Array with the advertiser domains | |
@@ -69,13 +68,11 @@ This function returns the bid responses at the given moment.
 
 ```json
 {
-  "/9968336/header-bid-tag-0": {
-    "bids": [
+  "/9968336/header-bid-tag-0":  [
       {
         "bidderCode": "appnexus",
         "width": 300,
         "height": 250,
-        "statusMessage": "Bid available",
         "adId": "7a53a9d3",
         "creative_id": 29681110,
         "cpm": 0.5,
@@ -96,7 +93,6 @@ This function returns the bid responses at the given moment.
         "bidderCode": "pubmatic",
         "width": "300",
         "height": "250",
-        "statusMessage": "Bid available",
         "adId": "1139e34e14",
         "adSlot": "39620189@300x250",
         "cpm": 1,
@@ -120,7 +116,6 @@ This function returns the bid responses at the given moment.
         "bidderCode": "rubicon",
         "width": "300",
         "height": "250",
-        "statusMessage": "Bid available",
         "adId": "130d3b0d9b",
         "cpm": 0.795995,
         "ad": "<scri...pt>",
@@ -139,15 +134,12 @@ This function returns the bid responses at the given moment.
           "hb_pb": "0.50"
         }
       }
-    ]
-  },
-  "/9968336/header-bid-tag1": {
-    "bids": [
+    ],
+  "/9968336/header-bid-tag1": [
       {
         "bidderCode": "casale",
         "width": 0,
         "height": 0,
-        "statusMessage": "Bid returned empty or error response",
         "adId": "108c0ba49d",
         "requestTimestamp": 1444844944130,
         "responseTimestamp": 1444844944223,
@@ -160,7 +152,6 @@ This function returns the bid responses at the given moment.
         "bidderCode": "openx",
         "width": "728",
         "height": "90",
-        "statusMessage": "Bid available",
         "adId": "14d7f9208f",
         "ad_id": "537161420",
         "cpm": 1.717,
@@ -179,7 +170,6 @@ This function returns the bid responses at the given moment.
         }
       }
     ]
-  }
 }
 ```
 
@@ -203,8 +193,7 @@ This function returns the bid responses at the given moment.
 
 ```json
 {
-    "div-banner-outstream-native" : {
-      "bids" : [
+    "div-banner-outstream-native" : [
           {
             "pbMg" : "10.00",
             "pbLg" : "5.00",
@@ -265,12 +254,10 @@ This function returns the bid responses at the given moment.
             "ttl" : 300,
             "status" : "targetingSet",
             "height" : 0,
-            "statusMessage" : "Bid available",
             "cpm" : 10,
             "currency" : "USD"
           }
       ]
-    }
 }
 ```
 
