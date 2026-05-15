@@ -44,7 +44,6 @@ pbjs.setConfig({
 });
 ```
 
-
 {: .table .table-bordered .table-striped }
 | Param | Scope | Type | Description |
 | --- | --- | --- | --- |
