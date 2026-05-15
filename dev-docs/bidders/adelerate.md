@@ -4,16 +4,22 @@ title: Adelerate
 description: Adelerate's Prebid Bidder Adapter for banner, video, and native demand
 biddercode: adelerate
 media_types: video, native
+dsa_supported: true
 usp_supported: true
-gpp_supported: true
+gpp_sids: tcfca, usnat, usstate_all, usp
 coppa_supported: true
 schain_supported: true
-bidder_supports_deals: true
+dchain_supported: true
+deals_supported: true
+floors_supported: true
+fpd_supported: true
+multiformat_supported: will-bid-on-any
 userId: all
 pbjs: true
 pbs: true
 pbs_app_supported: true
 safeframes_ok: true
+sidebarType: 1
 ---
 
 ### Bid Params
