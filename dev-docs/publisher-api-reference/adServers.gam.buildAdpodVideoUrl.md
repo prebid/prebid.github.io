@@ -11,9 +11,9 @@ The GAM implementation of this function requires including the `gamAdServerVideo
 
 This method combines publisher-provided parameters with Prebid.js targeting parameters to build a GAM video ad tag URL that can be used by a video player.
 
-#### Argument Reference
+## Argument Reference
 
-##### The `options` object
+### The `options` object
 
 {: .table .table-bordered .table-striped }
 | Field    | Type   | Description                                                                                                                                                                        |
@@ -23,7 +23,7 @@ This method combines publisher-provided parameters with Prebid.js targeting para
 
 {% include alerts/alert_important.html content="For long form Prebid.js will add key-value strings for multiple bids. This prevents retrieving the description url from bid." %}
 
-#### Example
+## Example
 
 ```JavaScript
 pbjs.que.push(function(){
