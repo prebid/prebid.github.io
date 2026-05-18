@@ -22,7 +22,7 @@ ortb_blocking_supported: true
 privacy_sandbox: no
 ---
 
-### Prebid.js Bid params
+## Prebid.js Bid params
 
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                 | Example                            | Type      |
@@ -31,7 +31,7 @@ privacy_sandbox: no
 | `env`       | optional | Environment name            | `leagueM`                          | `string`  |
 | `ext`       | optional | Specific integration config | `{}`                               | `object`  |
 
-### Prebid Server Bid Params
+## Prebid Server Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                 | Example                            | Type      |
