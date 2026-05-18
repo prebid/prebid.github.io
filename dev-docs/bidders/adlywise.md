@@ -1,8 +1,8 @@
 ---
 layout: bidder
-title: Adinify
-description: Adinify Bidder Adapter
-biddercode: adinify
+title: Adlywise
+description: Adlywise Bidder Adapter
+biddercode: adlywise
 aliasCode : smarthub
 usp_supported: true
 coppa_supported: true
