@@ -28,5 +28,5 @@ privacy_sandbox: no
 | Name        | Scope    | Description                 | Example                            | Type      |
 |-------------|----------|-----------------------------|------------------------------------|-----------|
 | `pid`       | required | Placement ID                | `0e232769e6f71d291ee7dbc9d157cf84` | `string`  |
-| `env`       | optional | Environment name            | `matterfull`                       | `string`  |
+| `env`       | required | Environment name            | `matterfull`                       | `string`  |
 | `ext`       | optional | Specific integration config | `{}`                               | `object`  |
