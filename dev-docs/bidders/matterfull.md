@@ -22,7 +22,7 @@ ortb_blocking_supported: true
 privacy_sandbox: no
 ---
 
-### Prebid.js Bid params
+## Prebid.js Bid params
 
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                 | Example                            | Type      |
