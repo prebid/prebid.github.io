@@ -3,7 +3,8 @@ layout: bidder
 title: Contxtful
 description: Prebid Contxtful Bidder Adapter
 biddercode: contxtful
-tcfeu_supported: false
+gvl_id: 1569
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
@@ -20,17 +21,18 @@ multiformat_supported: will-bid-on-any
 ortb_blocking_supported: true
 ---
 
-### Note
+## Note
 
 The Contxtful bidder adapter requires some setup. Contact us at [contact@contxtful.com](mailto:contact@contxtful.com)
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name        | Scope    | Description                                                | Example                      | Type                 |
-|-------------|----------|------------------------------------------------------------|------------------------------|----------------------|
-| `placementId`      | required | The placement identifier                                          | `'p12345678'` | `string`             |
-| `customerId`      | required | The customer identifier              | `'DEMO123456'`       | `string`           |
+
+| Name           | Scope    | Description                  | Example        | Type     |
+|----------------|----------|------------------------------|----------------|----------|
+| `placementId`  | required | The placement identifier     | `'p12345678'`  | `string` |
+| `customerId`   | required | The customer identifier      | `'DEMO123456'` | `string` |
 
 ### Configuration - Prebid.js Adapter
 
@@ -60,6 +62,9 @@ pbjs.setConfig({
             }
          }
       ]
+   },
+   "gvlMapping":{
+       "contxtful": 1569
    }
 }
 );
@@ -92,6 +97,9 @@ pbjs.setConfig({
             }
          }
       ]
+   },
+   "gvlMapping":{
+       "contxtful": 1569
    }
 }
 );
