@@ -1,6 +1,6 @@
 # Overview
 
-```
+```text
 Module Name: HUMAN Security Rtd provider
 Module Type: Rtd Provider
 Maintainer: alexey@humansecurity.com
@@ -75,11 +75,11 @@ pbjs.setConfig({
 
 ## Supported parameters
 
-| Name             |Type           | Description                                                         | Required |
-| :--------------- | :------------ | :------------------------------------------------------------------ |:---------|
-| `clientId`  | String | Should you need advanced reporting, contact [prebid@humansecurity.com](prebid@humansecurity.com) to receive client ID. | No |
-| `verbose`   | Boolean | Only set to `true` if troubleshooting issues. | No |
-| `perBidderOptOut`   | string[] | Pass any bidder alias to opt-out from per-bidder signal generation. | No |
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| `clientId` | String | Should you need advanced reporting, contact [prebid@humansecurity.com](prebid@humansecurity.com) to receive client ID. | No |
+| `verbose` | Boolean | Only set to `true` if troubleshooting issues. | No |
+| `perBidderOptOut` | string[] | Pass any bidder alias to opt-out from per-bidder signal generation. | No |
 
 ## Logging, latency and troubleshooting
 
@@ -93,7 +93,7 @@ of type `ERROR`. With `verbose` parameter set to `true`, it may additionally:
 
 Example output of the latency information:
 
-```
+```text
 INFO: [humansecurity]: impl JS time to init (ms): 6.
 INFO: [humansecurity]: impl JS time to collect (ms): 13.
 ```
