@@ -795,6 +795,25 @@ Parameters:
 | latitude | required | double | The device latitude. | 40.71 |
 | longitude | required | double | The device longitude. | 74.01 |
 
+### setLocationDecimalPrecision()
+
+Sets the decimal precision for location coordinates (latitude/longitude) in geo-targeting. This helps control the precision of location data sent in ad requests for privacy purposes.
+
+Signature:
+
+```kotlin
+void setLocationDecimalPrecision(Int? precision)
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| precision | optional | integer | Number of decimal places to keep, or null for no limit. Values outside the 0-6 range will be clamped to valid range. Default is `null`| 2 |
+
+Related function: getLocationDecimalPrecision().
+
 ---
 
 ## Arbitrary OpenRTB

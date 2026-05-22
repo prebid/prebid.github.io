@@ -104,7 +104,7 @@ Example creative HTML:
     <div class="attribution">##hb_native_brand##</div>
   </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/%%PATTERN:hb_format%%.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@%%PATTERN:hb_ver%%/dist/%%PATTERN:hb_format%%.js"></script>
 <script>
     var pbNativeTagData = {};
     pbNativeTagData.pubUrl = "%%PATTERN:url%%";

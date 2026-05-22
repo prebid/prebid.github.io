@@ -7,6 +7,7 @@ filename: omnidexBidAdapter
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 tcfeu_supported: false
 usp_supported: true
+gvl_id: 1463
 coppa_supported: false
 schain_supported: true
 gpp_supported: true

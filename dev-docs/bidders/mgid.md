@@ -15,7 +15,7 @@ multiformat_supported: will-bid-on-any
 sidebarType: 1
 ---
 
-### Table of Contents
+## Table of Contents
 
 - [Table of Contents](#table-of-contents)
 - [Description](#description)
@@ -39,7 +39,6 @@ MGID header bidding adapter connects with MGID demand sources to fetch bids for 
 | Name         | Scope    | Description                        | Example    | Type     |
 |--------------|----------|------------------------------------|------------|----------|
 | `accountId`  | required | The account ID from Mgid           | `'123'`    | `string` |
-| `placementId`| optional | The placement ID from Mgid         | `'123456'` | `string` |
 | `bidFloor`   | optional | Lowest value of expected bid price | `1.1`      | `float`  |
 | `currency`   | optional | Currency of request and response   | `'GBP'`    | `string` |
 
@@ -57,11 +56,10 @@ var adUnits = [{
       sizes: [[300, 600]]
     }
   },
-  // Replace this object to test a new Adapter!
   bids: [{
     bidder: 'mgid',
-    params : {
-      accountId : "219" //test accountId, please replace after test
+    params: {
+      accountId: "#{accountId}" // replace with your accountId
     }
   }]
 }];
@@ -77,11 +75,10 @@ var adUnits = [{
       sizes: [[300, 250]]
     }
   },
-  // Replace this object to test a new Adapter!
   bids: [{
     bidder: 'mgid',
-    params : {
-      accountId : "219" //test accountId, please replace after test
+    params: {
+      accountId: "#{accountId}" // replace with your accountId
     }
   }]
 }];
@@ -107,16 +104,15 @@ var adUnits = [{
             required: true,
             len: 80
         },
-        sponsored: {
+        sponsoredBy: {
             required: false
         }
     }
   },
-  // Replace this object to test a new Adapter!
   bids: [{
     bidder: 'mgid',
-    params : {
-        accountId : "219" //test accountId, please replace after test
+    params: {
+        accountId: "#{accountId}" // replace with your accountId
     }
   }]
 }];
@@ -147,10 +143,11 @@ For Prebid.js v1.14.0 and before:
 
 ```javascript
 pbjs.setConfig({
-   userSync: {
+  userSync: {
     iframeEnabled: true,
     enabledBidders: ['mgid']
- }});
+  }
+});
 ```
 
 Note: Combine the above configuration with any other UserSync configuration. Multiple setConfig() calls overwrite each other and only the last call for a given attribute will take effect.

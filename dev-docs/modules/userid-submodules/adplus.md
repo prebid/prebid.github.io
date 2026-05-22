@@ -21,8 +21,6 @@ gulp build --modules=adplusIdSystem,userId
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module: `"adplusId"` | `"adplusId"` |
-| storage.expires | Optional | Number | How long (in days) the user ID information will be stored | `7` (recommended) |
-| storage.refreshInSeconds | Optional | Number | How many seconds until the ID is refreshed | `24 * 3600` (recommended) |
 
 ## AdPlus ID Example
 
@@ -32,10 +30,7 @@ pbjs.setConfig({
         userIds: [{
             name: "adplusId",
             storage: {
-                name: "adplusId",
-                type: "cookie&html5",
-                expires: 7,
-                refreshInSeconds: 24 * 3600
+                name: "adplusId"
             }
         }]
     }

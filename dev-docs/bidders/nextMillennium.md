@@ -67,21 +67,60 @@ pbjs.setConfig({
 });
 ```
 
-#### OpenRTB 2.5 supported parameters
+#### OpenRTB 2.6 supported parameters
 
 The adapter for Prebid.js supports the following options:
 
 * `site.pagecat`
+* `site.keywords`
+* `site.name`
+* `site.cattax`
+* `site.cat`
+* `site.sectioncat`
+* `site.search`
+* `site.mobile`
+* `site.privacypolicy`
+* `site.kwarray`
 * `site.content.cat`
 * `site.content.language`
-* `device.sua`
-* `site.keywords`
 * `site.content.keywords`
+* `site.publisher.id`
+* `site.publisher.name`
+* `site.publisher.cattax`
+* `site.publisher.cat`
+* `site.publisher.domain`
+* `device.sua`
+* `device.ip`
+* `device.ipv6`
+* `device.dnt`
+* `device.lmt`
+* `device.devicetype`
+* `device.make`
+* `device.model`
+* `device.os`
+* `device.osv`
+* `device.hwv`
+* `device.geo.lat`
+* `device.geo.lon`
+* `device.geo.type`
+* `device.geo.accuracy`
+* `device.geo.lastfix`
+* `device.geo.ipservice`
+* `device.geo.country`
+* `device.geo.region`
+* `device.geo.regionfips104`
+* `device.geo.metro`
+* `device.geo.city`
+* `device.geo.zip`
+* `device.geo.utcoffset`
+* `device.language`
+* `device.langb`
 * `user.keywords`
 * `bcat`
 * `badv`
 * `wlang`
 * `wlangb`
+* `cattax`
 
 You can set these parameters through the Prebid.js configuration setup functions: [pbjs.setConfig](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html) or [pbjs.setBidderConfig](https://docs.prebid.org/dev-docs/publisher-api-reference/setBidderConfig.html).
 An example of setting openrtb parameters for the entire prebid.js script.
@@ -117,4 +156,52 @@ pbjs.setBidderConfig({
     }
   }
 });
+```
+
+#### Support for OpenRTB 2.6 parameters at the Ad Units level
+
+* `displaymanager`
+* `displaymanagerver`
+* `instl`
+* `banner.btype`
+* `banner.battr`
+* `banner.mimes`
+* `banner.topframe`
+* `banner.expdir`
+* `banner.api`
+* `banner.format`
+* `video.rqddurs`
+* `video.battr`
+* `video.maxextended`
+* `video.minbitrate`
+* `video.maxbitrate`
+* `video.boxingallowed`
+* `video.api`
+* `video.companiontype`
+
+Example of setting OpenRTB parameters at the Ad Units level:
+
+```javascript
+pbjs.addAdUnits({
+  code: 'Some-Ad-Unit',
+  mediaTypes: {
+    banner: {
+      sizes: [[300, 250]],
+    },
+  },
+
+  ortb2Imp: {
+    mimes: ['image/jpeg', 'image/png'],
+  },
+
+  bids: [
+    {
+      bidder: 'nextMillennium',
+      params: {
+        placement_id: 13234567,
+      },
+    },
+  ],
+});
+
 ```
