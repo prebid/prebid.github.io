@@ -90,7 +90,7 @@ While the WURFL RTD module enriches the OpenRTB 2.0 payload, SSP adapters must a
 ### Integration Scenarios
 
 | SSP Adapter Status | Required Adapter Changes | Required Server Changes |
-|-------------------|--------------------------|-------------------------|
+| ------------------ | ------------------------ | ----------------------- |
 | Already passing ORTB2 device to server | No changes required | Update backend logic to utilize device data |
 | Not currently passing device data | Update adapter to read `device` and/or `device.ext.wurfl` and pass to endpoint | Update backend logic to utilize device data |
 | No Bidder Adapter exists | Implement Prebid.js adapter to read and pass `device` and/or `device.ext.wurfl` | Implement endpoint logic to read and utilize data |
@@ -124,7 +124,7 @@ pbjs.setConfig({
 {: .table .table-bordered .table-striped }
 
 | Name | Type | Description | Default |
-|------|------|-------------|---------|
+| ---- | ---- | ----------- | ------- |
 | `name` | String | Real time data module name | Always 'wurfl' |
 | `params` | Object | Configuration parameters | |
 | `params.altHost` | String | Alternate host to connect to WURFL.js | |
@@ -266,6 +266,6 @@ The WURFL RTD module processes minimal personal data under legitimate interest f
 
 * Device detection uses only HTTP headers (User-Agent, Client Hints)
 * No user tracking or cross-site identification
-* IP addresses processed transiently for service delivery only
+* IP addresses are retained for up to 36 months for fraud detection and invalid traffic prevention, then permanently redacted. They are not used for user identification or behavioral profiling.
 
 For questions or support, visit [ScientiaMobile Support](https://support.scientiamobile.com).
