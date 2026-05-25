@@ -28,10 +28,11 @@ Targeting API endpoint is configurable per publisher.
 
 ### Execution Plan
 
-This module runs at two stages:
+This module runs at three stages:
 
-* Processed Auction Request: to enrich `user.eids` and `user.data`.
-* Auction Response: to inject ad server targeting.
+* Raw Auction Request: initiates a non-blocking Optable API call early in the auction lifecycle.
+* Bidder Request: awaits the API response and enriches individual bidder requests with `user.eids` and `user.data`.
+* Auction Response: injects ad server targeting.
 
 We recommend defining the execution plan in the account config so the module is only invoked for specific accounts. See
 below for an example.
@@ -55,10 +56,8 @@ Note the endpoint contains 2 macros: {{TENANT}} and {ORIGIN} - the values for wh
 
 ### Account-Level Config
 
-To start using current module in PBS-Java you have to enable module and add
-`optable-targeting-processed-auction-request-hook` and `optable-targeting-auction-response-hook` into hooks execution
-plan inside your config file:
-Here's a general template for the account config used in PBS-Java:
+To start using the module in PBS-Java you have to enable it and add the hooks into the execution plan in your config
+file. Here's the recommended account config:
 
 ```yaml
 hooks:
@@ -66,6 +65,14 @@ hooks:
     api-key: key
     tenant: optable
     origin: web-sdk-demo
+    enrichment-percentage: 100
+    bidder-enrichment-percentages:
+      appnexus: 75
+      rubicon: 75
+      pubmatic: 100
+      criteo: 0
+    enrich-web: true
+    enrich-app: true
     ppid-mapping: { "pubcid.org": "c" }
     adserver-targeting: true
     cache:
@@ -76,14 +83,27 @@ hooks:
       "endpoints": {
         "/openrtb2/auction": {
           "stages": {
-            "processed-auction-request": {
+            "raw-auction-request": {
               "groups": [
                 {
-                  "timeout": 100,
+                  "timeout": 50,
                   "hook-sequence": [
                     {
                       "module-code": "optable-targeting",
-                      "hook-impl-code": "optable-targeting-processed-auction-request-hook"
+                      "hook-impl-code": "optable-targeting-raw-auction-request-hook"
+                    }
+                  ]
+                }
+              ]
+            },
+            "bidder-request": {
+              "groups": [
+                {
+                  "timeout": 50,
+                  "hook-sequence": [
+                    {
+                      "module-code": "optable-targeting",
+                      "hook-impl-code": "optable-targeting-bidder-request-hook"
                     }
                   ]
                 }
@@ -108,18 +128,53 @@ hooks:
     }
 ```
 
+### Migrating from legacy configuration
+
+Previous versions of the module used a `processed-auction-request` hook (alongside the `auction-response` hook) that both
+made the API call and enriched the request synchronously in one step, blocking the auction pipeline. The new
+configuration replaces it with two hooks: `raw-auction-request` (initiates the API call early) and `bidder-request`
+(awaits the result and enriches per-bidder), while the `auction-response` hook remains unchanged.
+
+If your execution plan contains the following fragment, it should be replaced with the `raw-auction-request` and
+`bidder-request` hooks shown above:
+
+```json
+"processed-auction-request": {
+  "groups": [
+    {
+      "timeout": 600,
+      "hook-sequence": [
+        {
+          "module-code": "optable-targeting",
+          "hook-impl-code": "optable-targeting-processed-auction-request-hook"
+        }
+      ]
+    }
+  ]
+}
+```
+
+The `processed-auction-request` hook is still supported for backwards compatibility. It detects whether the new hooks
+(`raw-auction-request` and `bidder-request`) are present in the execution plan. If both are active, it passes through
+immediately without blocking the pipeline. If the new hooks are absent, it falls back to the legacy synchronous
+behavior. This means the legacy fragment can be kept during migration without negating the latency benefit of the new
+configuration.
+
 ### Timeout considerations
 
-The timeout value specified in the execution plan for the `processed-auction-request` hook is very important to be
-picked such that the hook has enough time to make a roundtrip to Optable Targeting Edge API over HTTP.
+The `bidder-request` hook timeout is used as the timeout budget for the Optable Targeting API call Future that is
+initiated in the `raw-auction-request` stage. The API call runs in parallel with other auction processing, so the
+effective wait time at the `bidder-request` stage is typically much shorter than the full API roundtrip. The
+`raw-auction-request` hook timeout only needs to cover its own lightweight setup (validation, sampling) and can be kept
+short.
 
 **Note:** Do not confuse hook timeout value with the module timeout parameter which is optional. The hook timeout value
 would depend on the cloud/region where the PBS instance is hosted and the latency to reach the Optable's servers. This
 will need to be verified experimentally upon deployment.
 
 The timeout value for the `auction-response` can be set to 10 ms - usually it will be sub-millisecond time as there are
-no HTTP calls made in this hook - Optable-specific keywords are cached on the `processed-auction-request` stage and
-retrieved from the module invocation context later.
+no HTTP calls made in this hook - Optable-specific keywords are cached on earlier stages and retrieved from the module
+invocation context later.
 
 ### Caching
 
@@ -142,21 +197,25 @@ would result in this nesting in the JSON configuration:
 
 {: .table .table-bordered .table-striped }
 
-| Param Name         | Required | Type    | Default  value | Description                                                                                                                                                                                                                                                                                                                                                                                                                |
-|:-------------------|:---------|:--------|:---------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| api-endpoint       | yes      | string  | none           | Host-Level. Optable Targeting Edge API endpoint URL. Note it must: include {{TENANT}} and {ORIGIN} macros that are substituted from account-level config values |
-| tenant            | yes       | string  | none           | Account-Level. Your Optable tenant aka account ID. |
-| origin            | yes       | string  | none           | Account-Level. Optable data `origin` aka `source`. |
-| api-key            | no       | string  | none           | Account-Level. If the API is protected with a key - this param needs to be specified to be sent in the auth header |
-| ppid-mapping       | no       | map     | none           | Account-Level. This specifies PPID source (`user.ext.eids[].source`) to a custom identifier prefix mapping, f.e. `{"example.com" : "c"}`. See the section on ID Mapping below for more detail. |
-| adserver-targeting | no       | boolean | false          | Account-Level. If set to true - will add the Optable-specific adserver targeting keywords into the PBS response for every `seatbid[].bid[].ext.prebid.targeting` |
-| timeout            | no       | integer | false          | Account-Level. A soft timeout (in ms) sent as a hint to the Targeting API endpoint to  limit the request times to Optable's external tokenizer services |
-| id-prefix-order    | no       | string  | none           | Account-Level. An optional string of comma separated id prefixes that prioritizes and specifies the order in which ids are provided to Targeting API in a query string. F.e. "c,c1,id5" will guarantee that Targeting API will see id=c:...,c1:...,id5:... if these ids are provided.  id-prefixes not mentioned in this list will be added in arbitrary order after the priority prefix ids. This affects Targeting API processing logic |
-| cache.enabled    | no       | string  | false           | Account-Level. Optionally use [Prebid Cache Storage](https://docs.prebid.org/prebid-server/features/pbs-pbc-storage.html) feature - this significantly reduces the processing time when the Targeting API response has been cached |
-| cache.ttlseconds    | no       | int  | 86400           | Account-Level. The TTL in seconds for the Targeting API response to live in cache - by default is equal to 24 hours |
-| optable-inserter-eids-merge   | no       | array of strings | none  | Account-Level. List of EID source names for which the module should **merge** the incoming server-side EIDs with those returned by the Targeting API. |
-| optable-inserter-eids-replace | no       | array of strings | none  | Account-Level. List of EID source names for which the module should **replace** the incoming EID entirely with the one from the Targeting API. |
-| optable-inserter-eids-ignore | no       | array of strings | none  | Account-Level. List of EID source names for which the module should **remove** the EID entirely. |
+| Param Name                     | Required | Type             | Default value | Description                                                                                                                                                                                                                                                                                                                                                                                                                |
+|:-------------------------------|:---------|:-----------------|:--------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| api-endpoint                   | yes      | string           | none          | Host-Level. Optable Targeting Edge API endpoint URL. Note it must include &#123;&#123;TENANT&#125;&#125; and &#123;ORIGIN&#125; macros that are substituted from account-level config values |
+| tenant                         | yes      | string           | none          | Account-Level. Your Optable tenant aka account ID. |
+| origin                         | yes      | string           | none          | Account-Level. Optable data `origin` aka `source`. |
+| api-key                        | no       | string           | none          | Account-Level. If the API is protected with a key - this param needs to be specified to be sent in the auth header |
+| ppid-mapping                   | no       | map              | none          | Account-Level. This specifies PPID source (`user.ext.eids[].source`) to a custom identifier prefix mapping, f.e. `{"example.com" : "c"}`. See the section on ID Mapping below for more detail. |
+| adserver-targeting             | no       | boolean          | false         | Account-Level. If set to true - will add the Optable-specific adserver targeting keywords into the PBS response for every `seatbid[].bid[].ext.prebid.targeting` |
+| timeout                        | no       | integer          | none          | Account-Level. A soft timeout (in ms) sent as a hint to the Targeting API endpoint to limit the request times to Optable's external tokenizer services |
+| id-prefix-order                | no       | string           | none          | Account-Level. An optional string of comma separated id prefixes that prioritizes and specifies the order in which ids are provided to Targeting API in a query string. F.e. "c,c1,id5" will guarantee that Targeting API will see id=c:...,c1:...,id5:... if these ids are provided. Id-prefixes not mentioned in this list will be added in arbitrary order after the priority prefix ids. This affects Targeting API processing logic  |
+| enrichment-percentage          | no       | integer          | 100           | Account-Level. Default percentage (0-100) of bid requests per bidder that will receive enrichment data. Set to 100 to enrich all requests, 0 to disable enrichment by default. |
+| bidder-enrichment-percentages  | no       | map              | none          | Account-Level. Per-bidder overrides for `enrichment-percentage`. Keys are bidder names, values are percentages (0-100). F.e. `{"appnexus": 75, "criteo": 0}` enriches 75% of appnexus requests and none for criteo. |
+| enrich-web                     | no       | boolean          | true          | Account-Level. Whether to enrich web traffic (requests with a `site` object). |
+| enrich-app                     | no       | boolean          | true          | Account-Level. Whether to enrich app traffic (requests with an `app` object). |
+| cache.enabled                  | no       | string           | false         | Account-Level. Optionally use [Prebid Cache Storage](https://docs.prebid.org/prebid-server/features/pbs-pbc-storage.html) feature - this significantly reduces the processing time when the Targeting API response has been cached |
+| cache.ttlseconds               | no       | int              | 86400         | Account-Level. The TTL in seconds for the Targeting API response to live in cache - by default is equal to 24 hours |
+| optable-inserter-eids-merge    | no       | array of strings | none          | Account-Level. List of EID source names for which the module should **merge** the incoming server-side EIDs with those returned by the Targeting API. |
+| optable-inserter-eids-replace  | no       | array of strings | none          | Account-Level. List of EID source names for which the module should **replace** the incoming EID entirely with the one from the Targeting API. |
+| optable-inserter-eids-ignore   | no       | array of strings | none          | Account-Level. List of EID source names for which the module should **remove** the EID entirely. |
 
 ## ID Mapping
 
