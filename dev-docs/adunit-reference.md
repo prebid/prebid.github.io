@@ -106,7 +106,7 @@ See [Prebid Native Implementation](/prebid/native-implementation.html) for detai
 | Name | Scope | Type | Description |
 |------------------+-------------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `pos` | Optional | Integer | Ad position on screen, see [OpenRTB 2.5 spec][openRTB]. OpenRTB page position value: 0=unknown, 1=above-the-fold, 3=below-the-fold, 4=header, 5=footer, 6=sidebar, 7=full-screen |
-| `context` | Recommended | String | The video context, either `'instream'`, `'outstream'`, or `'adpod'` (for long-form videos). Example: `context: 'outstream'`. Defaults to 'instream'. |
+| `context` | Recommended | String | The video context, either `'instream'` or `'outstream'`. Example: `context: 'outstream'`. Defaults to 'instream'. |
 | `useCacheKey` | Optional | Boolean | Defaults to `false`. While context `'instream'` always will return an vastUrl in bidResponse, `'outstream'` will not. Setting this `true` will use cache url defined in global options also for outstream responses. |
 | `placement` | Recommended | Integer | 1=in-stream, 2=in-banner, 3=in-article, 4=in-feed, 5=interstitial/floating. **Highly recommended** because some bidders require more than context=outstream. |
 | `plcmt` | Recommended | Integer | 1=in-stream, 2=accompanying content, 3=interstitial, 4=no content/standalone. **Highly recommended** to comply with new IAB video specifications. See [AdCOM v1 spec](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/develop/AdCOM%20v1.0%20FINAL.md#list_plcmtsubtypesvideo) |
@@ -128,21 +128,6 @@ See [Prebid Native Implementation](/prebid/native-implementation.html) for detai
 | `maxbitrate` | Optional | Integer | Maximum bit rate in Kbps., see [OpenRTB 2.5 spec][openRTB]. |
 | `delivery` | Optional | Array[Integer] | Supported delivery methods (e.g., streaming, progressive), see [OpenRTB 2.5 spec][openRTB]. |
 | `playbackend` | Optional | Integer | The event that causes playback to end, see [OpenRTB 2.5 spec][openRTB]. |
-
-If `'video.context'` is set to `'adpod'` then the following parameters are also available.
-
-{: .table .table-bordered .table-striped }
-| Name | Scope | Type | Description |
-|------------------+-------------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `adPodDurationSec` | Required | Number | The length of the adpod in seconds. Example: `adPodDurationSec = 120` |
-| `durationRangeSec` | Required | Array[Number] | An array of numbers represents a list of the potential/accepted duration values that the creatives can be in the adpod block. Example: `durationRangeSec = [30, 60, 90]` |
-| `requireExactDuration` | Optional | Boolean | Whether the returned creatives running time must match the value of `adPodDurationSec`. Example: `requireExactDuration = true` |
-| `tvSeriesName` | Optional | String | The name of the television series video the adpod will appear in. Example: `tvSeriesName = 'Once Upon A Time'` |
-| `tvEpisodeName` | Optional | String | The name of the episode of the television series video the adpod will appear in. Example: `tvEpisodeName = 'Pilot'` |
-| `tvSeasonNumber` | Optional | Number | A number representing the season number of the television series video the adpod will appear in. Example: `tvSeasonNumber = 1` |
-| `tvEpisodeNumber` | Optional | Number | A number representing the episode number of the television series video the adpod will appear in. Example: `tvEpisodeNumber = 1` |
-| `contentLengthSec` | Optional | Number | A number representing the length of the video in seconds. Example: `contentLengthSec = 1` |
-| `contentMode` | Optional | String | A string indicating the type of content being displayed in the video player. There are two options, `live` and `on-demand`. Example: `contentMode = 'on-demand'` |
 
 <a name="adUnit-examples"></a>
 
@@ -193,7 +178,6 @@ When using the Video Module, the mediaTypes.video properties get filled out auto
   * [Instream Sound-On](#adUnit-video-example-instream)
   * [Accompanying Content](#adUnit-video-example-accompanying)
   * [No Content/Standalone](#adUnit-video-example-outstream)
-  * [Adpod (Long-Form)](#adUnit-video-example-adpod)
 * [Native](#adUnit-native-example)
 * [Multi-Format](#adUnit-multi-format-example)
 * [Twin Codes](#adUnit-twin-codes-example)
@@ -417,40 +401,6 @@ pbjs.addAdUnits({
     },
     ...
 });
-```
-
-<a name="adUnit-video-example-adpod"></a>
-
-#### Adpod (Long-Form)
-
-For an example of an adpod video ad unit that you handle on your own, see below. For more detailed instructions, see [Show Long-Form Video Ads]({{site.baseurl}}/prebid-video/video-long-form.html).
-
-```javascript
-var longFormatAdUnit = {
-    video: {
-       // required params
-       context: 'adpod',
-       playerSize: [640, 480],
-       adPodDurationSec: 300,
-       durationRangeSec: [15, 30],
-
-       // optional params
-       requireExactDuration: true,
-       tvSeriesName: 'TvName',
-       tvEpisodeName: 'episodeName',
-       tvSeasonNumber: 3,
-       tvEpisodeNumber: 6,
-       contentLength: 300, // time in seconds,
-       contentMode: 'on-demand'
-    }
-
-    bids: [{
-            bidder: 'appnexus',
-            params: {
-                placementId: '123456789',
-            }
-        }]
-}
 ```
 
 <a name="adUnit-native-example"></a>

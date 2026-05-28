@@ -212,7 +212,6 @@ pbjs.setConfig({
           mediaType: "native",
           source: "client",
           currency: "EUR",
-          cpm: 1.00,
           creativeId: "222222",
           native: { ortb: {
             link: { url: "http://example.com" },
