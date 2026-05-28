@@ -27,11 +27,11 @@ privacy_sandbox: no
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 If you have any issues with setting up the AdOcean bidder, please contact with your local Technical Support team or by visiting [AdOcean website](https://adocean-global.com/en/contact/).
 
-### Prebid.JS Bid Params
+## Prebid.JS Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name                  | Scope    | Description                | Example                                            | Type     |
