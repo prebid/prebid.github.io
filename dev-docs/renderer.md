@@ -53,7 +53,7 @@ The Safe Renderer works similarly to the default Prebid renderer in that it is i
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Type | Description |
-|--------------|----------|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| -------------- | ---------- | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `url` | Required | String | URL to the external renderer script that will be loaded and executed within Safe renderer |
 | `config` | Optional | Object | Object that will be passed to external renderer script as a `config` field. For bid adapters use |
 | `getConfig` | Optional | Function | Function that will evaluate `config` object accessible in external renderer script. For publisher's use. Accepts `bidResponse` as a parameter |
@@ -162,7 +162,7 @@ window.pbRenderInFrame = function ({ mediaType, config, ...renderingData }) {
 
 {: .table .table-bordered .table-striped }
 | Property | Description |
-|----------|-------------|
+| ---------- | ------------- |
 | `ad` | Ad markup |
 | `adUrl` | Ad markup url |
 | `width` | Width of the creative |
