@@ -34,8 +34,9 @@ If you have any issues with setting up the AdOcean bidder, please contact with y
 ### Prebid.JS Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name     | Scope    | Description       | Example                                            | Type     |
-|----------|----------|-------------------|----------------------------------------------------|----------|
-| slaveId  | required | slave ID          | `'adoceanmyaotcpiltmmnj'`                          | `string` |
-| masterId | required | master ID         | `'ek1AWtSWh3BOa_x2P1vlMQ_uXXJpJcbhsHAY5PFQjWD.D7'` | `string` |
-| emitter  | required | traffic source id | `'myao.adocean.pl'`                                | `string` |
+| Name                  | Scope    | Description                | Example                                            | Type     |
+|-----------------------|----------|----------------------------|----------------------------------------------------|----------|
+| slaveId               | required | slave ID                   | `'adoceanmyaotcpiltmmnj'`                          | `string` |
+| masterId              | required | master ID                  | `'ek1AWtSWh3BOa_x2P1vlMQ_uXXJpJcbhsHAY5PFQjWD.D7'` | `string` |
+| emitter               | required | traffic source id          | `'myao.adocean.pl'`                                | `string` |
+| emitterRequestParams  | optional | extra targeting parameters | `{key: 'value'}`                                   | `object` |
