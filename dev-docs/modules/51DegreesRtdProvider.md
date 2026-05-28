@@ -117,7 +117,7 @@ In summary we recommend using `Delegate-CH` http-equiv as the preferred method o
 
 ##### Illustrative Cases
 
-* if the device is iPhone/iPad then there is no point checking for or calling GetHighEntropyValues at the moment because iOS does not support this API. However this might change in the future.  Platforms like iOS require additional techniques to identify the model which are not covered via a single API call, and change from version to version of the operating system and browser rendering engine. **When used with iOS 51Degrees resolves the [iPhone/iPad model groups](https://51degrees.com/documentation/4.4/_device_detection__features__apple_device_table.html) using these techniques.** That is one of the benefits the module brings to the Prebid community as most solutions do not resolve iPhone/iPad model groups. More on Apple Device Detection [here](https://51degrees.com/documentation/4.4/_device_detection__features__apple_detection.html).
+* if the device is iPhone/iPad then there is no point checking for or calling GetHighEntropyValues at the moment because iOS does not support this API. However this might change in the future.  Platforms like iOS require additional techniques to identify the model which are not covered via a single API call, and change from version to version of the operating system and browser rendering engine. **When used with iOS 51Degrees resolves the [iPhone/iPad model groups](https://51degrees.com/documentation/4.4/_device_detection__features__apple_device_table.html) using these techniques.** That is one of the benefits the module brings to the Prebid community as most solutions do not resolve iPhone/iPad model groups. Read more on [Apple Device Detection](https://51degrees.com/documentation/4.4/_device_detection__features__apple_detection.html).
 
 * if the browser is Firefox on Android or desktop then there is similarly no point requesting GHEV as the API is not supported.
 
@@ -153,14 +153,14 @@ pbjs.setConfig({
 > Note that `resourceKey` and `onPremiseJSUrl` are mutually exclusive parameters.  Use strictly one of them: either a `resourceKey` for cloud integration and `onPremiseJSUrl` for the on-premise self-hosted integration. 
 
 {: .table .table-bordered .table-striped }
-| Name                  | Type    | Description                                                                                      | Default            |
-|:----------------------|:--------|:-------------------------------------------------------------------------------------------------|:-------------------|
-| name                  | String  | Real time data module name                                                                       | Always '51Degrees' |
-| waitForIt             | Boolean | Should be `true` if there's an `auctionDelay` defined (mandatory)                                | `false`            |
-| params                | Object  |                                                                                                  |                    |
-| params.resourceKey    | String  | Your 51Degrees Cloud Resource Key                                                                |                    |
-| params.onPremiseJSUrl | String  | Direct URL to your self-hosted on-premise JS file (e.g. `https://your.domain/51Degrees.core.js`) |                    |
-| params.tdlUrl         | String  | URL of your Terms Document Locator (TDL) — a machine-readable document declaring the data usage terms under which the identifier is shared, per the [data-labels proposal](https://github.com/jwrosewell/data-labels/tree/main) and its [OpenRTB extension](https://github.com/jwrosewell/data-labels/blob/main/OpenRTB.md). The URL is placed in the `ext.tdl` array of the `51d.es` eids entry. Omit if you do not publish a TDL; the module will log a warning and emit the eids entry without `ext.tdl`. |                    |
+| Name | Type | Description | Default |
+| :--- | :--- | :--- | :--- |
+| name | String | Real time data module name | Always '51Degrees' |
+| waitForIt | Boolean | Should be `true` if there's an `auctionDelay` defined (mandatory) | `false` |
+| params | Object | | |
+| params.resourceKey | String | Your 51Degrees Cloud Resource Key | |
+| params.onPremiseJSUrl | String | Direct URL to your self-hosted on-premise JS file (e.g. `https://your.domain/51Degrees.core.js`) | |
+| params.tdlUrl | String | URL of your Terms Document Locator (TDL) — a machine-readable document declaring the data usage terms under which the identifier is shared, per the [data-labels proposal](https://github.com/jwrosewell/data-labels/tree/main) and its [OpenRTB extension](https://github.com/jwrosewell/data-labels/blob/main/OpenRTB.md). The URL is placed in the `ext.tdl` array of the `51d.es` eids entry. Omit if you do not publish a TDL; the module will log a warning and emit the eids entry without `ext.tdl`. | |
 
 ## Example 
 
