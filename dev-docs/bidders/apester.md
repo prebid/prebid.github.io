@@ -9,7 +9,7 @@ usp_supported: true
 gvl_id: 354
 coppa_supported: false
 schain_supported: true
-gpp_supported: true
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 floors_supported: true
 media_types: banner, video
 prebid_member: false
