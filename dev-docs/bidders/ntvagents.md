@@ -1,10 +1,10 @@
 ---
 layout: bidder
-title: harion
-description: Prebid Harion Bidder Adapter
-biddercode: harion
+title: Native Agents
+description: Prebid Native Agents Bidder Adapter
+biddercode: ntvagents
 gpp_sids: usstate_all
-tcfeu_supported: true
+tcfeu_supported: false
 usp_supported: true
 coppa_supported: true
 schain_supported: true
@@ -16,11 +16,10 @@ media_types: banner, video, native
 multiformat_supported: will-bid-on-one
 userIds: all
 pbjs: true
-pbs: true
-pbs_app_supported: true
+pbs: false
+pbs_app_supported: false
 safeframes_ok: true
 sidebarType: 1
-gvl_id: 1406
 ---
 
 ## Bid Params
@@ -33,4 +32,4 @@ gvl_id: 1406
 
 ## Note
 
-For the prebid server and prebid.js you only need to use one parameter: either `placementId` or `endpointId`.
+For the prebid server and prebid.js you only need to use one parameter: either placementId or endpointId
