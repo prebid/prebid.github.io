@@ -25,13 +25,21 @@ The Cloud API is **free** to integrate and use. To increase limits please check 
 
 ## Description
 
-51Degrees module enriches an OpenRTB request with [51Degrees Device Data](https://51degrees.com/documentation/index.html).
+51Degrees module enriches an OpenRTB request with [51Degrees Device Data](https://51degrees.com/documentation/index.html) and (optionally) IP-derived geo plus a 51DiD (51Degrees identifier) entry in `user.eids`.
 
 51Degrees module sets the following fields of the device object: `devicetype`, `make`, `model`, `hwv`, `os`, `osv`, `h`, `w`, `ppi`, `pxratio`. Interested bidder adapters may use these fields as needed. 
 
-The module also adds a `device.ext.fod` extension object (fod == fifty one degrees) and sets `device.ext.fod.deviceId` to a permanent device ID, which can be rapidly looked up in on-premise data, exposing over 250 properties, including device age, chipset, codec support, price, operating system and app/browser versions, age, and embedded features. 
+The module also adds a `device.ext.fod` extension object (fod == fifty one degrees) and sets `device.ext.fod.deviceId` to a permanent device ID, which can be rapidly looked up in on-premise data, exposing over 250 properties, including device age, chipset, codec support, price, operating system and app/browser versions, age, and embedded features.
 
-It also sets `device.ext.fod.tpc` key to a binary value to indicate whether third-party cookies are enabled in the browser (1 if enabled, 0 if disabled).
+It also sets `device.ext.fod.tpc` to a binary value to indicate whether third-party cookies are enabled in the browser (1 if enabled, 0 if disabled).
+
+When 51Degrees IPI is available in the cloud response, the module sets `device.ip` and `device.ipv6`, and (if the location confidence is `high` or `medium`) populates `device.geo.{lat,lon,country,zip,utcoffset,accuracy,type,ipservice}` per OpenRTB 2.6 and AdCOM 1.0.
+
+[51DiD](https://51degrees.com/documentation/4.5/_identifiers_51_did.html) is a 51Degrees privacy-safe identifier derived from device signals. Its production requires a marketing usage preference (`id.usage`). The recommended way to collect and store that preference is the [51Degrees Preference Management Platform (PMP)](https://51degrees.com/documentation/4.5/_identifiers__p_m_p.html) — a lightweight consent widget that writes the user's choice to `localStorage`. When PMP is present on the page the module picks up that preference automatically. When PMP is absent the module falls back to inferring the preference from the publisher's existing TCF or GPP consent string (see below).
+
+When 51DiD is available, the module appends an entry to `user.eids` with `source = "51d.es"`, `inserter = "51degrees.com"`, `mm = 5` (inference), and `uids` carrying `idproblic` and `idprobglobal`. The `ext.tdl` URL inside the entry comes from the `params.tdlUrl` module config.
+
+The module forwards the publisher's consent strings to the cloud as evidence when present. The TCF consent string (from Prebid's GDPR consent) is sent as `tcstring` and the GPP string (from Prebid's GPP consent) is sent as `gppstring`; the cloud can infer the marketing usage preference from either when PMP is not present, so 51DiD works for publishers running any TCF or GPP CMP. These come from Prebid's consent data, not module params.
 
 The module supports on premise and cloud device detection services with free options for both. 
 
@@ -152,6 +160,7 @@ pbjs.setConfig({
 | params                | Object  |                                                                                                  |                    |
 | params.resourceKey    | String  | Your 51Degrees Cloud Resource Key                                                                |                    |
 | params.onPremiseJSUrl | String  | Direct URL to your self-hosted on-premise JS file (e.g. `https://your.domain/51Degrees.core.js`) |                    |
+| params.tdlUrl         | String  | URL of your Terms Document Locator (TDL) — a machine-readable document declaring the data usage terms under which the identifier is shared, per the [data-labels proposal](https://github.com/jwrosewell/data-labels/tree/main) and its [OpenRTB extension](https://github.com/jwrosewell/data-labels/blob/main/OpenRTB.md). The URL is placed in the `ext.tdl` array of the `51d.es` eids entry. Omit if you do not publish a TDL; the module will log a warning and emit the eids entry without `ext.tdl`. |                    |
 
 ## Example 
 
