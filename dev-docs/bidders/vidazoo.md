@@ -7,8 +7,9 @@ userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrable
 media_types: banner, video
 gvl_id: 744
 tcfeu_supported: true
-gpp_supported: true
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 usp_supported: true
+pbs_app_supported: true
 pbjs: true
 pbs: true
 sidebarType: 1

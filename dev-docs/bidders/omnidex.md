@@ -10,13 +10,13 @@ usp_supported: true
 gvl_id: 1463
 coppa_supported: false
 schain_supported: true
-gpp_supported: true
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 floors_supported: true
 media_types: banner, video
 prebid_member: false
 safeframes_ok: false
 deals_supported: false
-pbs_app_supported: false
+pbs_app_supported: true
 fpd_supported: false
 ortb_blocking_supported: false
 multiformat_supported: will-bid-on-one
