@@ -25,7 +25,7 @@ pbs: true
 sidebarType: 1
 ---
 
-### Bid Params for Prebid.js
+## Bid Params for Prebid.js
 
 {: .table .table-bordered .table-striped }
 

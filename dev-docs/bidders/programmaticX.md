@@ -25,7 +25,7 @@ sidebarType: 1
 gvl_id: 1344
 ---
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 
