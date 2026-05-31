@@ -35,7 +35,7 @@ sidebarType: 1
 | `pId`      | required | The publisher ID from Omnidex (pbjs only).                                               | `'59ac17c192832d0011283fe3'` | `string` |
 | `bidFloor` | optional | The minimum bid value desired. omnidex will not respond with bids lower than this value. | `0.90`                       | `float`  |
 
-#### Bid Params for Prebid Server
+## Bid Params for Prebid Server
 
 {: .table .table-bordered .table-striped }
 
