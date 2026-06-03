@@ -4,8 +4,9 @@ title: Floxis
 description: Prebid Floxis Bidder Adapter
 biddercode: floxis
 pbjs: true
-pbs: false
-media_types: banner, video, native
+pbs: true
+pbs_app_supported: true
+media_types: banner, video, native, audio
 safeframes_ok: true
 sidebarType: 1
 tcfeu_supported: true
@@ -27,9 +28,9 @@ privacy_sandbox: no
 
 ### Note
 
-The Floxis bidder adapter enables integration with the Floxis programmatic advertising platform via Prebid.js. It supports banner, video, and native formats with OpenRTB 2.x compliance. Please contact Floxis to set up your partner account and obtain the required parameters.
+The Floxis bidder adapter enables integration with the Floxis programmatic advertising platform. It supports banner, video, and native formats with OpenRTB 2.x compliance via Prebid.js, and banner, video, native, and audio via Prebid Server. Please contact Floxis at <prebid@floxis.tech> to set up your account and obtain the required parameters.
 
-### Bid Params
+### Prebid.js Bid Params
 
 {: .table .table-bordered .table-striped }
 
@@ -38,6 +39,19 @@ The Floxis bidder adapter enables integration with the Floxis programmatic adver
 | `seat` | required | Seat identifier provided by Floxis | `"testSeat"` | `string` |
 | `region` | required | Region identifier for routing | `"us-e"` | `string` |
 | `partner` | required | Partner identifier provided by Floxis | `"floxis"` | `string` |
+
+### Prebid Server
+
+The Floxis Prebid Server adapter is available in both Go (`prebid-server`) and Java (`prebid-server-java`). The server-side endpoint is `https://rtb-{region}.floxis.tech/pbs` where `{region}` is one of `us-e`, `eu`, or `apac`. User-sync is handled via the standard Prebid Server cookie-sync mechanism. For setup assistance contact <prebid@floxis.tech>.
+
+### Prebid Server Bid Params
+
+{: .table .table-bordered .table-striped }
+
+| Name       | Scope    | Description                                               | Example       | Type     |
+|------------|----------|-----------------------------------------------------------|---------------|----------|
+| `seat`     | required | Seat identifier provided by Floxis                        | `"testSeat"`  | `string` |
+| `region`   | optional | Routing region: `us-e`, `eu`, or `apac` (default: `us-e`) | `"us-e"`      | `string` |
 
 ### Floors Support
 
