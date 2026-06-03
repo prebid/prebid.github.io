@@ -4,7 +4,6 @@ title: Attekmi
 description: Attekmi Bidder Adapter
 biddercode: smarthub
 redirect_from:
-  - /dev-docs/bidders/attekmi
   - /dev-docs/bidders/smarthub
 usp_supported: true
 media_types: banner, video, native
