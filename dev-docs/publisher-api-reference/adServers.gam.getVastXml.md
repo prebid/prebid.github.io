@@ -1,6 +1,6 @@
 ---
 layout: api_prebidjs
-title: pbjs.adServers.gam.getVastXml(options)
+title: pbjs.adServers.gam.getVastXml(options, localCacheMap)
 description: adServers.gam.getVastXml API
 sidebarType: 1
 ---
@@ -9,7 +9,7 @@ sidebarType: 1
 {: .alert.alert-info :}
 The Google Ad Manager implementation of this function requires including the `gamAdServerVideo` module in your Prebid.js build.
 
-This method extends the behavior of `buildVideoUrl` by not only constructing the Google Ad Manager video ad tag URL, but also fetching and processing the resulting VAST wrapper returned by GAM.
+This method extends the behavior of `buildVideoUrl` by not only constructing the Google Ad Manager video ad tag URL, but also fetching and processing the resulting VAST wrapper returned by GAM. It accepts `options` as the first argument and an optional `localCacheMap` as the second argument.
 
 If the `cache.useLocal` flag is set to true, the function scans the received GAM VAST wrapper for the bid’s cached asset URL that corresponds to a locally stored blob in Prebid.js. When such a match is found, it replaces the contents of the GAM wrapper with the contents of the locally cached VAST XML blob, effectively inlining the ad markup instead of referencing it remotely.
 
@@ -28,6 +28,13 @@ If the `cache.useLocal` flag is set to true, the function scans the received GAM
 {: .alert.alert-warning :}
 One or both of options.params and options.url is required. In other words, you may pass in one, the other, or both, but not neither.
 
+### The `localCacheMap` object
+
+{: .table .table-bordered .table-striped }
+| Type | Description |
+|------+-------------|
+| Map  | *Optional*. Map used when `cache.useLocal` is `true` to match UUIDs found in the GAM wrapper's `VASTAdTagURI` to locally cached VAST blob URLs. Defaults to Prebid.js' internal local VAST cache. Most publishers do not need to pass this argument unless they are providing their own local cache map. |
+
 ### The `options.params` object
 
 {: .table .table-bordered .table-striped }
@@ -36,6 +43,7 @@ One or both of options.params and options.url is required. In other words, you m
 | `iu`              | string | *Required*. Google Ad Manager ad unit ID.                                                                                                 | `/19968336/prebid_cache_video_adunit`           |
 | `cust_params`     | object | *Optional*. Key-value pairs merged with Prebid's targeting values and sent to Google Ad Manager on the video ad tag URL.                  | `{section: "blog", anotherKey: "anotherValue"}` |
 | `description_url` | string | *Optional*. Describes the video. Required for Ad Exchange. Prebid.js will build this for you unless you pass it explicitly. | `https://www.example.com`                        |
+| `url`             | string | *Optional*. The URL of the page where the video will play. Prebid.js defaults this to the current page URL unless you pass it explicitly. | `https://www.example.com`                        |
 
 For more information on any of these params, see [the Google Ad Manager video tag documentation](https://support.google.com/admanager/answer/1068325).
 
