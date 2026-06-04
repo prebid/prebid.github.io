@@ -198,7 +198,7 @@ configuration of different business rules.
 
 ### Full enforcement (since Prebid.js 11.15)
 
-Since version 11.15, Prebid.js uses the legal basis declared by each vendor in the GVL at the time of release, which can be further configured with [`gvlLegalBasisMapping`](#setConfig-gvlLegalBasisMapping) and [`consentManagement.gdpr.defaultLegalBasis`](#default-legal-basis).
+Since version 11.15, Prebid.js uses the legal basis declared by each vendor in the GVL at the time of release, which can be further configured with [`gvlLegalBasisMapping`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-gvlLegalBasisMapping) and [`consentManagement.gdpr.defaultLegalBasis`](#default-legal-basis).
 This consists of the following fields from GVL vendor entries:
 
 * `purposes` lists purposes where the vendor declares consent as the legal basis.
@@ -214,19 +214,19 @@ See also: [vendor list format](https://github.com/InteractiveAdvertisingBureau/G
 Before allowing an activity tied to a TCF-protected Purpose for a given vendor, one of these scenarios must be true:
 
 * Configuration rules check both purpose and vendor signals (`enforcePurpose: true, enforceVendor: true`) and:
-    * we have the user's consent for both purpose and vendor and the vendor declares either consent or LI as a legal basis for the purpose, or
-    * we confirmed that the user's LI transparency was established for both purpose and vendor and the vendor declares LI as a legal basis for the purpose, or
-    * we have the user's consent for the purpose, the vendor is excepted through `softVendorExceptions`, and `defaultLegalBasis` declares either consent or LI as a legal basis for the purpose, or
-    * we confirmed that the user's LI transparency was established for the purpose, the vendor is excepted through `softVendorExceptions`, and `defaultLegalBasis` declares LI as a legal basis for the purpose, or
-    * the vendor is excepted through `vendorExceptions`;
+  * we have the user's consent for both purpose and vendor and the vendor declares either consent or LI as a legal basis for the purpose, or
+  * we confirmed that the user's LI transparency was established for both purpose and vendor and the vendor declares LI as a legal basis for the purpose, or
+  * we have the user's consent for the purpose, the vendor is excepted through `softVendorExceptions`, and `defaultLegalBasis` declares either consent or LI as a legal basis for the purpose, or
+  * we confirmed that the user's LI transparency was established for the purpose, the vendor is excepted through `softVendorExceptions`, and `defaultLegalBasis` declares LI as a legal basis for the purpose, or
+  * the vendor is excepted through `vendorExceptions`;
 * Configuration rules check only purpose signals (`enforcePurpose: true, enforceVendor: false`) and:
-    * we have the user's consent for the purpose and `defaultLegalBasis` declares either consent or LI as a legal basis for the purpose or
-    * we confirmed that the user's LI transparency was established for the purpose and `defaultLegalBasis` declares LI as a legal basis for the purpose, or
-    * the vendor is excepted through `vendorExceptions`;
+  * we have the user's consent for the purpose and `defaultLegalBasis` declares either consent or LI as a legal basis for the purpose or
+  * we confirmed that the user's LI transparency was established for the purpose and `defaultLegalBasis` declares LI as a legal basis for the purpose, or
+  * the vendor is excepted through `vendorExceptions`;
 * Configuration rules check only vendor signals (`enforcePurpose: false, enforceVendor: true`) and:
-    * we have the user's consent for the vendor and the vendor declares either consent or LI as a legal basis for the purpose, or
-    * we confirmed that the user's LI transparency was established for the vendor and the vendor declares LI as a legal basis for the purpose, or
-    * the vendor is excepted through either `softVendorExceptions` or `vendorExceptions`;
+  * we have the user's consent for the vendor and the vendor declares either consent or LI as a legal basis for the purpose, or
+  * we confirmed that the user's LI transparency was established for the vendor and the vendor declares LI as a legal basis for the purpose, or
+  * the vendor is excepted through either `softVendorExceptions` or `vendorExceptions`;
 * Configuration rules check neither purpose consent nor vendor signal (`enforcePurpose: false, enforceVendor: false`).
 
 ### Basic enforcement (Prebid.js versions prior to 11.15)
@@ -244,17 +244,16 @@ Evidence of consent for a particular purpose or vendor means that:
 Before allowing an activity tied to a TCF-protected Purpose for a given vendor, one of these scenarios must be true:
 
 * Configuration rules check both purpose and vendor signals (`enforcePurpose: true, enforceVendor: true`) and:
-    * we have evidence of consent for both, or
-    * we have evidence of consent for the purpose, and the vendor is excepted through `softVendorException`, or
-    * the vendor is excepted through `vendorExceptions`;
+  * we have evidence of consent for both, or
+  * we have evidence of consent for the purpose, and the vendor is excepted through `softVendorException`, or
+  * the vendor is excepted through `vendorExceptions`;
 * Configuration rules check only purpose signals (`enforcePurpose: true, enforceVendor: false`) and:
-    * we have evidence of consent for the purpose, or
-    * the vendor is excepted through `vendorExceptions`;
+  * we have evidence of consent for the purpose, or
+  * the vendor is excepted through `vendorExceptions`;
 * Configuration rules check only vendor signals (`enforcePurpose: false, enforceVendor: true`) and:
-    * we have evidence of consent for the vendor, or
-    * the vendor is excepted through either `softVendorExceptions` or `vendorExceptions`;
+  * we have evidence of consent for the vendor, or
+  * the vendor is excepted through either `softVendorExceptions` or `vendorExceptions`;
 * Configuration rules check neither purpose consent nor vendor signal (`enforcePurpose: false, enforceVendor: false`).
-
 
 See the [IAB TCF Consent String Format](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20Consent%20string%20and%20vendor%20list%20formats%20v2.md) for details.
 
