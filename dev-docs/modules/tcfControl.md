@@ -81,7 +81,6 @@ The following fields related to anonymizing aspects of the auction are supported
 | gdpr.defaultLegalBasis | `Object` | Defines the fallback legal-basis declarations that tcfControl should use when a module's GVL declaration is not checked or is not known. See [Default Legal Basis](#default-legal-basis) below. | `{purposes: [1, 2, 4, 7], flexiblePurposes: [2], legIntPurposes: [], specialFeatures: [1]}` |
 | strictStorageEnforcement | `Boolean` | If false (the default), allows some use of storage regardless of purpose 1 consent - see [note](#strictStorageEnforcement) below | true |
 | gdpr.rules[].deferS2Sbidders | `Boolean` | If true, allows s2s bidders to bypass vendor consent check and delegate it to server. Applies only to `basicAds` rule. Defaults to false | false |
-| gvlLegalBasisMapping | `Object` | Maps a GVL ID to explicit purpose declarations. Use this with `gvlMapping` when the module's GVL ID or legal-basis declarations are not known to Prebid.js at build time. | `{12345: {purposes: [1, 7]}}` |
 
 Notes:
 
@@ -99,7 +98,7 @@ pbjs.setConfig({
 ```
 
 * If you set `gvlMapping` for a module whose legal-basis declarations are not
-  already known to Prebid.js, also set `gvlLegalBasisMapping` for that GVL ID or
+  already known to Prebid.js (i.e. it maps to a GVL ID not used by any other module), also set [`gvlLegalBasisMapping`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-gvlLegalBasisMapping) for that GVL ID or
   review the `defaultLegalBasis` fallback described below.
 
 ### Examples
@@ -193,49 +192,69 @@ configuration of different business rules.
       }]
     ```
 
-## Basic Legal Basis
+## Legal basis
 
-Prebid.js uses the purpose declarations available to the Prebid.js build to
-choose which TCF signal can establish legal basis for each purpose:
+<a id="full-enforcement"><a>
 
-* `purposes` lists purposes where the module declares consent as the legal basis.
-* `legIntPurposes` lists purposes where the module declares legitimate interest
+### Full enforcement (since Prebid.js 11.15)
+
+Since version 11.15, Prebid.js uses the legal basis declared by each vendor in the GVL at the time of release, which can be further configured with [`gvlLegalBasisMapping`](#setConfig-gvlLegalBasisMapping) and [`consentManagement.gdpr.defaultLegalBasis`](#default-legal-basis).
+This consists of the following fields from GVL vendor entries:
+
+* `purposes` lists purposes where the vendor declares consent as the legal basis.
+* `legIntPurposes` lists purposes where the vendor declares legitimate interest
   (LI) as the legal basis.
-* `flexiblePurposes` lists purposes where the module can use either consent or
+* `flexiblePurposes` lists purposes where the vendor can use either consent or
   LI. Each flexible purpose must also be declared in either `purposes` or
   `legIntPurposes`.
-* `specialFeatures` lists special features that require user opt-in.
+* `specialFeatures` lists special features the module may utilize when performing some declared purposes processing.
 
-If a module's declarations are known at build time, tcfControl uses them. If a
-publisher needs to override those declarations, or supply declarations for a GVL
-ID that was added through `gvlMapping`, set a top-level `gvlLegalBasisMapping`
-object keyed by GVL ID.
-
-A goal of 'basic legal basis' is to confirm that there's enough evidence of
-legal basis to pass data on to vendors who can fully parse and take any
-necessary action.
-
-Evidence of legal basis for a particular purpose or vendor means that:
-
-* for consent-based purposes, Prebid.js has the user's purpose consent or vendor
-  consent;
-* for LI-based purposes, Prebid.js has confirmed the user's Legitimate Interest
-  (LI) transparency for the purpose or vendor; or
-* for flexible purposes, the applicable consent or LI signal is present.
+See also: [vendor list format](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20Consent%20string%20and%20vendor%20list%20formats%20v2.md).
 
 Before allowing an activity tied to a TCF-protected Purpose for a given vendor, one of these scenarios must be true:
 
-* Configuration rules check both consent and vendor signals and:
-  * we have evidence of legal basis for both, or
-  * we have evidence of legal basis for the purpose, and the vendor is excepted through `softVendorException`, or
-  * the vendor is excepted through `vendorExceptions`;
-* Configuration rules check only purpose consent and either:
-  * we have evidence of legal basis for the purpose, or
-  * the vendor is excepted through `vendorExceptions`;
-* Configuration rules check only vendor signals and either:
-  * we have evidence of legal basis for the vendor, or
-  * the vendor is excepted through either `softVendorExceptions` or `vendorExceptions`;
-* Configuration rules check neither purpose consent nor vendor signal.
+* Configuration rules check both purpose and vendor signals (`enforcePurpose: true, enforceVendor: true`) and:
+    * we have the user's consent for both purpose and vendor and the vendor declares either consent or LI as a legal basis for the purpose, or
+    * we confirmed that the user's LI transparency was established for both purpose and vendor and the vendor declares LI as a legal basis for the purpose, or
+    * we have the user's consent for the purpose, the vendor is excepted through `softVendorExceptions`, and `defaultLegalBasis` declares either consent or LI as a legal basis for the purpose, or
+    * we confirmed that the user's LI transparency was established for the purpose, the vendor is excepted through `softVendorExceptions`, and `defaultLegalBasis` declares LI as a legal basis for the purpose, or
+    * the vendor is excepted through `vendorExceptions`;
+* Configuration rules check only purpose signals (`enforcePurpose: true, enforceVendor: false`) and:
+    * we have the user's consent for the purpose and `defaultLegalBasis` declares either consent or LI as a legal basis for the purpose or
+    * we confirmed that the user's LI transparency was established for the purpose and `defaultLegalBasis` declares LI as a legal basis for the purpose, or
+    * the vendor is excepted through `vendorExceptions`;
+* Configuration rules check only vendor signals (`enforcePurpose: false, enforceVendor: true`) and:
+    * we have the user's consent for the vendor and the vendor declares either consent or LI as a legal basis for the purpose, or
+    * we confirmed that the user's LI transparency was established for the vendor and the vendor declares LI as a legal basis for the purpose, or
+    * the vendor is excepted through either `softVendorExceptions` or `vendorExceptions`;
+* Configuration rules check neither purpose consent nor vendor signal (`enforcePurpose: false, enforceVendor: false`).
+
+### Basic enforcement (Prebid.js versions prior to 11.15)
+
+Prior to version 11.15, Prebid.js did not have access to the Global Vendor List (GVL), so it implements
+a "basic" form of TCF 'legal basis' validation using the supplied consent string.
+
+A goal of 'basic legal basis' is to confirm that there's enough evidence of consent to pass data on to vendors who do have access to the GVL and can fully parse and take any necessary action.
+
+Evidence of consent for a particular purpose or vendor means that:
+
+* Prebid.js has the user's purpose or vendor consent, or
+* (for Purpose 2 only) we've confirmed the user's Legitimate Interest (LI) Transparency is established for this purpose or vendor.
+
+Before allowing an activity tied to a TCF-protected Purpose for a given vendor, one of these scenarios must be true:
+
+* Configuration rules check both purpose and vendor signals (`enforcePurpose: true, enforceVendor: true`) and:
+    * we have evidence of consent for both, or
+    * we have evidence of consent for the purpose, and the vendor is excepted through `softVendorException`, or
+    * the vendor is excepted through `vendorExceptions`;
+* Configuration rules check only purpose signals (`enforcePurpose: true, enforceVendor: false`) and:
+    * we have evidence of consent for the purpose, or
+    * the vendor is excepted through `vendorExceptions`;
+* Configuration rules check only vendor signals (`enforcePurpose: false, enforceVendor: true`) and:
+    * we have evidence of consent for the vendor, or
+    * the vendor is excepted through either `softVendorExceptions` or `vendorExceptions`;
+* Configuration rules check neither purpose consent nor vendor signal (`enforcePurpose: false, enforceVendor: false`).
+
 
 See the [IAB TCF Consent String Format](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20Consent%20string%20and%20vendor%20list%20formats%20v2.md) for details.
 
@@ -243,12 +262,12 @@ Before allowing an activity tied to a TCF-protected Purpose for a publisher modu
 
 ### Default Legal Basis
 
-`consentManagement.gdpr.defaultLegalBasis` defines the fallback purpose
-declarations that tcfControl uses when vendor declarations are not available or
+`consentManagement.gdpr.defaultLegalBasis` defines the fallback legal basis
+declaration that tcfControl uses when vendor declarations are not available or
 are intentionally not checked. It applies when:
 
 * `enforceVendor` is `false` for the applicable rule;
-* the module is listed in `softVendorExceptions` for the applicable rule; or
+* the vendor is listed in `softVendorExceptions` for the applicable rule; or
 * tcfControl cannot find the module's declarations, such as when a module's GVL
   ID is supplied through `gvlMapping` without a matching `gvlLegalBasisMapping`
   entry.
