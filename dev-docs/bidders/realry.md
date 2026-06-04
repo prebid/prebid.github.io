@@ -10,7 +10,7 @@ usp_supported: false
 coppa_supported: false
 schain_supported: false
 floors_supported: false
-pbjs: false
+pbjs: true
 pbs: true
 pbs_app_supported: true
 prebid_member: false
