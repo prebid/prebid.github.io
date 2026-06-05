@@ -120,6 +120,7 @@ gulp build --modules=pubProvidedIdSystem
 | --- | --- | --- | --- | --- |
 | name | Required | String | ID value for the ID module  | `"PubProvided"` |
 | params | Optional | Object | Details for syncing. | |
-| params.eidsFunction | Optional | function | any function that exists in the page | getIdsFn() |
+| params.eids | Optional | Object[] | Array of extended identifiers as defined in the OpenRTB specification. | |
+| params.eidsFunction | Optional | function | any function that exists in the page and returns an array of extended identifiers. The results are concatenated with `eids` | getIdsFn() |
 | uids.atype | optional | int | ADCOM - Type of user agent the match is from | `"1"` |
 | uids.ext.stype | Optional | String | Description of how the id was generated and by whom eg. ('ppuid','DMP','other') | `DMP` |
