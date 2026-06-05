@@ -103,7 +103,7 @@ The following parameters apply only to the Unified ID 2.0 module integration.
 | params.serverPublicKey | Optional | String | Server public key for client-side token generation | |
 | params.subscriptionId | Optional | String | Subscription id for client-side token generation, provided by the EUID team. | |
 | params.email | Optional | String | User email for client-side token generation. Only one of the DII parameters will be used. | |
-| params.phone | Optional | String | User phone number for client-side token generation. Only one of the DII parameters will be used. |  |
+| params.phone | Optional | String | User phone number for client-side token generation. Only one of the DII parameters will be used. | |
 | params.emailHash | Optional | String | Hashed user email for client-side token generation. Only one of the DII parameters will be used. | |
 | params.phoneHash | Optional | String | Hashed phone number for client-side token generation. Only one of the DII parameters will be used. | |
 | value | Optional | Object | Used only if the page has a separate mechanism for storing the UID 2.0 ID. The value is an object containing the values to be sent to the adapters. In this scenario, no URL is called and nothing is added to local storage, and the tokens are **not** automatically refreshed. | `{"uid2": { "id": "eb33b0cb-8d35-4722-b9c0-1a31d4064888"}}` |
