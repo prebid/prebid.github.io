@@ -116,9 +116,9 @@ gulp build --modules=pubProvidedIdSystem
 
 {: .table .table-bordered .table-striped }
 
-| Params under usersync.userIds[]| Scope | Type | Description | Example |
+| Params under usersync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | ID value for the ID module  | `"PubProvided"` |
+| name | Required | String | ID value for the ID module | `"PubProvided"` |
 | params | Optional | Object | Details for syncing. | |
 | params.eids | Optional | Object[] | Array of extended identifiers as defined in the OpenRTB specification. | |
 | params.eidsFunction | Optional | function | any function that exists in the page and returns an array of extended identifiers. The results are concatenated with `eids` | getIdsFn() |
