@@ -11,7 +11,7 @@ safeframes_ok: true
 sidebarType: 1
 tcfeu_supported: true
 dsa_supported: false
-gvl_id: none
+gvl_id: 1609
 usp_supported: true
 coppa_supported: true
 gpp_supported: true
