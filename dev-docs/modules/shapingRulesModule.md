@@ -178,16 +178,17 @@ pbjs.setConfig({
   shapingRules: {
     rules: {
       enabled: true,
-      rulesets: [
+      version: "123",
+      ruleSets: [
         {
           stage: "processed-auction-request",
           name: "exclude-in-jpn",
-          version: "1234",
+          version: "456",
           modelGroups: [
             {
               weight: 98,
               analyticsKey: "experiment-name",
-              version: "4567",
+              version: "789",
               schema: [
                 {
                   function: "deviceCountryIn",
@@ -225,7 +226,7 @@ The configuration also allows you to define custom schema evaluators using the `
 pbjs.setConfig({
   shapingRules: {
     extraSchemaEvaluators: {
-      browser: (args, context) => {
+      browser: (args, context) => () => {
         if (navigator.userAgent.includes("Chrome")) {
           return "Chrome";
         }
@@ -233,16 +234,17 @@ pbjs.setConfig({
     },
     rules: {
       enabled: true,
-      rulesets: [
+      version: "123",
+      ruleSets: [
         {
           stage: "processed-auction-request",
           name: "exclude-in-jpn",
-          version: "1234",
+          version: "456",
           modelGroups: [
             {
               weight: 98,
               analyticsKey: "experiment-name",
-              version: "4567",
+              version: "789",
               schema: [
                 {
                   function: "browser",
