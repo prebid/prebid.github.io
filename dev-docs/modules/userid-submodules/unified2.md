@@ -96,10 +96,17 @@ The following parameters apply only to the Unified ID 2.0 module integration.
 | --- | --- | --- | --- | --- |
 | name | Required | String | ID value for the Unified ID 2.0 module - `"uid2"` | `"uid2"` |
 | params.uid2Token | Optional | Object | The initial UID2 token. This should be the `body` element of the decrypted response from a call to the `/token/generate` or `/token/refresh` endpoint. | See the sample token above. |
-| params.uid2ServerCookie | Optional | String | The name of a cookie that holds the initial UID2 token, set by the server. The cookie should contain JSON in the same format as the alternative uid2Token param. **If uid2Token is supplied, this param is ignored.** | See the sample token above. |
+| params.uid2Cookie | Optional | String | The name of a cookie that holds the initial UID2 token, set by the server. The cookie should contain JSON in the same format as the alternative uid2Token param. **If uid2Token is supplied, this param is ignored.** | See the sample token above. |
+| params.uid2ServerCookie | Optional | String | Alias for `uid2Cookie`. | |
 | params.uid2ApiBase | Optional | String | Overrides the default UID2 API endpoint. | `https://prod.uidapi.com` _(default)_ |
 | value | Optional | Object | Used only if the page has a separate mechanism for storing the UID 2.0 ID. The value is an object containing the values to be sent to the adapters. In this scenario, no URL is called and nothing is added to local storage, and the tokens are **not** automatically refreshed. | `{"uid2": { "id": "eb33b0cb-8d35-4722-b9c0-1a31d4064888"}}` |
 | params.storage | Optional, Client refresh | String | Specify whether to use `cookie` or `localStorage` for module-internal storage. It is recommended to not provide this and allow the module to use the default. | `localStorage` _(default)_ |
+| params.serverPublicKey | Optional | String | Server public key for client-side token generation | |
+| params.subscriptionId | Optional | String | Subscription id for client-side token generation, provided by the EUID team. | |
+| params.email | Optional | String | User email for client-side token generation. Only one of the DII parameters will be used. | |
+| params.phone | Optional | String | User phone number for client-side token generation. Only one of the DII parameters will be used. |  |
+| params.emailHash | Optional | String | Hashed user email for client-side token generation. Only one of the DII parameters will be used. | |
+| params.phoneHash | Optional | String | Hashed phone number for client-side token generation. Only one of the DII parameters will be used. | |
 
 ## Unified ID 2.0 Examples
 
