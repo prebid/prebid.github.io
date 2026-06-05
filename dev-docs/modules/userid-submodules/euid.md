@@ -187,6 +187,12 @@ The following parameters apply only to the European Unified ID module integratio
 | params.euidCookie | Optional, Client refresh | String | The name of a cookie which holds the initial EUID token, set by the server. The cookie should contain JSON in the same format as the euidToken param. **If euidToken is supplied, this param is ignored.** | See the sample token above. |
 | params.euidApiBase | Optional, Client refresh | String | Overrides the default EUID API endpoint. | `"https://prod.euid.eu"` _(default)_|
 | params.storage | Optional, Client refresh | String | Specify whether to use `cookie` or `localStorage` for module-internal storage. It is recommended to not provide this and allow the module to use the default. | `localStorage` _(default)_ |
+| params.serverPublicKey | Optional | String | Server public key for client-side token generation | |
+| params.subscriptionId | Optional | String | Subscription id for client-side token generation, provided by the EUID team. | |
+| params.email | Optional | String | User email for client-side token generation. Only one of the DII parameters will be used. | |
+| params.phone | Optional | String | User phone number for client-side token generation. Only one of the DII parameters will be used. |  |
+| params.emailHash | Optional | String | Hashed user email for client-side token generation. Only one of the DII parameters will be used. | |
+| params.phoneHash | Optional | String | Hashed phone number for client-side token generation. Only one of the DII parameters will be used. | |
 
 ## European Unified ID Examples
 
