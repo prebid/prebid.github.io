@@ -84,9 +84,7 @@ Enable both the attr and mediaTypes filters in the bidResponseFilter configurati
 pbjs.setConfig({
   bidResponseFilter: {
     attr: { enforce: true },
-    mediaTypes: {
-      banner: { enforce: true }
-    }
+    mediaTypes: { enforce: true }
   }
 });
 ```
