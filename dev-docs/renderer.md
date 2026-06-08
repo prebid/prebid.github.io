@@ -24,7 +24,7 @@ From Prebid 11.15 onward, publishers and adapters can specify their custom rende
 If both Safe Renderer and top window renderers are specified, the Safe Renderer takes precedence. You can also disable top window renderers through the top level configuration flag:
 
 ```javascript
-config.setConfig({ allowTopWindowRenderers: false })
+pbjs.setConfig({ allowTopWindowRenderers: false })
 ```
 
 ## Renderer Implementation Levels
