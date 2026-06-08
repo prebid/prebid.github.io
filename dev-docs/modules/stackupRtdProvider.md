@@ -8,6 +8,7 @@ module_type: rtd
 module_code: stackupRtdProvider
 enable_download: true
 vendor_specific: true
+prebid_member: false
 sidebarType: 1
 ---
 
