@@ -47,7 +47,7 @@ When multiple renderers are defined, the following priority is used:
 
 ## Safe renderer
 
-The Safe Renderer works similarly to the default Prebid renderer in that it is injected into the ad frame. The key difference is that it does not render the ad by itself. Instead, it loads an external renderer script using the URL specified in the Safe Renderer configuration. Once the script is loaded, the Safe Renderer executes the `window.pbRenderInFrame({ mediaType, config, ...renderingData })` function, which must be defined by the external script
+The Safe Renderer works similarly to the default Prebid renderer in that it is injected into the ad frame. The key difference is that it does not render the ad by itself. Instead, it loads an external renderer script using the URL specified in the Safe Renderer configuration. Once the script is loaded, the Safe Renderer executes the `window.pbRenderInFrame({ config, ...renderingData })` function, which must be defined by the external script
 
 ### Config object
 
@@ -83,7 +83,7 @@ const adUnits = [
 
 ### External script example implementation
 
-Existing top level custom renderers can be easily migrated to work with the new Safe Renderer approach. The external script simply needs to define the `window.pbRenderInFrame` method and execute the rendering logic inside it. The function accepts a payload object containing `mediaType`, `config` (either passed by bid adapters or evaluated by the publisher-provided `getConfig(bidResponse)` function), and `...renderingData`.
+Existing top level custom renderers can be easily migrated to work with the new Safe Renderer approach. The external script simply needs to define the `window.pbRenderInFrame` method and execute the rendering logic inside it. The function accepts a payload object containing `config` (either passed by bid adapters or evaluated by the publisher-provided `getConfig(bidResponse)` function), and [...renderingData](/dev-docs/renderer.html#renderingData).
 
 ```javascript
 /* global YVAP */
@@ -91,7 +91,7 @@ Existing top level custom renderers can be easily migrated to work with the new 
  * Reference implementation for `bid.safeRenderer.url`.
  * Prebid injects this script into the creative iframe and then calls `window.pbRenderInFrame(payload)`.
  */
-window.pbRenderInFrame = function ({ mediaType, config, ...renderingData }) {
+window.pbRenderInFrame = function ({ config, ...renderingData }) {
 
   function yvapPlayerRender(b) {
       var safeAdId =
@@ -157,6 +157,8 @@ window.pbRenderInFrame = function ({ mediaType, config, ...renderingData }) {
   yvapPlayerRender(renderingData);
 };
 ```
+
+<a id="renderingData"></a>
 
 ### Rendering data
 
