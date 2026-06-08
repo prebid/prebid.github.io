@@ -65,8 +65,11 @@ pbjs.setConfig({
           articleId: "", // required when articleIdMode is 'explicit'
           apiUrl: "https://api.stackup-ai.com/v1/enrich-ortb-rtd", // optional
           cache: {
+            enabled: true, // optional — disable all cache read/write when false
             ttlSeconds: 3600, // optional
+            storage: "session", // optional — 'session' (default) or 'memory'
           },
+          debug: false, // optional
         },
       },
     ],
@@ -87,7 +90,9 @@ pbjs.setConfig({
 | `params.articleIdMode` | optional | String | How the article ID is determined. `'path'` derives it from the page URL; `'explicit'` uses `params.articleId` directly | `'path'` |
 | `params.articleId` | optional\* | String | Article identifier — required when `articleIdMode` is `'explicit'`. Max 512 characters | — |
 | `params.apiUrl` | optional | String | Override the Stack Up enrichment endpoint | `'https://api.stackup-ai.com/v1/enrich-ortb-rtd'` |
+| `params.cache.enabled` | optional | Boolean | Enable/disable cache usage entirely | `true` |
 | `params.cache.ttlSeconds` | optional | Integer | How long a cached result is considered fresh (sessionStorage TTL) | `3600` |
+| `params.cache.storage` | optional | String | Cache backend: `'session'` for browser sessionStorage or `'memory'` for in-process cache | `'session'` |
 | `params.debug` | optional | Boolean | Enable verbose `[stackupRtd]` console logging | `false` |
 | `params.debugDomain` | optional | String | Override the domain sent to the API when `debug: true` | page domain |
 
@@ -103,13 +108,17 @@ Pass a stable, opaque article identifier directly in `params.articleId`. Use thi
 
 ## Caching
 
-On the first visit to a page the module fetches from the API and writes the result to `sessionStorage` under the key:
+When `params.cache.enabled` is `true` (default), the module checks cache before making a network call.
+
+With `params.cache.storage: 'session'` (default), the result is written to `sessionStorage` under the key:
 
 ```text
 stackup:enrich:v1:path_<hash>
 ```
 
-On subsequent page views within the same session the cache is read instead of calling the API, keeping enrichment latency at ~0 ms. Cache entries expire after `params.cache.ttlSeconds` (default 1 hour).
+With `params.cache.storage: 'memory'`, entries are kept in runtime memory only and are cleared on full page reload.
+
+On subsequent page views within the same session the cache is read instead of calling the API, keeping enrichment latency at ~0 ms. Cache entries expire after `params.cache.ttlSeconds` (default 1 hour). Setting `params.cache.enabled: false` disables both reads and writes.
 
 ## Consent
 
@@ -131,7 +140,7 @@ After a successful enrichment the following fields are merged into the global `o
       "title": "<article title>",
       "data": [
         {
-          "name": "stackup-ai.com",
+          "name": "data.stackup-ai.com",
           "ext": { "segtax": 502 },
           "segment": [
             {
@@ -151,7 +160,7 @@ After a successful enrichment the following fields are merged into the global `o
   "user": {
     "data": [
       {
-        "name": "stackup-ai.com",
+        "name": "data.stackup-ai.com",
         "ext": { "segtax": 501 },
         "segment": [
           {
@@ -176,10 +185,10 @@ Build Prebid.js with the module:
 gulp build --modules=rtdModule,stackupRtdProvider,appnexusBidAdapter
 ```
 
-Then open the live integration example with `debug: true`:
+Start a static file server at the repo root on port 9999, then open:
 
 ```text
 http://localhost:9999/integrationExamples/gpt/stackupRtdProvider_example.html
 ```
 
-The page shows the fetch URL, the `sessionStorage` cache entry, per-bidder `ortb2` payloads, and the page-level `ortb2` config after the auction completes.
+The page runs a real GAM/GPT auction. With `debug: true` in `pbjs.setConfig` the Prebid.js debug console shows the enriched `ortb2` fragments (`site.content.data` and `user.data`) merged into each bid request.
