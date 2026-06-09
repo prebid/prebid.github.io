@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: Copper6
-description: Prebid Copper6 Bidder Adaptor
+title: Copper6SSP
+description: Prebid Copper6SSP Bidder Adapter
 biddercode: copper6ssp
 userIds: criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 tcfeu_supported: false
