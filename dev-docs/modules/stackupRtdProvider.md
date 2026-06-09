@@ -185,7 +185,7 @@ Build Prebid.js with the module:
 gulp build --modules=rtdModule,stackupRtdProvider,appnexusBidAdapter
 ```
 
-Start a static file server at the repo root on port 9999, then open:
+Start a static file server at the [Prebid.js repo root](https://github.com/prebid/Prebid.js) on port 9999, then open:
 
 ```text
 http://localhost:9999/integrationExamples/gpt/stackupRtdProvider_example.html
