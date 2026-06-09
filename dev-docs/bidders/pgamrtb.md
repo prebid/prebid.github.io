@@ -20,11 +20,11 @@ aliasCode: limelightDigital
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 PGAM Rtb Bidding adapter requires setup before beginning.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 
