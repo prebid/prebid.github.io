@@ -119,10 +119,14 @@ function sendInterstitialAdServerRequest() {
 
     pbjs.interstitialAdServerRequestSent = true;
     googletag.cmd.push(function() {
-        pbjs.que.push(function() {
-            pbjs.setTargetingForGPTAsync([INTERSTITIAL_AD_UNIT]);
+        if (pbjs.libLoaded) {
+            pbjs.que.push(function() {
+                pbjs.setTargetingForGPTAsync([INTERSTITIAL_AD_UNIT]);
+                googletag.pubads().refresh([interstitialSlot]);
+            });
+        } else {
             googletag.pubads().refresh([interstitialSlot]);
-        });
+        }
     });
 }
 
@@ -157,7 +161,8 @@ In this example:
 - `defineOutOfPageSlot()` may return `null` when the page or device does not
   support GPT web interstitials, so check for that before requesting bids.
 - `disableInitialLoad()` prevents GPT from requesting the interstitial until
-  Prebid.js targeting has been set.
+  either Prebid.js targeting has been set, or the timeout expires and the sample
+  falls back to a GPT refresh without Prebid.js targeting.
 - `display()` registers the GPT web interstitial slot. The ad appears only when
   GPT receives a fill and an eligible GPT web interstitial trigger occurs, such
   as a supported link click.
