@@ -66,6 +66,102 @@ pbjs.addAdUnits({
 });
 ```
 
+### Mobile Web Interstitial with GPT
+
+Google Publisher Tag (GPT) web interstitials are out-of-page slots, so they do
+not require a container `div`. However, the Prebid.js ad unit still needs a
+`code` value that can be matched to the GPT slot when setting targeting. In the
+example below, both use the ad unit path as the shared identifier.
+
+```javascript
+var PREBID_TIMEOUT = 1000;
+var INTERSTITIAL_AD_UNIT = '/1234567/homepage/mobile-web-interstitial';
+
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+
+var pbjs = pbjs || {};
+pbjs.que = pbjs.que || [];
+
+var adUnits = [{
+    code: INTERSTITIAL_AD_UNIT,
+    mediaTypes: {
+        banner: {
+            sizes: [[320, 480], [480, 320]]
+        }
+    },
+    ortb2Imp: {
+        instl: 1
+    },
+    bids: [{
+        bidder: 'bidderThatSupportsInterstitials',
+        params: {
+            placementId: '12345'
+        }
+    }]
+}];
+
+function requestInterstitialBids() {
+    pbjs.que.push(function() {
+        pbjs.addAdUnits(adUnits);
+        pbjs.requestBids({
+            adUnitCodes: [INTERSTITIAL_AD_UNIT],
+            bidsBackHandler: sendInterstitialAdServerRequest,
+            timeout: PREBID_TIMEOUT
+        });
+    });
+}
+
+function sendInterstitialAdServerRequest() {
+    if (pbjs.interstitialAdServerRequestSent || !interstitialSlot) {
+        return;
+    }
+
+    pbjs.interstitialAdServerRequestSent = true;
+    googletag.cmd.push(function() {
+        pbjs.que.push(function() {
+            pbjs.setTargetingForGPTAsync([INTERSTITIAL_AD_UNIT]);
+            googletag.pubads().refresh([interstitialSlot]);
+        });
+    });
+}
+
+var interstitialSlot;
+
+googletag.cmd.push(function() {
+    interstitialSlot = googletag.defineOutOfPageSlot(
+        INTERSTITIAL_AD_UNIT,
+        googletag.enums.OutOfPageFormat.INTERSTITIAL
+    );
+
+    if (!interstitialSlot) {
+        return;
+    }
+
+    interstitialSlot.addService(googletag.pubads());
+    googletag.pubads().disableInitialLoad();
+    googletag.enableServices();
+
+    // For pages using single-request architecture with other ad slots, call
+    // googletag.display(interstitialSlot) only after defining the static slots.
+    googletag.display(interstitialSlot);
+    requestInterstitialBids();
+});
+
+setTimeout(sendInterstitialAdServerRequest, PREBID_TIMEOUT);
+```
+
+In this example:
+
+- `ortb2Imp.instl: 1` signals interstitial demand to bidders that support it.
+- `defineOutOfPageSlot()` may return `null` when the page or device does not
+  support GPT web interstitials, so check for that before requesting bids.
+- `disableInitialLoad()` prevents GPT from requesting the interstitial until
+  Prebid.js targeting has been set.
+- `display()` registers the GPT web interstitial slot. The ad appears only when
+  GPT receives a fill and an eligible GPT web interstitial trigger occurs, such
+  as a supported link click.
+
 ## How Bid Adapters Should Read Interstitial Flag
 
 To access global data, a Prebid.js bid adapter needs only to retrieve the interstitial flag from the adUnit like this:
