@@ -7,7 +7,7 @@ userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrable
 media_types: banner, video
 gvl_id: 1292
 tcfeu_supported: true
-gpp_supported: true
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 usp_supported: true
 coppa_supported: false
 multiformat_supported: will-bid-on-one
@@ -19,10 +19,11 @@ pbjs: true
 sidebarType: 1
 ---
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name       | Scope    | Description                                                                              | Example                      | Type     |
-|------------|----------|------------------------------------------------------------------------------------------|------------------------------|----------|
-| `cId`      | required | The connection ID from Twist Digital.                                                          | `'562524b21b1c1f08117fc7f9'` | `string` |
-| `bidFloor` | optional | The minimum bid value desired. Twist Digital will not respond with bids lower than this value. | `0.90`                       | `float`  |
+
+| Name       | Scope    | Description                                                                                | Example                      | Type     |
+|------------|----------|--------------------------------------------------------------------------------------------|------------------------------|----------|
+| `cId`      | required | The connection ID from shinezRtb.                                                          | `'562524b21b1c1f08117fc7f9'` | `string` |
+| `bidFloor` | optional | The minimum bid value desired. shinezRtb will not respond with bids lower than this value. | `0.90`                       | `float`  |
