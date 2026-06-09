@@ -90,7 +90,7 @@ While the WURFL RTD module enriches the OpenRTB 2.0 payload, SSP adapters must a
 ### Integration Scenarios
 
 | SSP Adapter Status | Required Adapter Changes | Required Server Changes |
-|-------------------|--------------------------|-------------------------|
+| ------------------ | ------------------------ | ----------------------- |
 | Already passing ORTB2 device to server | No changes required | Update backend logic to utilize device data |
 | Not currently passing device data | Update adapter to read `device` and/or `device.ext.wurfl` and pass to endpoint | Update backend logic to utilize device data |
 | No Bidder Adapter exists | Implement Prebid.js adapter to read and pass `device` and/or `device.ext.wurfl` | Implement endpoint logic to read and utilize data |
@@ -124,16 +124,13 @@ pbjs.setConfig({
 {: .table .table-bordered .table-striped }
 
 | Name | Type | Description | Default |
-|------|------|-------------|---------|
+| ---- | ---- | ----------- | ------- |
 | `name` | String | Real time data module name | Always 'wurfl' |
-| `waitForIt` | Boolean | Should be set to true for proper initialization | `false` |
-| `params` | Object | Configuration parameters for WURFL RTD | |
-| `params.altHost` | String | Alternate host for connecting to WURFL.js | |
-| `params.debug` | Boolean | Enable debug mode for troubleshooting | `false` |
-| `params.abTest` | Object | A/B testing configuration (optional) | |
-| `params.abTest.enabled` | Boolean | Enable A/B testing | `false` |
-| `params.abTest.testName` | String | Name identifier for the test | |
-| `params.abTest.splitRatio` | Number | Ratio for treatment group (0.0-1.0) | `0.5` |
+| `params` | Object | Configuration parameters | |
+| `params.altHost` | String | Alternate host to connect to WURFL.js | |
+| `params.abTest` | Boolean | Enable A/B testing mode | `false` |
+| `params.abName` | String | A/B test name identifier | `'unknown'` |
+| `params.abSplit` | Number | Fraction of users in treatment group (0-1) | `0.8` |
 
 ## Testing
 
@@ -166,7 +163,7 @@ WURFL RTD adds comprehensive device information to the bid request. The `ortb2.d
     "language": "it",
     "make": "Apple",
     "model": "iPhone 16e",
-    "devicetype": 1,
+    "devicetype": 4,
     "os": "iOS",
     "osv": "18.3",
     "hwv": "iPhone 16e",
@@ -269,6 +266,6 @@ The WURFL RTD module processes minimal personal data under legitimate interest f
 
 * Device detection uses only HTTP headers (User-Agent, Client Hints)
 * No user tracking or cross-site identification
-* IP addresses processed transiently for service delivery only
+* IP addresses are retained for up to 36 months for fraud detection and invalid traffic prevention, then permanently redacted. They are not used for user identification or behavioral profiling.
 
 For questions or support, visit [ScientiaMobile Support](https://support.scientiamobile.com).
