@@ -3,7 +3,7 @@ layout: bidder
 title: Copper6
 description: Prebid Copper6 Bidder Adaptor
 biddercode: copper6ssp
-userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+userIds: criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 tcfeu_supported: false
 usp_supported: true
 gvl_id: 1356
