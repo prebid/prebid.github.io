@@ -3,21 +3,20 @@ layout: bidder
 title: Stackup
 description: Stackup Bidder Adapter
 biddercode: stackup
+aliasCode : smarthub
 usp_supported: true
-media_types: banner, video, native
-tcfeu_supported: false
-pbjs: true
-pbs: false
 coppa_supported: true
 schain_supported: true
 dchain_supported: true
+media_types: banner, video, native
 safeframes_ok: true
 deals_supported: true
 floors_supported: true
 fpd_supported: false
+pbjs: true
+pbs: false
 pbs_app_supported: true
-multiformat_supported: true
-sidebarType: 1
+multiformat_supported: will-bid-on-any
 ---
 
 ## Prebid.js Bid Params
