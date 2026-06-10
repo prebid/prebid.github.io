@@ -28,7 +28,7 @@ The Ferio bidder adapter requires setup before beginning. Please contact <prebid
 | --------------- | ---------- | ------------------------------------ | ----------------------------------- | ---------- |
 | `publisherId` | required | Publisher ID on the Ferio platform | `'pubwZR87JRDZSf6V'` | `string` |
 | `adUnitId` | required | Ad unit ID on the Ferio platform | `'3855715c-2ceb-4ba5-a876-8c43a987f210'` | `string` |
-| `tenantId` | required | Tenant ID on the Ferio platform | `'anyclip-pbjs'` | `string` |
+| `tenantId` | required | Tenant ID on the Ferio platform | `'client-pbjs'` | `string` |
 
 ## Prebid Server Bid Params
 
@@ -37,4 +37,4 @@ The Ferio bidder adapter requires setup before beginning. Please contact <prebid
 | --------------- | ---------- | ------------------------------------ | ----------------------------------- | ---------- |
 | `publisherId` | required | Publisher ID on the Ferio platform | `'pubwZR87JRDZSf6V'` | `string` |
 | `adUnitId` | required | Ad unit ID on the Ferio platform | `'e38ea96e-d044-4973-9c2b-fb3fc7a901be'` | `string` |
-| `tenantId` | required | Tenant ID on the Ferio platform | `'anyclip-pbjs'` | `string` |
+| `tenantId` | required | Tenant ID on the Ferio platform | `'client-pbjs'` | `string` |
