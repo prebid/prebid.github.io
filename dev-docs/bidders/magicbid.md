@@ -35,7 +35,7 @@ The MagicBid adapter requires setup before beginning. Please contact us at [supp
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                                                                    | Example                          | Type      |
 | ------------- | -------- | ------------------------------------------------------------------------------ | -------------------------------- | --------- |
-| `host`        | required | Publisher-specific RTB host provided by MagicBid (ends with .rtb-magicbid.ai) | `'ads-2j0kac.rtb-magicbid.ai'`  | `string`  |
+| `host`        | required | Publisher-specific RTB host provided by MagicBid (ends with .rtb-magicbid.ai)  | `'ads-2j0kac.rtb-magicbid.ai'`   | `string`  |
 | `adUnitId`    | required | Ad Unit ID for this placement, provided by MagicBid                            | `631967104`                      | `integer` |
 | `adUnitType`  | optional | Ad format: `'banner'` or `'video'`. Inferred from mediaTypes if omitted.       | `'banner'`                       | `string`  |
 | `custom1`     | optional | Custom targeting parameter 1                                                   | `'sports'`                       | `string`  |
