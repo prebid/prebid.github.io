@@ -73,6 +73,15 @@ not require a container `div`. However, the Prebid.js ad unit still needs a
 `code` value that can be matched to the GPT slot when setting targeting. In the
 example below, both use the ad unit path as the shared identifier.
 
+GPT web interstitials can prerender the creative markup before the ad is
+actually displayed. For this reason, the Prebid.js ad unit should be declared
+with `deferBilling: true`, and the publisher should call `pbjs.triggerBilling()`
+only after deciding the interstitial is billable. The example below stores the
+winning Prebid bid and triggers billing from GPT's `impressionViewable` event;
+publishers should customize that trigger for their requirements. Confirm that
+participating bid adapters support `onBidBillable` before relying on deferred
+billing.
+
 ```javascript
 var PREBID_TIMEOUT = 1000;
 var INTERSTITIAL_AD_UNIT = '/1234567/homepage/mobile-web-interstitial';
@@ -83,8 +92,13 @@ googletag.cmd = googletag.cmd || [];
 var pbjs = pbjs || {};
 pbjs.que = pbjs.que || [];
 
+var interstitialSlot;
+var interstitialWinningBid;
+var interstitialBillingTriggered = false;
+
 var adUnits = [{
     code: INTERSTITIAL_AD_UNIT,
+    deferBilling: true,
     mediaTypes: {
         banner: {
             sizes: [[320, 480], [480, 320]]
@@ -103,6 +117,9 @@ var adUnits = [{
 
 function requestInterstitialBids() {
     pbjs.que.push(function() {
+        pbjs.onEvent('bidWon', function(bid) {
+            interstitialWinningBid = bid;
+        }, INTERSTITIAL_AD_UNIT);
         pbjs.addAdUnits(adUnits);
         pbjs.requestBids({
             adUnitCodes: [INTERSTITIAL_AD_UNIT],
@@ -130,7 +147,16 @@ function sendInterstitialAdServerRequest() {
     });
 }
 
-var interstitialSlot;
+function triggerInterstitialBilling() {
+    if (interstitialBillingTriggered || !interstitialWinningBid || !pbjs.libLoaded) {
+        return;
+    }
+
+    interstitialBillingTriggered = true;
+    pbjs.que.push(function() {
+        pbjs.triggerBilling(interstitialWinningBid);
+    });
+}
 
 googletag.cmd.push(function() {
     interstitialSlot = googletag.defineOutOfPageSlot(
@@ -144,6 +170,11 @@ googletag.cmd.push(function() {
 
     interstitialSlot.addService(googletag.pubads());
     googletag.pubads().disableInitialLoad();
+    googletag.pubads().addEventListener('impressionViewable', function(event) {
+        if (event.slot === interstitialSlot) {
+            triggerInterstitialBilling();
+        }
+    });
     googletag.enableServices();
 
     // For pages using single-request architecture with other ad slots, call
@@ -158,6 +189,9 @@ setTimeout(sendInterstitialAdServerRequest, PREBID_TIMEOUT);
 In this example:
 
 - `ortb2Imp.instl: 1` signals interstitial demand to bidders that support it.
+- `deferBilling: true` prevents Prebid.js from calling `onBidBillable` at win
+  time. Store the winning bid and call `pbjs.triggerBilling()` when your chosen
+  signal indicates that the GPT web interstitial is billable.
 - `defineOutOfPageSlot()` may return `null` when the page or device does not
   support GPT web interstitials, so check for that before requesting bids.
 - `disableInitialLoad()` prevents GPT from requesting the interstitial until
@@ -166,6 +200,9 @@ In this example:
 - `display()` registers the GPT web interstitial slot. The ad appears only when
   GPT receives a fill and an eligible GPT web interstitial trigger occurs, such
   as a supported link click.
+- The `impressionViewable` listener is one example billing trigger. Use the GPT
+  or application event that best represents when the interstitial should be
+  billed for your integration.
 
 ## How Bid Adapters Should Read Interstitial Flag
 
