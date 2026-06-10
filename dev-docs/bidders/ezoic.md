@@ -10,14 +10,14 @@ gpp_sids: tcfeu, usp
 coppa_supported: false
 schain_supported: true
 dchain_supported: false
-media_types: banner
+media_types: banner, video, native
 safeframes_ok: false
 deals_supported: false
 floors_supported: true
 fpd_supported: true
 pbjs: false
 pbs: true
-pbs_app_supported: false
+pbs_app_supported: true
 multiformat_supported: will-bid-on-one
 ortb_blocking_supported: false
 privacy_sandbox: no
