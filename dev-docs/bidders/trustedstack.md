@@ -4,14 +4,19 @@ title: TrustedStack
 description: Prebid TrustedStack Bidder Adaptor
 biddercode: trustedstack
 aliasCode : medianet
-tcfeu_supported: false
+tcfeu_supported: true
+dsa_supported: true
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 usp_supported: true
 coppa_supported: true
-gpp_supported: true
+dchain_supported: false
+pbs_app_supported: true
+deals_supported: true
+endpoint_compression: false
 media_types: banner,native,video
 multiformat_supported: will-bid-on-any
 safeframes_ok: true
-userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+userIds: all
 prebid_member: false
 pbjs: true
 gvl_id: 1288
