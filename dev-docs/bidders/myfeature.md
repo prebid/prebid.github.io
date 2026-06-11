@@ -1,8 +1,8 @@
 ---
 layout: bidder
-title: FeatureTV
-description: FeatureTV Bidder Adapter
-biddercode: featuretv
+title: MyFeature
+description: MyFeature Bidder Adapter
+biddercode: myfeature
 aliasCode: ferio
 gvl_id: none
 usp_supported: true
@@ -20,7 +20,7 @@ sidebarType: 1
 
 ## Note
 
-The FeatureTV bidder adapter is a client-side alias of the `ferio` adapter and
+The MyFeature bidder adapter is a client-side alias of the `ferio` adapter and
 requires setup before beginning. Please contact <prebid@ferio.cloud> for more
 information.
 
@@ -34,4 +34,4 @@ User syncs for the alias only run when the publisher enables
 | --------------- | ---------- | ------------------------------------ | ----------------------------------- | ---------- |
 | `publisherId` | required | Publisher ID on the Ferio platform | `'pubwZR87JRDZSf6V'` | `string` |
 | `adUnitId` | required | Ad unit ID on the Ferio platform | `'3855715c-2ceb-4ba5-a876-8c43a987f210'` | `string` |
-| `tenantId` | required | Tenant ID on the Ferio platform | `'featuretv-pbjs'` | `string` |
+| `tenantId` | required | Tenant ID on the Ferio platform | `'myfeature-pbjs'` | `string` |
