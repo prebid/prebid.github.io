@@ -1,5 +1,5 @@
 ---
-layout: adsmovil
+layout: bidder
 title: adsmovil
 description: Prebid Adsmovil Adapter
 biddercode: adsmovil
