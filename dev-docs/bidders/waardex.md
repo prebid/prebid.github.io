@@ -6,10 +6,14 @@ hide: true
 biddercode: waardex
 media_types: banner, video
 pbjs: true
+pbs: true
 sidebarType: 1
 ---
 
-### Bid Params
+### Note
+The Waardex Bidding adaptor requires setup and approval before beginning. Please reach out to <support@waarex.com> for more details
+
+### Bid Params (Prebid.js)
 
 #### Banner
 
@@ -46,3 +50,10 @@ sidebarType: 1
 | `playbackmethod`| optional | Playback methods that may be in use                                                                     | [1,2]                           | `array<number>` |
 | `api`           | optional | List of supported API frameworks for this impression                                                    | [1,2,3,4,5,6]                   | `array<number>` |
 | `linearity`     | optional | Indicates if the impression must be linear, nonlinear, etc                                              | 1                               | `number`        |
+
+### Bid Params (Prebid Server)
+
+{: .table .table-bordered .table-striped }
+| Name     | Scope    | Description           | Example                   | Type     |
+|----------|----------|-----------------------|---------------------------|----------|
+| `zoneId` | required | publisher identifier  | `30164`                  | `integer` |
