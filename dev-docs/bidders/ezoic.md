@@ -24,14 +24,14 @@ privacy_sandbox: no
 sidebarType: 1
 ---
 
-### Registration
+## Registration
 
 The Ezoic bidder adapter requires approval before use. Bids are returned
 only for publisher domains that have been registered and approved by
 Ezoic; requests for unapproved inventory receive no-bid responses.
 Contact <prebid@ezoic.com> to get set up before adding the bidder.
 
-### Bid Params
+## Bid Params
 
 The Ezoic adapter requires no parameters.
 
