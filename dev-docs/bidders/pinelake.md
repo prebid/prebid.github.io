@@ -18,7 +18,7 @@ floors_supported: true
 sidebarType: 1
 ---
 
-### Bid Params
+# Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope     | Description           | Example        | Type     |
@@ -28,7 +28,7 @@ sidebarType: 1
 | `width`       | optional  | Width of the creative | `300`          | `number` |
 | `bid_floor`   | optional  | Bid Floor Price       | `0.5`          | `decimal`|
 
-### AdUnit Format for Banner
+## AdUnit Format for Banner
 
 ```javascript
 var adUnits = [
