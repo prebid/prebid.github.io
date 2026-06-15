@@ -11,8 +11,8 @@ coppa_supported: false
 schain_supported: false
 floors_supported: false
 pbjs: true
-pbs: true
-pbs_app_supported: true
+pbs: false
+pbs_app_supported: false
 prebid_member: false
 multiformat_supported: will-bid-on-one
 safeframes_ok: true
