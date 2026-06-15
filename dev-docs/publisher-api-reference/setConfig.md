@@ -1627,6 +1627,24 @@ pbjs.setConfig({
 
 Prebid Server uses this mapping when it sends `ext.prebid.aliasgvlids` for bidder aliases, and the [TCF Control Module](/dev-docs/modules/tcfControl.html) references it when enforcing consent.
 
+<a id="setConfig-gvlLegalBasisMapping"></a>
+
+### Map Global Vendor ID to legal basis declarations
+
+Since version 11.15, Prebid.js includes TCF legal basis declarations, used for [tcfControl full enforcement](/dev-docs/modules/tcfControl.html#full-enforcement). The optional `gvlLegalBasisMapping` configuration option can be used to override them.
+
+```javascript
+pbjs.setConfig({
+  gvlLegalBasisMapping: {
+    123: {
+      purposes: [2],
+      legIntPurposes: [7],
+      flexiblePurposes: [2]
+    }
+  }
+})
+```
+
 ### Set Max Bid
 
 <a id="setConfig-maxBid"></a>
