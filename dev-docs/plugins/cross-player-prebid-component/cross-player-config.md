@@ -209,7 +209,7 @@ None
 
 Parameters used when using Google Ad Manager (formerly DFP) as the ad server.
 
-See documentation for [buildVideoUrl](/dev-docs/publisher-api-reference/adServers.dfp.buildVideoUrl.html) for more information.
+See documentation for [buildVideoUrl](/dev-docs/publisher-api-reference/adServers.gam.buildVideoUrl.html) for more information.
 
 **Acceptable Values:**
 

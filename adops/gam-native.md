@@ -71,9 +71,8 @@ If this creative is served, it will fire impression trackers on load. Clicking t
 The creative template HTML will depend on which of the three scenarios you're implementing. You can choose to manage the native template in one of these ways:
 
 - in GAM ([Managing the Native Template in GAM](#managing-the-native-template-in-gam) below)
-- in the Prebid.js AdUnit - this is handled as a 3rd party HTML creative using the Prebud Universal Creative.
-- in a separate JavaScript file - this is handled as a 3rd party HTML creative using the Prebud Univer
-sal Creative.
+- in the Prebid.js AdUnit - this is handled as a 3rd party HTML creative using the Prebid Universal Creative.
+- in a separate JavaScript file - this is handled as a 3rd party HTML creative using the Prebid Universal Creative.
 
 {: .alert.alert-info :}
 For engineering instructions, see [Native Implementation Guide](/prebid/native-implementation.html).
@@ -105,7 +104,7 @@ Example creative HTML:
     <div class="attribution">##hb_native_brand##</div>
   </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/%%PATTERN:hb_format%%.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@%%PATTERN:hb_ver%%/dist/%%PATTERN:hb_format%%.js"></script>
 <script>
     var pbNativeTagData = {};
     pbNativeTagData.pubUrl = "%%PATTERN:url%%";

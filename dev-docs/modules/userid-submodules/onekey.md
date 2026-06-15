@@ -28,7 +28,7 @@ gulp build –modules=userId,oneKeyIdSystem
 ## OneKey Registration
 
 OneKey is a community based Framework with a decentralized approach.
-Go to [onekey.community](https://onekey.community/) for more details.
+Go to onekey.community for more details.
 
 ## OneKey Configuration
 

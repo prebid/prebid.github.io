@@ -16,7 +16,12 @@ pid: 10
 
 ## Basic Prebid.js Example
 
-{% capture htmlCodePrebid %}<h5>Div-1</h5>
+{% capture htmlCodePrebid %}
+<!-- DO NOT add this script in prod -->
+<script src="intercept-banner-not-for-prod.js" ></script>
+<!-- END -->
+
+<h5>Div-1</h5>
 <div id='div-1' style="min-height:250px;">
   <script type='text/javascript'>
     googletag.cmd.push(function() {
@@ -26,7 +31,8 @@ pid: 10
 </div>
 {% endcapture %}
 
-{% capture jsCode %}var sizes = [
+{% capture jsCode %}
+var sizes = [
   [300, 250]
 ];
 var PREBID_TIMEOUT = 700;
@@ -41,7 +47,7 @@ var adUnits = [{
   bids: [{
     bidder: 'appnexus',
     params: {
-      placementId: 13144370
+      placementId: 'XXXXXXX' //not used in prod
     }
   }]
 }];
@@ -67,8 +73,14 @@ function initAdserver() {
   if (pbjs.initAdserverSet) return;
   pbjs.initAdserverSet = true;
   googletag.cmd.push(function() {
-    pbjs.setTargetingForGPTAsync && pbjs.setTargetingForGPTAsync();
-    googletag.pubads().refresh();
+    if (pbjs.libLoaded) {
+      pbjs.que.push(function() {
+        pbjs.setTargetingForGPTAsync();
+        googletag.pubads().refresh();
+      });
+    } else {
+      googletag.pubads().refresh();
+    }
   });
 }
 

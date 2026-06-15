@@ -4,6 +4,7 @@ title: 33Across
 description: Prebid 33Across Bidder Adapter
 pbjs: true
 pbs: true
+pbs_app_supported: true
 biddercode: 33across
 media_types: banner, video
 tcfeu_supported: true
@@ -26,30 +27,35 @@ sidebarType: 1
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name        | Scope    | Description                                                                                                                    | Example    | Type     |
 |-------------|----------|--------------------------------------------------------------------------------------------------------------------------------|------------|----------|
-| `siteId`    | required | Publisher  GUID from 33Across                                                                                                  | `'examplePub123'` | `string` |
+| `zoneId`    | required | Publisher  GUID from 33Across                                                                                                  | `'examplePub123'` | `string` |
+| `siteId`    | required | (Deprecated) Publisher  GUID from 33Across                                                                                                  | `'examplePub123'` | `string` |
 | `productId` | required | 33Across Product ID that the Publisher has registered for (use `'siab'` for Banner or Outstream Video , `'inview'` for Adhesion, `'instream'` for Instream Video) | `'siab'`   | `string` |
+| `test` | optional | Set to `1` to enable test mode | `1` | `integer` |
 
 ### Ad Unit Setup for Banner
 
 ```javascript
 var adUnits = [
 {
-  code: '33across-hb-ad-123456-1', // ad slot HTML element ID  
+  code: '33across-hb-ad-123456-1', // ad slot HTML element ID
   mediaTypes: {
-    banner: {  
+    banner: {
       sizes: [
-          [300, 250], 
+          [300, 250],
           [728, 90]
       ]
-    }   
-  } 
+    }
+  }
   bids: [{
     bidder: '33across',
     params: {
-        siteId: 'examplePub123',    // required 
+        zoneId: 'examplePub123',    // required
         productId: 'siab|inview'    // required
+        // optional: uncomment to enable test requests
+        // test: 1
     }
   }]
 }
@@ -60,10 +66,10 @@ var adUnits = [
 ```javascript
 var adUnits = [
 {
-  code: '33across-hb-ad-123456-1', // ad slot HTML element ID  
+  code: '33across-hb-ad-123456-1', // ad slot HTML element ID
   mediaTypes: {
     video: {                                // We recommend setting the following video params
-                                            // in Ad Unit rather than bidder params as per Prebid 4.0 recommendation. 
+                                            // in Ad Unit rather than bidder params as per Prebid 4.0 recommendation.
       playerSize: [300, 250],               // required
       context: 'outstream',                 // required
       mimes: ['video/mp4','video/x-flv'],   // required
@@ -78,13 +84,13 @@ var adUnits = [
       linearity: 1,                         // optional
       minbitrate: 10,                       // optional
       maxbitrate: 10                        // optional
-    }   
-  }, 
+    }
+  },
   bids: [{
     bidder: '33across',
     params: {
-        siteId: 'examplePub123',    // required     
-        productId: 'siab'           // required     
+        zoneId: 'examplePub123',    // required
+        productId: 'siab'           // required
     }
   }],
   ...
@@ -96,10 +102,10 @@ var adUnits = [
 ```javascript
 var adUnits = [
 {
-  code: '33across-hb-ad-123456-1', // ad slot HTML element ID  
+  code: '33across-hb-ad-123456-1', // ad slot HTML element ID
   mediaTypes: {
     video: {                                // We recommend setting the following video params
-                                            // in Ad Unit rather than bidder params as per Prebid 4.0 recommendation. 
+                                            // in Ad Unit rather than bidder params as per Prebid 4.0 recommendation.
       playerSize: [300, 250],               // required
       context: 'instream',                  // required
       mimes: ['video/mp4','video/x-flv'],   // required
@@ -115,13 +121,13 @@ var adUnits = [
       linearity: 1,                         // optional
       minbitrate: 10,                       // optional
       maxbitrate: 10                        // optional
-    }   
-  }, 
+    }
+  },
   bids: [{
     bidder: '33across',
     params: {
-        siteId: 'examplePub123',    // required    
-        productId: 'instream'       // required     
+        zoneId: 'examplePub123',    // required
+        productId: 'instream'       // required
     }
   }],
   ...
@@ -133,16 +139,16 @@ var adUnits = [
 ```javascript
 var adUnits = [
 {
-  code: '33across-hb-ad-123456-1', // ad slot HTML element ID  
+  code: '33across-hb-ad-123456-1', // ad slot HTML element ID
   mediaTypes: {
-    banner: {  
+    banner: {
       sizes: [
-          [300, 250], 
+          [300, 250],
           [728, 90]
       ]
     },
     video: {                                // We recommend setting the following video params
-                                            // in Ad Unit rather than bidder params as per Prebid 4.0 recommendation. 
+                                            // in Ad Unit rather than bidder params as per Prebid 4.0 recommendation.
       playerSize: [300, 250],               // required
       context: 'outstream',                 // required
       mimes: ['video/mp4','video/x-flv'],   // required
@@ -157,17 +163,31 @@ var adUnits = [
       linearity: 1,                         // optional
       minbitrate: 10,                       // optional
       maxbitrate: 10                        // optional
-    }   
-  }, 
+    }
+  },
   bids: [{
     bidder: '33across',
     params: {
-        siteId: 'examplePub123',    // required     
-        productId: 'siab'           // required     
+        zoneId: 'examplePub123',    // required
+        productId: 'siab'           // required
     }
   }],
   ...
 }
+```
+
+### App request config
+
+Use `pbjs.setConfig()` or `pbjs.setBidderConfig()` for scenarios where prebid.js is in an App Webview.
+
+``` javascript
+pbjs.setConfig({
+  ortb2: {
+    app: {
+      name: 'My APP'
+    }
+  }
+});
 ```
 
 ### SRA Mode

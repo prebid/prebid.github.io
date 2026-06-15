@@ -21,7 +21,7 @@ sidebarType : 1
 
 ## Overview
 
-This consent management control module is designed to support the [Global Privacy Platform](https://iabtechlab.com/gpp/) Section 7 string, USNat. For more Prebid-related background, see [Prebid US Compliance Support](/features/mspa-usnat.html). In sum, the USNat string is intended to unify various state laws into a single privacy string, with participants' behavior governed by the IAB's ([MSPA](https://www.iabprivacy.com/#)). It is intended to complement, not replace, the GPP consent management module, which gathers GPP consent strings and makes them available to vendor integrations. The goal is to gather sensible and conservative [activity controls](/dev-docs/activity-controls.html) for elements of Prebid.js given various expressions of the [USNat consent string](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md).
+This consent management control module is designed to support the [Global Privacy Platform](https://iabtechlab.com/gpp/) Section 7 string, USNat. For more Prebid-related background, see [Prebid US Compliance Support](/features/mspa-usnat.html). In sum, the USNat string is intended to unify various state laws into a single privacy string, with participants' behavior governed by the IAB's ([MSPA](https://www.iabprivacy.com/#)). It is intended to complement, not replace, the GPP consent management module, which gathers GPP consent strings and makes them available to vendor integrations. The goal is to gather sensible and conservative [activity controls](/dev-docs/activity-controls.html) for elements of Prebid.js given various expressions of the [USNat consent string](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20Multi-State%20Privacy%20Agreement%20(MSPA)%20US%20National%20Technical%20Specification.md).
 
 This module does not support any other GPP section id or local GPP api. For US state section see the [GPP Control - US State module](/dev-docs/modules/gppControl_usstates.html), Prebid.js encourages publishers to consider with their legal counsel use of the national string over state strings. New state strings are being released, yet national string support is mature and less error prone. In order to control activities in a section without a control module, publishers can express their controls directly in the syntax of the [activity control infrastructure](/dev-docs/activity-controls.html). If a publisher wants finer control over section 7 implications on Prebid.js behavior than this module provides (eg not invalidating certain strings), they are able to achieve that using the activity control syntax as an alternative to this module.
 
@@ -31,6 +31,28 @@ Prebid functionality created to address regulatory requirements does not replace
 ## Page Integration
 
 This module activates if the `gpp` object in the consent management configuration section exists and the consentManagementGpp module exists. See that [module's documentation](/dev-docs/modules/consentManagementGpp.html) for parameter definitions. This module does **not** work with static GPP section 7 strings provided in the first-party data `regs.gpp` object, but **does** work if the `gpp.cmpApi` is set to `static` and `gpp.consentData` is appropriately populated via setConfig.
+
+Optional configuration options are:
+
+{: .table .table-bordered .table-striped }
+| Param | Type | Description | Example |
+| --- | --- | --- | --- |
+| gpp.mspa | `Object` | | |
+| gpp.mspa.restrictActivities | `Array` | A list of [activities](/dev-docs/activity-controls.html#activities) to be restricted in addition to the [default restrictions](/features/mspa-usnat.html#usnat-activity-restrictions). If specified, and if not already restricted, they will be treated similarly to `syncUser`. | `['accessDevice']` |
+
+### Example: disable device access on user opt-out
+
+```javascript
+pbjs.setConfig({
+  consentManagement: {
+    gpp: {
+      mspa: {
+        restrictActivities: ['accessDevice', 'accessRequestCredentials']
+      }
+    }
+  }
+})
+```
 
 ## Build the Package
 
@@ -46,7 +68,7 @@ You can also use the [Prebid.js Download](/download.html) page.
 
 - [IAB Global Privacy Platform Full Specification Repository](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform)
 - [IAB Global Privacy Platform CMP API Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Core/CMP%20API%20Specification.md)
-- [IAB Global Privacy Platform USNat string Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md)
+- [IAB Global Privacy Platform USNat string Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20Multi-State%20Privacy%20Agreement%20(MSPA)%20US%20National%20Technical%20Specification.md)
 - [Prebid US Compliance Support](/features/mspa-usnat.html)
 - [Prebid Activity Controls](/dev-docs/activity-controls.html)
 - [Prebid Consent Management - US Privacy Module](/dev-docs/modules/consentManagementUsp.html)

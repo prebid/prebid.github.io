@@ -32,24 +32,47 @@ Here's a description of the global parameters:
 | exploratory-sampling-split | float | Exploration vs Exploitation ratio of analytics traffic |
 | timeout-ms | int | Timeout limit on sending POST request to Greenbids Analytics Server |
 
-The Greenbids Analytics module also includes account-specific parameters for each publisher setup. These parameters should be included in the extension of the bid request json: `ext.prebid.analytics.greenbids`
+The Greenbids Analytics module includes account-specific parameters for the publisher setup. The logic of the config is as follows:
 
-| Parameter | Scope | Description | Example | Type |
-| --------- | ---- | ------------- | ------------- | ----------- |
-| pbuid | required | The Greenbids Publisher ID | greenbids-publisher-1 | string |
-| greenbidsSampling | optional  | sampling factor [0-1] (a value of 0.1 will filter 90% of the traffic) | 1.0  | float |
+- `BidRequest` extension in `ext.prebid.analytics.greenbids` if defined takes precedence over account configs.
+- If the `BidRequest` extension is not defined, the account config is used and defined one per individual publisher.
+  The config is stored in `yaml` file under path `settings.filesystem.settings-filename` of the Prebid config.
+- If the account config is not defined, the default account config is used. It is defined in `settings.default-account-config` field of the Prebid config.
 
-An example of publisher config in the bid request extension is as follows:
+Here are examples of the config:
+
+BidRequest extension:
 
 ```json
 "ext": {
-  "prebid": {
-    "analytics": {
-      "greenbids": {
-        "pbuid": "PUBID_FROM_GREENBIDS",
-        "greenbidsSampling": 1.0
+    "prebid": {
+      "analytics": {
+        "greenbids": {
+          "pbuid": "PBUID_FROM_GREENBIDS",
+          "greenbids-sampling": 1
+        },
+        "greenbids-rtd": {
+          "pbuid": "PBUID_FROM_GREENBIDS",
+          "target-tpr": 0.55,
+          "exploration-rate": 0.0005
+        }
       }
     }
   }
-}
+```
+
+Account config:
+
+```yaml
+hooks:
+  modules:
+    greenbids-real-time-data:
+      pbuid: "PBUID_FROM_GREENBIDS"
+      target-tpr: 0.96
+      exploration-rate: 0.002
+analytics:
+  modules:
+    greenbids:
+      pbuid: "PBUID_FROM_GREENBIDS"
+      greenbids-sampling: 0.002
 ```

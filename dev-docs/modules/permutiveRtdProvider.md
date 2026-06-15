@@ -60,13 +60,19 @@ as well as enabling settings for specific use cases mentioned above (e.g. acbidd
 ## Parameters
 
 {: .table .table-bordered .table-striped }
-| Name                   | Type                 | Description                                                                                   | Default            |
-| ---------------------- | -------------------- | --------------------------------------------------------------------------------------------- | ------------------ |
-| name                   | String               | This should always be `permutive`                                                             | -                  |
-| waitForIt              | Boolean              | Should be `true` if there's an `auctionDelay` defined (optional)                              | `false`            |
-| params                 | Object               |                                                                                               | -                  |
-| params.acBidders       | String[]             | An array of bidder codes to share cohorts with in certain versions of Prebid, see below                         | `[]`               |
-| params.maxSegs         | Integer              | Maximum number of cohorts to be included in either the `permutive` or `p_standard` key-value. | `500`              |
+
+| Name                                           | Type                 | Description                                                                                    | Default                                                         |
+| ---------------------------------------------- | -------------------- | ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| name                                           | String               | This should always be `permutive`                                                              | -                                                               |
+| waitForIt                                      | Boolean              | Should be `true` if there's an `auctionDelay` defined (optional)                               | `false`                                                         |
+| params                                         | Object               |                                                                                                | -                                                               |
+| params.acBidders                               | String[]             | An array of bidder codes to share cohorts with in certain versions of Prebid, see below        | `[]`                                                            |
+| params.maxSegs                                 | Integer              | Maximum number of cohorts to be included in either the `permutive` or `p_standard` key-value.  | `500`                                                           |
+| params.bidders                                 | Object               | Per-bidder configuration for custom cohort sources. Keys are bidder codes; listing a bidder here also causes the module to write ortb2 data for that bidder, even if it is not in `acBidders` or on Permutive's SSP list. | `{}`                                                            |
+| params.bidders                                 | Object               | Per-bidder configuration for custom cohort sources. Keys are bidder codes.                     | `{}`                                                            |
+| params.bidders.\<bidder\>.customCohorts        | Object               | Custom cohorts source configuration for a specific bidder.                                     | -                                                               |
+| params.bidders.\<bidder\>.customCohorts.source | String               | Storage type to read custom cohorts from. Currently only `'ls'` (localStorage) is supported.   | -                                                               |
+| params.bidders.\<bidder\>.customCohorts.key    | String               | The localStorage key to read custom cohorts from.                                              | -                                                               |
 
 ### Context
 
@@ -78,8 +84,7 @@ If you are also using the [TCF Control Module](/dev-docs/modules/tcfControl.html
 
 ### Instructions
 
-{: .alert.alert-warning :}
-Prebid.org recommends working with a privacy lawyer before making enforcement exceptions for any vendor. Specifically for Permutive, we recommend publishers let Prebid.js make use of their registered GVL ID 361 instead of a vendor exception.
+{% include dev-docs/vendor-exception.md gvlId="361" %}
 
 1. Publisher enables rules within Prebid.js configuration. 
 2. Label Permutive as an exception, as shown below.
@@ -132,10 +137,24 @@ Currently, bidders with known support for custom cohort targeting are:
 
 * Xandr
 * Magnite
+* Microsoft (msft)
 
 When enabling the respective Activation for a cohort in Permutive, this module will automatically attach that cohort ID to the bid request.
 There is no need to enable individual bidders in the module configuration, it will automatically reflect which SSP integrations you have enabled in your Permutive dashboard.
 Permutive cohorts will be sent in the permutive key-value.
+
+**Note:** Publishers migrating from the `appnexus` bidder to `msft` need to configure the `params.bidders` object so the module knows where to read custom cohorts from. The Permutive SDK writes `msft` custom cohorts to the same localStorage key used by `appnexus` (`_papns`), so publishers should add the following to their Permutive RTD config:
+
+```javascript
+params: {
+  acBidders: ['msft'],
+  bidders: {
+    msft: {
+      customCohorts: { source: 'ls', key: '_papns' }
+    }
+  }
+}
+```
 
 ### _Enabling Advertiser Cohorts_
 

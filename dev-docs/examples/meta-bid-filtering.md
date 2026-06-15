@@ -8,6 +8,7 @@ sidebarType: 1
 about:
 - This is an example that filters bid responses based on the metadata object.
 - Bidders can supply metadata about the bid such as advertiser domain. See the "meta" fields in the <a href="/dev-docs/bidder-adaptor.html#interpreting-the-response">bid response</a> for the full list of metadata.
+- Please note that we recommend a dedicated module for this case. See <a href="/dev-docs/modules/bidResponseFilter.html">Bid Response Filter</a>
 
 ---
 
@@ -78,8 +79,14 @@ function initAdserver() {
     if (pbjs.initAdserverSet) return;
     pbjs.initAdserverSet = true;
     googletag.cmd.push(function() {
-        pbjs.setTargetingForGPTAsync && pbjs.setTargetingForGPTAsync();
-        googletag.pubads().refresh();
+        if (pbjs.libLoaded) {
+            pbjs.que.push(function() {
+                pbjs.setTargetingForGPTAsync();
+                googletag.pubads().refresh();
+            });
+        } else {
+            googletag.pubads().refresh();
+        }
     });
 }
 

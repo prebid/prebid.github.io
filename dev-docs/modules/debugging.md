@@ -114,7 +114,9 @@ To illustrate, these definitions are equivalent:
 
 ### Replace rules
 
-The replace rule can be provided as a function that takes the bid request as its only argument and returns an object with the desired response properties. The [first example above](#example) could be written as:
+The replace rule can be provided as a function that takes the bid request as its only argument and returns an object with the desired response properties. 
+The function can also return `null` to indicate that there is no bid.
+The [first example above](#example) could be written as:
 
 ```javascript
 pbjs.setConfig({
@@ -136,6 +138,8 @@ Alternatively, the rule can be expressed as an object, and its `key`-`value` pai
 
 - if `value` is a function, then `bidResponse[key]` will be set to `value(bidRequest)`;
 - otherwise, `bidResponse[key]` will be set to `value`.
+
+Using `null` as the object indicates that there was no bid.
 
 To illustrate, the following definitions are equivalent:
 
@@ -173,10 +177,9 @@ pbjs.setConfig({
       {
         when: {
           adUnitCode: "video-adunit",
-          bidder: "bidderA'
+          bidder: "bidderA"
         },
         then: {
-          cpm: 10,
           mediaType: "video",
           source: "client",
           currency: "SEK",
@@ -184,6 +187,7 @@ pbjs.setConfig({
           creativeId: "11111",
           width: 640,
           height: 360,
+          ttl: 300,
           vastXml: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><VAST version=\"2.0\"><Ad id=\"TestAd\"><InLine><AdSystem>Prebid Test</AdSystem><AdTitle>VAST 2.0 Linear Ad</AdTitle><Error><![CDATA[http://myErrorURL/error]]></Error><Impression><![CDATA[]]></Impression><Creatives><Creative id=\"2014\" AdID=\"20150911\" sequence=\"1\"><Linear><Duration>00:00:15</Duration><TrackingEvents><Tracking event=\"creativeView\"><![CDATA[]]></Tracking><Tracking event=\"start\"><![CDATA[]]></Tracking><Tracking event=\"firstQuartile\"><![CDATA[]]></Tracking><Tracking event=\"midpoint\"><![CDATA[]]></Tracking><Tracking event=\"thirdQuartile\"><![CDATA[]]></Tracking><Tracking event=\"complete\"><![CDATA[]]></Tracking></TrackingEvents><VideoClicks><ClickThrough><![CDATA[http://prebid.org/]]></ClickThrough><ClickTracking><![CDATA[]]></ClickTracking></VideoClicks><MediaFiles><MediaFile delivery=\"progressive\" width=\"960\" height=\"540\" type=\"video/mp4\"><![CDATA[https://s3.amazonaws.com/files.prebid.org/creatives/PrebidLogo.mp4]]></MediaFile></MediaFiles></Linear></Creative></Creatives></InLine></Ad></VAST>"
         }
       },
@@ -212,7 +216,6 @@ pbjs.setConfig({
           mediaType: "native",
           source: "client",
           currency: "EUR",
-          cpm: 1.00,
           creativeId: "222222",
           native: { ortb: {
             link: { url: "http://example.com" },

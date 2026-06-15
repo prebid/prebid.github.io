@@ -35,13 +35,13 @@ function loadVideoData() {
         pbjs.setConfig({
             debug: true,
             cache: {
-                url: 'https://prebid.adnxs.com/pbc/v1/cache'
+                url: 'https://prebid.example.com/pbc/v1/cache'
             }
         });
 
         pbjs.requestBids({
             bidsBackHandler: function(bids) {
-                var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
+                var videoUrl = pbjs.adServers.gam.buildVideoUrl({
                     adUnit: videoAdUnit,
                     params: {
                         iu: '/19968336/prebid_cache_video_adunit',

@@ -28,7 +28,7 @@ While the default ad server for Prebid's Mobile SDK is GAM, it can be expanded t
 
 In this mode, the developer is responsible for the following actions:
 
-- Call `fetchDemand()` with extended targetingDict callback
+- Call `fetchDemand()` with extended targetingDict callback (The method has been removed in the PrebidMobile `3.0.0`. Use the `fetchDemand()` with extended BidInfo callback instead)
 - Retrieve targeting keys from the extended fetchDemand function
 - Convert targeting keys into the format for your ad server
 - Pass converted keys to your ad server
@@ -37,9 +37,9 @@ In this mode, the developer is responsible for the following actions:
 This approach is available for the following ad formats:
 
 - Display Banner via `BannerAdUnit`
-- Video Banner and Instream Video via `VideoAdUnit`
+- Video Banner and Instream Video via `VideoAdUnit` (The class has been removed in the PrebidMobile `3.0.0`. Use the `InStreamVideoAdUnit` instead)
 - Display Interstitial via `InterstitialAdUnit`
-- Video Interstitial via `VideoInterstitialAdUnit`
+- Video Interstitial via `VideoInterstitialAdUnit` (The class has been removed in the PrebidMobile `3.0.0`. Use the `InterstitialAdUnit` with video ad format instead)
 - Rewarded Video via `RewardedVideoAdUnit`
 - Native Styles via `NativeRequest`
 
@@ -155,7 +155,7 @@ Pay attention that the `loadAd()` should be called on the main thread.
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
-The **default** ad format for interstitial is **DISPLAY**. In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
+In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
 
 ``` kotlin
 interstitialAdUnit = InterstitialAdUnit(
@@ -192,9 +192,11 @@ override fun onAdLoaded(interstitialAdUnit: InterstitialAdUnit) {
 }
 ```
 
-#### Rewarded Video
+#### Rewarded
 
-Integration example:
+{% include mobile/rewarded-server-side-configuration.md %}
+
+##### Integration example
 
 ``` kotlin
 // 1. Create an Ad Unit
@@ -215,19 +217,19 @@ Pay attention that the `loadAd()` should be called on the main thread.
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
-##### Step 1: Create a Rewarded Ad Unit
+###### Step 1: Create a Rewarded Ad Unit
 {:.no_toc}
 
 Create the `RewardedAdUnit` object with parameters:
 
 - `adUnitId` - an ID of Stored Impression on the Prebid server.
 
-##### Step 2: Load the Ad
+###### Step 2: Load the Ad
 {:.no_toc}
 
 Call the `loadAd()` to make a bid request.
 
-##### Step 3: Show the Ad when it is ready
+###### Step 3: Show the Ad when it is ready
 {:.no_toc}
 
 Wait until the ad is loaded and present it to the user in any suitable time.
@@ -235,6 +237,22 @@ Wait until the ad is loaded and present it to the user in any suitable time.
 ``` kotlin
 override fun onAdLoaded(rewardedAdUnit: RewardedAdUnit) {
 //Ad is ready for display
+}
+```
+
+##### Step 4: Handle a reward
+{:.no_toc}
+
+Handle earning a reward in the appropriate method. Important: a reward can be null.
+
+```kotlin
+override fun onUserEarnedReward(rewardedAdUnit: RewardedAdUnit?, reward: Reward?) {
+    if (reward != null) {
+        val rewardType = reward.type
+        val rewardCount = reward.count
+        val rewardExt = reward.ext
+        // Process the reward
+    }
 }
 ```
 

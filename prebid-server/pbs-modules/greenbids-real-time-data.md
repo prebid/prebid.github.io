@@ -30,7 +30,52 @@ are done before customizing it to a particular bidder in the auction.
 
 ### Account-Level Config
 
-Here's an example of the account config used in PBS-Java:
+The module is invoked based on account config. The logic of the config is as follows:
+
+- `BidRequest` extension in `ext.prebid.analytics.greenbids-rtd` if defined takes precedence over account configs.
+- If the `BidRequest` extension is not defined, the account config is used and defined one per individual publisher.
+  The config is stored in `yaml` file under path `settings.filesystem.settings-filename` of the Prebid config.
+- If the account config is not defined, the default account config is used. It is defined in `settings.default-account-config` field of the Prebid config.
+
+Here are examples of the config used in PBS-Java:
+
+BidRequest extension:
+
+```json
+"ext": {
+    "prebid": {
+      "analytics": {
+        "greenbids": {
+          "pbuid": "PBUID_FROM_GREENBIDS",
+          "greenbids-sampling": 1
+        },
+        "greenbids-rtd": {
+          "pbuid": "PBUID_FROM_GREENBIDS",
+          "target-tpr": 0.55,
+          "exploration-rate": 0.0005
+        }
+      }
+    }
+  }
+```
+
+Account config:
+
+```yaml
+hooks:
+  modules:
+    greenbids-real-time-data:
+      pbuid: "PBUID_FROM_GREENBIDS"
+      target-tpr: 0.96
+      exploration-rate: 0.002
+analytics:
+  modules:
+    greenbids:
+      pbuid: "PBUID_FROM_GREENBIDS"
+      greenbids-sampling: 0.002
+```
+
+Execution plan setup:
 
 ```yaml
 hooks:
@@ -169,10 +214,7 @@ Here's an example analytics tag that might be produced for use in an analytics a
               "tid": "2c445309-06b2-47b2-a724-4aeef15faeb8"
             }
           },
-          "appliedTo": {
-            "bidders": "bidderA",
-            "impIds": "impId1"
-          }
+          "appliedTo": {}
         }
       ]
     }
