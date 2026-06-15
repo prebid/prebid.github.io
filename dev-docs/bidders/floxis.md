@@ -14,7 +14,7 @@ dsa_supported: false
 gvl_id: 1609
 usp_supported: true
 coppa_supported: true
-gpp_supported: true
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 schain_supported: true
 dchain_supported: false
 deals_supported: false
