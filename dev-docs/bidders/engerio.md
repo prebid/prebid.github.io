@@ -8,7 +8,7 @@ dsa_supported: false
 gvl_id: none
 usp_supported: false
 coppa_supported: false
-gpp_sids:
+gpp_sids: none
 schain_supported: false
 dchain_supported: false
 media_types: banner
