@@ -27,38 +27,38 @@ pbs: true
 sidebarType: 1
 ---
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name       | Scope    | Description                            | Example       | Type     |
-|------------|----------|----------------------------------------|---------------|----------|
-| `cid`      | required | The customer id provided by TrustedStack. | `'trustedstack_test_customer'` | `string` |
-| `crid`     | required | The placement id provided by TrustedStack. | `'trustedstack_crid'`   | `string` |
-| `bidfloor` | optional | Bidfloor for the impression          | `1.0`         | `float`  |
-| `video`    | required for video Ad units | Object containing video targeting parameters.  See [Video Object](#video-object) for details.|`video: { maxduration: 60 }`         | `object`  |
+| Name       | Scope                       | Description                                                                                   | Example                        | Type     |
+| ---------- | --------------------------- | --------------------------------------------------------------------------------------------- | ------------------------------ | -------- |
+| `cid`      | required                    | The customer id provided by TrustedStack.                                                     | `'trustedstack_test_customer'` | `string` |
+| `crid`     | required                    | The placement id provided by TrustedStack.                                                    | `'trustedstack_crid'`          | `string` |
+| `bidfloor` | optional                    | Bidfloor for the impression                                                                   | `1.0`                          | `float`  |
+| `video`    | required for video Ad units | Object containing video targeting parameters.  See [Video Object](#video-object) for details. | `video: { maxduration: 60 }`   | `object` |
 
-#### Video Object
+### Video Object
 
 {: .table .table-bordered .table-striped }
-| Name       | Type    | Description   | Example|
-|------------|----------|--------------|--------|
-|mimes|array of strings|(Recommended) Specifies the video content MIME types supported; for example, video/x-ms-wmv and video/x-flv.|["video/x-ms-wmv","video/x-flv"]|
-|minduration|integer|(Recommended) Specifies the minimum video ad duration, in seconds.|10|
-|maxduration|integer|(Recommended) Specifies the maximum video ad duration, in seconds.|60|
-|w|integer|(Recommended) Specifies the width of the video player, in pixels. Required if playerSize not present in `mediaTypes.video`|640|
-|h|integer|(Recommended) Specifies the height of the video player, in pixels. Required if playerSize not present in `mediaTypes.video`|480|
-|startdelay |integer | (Recommended) Specifies the start delay of the video ad|0|
-|battr| array of integers|Specifies the video creative attributes to block. Refer to section 5.3 of the IAB specification for a list of attributes.| [ 13, 14 ]|
-|playbackmethod| array of integers| Specifies the allowed playback methods. If not specified, all are assumed to be allowed. Currently supported values are: `1: Autoplay, sound on`; `2: Autoplay, sound off`; `3: Click to play`; `4: Mouse over to play`|[1, 3]|
-|api| array of integers| Specifies the supported API frameworks for this impression. If an API is not explicitly listed, it is assumed not to be supported. Currently supported values are: `1: VPAID 1.0`; `2: VPAID 2.0`; `3: MRAID-1`; `4: ORMMA`; `5: MRAID-2`|[1, 2]|
-|protocols |array of integers| Array of supported video protocols. Currently supported values are: `1: VAST 1.0`; `2: VAST 2.0`; `3: VAST 3.0`; `4: VAST 1.0 Wrapper`; `5: VAST 2.0 Wrapper`; `6: VAST 3.0 Wrapper`; `7: VAST 4.0`|[1, 2]|
-|placement |integer|Placement type for the impression. Possible options: `1: In-Stream`; `2: In-banner`; `3: Outstream/In-article`; `4: In-feed`; `5: Interstitial/Slider/Floating`; `6: Long-Form`;|1|
+| Name           | Type              | Description                                                                                                                                                                                                                               | Example                          |
+| -------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
+| mimes          | array of strings  | (Recommended) Specifies the video content MIME types supported; for example, video/x-ms-wmv and video/x-flv.                                                                                                                              | ["video/x-ms-wmv","video/x-flv"] |
+| minduration    | integer           | (Recommended) Specifies the minimum video ad duration, in seconds.                                                                                                                                                                        | 10                               |
+| maxduration    | integer           | (Recommended) Specifies the maximum video ad duration, in seconds.                                                                                                                                                                        | 60                               |
+| w              | integer           | (Recommended) Specifies the width of the video player, in pixels. Required if playerSize not present in `mediaTypes.video`                                                                                                                | 640                              |
+| h              | integer           | (Recommended) Specifies the height of the video player, in pixels. Required if playerSize not present in `mediaTypes.video`                                                                                                               | 480                              |
+| startdelay     | integer           | (Recommended) Specifies the start delay of the video ad                                                                                                                                                                                   | 0                                |
+| battr          | array of integers | Specifies the video creative attributes to block. Refer to section 5.3 of the IAB specification for a list of attributes.                                                                                                                 | [ 13, 14 ]                       |
+| playbackmethod | array of integers | Specifies the allowed playback methods. If not specified, all are assumed to be allowed. Currently supported values are: `1: Autoplay, sound on`; `2: Autoplay, sound off`; `3: Click to play`; `4: Mouse over to play`                   | [1, 3]                           |
+| api            | array of integers | Specifies the supported API frameworks for this impression. If an API is not explicitly listed, it is assumed not to be supported. Currently supported values are: `1: VPAID 1.0`; `2: VPAID 2.0`; `3: MRAID-1`; `4: ORMMA`; `5: MRAID-2` | [1, 2]                           |
+| protocols      | array of integers | Array of supported video protocols. Currently supported values are: `1: VAST 1.0`; `2: VAST 2.0`; `3: VAST 3.0`; `4: VAST 1.0 Wrapper`; `5: VAST 2.0 Wrapper`; `6: VAST 3.0 Wrapper`; `7: VAST 4.0`                                       | [1, 2]                           |
+| placement      | integer           | Placement type for the impression. Possible options: `1: In-Stream`; `2: In-banner`; `3: Outstream/In-article`; `4: In-feed`; `5: Interstitial/Slider/Floating`; `6: Long-Form`;                                                          | 1                                |
 
 Besides the above-mentioned parameters, we support all other OpenRTB 2.x video objects as optional parameters.
 
 In addition to `bids[].params.video`, TrustedStack adapter consumes parameters specified in the `mediaTypes.video`.
 
-#### Example of Instream Video Ad-unit
+### Example of Instream Video Ad-unit
 
 ```javascript
 var videoAdUnit = {
@@ -81,7 +81,7 @@ var videoAdUnit = {
 };
 ```
 
-#### Example of Banner Ad-unit
+### Example of Banner Ad-unit
 
 ```javascript
 var adUnits = [{
@@ -104,3 +104,4 @@ var adUnits = [{
   }]
 }];
 ```
+
