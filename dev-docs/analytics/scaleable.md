@@ -5,7 +5,7 @@ description: Scaleable Analytics Adapter
 modulecode: scaleable
 tcfeu_supported: false
 usp_supported: true
-gpp_supported: true
+gpp_sids: usp, usnat, usstate_all
 coppa_supported: true
 prebid_member: false
 ---
