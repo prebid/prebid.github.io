@@ -20,7 +20,7 @@ ortb_blocking_supported: true
 multiformat: will-bid-on-any
 ---
 
-### Note
+## Note
 
 Before configuring the display.io adapter you must reach out your account manager from display.io team  (or send a request to <contact@display.io>) for approval and setup steps.
 
