@@ -7,15 +7,16 @@ filename: omnidexBidAdapter
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 tcfeu_supported: false
 usp_supported: true
+gvl_id: 1463
 coppa_supported: false
 schain_supported: true
-gpp_supported: true
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 floors_supported: true
 media_types: banner, video
 prebid_member: false
 safeframes_ok: false
 deals_supported: false
-pbs_app_supported: false
+pbs_app_supported: true
 fpd_supported: false
 ortb_blocking_supported: false
 multiformat_supported: will-bid-on-one
@@ -24,7 +25,7 @@ pbs: true
 sidebarType: 1
 ---
 
-### Bid Params for Prebid.js
+## Bid Params for Prebid.js
 
 {: .table .table-bordered .table-striped }
 
@@ -34,7 +35,7 @@ sidebarType: 1
 | `pId`      | required | The publisher ID from Omnidex (pbjs only).                                               | `'59ac17c192832d0011283fe3'` | `string` |
 | `bidFloor` | optional | The minimum bid value desired. omnidex will not respond with bids lower than this value. | `0.90`                       | `float`  |
 
-#### Bid Params for Prebid Server
+## Bid Params for Prebid Server
 
 {: .table .table-bordered .table-striped }
 

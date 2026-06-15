@@ -2,73 +2,67 @@
 <html lang="en" class="html--no-js">
   <head>
     {% include head--common.html %} {% include prebidjs-non-prod.html %}
+    {% include loadScript.html %}
+    {% include video/mock-video-bid.html %}
 
-    <!--pbjs and player code -->
-    <script type="text/plain" class="cmplazyload" data-cmp-purpose="c51">
-      function updateJWPlayer() {
-        jwplayer.key = "ssbF6k0i9BPe87xfG/s0ipdp5gwbLoZaDON/GQvuwPU9nVJy"; //Test Key - replace this with your own valid JWPlayer license key
-      }
-    </script>
 
-    <script
-      type="text/plain"
-      class="cmplazyload"
-      data-cmp-purpose="c51"
-      data-cmp-src="https://ssl.p.jwpcdn.com/player/v/8.0.5/jwplayer.js"
-    ></script>
+    <script type="text/javascript" class="cmplazyload" data-cmp-purpose="c51">
+      loadScript('https://ssl.p.jwpcdn.com/player/v/8.0.5/jwplayer.js')
+        .then(() => {
+          //Test Key - replace this with your own valid JWPlayer license key
+          jwplayer.key = "ssbF6k0i9BPe87xfG/s0ipdp5gwbLoZaDON/GQvuwPU9nVJy";
 
-    <script>
-      var pbjs = pbjs || {};
-      pbjs.que = pbjs.que || [];
+          window.pbjs = window.pbjs || {};
+          pbjs.que = pbjs.que || [];
 
-      var videoAdUnit = {
-        code: "video1",
-        mediaTypes: {
-          video: {
-            context: "instream",
-            playerSize: [640, 480],
-            mimes: ["video/mp4"],
-            protocols: [1, 2, 3, 4, 5, 6, 7, 8],
-            playbackmethod: [2],
-            skip: 1,
-          },
-        },
-        bids: [
-          {
-            bidder: "appnexus",
-            params: {
-              placementId: 13232361, // Add your own placement id here
+          var videoAdUnit = {
+            code: "video1",
+            mediaTypes: {
+              video: {
+                context: "instream",
+                playerSize: [640, 480],
+                mimes: ["video/mp4"],
+                protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+                playbackmethod: [2],
+                skip: 1,
+              },
             },
-          },
-        ],
-      };
-
-      pbjs.que.push(function () {
-        pbjs.addAdUnits(videoAdUnit); // add your ad units to the bid request
-        pbjs.setConfig({
-          debug: true,
-          cache: {
-            url: "https://prebid.example.com/pbc/v1/cache",
-          },
-        });
-
-        pbjs.requestBids({
-          bidsBackHandler: function (bids) {
-            var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
-              adUnit: videoAdUnit,
-              params: {
-                iu: "/19968336/prebid_cache_video_adunit",
-                cust_params: {
-                  section: "blog",
-                  anotherKey: "anotherValue",
+            bids: [
+              {
+                bidder: "appnexus",
+                params: {
+                  placementId: 13232361, // Add your own placement id here
                 },
-                output: "vast",
+              },
+            ],
+          };
+
+          pbjs.que.push(function () {
+            pbjs.addAdUnits(videoAdUnit); // add your ad units to the bid request
+            pbjs.setConfig({
+              debug: true,
+              cache: {
+                useLocal: true
               },
             });
-            window.runJWPlayer(videoUrl);
-          },
-        });
-      });
+
+            pbjs.requestBids({
+              bidsBackHandler: function (bids) {
+                pbjs.adServers.gam.getVastXml({
+                  bid: bids.video1.bids[0],
+                  adUnit: videoAdUnit,
+                  params: {
+                    iu: '/41758329/localcache',
+                  },
+                }).then(vastXml => {
+                  window.runJWPlayer(vastXml);
+                })
+
+              },
+            });
+          });
+
+        })
     </script>
   </head>
 

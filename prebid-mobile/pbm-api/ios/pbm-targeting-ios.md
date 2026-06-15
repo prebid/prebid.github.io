@@ -541,6 +541,7 @@ Note that several of the properties noted here are also mentioned above for othe
 | subjectToGDPR | discouraged | boolean | ? | Defines whether this request is in-scope for European privacy regulations. See [above](/prebid-mobile/pbm-api/ios/pbm-targeting-ios#gdpr--tcf-eu) for more information. | `true` |
 | gdprConsentString | discouraged | string | both | See the [GDPR settings](/prebid-mobile/pbm-api/ios/pbm-targeting-ios#gdpr--tcf-eu) section above. | |
 | purposeConsents | discouraged | string | both | See the [GDPR settings](/prebid-mobile/pbm-api/ios/pbm-targeting-ios#gdpr--tcf-eu) section above. | |
+| locationPrecision | optional | NSNumber | both | Number of decimal places to use when rounding latitude/longitude for device geolocation. Default is nil. (full precision) | `NSNumber(value: 2)` |
 
 ### Targeting Class Methods
 
