@@ -32,3 +32,7 @@ PGAM Rtb Bidding adapter requires setup before beginning.
 |:--------------|:---------|:----------------------|:------------------|:----------|
 | `host`        | required | Ad network's RTB host | `'pgamrtb.com'`   | `string`  |
 | `publisherId` | required | Publisher ID          | `12345`           | `integer` |
+
+Prebid PGAM Rtb Bidder Adaptor server-side Prebid Server adapter requires only `publisherId` and `host` parameters. But Prebid PGAM Rtb Bidder Adaptor client-side Prebid.js adapter requires only `host`, `adUnitId`, `adUnitType`.
+
+Prebid PGAM Rtb Bidder Adaptor server-side Prebid Server adapter supports only `banner`, `video`, `audio`, `native` media types. But Prebid PGAM Rtb Bidder Adaptor client-side Prebid.js adapter supports only `banner` and `video` media types, doesn't support `audio` and `native`.

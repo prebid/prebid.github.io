@@ -1,25 +1,22 @@
 ---
 layout: bidder
-title: Attekmi
-description: Attekmi Bidder Adapter
-biddercode: smarthub
-redirect_from:
-  - /dev-docs/bidders/smarthub
+title: Stackup
+description: Stackup Bidder Adapter
+biddercode: stackup
+aliasCode : smarthub
 usp_supported: true
-media_types: banner, video, native
-tcfeu_supported: false
-pbjs: true
-pbs: true
 coppa_supported: true
 schain_supported: true
 dchain_supported: true
+media_types: banner, video, native
 safeframes_ok: true
 deals_supported: true
 floors_supported: true
 fpd_supported: false
-pbs_app_supported: true
-multiformat_supported: true
-sidebarType: 1
+pbjs: true
+pbs: false
+pbs_app_supported: false
+multiformat_supported: will-bid-on-any
 ---
 
 ## Prebid.js Bid Params
@@ -28,7 +25,6 @@ sidebarType: 1
 
 | Name          | Scope    | Description                                                        | Example                              | Type            |
 | :------------ | :------- | :----------------------------------------------------------------- | :----------------------------------- | :-------------- |
-| `partnerName` | required | Unique partner name                                                | `'partnertest'`                      | `string`        |
 | `seat`        | required | Seat value                                                         | `'9Q20EdGxzgWdfPYShScl'`             | `string`        |
 | `token`       | required | Token                                                              | `'eKmw6alpP3zWQhRCe3flOpz0wpuwRFjW'` | `string`        |
 | `region`      | optional | Region                                                             | `apac`                               | `string`        |
@@ -42,6 +38,5 @@ sidebarType: 1
 
 | Name          | Scope    | Description         | Example                              | Type     |
 | :------------ | :------- | :------------------ | :----------------------------------- | :------- |
-| `partnerName` | required | Unique partner name | `'partnertest'`                      | `string` |
 | `seat`        | required | Seat value          | `'9Q20EdGxzgWdfPYShScl'`             | `string` |
 | `token`       | required | Token               | `'eKmw6alpP3zWQhRCe3flOpz0wpuwRFjW'` | `string` |
