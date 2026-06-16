@@ -20,7 +20,7 @@ floors_supported: true
 sidebarType: 1
 ---
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 
