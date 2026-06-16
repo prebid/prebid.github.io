@@ -187,8 +187,8 @@ function initAdserver(bids) {
         }
     });
 
-    // Build DFP URL with targeting for videoAdUnit
-    var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
+    // Build GAM URL with targeting for videoAdUnit
+    var videoUrl = pbjs.adServers.gam.buildVideoUrl({
         adUnit: videoAdUnit,
         params: {
             iu: '/19968336/prebid_cache_video_adunit',
