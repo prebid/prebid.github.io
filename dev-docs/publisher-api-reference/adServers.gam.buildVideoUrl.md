@@ -1,19 +1,18 @@
 ---
 layout: api_prebidjs
-title: pbjs.adServers.dfp.buildVideoUrl(options)
-description: adServers.dfp.buildVideoUrl API
+title: pbjs.adServers.gam.buildVideoUrl(options)
+description: adServers.gam.buildVideoUrl API
 sidebarType: 1
 ---
 
-
 {: .alert.alert-info :}
-The Google Ad Manager implementation of this function requires including the `dfpAdServerVideo` module in your Prebid.js build.
+The Google Ad Manager implementation of this function requires including the `gamAdServerVideo` module in your Prebid.js build.
 
 This method combines publisher-provided parameters with Prebid.js targeting parameters to build a Google Ad Manager video ad tag URL that can be used by a video player.
 
-#### Argument Reference
+## Argument Reference
 
-##### The `options` object
+### The `options` object
 
 {: .table .table-bordered .table-striped }
 | Field    | Type   | Description                                                                                                                                                                        |
@@ -26,7 +25,7 @@ This method combines publisher-provided parameters with Prebid.js targeting para
 {: .alert.alert-warning :}
 One or both of options.params and options.url is required. In other words, you may pass in one, the other, or both, but not neither.
 
-##### The `options.params` object
+### The `options.params` object
 
 {: .table .table-bordered .table-striped }
 | Field             | Type   | Description                                                                                                                 | Example                                         |
@@ -37,7 +36,7 @@ One or both of options.params and options.url is required. In other words, you m
 
 For more information on any of these params, see [the Google Ad Manager video tag documentation](https://support.google.com/admanager/answer/1068325).
 
-#### Examples
+## Examples
 
 There are several different ways to build up your video URL, as shown in the examples below:
 
@@ -46,7 +45,7 @@ Using `options.params` only:
 ```javascript
 pbjs.requestBids({
     bidsBackHandler: function(bids) {
-        var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
+        var videoUrl = pbjs.adServers.gam.buildVideoUrl({
             adUnit: videoAdUnit,
             params: {
                 iu: '/19968336/prebid_cache_video_adunit',
@@ -72,7 +71,7 @@ var adserverTag = 'https://pubads.g.doubleclick.net/gampad/ads?'
 + '&env=vp&output=xml_vast2&unviewed_position_start=1&hl=en&url=https://www.example.com'
 + '&cust_params=section%3Dblog%26anotherKey%3DanotherValue';
 
-var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
+var videoUrl = pbjs.adServers.gam.buildVideoUrl({
     adUnit: videoAdUnit,
     url: adserverTag
 });
