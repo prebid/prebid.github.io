@@ -112,9 +112,9 @@ pbjs.addAdUnits({
     },
     bids: [
         {
-            bidder: 'appnexus',
+            bidder: 'msft',
             params: {
-                placementId: 13232354
+                placement_id: 13232354
             }
         }
     ]
@@ -143,9 +143,9 @@ pbjs.addAdUnits({
         }
     },
     bids: [{
-        bidder: 'appnexus',
+        bidder: 'msft',
         params: {
-            placementId: 13232361
+            placement_id: 13232361
         }
     }]
 });
@@ -167,9 +167,9 @@ pbjs.addAdUnits({
         },
     },
     bids: [{
-        bidder: 'appnexus',
+        bidder: 'msft',
         params: {
-            placementId: 13232361
+            placement_id: 13232361
         }
     }]
 });
@@ -219,9 +219,9 @@ pbjs.addAdUnits({
     },
     bids: [
         {
-            bidder: 'appnexus',
+            bidder: 'msft',
             params: {
-                placementId: 13144370
+                placement_id: 13144370
             }
         }
     ]

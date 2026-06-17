@@ -131,13 +131,13 @@ The `amp-ad` elements in the page body need to be set up as shown below, especia
   - `vendors` is an object that defines any vendors that will be receiving RTC callouts (including Prebid Server) up to a maximum of five.  The list of supported RTC vendors is maintained in [callout-vendors.js](https://github.com/ampproject/amphtml/blob/master/src/service/real-time-config/callout-vendors.js). We recommend working with your Prebid Server hosting company to set up which bidders and parameters should be involved for each AMP ad unit.
   - `timeoutMillis` is an optional integer that defines the timeout in milliseconds for each individual RTC callout.  The configured timeout must be greater than 0 and less than 1000ms.  If omitted, the timeout value defaults to 1000ms.
 
-e.g. for the AppNexus cluster of Prebid Servers:
+e.g. for the Microsoft cluster of Prebid Servers:
 
 ```html
 <amp-ad width="300" height="250"
     type="doubleclick"
     data-slot="/1111/universal_creative"
-    rtc-config='{"vendors": {"prebidappnexuspsp": {"PLACEMENT_ID": "13144370"}}, "timeoutMillis": 500}'>
+    rtc-config='{"vendors": {"prebidmsftpsp": {"PLACEMENT_ID": "13144370"}}, "timeoutMillis": 500}'>
 </amp-ad>
 ```
 
@@ -229,14 +229,14 @@ Notes:
 - The `sandbox` parameter to the amp-iframe must include both "allow-scripts" and "allow-same-origin".
 - If your PBS host company is using a version of `load-cookie.html` older than July of 2024 and if your AMP page is using a CMP, you should consider using `load-cookie-with-consent.html` instead. It's the same functionality, but older versions of `load-cookie.html` cannot read from CMPs.
 
-If you're using AppNexus' managed service, you would enter something like this:
+If you're using Microsoft's managed service, you would enter something like this:
 
 ```html
 <amp-iframe width="1" title="User Sync"
   height="1"
   sandbox="allow-scripts allow-same-origin"
   frameborder="0"
-  src="https://acdn.adnxs.com/prebid/amp/user-sync/load-cookie.html?endpoint=appnexus&max_sync_count=5&source=amp">
+  src="https://acdn.adnxs.com/prebid/amp/user-sync/load-cookie.html?endpoint=msft&max_sync_count=5&source=amp">
   <amp-img layout="fill" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" placeholder></amp-img>
 </amp-iframe>
 ```

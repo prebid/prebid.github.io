@@ -15,7 +15,7 @@ gpp_supported: true
 floors_supported: true
 fpd_supported: true
 pbjs: true
-pbjs_version_notes: This adapter is new, and will ultimately replace the AppNexus adapter. We recommend careful monitoring of this replacement, and please communicate any questions or unexpected behavior.
+pbjs_version_notes: 
 pbs: true
 gvl_id: 32
 sidebarType: 1
@@ -32,8 +32,8 @@ sidebarType: 1
   - [First Party Data](#first-party-data)
   - [Debug Auction](#debug-auction)
 
-{: .alert.alert-danger :}
-This adapter is new, and will ultimately replace the AppNexus adapter. We recommend careful monitoring of this replacement, and please communicate any questions or unexpected behavior.
+{: .alert.alert-success :}
+This is the official adapter to integrate with Microsoft Monetize. Please update any integration using the [Appnexus Adapter](appnexus.md)
 
 <a name="bid-params"></a>
 

@@ -83,7 +83,7 @@ pbjs.setConfig({
   adpod: {
     prioritizeDeals: true,
     dealTier: {
-      'appnexus': {
+      'msft': {
         prefix: 'tier',
         minDealTier: 5
       },

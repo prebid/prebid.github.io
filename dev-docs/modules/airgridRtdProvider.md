@@ -27,7 +27,7 @@ injected into bid request objects destined for different bidders in order to opt
 
 Compile the AirGrid RTD module (`airgridRtdProvider`) into your Prebid build, along with the parent RTD Module (`rtdModule`):
 
-`gulp build --modules=rtdModule,airgridRtdProvider,appnexusBidAdapter`
+`gulp build --modules=rtdModule,airgridRtdProvider,msftBidAdapter`
 
 Next we configure the module, via `pbjs.setConfig`. See the **Parameter Descriptions** below for more detailed information of the configuration parameters.
 
@@ -45,7 +45,7 @@ pbjs.setConfig(
                     apiKey: 'apiKey',
                     accountId: 'accountId',
                     publisherId: 'publisherId',
-                    bidders: ['appnexus', 'pubmatic']
+                    bidders: ['msft', 'pubmatic']
                 }
             }
         ]
@@ -66,7 +66,7 @@ pbjs.setConfig(
 | params.publisherId | `String` | Publisher partner specific publisher ID | Required |
 | params.bidders | `Array` | Bidders with which to share segment information | Optional |
 
-_Note: Although the module supports passing segment data to any bidder using the ORTB2 spec, there is no way for this to be currently monetised. Please reach out to support, to discuss using bidders other than Xandr/AppNexus._
+_Note: Although the module supports passing segment data to any bidder using the ORTB2 spec, there is no way for this to be currently monetised. Please reach out to support, to discuss using bidders other than Xandr/Microsoft._
 
 If you do not have your own `apiKey`, `accountId` & `publisherId` please reach out to [support@airgrid.io](mailto:support@airgrid.io) or you can sign up via the [AirGrid platform](https://app.airgrid.io).
 
@@ -75,7 +75,7 @@ If you do not have your own `apiKey`, `accountId` & `publisherId` please reach o
 To view an example of the on page setup required:
 
 ```bash
-gulp serve-fast --modules=rtdModule,airgridRtdProvider,appnexusBidAdapter
+gulp serve-fast --modules=rtdModule,airgridRtdProvider,msftBidAdapter
 ```
 
 Then in your browser access:

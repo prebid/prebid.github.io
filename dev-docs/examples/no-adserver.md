@@ -30,9 +30,9 @@ jsfiddle_link: jsfiddle.net/Prebid_Examples/svumodbe/embedded/html,result
         },
         bids: [
             {
-                bidder: 'appnexus',
+                bidder: 'msft',
                 params: {
-                    placementId: 13144370
+                    placement_id: 13144370
                 }
             }
         ]
@@ -46,9 +46,9 @@ jsfiddle_link: jsfiddle.net/Prebid_Examples/svumodbe/embedded/html,result
         },
         bids: [
             {
-                bidder: 'appnexus',
+                bidder: 'msft',
                 params: {
-                    placementId: 13144370
+                    placement_id: 13144370
                 }
             }
         ]

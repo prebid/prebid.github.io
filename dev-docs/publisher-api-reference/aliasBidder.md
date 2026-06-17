@@ -9,11 +9,11 @@ To define an alias for a bidder adapter, call this method at runtime:
 
 ```javascript
 
-pbjs.aliasBidder('appnexus', 'newAlias', optionsObject);
+pbjs.aliasBidder('msft', 'newAlias', optionsObject);
 
 ```
 
-Defining an alias can help avoid user confusion since it's possible to send parameters to the same adapter but in different contexts (e.g, The publisher uses `"appnexus"` for demand and also uses `"newAlias"` which is an SSP partner that uses the `"appnexus"` adapter to serve their own unique demand).
+Defining an alias can help avoid user confusion since it's possible to send parameters to the same adapter but in different contexts (e.g, The publisher uses `"msft"` for demand and also uses `"newAlias"` which is an SSP partner that uses the `"msft"` adapter to serve their own unique demand).
 
 If you define an alias and are using `pbjs.sendAllBids`, you must also set up additional line items in the ad server with keyword targeting that matches the name of the alias.  For example:
 

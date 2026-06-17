@@ -98,7 +98,7 @@ These settings will help verify that Prebid Mobile and Prebid Server are connect
 
 Select your Prebid Server host:
 
-- *AppNexus*
+- *Microsoft*
 - *Rubicon*
 - *Custom*
 

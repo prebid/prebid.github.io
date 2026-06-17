@@ -766,12 +766,12 @@ Use aliases if you want to reuse your adapter using other name for your partner/
 ```javascript
 
 export const spec = {
-    code: 'appnexus',
+    code: 'msft',
     aliases: [
-        'apnx',
+        'microsoft',
         {
-            code:'apx',
-            gvlid: 1,
+            code:'msft',
+            gvlid: 32,
             skipPbsAliasing: false
         }
     ],
@@ -900,7 +900,7 @@ if (bid.mediaType === 'video' || (videoMediaType && context !== 'outstream')) {
 {: .alert.alert-info :}
 The following is Prebid's way to setup bid request for long-form, adapters are free to choose their own approach.
 
-Prebid now accepts multiple bid responses for a single `bidRequest.bids` object. For each Ad pod Prebid expects you to send back n bid responses. It is up to you how bid responses are returned. Prebid's recommendation is that you expand an Ad pod placement into a set of request objects according to the total adpod duration and the range of duration seconds. It also depends on your endpoint as well how you may want to create your request for long-form. Appnexus adapter follows below algorithm to expand its placement.
+Prebid now accepts multiple bid responses for a single `bidRequest.bids` object. For each Ad pod Prebid expects you to send back n bid responses. It is up to you how bid responses are returned. Prebid's recommendation is that you expand an Ad pod placement into a set of request objects according to the total adpod duration and the range of duration seconds. It also depends on your endpoint as well how you may want to create your request for long-form. Microsoft adapter follows below algorithm to expand its placement.
 
 #### Use case 1: I want to request my endpoint to return bids with varying ranges of durations
 
@@ -990,7 +990,7 @@ Adapter must add following new properties to bid response
 }
 ```
 
-Appnexus Adapter uses the approach explained above. You can see an example in the [AppNexus adapter](https://github.com/prebid/Prebid.js/blob/master/modules/appnexusBidAdapter.js)
+Microsoft Adapter uses the approach explained above. You can see an example in the [Microsoft adapter](https://github.com/prebid/Prebid.js/blob/master/modules/msftBidAdapter.js)
 
 Adapter must return one [IAB accepted subcategories](https://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file) if they want to support competitive separation. These IAB sub categories will be converted to Ad server industry/group. If adapter is returning their own proprietary categroy, it is the responsibility of the adapter to convert their categories into [IAB accepted subcategories](https://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file).
 

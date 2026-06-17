@@ -125,7 +125,7 @@ Example request payload:
     {
         "eventType": "bidRequested",
         "args": {
-            "bidderCode": "appnexus",
+            "bidderCode": "msft",
             "auctionId": "db4edde6-ee66-4779-b7ed-c7295d3e3c49",
             "bidderRequestId": "3cf3eaf48bd5f48",
             "uniquePbsTid": "1565fd02-d4fd-4369-bf8e-0dee2a00aca5",
@@ -189,12 +189,12 @@ Example request payload:
 [
   {
     "auctionId": "e41e3fcb-6209-4995-b0be-2aed21a8bdf6",
-    "bidder": "appnexus",
+    "bidder": "msft",
     "type": "REQUEST"
   },
   {
     "auctionId": "e41e3fcb-6209-4995-b0be-2aed21a8bdf6",
-    "bidder": "appnexus",
+    "bidder": "msft",
     "type": "RESPONSE"
   }
   /* ... */

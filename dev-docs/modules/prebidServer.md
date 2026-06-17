@@ -37,14 +37,14 @@ Video notes:
 
 ## Configuration
 
-Here's an example config enabling the AppNexus Prebid Server:
+Here's an example config enabling the Microsoft Prebid Server:
 
 ```javascript
 pbjs.setConfig({
     s2sConfig: {
         accountId : '12345',
-        bidders : ['appnexus','pubmatic', 'rubicon'],
-        defaultVendor: 'appnexus',
+        bidders : ['msft','pubmatic', 'rubicon'],
+        defaultVendor: 'msft',
         timeout: 300
     }
 });
@@ -57,10 +57,10 @@ The same bidder cannot be set in both configs. For example:
 pbjs.setConfig({
     s2sConfig: [
       {
-          name: "pbs-appnexus",
+          name: "pbs-msft",
           accountId: '12345',
-          bidders: ['appnexus','pubmatic'],
-          defaultVendor: 'appnexus',
+          bidders: ['msft','pubmatic'],
+          defaultVendor: 'msft',
           timeout: 300,
       },
       {
@@ -111,7 +111,7 @@ If `endpoint` and `syncEndpoint` are objects, these are the supported properties
 
 **Notes on s2sConfig properties**
 
-- Currently supported vendors are: appnexus, openx, and rubicon
+- Currently supported vendors are: msft, openx, and rubicon
 - When using `defaultVendor` option, `accountId` still needs to be defined.
 - If `bidders` is omitted, only adUnits that also omit bidders will be sent to Prebid Server. See the [stored impressions](#stored-imp) example below.
 - If the `s2sConfig` timeout is not specified, Prebid Server will utilize a configured default for `tmax`.
@@ -191,7 +191,7 @@ pbjs.setConfig({
   s2sConfig: [{
     accountId: '1',
     bidders: ['tripleliftVideo'],
-    defaultVendor: 'appnexus',
+    defaultVendor: 'msft',
     timeout: 500,
     extPrebid: {
       aliases: {

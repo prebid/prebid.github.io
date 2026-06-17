@@ -56,7 +56,7 @@ There are a few test requests in sample/requests that work with prebid-config-fi
     Where FILENAME is one of:
 
     - rubicon-storedresponse.json - this is a request that calls for a stored-auction-response.
-    - appnexus-disabled-gdpr.json - this is a request that actually calls the appnexus endpoint after disabling GDPR by setting regs.ext.gdpr:0
+    - msft-disabled-gdpr.json - this is a request that actually calls the msft endpoint after disabling GDPR by setting regs.ext.gdpr:0
     - pbs-stored-req-test-video.json - this is a stored-request/response chain returning a VAST document
 
 ## References

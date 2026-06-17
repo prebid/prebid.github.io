@@ -26,7 +26,7 @@ The 1plusX RTD module appends User and Contextual segments to the bidding object
 1. Compile the 1plusX RTD Module along with your bid adapter and other modules into your Prebid build:  
 
     ```bash
-    gulp build --modules="rtdModule,1plusXRtdProvider,appnexusBidAdapter,..."  
+    gulp build --modules="rtdModule,1plusXRtdProvider,msftBidAdapter,..."  
     ```
 
 2. Use `setConfig` to instruct Prebid.js to initilize the 1plusX RTD module, as specified below.
@@ -45,7 +45,7 @@ pbjs.setConfig({
             waitForIt: true,
             params: {
                 customerId: 'acme',
-                bidders: ['appnexus', 'rubicon'],
+                bidders: ['msft', 'rubicon'],
                 timeout: TIMEOUT,
                 fpidStorageType: 'html5'
             }
