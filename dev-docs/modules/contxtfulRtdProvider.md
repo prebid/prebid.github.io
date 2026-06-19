@@ -93,7 +93,7 @@ To view an integration example:
 1. In your CLI run:
 
     ```bash
-    gulp serve --modules=rtdModule,msfgtBidAdapter,rubiconBidAdapter,sharethroughBidAdapter,contxtfulRtdProvider
+    gulp serve --modules=rtdModule,msftBidAdapter,rubiconBidAdapter,sharethroughBidAdapter,contxtfulRtdProvider
     ```
 
 2. In your browser, navigate to:

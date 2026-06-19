@@ -137,7 +137,7 @@ e.g. for the Microsoft cluster of Prebid Servers:
 <amp-ad width="300" height="250"
     type="doubleclick"
     data-slot="/1111/universal_creative"
-    rtc-config='{"vendors": {"prebidmsftpsp": {"PLACEMENT_ID": "13144370"}}, "timeoutMillis": 500}'>
+    rtc-config='{"vendors": {"prebidappnexuspsp": {"PLACEMENT_ID": "13144370"}}, "timeoutMillis": 500}'>
 </amp-ad>
 ```
 
@@ -236,7 +236,7 @@ If you're using Microsoft's managed service, you would enter something like this
   height="1"
   sandbox="allow-scripts allow-same-origin"
   frameborder="0"
-  src="https://acdn.adnxs.com/prebid/amp/user-sync/load-cookie.html?endpoint=msft&max_sync_count=5&source=amp">
+  src="https://acdn.adnxs.com/prebid/amp/user-sync/load-cookie.html?endpoint=appnexus&max_sync_count=5&source=amp">
   <amp-img layout="fill" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" placeholder></amp-img>
 </amp-iframe>
 ```

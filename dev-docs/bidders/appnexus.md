@@ -15,7 +15,7 @@ gpp_supported: true
 floors_supported: true
 fpd_supported: false
 pbjs: true
-pbjs_version_notes: Support for the AppNexus adapter will be reduced beginning July 1, 2026, with full deprecation planned for early 2027. To maintain uninterrupted support and access to the latest features, please migrate to the [Microsoft adapter](msft.md).
+pbjs_version_notes: Support for the AppNexus adapter will be reduced beginning July 1, 2026, with full deprecation planned for early 2027. To maintain uninterrupted support and access to the latest features, please migrate to the Microsoft adapter. More information can be seen on the msft.md page.
 pbs: true
 gvl_id: 32
 sidebarType: 1

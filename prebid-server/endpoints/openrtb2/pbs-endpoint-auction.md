@@ -743,7 +743,7 @@ This can be used to request bids from the same Bidder with different params. For
         "placement_id": 123
       },
       "districtm": {
-        "placementId": 456
+        "placement_id": 456
       }
     }
   }],

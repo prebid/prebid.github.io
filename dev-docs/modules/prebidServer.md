@@ -37,7 +37,7 @@ Video notes:
 
 ## Configuration
 
-Here's an example config enabling the Microsoft Prebid Server:
+Here's an example config enabling the appnexuspsp Prebid Server:
 
 ```javascript
 pbjs.setConfig({
@@ -55,22 +55,21 @@ The same bidder cannot be set in both configs. For example:
 
 ```javascript
 pbjs.setConfig({
-    s2sConfig: [
-      {
-          name: "pbs-msft",
-          accountId: '12345',
-          bidders: ['msft','pubmatic'],
-          defaultVendor: 'msft',
-          timeout: 300,
-      },
-      {
-          name: "pbs-rubicon",
-          accountId: '678910',
-          bidders: ['rubicon'],
-          defaultVendor: 'rubicon',
-          timeout: 300,
-      },
-    ],
+  s2sConfig: {
+    accountId: YOUR_SELLER_MEMBER_ID,
+    bidders: ['msft'],
+    enabled: true,
+    allowUnknownBidderCodes: true,
+    timeout: 1000,
+    endpoint: {
+      p1Consent:   'https://ib.adnxs.com/openrtb2/prebid',
+      noP1Consent: 'https://ib.adnxs-simple.com/openrtb2/prebid'
+    },
+    syncEndpoint: {
+      p1Consent:   'https://prebid.adnxs.com/pbs/v1/cookie_sync',
+      noP1Consent: 'https://prebid.adnxs-simple.com/pbs/v1/cookie_sync'
+    }
+  }
 });
 ```
 
@@ -191,7 +190,7 @@ pbjs.setConfig({
   s2sConfig: [{
     accountId: '1',
     bidders: ['tripleliftVideo'],
-    defaultVendor: 'msft',
+    defaultVendor: 'appnexuspsp',
     timeout: 500,
     extPrebid: {
       aliases: {
