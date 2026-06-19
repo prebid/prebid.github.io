@@ -81,7 +81,6 @@ There are many configuration options for s2sConfig:
 | `name` | Optional | String | A handle for this configuration, used to reference a specific server (when multiple are present) from [ad unit configuration](/dev-docs/adunit-reference.html#stored-imp) |
 | `bidders` | Optional | Array of Strings | Which bidders auctions should take place on the server side |
 | `allowUnknownBidderCodes` | Optional | Boolean | Allow Prebid Server to bid on behalf of bidders that are not explicitly listed in the adUnit. See important [note](#allowUnknownBidderCodes) below. Defaults to `false`. |
-| `defaultVendor` | Optional | String | Automatically includes all following options in the config with vendor's default values.  Individual properties can be overridden by including them in the config along with this setting. See the Additional Notes below for more information. |
 | `enabled` | Optional | Boolean | Enables this s2sConfig block - defaults to `false` |
 | `timeout` | Optional | Integer | Number of milliseconds allowed for the server-side auctions. This should be approximately 200ms-300ms less than your Prebid.js timeout to allow for all bids to be returned in a timely manner. Defaults to 75% of [`bidderTimeout`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Bidder-Timeouts) or 750ms, whichever is lesser. | 
 | `adapter` | Required | String | Adapter to use to connect to Prebid Server. Defaults to 'prebidServer' |
@@ -109,8 +108,6 @@ If `endpoint` and `syncEndpoint` are objects, these are the supported properties
 
 **Notes on s2sConfig properties**
 
-- Currently supported vendors are: msft, openx, and rubicon
-- When using `defaultVendor` option, `accountId` still needs to be defined.
 - If `bidders` is omitted, only adUnits that also omit bidders will be sent to Prebid Server. See the [stored impressions](#stored-imp) example below.
 - If the `s2sConfig` timeout is not specified, Prebid Server will utilize a configured default for `tmax`.
 - When using the `endpoint` or `syncEndpoint` object configs, you should define both properties.  If either property is not defined, Prebid Server requests for that type of user will not be made.  If you do not need to distinguish endpoints for consent reasons, you can simply define the same URL value in both fields or use the String version of the field (which is configured to use defined URL for all users).
@@ -145,7 +142,7 @@ the bad parameter.
 
 ### Defining endpoints
 
-s2sConfig example with the endpoint attributes defined instead of using the 'defaultVendor' approach:
+s2sConfig example with the endpoint attributes defined:
 
 ```javascript
 pbjs.setConfig({
@@ -189,7 +186,8 @@ pbjs.setConfig({
   s2sConfig: [{
     accountId: '1',
     bidders: ['tripleliftVideo'],
-    defaultVendor: 'appnexuspsp',
+    endpoint: 'https://mypbs.example.com/path',
+    syncEndpoint: 'https://mypbs.example.com/path',
     timeout: 500,
     extPrebid: {
       aliases: {
@@ -259,7 +257,6 @@ pbjs.setConfig({
     s2sConfig: [{
         accountId: '1001',
         bidders: ['rubicon', 'pubmatic'],
-        defaultVendor: 'rubicon',
         timeout: 250,
         extPrebid: {
             cache: {
