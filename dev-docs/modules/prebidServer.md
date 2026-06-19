@@ -44,7 +44,6 @@ pbjs.setConfig({
     s2sConfig: {
         accountId : '12345',
         bidders : ['msft','pubmatic', 'rubicon'],
-        defaultVendor: 'msft',
         timeout: 300
     }
 });

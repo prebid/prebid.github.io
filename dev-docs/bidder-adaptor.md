@@ -770,7 +770,7 @@ export const spec = {
     aliases: [
         'microsoft',
         {
-            code:'msft',
+            code:'mft',
             gvlid: 32,
             skipPbsAliasing: false
         }
