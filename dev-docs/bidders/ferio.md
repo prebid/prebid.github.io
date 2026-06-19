@@ -12,7 +12,7 @@ floors_supported: true
 fpd_supported: true
 userIds: all
 pbjs: true
-pbs: true
+pbs: false
 multiformat_supported: will-bid-on-any
 sidebarType: 1
 ---
@@ -28,13 +28,4 @@ The Ferio bidder adapter requires setup before beginning. Please contact <prebid
 | --------------- | ---------- | ------------------------------------ | ----------------------------------- | ---------- |
 | `publisherId` | required | Publisher ID on the Ferio platform | `'pubwZR87JRDZSf6V'` | `string` |
 | `adUnitId` | required | Ad unit ID on the Ferio platform | `'3855715c-2ceb-4ba5-a876-8c43a987f210'` | `string` |
-| `tenantId` | required | Tenant ID on the Ferio platform | `'client-pbjs'` | `string` |
-
-## Prebid Server Bid Params
-
-{: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example | Type |
-| --------------- | ---------- | ------------------------------------ | ----------------------------------- | ---------- |
-| `publisherId` | required | Publisher ID on the Ferio platform | `'pubwZR87JRDZSf6V'` | `string` |
-| `adUnitId` | required | Ad unit ID on the Ferio platform | `'e38ea96e-d044-4973-9c2b-fb3fc7a901be'` | `string` |
 | `tenantId` | required | Tenant ID on the Ferio platform | `'client-pbjs'` | `string` |
