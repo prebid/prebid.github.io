@@ -70,7 +70,7 @@ pbjs.setConfig({
 
 ## First Party Data
 
-Publishers should use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html). The following fields are supported:
+Publishers should use the `ortb2` method of setting [First Party Data](/features/firstPartyData.html). The following fields are supported:
 
 - `ortb2.site.*`
 - `ortb2.user.*`
