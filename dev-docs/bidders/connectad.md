@@ -95,7 +95,7 @@ pbjs.setConfig({
 
 ## Endpoint Compression
 
-The ConnectAd adapter supports gzip compression for outgoing requests, which is built into Prebid.js core. For more information, see [Compression Support for Outgoing Requests](https://docs.prebid.org/dev-docs/bidder-adaptor.html#compression-support-for-outgoing-requests).
+The ConnectAd adapter supports gzip compression for outgoing requests, which is built into Prebid.js core. For more information, see [Compression Support for Outgoing Requests](/dev-docs/bidder-adaptor.html#compression-support-for-outgoing-requests).
 
 ### Disabling Compression
 
