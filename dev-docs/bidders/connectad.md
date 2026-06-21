@@ -7,7 +7,7 @@ media_types: banner, video, native, audio
 tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
-gpp_supported: true
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 schain_supported: true
 dchain_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
