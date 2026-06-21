@@ -21,7 +21,7 @@ pbs_app_supported: true
 fpd_supported: true
 ortb_blocking_supported: true
 gvl_id: 138
-multiformat_supported: true
+multiformat_supported: will-bid-on-any, will-bid-on-one, will-not-bid
 sidebarType: 1
 endpoint_compression: true
 ---
