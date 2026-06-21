@@ -75,7 +75,7 @@ Publishers should use the `ortb2` method of setting [First Party Data](/features
 - `ortb2.site.*`
 - `ortb2.user.*`
 
-AdUnit-specific data is supported using `AdUnit.ortb2Imp.ext.*`:
+AdUnit-specific data is supported using `adUnit.ortb2Imp.ext.*`:
 
 ```javascript
 pbjs.setConfig({
