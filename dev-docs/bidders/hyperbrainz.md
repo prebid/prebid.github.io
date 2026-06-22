@@ -16,17 +16,17 @@ pbs: false
 maintainer_email: it@hyperbrainz.com
 ---
 
-### Note
+## Note
 
 The HyperBrainz bid adapter requires setup and approval before implementation.
-Please reach out to it@hyperbrainz.com for more details.
+Please reach out to <it@hyperbrainz.com> for more details.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description                               | Example             | Type     |
-|---------------|----------|-------------------------------------------|---------------------|----------|
-| `placementId` | required | Unique placement identifier               | `'hb_test_banner'`  | `string` |
-| `publisherId` | optional | Publisher identifier                      | `'pub-1'`           | `string` |
-| `bidFloor`    | optional | Minimum CPM floor override (USD)          | `0.30`              | `number` |
-| `ext`         | optional | Custom extension fields passed to the exchange | `{}`           | `object` |
+| Name          | Scope    | Description                                     | Example            | Type     |
+|---------------|----------|--------------------------------------------------|---------------------|----------|
+| `placementId` | required | Unique placement identifier                     | `'hb_test_banner'`  | `string` |
+| `publisherId` | optional | Publisher identifier                            | `'pub-1'`           | `string` |
+| `bidFloor`    | optional | Minimum CPM floor override (USD)                | `0.30`              | `number` |
+| `ext`         | optional | Custom extension fields passed to the exchange  | `{}`                | `object` |
