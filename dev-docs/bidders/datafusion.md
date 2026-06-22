@@ -4,7 +4,7 @@ title: Datafusion
 description: Prebid Datafusion Adaptor
 biddercode: datafusion
 pbjs: true
-pbs: true
+pbs: false
 media_types: banner, video, audio, native
 userIds: all
 fpd_supported: false
