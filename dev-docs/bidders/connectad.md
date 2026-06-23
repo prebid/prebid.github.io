@@ -21,7 +21,7 @@ pbs_app_supported: true
 fpd_supported: true
 ortb_blocking_supported: true
 gvl_id: 138
-multiformat_supported: will-bid-on-any, will-bid-on-one, will-not-bid
+multiformat_supported: will-bid-on-any
 sidebarType: 1
 endpoint_compression: true
 ---
@@ -35,12 +35,12 @@ The ConnectAd server-side adapters (Java and Go) have been modernized to fully s
 ## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description                                                                                                   | Example                       | Type      |
-|---------------|----------|---------------------------------------------------------------------------------------------------------------|-------------------------------|-----------|
-| `siteId`      | required | The site ID from ConnectAd.                                                                                   | 12345                         | integer   |
-| `networkId`   | required | The network ID from ConnectAd.                                                                                | 10047                         | integer   |
-| `bidfloor`    | optional | Requested Floorprice (fallback if the Price Floors module does not set one).                                  | 0.15                          | number    |
-| `endpointUrl` | optional | Prebid.js only: override the bid endpoint URL for testing or a custom datacenter. Ignored by Prebid Server.   | `https://i.connectad.io/api/v3` | string    |
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| `siteId` | required | The site ID from ConnectAd. | 12345 | integer |
+| `networkId` | required | The network ID from ConnectAd. | 10047 | integer |
+| `bidfloor` | optional | Requested floor price, used as a fallback when the Price Floors module does not set one. | 0.15 | number |
+| `endpointUrl` | optional | Prebid.js only: override the bid endpoint URL for testing or a custom datacenter. Ignored by Prebid Server. | `https://i.connectad.io/api/v3` | string |
 
 ## Additional Features
 
