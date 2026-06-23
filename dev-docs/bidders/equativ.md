@@ -12,7 +12,7 @@ gpp_sids: tcfca, tcfeu, usnat, usstate_all, usp
 schain_supported: true
 dchain_support: false
 userIds: all
-media_types: banner, video, native
+media_types: banner, video, native, audio
 safeframes_ok: true
 deals_supported: false
 floors_supported: true
@@ -98,6 +98,7 @@ pbjs.setBidderConfig({
 | `banner` | Supported |
 | `video` | Supported |
 | `native` | Supported |
+| `audio` | Supported |
 
 ### User Syncing
 
