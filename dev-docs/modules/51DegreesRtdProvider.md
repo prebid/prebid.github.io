@@ -56,7 +56,7 @@ Free cloud and on premise solutions can be expanded to support unlimited request
 Compile the 51Degrees RTD Module with other modules and adapters into your Prebid.js build:
 
 ```bash
-gulp build --modules="rtdModule,51DegreesRtdProvider,msftBidAdapter,..."  
+gulp build --modules="rtdModule,51DegreesRtdProvider,bidderABidAdapter,..."  
 ```
 
 > Note that the 51Degrees RTD module is dependent on the global real-time data module, `rtdModule`.
@@ -171,7 +171,7 @@ pbjs.setConfig({
 If you want to see an example of how the 51Degrees RTD module works,\
 run the following command:
 
-`gulp serve --modules=rtdModule,51DegreesRtdProvider,msftBidAdapter`
+`gulp serve --modules=rtdModule,51DegreesRtdProvider,bidderABidAdapter`
 
 and then open the following URL in your browser:
 

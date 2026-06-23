@@ -37,7 +37,7 @@ Contact <prebid@captify.tech> for more information.
 1. Compile the Captify RTD Module along with your bid adapter and other modules into your Prebid build:  
 
     ```bash
-    gulp build --modules="rtdModule,captifyRtdProvider,msftBidAdapter,..."  
+    gulp build --modules="rtdModule,captifyRtdProvider,bidderABidAdapter,..."  
     ```
 
 2. Use `setConfig` to instruct Prebid.js to initialize the Captify RTD module, as specified below.
@@ -57,7 +57,7 @@ pbjs.setConfig({
                 waitForIt: true,
                 params: {
                     pubId: 123456,
-                    bidders: ['msft'],
+                    bidders: ['bidderA'],
                 }
             }
         ]
@@ -68,11 +68,11 @@ pbjs.setConfig({
 ## Parameters
 
 {: .table .table-bordered .table-striped }
-| Name             |Type           | Description                                                         |Mandatory | Notes  |
-| :--------------- | :------------ | :------------------------------------------------------------------ |:---------|:------------ |
-| `name`           | String        | Real time data module name                                          | yes     | Always 'CaptifyRTDModule' |
-| `waitForIt`      | Boolean       | Should be `true` if there's an `auctionDelay` defined (recommended) | no      | Default `false` |
-| `params`         | Object        | |  | |
-| `params.pubId`   | Integer       | Partner ID, required to get results and provided by Captify         | yes      | Use `123456` for tests, speak to your Captify account manager to receive your pubId |
-| `params.bidders` | Array<String> | List of bidders for which you would like data to be set             | yes      | Currently only 'msft' supported |
-| `params.url`     | String        | Captify live-classification service url                             | no       | Defaults to `https://live-classification.cpx.to/prebid-segments` |
+| Name | Type | Description | Mandatory | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| `name` | String | Real time data module name | yes | Always 'CaptifyRTDModule' |
+| `waitForIt` | Boolean | Should be `true` if there's an `auctionDelay` defined (recommended) | no | Default `false` |
+| `params` | Object | | | |
+| `params.pubId` | Integer | Partner ID, required to get results and provided by Captify | yes | Use `123456` for tests, speak to your Captify account manager to receive your pubId |
+| `params.bidders` | Array<String> | List of bidders for which you would like data to be set | yes | Currently only 'msft' supported |
+| `params.url` | String | Captify live-classification service url | no | Defaults to `https://live-classification.cpx.to/prebid-segments` |

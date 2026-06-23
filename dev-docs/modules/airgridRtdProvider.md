@@ -45,7 +45,7 @@ pbjs.setConfig(
                     apiKey: 'apiKey',
                     accountId: 'accountId',
                     publisherId: 'publisherId',
-                    bidders: ['msft', 'pubmatic']
+                    bidders: ['bidderA', 'bidderB']
                 }
             }
         ]
@@ -57,8 +57,8 @@ pbjs.setConfig(
 ### Parameter Descriptions
 
 {: .table .table-bordered .table-striped }
-| Name  |Type | Description   | Notes  |
-| :------------ | :------------ | :------------ |:------------ |
+| Name | Type | Description | Notes |
+| :--- | :--- | :--- | :--- |
 | name | `String` | RTD sub module name | Always 'airgrid' |
 | waitForIt | `Boolean` | Wether to delay auction for module response | Optional. Defaults to false |
 | params.apiKey | `String` | Publisher partner specific API key | Required |

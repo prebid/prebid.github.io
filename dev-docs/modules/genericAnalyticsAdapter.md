@@ -15,16 +15,16 @@ This is an analytics adapter that can interface with any backend, meant for publ
 ### Analytics Options
 
 {: .table .table-bordered .table-striped }
-| Name         | Scope              | Type     | Description                                                                                                                                                                                       |
-|--------------|---------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `handler`    | required unless `url` is provided | Function | Custom handler function - [example](#custom-handler)                                                                                                                                              |
-| `url`        | required unless `handler` is  provided  | String   | Data collection URL                                                                                                                                                                               |
-| `method`     | optional | String   | HTTP method used to call `url`. Defaults to `'POST'`                                                                                                                                              |
-| `batchSize`  | optional | Number   | Number of events to collect into a single call to `handler` or `url`. Defaults to `1`                                                                                                             |
-| `batchDelay` | optional | Number   | Time (in milliseconds) to wait before calling `handler` or `url` with an incomplete batch (when fewer than `batchSize` events have been collected). Defaults to `100`                             |
-| `events`     | optional | Object   | Map from event name to a custom format function. When provided, only events in this map will be collected, using the data returned by their corresponding function - [example](#event-formatters) |
-| `gvlid`      | optional | Number   | Global vendor list ID to use for the purpose of GDPR purpose 7 enforcement - see [note](#gdpr) |
-| `sampling`   | optional | Number   | Sampling rate, expressed as a number between 0 and 1. Data is collected only on this ratio of browser sessions. Defaults to `1`                                                               |
+| Name | Scope | Type | Description |
+| :--- | :--- | :--- | :--- |
+| `handler` | required unless `url` is provided | Function | Custom handler function - [example](#custom-handler) |
+| `url` | required unless `handler` is provided | String | Data collection URL |
+| `method` | optional | String | HTTP method used to call `url`. Defaults to `'POST'` |
+| `batchSize` | optional | Number | Number of events to collect into a single call to `handler` or `url`. Defaults to `1` |
+| `batchDelay` | optional | Number | Time (in milliseconds) to wait before calling `handler` or `url` with an incomplete batch (when fewer than `batchSize` events have been collected). Defaults to `100` |
+| `events` | optional | Object | Map from event name to a custom format function. When provided, only events in this map will be collected, using the data returned by their corresponding function - [example](#event-formatters) |
+| `gvlid` | optional | Number | Global vendor list ID to use for the purpose of GDPR purpose 7 enforcement - see [note](#gdpr) |
+| `sampling` | optional | Number | Sampling rate, expressed as a number between 0 and 1. Data is collected only on this ratio of browser sessions. Defaults to `1` |
 
 <a id="gdpr"></a>
 
@@ -125,7 +125,7 @@ Example request payload:
     {
         "eventType": "bidRequested",
         "args": {
-            "bidderCode": "msft",
+            "bidderCode": "bidderA",
             "auctionId": "db4edde6-ee66-4779-b7ed-c7295d3e3c49",
             "bidderRequestId": "3cf3eaf48bd5f48",
             "uniquePbsTid": "1565fd02-d4fd-4369-bf8e-0dee2a00aca5",
@@ -189,12 +189,12 @@ Example request payload:
 [
   {
     "auctionId": "e41e3fcb-6209-4995-b0be-2aed21a8bdf6",
-    "bidder": "msft",
+    "bidder": "bidderA",
     "type": "REQUEST"
   },
   {
     "auctionId": "e41e3fcb-6209-4995-b0be-2aed21a8bdf6",
-    "bidder": "msft",
+    "bidder": "bidderA",
     "type": "RESPONSE"
   }
   /* ... */

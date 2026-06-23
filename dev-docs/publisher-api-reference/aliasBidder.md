@@ -9,11 +9,11 @@ To define an alias for a bidder adapter, call this method at runtime:
 
 ```javascript
 
-pbjs.aliasBidder('msft', 'newAlias', optionsObject);
+pbjs.aliasBidder('bidderA', 'newAlias', optionsObject);
 
 ```
 
-Defining an alias can help avoid user confusion since it's possible to send parameters to the same adapter but in different contexts (e.g, The publisher uses `"msft"` for demand and also uses `"newAlias"` which is an SSP partner that uses the `"msft"` adapter to serve their own unique demand).
+Defining an alias can help avoid user confusion since it's possible to send parameters to the same adapter but in different contexts (e.g, The publisher uses `"bidderA"` for demand and also uses `"newAlias"` which is an SSP partner that uses the `"bidderA"` adapter to serve their own unique demand).
 
 If you define an alias and are using `pbjs.sendAllBids`, you must also set up additional line items in the ad server with keyword targeting that matches the name of the alias.  For example:
 
@@ -25,8 +25,8 @@ If you define an alias and are using `pbjs.sendAllBids`, you must also set up ad
 The options object supports these parameters:
 
 {: .table .table-bordered .table-striped }
-| Option Parameter    | Scope    | Type    | Description             |
-|------------|---------|---------|---------------------------------|
+| Option Parameter | Scope | Type | Description |
+| :--- | :--- | :--- | :--- |
 | gvlid | optional | integer | IAB Global Vendor List ID for this alias for use with the [TCF control module](/dev-docs/modules/tcfControl.html). |
 | useBaseGvlid | optional | boolean | Flag determining if the GVL ID of the original adapter should be re-used. (PBJS 9.14+) |
 
