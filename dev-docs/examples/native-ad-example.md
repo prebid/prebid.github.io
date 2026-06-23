@@ -95,9 +95,9 @@ pbjs.que.push(function() {
                 }
             },
             bids: [{
-                bidder: 'appnexus',
+                bidder: 'msft',
                 params: {
-                    placementId: 13232354,
+                    placement_id: 13232354,
                     allowSmallerSizes: true
                 }
             }]
@@ -127,9 +127,9 @@ pbjs.que.push(function() {
                 }
             },
             bids: [{
-                bidder: 'appnexus',
+                bidder: 'msft',
                 params: {
-                    placementId: 13232354,
+                    placement_id: 13232354,
                     allowSmallerSizes: true
                 }
             }]
