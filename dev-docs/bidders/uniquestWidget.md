@@ -26,12 +26,13 @@ privacy_sandbox: none
 userIds: imuid
 ---
 
-### Registration
+## Registration
 To use this bidder you will need to work with UNIQUEST Widget. For further information, Please contact us at <prebid_info@muneee.co.jp>.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope    | Description | Example  | Type     |
-|-------|----------|---------------------------|----------|----------|
+
+| Name  | Scope    | Description                    | Example      | Type     |
+|-------|----------|--------------------------------|--------------|----------|
 | `wid` | required | The Ad ID from UNIQUEST Widget | `'WID00001'` | `string` |
