@@ -31,7 +31,7 @@ Make sure to have the following modules listed while building prebid : `rtdModul
 For example :
 
 ```bash
-gulp build --modules=schain,priceFloors,currency,consentManagement,appnexusBidAdapter,rubiconBidAdapter,rtdModule,oxxionRtdProvider
+gulp build --modules=schain,priceFloors,currency,consentManagement,msftBidAdapter,rubiconBidAdapter,rtdModule,oxxionRtdProvider
 ```
 
 Then add the oxxion Rtd module to your prebid configuration :

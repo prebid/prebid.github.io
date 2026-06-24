@@ -15,7 +15,7 @@ gpp_supported: true
 floors_supported: true
 fpd_supported: false
 pbjs: true
-pbjs_version_notes: please avoid using v7.15 and v7.16
+pbjs_version_notes: Support for the AppNexus adapter will be reduced beginning July 1, 2026, with full deprecation planned for early 2027. To maintain uninterrupted support and access to the latest features, please migrate to the Microsoft adapter. More information can be seen on the msft.md page.
 pbs: true
 gvl_id: 32
 sidebarType: 1
@@ -39,6 +39,9 @@ sidebarType: 1
   - [Prebid Server Test Request](#prebid-server-test-request)
 
 <a name="appnexus-bid-params"></a>
+
+{: .alert.alert-danger :}
+Support for the AppNexus adapter will be reduced beginning July 1, 2026, with full deprecation planned for early 2027. To maintain uninterrupted support and access to the latest features, please migrate to the [Microsoft adapter](msft.md).
 
 {: .alert.alert-danger :}
 All AppNexus (Microsoft/Xandr) placements included in a single call to `requestBids` must belong to the same parent Publisher.  If placements from two different publishers are included in the call, the AppNexus bidder will not return any demand for those placements. <br />

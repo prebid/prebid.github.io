@@ -13,8 +13,8 @@ floors_supported: true
 tcfeu_supported: true
 dsa_supported: true
 usp_supported: true
-gpp_supported: true
 coppa_supported: true
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 schain_supported: true
 gvl_id: 617
 prebid_member: true
@@ -23,18 +23,128 @@ safeframes_ok: true
 dchain_supported: false
 deals_supported: false
 ortb_blocking_supported: false
+endpoint_compression: true
+privacy_sandbox: 'no'
 sidebarType: 1
 ---
 
-### Note
+### Table of contents
+
+* [Table of contents](#table-of-contents)
+* [Introduction](#introduction)
+* [Bid params](#bid-params)
+  * [Setting params: AdUnit Level vs First Party Data](#setting-params-adunit-level-vs-first-party-data)
+* [Prebid Server](#prebid-server-adapter)
+* [Additional informations](#additional-informations)
+  * [User Sync](#user-sync)
+  * [Recommended placement param values](#recommended-placement-param-values)
+  * [Video outstream](#video-outstream)
+
+### Introduction
 
 The Adagio bidder adapter requires setup and approval from the Adagio team. Please reach out to [contact@adagio.io](mailto:contact@adagio.io) for more information.
 
-### Configuration for Prebid.js
+We strongly recommend using it alongside the [Adagio RTD Provider](/dev-docs/modules/adagioRtdProvider.md), which leverages viewability and attention predictions to enhance inventory quality and maximize performance.
+
+We also strongly suggest enabling the gptPreAuction module, which automatically populates the GPID (Global Placement ID) values. The GPID helps improve monetization by providing more accurate identification of each ad placement. For setup details, see the [gptPreAuction module documentation](/dev-docs/modules/gpt-pre-auction.md).
+
+### Bid params
+
+{: .table .table-bordered .table-striped .table-responsive }
+
+| Name              | Scope              | Description                                                                                                                                                                                                                                          | Example                                                      | Type     |
+| ----------------- | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | -------- |
+| `organizationId`  | required           | Id of the Organization. Handed out by Adagio.                                                                                                                                                                                                        | `'1010'`                                                     | `string` |
+| `site`            | required / optional (in-app)            | Name of the site. Handed out by Adagio.<br><span style="display:inline-block; margin-top: 0.6em; line-height:1.5; font-size:14px; font-style:italic;">- max length: 50</span>                                                                                                                                                                                   | `'mysite-com'`                                               | `string` |
+| `placement`     | required           | Refers to the placement of an adunit in a page. See [recommended values](#recommended-placement-param-values).<br><span style="display:inline-block; margin-top: 0.6em; line-height:1.5; font-size:14px; font-style:italic;">- max length: 50<br>- max distinctives values: 10</span>                                                                     | `'banner_top'`                                                  | `string` |
+| `pagetype`      | highly recommended | Describes what kind of content will be present in the page.<br><span style="display:inline-block; margin-top: 0.6em; line-height:1.5; font-size:14px; font-style:italic;">- max length: 30<br>- max distinctives values: 50</span><br><span style="display:inline-block; line-height:1.5; font-size:14px;">Can be set at adUnit level or via FPD ([see below](#setting-params-adunit-level-vs-first-party-data))</span>                                    | `'article'`                                                  | `string` |
+| `category`      | recommended        | Category of the content displayed in the page.<br><span style="display:inline-block; margin-top: 0.6em; line-height:1.5; font-size:14px; font-style:italic;">- max length: 30<br>- max distinctives values: 50</span><br><span style="display:inline-block; line-height:1.5; font-size:14px;">Can be set at adUnit level or via FPD ([see below](#setting-params-adunit-level-vs-first-party-data))</span>                                               | `'sport'`                                                    | `string` |
+
+#### Setting params: AdUnit Level vs First Party Data
+
+You can set `pagetype` and `category` parameters in two ways:
+
+**1. At the adUnit level** (individual ad slots):
+
+```js
+{
+  code: 'div-gpt-ad-1234567890',
+  mediaTypes: {
+    banner: {
+      sizes: [[300, 250]]
+    }
+  },
+  bids: [{
+    bidder: 'adagio',
+    params: {
+      organizationId: '1010',
+      site: 'mysite-com',
+      placement: 'banner_top',
+      pagetype: 'article',
+      category: 'sport'
+    }
+  }]
+}
+```
+
+**2. Globally via First Party Data** (applies to all adUnits on the page):
+
+```js
+pbjs.setConfig({
+  ortb2: {
+    site: {
+      ext: {
+        data: {
+          pagetype: 'article',
+          category: 'sport'
+        }
+      }
+    }
+  }
+});
+```
+
+* First Party Data takes precedence over AdUnit-level parameters.
+* If the FPD value is an array, the first value will be used.
+
+<a id="prebid-server-adapter"></a>
+### Prebid Server
+
+If you are hosting a Prebid Server, you must configure the Adagio Prebid Server adapter by changing the [`static/bidder-info/adagio.yaml` file](https://github.com/prebid/prebid-server/blob/master/static/bidder-info/adagio.yaml) in order to:
+
+1. enable the adapter by deleting the `disabled: true` entry _(or set it to `false`)_
+2. replace the endpoints containing the `REGION` by one of the value below:
+    * **AMER:**
+      * Auction: `https://mp-las.4dex.io/pbserver`
+      * Usersync: `https://u-las.4dex.io/pbserver/usync.html`
+    * **EMEA:**
+      * Auction: `https://mp-ams.4dex.io/pbserver`
+      * Usersync: `https://u-ams.4dex.io/pbserver/usync.html`
+    * **APAC:**
+      * Auction: `https://mp-tyo.4dex.io/pbserver`
+      * Usersync: `https://u-tyo.4dex.io/pbserver/usync.html`
+
+**Example for EMEA**
+
+{% raw %}
+
+```yaml
+endpoint: "https://mp-ams.4dex.io/pbserver"
+userSync:
+  iframe:
+    url: "https://u-ams.4dex.io/pbserver/usync.html?gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&gpp={{.GPP}}&&gpp_sid={{.GPPSID}}&r={{.RedirectURL}}"
+    userMacro: "{UID}"
+disabled: false
+# …
+```
+
+{% endraw %}
+
+### Additional informations
 
 #### User Sync
 
-Adagio strongly recommends enabling user syncing through iFrames. This functionality improves DSP user match rates and increases the bid rate and bid price. Make sure to call `pbjs.setConfig()` only once. This configuration is optional in Prebid, but required by Adagio.
+Enable user sync via iframe to improve DSP user match rates, leading to higher bid rates and bid prices. While this configuration is optional in Prebid, it is required by Adagio. Ensure that `pbjs.setConfig()` is called only once.
 
 ```js
 // https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing
@@ -50,71 +160,22 @@ pbjs.setConfig({
 });
 ```
 
-#### Bidder Settings
+#### Recommended placement param values
 
-The Adagio bid adapter uses browser local storage. Since Prebid.js 7.x, the access to it must be explicitly set.
+Setting a meaningful value for the `placement` parameter is essential for our adapter to optimize ad delivery and performance, as it defines the specific location and context of your ad unit within the page. To streamline your implementation and ensure consistent naming conventions across your inventory, we provide these standardized values that eliminate guesswork and ensure your ad units are properly categorized for maximum yield.
 
-{% include dev-docs/storageAllowed.md %}
+{: .table .table-bordered :}
 
-```js
-// https://docs.prebid.org/dev-docs/publisher-api-reference/bidderSettings.html
-pbjs.bidderSettings = {
-  adagio: {
-    storageAllowed: true
-  }
-}
-```
-
-#### Bid Params for Prebid.js
-
-**Important**: Adagio needs to collect attention data about the ads displayed on a page and must listen to some specifics ad-server events. Please refer to the [Adagio user guide](https://adagioio.notion.site/Adagio-Account-Setup-Guide-fbcd940649224cdfa10393d2f008792e) for details.
-
-{: .table .table-bordered .table-striped }
-
-| Name              | Scope              | Description                                                                                                                                                                                                                                          | Example                                                      | Type     |
-| ----------------- | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | -------- |
-| `organizationId`  | required           | Id of the Organization. Handed out by Adagio.                                                                                                                                                                                                        | `'1010'`                                                     | `string` |
-| `site`            | required           | Name of the site. Handed out by Adagio.<br><i>- max length: 50</i>                                                                                                                                                                                   | `'mysite-com'`                                               | `string` |
-| `placement`*      | required           | Refers to the placement of an adunit in a page.<br>Must not contain any information about the type of device.<br><i>- max length: 50</i><br><i>- max distinctives values: 10</i>                                                                     | `'ban_atf'`                                                  | `string` |
-| `adUnitElementId` | required           | Refers to the adunit html attribute id in a page.                                                                                                                                                                                                    | `'gpt-ban-atf'`                                              | `string` |
-| `pagetype`*       | highly recommended | Describes what kind of content will be present in the page.<br><i>- max length: 30</i><br><i>- max distinctives values: 50</i>                                                                                                                       | `'article'`                                                  | `string` |
-| `category`*       | recommended        | Category of the content displayed in the page.<br><i>- max length: 30</i><br><i>- max distinctives values: 50</i>                                                                                                                                    | `'sport'`                                                    | `string` |
-| `video`           | optional           | OpenRTB 2.5 video options object. All options will override ones defined in mediaTypes video.<br>Mandatory: <br>- api <small><i>(your video player must at least support the value 2)</i></small><br> Highly recommended: <br> - playbackmethod <br> Not supported: <br>`protocol`, `companionad`, `companiontype`, `ext` options| `{api: [2], playbackmethod: [6], skip: 1, startdelay: 0}` | `object` |
-| `native`          | optional           | Partial OpenRTB Native 1.2 request object. Supported fields are:<br>- context<br>- plcmttype                                                                                                                                                         | `{context: 1, plcmttype: 2}`                                 | `object` |
-| `splitKeyword`     | optional          | Keyword that can later be used in a split rule targeting to trigger the rule (especially for Direct Seats AB testing) |  `'splitrule-one'` | `string` |
-| `dataLayer`        | optional          | A set of arbitrary key-value pairs. This can be used to configure mappings. The keys and values must be strings. | `{placement: 'my-placement', siteid: 'my-siteid'}` | `object` |
-
-<i>*These parameters will have their accentuated characters converted to their non-accentuated version:&nbsp;`é`&nbsp;=>&nbsp;`e`</i>
-
-#### First Party Data
-
-Adagio will use FPD data as fallback for the params below:
-
-- pagetype
-- category
-
-If the FPD value is an array, the 1st value of this array will be used.
+| Format              | recommended values    |
+| --------------------| --------------------- |
+| Banner              | `banner_top`,<br>`banner_middle`,<br>`banner_bottom`,<br>`banner_left`,<br>`banner_right`,<br>`banner_sticky_top`,<br>`banner_sticky_bottom` |
+| Interstitial        | `interstitial_page_load`,<br>`interstitial_exit`,<br>`interstitial_pause` |
+| Video               | `video_instream`,<br>`video_outstream`,<br>`video_rewarded`,<br>`video_midroll` |
+| Native              | `native_feed`,<br>`native_article`,<br>`native_recommendation` |
+| Special             | `sticky_footer`,<br>`sticky_header`,<br>`companion_banner`,<br>`overlay_ad` |
 
 #### Video outstream
 
-The AdagioBidAdapter includes a default video player powered by [Blue Billywig](https://www.bluebillywig.com). This default player is used when no renderer is configured for the adUnit.
+The Adagio bidder adapter (Prebid.js only) includes a default video player powered by [Blue Billywig](https://www.bluebillywig.com). This default player is used when no renderer is configured for the adUnit.
 
-### Configuration for Prebid Server
-
-{: .alert.alert-warning :}
-Adagio Prebid Server adapter is currently **available for apps**. Website support is coming soon. Activation requires setup and approval before beginning. Please reach out to your account manager or <contact@adagio.io> for more details.
-
-Adagio supports different regions for the Prebid Server. Please deploy the prebid config in each of your datacenters with the appropriate regional subdomain.
-
-#### Bid Params for Prebid Server
-
-{: .table .table-bordered .table-striped }
-
-| Name              | Scope              | Description | Example | Type |
-|-------------------|--------------------|-------------|---------|------|
-| `organizationId`  | required           | Id of the Organization. Handed out by Adagio.                                                                                                                                                                                                        | `'1010'`                                                     | `string` |
-| `placement`*      | required           | Refers to the placement of an adunit in a page.<br>Must not contain any information about the type of device.<br><i>- max length: 50</i><br><i>- max distinctives values: 10</i>                                                                     | `'ban_atf'`                                                  | `string` |
-| `pagetype`*       | highly recommended | Describes what kind of content will be present in the page.<br><i>- max length: 30</i><br><i>- max distinctives values: 50</i>                                                                                                                       | `'article'`                                                  | `string` |
-| `category`*       | recommended        | Category of the content displayed in the page.<br><i>- max length: 30</i><br><i>- max distinctives values: 50</i>                                                                                                                                    | `'sport'`                                                    | `string` |
-
-<i>*These parameters will have their accentuated characters converted to their non-accentuated version:&nbsp;`é`&nbsp;=>&nbsp;`e`</i>
+---

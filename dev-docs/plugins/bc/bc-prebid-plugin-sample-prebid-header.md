@@ -47,7 +47,7 @@ The following is a sample Brightcove Player Prebid Plugin integration that invok
         window.bc_plugin_pbjs = { plugin_prebid_options: {} };
 
         // specify prebid parameters as the value of biddersSpec
-        // the set of bidders here shows how to specify the AppNexus video bidder:  appnexus
+        // the set of bidders here shows how to specify the Microsoft video bidder:  msft
         var params = {
             code : 'my-video-tag',
             mediaTypes: {
@@ -61,9 +61,9 @@ The following is a sample Brightcove Player Prebid Plugin integration that invok
                 }
                 bids: [
                     {
-                        bidder: 'appnexus',
+                        bidder: 'msft',
                         params: {
-                            placementId: 12334567
+                            placement_id: 12334567
                         }
                     }
                 ]

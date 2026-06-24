@@ -267,7 +267,7 @@
 
 - sbSecId: 1
   title: Using Prebid.js with Microsoft Monetize Ad Server
-  link: /dev-docs/examples/use-prebid-with-appnexus-ad-server.html
+  link: /dev-docs/examples/use-prebid-with-microsoft-ad-server.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -526,6 +526,14 @@
 - sbSecId: 1
   title: User ID Modules
   link: /dev-docs/modules/index.html#user-id-modules
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 1
+  title: Loading modules separately
+  link: /dev-docs/modules/index.html#loading-modules-separately
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -905,6 +913,22 @@
   subgroup: 3
 
 - sbSecId: 2
+  title: Google Next-Gen SDK Bidding-Only Integration
+  link: /prebid-mobile/pbm-api/android/android-sdk-integration-nextgen-original-api.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 2
+  title: Google Next-Gen SDK Prebid-Rendered Integration
+  link: /prebid-mobile/modules/rendering/android-sdk-integration-nextgen.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 2
   title: AdMob
   link: /prebid-mobile/modules/rendering/android-sdk-integration-admob.html
   isHeader: 0
@@ -1206,7 +1230,7 @@
 
 - sbSecId: 3
   title: 'Setting up Prebid'
-  link: /adops/setting-up-prebid-with-the-appnexus-ad-server.html
+  link: /adops/setting-up-prebid-with-the-microsoft-ad-server.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -2030,6 +2054,35 @@
 - sbSecId: 9
   title: SharedID
   link: /identity/sharedid.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+#-------------- Prebid Agents --------------|
+
+- sbSecId: 10
+  title:
+  link:
+  isHeader: 0
+  isSectionHeader: 1
+  sectionTitle: Prebid Agents
+  sectionId: prebid-agents
+  subgroup: 1000
+  sbCollapseId: prebid-agents
+
+- sbSecId: 10
+  title: General
+  link:
+  isHeader: 1
+  headerId: agents-general
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Salesagent
+  link: /agents/salesagent.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:

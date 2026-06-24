@@ -16,7 +16,7 @@ pbjs: true
 pbs: true
 pbs_app_supported: false
 prebid_member: true
-multiformar_supported: will-bid-on-any
+multiformat_supported: will-bid-on-any
 ortb_blocking_supported: true
 ---
 
@@ -32,13 +32,17 @@ The Contxtful bidder adapter requires some setup. Contact us at [contact@contxtf
 | `placementId`      | required | The placement identifier                                          | `'p12345678'` | `string`             |
 | `customerId`      | required | The customer identifier              | `'DEMO123456'`       | `string`           |
 
-### Configuration
+### Configuration - Prebid.js Adapter
+
+n.b. It is strongly recommended that you use the bid adapter in conjunction with the contxtful RTD provider module.
+
+see: [contxtfulRtdProvider](/dev-docs/modules/contxtfulRtdProvider)
 
 ```javascript
 pbjs.setConfig({
    "contxtful":{
       "version":"v1",
-      "customer":"<<CUSTOMER_ID_HERE>>"
+      "customer":"<CUSTOMER_ID_HERE>"
    },
    "realTimeData":{
       "dataProviders":[
@@ -47,9 +51,42 @@ pbjs.setConfig({
             "waitForIt":true,
             "params":{
                "version":"v1",
-               "customer":"<<CUSTOMER_ID_HERE>>",
+               "customer":"<CUSTOMER_ID_HERE>",
                "bidders":[
-                  "contxtful"
+                  "contxtful",
+                  "<ALL_BIDDER_CODES>"
+               ],
+               "adServerTargeting":true
+            }
+         }
+      ]
+   }
+}
+);
+```
+
+### Configuration - Prebid Server Adapter
+
+n.b. It is strongly recommended that you use the bid adapter in conjunction with the contxtful RTD provider module.
+
+see: [contxtfulRtdProvider](/dev-docs/modules/contxtfulRtdProvider)
+
+```javascript
+pbjs.setConfig({
+   "s2sConfig":{
+      "bidders": ["contxtful", "<ALL_S2S_BIDDERS>"],
+      "<ALL_OTHER_STANDARD_KEY_VALUES>"
+   },
+   "realTimeData":{
+      "dataProviders":[
+         {
+            "name":"contxtful",
+            "waitForIt":true,
+            "params":{
+               "version":"v1",
+               "customer":"<CUSTOMER_ID_HERE>",
+               "bidders":[
+                  "<ALL_PAGE_BIDDER_CODES_INCLUDING_S2S>"
                ],
                "adServerTargeting":true
             }
@@ -76,18 +113,18 @@ AdUnit-specific data is supported using `AdUnit.ortb2Imp.ext.*`
  var adUnitList = [
   {
     code: 'AD_UNIT_NAME_HERE',
-    mediaTypes: { /* "<< ENTER_FORMAT_HERE >> */ },
+    mediaTypes: { /* "<ENTER_FORMAT_HERE> */ },
     bids: [{
       bidder: 'contxtful',
       params: {
-        placementId: "<<PLACEMENT_ID_HERE>>",
-        customerId: "<<CUSTOMER_ID_HERE>>"
+        placementId: "<PLACEMENT_ID_HERE>",
+        customerId: "<CUSTOMER_ID_HERE>"
       }
     }],
     ortb2Imp: {
       ext: {
         data: {
-          divId: "<<EACH_AD_UNIT_DIV_ID>>"
+          divId: "<EACH_AD_UNIT_DIV_ID>"
         }
       }
     }

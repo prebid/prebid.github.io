@@ -67,6 +67,18 @@ var videoAdUnit = {
 
 SmartyTech adapter supports all Prebid.js User ID modules. User IDs are automatically included in bid requests when available.
 
+### Alias User ID (auId)
+
+The SmartyTech adapter automatically generates and manages an Alias User ID (auId) for user identification across sessions:
+
+- **Automatic Generation**: If no auId exists, a unique UUID is automatically generated
+- **Cookie Storage**: The auId is stored in a first-party cookie (`_smartytech_auid`)
+- **Persistence**: The cookie is valid for 5 years
+- **Domain**: Stored on the root domain for cross-subdomain availability
+- **Privacy**: Only generated if cookies are enabled; respects user privacy settings
+
+The auId is automatically included in all bid requests when available, providing consistent user identification without requiring additional configuration.
+
 ### Additional Configuration
 
 It is possible to configure requests to be split into chunks so as to have fewer bid requests in a single http request (default value is 10).
