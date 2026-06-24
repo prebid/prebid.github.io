@@ -2,8 +2,6 @@
 layout: bidder
 title: Microsoft
 description: Prebid Microsoft Bidder Adaptor
-redirect_from: 
-- /dev-docs/bidders/appnexus.html
 biddercode: msft
 media_types: banner, video, native
 tcfeu_supported: true
