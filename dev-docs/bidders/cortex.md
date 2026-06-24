@@ -60,4 +60,3 @@ The Prebid.js adapter automatically selects the regional endpoint based on the b
 - Asia / Australia / Antarctica / Pacific / Indian → `apac`
 - America / US / Canada → `us-east`
 - Unknown / unresolved timezone → `eu` (fallback)
-
