@@ -114,7 +114,14 @@ If you are migrating from the AppNexus bid adapter and your Ad Server Line Items
 
 If you are migrating from the AppNexus bid adapter, the setup for Native adUnits now require the use of the Prebid.js ORTB Native setup.  The Microsoft Bid Adapter **no longer offers support** to the legacy Prebid.js Native adUnit setup.  
 
-Requests using that legacy approach will **NOT** work and will need to be converted to the equivalent values in the adUnit.  This change is made to better align with Prebid.js and many other Bid Adapters that support Native in an ORTB context.
+Requests using that legacy approach will NOT work and will need to be converted to the equivalent values in the adUnit. This change is made to better align with Prebid.js and many other Bid Adapters that support Native in an ORTB context.
+
+In addition, all Native requests must follow the OpenRTB Native 1.2 specification and explicitly include eventtrackers, with at least:
+
+- Event Type 1 (Impression)
+- Event Type 2 (Viewable MRC / Viewability)
+
+This ensures proper tracking, measurement alignment, and compatibility with Microsoft demand expectations. Implementations that do not include these eventtrackers may lead to limited demand or reporting gaps.
 
 Please refer to the [Prebid.js Native Implementation Guide](https://docs.prebid.org/prebid/native-implementation.html) if you need additional information to implement the Native ORTB setup.
 
