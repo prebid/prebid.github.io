@@ -23,10 +23,11 @@ dsa_supported: false
 fpd_supported: false
 multiformat_supported: none
 privacy_sandbox: none
+userIds: imuid
 ---
 
 ### Registration
-To use this bidder you will need with UNIQUEST. For further information, Please contact us at <prebid_info@muneee.co.jp>.
+To use this bidder you will need to work with UNIQUEST. For further information, Please contact us at <prebid_info@muneee.co.jp>.
 
 ### Bid Params
 
