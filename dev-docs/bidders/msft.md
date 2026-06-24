@@ -2,6 +2,8 @@
 layout: bidder
 title: Microsoft
 description: Prebid Microsoft Bidder Adaptor
+redirect_from: 
+- /dev-docs/bidders/appnexus.html
 biddercode: msft
 media_types: banner, video, native
 tcfeu_supported: true
@@ -15,9 +17,7 @@ gpp_supported: true
 floors_supported: true
 fpd_supported: true
 pbjs: true
-pbjs_version_notes: 
-redirect_from
-	- /dev-docs/bidders/appnexus.html
+pbjs_version_notes: 	
 pbs: true
 gvl_id: 32
 sidebarType: 1
