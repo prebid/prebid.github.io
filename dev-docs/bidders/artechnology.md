@@ -14,7 +14,7 @@ deals_supported: true
 floors_supported: true
 fpd_supported: false
 pbjs: true
-pbs: false
+pbs: true
 pbs_app_supported: true
 multiformat_supported: true
 ---

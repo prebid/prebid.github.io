@@ -65,14 +65,14 @@ This page presents a sample publisher page using the General Integration Method 
                 }
             },
             "bids": [{
-                "bidder": "appnexus",
+                "bidder": "msft",
                 "params": {
-                    "placementId": 8845778
+                    "placement_id": 8845778
                 }
             }]
         },
         "prebidConfigOptions": {
-         "cache": {"url": "https://prebid.adnxs.com/pbc/v1/cache"},
+         "cache": {"url": "https://prebid.example.com/pbc/v1/cache"},
         "enableSendAllBids": true
         },
         "prebidTimeout": 700,

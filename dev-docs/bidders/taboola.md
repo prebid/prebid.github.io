@@ -11,7 +11,7 @@ coppa_supported: true
 gpp_supported: true
 schain_supported: false
 dchain_supported: true
-media_types: banner
+media_types: banner, native
 gvl_id: 42
 prebid_member: true
 floors_supported: true
@@ -19,6 +19,7 @@ safeframes_ok: true
 fpd_supported: true
 ortb_blocking_supported: partial
 deals_supported: false
+userIds: taboolaId
 pbs_app_supported: true
 multiformat_supported: will-not-bid
 sidebarType: 1
@@ -26,13 +27,14 @@ sidebarType: 1
 
 ### Note
 
-- Prebid.js Supports `display` format only.
-- Prebid Server Supports `native+display` formats.
+- Both Prebid.js and Prebid Server Support `native+display` formats.
 - Uses `OpenRTB` standard.
 
 ### Bidder Config
 We recommend allowing us access to localStorage.
 You can allow writing in localStorage `pbjs.bidderSettings` for the bidder `taboola`
+
+{% include dev-docs/storageAllowed.md %}
 
 ```javascript
 pbjs.bidderSettings = {

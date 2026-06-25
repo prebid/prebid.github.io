@@ -36,14 +36,16 @@ Note that as of PUC v1.15, the recommended way of loading the creative
 in the ad server involves using the `hb_format` ad server key-value. Before 1.15, the ad server needed to load creative.js which covered banner and in-renderer video, or native-render.js for native. 1.15 simplifies this
 by allowing the ad server creative to load banner.js, video.js, or native.js, which can be done programmatically using ad server macros. e.g.
 
+Since version 10.11.0, Prebid.js populates the `hb_ver` ad server key-value which is recommended for selecting a specific PUC version.
+
 ```html
-<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/%%PATTERN:hb_format%%.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@%%PATTERN:hb_ver%%/dist/%%PATTERN:hb_format%%.js"></script>
 ```
 
 This loads the PUC from the Prebid-maintained location. Your managed
 service provider may have a different location.
 
-To see specific examples of how to use the PUC within your ad server, see the guides for [GAM](/adops/gam-creative-banner-sbs.html), [Microsoft](/adops/setting-up-prebid-with-the-appnexus-ad-server.html), or [other ad servers](/adops/adops-general-sbs.html).
+To see specific examples of how to use the PUC within your ad server, see the guides for [GAM](/adops/gam-creative-banner-sbs.html), [Microsoft](/adops/setting-up-prebid-with-the-microsoft-ad-server.html), or [other ad servers](/adops/adops-general-sbs.html).
 
 ## Features of the PUC
 
@@ -112,5 +114,5 @@ If safeframe support is required, some options are:
 ## Further Reading
 
 - [Step by Step Guide to Google Ad Manager Setup](/adops/step-by-step.html)
-- [Setting up Prebid with the Xandr Monetize Ad Server](/adops/setting-up-prebid-with-the-appnexus-ad-server.html)
+- [Setting up Prebid with the Xandr Monetize Ad Server](/adops/setting-up-prebid-with-the-microsoft-ad-server.html)
 - [Prebid.js dynamic creatives](/adops/js-dynamic-creative.html)

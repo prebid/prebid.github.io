@@ -51,7 +51,7 @@ The markdown files are linted via [markdownlint-cli](https://github.com/igorshub
 You may need to configure the disabled rules specified in [.markdownlint.json](.markdownlint.json) directly in your project settings. You can invoke linting in CLI via
 
 ```bash
-markdownlint --config .markdownlint.json --ignore-path .markdownlintignore "**/*.md"
+markdownlint --config .markdownlint.json "**/*.md"
 ```
 
 <a name="running-jekyll-locally"></a>
@@ -111,6 +111,26 @@ This means an adaptor is not available to download from Prebid.org as soon as th
 ## Liquid Templating
 
 * [jekyll - check for non empty](https://michaelcurrin.github.io/dev-cheatsheets/cheatsheets/jekyll/liquid/conditionals/non-empty.html)
+
+## Codex
+
+To get started with Codex with Ruby 3.4.4 preinstalled on this repo, you can set up your environment like this
+
+```bash
+echo "3.4.4" > .ruby-version
+export NOKOGIRI_USE_SYSTEM_LIBRARIES=1
+gem install jekyll bundler
+npm install boostrap
+gem install github-pages --no-document --force
+npm install -g markdownlint-cli
+bundle install
+```
+
+Codex can then check for linting success with
+
+```bash
+markdownlint --config .markdownlint.json "**/*.md"
+```
 
 ## Thanks
 

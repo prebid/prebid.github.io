@@ -3,7 +3,7 @@ layout: userid
 title: Merkle ID
 description: Merkle IDUser ID sub-module
 useridmodule: merkleIdSystem
-bidRequestUserId:merkleId
+bidRequestUserId: merkleId
 eidsource: merkleinc.com
 example: '"1111"'
 ---

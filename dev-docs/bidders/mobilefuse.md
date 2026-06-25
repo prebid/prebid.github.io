@@ -12,11 +12,11 @@ gpp_sids: tcfca, usnat, usstate_all, usp
 schain_supported: true
 dchain_supported: false
 userIds: all
-media_types: banner, video, native
+media_types: banner, video
 deals_supported: true
 floors_supported: true
 fpd_supported: false
-pbjs: false
+pbjs: true
 pbs: true
 pbs_app_supported: true
 prebid_member: true
@@ -32,4 +32,4 @@ sidebarType: 1
 | Name         | Scope    | Description                                                | Example | Type    |
 | ------------ | -------- | ---------------------------------------------------------- | ------- | ------- |
 | placement_id | required | An ID which identifies this specific inventory placement   | 1111    | integer |
-| pub_id       | required | An ID which identifies the publisher selling the inventory | 2222    | integer |
+| bidfloor     | optional | Static floor price (in USD) for the impression, pbjs only  | 1.5     | float   |

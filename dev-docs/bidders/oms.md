@@ -40,4 +40,5 @@ The bidder requires setup before usage. Please get in touch with our team at <pr
 
 | Name | Scope | Description | Example | Type |
 |---------------|----------|---------------------|---------------|----------|
-| `pid` | required | Unique publisher ID | `'12345'` | `string` |
+| `pid` | optional | Deprecated: Unique publisher ID | `'12345'` | `string` |
+| `publisherId` | required | Unique publisher ID | `12345` | `integer` |

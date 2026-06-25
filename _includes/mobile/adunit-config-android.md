@@ -30,11 +30,23 @@ adUnit.setImpOrtbConfig("")
 #### setAutoRefreshPeriodMillis
 {:.no_toc}
 
+{: .alert.alert-warning :}
+Starting from PrebidMobile `3.0.0` the `setAutoRefreshPeriodMillis` method is removed. Use the `setAutoRefreshInterval` method instead.
+
 If set on a given Prebid Mobile ad unit, the `fetchDemand` function will be called every `periodMillis` until `stopAutoRefresh` is called. Each call to `fetchDemand` will invoke the `onComplete` function. This refresh only pertains to Prebid Mobile and not to any ad server refresh processes. It is suggested that the adServers refresh be turned off.
 
 **Parameters**
 
 - `periodMillis`: Integer defining the refresh time in milliseconds.
+
+#### setAutoRefreshInterval
+{:.no_toc}
+
+If set on a given Prebid Mobile ad unit, the `fetchDemand` function will be called every `periodMillis` until `stopAutoRefresh` is called. Each call to `fetchDemand` will invoke the `onComplete` function. This refresh only pertains to Prebid Mobile and not to any ad server refresh processes. It is suggested that the adServers refresh be turned off.
+
+**Parameters**
+
+- `seconds`: Integer defining the refresh time in seconds.
 
 #### startAutoRefresh
 {:.no_toc}
@@ -68,3 +80,37 @@ You can set `adPosition` by using the following method:
 ```kotlin
 adUnit.setAdPosition(AdPosition.FOOTER);
 ```
+
+
+### Native Impression Tracking
+
+The SDK offers an API that enables impression tracking for the following ad unit types: `BannerAdUnit`, `InterstitialAdUnit`, and `PrebidAdUnit`. An example implementation is provided below:
+
+`BannerAdUnit`:
+
+```kotlin
+val adView = AdManagerAdView(this)
+val adUnit = BannerAdUnit(CONFIG_ID, WIDTH, HEIGHT)
+adUnit.activatePrebidImpressionTracker(adView)
+```
+
+`InterstitialAdUnit`:
+
+```kotlin
+val adUnit = InterstitialAdUnit(CONFIG_ID, 80, 60)
+adUnit.activateInterstitialPrebidImpressionTracker()
+```
+
+`PrebidAdUnit`:
+
+```kotlin
+val prebidAdUnit = PrebidAdUnit(configId)
+
+// Use this method for banners
+prebidAdUnit.activatePrebidImpressionTracker(adView)
+
+// Use this method for interstitials
+prebidAdUnit.activateInterstitialPrebidImpressionTracker()
+```
+
+**NOTE**: The SDK support only `seatbid[].bid[].burl` as impression tracking URL for now.
