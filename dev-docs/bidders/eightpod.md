@@ -35,7 +35,7 @@ The EightPod adapter requires setup before beginning. Please contact us at <ewal
 The EightPod adapter passes through GDPR (TCF), US Privacy (CCPA/USP), GPP, and COPPA consent signals in OpenRTB bid requests:
 
 | Regulation | OpenRTB fields |
-|------------|----------------|
+| --- | --- |
 | GDPR (TCF EU) | `user.ext.consent`, `regs.ext.gdpr` |
 | US Privacy (CCPA/USP) | `regs.ext.us_privacy` |
 | GPP | `regs.gpp`, `regs.gpp_sid`, `regs.ext.gpp`, `regs.ext.gpp_sid` |
@@ -59,8 +59,8 @@ Prebid User ID module values remain the preferred source for OpenRTB `user.ext.e
 
 OpenRTB first-party data should be supplied through `ortb2` / `ortb2Imp`. The adapter preserves Prebid User ID module identifiers in `user.ext.eids`.
 
-| Name          | Scope    | Description                                                                                                 | Example                    | Type     |
-|---------------|----------|-------------------------------------------------------------------------------------------------------------|----------------------------|----------|
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
 | `placementId` | optional | The unique identifier of the ad placement. When provided, sent as OpenRTB `imp.tagid`; also sent as legacy `ext.adSlotPlacementId` for compatibility. Could be obtained from the 8pod UI or from your account manager. | "placementId-438753744289" | `string` |
 | `publisherId` | optional, legacy override | Overrides OpenRTB `site.publisher.id` when provided. Prefer `ortb2.site.publisher.id`. | "publisherId-438753744289" | `string` |
 | `dealId` | optional | PMP deal ID sent as `imp.pmp.deals[].id` when provided. | "deal-123" | `string` |
