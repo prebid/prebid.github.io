@@ -20,7 +20,7 @@ sidebarType: 1
 
 ## Note
 
-The MyFeature Bidding adapter requires setup before beginning. Please contact us at prebid-support@myfeature.tv
+The MyFeature Bidding adapter requires setup before beginning. Please contact us at <prebid-support@myfeature.tv>
 
 ## Prebid.js Bid Params
 

@@ -20,7 +20,7 @@ sidebarType: 1
 
 ## Note
 
-The LunamediaHB Bidding adapter requires setup before beginning. Please contact us at prebid@lunamedia.io
+The LunamediaHB Bidding adapter requires setup before beginning. Please contact us at <prebid@lunamedia.io>
 
 ### Prebid.js Bid Params
 
