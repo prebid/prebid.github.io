@@ -23,5 +23,3 @@ Use the lowercase provider code `eightpod` to match adapter registration.
 
 ### Disclosure
 The adapter subscribes to events from 8pod's ad unit when the bidWon event fires for each ad slot and sends supported ad unit events to Tealium from the rendered ad frame.
-
-
