@@ -22,11 +22,11 @@ userIds: all
 ortb_blocking_supported: true
 ---
 
-### Note
+## Note
 
 The Nativo Bidder adapter requires setup before beginning. Please contact us at <prebiddev@nativo.com> beforehand.
 
-### Adapter Behavior
+## Adapter Behavior
 
 The Nativo Prebid Server adapter (both PBS-Go and PBS-Java) is a **pure pass-through adapter**. It forwards the full OpenRTB bid request to Nativo's endpoint without transformation. The only modification made by Prebid Server core is rewriting `imp[].ext` — stripping the `ext.prebid.bidder.nativo` routing wrapper so the bidder receives `ext.bidder` directly.
 
@@ -34,9 +34,9 @@ The Java implementation uses the shared `GenericBidder` class, making it functio
 
 Media type detection (banner, video, native) is determined at response time by inspecting the matched `imp` object.
 
-### Bid Params
+## Bid Params
 
-#### Prebid Server
+### Prebid Server
 
 The Prebid Server adapter requires **at least one** of the following identifiers on each impression. They are passed through in `imp[].ext.bidder` and `imp[].tagid` as standard OpenRTB fields.
 
@@ -48,13 +48,13 @@ The Prebid Server adapter requires **at least one** of the following identifiers
 
 {: .table .table-bordered .table-striped }
 
-| Name           | Scope                             | Description                                                                                                                                                                                                                                                              | Example                                           | Type      |
-|----------------|-----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------|-----------|
-| `imp.tagid`    | optional (preferred)              | The Ad Slot Tag ID — a standard OpenRTB field and the recommended identifier. See [OpenRTB 2.6 imp.tagid](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/main/2.6.md#324---object-imp-). | `homepage_infeed_atf`                             | `string`  |
-| `placementId`  | optional                          | The unique Placement ID assigned by the Nativo platform. Set by the publisher in `imp[].ext.prebid.bidder.nativo.placementId` — Prebid Server translates this to `imp[].ext.bidder.placementId` before forwarding the request to Nativo. Reserved for unique use cases where a specific platform entry must be targeted. | `12345678`                                        | `integer` |
-| `imp.ext.gpid` | optional (standard Prebid field)  | The Global Placement ID (GPID). Used as a fallback if neither `tagid` nor `placementId` is present. See [GPID docs](https://docs.prebid.org/features/pbAdSlot.html#the-gpid).                                                                                           | `/22888152279/publication/placement/gpid_example` | `string`  |
+| Name           | Scope                            | Description                                                                                                                                                                                                                                                               | Example                                           | Type      |
+|----------------|----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------|-----------|
+| `imp.tagid`    | optional (preferred)             | The Ad Slot Tag ID — a standard OpenRTB field and the recommended identifier. See [OpenRTB 2.6 imp.tagid](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/main/2.6.md#324---object-imp-).                                                                 | `homepage_infeed_atf`                             | `string`  |
+| `placementId`  | optional                         | The unique Placement ID assigned by the Nativo platform. Set by the publisher in `imp[].ext.prebid.bidder.nativo.placementId` — Prebid Server translates this to `imp[].ext.bidder.placementId` before forwarding the request to Nativo. Reserved for unique use cases.   | `12345678`                                        | `integer` |
+| `imp.ext.gpid` | optional (standard Prebid field) | The Global Placement ID (GPID). Used as a fallback if neither `tagid` nor `placementId` is present. See [GPID docs](https://docs.prebid.org/features/pbAdSlot.html#the-gpid).                                                                                            | `/22888152279/publication/placement/gpid_example` | `string`  |
 
-##### Example OpenRTB request to Prebid Server (banner)
+#### Example OpenRTB request to Prebid Server (banner)
 
 ```json
 {
@@ -70,7 +70,7 @@ The Prebid Server adapter requires **at least one** of the following identifiers
       "format": [{ "w": 300, "h": 250 }]
     },
     "ext": {
-    "gpid": "/123456/homepage_infeed_atf_1",
+      "gpid": "/123456/homepage_infeed_atf_1",
       "prebid": {
         "bidder": {
           "nativo": {
@@ -84,7 +84,7 @@ The Prebid Server adapter requires **at least one** of the following identifiers
 }
 ```
 
-##### What Nativo's endpoint receives
+#### What Nativo's endpoint receives
 
 Prebid Server rewrites `imp[].ext`, stripping the `ext.prebid.bidder.nativo` routing wrapper. `placementId` is promoted from `imp[].ext.prebid.bidder.nativo.placementId` → `imp[].ext.bidder.placementId`:
 
@@ -114,7 +114,7 @@ Prebid Server rewrites `imp[].ext`, stripping the `ext.prebid.bidder.nativo` rou
 
 If no params are provided, Nativo receives `"ext": { "bidder": {} }` and relies on `imp.tagid` or `imp.ext.gpid` for placement matching.
 
-##### Example with native format
+#### Example with native format
 
 ```json
 {
@@ -138,11 +138,11 @@ If no params are provided, Nativo receives `"ext": { "bidder": {} }` and relies 
 }
 ```
 
-#### Prebid.js
+### Prebid.js
 
 {: .table .table-bordered .table-striped }
 
-| Name          | Scope    | Description                                                                     | Example                                                              | Type      |
-|---------------|----------|---------------------------------------------------------------------------------|----------------------------------------------------------------------|-----------|
-| `placementId` | required | Publication placement ID value from the Nativo Platform                         | `13144370`                                                           | `integer` |
-| `url`         | optional | Publication URL associated with the placement ID in the Nativo Platform         | `https://example.com/article`                                        | `string`  |
+| Name          | Scope    | Description                                                             | Example                       | Type      |
+|---------------|----------|-------------------------------------------------------------------------|-------------------------------|-----------|
+| `placementId` | required | Publication placement ID value from the Nativo Platform                 | `13144370`                    | `integer` |
+| `url`         | optional | Publication URL associated with the placement ID in the Nativo Platform | `https://example.com/article` | `string`  |
