@@ -20,7 +20,7 @@ sidebarType: 1
 
 ## Note
 
-The LunamediaHB bidder adapter is maintained by Ferio and requires setup before beginning. Please contact <prebid@ferio.cloud> for more information.
+The LunamediaHB Bidding adapter requires setup before beginning. Please contact us at <prebid@lunamedia.io>
 
 ### Prebid.js Bid Params
 
