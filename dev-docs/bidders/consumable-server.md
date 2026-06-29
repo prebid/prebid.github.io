@@ -125,7 +125,7 @@ To call Consumable from a web browser using Prebid Server, you must first config
    ```javascript
     pbjs.setConfig({
         cache: {
-            url: 'https://prebid.adnxs.com/pbc/v1/cache'
+            url: 'https://prebid.example.com/pbc/v1/cache'
         }
     });
    ```

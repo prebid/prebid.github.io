@@ -125,7 +125,7 @@ In this configuration, Prebid.js makes a call to Prebid Server and then Prebid S
    ```javascript
     pbjs.setConfig({
         cache: {
-                url: 'https://prebid.adnxs.com/pbc/v1/cache'
+                url: 'https://prebid.example.com/pbc/v1/cache'
             }
     });
     ```

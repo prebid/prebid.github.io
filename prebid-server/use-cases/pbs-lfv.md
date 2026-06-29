@@ -22,7 +22,7 @@ Here's a workflow diagramming how this works.
 1. Application makes request for a video stream.
 2. An SSAI Server sends a video request to PBS, specifying the pod requirements.
 3. PBS sends a request for bids to selected demand partners by relaying OpenRTB requests to them.
-4. Demand partners return a bid response to PBS. If competitive seperation is enabled, PBS peforms [category translation](/dev-docs/modules/categoryTranslation.html) on each bid. Whether category translation is required or not, the bids are stored in prebid cache.
+4. Demand partners return a bid response to PBS. If competitive separation is enabled, PBS performs [category translation](/dev-docs/modules/categoryTranslation.html) on each bid. Whether category translation is required or not, the bids are stored in prebid cache.
 5. PBS generates key-value pairs that are comprised of price, category, and duration values.
 6. The SSAI server parses the returned key-values, appending them as a query string to the ad server request URL and submits the request.
 7. The ad server returns the optimized pod.

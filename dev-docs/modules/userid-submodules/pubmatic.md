@@ -25,7 +25,7 @@ The following configuration parameters are available:
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this sub-module | `"pubmaticId"` |
 | params ||| Details for the sub-module initialization ||
-| params.publisherId | Required | Number | Publisher ID | `123456` |
+| params.publisherId | Required | String | Publisher ID | `"123456"` |
 | storage |||||
 | storage.name | Required | String | The name of the cookie or html5 local storage key | `"pubmaticId"` |
 | storage.type | Required | String | This is where the PubMatic user ID will be stored | `"cookie&html5"` (recommended) or `"html5"` or `"cookie"` |

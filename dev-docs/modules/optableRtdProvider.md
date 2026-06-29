@@ -5,7 +5,7 @@ display_name: Optable RTD Module
 description: Optable Real Time Data Module
 page_type: module
 module_type: rtd
-module_code : optable
+module_code : optableRtdProvider
 enable_download : true
 vendor_specific: true
 sidebarType : 1
@@ -31,7 +31,7 @@ Optable RTD submodule enriches the OpenRTB request by populating `user.ext.eids`
 Compile the Optable RTD Module with other modules and adapters into your Prebid.js build:
 
 ```bash
-gulp build --modules="rtdModule,optableRtdProvider,appnexusBidAdapter,..."
+gulp build --modules="rtdModule,optableRtdProvider,msftBidAdapter,..."
 ```
 
 > Note that Optable RTD module is dependent on the global real-time data module, `rtdModule`.
@@ -140,7 +140,7 @@ A `handleRtd` function implementation has access to its surrounding context incl
 If you want to see an example of how the optable RTD module works, run the following command:
 
 ```bash
-gulp serve --modules=optableRtdProvider,consentManagementGpp,consentManagementTcf,appnexusBidAdapter
+gulp serve --modules=optableRtdProvider,consentManagementGpp,consentManagementTcf,msftBidAdapter
 ```
 
 and then open the following URL in your browser:

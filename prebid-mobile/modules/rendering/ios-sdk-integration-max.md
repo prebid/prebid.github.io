@@ -56,7 +56,7 @@ This step is the same as for the original [MAX integration](https://dash.applovi
 #### Step 2: Create MAXMediationBannerUtils
 {:.no_toc}
 
-The `MAXMediationBannerUtils` is a helper class, which performs certain utilty work for the `MediationBannerAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
+The `MAXMediationBannerUtils` is a helper class, which performs certain utility work for the `MediationBannerAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
 
 #### Step 3: Create MediationBannerAdUnit
 {:.no_toc}
@@ -126,7 +126,7 @@ This step is the same as for the original [MAX integration](https://dash.applovi
 #### Step 2: Create MAXMediationInterstitialUtils
 {:.no_toc}
 
-The `MAXMediationInterstitialUtils` is a helper class, which performs certain utilty work for the `MediationInterstitialAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
+The `MAXMediationInterstitialUtils` is a helper class, which performs certain utility work for the `MediationInterstitialAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
 
 #### Step 3: Create MediationInterstitialAdUnit
 {:.no_toc}
@@ -186,7 +186,7 @@ This step is the same as for the original [MAX integration](https://dash.applovi
 ##### Step 2: Create MAXMediationRewardedUtils
 {:.no_toc}
 
-The `MAXMediationRewardedUtils` is a helper class, which performs certain utilty work for the `MediationRewardedAdUnit`, like passing the targeting keywords to the adapters.
+The `MAXMediationRewardedUtils` is a helper class, which performs certain utility work for the `MediationRewardedAdUnit`, like passing the targeting keywords to the adapters.
 
 ##### Step 3: Create MediationRewardedAdUnit
 {:.no_toc}
@@ -250,12 +250,12 @@ Prepare the `MANativeAdLoader` object before you make a bid request. It will be 
 #### Step 2: Create MAXMediationNativeUtils
 {:.no_toc}
 
-The `MAXMediationNativeUtils` is a helper class, which performs certain utilty work for `MediationNativeAdUnit`, like passing the targeting keywords to adapters and checking the visibility of the ad view.
+The `MAXMediationNativeUtils` is a helper class, which performs certain utility work for `MediationNativeAdUnit`, like passing the targeting keywords to adapters and checking the visibility of the ad view.
 
 #### Step 3: Create and configure MediationNativeAdUnit
 {:.no_toc}
 
-The `MediationNativeAdUnit` is a part of the Prebid Mediation API. This class is responsible for making a bid request and providing a winning bid and targeting keywords to the adapters. Fot the better targetting you should provide additional properties like `conteaxtType` and `placemantType`. 
+The `MediationNativeAdUnit` is a part of the Prebid Mediation API. This class is responsible for making a bid request and providing a winning bid and targeting keywords to the adapters. For better targeting you should provide additional properties like `contextType` and `placementType`.
  
 #### Step 4: Set up assets for bid request
 {:.no_toc}

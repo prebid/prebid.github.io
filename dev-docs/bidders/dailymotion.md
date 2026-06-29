@@ -2,6 +2,7 @@
 layout: bidder
 title: Dailymotion
 description: Dailymotion Prebid Bidder Adapter
+prebid_member: true
 pbjs: true
 pbs: false
 biddercode: dailymotion
@@ -20,7 +21,7 @@ ortb_blocking_supported: false
 
 ### Registration
 
-To use the adapter with any non-test request, you first need to ask an API key from Dailymotion. Please contact us through <DailymotionPrebid.js@dailymotion.com> .
+To use the adapter with any non-test request, you first need to ask an API key from Dailymotion. Please contact us through <publishers@dailymotion.com> .
 
 This API key will ensure proper identification of your inventory and allow you to get real bids.
 

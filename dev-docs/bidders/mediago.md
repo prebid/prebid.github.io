@@ -27,6 +27,7 @@ The MediaGo Bidding adapter requires setup before beginning. Please contact us a
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
+ 
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
 | `token`      | required | publisher token, This parameter expects all imps to be the same        | `'1e100887dd614b7f69fdd1360437'`    | `string` |
@@ -35,3 +36,4 @@ The MediaGo Bidding adapter requires setup before beginning. Please contact us a
 | `bidfloor` | recommend | Sets a floor price for the bid. This parameter is available for PBJS only. | `0.05` | `float` |
 | `publisher`      | required | publisher id         | `'abcdefg'`    | `string` |
 | `placementId` | recommend | The AD placement ID | `12341234` | `string` |
+| `tagid` | optional | Tag identifier for the impression | `"1"` | `string` |
