@@ -120,13 +120,13 @@ Note that the existence of `bidderSettings.adserverTargeting.standard` will prev
 **Keyword targeting for a specific bidder**
 
 Let’s say the bidder prefers a separate set of line items. You can overwrite the bidder
-settings as the below example for AppNexus shows.
+settings as the below example for Microsoft shows.
 
 *Note that the line item setup has to match the targeting change*
 
 ```javascript
 pbjs.bidderSettings = {
-    appnexus: {
+    msft: {
       sendStandardTargeting: false,
       adserverTargeting: [
         {
@@ -145,7 +145,7 @@ pbjs.bidderSettings = {
 }
 ```
 
-In other words, the above config sends 2 pairs of key/value strings targeting for every AppNexus bid and for every ad unit. The 1st pair would be `apn_pbMg` => the value of `bidResponse.pbMg`. The 2nd pair would be `apn_adId` => the value of `bidResponse.adId`. See [common bid response parameters](/troubleshooting/troubleshooting-guide.html#common-bid-response-parameters) for bidResponse object documentation.
+In other words, the above config sends 2 pairs of key/value strings targeting for every Microsoft bid and for every ad unit. The 1st pair would be `apn_pbMg` => the value of `bidResponse.pbMg`. The 2nd pair would be `apn_adId` => the value of `bidResponse.adId`. See [common bid response parameters](/troubleshooting/troubleshooting-guide.html#common-bid-response-parameters) for bidResponse object documentation.
 
 Note that sendStandardTargeting is set to false so that the standard Prebid targeting (hb_bidder, etc.) aren't also sent to the ad server.
 
@@ -322,7 +322,7 @@ pbjs.bidderSettings = {
         allowedAlternateBidderCodes: ["groupm"],
         [...]
     },
-    appnexus: {
+    msft: {
         allowAlternateBidderCodes: true,
         allowedAlternateBidderCodes: ["*"],
         bidCpmAdjustment: function(bidCpm, bid){ return bidCpm * .90; },
@@ -336,7 +336,7 @@ pbjs.bidderSettings = {
 ```
 
 In the above example, `groupm` bid will have a bid adjustment of 80% since the `bidCpmAdjustment` function says so.<br />
-If `appnexus` bids with another bidder code, say `appnexus2`. This bidder code will adjust the bid cpm to 95% because it will apply the `bidCpmAdjustment` function from `standard` setting, since the `bidCpmAdjustment` is missing for given bidder code I.e `appnexus2`
+If `msft` bids with another bidder code, say `msft2`. This bidder code will adjust the bid cpm to 95% because it will apply the `bidCpmAdjustment` function from `standard` setting, since the `bidCpmAdjustment` is missing for given bidder code I.e `msft2`
 
 ### 2.11. adjustAlternateBids
 
@@ -361,7 +361,7 @@ pbjs.bidderSettings = {
         bidCpmAdjustment: function(bidCpm, bid){ return bidCpm * .85; },
         [...]
     },
-    appnexus: {
+    msft: {
         allowAlternateBidderCodes: true,
         allowedAlternateBidderCodes: ["*"],
         bidCpmAdjustment: function(bidCpm, bid){ return bidCpm * .90; },

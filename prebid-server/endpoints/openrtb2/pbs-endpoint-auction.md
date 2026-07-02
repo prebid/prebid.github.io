@@ -739,18 +739,18 @@ This can be used to request bids from the same Bidder with different params. For
       "mimes": ["video/mp4"]
     },
     "ext": {
-      "appnexus": {
-        "placementId": 123
+      "msft": {
+        "placement_id": 123
       },
       "districtm": {
-        "placementId": 456
+        "placement_id": 456
       }
     }
   }],
   "ext": {
     "prebid": {
       "aliases": {
-        "districtm": "appnexus"
+        "districtm": "msft"
       }
     }
   }
@@ -768,12 +768,12 @@ For example, if the Request defines an alias like this:
 
 ```json5
 "aliases": {
-  "appnexus": "rubicon"
+  "msft": "rubicon"
 }
 ```
 
-then any `imp[].ext.appnexus` params will actually go to the **rubicon** adapter.
-It will become impossible to fetch bids from AppNexus within that Request.
+then any `imp[].ext.msft` params will actually go to the **rubicon** adapter.
+It will become impossible to fetch bids from Microsoft within that Request.
 
 ##### Bidder Alias GVL IDs
 
@@ -1923,9 +1923,9 @@ For example, a request may return this in `response.ext`
 {
   "ext": {
     "errors": {
-      "appnexus": [{
+      "msft": [{
         "code": 2,
-        "message": "A hybrid Banner/Audio Imp was offered, but Appnexus doesn't support Audio."
+        "message": "A hybrid Banner/Audio Imp was offered, but Microsoft doesn't support Audio."
       }],
       "rubicon": [{
         "code": 1,

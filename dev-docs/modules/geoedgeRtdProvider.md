@@ -74,7 +74,7 @@ To view an integration example:
 1. in your cli run:
 
     ```bash
-    gulp serve --modules=appnexusBidAdapter,geoedgeRtdProvider
+    gulp serve --modules=msftBidAdapter,geoedgeRtdProvider
     ```
 
 2. in your browser, navigate to:

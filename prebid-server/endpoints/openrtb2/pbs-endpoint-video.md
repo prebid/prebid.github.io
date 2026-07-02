@@ -62,12 +62,12 @@ These key-values are returned to the SSAI server as part of the video response.
 | podconfig.pods | Required | `Object[]` |  Container object for describing the adPod(s) to be requested.  |
 | site | Required | `Object` |  Container object for the URL of the impression to be shown. Can be excluded if app is included.  |
 | site.page | Required | `String` | URL of the page where the impression will be shown.  |
-| site.publisher.id | Required | `String` | Appnexus member ID.  |
+| site.publisher.id | Required | `String` | Microsoft member ID.  |
 | app | Required | `Object` |  Container object for app information where the impression is to be shown. Can be excluded if site is included.  |
 | app.bundle | Optional | `String` |  A platform-specific application identifier intended to be unique to the app and independent of the exchange. On Android, this should be a bundle or package name (e.g., com.foo.mygame). On iOS, it is typically a numeric ID. |
 | app.domain | Required | `String` |  The domain of the app. |
 | app.name | Optional | `String` |  The name of the app. |
-| app.publisher.id | Required | `String` |  Appnexus member ID. |
+| app.publisher.id | Required | `String` |  Microsoft member ID. |
 | app.storeurl | Optional | `String` |  App store URL for an installed app. |
 | video | Required | `Object` |  Container object for video player data. |
 | video.w | Optional | `Integer` |  Width of the video player in device independent pixels. |
@@ -169,7 +169,7 @@ These are the supported (registered) bidder names.
 * "adform"
 * "adkernelAdn"
 * "adtelligent"  
-* "appnexus"
+* "msft"
 * "audienceNetwork"  
 * "beachfront"
 * "eplanning"
@@ -241,7 +241,7 @@ Publishers can comply with CCPA regulations by setting `regs.ext.us.privacy` to 
     "yob": 1982,
     "gender": "M",
     "buyeruids": {
-      "appnexus": "unique_id_an"
+      "msft": "unique_id_an"
     },
     "gdpr": {
       "consentrequired": false,

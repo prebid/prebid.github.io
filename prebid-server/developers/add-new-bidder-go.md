@@ -1066,7 +1066,7 @@ func newAdapterBuilders() map[openrtb_ext.BidderName]adapters.Builder {
 You need to provide default settings for your bid adapter. You can decide if you'd like your bid adapter to be enabled out of the box, and if so, you'll need to provide a default endpoint and default extra adapter info (if applicable). If your bid adapter requires host specific information to function properly, such as a security token or host account, then it's best to leave the adapter disabled.
 
 {: .alert.alert-warning :}
-**HOST SPECIFIC INFO:** The default endpoint must not be specific to any particular host, such as Xandr/AppNexus. We may ask you about suspicious looking ids during the review process. Please reach out to individual hosts if you need to set specialized configuration.
+**HOST SPECIFIC INFO:** The default endpoint must not be specific to any particular host, such as Microsoft/AppNexus. We may ask you about suspicious looking ids during the review process. Please reach out to individual hosts if you need to set specialized configuration.
 
 ## Aliasing an Adapter
 
@@ -1077,7 +1077,7 @@ the whole adapter codebase. Rather, follow these steps to create a 'hardcoded' a
 1. Add "aliasOf" in the config.yaml file with its value set to the name of the adapter you are creating an alias for
 
 ```yaml
-aliasOf: "appnexus"
+aliasOf: "msft"
 ```
 
 Notes:
