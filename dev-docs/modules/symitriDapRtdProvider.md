@@ -107,7 +107,7 @@ pbjs.setConfig({
 To view an example of available segments returned by dap:
 
 ```bash
-gulp serve --modules=rtdModule,symitriDapRtdProvider,appnexusBidAdapter,sovrnBidAdapter
+gulp serve --modules=rtdModule,symitriDapRtdProvider,msftBidAdapter,sovrnBidAdapter
 ```
 
 and then point your browser at:

@@ -229,13 +229,13 @@ Note that targeting config must be set before either `pbjs.setTargetingForGPTAsy
   "hb_deal_rubicon": "11111111",
   "hb_format_rubicon": "banner",
   "hb_source_rubicon": "client",
-  "hb_adid_appnexus": "191f4aca0c0be8",
-  "hb_pb_appnexus": "10.00",
-  "hb_size_appnexus": "300x250",
-  "hb_format_appnexus": "banner",
-  "hb_source_appnexus": "client",
+  "hb_adid_msft": "191f4aca0c0be8",
+  "hb_pb_msft": "10.00",
+  "hb_size_msft": "300x250",
+  "hb_format_msft": "banner",
+  "hb_source_msft": "client",
   // the winning bid is copied to attributes without a suffix
-  "hb_bidder": "appnexus",
+  "hb_bidder": "msft",
   "hb_adid": "191f4aca0c0be8",
   "hb_pb": "10.00",
   "hb_size": "300x250",
@@ -1563,8 +1563,8 @@ pbjs.setConfig({
                 iframeURL: 'https://rubicon.com:8080/topics/fpd/topic.html', // dummy URL
                 expiry: 7 // Configurable expiry days
             },{
-                bidder: 'appnexus',
-                iframeURL: 'https://appnexus.com:8080/topics/fpd/topic.html', // dummy URL
+                bidder: 'msft',
+                iframeURL: 'https://microsoft.com:8080/topics/fpd/topic.html', // dummy URL
                 expiry: 7 // Configurable expiry days
             }]
         }
@@ -1619,7 +1619,7 @@ Prebid modules sometimes need to know the [IAB Global Vendor List](https://iabeu
 ```javascript
 pbjs.setConfig({
   gvlMapping: {
-    appnexus: 4,
+    msft: 4,
     someModule: 123
   }
 });

@@ -21,9 +21,9 @@ var videoAdUnit = {
   },
   bids: [
     {
-      bidder: 'appnexusAst',
+      bidder: 'msft',
       params: {
-        placementId: '13232361', // Add your own placement id here
+        placement_id: '13232361', // Add your own placement id here
         video: {
           skipppable: true,
           playback_method: ['auto_play_sound_off']

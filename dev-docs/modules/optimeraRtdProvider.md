@@ -80,7 +80,7 @@ To view an integration example:
 1. in your cli run:
 
     ```bash
-    gulp serve --modules=appnexusBidAdapter,optimeraRtdProvider`
+    gulp serve --modules=msftBidAdapter,optimeraRtdProvider`
     ```
 
 2. in your browser, navigate to:

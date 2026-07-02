@@ -109,11 +109,11 @@ None
 ```javascript
 "bidderAliases": [
     {
-      "bidderName": "appnexus",
+      "bidderName": "msft",
       "name": "alias1"
     },
     {
-      "bidderName": "appnexus",
+      "bidderName": "msft",
       "name": "alias2"
     }
 ]
@@ -324,9 +324,9 @@ Here is a sample Prebid configuration JSON object returned via URL:
         },
         "bids": [
             {
-                "bidder": "appnexus",
+                "bidder": "msft",
                 "params": {
-                    "placementId": 9999
+                    "placement_id": 9999
                 }
             }
         ]
@@ -372,10 +372,10 @@ Here is a sample Prebid configuration JSON object returned via URL:
                 }
             ]
         },
-        "appnexus": {
+        "msft": {
             "adserverTargeting": [
                 {
-                    "key": "hb_appnexus_key1",
+                    "key": "hb_msft_key1",
                     "val": [
                         "valueIsFunction",
                         "function (bidResponse) {",
@@ -384,7 +384,7 @@ Here is a sample Prebid configuration JSON object returned via URL:
                     ]
                 },
                 {
-                    "key": "hb_appnexus_key2",
+                    "key": "hb_msft_key2",
                     "val": [
                         "valueIsFunction",
                         "function (bidResponse) {",
@@ -393,7 +393,7 @@ Here is a sample Prebid configuration JSON object returned via URL:
                     ]
                 },
                 {
-                    "key": "hb_appnexus_key3",
+                    "key": "hb_msft_key3",
                     "val": "value3"
                 }
             ]
