@@ -4,7 +4,7 @@ title: Floxis
 description: Prebid Floxis Bidder Adapter
 biddercode: floxis
 pbjs: true
-pbs: false
+pbs: true
 media_types: banner, video, native
 safeframes_ok: true
 sidebarType: 1
@@ -38,6 +38,10 @@ The Floxis bidder adapter enables integration with the Floxis programmatic adver
 | `seat` | required | Seat identifier provided by Floxis | `"testSeat"` | `string` |
 | `region` | optional | Region identifier for routing (defaults to `"us-e"`) | `"us-e"` | `string` |
 | `partner` | optional | Partner identifier provided by Floxis (defaults to `"floxis"`) | `"floxis"` | `string` |
+
+### Prebid Server
+
+The Floxis server-side adapter (PBS-Go and PBS-Java) uses the same bid params as the Prebid.js adapter — `seat` (required), `region` and `partner` (optional, same defaults). There are no parameter differences between the client- and server-side adapters.
 
 ### Floors Support
 
