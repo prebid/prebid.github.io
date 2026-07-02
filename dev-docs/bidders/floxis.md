@@ -10,7 +10,7 @@ safeframes_ok: true
 sidebarType: 1
 tcfeu_supported: true
 dsa_supported: false
-gvl_id: none
+gvl_id: 1609
 usp_supported: true
 coppa_supported: true
 gpp_supported: true
@@ -36,8 +36,8 @@ The Floxis bidder adapter enables integration with the Floxis programmatic adver
 | Name | Scope | Description | Example | Type |
 |------|-------|-------------|---------|------|
 | `seat` | required | Seat identifier provided by Floxis | `"testSeat"` | `string` |
-| `region` | required | Region identifier for routing | `"us-e"` | `string` |
-| `partner` | required | Partner identifier provided by Floxis | `"floxis"` | `string` |
+| `region` | optional | Region identifier for routing (defaults to `"us-e"`) | `"us-e"` | `string` |
+| `partner` | optional | Partner identifier provided by Floxis (defaults to `"floxis"`) | `"floxis"` | `string` |
 
 ### Floors Support
 
@@ -45,7 +45,21 @@ The Floxis adapter supports the Prebid.js [Floors Module](https://docs.prebid.or
 
 ### Privacy Support
 
-Privacy fields (GDPR, USP, GPP, COPPA) are handled by Prebid.js core and automatically included in the OpenRTB request.
+Privacy fields (GDPR, USP, GPP, COPPA) are handled by Prebid.js core and automatically included in the OpenRTB request. Floxis is registered with IAB Europe TCF as vendor ID 1609.
+
+### First-Party Fallback Id (Storage Use)
+
+In browsers that block third-party cookies, the adapter maintains a first-party fallback identifier: a random v4 UUID stored under the key `flx_uid` in `localStorage` (preferred) and a cookie (~30-day lifetime), both scoped to the publisher's own origin. The id is per-publisher — it is never shared across sites — and is sent as `user.ext.floxisId`. It is used only as an identity of last resort when the Floxis `__fxId` cookie is unavailable. Storage details are disclosed at [floxis.tech/vendor-storage.json](https://floxis.tech/vendor-storage.json).
+
+All storage access goes through the Prebid.js `storageManager`, so it is gated by the standard `deviceAccess` configuration and GDPR purpose-1 consent under GVL ID 1609. Bidder-level storage access is denied by default and requires an explicit publisher opt-in — without it, no id is generated or sent (a safe no-op):
+
+```javascript
+pbjs.bidderSettings = {
+    floxis: {
+        storageAllowed: true
+    }
+};
+```
 
 ### AdUnit Configuration for Banner
 
