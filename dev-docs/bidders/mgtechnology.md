@@ -2,7 +2,7 @@
 layout: bidder
 title: MediaGo Technology LLC
 description: MediaGo Technology LLC Prebid Bidder Adapter
-biddercode: mediagoTechnology
+biddercode: mgtechnology
 media_types: banner,native
 prebid_member: true
 userIds: all (with commercial activation)
