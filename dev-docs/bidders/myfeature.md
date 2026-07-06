@@ -20,12 +20,7 @@ sidebarType: 1
 
 ## Note
 
-The MyFeature bidder adapter is a client-side alias of the `ferio` adapter and
-requires setup before beginning. Please contact <prebid@ferio.cloud> for more
-information.
-
-User syncs for the alias only run when the publisher enables
-`userSync.aliasSyncEnabled` via `pbjs.setConfig`.
+The MyFeature Bidding adapter requires setup before beginning. Please contact us at <prebid-support@myfeature.tv>
 
 ## Prebid.js Bid Params
 
