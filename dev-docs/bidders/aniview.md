@@ -20,11 +20,11 @@ sidebarType: 1
 userIds: all
 ---
 
-### Note
+## Note
 
 For more information about [Aniview Ad Server](https://www.aniview.com/), please contact <info@aniview.com>.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name             | Scope    | Description           | Example              | Type     |
