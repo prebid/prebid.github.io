@@ -23,7 +23,7 @@ gvl_id: 1148
 sidebarType: 1
 ---
 
-### Bid params
+## Bid params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                            | Example       | Type     |
