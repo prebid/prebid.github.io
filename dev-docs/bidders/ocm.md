@@ -6,7 +6,7 @@ biddercode: ocm
 media_types: video,banner,native
 tcfeu_supported: true
 gpp_supported: true
-userId: criteo, id5Id, panoramaId, pubCommonId, unifiedId
+userIds: criteo, id5Id, panoramaId, pubCommonId, unifiedId
 schain_supported: true
 dchain_supported: true
 coppa_supported: true
@@ -14,7 +14,7 @@ usp_supported: true
 safeframes_ok: false
 prebid_member: true
 multiformat_supported: will-bid-on-any
-ortb_blocking_supported: partial (bcat, badv)
+ortb_blocking_supported: partial
 pbjs: true
 pbs: false
 deals_supported: true
