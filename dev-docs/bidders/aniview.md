@@ -3,6 +3,8 @@ layout: bidder
 title: Aniview
 description: Prebid Aniview Bidder Adapter
 pbjs: true
+pbs: true
+pbs_app_supported: true
 biddercode: aniview
 media_types: banner, video
 gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
