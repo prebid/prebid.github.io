@@ -28,7 +28,13 @@ pbs_app_supported: true
 
 ### Registration
 
-If you have any questions regarding set up, please reach out to <dist-vps@viantinc.com>.
+If you have any questions regarding set up, please reach out to your Viant account manager: <dist-vps@viantinc.com>.
+
+Please note that Viant Publisher Solutions has transitioned its serving architecture to Prebid Server. The Prebid.js Module is now legacy, and only the Prebid Server integration is active.
+
+To activate an account, publishers must already have an approved Viant Publisher Solutions (VPS) login and an active `publisherId` in order for the adapter to function appropriately.
+
+All other configurations occur within the VPS self-service environment.
 
 #### Bid Params
 
