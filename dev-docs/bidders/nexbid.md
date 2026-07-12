@@ -26,6 +26,8 @@ privacy_sandbox: no
 sidebarType: 1
 ---
 
+## NexBid
+
 ### Registration
 
 The NexBid adapter requires an approved publisher account and placement. Contact `prebid@nexbid.uk` for registration and test support.
@@ -34,7 +36,7 @@ The NexBid adapter requires an approved publisher account and placement. Contact
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | `publisherId` | required | NexBid publisher account identifier | `'2606001'` | `string` |
 | `placementId` | required | NexBid placement identifier | `'moneycontrol_300x250'` | `string` |
 | `configId` | optional | NexBid demand configuration identifier | `'moneycontrol.com'` | `string` |
@@ -61,4 +63,3 @@ The adapter forwards Prebid `ortb2` and impression-level `ortb2Imp` data to the 
 ### Privacy
 
 The adapter forwards USP and applicable US GPP sections. NexBid does not claim TCF-EU support until it has a valid IAB Europe Global Vendor List ID and the production gateway enforces that consent.
-
