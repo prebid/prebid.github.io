@@ -13,11 +13,40 @@ To integrate an interstitial banner ad into the app you use the Prebid SDK `Inte
 
 **Integration example(Swift):**
 
-```swift
-func createAd() {
+{% capture gma12 %}func createAd() {
+    // 1. Create an InterstitialAdUnit
+    adUnit = InterstitialAdUnit(
+        configId: CONFIG_ID,
+        minWidthPerc: MIN_WIDTH_PERC,
+        minHeightPerc: MIN_HEIGHT_PERC
+    )
+    
+    // 2. Make a bid request to Prebid Server
+    let gamRequest = AdManagerRequest()
+    adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
+        PrebidDemoLogger.shared.info("Prebid demand fetch for GAM \(resultCode.name())")
+        
+        // 3. Load a GAM interstitial ad
+        AdManagerInterstitialAd.load(
+            with: AD_UNIT_ID,
+            request: gamRequest
+        ) { ad, error in
+            guard let self = self else { return }
+            
+            if let error = error {
+                PrebidDemoLogger.shared.error("Failed to load interstitial ad with error: \(error.localizedDescription)")
+            } else if let ad = ad {
+                // 4. Present the interstitial ad
+                ad.fullScreenContentDelegate = self
+                ad.present(from: self)
+            }
+        }
+    }
+}
+{% endcapture %}
+{% capture gma11 %}func createAd() {
     // 1. Create an InterstitialAdUnit using Prebid Mobile SDK
-    adUnit = InterstitialAdUnit(configId: CONFIG_ID, minWidthPerc: 75, minHeightPerc: 75)
-    adUnit.adUnitConfig.adSize = CGSize(width: 1, height: 1)
+    adUnit = InterstitialAdUnit(configId: CONFIG_ID, minWidthPerc: MIN_WIDTH_PERC, minHeightPerc: MIN_WIDTH_PERC)
     
     // 2. Make a bid request to Prebid Server using Prebid Mobile SDK
     let gamRequest = GAMRequest()
@@ -38,7 +67,9 @@ func createAd() {
         }
     }
 }
-```
+{% endcapture %}
+
+{% include code/gma-versions-tabs.html id="interstitial-banner" gma11=gma11 gma12=gma12 %}
 
 ## Step 1: Create an Ad Unit
 
@@ -53,13 +84,13 @@ Here's how min size percentages work. If the adunit size is 1x1, Prebid Server u
 
 ## Step 2: Make the bid request
 
-The _fetchDemand_ method makes a bid request to the Prebid Server. The `GAMRequest` object provided to this method must be the one used in the next step to make the GAM ad request.
+The _fetchDemand_ method makes a bid request to the Prebid Server. The `AdManagerRequest` object provided to this method must be the one used in the next step to make the GAM ad request.
 
 When Prebid Server responds, Prebid SDK will set the targeting keywords of the winning bid into provided object.
 
 ## Step 3: Load a GAM interstitial ad
 
-After receiving a bid it's time to load the ad from GAM. If the `GAMRequest` contains targeting keywords, the respective Prebid line item may be returned from GAM, and GMA SDK will render its creative. 
+After receiving a bid it's time to load the ad from GAM. If the `AdManagerRequest` contains targeting keywords, the respective Prebid line item may be returned from GAM, and GMA SDK will render its creative. 
 
 ## Step 4: Render the interstitial ad
 

@@ -39,3 +39,5 @@ pbjs.setConfig({
     },
 });
 ```
+
+**Storage Requirements**: Yandex ID requires the storage object to specify cookie `type`, name `_ym_uid`, and an expiration of at least 30 days.

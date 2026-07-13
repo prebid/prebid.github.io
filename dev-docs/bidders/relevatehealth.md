@@ -20,10 +20,10 @@ sidebarType: 1
 
 ### Bid Params
 
+{: .table .table-bordered .table-striped }
 | Name          | Scope     | Description           | Example        | Type     |
 |---------------|-----------|-----------------------|----------------|----------|
-| `placement_id` | mandatory | Placement Id          | `110011`       | `number` |
-| `user_id`     | mandatory | Unique id for HCP     | `'1111111'`    | `string` |
+| `placement_id`| mandatory | Placement Id          | `110011`       | `number` |
 | `height`      | optional  | Height of the creative| `600`          | `number` |
 | `width`       | optional  | Width of the creative | `160`          | `number` |
 | `domain`      | optional  | Domain                | `'domain.com'` | `string` |
@@ -53,4 +53,31 @@ var adUnits = [
                 }]
             }
         ];
+```
+
+#### First Party Data
+
+In release 4.30 and later, publishers should use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html). The following fields are supported:
+
+* ortb2.user.id
+* ortb2.user.buyeruid
+* ortb2.user.keywords
+* ortb2.user.ext.*
+
+Example first party data that's available to all bidders and all adunits:
+
+```javascript
+pbjs.setConfig({
+  ortb2: {
+    user: {
+      id: 123456789,        // Unique pseudonymized ID for the user (e.g., NPI).
+      buyeruid: 987654321,  // DSP-assigned user ID for identity resolution.
+      keywords: "kw1,kw2",  // Interest or specialty tags (e.g., oncology, cardiology)
+      ext: {
+        key1: "values",    // Custom healthcare metadata (e.g., icd10), single or comma seperated.
+        key2: "values"     // Additional campaign context (e.g., ndc), single or comma seperated.
+      }
+    }
+  }
+});
 ```

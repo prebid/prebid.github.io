@@ -68,6 +68,8 @@ Publishers can use Prebid.js to call Consumable Exchange (Consumable) in any of 
 
 * **Recommended Global Bidder settings:** For our adapter, Consumable recommends enabling local storage. As of Prebid.js 7.x, local storage access must be explicitly specified. By leveraging local storage, Consumable is able to take advantage of the latest features our exchange has to offer. For instructions on enabling local storage, see Prebid’s [pbjs.bidderSettings](/dev-docs/publisher-api-reference/bidderSettings.html) documentation.
 
+{% include dev-docs/storageAllowed.md %}
+
 ### Example
 
 ```javascript
@@ -123,7 +125,7 @@ In this configuration, Prebid.js makes a call to Prebid Server and then Prebid S
    ```javascript
     pbjs.setConfig({
         cache: {
-                url: 'https://prebid.adnxs.com/pbc/v1/cache'
+                url: 'https://prebid.example.com/pbc/v1/cache'
             }
     });
     ```

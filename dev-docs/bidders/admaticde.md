@@ -14,16 +14,19 @@ gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 schain_supported: true
 dchain_supported: false
 userIds: all
+prebid_member: true
+pbs_app_supported: true
 safeframes_ok: true
 floors_supported: true
 aliasCode: admatic
 multiformat_supported: will-bid-on-any
+ortb_blocking_supported: partial
 sidebarType: 1
 ---
 
 ### Description
 
-AdMatic GMBH header bidding adapter connects with AdMatic GMBH demand sources to fetch bids for network ID. Please reach out to your account manager or <fatih.kaya@admatic.de> for more information.
+AdMatic GMBH header bidding adapter connects with AdMatic GMBH demand sources to fetch bids for network ID. Please reach out to your account manager or <info@admatic.de> for more information.
 
 ### Bid params
 

@@ -5,14 +5,17 @@ title: Module - Konduit Accelerate
 description: Applies Konduit video ad acceleration optimization to wining video bid.
 module_code : konduitWrapper
 display_name : Konduit Accelerate
-enable_download : true
+enable_download : false
 vendor_specific: true
 sidebarType : 1
 ---
 
 # Konduit Accelerate Module
 
-The Konduit Accelerate module applies the [Konduit](https://konduitvideo.com/) video acceleration optimization to a publisher’s existing Prebid setup. This optimization provides publishers with tools to monetize previously lost revenue and drive higher fill rates on their video inventory.
+{: .alert.alert-warning :}
+Prebid believes this module may no longer be maintained.
+
+The Konduit Accelerate module applies the Konduit video acceleration optimization to a publisher’s existing Prebid setup. This optimization provides publishers with tools to monetize previously lost revenue and drive higher fill rates on their video inventory.
 
 To install the module, follow these instructions:
 
@@ -70,7 +73,7 @@ Konduit platform supports the ‘Send all bids’ scenario, but the GAM configur
 - If Send all bids is enabled, update the GAM line item creative URL as shown here:
 `https://p.konduit.me/api/vastProxy?konduit_hb=1&konduit_hb_awarded=1&konduit_cache_key=%%PATTERN:k_cache_key_BIDDERCODE%%&konduit_id=%%PATTERN:k_id%%`
 
-`k_cache_key_BIDDERCODE` is a bidder-specific macro. Replace ‘BIDDERCODE’ with an actual bidder code, such as `k_cache_key_appnexus`.
+`k_cache_key_BIDDERCODE` is a bidder-specific macro. Replace ‘BIDDERCODE’ with an actual bidder code, such as `k_cache_key_msft`.
 
 Note that the creative URL contains a few custom macros that allow Konduit platform to combine different data for predictive insights functionality.
 
@@ -107,7 +110,7 @@ pbjs.que.push(function() {
         adUnitCode: videoAdUnit[0].code,
         timeout: 1500,
         callback: function (error, bids) {
-          var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
+          var videoUrl = pbjs.adServers.gam.buildVideoUrl({
             ...
           });
 ​

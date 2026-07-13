@@ -27,11 +27,14 @@ sidebarType: 1
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description  | Example                         | Type       |
-|---------------|----------|--------------|---------------------------------|------------|
-| `placementId` | optional | Placement Id | `'0'`                           | `'string'` |
-| `endpointId`  | optional | Endpoint Id  | `'0'`                           | `'string'` |
+| Name          | Scope    | Description         | Example                      | Type       |
+|---------------|----------|---------------------|------------------------------|------------|
+| `placementId` | optional | Placement Id        | `'0'`                        | `'string'` |
+| `endpointId`  | optional | Endpoint Id         | `'0'`                        | `'string'` |
+| `adUnit`      | optional | (deprecated) adUnit | `'example_adunit_1'`         | `'string'`   |
 
 ### Note
 
-For the prebid server and prebid.js you only need to use one parameter: either placementId or endpointId
+For the prebid server and prebid.js you only need to use one parameter: either placementId or endpointId.
+
+After implementing the new adapter `ads_interactive`, the previous version, `adsinteractive`, will be fully deprecated and removed in the next major release
