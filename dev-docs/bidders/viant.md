@@ -26,7 +26,7 @@ pbs_app_supported: true
 
 ---
 
-### Registration
+## Registration
 
 If you have any questions regarding set up, please reach out to your Viant account manager: <dist-vps@viantinc.com>.
 
@@ -36,7 +36,7 @@ To activate an account, publishers must already have an approved Viant Publisher
 
 All other configurations occur within the VPS self-service environment.
 
-#### Bid Params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 
@@ -44,9 +44,9 @@ All other configurations occur within the VPS self-service environment.
 |---------------|----------|-------------------------------------------------------|--------------------------|----------|
 | `publisherId` | required | Publisher ID assigned by Viant during onboarding.     | `'prebid-test-pub-001'`  | `string` |
 
-### Example Ad Unit
+## Example Ad Unit
 
-#### Banner
+### Banner
 
 ```javascript
 var adUnits = [
@@ -69,7 +69,7 @@ var adUnits = [
 ];
 ```
 
-#### Video (Instream)
+### Video (Instream)
 
 ```javascript
 var adUnits = [
@@ -96,7 +96,7 @@ var adUnits = [
 ];
 ```
 
-#### Native
+### Native
 
 ```javascript
 var adUnits = [
@@ -132,7 +132,7 @@ var adUnits = [
 ];
 ```
 
-#### Audio
+### Audio
 
 ```javascript
 var adUnits = [
