@@ -26,29 +26,29 @@ privacy_sandbox: no
 sidebarType: 1
 ---
 
-### Registration
+## Registration
 
 The Equativ bidder adapter requires setup and approval from the Equativ service team. Please reach out to your account manager for more information to start using it.
 
-### Bid Params
+## Bid Params
 
-#### Fields
+### Fields
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
-|------|-------|-------------|---------|------|
+| ------ | ------- | ------------- | --------- | ------ |
 | `networkId` | required | The network identifier you have been provided with. Normally required, but there are certain conditions under which this may be omitted. _See **Bid Parameter Usage** notes below for more information_. | `1234` | `integer` |
-| `siteId` | optional | The placement site ID. _See **Bid Parameter Usage** notes below for more information_. |`1234` | `integer` |
+| `siteId` | optional | The placement site ID. _See **Bid Parameter Usage** notes below for more information_. | `1234` | `integer` |
 | `pageId` | optional | The placement page ID. _See **Bid Parameter Usage** notes below for more information_. | `1234` | `integer` |
 | `formatId` | optional | The placement format ID. _See **Bid Parameter Usage** notes below for more information_. | `1234` | `integer` |
 
-#### Usage
+### Usage
 
 Different combinations of parameters are required depending upon which ones you choose to use.
 
 There are two options for passing Equativ-specific bidder parameters: through bidder params, or through ortb2.
 
-##### Through bidder params Object
+#### Through bidder params Object
 
 Publishers can specify required and/or optional parameters through the bidder params object hierarchy like this:
 
@@ -71,7 +71,7 @@ var adUnits = [
 ];
 ```
 
-##### Through ortb2
+#### Through ortb2
 
 A second way to specify Equativ-specific bidder parameters is through the `ortb2` object. The example below references a `ortb2.site.publisher.id` hierarchy, but publishers can also use `ortb2.app.publisher.id` or `ortb2.dooh.publisher.id` as their needs dictate.
 
@@ -90,17 +90,17 @@ pbjs.setBidderConfig({
 });
 ```
 
-### Supported Media Types
+## Supported Media Types
 
 {: .table .table-bordered .table-striped }
 | Type | Support |
-|---|---|
+| --- | --- |
 | `banner` | Supported |
 | `video` | Supported |
 | `native` | Supported |
 | `audio` | Supported |
 
-### User Syncing
+## User Syncing
 
 To enable cookie syncing, make sure the configuration setup is properly invoked.
 
@@ -130,9 +130,9 @@ pbjs.bidderSettings = {
 };
 ```
 
-### Ad Unit Setup
+## Ad Unit Setup
 
-#### Banner
+### Banner
 
 As mentioned in the **Bid Params > Usage** section, when including `'equativ'` as one of the available bidders in an adunit setup, there are two approaches to how publishers can specify parameters. The below example uses the approach using the `params` object.
 
@@ -167,7 +167,7 @@ pbjs.que.push(function () {
 });
 ```
 
-#### Video
+### Video
 
 As mentioned in the **Bid Params > Usage** section, when including `'equativ'` as one of the available bidders in an adunit setup, there are two approaches to how publishers can specify parameters. The below example uses the approach using the `params` object.
 
@@ -213,9 +213,9 @@ pbjs.que.push(function () {
 });
 ```
 
-#### Outstream Video
+### Outstream Video
 
-Following the setup described [here](https://docs.prebid.org/dev-docs/show-outstream-video-ads.html), this adapter supports scenarios where the publisher does not provide a custom renderer. In such cases, the configuration shown below will work, and the outstream ad will be rendered using Equativ's default player.
+Following the [outstream video setup guide](https://docs.prebid.org/dev-docs/show-outstream-video-ads.html), this adapter supports scenarios where the publisher does not provide a custom renderer. In such cases, the configuration shown below will work, and the outstream ad will be rendered using Equativ's default player.
 
 ```javascript
 var adUnits = [
@@ -246,7 +246,7 @@ var adUnits = [
 ];
 ```
 
-#### Native
+### Native
 
 As mentioned in the **Bid Params > Usage** section, when including `'equativ'` as one of the available bidders in an adunit setup, there are two approaches to how publishers can specify parameters. The below example uses the approach using the `params` object.
 
@@ -333,7 +333,7 @@ pbjs.que.push(function () {
 });
 ```
 
-#### Audio
+### Audio
 
 It is possible to specify audio inventory through the Equativ adapter. To do so, publishers can define a video-formatted ad unit and specify audio information through the `ortb2Imp` property, like the example shown below.
 
@@ -382,9 +382,9 @@ pbjs.que.push(function () {
 {: .alert.alert-warning :}
 **Note**: If a demand partner of Equativ is not capable of reading an audio object, the audio object will be converted into a video object with audio mime types. There is, as of this writing, no built-in/default support for serving audio assets in Prebid, so publishers that wish to do so will need to ensure their ad server setups can process whatever hand-offs are necessary.
 
-#### Multi-formats and multi-sizes examples
+### Multi-formats and multi-sizes examples
 
-##### Banner, Outstream Video, and Native with different floors
+#### Banner, Outstream Video, and Native with different floors
 
 ```javascript
 var adUnits = [
@@ -437,7 +437,7 @@ var adUnits = [
 ];
 ```
 
-##### Banner, Outstream Video, and Native with one floor
+#### Banner, Outstream Video, and Native with one floor
 
 ```javascript
 var adUnits = [
@@ -488,7 +488,7 @@ var adUnits = [
 ];
 ```
 
-##### Multiple Banner sizes with different floors
+#### Multiple Banner sizes with different floors
 
 ```javascript
 var adUnits = [
@@ -527,7 +527,7 @@ var adUnits = [
 ];
 ```
 
-##### Multiple Banner sizes with one floor
+#### Multiple Banner sizes with one floor
 
 ```javascript
 var adUnits = [
@@ -564,11 +564,11 @@ var adUnits = [
 ];
 ```
 
-### First Party Data
+## First Party Data
 
 Publishers should use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html).
 
-#### Keywords
+### Keywords
 
 Keyword targeting capabilities are supported. To pass keywords, the following fields can be used: `ortb2.site.keywords`, `ortb2.app.keywords`, or `ortb2.dooh.keywords`.
 
@@ -582,6 +582,6 @@ pbjs.setConfig({
 });
 ```
 
-### Additional Resources
+## Additional Resources
 
 Information about how Equativ supports the oRTB specification, along with additional examples, can be found [on our OpenRTB API support site](https://help.equativ.com/open-rtb-api-integration-bid-request-specification-1).
