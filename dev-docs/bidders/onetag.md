@@ -17,7 +17,7 @@ floors_supported: true
 sidebarType: 1
 coppa_supported: true
 privacy_sandbox: topics
-multiformat_supported: will-bid-on-one
+multiformat_supported: will-bid-on-any
 ---
 
 

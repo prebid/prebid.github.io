@@ -17,7 +17,7 @@ This page will store any utilities that can used in conjuntion with the Prebid S
 
 ## Find Prebid Creative Size
 
-Prebid SDK provides a function `findPrebidCreativeSize` to address a bug in the Google Ad Manager ad server (described [here](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!category-topic/google-admob-ads-sdk/ios/648jzAP2EQY)) where under certain situations ads fail to render. 
+Prebid SDK provides a function `findPrebidCreativeSize` to address a bug in the Google Ad Manager ad server (described in [this Google forum thread](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!category-topic/google-admob-ads-sdk/ios/648jzAP2EQY)) where under certain situations ads fail to render.
 
 It is recommended all Google Ad Manager integrations resize all ads served based on the winning Prebid creative size `findPrebidCreativeSize`. Functionally speaking the Prebid SDK resizes ad slots based on the [adViewDidReceiveAd event](https://developers.google.com/admob/ios/banner) (when an ad is received) to determine the winning Prehbid ad size to determine how to resize the ad slot.
 
@@ -31,7 +31,7 @@ func bannerViewDidReceiveAd(_ bannerView: GoogleMobileAds.BannerView) {
         // In the case of Prebid's line item - resize te ad view
         bannerView.resize(adSizeFor(cgSize: size))
     }, failure: { (error) in
-        PrebidDemoLogger.shared.error("Error occuring during searching for Prebid creative size: \(error)")
+        PrebidDemoLogger.shared.error("Error occurring during searching for Prebid creative size: \(error)")
     })
 }
 {% endcapture %}
@@ -44,7 +44,7 @@ func bannerViewDidReceiveAd(_ bannerView: GoogleMobileAds.BannerView) {
         // In the case of Prebid's line item - resize te ad view
         bannerView.resize(GADAdSizeFromCGSize(size))
     }, failure: { (error) in
-        PrebidDemoLogger.shared.error("Error occuring during searching for Prebid creative size: \(error)")
+        PrebidDemoLogger.shared.error("Error occurring during searching for Prebid creative size: \(error)")
     })
 }
 {% endcapture %}

@@ -6,10 +6,19 @@ description: clean.io Real-time Anti-Malvertising Module
 page_type: module
 module_type: rtd
 module_code : cleanioRtdProvider
-enable_download : true
+enable_download : false
 vendor_specific: true
 sidebarType : 1
 ---
+
+
+{: .alert.alert-warning :}
+**Warning!**
+
+The **cleanioRtdProvider** module has been renamed to [humansecurityMalvDefenseRtdProvider](humansecurityMalvDefenseRtdProvider.html) following HUMAN Security's acquisition of the Clean.io project in 2022.
+ **cleanioRtdProvider** module is maintained for backward compatibility until the next major Prebid release.
+
+Please use **humansecurityMalvDefenseRtdProvider** instead of **cleanioRtdProvider** in your Prebid integration.
 
 # clean.io Real-time Anti-Malvertising Module
 
@@ -49,6 +58,7 @@ pbjs.setConfig({
 ### Configuration parameters
 
 {: .table .table-bordered .table-striped }
+
 | Name | Type  | Scope | Description |
 | :------------ | :------------ | :------------ |:------------ |
 | ``cdnUrl`` | ``string`` | Required | CDN URL of the script, which is to be used for protection. |
@@ -57,6 +67,7 @@ pbjs.setConfig({
 ## Integration modes
 
 {: .table .table-bordered .table-striped }
+
 | Integration Mode | Parameter Value | Description |
 | :------------ | :------------ | :------------ |
 | Full page protection | ``'full'`` | Preferred mode. The module will add the protector agent script directly to the page, and it will protect all placements. This mode will make the most out of various behavioral detection mechanisms, and will also prevent typical malicious behaviors. Please note that in this mode, depending on Prebid library naming, Chrome may mistakenly tag non-ad-related content as ads: <https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs/ad_tagging.md>. |

@@ -89,9 +89,9 @@ var adUnits = [
             }
         },
         bids: [{
-            bidder: 'appnexus',
+            bidder: 'msft',
             params: {
-                placementId: 13144370
+                placement_id: 13144370
             }
         }]
     },
@@ -103,9 +103,9 @@ var adUnits = [
             }
         },
         bids: [{
-            bidder: 'appnexus',
+            bidder: 'msft',
             params: {
-                placementId: 13144370
+                placement_id: 13144370
             }
         }]
     }
@@ -121,9 +121,9 @@ var videoAdUnit = {
         }
     },
     bids: [{
-        bidder: 'appnexus',
+        bidder: 'msft',
         params: {
-            placementId: 13232361, // Add your own placement id here
+            placement_id: 13232361, // Add your own placement id here
             video: {
                 skipppable: true,
                 playback_method: ['auto_play_sound_off']
@@ -154,7 +154,7 @@ pbjs.que.push(function() {
     pbjs.setConfig({
         debug: true,
         cache: {
-            url: '<https://prebid.adnxs.com/pbc/v1/cache>'
+            url: '<https://my-pbs.example.com/cache>'
         }
     });
     pbjs.requestBids({
@@ -177,14 +177,18 @@ function initAdserver(bids) {
 
     // Set targeting for each display slot
     googletag.cmd.push(function() {
-        pbjs.que.push(function() {
-            pbjs.setTargetingForGPTAsync(displayAdUnitCodes);
+        if (pbjs.libLoaded) {
+            pbjs.que.push(function() {
+                pbjs.setTargetingForGPTAsync(displayAdUnitCodes);
+                googletag.pubads().refresh();
+            });
+        } else {
             googletag.pubads().refresh();
-        });
+        }
     });
 
-    // Build DFP URL with targeting for videoAdUnit
-    var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
+    // Build GAM URL with targeting for videoAdUnit
+    var videoUrl = pbjs.adServers.gam.buildVideoUrl({
         adUnit: videoAdUnit,
         params: {
             iu: '/19968336/prebid_cache_video_adunit',

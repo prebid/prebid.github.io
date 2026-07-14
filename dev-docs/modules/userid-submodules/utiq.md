@@ -3,7 +3,7 @@ layout: userid
 title: Utiq ID
 description: Utiq User ID sub-module
 useridmodule: utiqIdSystem
-bidRequestUserId: utiId
+bidRequestUserId: utiqId
 eidsource: utiq.com
 example: '"1111"'
 ---
@@ -62,4 +62,4 @@ pbjs.setConfig({
 
 ## Utiq ID onboarding
 
-If you wish to find out more about Utiq, please contact <csm@utiq.com>
+If you wish to find out more about Utiq, please contact <onboard@utiq.com>

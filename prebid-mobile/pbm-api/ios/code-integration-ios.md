@@ -32,6 +32,11 @@ end
 
 Now run `pod install` to add the Prebid SDK to project dependencies.
 
+{: .alert.alert-warning :}
+Support for CocoaPods will be discontinued in Q4 2026. As CocoaPods is transitioning to read-only mode, it will no longer be supported for future updates. For more details, please refer to the official [announcement](https://blog.cocoapods.org/CocoaPods-Specs-Repo/).
+
+We strongly recommend that publishers migrate to Swift Package Manager (SPM) to ensure ongoing compatibility and access to future releases. Please follow the [instructions](/prebid-mobile/pbm-api/ios/code-integration-ios.html#swift-package-manager-spm) to transition your integration.
+
 ### Carthage
 
 If you are not familiar with the Carthage package builder, please refer to the project [github page](https://github.com/Carthage/Carthage) for more details.
@@ -41,42 +46,40 @@ If you are not familiar with the Carthage package builder, please refer to the p
 3. Run `carthage update`.
 4. Drag `PrebidMobile.xcframework` from `Carthage/Build` to `General -> Linked Frameworks and Libraries`
 
+{: .alert.alert-warning :}
+Support for Carthage will be discontinued in Q4 2026.
+
+We strongly recommend that publishers migrate to Swift Package Manager (SPM) to ensure ongoing compatibility and access to future releases. Please follow the [instructions](/prebid-mobile/pbm-api/ios/code-integration-ios.html#swift-package-manager-spm) to transition your integration.
+
 ### XCFramework
 
 1. Clone the project and run script `scripts/buildPrebidMobile.sh`
 2. Drag `PrebidMobile.xcframework` from `generated/output` directory into your project. Make sure "Copy items if needed" is selected.
 3. Go to your Xcode project’s `General -> Frameworks, Libraries, and Embedded Content` settings. Use `Embed & Sign` for dynamic and `Do Not Embed` for static linking
 
-### Swift PM
+### Swift Package Manager (SPM)
 
-SPM isn't supported for Prebid SDK `2.0.0` and higher ([details](https://github.com/prebid/prebid-mobile-ios/issues/640)).
+Starting from version `3.1.0`, PrebidMobile supports the Swift Package Manager (SPM), making integration much easier and more maintainable compared to manual setups or CocoaPods.
 
-The next guide is applicable to `1.x` versions of the SDK.
+To [add the Prebid Mobile SDK package dependency](https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app#Add-a-package-dependency) using SPM, follow these steps:
 
-If you are not familiar with the Swift Package Manager, please refer to the project [github page](https://github.com/apple/swift-package-manager) for more details.
+1. In Xcode, install the Prebid Mobile SDK by navigating to File > Add Package Dependencies...
+2. In the prompt that appears, use the search field to find the appropriate package based on your integration needs. Search for `Prebid Mobile SDK` to install the core SDK, or `Prebid Mobile SDK Adapters` if you need mediation adapters (GAM, AdMob, MAX).
 
-1. Add Prebid dependency `File -> Swift Packages -> Add Package Dependency...`
-2. Select desired version, branch or commit
-3. Select Prebid [module]({{site.baseurl}}/prebid-mobile/modules/modules-overview.html)
-4. Build the specific schema `CarthageBuild.sh`
+    `Prebid Mobile SDK`
+    
+    ```bash
+    https://github.com/prebid/prebid-mobile-ios-sdk.git
+    ```
 
-    **Variant 1**
+    `Prebid Mobile SDK Adapters`
 
-    - Run CarthageBuild.sh script from Cartfile folder. The path should be:
-        `.../Carthage/Checkouts/prebid-mobile-ios/scripts/CarthageBuild.sh`
-    - Enter Schema name (PrebidMobile or PrebidMobileCore)
-        - If you run CarthageBuild.sh and see Permission denied use:
-             `chmod +x <path_to_CarthageBuild.sh>`
+    ```bash
+    https://github.com/prebid/prebid-mobile-ios-adapters.git
+    ```
 
-    **Variant 2**
-
-    - Open `PrebidMobile.xcodeproj` at `.../Carthage/Checkouts/prebid-mobile-ios/PrebidMobile.xcodeproj` using Xcode
-    - Manage Schemes -> Check Shared checkbox for a necessary schema
-    - run `carthage build prebid-mobile-ios`
-
-5. Integrate the binary into your project
-
-You can find the schema name in the build PrebidSDK framework inside Info.plist with `PrebidMobileName` key
+3. Select the version of the Prebid Mobile SDK you want to use. For new projects, we recommend using the `Up to Next Major Version`.
+4. In the package selection screen, make sure to check the modules you need for your integration and link it to your application target.
 
 ### Build framework from source
 
@@ -221,7 +224,7 @@ As part of Apple's evolving privacy policies, SDKs that access user data in a wa
 
 Currently, the Prebid Mobile SDK is not classified as one of these SDKs. But future changes from Apple or internal app review policies may prompt publishers to proactively register the Prebid Server (PBS) endpoint in the privacy manifest. To support this, the Prebid SDK is designed to accommodate both tracking and non-tracking PBS domains. Here are the Prebid recommendations:
 
-- Include the relevant `NSPrivacyCollectedDataTypes` and define your primary Prebid Server domain in the `NSPrivacyTrackingDomains` array in your the `PrivacyInfo.xcprivacy` file to cover a potential "worst case" scenario. Read more about the `PrivacyInfo.xcprivacy` data [here](https://docs.prebid.org/faq/prebid-mobile-faq.html#privacysecurity).
+- Include the relevant `NSPrivacyCollectedDataTypes` and define your primary Prebid Server domain in the `NSPrivacyTrackingDomains` array in your the `PrivacyInfo.xcprivacy` file to cover a potential "worst case" scenario. Read more about the `PrivacyInfo.xcprivacy` data in the [Prebid Mobile FAQ](https://docs.prebid.org/faq/prebid-mobile-faq.html#privacysecurity).
 - You may choose to provide a secondary, privacy-mode PBS URL to the SDK. This secondary domain can be used when tracking is disallowed. Get this additional hostname from your Prebid Server host provider. Every initialization method contains optional parameter to define this privacy-safe PBS domain. Since these requests will have the `limit ad tracking` flag defined, Prebid Server will anonymize the requests.
 
 You’re not required to use a secondary PBS domain -- you can simply allow iOS to block PBS requests when the user opts out of tracking.
@@ -392,14 +395,14 @@ Prebid.shared.logLevel = .verbose
 // Set Prebid timeout in milliseconds
 Prebid.shared.timeoutMillis = 3000
 
-// Enable Prebid Server debug respones
+// Enable Prebid Server debug responses
 Prebid.shared.pbsDebug = true
 
 // Stored responses  can be one of storedAuction response or storedBidResponse
 Prebid.shared.storedAuctionResponse = "111122223333"
 
 //or
-Prebid.shared.addStoredBidResponse(bidder: "appnexus", responseId: "221144")
+Prebid.shared.addStoredBidResponse(bidder: "msft", responseId: "221144")
 Prebid.shared.addStoredBidResponse(bidder: "rubicon", responseId: "221155")
 ```
 

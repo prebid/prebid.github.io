@@ -74,7 +74,7 @@ This step is totally the same as for original [MAX integration](https://dash.app
 #### Step 2: Create MaxMediationBannerUtils
 {:.no_toc}
 
-The `MaxMediationBannerUtils` is a helper class, which performs certain utilty work for the `MediationBannerAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
+The `MaxMediationBannerUtils` is a helper class, which performs certain utility work for the `MediationBannerAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
 
 #### Step 3: Create MediationBannerAdUnit
 {:.no_toc}
@@ -139,7 +139,7 @@ This step is totally the same as for original [MAX integration](https://dash.app
 #### Step 2: Create MaxMediationInterstitialUtils
 {:.no_toc}
 
-The `MaxMediationInterstitialUtils` is a helper class, which performs certain utilty work for the `MediationInterstitialAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
+The `MaxMediationInterstitialUtils` is a helper class, which performs certain utility work for the `MediationInterstitialAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
 
 #### Step 3: Create MediationInterstitialAdUnit
 {:.no_toc}
@@ -202,7 +202,7 @@ This step is totally the same as for original [MAX integration](https://dash.app
 ##### Step 2: Create MaxMediationRewardedUtils
 {:.no_toc}
 
-The `MaxMediationRewardedUtils` is a helper class, which performs certain utilty work for the `MediationRewardedVideoAdUnit`, like passing the targeting keywords to the adapters.
+The `MaxMediationRewardedUtils` is a helper class, which performs certain utility work for the `MediationRewardedVideoAdUnit`, like passing the targeting keywords to the adapters.
 
 ##### Step 3: Create MediationRewardedVideoAdUnit
 {:.no_toc}
@@ -262,7 +262,7 @@ Prepare the `MaxNativeAdLoader` object before you make a bid request. It will be
 #### Step 2: Create and configure NativeAdUnit
 {:.no_toc}
 
-The `NativeAdUnit` class is responsible for making a bid request and providing a winning bid and targeting keywords. Fot the better targetting you should provide additional properties like `conteaxtType` and `placemantType`. 
+The `NativeAdUnit` class is responsible for making a bid request and providing a winning bid and targeting keywords. For better targeting you should provide additional properties like `contextType` and `placementType`.
  
 #### Step 3: Set up assets for bid request
 {:.no_toc}

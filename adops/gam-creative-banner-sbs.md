@@ -56,13 +56,18 @@ These instructions assume you're using the Prebid Universal Creative (PUC) after
 {: .alert.alert-warning :}
 Be sure to replace BIDDERCODE with the appropriate bidder. For example, if the bidder code is `PBbidder`, the `adid` would be `%%PATTERN:hb_adid_PBbidder%%`.
 
-Also, replace "PUCFILE" with:
+Replace "PUCFILE" with:
 
 - Prebid.js: "%%PATTERN:hb_format%%.js"
 - Prebid Mobile: "creative.js"
 
+Replace "VERSION" with:
+
+- Prebid.js 10.11.0 or later: "%%PATTERN:hb_ver%%"
+- Otherwise, a specific PUC version.
+
 ```html
-<script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/PUCFILE"></script>
+<script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@VERSION/dist/PUCFILE"></script>
 <script>
   var ucTagData = {};
   ucTagData.adServerDomain = "";
@@ -99,13 +104,18 @@ Warning: Be sure none of the attribute names are longer than 20 characters. See 
 
 In top-price mode, you can make use of the GAM `TARGETINGMAP` feature instead of listing out each attribute.
 
-Be sure to replace "PUCFILE" with:
+Replace "PUCFILE" with:
 
 - Prebid.js: "%%PATTERN:hb_format%%.js"
 - Prebid Mobile: "creative.js"
 
+Replace "VERSION" with:
+
+- Prebid.js 10.11.0 or later: "%%PATTERN:hb_ver%%"
+- Otherwise, a specific PUC version.
+
 ```html
-<script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/PUCFILE"></script>
+<script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@VERSION/dist/PUCFILE"></script>
 <script>
   var ucTagData = {};
   ucTagData.adServerDomain = "";
