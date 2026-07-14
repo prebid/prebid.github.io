@@ -1,3 +1,4 @@
+---
 layout: bidder
 title: Adtarget.me
 description: Prebid Adtarget.me bidder adapter
@@ -18,15 +19,18 @@ pbjs: true
 pbs: false
 pbs_app_supported: true
 prebid_member: false
-multiformat_supported: will-bid-on-any sidebarType: 1 
+multiformat_supported: will-bid-on-any
+sidebarType: 1
+---
 
 ### Note
 
 The Adtrgtme bidding adapter requires setup before beginning. Please contact us at <support@adtarget.me>
 
 ### Bid Params
-| Name          | Scope    | Description                | Example                            | Type              |
-|---------------|----------|----------------------------|------------------------------------|-------------------|
-| `sid`         | required | Site ID                    | `"1234567890"`                     | `string`          |
-| `zid`         | optional | Zone ID                    | `1234567890`                       | `string`/`number` |
-| `bidOverride` | optional | Manual impression fallback | `{imp:{bidfloor:1.5,bidfloorcur:'USD'}}` | `object`   |
+
+| Name          | Scope    | Description                | Example                                  | Type              |
+|---------------|----------|----------------------------|------------------------------------------|-------------------|
+| `sid`         | required | Site ID                    | `"1234567890"`                           | `string`          |
+| `zid`         | optional | Zone ID                    | `1234567890`                             | `string`/`number` |
+| `bidOverride` | optional | Manual impression fallback | `{imp:{bidfloor:1.5,bidfloorcur:'USD'}}` | `object`          |
