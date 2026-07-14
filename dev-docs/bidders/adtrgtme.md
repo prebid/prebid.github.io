@@ -23,11 +23,11 @@ multiformat_supported: will-bid-on-any
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 The Adtrgtme bidding adapter requires setup before beginning. Please contact us at <support@adtarget.me>
 
-### Bid Params
+## Bid Params
 
 | Name          | Scope    | Description                | Example                                  | Type              |
 |---------------|----------|----------------------------|------------------------------------------|-------------------|
