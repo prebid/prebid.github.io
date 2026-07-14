@@ -18,73 +18,49 @@ sidebarType: 1
 {:toc}
 
 # Description
-
 The Mantis RTD provider module for Prebid.js enables publishers to enrich ad auction requests with contextual intelligence from the Mantis API. It runs client-side as part of the Prebid RTD framework and injects structured signals — brand safety ratings, sentiment, emotions, and content categories — into OpenRTB (`ortb2`) objects before bidding occurs, allowing demand partners to make more informed bidding decisions.
 
----
+# Usage
 
-# Salient Features
+## Build
 
-## Contextual enrichment
+```bash
+gulp build --modules="rtdModule,mantisRtdProvider,appnexusBidAdapter,..."
+```
 
-- Page categories (Mantis taxonomy and IAB taxonomy)
-- Sentiment (`positive` / `negative` / `neutral` / `unknown`)
-- Emotions (e.g. `joy-high`, `anger-low`)
-- Brand safety ratings (e.g. `GREEN`, `AMBER`, `RED`)
+> Note that the global RTD module `rtdModule` is a prerequisite of the Mantis RTD module.
 
-## oRTB2-compliant output
+## Configuration
 
-Populates `site.content.data` and `user.data` with named segment groups.
+Use `setConfig` to instruct Prebid.js to initialize the Mantis RTD module, as specified below.
 
-## Fail-safe design
+This module is configured as part of `realTimeData.dataProviders`.
 
-- Timeout controlled by `auctionDelay` — auction is never blocked
-- Graceful degradation on any error or missing data
-
----
-
-# Integration Guide
-
-## Required Configuration Fields
-
-|   Parameter   |   Type   |   Required   |   Description  |
-|---------------|----------|--------------|----------------|
-| `endpoint` | string | yes | Base URL of the Mantis API service |
-
-
-The API request timeout is controlled by the top-level `auctionDelay` setting in the `realTimeData` config. Keep it as low as possible — higher values increase auction latency.
-
-## Example Configuration
-
-```js
+```javascript
 pbjs.setConfig({
-  realTimeData: {
-    auctionDelay: 1000, // keep as low as possible for production
-    dataProviders: [
-      {
-        name: 'mantis',
-        waitForIt: true,
-        params: {
-          endpoint: 'https://publisher-mantis.example.com/api/demo'
-        }
-      }
-    ]
-  }
+    realTimeData: {
+        auctionDelay: 1000, // Optional but recommended to set '1000'.
+        dataProviders: [{
+            name: 'mantis',
+            waitForIt: true, // Optional but should be set 'true' if 'auctionDelay' is provided
+            params: {
+                endpoint: 'https://example.com/api' // API url provided by Mantis
+            }
+        }]
+    }
 });
 ```
-# Behavior & Failure Modes
 
-All errors fail gracefully with no retries — the auction is never blocked.
+## Parameters
 
-| Scenario | Behavior |
-|----------|----------|
-| Valid config, response within `auctionDelay` | Segments injected into `ortb2Fragments.global` |
-| Missing `endpoint` param | No request made; auction continues immediately |
-| Non-2xx response (e.g. 404, 500) | Error logged; no segments added; auction continues |
-| Response exceeds `auctionDelay` | Module stops waiting; auction continues without data |
-| Network error (DNS failure, unreachable) | Error logged; no segments added; auction continues |
-| Late response (arrives after timeout) | Response discarded; auction already proceeding |
-| Empty or below-threshold API data | No segments injected; auction continues normally |
+{: .table .table-bordered .table-striped }
+| Name              | Type    | Description                                                                                                                                                                       | Required | Notes                                                                    |
+| :---------------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- | :----------------------------------------------------------------------- |
+| `auctionDelay`    | Number  | Maximum time (ms) the auction will be delayed so that RTD providers can fetch the user/contextual data from their api and sets the values before triggering the ad server request | no       | This is optional but should be passed with an optimum value like `1000`  |
+| `name`            | String  | Real time data module name                                                                                                                                                        | yes      | Always `mantis`                                                          |
+| `waitForIt`       | Boolean | Should be `true` if there's an `auctionDelay` defined                                                                                                                            | no       | Default `false`                                                          |
+| `params`          | Object  | Defines parameter(s) used in Mantis RTD module                                                                                                                                    | yes      | Default `null`                                                           |
+| `params.endpoint` | String  | Mantis article classification API endpoint. Mantis team provides this url to each publisher after their account setup is completed by Mantis tech team                            | yes      | Default `empty`                                                          |
 
 ---
 
