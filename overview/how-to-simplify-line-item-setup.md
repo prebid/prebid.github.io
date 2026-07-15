@@ -65,7 +65,7 @@ There you go!
 
 ### Simplification 2: Remove the bidder dimension
 
-In this section, we'll learn how to remove the bidder dimension for header bidding. Before, a publisher would have to create different set of line items for different bidders. For example, 3 different set of line items for AppNexus, Pubmatic, and Rubicon. With Prebid.js, a publisher only need to create 1 set of line items for all bidders.
+In this section, we'll learn how to remove the bidder dimension for header bidding. Before, a publisher would have to create different set of line items for different bidders. For example, 3 different set of line items for Microsoft, Pubmatic, and Rubicon. With Prebid.js, a publisher only need to create 1 set of line items for all bidders.
 
 There're a few reasons why previously you'd need different set of line items for bidders.
 
@@ -73,14 +73,14 @@ There're a few reasons why previously you'd need different set of line items for
 2. Bidders all have different targeting parameters.
 3. You need to run reports to learn fill rates and CPM from different bidders.
 
-Assume we have 1 set of line items for ALL bidders. Consider the below key-value pairs came in: (AppNexus bid $1.60, Rubicon bid $1.20. Ad IDs are used for rendering the right creative):
+Assume we have 1 set of line items for ALL bidders. Consider the below key-value pairs came in: (Microsoft bid $1.60, Rubicon bid $1.20. Ad IDs are used for rendering the right creative):
 
-* `appnexus_cpm`: 1.60
-* `appnexus_adId`: 65432
+* `msft_cpm`: 1.60
+* `msft_adId`: 65432
 * `rubicon_cpm`: 1.20
 * `rubicon_adId`: 23456
 
-The line item for $1.60 is chosen because it has the highest price. However, the creative attached to this line item will be given both `appnexus_ad_id`: 65432 and `rubicon_ad_id`: 23456. There's not an easy way for the right creative (in this case the AppNexus creative) to render.
+The line item for $1.60 is chosen because it has the highest price. However, the creative attached to this line item will be given both `msft_ad_id`: 65432 and `rubicon_ad_id`: 23456. There's not an easy way for the right creative (in this case the Microsoft creative) to render.
 
 <a name="pbjs-sends-highest-price-only"></a>
 
@@ -90,7 +90,7 @@ Prebid.js only picks the highest price bid and sends its key-value pairs to the 
 
 * `hb_pb`: 1.60
 * `hb_adId`: 65432
-* `hb_bidder`: appnexus
+* `hb_bidder`: msft
 
 This simplifies the setup and the right creative (with adId 65432) will get displayed.
 
