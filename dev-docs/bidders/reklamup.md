@@ -4,7 +4,8 @@ title: Reklamup
 description: Prebid Reklamup Bidder Adapter
 biddercode: reklamup
 gpp_sids: usstate_all
-tcfeu_supported: false
+gvl_id: 1619
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
