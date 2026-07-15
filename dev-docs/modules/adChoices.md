@@ -86,7 +86,7 @@ pbjs.setConfig({
 
 {: .table .table-bordered .table-striped }
 | Param | Scope | Type | Description |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `signal` | optional | string | A statically supplied AdChoices Signal. When set, it is used as-is and takes precedence over any value read from the Protect My Choices extension. |
 | `timeout` | optional | integer | Milliseconds to delay auctions while waiting for the signal from the extension. Defaults to `0` (non-blocking) so that users without the extension are not delayed. Set a positive value to delay the first auction until the signal is read or the timeout elapses. |
 
@@ -100,6 +100,6 @@ gulp build --modules=adChoices
 
 ## Related reading
 
-- [AdChoices Signal Specification](https://github.com/Digital-Advertising-Alliance/DAA-Choice-Tools/blob/main/AdChoices%20Signal/AdChoices%20Signal%20Specification.md)
-- [Protect My Choices Overview](https://github.com/Digital-Advertising-Alliance/DAA-Choice-Tools/blob/main/Protect%20My%20Choices/PMC2%20Overview.md)
-- [Protect My Choices Vendor Implementation](https://github.com/Digital-Advertising-Alliance/DAA-Choice-Tools/blob/main/Protect%20My%20Choices/PMC2%20Vendor%20Implementation.md)
+* [AdChoices Signal Specification](https://github.com/Digital-Advertising-Alliance/DAA-Choice-Tools/blob/main/AdChoices%20Signal/AdChoices%20Signal%20Specification.md)
+* [Protect My Choices Overview](https://github.com/Digital-Advertising-Alliance/DAA-Choice-Tools/blob/main/Protect%20My%20Choices/PMC2%20Overview.md)
+* [Protect My Choices Vendor Implementation](https://github.com/Digital-Advertising-Alliance/DAA-Choice-Tools/blob/main/Protect%20My%20Choices/PMC2%20Vendor%20Implementation.md)
