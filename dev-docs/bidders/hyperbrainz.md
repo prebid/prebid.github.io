@@ -3,17 +3,29 @@ layout: bidder
 title: HyperBrainz
 description: Prebid.js HyperBrainz Bid Adapter
 biddercode: hyperbrainz
-media_types: banner, video, native
-gdpr_supported: true
+tcfeu_supported: false
+gvl_id: none
+dsa_supported: false
 usp_supported: true
-gpp_supported: true
 coppa_supported: true
+gpp_sids: usnat, usstate_all, usp
 schain_supported: true
-floors_supported: true
+dchain_supported: false
 userIds: all
+media_types: banner, video, native
+safeframes_ok: true
+deals_supported: false
+floors_supported: true
+fpd_supported: true
 pbjs: true
 pbs: false
+pbs_app_supported: false
+prebid_member: false
+multiformat_supported: will-bid-on-any
+ortb_blocking_supported: false
+privacy_sandbox: no
 maintainer_email: it@hyperbrainz.com
+sidebarType: 1
 ---
 
 ## Note
