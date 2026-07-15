@@ -1,11 +1,12 @@
 ---
 layout: bidder
-title: AdSmartX
-description: Prebid.js bidder adapter for AdSmartX
-biddercode: adsmartx
+title: AgenticX
+description: Prebid.js bidder adapter for AgenticX
+biddercode: agenticx
 media_types:
   - banner
   - video
+  - audio
 gdpr_supported: true
 usp_supported: true
 gpp_supported: true
@@ -17,7 +18,7 @@ sidebarType: 1
 
 ## Overview
 
-AdSmartX is a digital advertising platform that supports banner and video ads through its Prebid.js adapter. The adapter uses OpenRTB standards for request and response formatting.
+AgenticX is a digital advertising platform that supports banner, video & audio ads through its Prebid.js adapter. The adapter uses OpenRTB standards for request and response formatting.
 
 ## Bid Params
 
