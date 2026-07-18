@@ -4,6 +4,8 @@ title: Bidgency Group
 description: Bidgency Group Bid Adapter
 biddercode: bidgency
 tcfeu_supported: false
+gvl_id: 1403
+gpp_supported: true
 usp_supported: true
 media_types: video, native
 safeframes_ok: true
@@ -12,6 +14,8 @@ pbs: true
 pbs_app_supported: true
 floors_supported: true
 schain_supported: true
+dchain_supported: false
+deals_supported: true
 fpd_supported: true
 ortb_blocking_supported: true
 multiformat_supported: will-bid-on-one
