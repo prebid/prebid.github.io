@@ -3,6 +3,8 @@ layout: bidder
 title: Aniview
 description: Prebid Aniview Bidder Adapter
 pbjs: true
+pbs: true
+pbs_app_supported: true
 biddercode: aniview
 media_types: banner, video
 gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
@@ -18,11 +20,11 @@ sidebarType: 1
 userIds: all
 ---
 
-### Note
+## Note
 
 For more information about [Aniview Ad Server](https://www.aniview.com/), please contact <info@aniview.com>.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name             | Scope    | Description           | Example              | Type     |
