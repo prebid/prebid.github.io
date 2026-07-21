@@ -1,8 +1,8 @@
 ---
 layout: bidder
-title: msftsta
+title: msftstaila
 description: Prebid Microsoft Bidder Adaptor
-biddercode: msftsta
+biddercode: msftstaila
 aliasCode : msft
 media_types: banner, video, native
 tcfeu_supported: true
@@ -28,6 +28,12 @@ sidebarType: 1
 msftstaila is an aliased bidder of Microsoft.
 Either `placement_id` OR both `member` and `inv_code` are required.  Please don't specify all three together, it may impact delivery. 
 
+**NOTE**
+We recommend to use the “use_pmt_rule” parameter set to true, when integrating, to ensure the bidding is net.
+
+For setup with Staila Media, please reach out to prebid@stailamedia.com.
+
+
 {: .table .table-bordered .table-striped }
 
 | Name | Scope | Description | Example | Type |
@@ -43,11 +49,6 @@ Either `placement_id` OR both `member` and `inv_code` are required.  Please don'
 | `ext_inv_code` | optional | Specifies predefined value passed on the query string that can be used in reporting. The value must be entered into the system before it is logged. | `'10039'` | `string` |
 | `ext_imp_id` | optional | Specifies the unique identifier of an externally generated auction. | `'bacbab02626452b097f6030b3c89ac05'` | `string` |
 | `banner_frameworks` | optional | Array of integers listing API frameworks for Banner supported by the publisher. | `[1,2]` | `array of integers` |
-
-**NOTE**
-We recommend to use the “use_pmt_rule” parameter set to true, when integrating, to ensure the bidding is net.
-
-For setup with stailamedia, please reach out to prebid@stailamedia.com.
 
 <a name="migration-from-appnexus-bid-params"></a>
 
