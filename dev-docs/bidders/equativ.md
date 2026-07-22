@@ -12,7 +12,7 @@ gpp_sids: tcfca, tcfeu, usnat, usstate_all, usp
 schain_supported: true
 dchain_support: false
 userIds: all
-media_types: banner, video, native
+media_types: banner, video, native, audio
 safeframes_ok: true
 deals_supported: false
 floors_supported: true
@@ -100,6 +100,7 @@ pbjs.setBidderConfig({
 | `banner` | Supported |
 | `video` | Supported |
 | `native` | Supported |
+| `audio` | Supported |
 
 ## User Syncing
 
@@ -216,7 +217,7 @@ pbjs.que.push(function () {
 
 ### Outstream Video
 
-Following the setup described in the [Prebid outstream video guide](https://docs.prebid.org/dev-docs/show-outstream-video-ads.html), this adapter supports scenarios where the publisher does not provide a custom renderer. In such cases, the configuration shown below will work, and the outstream ad will be rendered using Equativ's default player.
+Following the [outstream video setup guide](https://docs.prebid.org/dev-docs/show-outstream-video-ads.html), this adapter supports scenarios where the publisher does not provide a custom renderer. In such cases, the configuration shown below will work, and the outstream ad will be rendered using Equativ's default player.
 
 ```javascript
 var adUnits = [
