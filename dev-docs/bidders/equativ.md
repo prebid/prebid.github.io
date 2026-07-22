@@ -38,9 +38,10 @@ The Equativ bidder adapter requires setup and approval from the Equativ service 
 | Name | Scope | Description | Example | Type |
 | ------ | ------- | ------------- | --------- | ------ |
 | `networkId` | required | The network identifier you have been provided with. Normally required, but there are certain conditions under which this may be omitted. _See **Bid Parameter Usage** notes below for more information_. | `1234` | `integer` |
-| `siteId` | optional | The placement site ID. _See **Bid Parameter Usage** notes below for more information_. | `1234` | `integer` |
-| `pageId` | optional | The placement page ID. _See **Bid Parameter Usage** notes below for more information_. | `1234` | `integer` |
-| `formatId` | optional | The placement format ID. _See **Bid Parameter Usage** notes below for more information_. | `1234` | `integer` |
+| `placementuuid` | optional | Placement identifier used to source inventory. Preferred way to identify inventory; forwarded as `imp.ext.bidder.plcmtuuid`. When legacy params are also supplied, all fields are forwarded and the downstream receiver decides which to use. | `'abc-123'` | `string` |
+| `siteId` | optional | **Deprecated** — use `placementuuid` instead. Kept only to support the ramp-up. The placement site ID. _See **Bid Parameter Usage** notes below for more information_. | `1234` | `integer` |
+| `pageId` | optional | **Deprecated** — use `placementuuid` instead. Kept only to support the ramp-up. The placement page ID. _See **Bid Parameter Usage** notes below for more information_. | `1234` | `integer` |
+| `formatId` | optional | **Deprecated** — use `placementuuid` instead. Kept only to support the ramp-up. The placement format ID. _See **Bid Parameter Usage** notes below for more information_. | `1234` | `integer` |
 
 ### Usage
 
@@ -61,9 +62,10 @@ var adUnits = [
         bidder: 'equativ',
         params: {
           networkId: 42, // REQUIRED
-          siteId: 142, // optional
-          pageId: 242, // optional
-          formatId: 342, // optional
+          placementuuid: 'abc-123', // optional, preferred way to identify inventory
+          siteId: 142, // optional, DEPRECATED - use placementuuid instead
+          pageId: 242, // optional, DEPRECATED - use placementuuid instead
+          formatId: 342, // optional, DEPRECATED - use placementuuid instead
         },
       },
     ],
