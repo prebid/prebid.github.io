@@ -15,7 +15,7 @@ floors_supported: true
 sidebarType: 1
 ---
 
-### Table of Contents
+## Table of Contents
 
 * [Modules](#modules)
 * [Note](#note)
@@ -26,36 +26,36 @@ sidebarType: 1
 * [Native](#native)
 * [Prebid Server Test Request](#prebid-server-test-request)
 
-### Modules
+## Modules
 
 SharedID: We need you to include SharedID module, which is used to get prebid user commonid. It can better differentiating users to bid on ads.
 
-### Note
+## Note
 
-The SuperEdge Bidding adapter requires setup before beginning. Please contact us at op@superedge.co.jp
+The SuperEdge Bidding adapter requires setup before beginning. Please contact us at <op@superedge.co.jp>
 
-### Bid Params
+## Bid Params
 
-#### Prebid.js Bid Params
-
-{: .table .table-bordered .table-striped }
-| Name       | Scope       | Description                                                                                                                                          | Example      | Type      |
-|------------|-------------|------------------------------------------------------------------------------------------------------------------------------------------------------|--------------|-----------|
-| `sk`       | required    | Publisher token, communicated by SuperEdge.                                                                                                          | `'12341235'` | `string`  |
-| `publisher`| required    | Publisher ID, communicated by SuperEdge.                                                                                                             | `'abcdefg'`  | `string`  |
-| `region`   | recommended | Server region: `US` for US, `EU` for Europe, `APAC` for Asia-Pacific. Default is `US`.                                                               | `'US'`       | `string`  |
-| `test`     | recommended | 0 (default): production env mode.<br>1: dev env mode and no charge. We will bid at higher frequency to make debug easier.                            | `1` / `0`    | `integer` |
-| `bidfloor` | recommended | Sets a floor price for the bid.                                                                                                                      | `0.05`        | `float`   |
-
-#### Prebid Server Bid Params
+### Prebid.js Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name     | Scope       | Description                                                                                          | Example      | Type     |
-|----------|-------------|------------------------------------------------------------------------------------------------------|--------------|----------|
-| `sk`     | required    | Publisher token, communicated by SuperEdge.                                                          | `'12341235'` | `string` |
-| `region` | recommended | Server region: `US` for US, `EU` for Europe, `APAC` for Asia-Pacific. Default is `US`.               | `'US'`       | `string` |
+| Name       | Scope       | Description                                                                                                       | Example      | Type      |
+|------------|-------------|-------------------------------------------------------------------------------------------------------------------|--------------|-----------|
+| `sk`       | required    | Publisher token, communicated by SuperEdge.                                                                       | `'12341235'` | `string`  |
+| `publisher`| required    | Publisher ID, communicated by SuperEdge.                                                                          | `'abcdefg'`  | `string`  |
+| `region`   | recommended | Server region: `US` for US, `EU` for Europe, `APAC` for Asia-Pacific. Default is `US`.                            | `'US'`       | `string`  |
+| `test`     | recommended | 0 (default): production env mode.<br>1: dev env mode and no charge. We will bid at higher frequency to make debug easier. | `1` / `0`    | `integer` |
+| `bidfloor` | recommended | Sets a floor price for the bid.                                                                                   | `0.05`        | `float`   |
 
-### Banner
+### Prebid Server Bid Params
+
+{: .table .table-bordered .table-striped }
+| Name     | Scope       | Description                                                                        | Example      | Type     |
+|----------|-------------|------------------------------------------------------------------------------------|--------------|----------|
+| `sk`     | required    | Publisher token, communicated by SuperEdge.                                        | `'12341235'` | `string` |
+| `region` | recommended | Server region: `US` for US, `EU` for Europe, `APAC` for Asia-Pacific. Default is `US`. | `'US'`       | `string` |
+
+## Banner
 
 ```javascript
 var adUnits = [{
@@ -81,7 +81,7 @@ var adUnits = [{
 }];
 ```
 
-### Native
+## Native
 
 ```javascript
 var adUnits = [{
@@ -135,7 +135,7 @@ var adUnits = [{
 }];
 ```
 
-### Prebid Server Test Request
+## Prebid Server Test Request
 
 The following test parameters can be used to verify that Prebid Server is working properly with the
 server-side SuperEdge adapter.
