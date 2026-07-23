@@ -16,7 +16,7 @@ sidebarType: 1
 
 Module Name: Unicorn Rtd Provider
 Module Type: Rtd Provider
-Maintainer: service+prebid.js@bulbit.jp
+Maintainer: <service+prebid.js@bulbit.jp>
 
 This RTD module measures, for each ad slot, its on-screen position and
 viewability (visible area ratio) on the client before the auction starts, and
