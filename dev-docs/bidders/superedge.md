@@ -39,21 +39,21 @@ The SuperEdge Bidding adapter requires setup before beginning. Please contact us
 ### Prebid.js Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name       | Scope       | Description                                                                                                       | Example      | Type      |
-|------------|-------------|-------------------------------------------------------------------------------------------------------------------|--------------|-----------|
-| `sk`       | required    | Publisher token, communicated by SuperEdge.                                                                       | `'12341235'` | `string`  |
-| `publisher`| required    | Publisher ID, communicated by SuperEdge.                                                                          | `'abcdefg'`  | `string`  |
-| `region`   | recommended | Server region: `US` for US, `EU` for Europe, `APAC` for Asia-Pacific. Default is `US`.                            | `'US'`       | `string`  |
-| `test`     | recommended | 0 (default): production env mode.<br>1: dev env mode and no charge. We will bid at higher frequency to make debug easier. | `1` / `0`    | `integer` |
-| `bidfloor` | recommended | Sets a floor price for the bid.                                                                                   | `0.05`        | `float`   |
+|-------------|-------------|-------------------------------------------------------------------------------------------------|--------------|-----------|
+| Name        | Scope       | Description                                                                                     | Example      | Type      |
+| `sk`        | required    | Publisher token, communicated by SuperEdge.                                                     | `'12341235'` | `string`  |
+| `publisher` | required    | Publisher ID, communicated by SuperEdge.                                                        | `'abcdefg'`  | `string`  |
+| `region`    | recommended | Server region: `US`, `EU` or `APAC`. Default is `US`.                                           | `'US'`       | `string`  |
+| `test`      | recommended | 0 (default): production mode.<br>1: dev mode, no charge, higher bid frequency for easier debug. | `1` / `0`    | `integer` |
+| `bidfloor`  | recommended | Sets a floor price for the bid.                                                                 | `0.05`       | `float`   |
 
 ### Prebid Server Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name     | Scope       | Description                                                                        | Example      | Type     |
-|----------|-------------|------------------------------------------------------------------------------------|--------------|----------|
-| `sk`     | required    | Publisher token, communicated by SuperEdge.                                        | `'12341235'` | `string` |
-| `region` | recommended | Server region: `US` for US, `EU` for Europe, `APAC` for Asia-Pacific. Default is `US`. | `'US'`       | `string` |
+|----------|-------------|-------------------------------------------------------|--------------|----------|
+| Name     | Scope       | Description                                           | Example      | Type     |
+| `sk`     | required    | Publisher token, communicated by SuperEdge.           | `'12341235'` | `string` |
+| `region` | recommended | Server region: `US`, `EU` or `APAC`. Default is `US`. | `'US'`       | `string` |
 
 ## Banner
 
