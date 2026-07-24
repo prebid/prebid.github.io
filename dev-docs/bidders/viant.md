@@ -2,8 +2,7 @@
 layout: bidder
 title: Viant
 description: Prebid Viant Bidder Adapter
-biddercode: viantOrtb
-aliasCode: viant
+biddercode: viant
 media_types: banner, video, native
 tcfeu_supported: false
 coppa_supported: true
