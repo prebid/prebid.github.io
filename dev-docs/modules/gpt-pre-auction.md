@@ -21,22 +21,16 @@ sidebarType : 1
 
 This module enables bidder targeting and tracking at the ad server ad slot level.
 
-This module is enabled by default if it's compiled into your PBJS package. It will add the [Prebid Ad Slot and GPID](/features/pbAdSlot.html) along with the matching GAM ad unit name to each ad unit's first-party data before bid requests are sent to the adapters.
+This module is enabled by default if it's compiled into your PBJS package. It will add the [GPID](/features/pbAdSlot.html#the-gpid) along with the matching GAM ad unit name to each ad unit's first-party data before bid requests are sent to the adapters.
 
 * **Prebid.js Adapters** - will be able to utilize these values as:
   * AdUnit.ortb2Imp.ext.gpid="/1111/home-left"
   * AdUnit.ortb2Imp.ext.data.adserver.name="gam"
   * AdUnit.ortb2Imp.ext.data.adserver.adslot="/1111/home"
-  * AdUnit.ortb2Imp.ext.data.pbadslot="/1111/home-left"
 * **Prebid Server Adapters** - will see the OpenRTB as:
   * imp[].ext.gpid
   * imp[].ext.data.adserver.name
   * imp[].ext.data.adserver.adslot
-  * imp[].ext.data.pbadslot
-
-{: .alert.alert-info :}
-The Prebid Ad Slot didn't get broad adoption, so it's likely that
-someday we'll deprecate it in favor of the more standard GPID.
 
 ## Configuration
 
@@ -49,10 +43,8 @@ Optional initialization parameters:
 {: .table .table-bordered .table-striped }
 | Param | Required? | Type | Description | Example |
 | enabled | no | boolean | allows turning off of module. Default value is true | true |
-| customGptSlotMatching | no | function | REMOVED in 11.0; use [customGptSlotMatching](/dev-docs/publisher-api-reference/setConfig.html#customGptSlotMatching) instead. GPT slot matching function should match the customSlotMatching function sent to [setTargetingForGptAsync](/dev-docs/publisher-api-reference/setTargetingForGPTAsync.html) | |
-| useDefaultPreAuction | no | boolean | (PBJS 6.5+) If true, use default behavior for determining GPID and PbAdSlot. Defaults to false. | true |
-| customPreAuction | no | function | (PBJS 6.5+) Custom function for defining the GPID and PbAdSlot. | |
-| customPbAdSlot | no | function | Custom PB AdSlot function. (Note, this function will be deprecated in the future.) | |
+| useDefaultPreAuction | no | boolean | If true, use default behavior for determining GPID. Defaults to true. | true |
+| customPreAuction | no | function | Custom function for defining the GPID. | |
 | mcmEnabled | no | boolean | Removes extra network IDs when Multiple Customer Management is active. Default is false. | true |
 
 For example:
@@ -61,14 +53,10 @@ For example:
 pbjs.setConfig({
     gptPreAuction: {
     enabled: true, // enabled by default
-    useDefaultPreAuction: false,
-    customPreAuction: function(adUnit, adServerAdSlot) {
+    useDefaultPreAuction: true,
+    customPreAuction: function(adUnit, adServerAdSlot, gptAdUnitPath) {
         ...
-        return "customPbAdSlot";
-    },
-    customGptSlotMatching: function(gptSlotObj) {
-        ...
-        return true; // or false
+        return "customGpid";
     },
     mcmEnabled: true
     }
@@ -80,7 +68,7 @@ pbjs.setConfig({
 When this module is turned on, it uses the BEFORE_REQUEST_BIDS event to insert functionality that:
 
 * loops through each adunit in the auction
-* maps the PBJS adunit to the GPT slot using the same algorithm as setTargetingForGPTAsync including customGptSlotMatching
+* maps the PBJS adunit to the GPT slot using the same algorithm as setTargetingForGPTAsync including the customGptSlotMatching configuration
 
 ### Defining the AdServer name and adslot
 
@@ -89,31 +77,22 @@ If GPT slot matching succeeds:
 * it sets the Adunit ortb2Imp.ext.data.adserver.name to 'gam'
 * it copies the resulting GPT slot name to ortb2Imp.ext.data.adserver.adslot
 
-### Defining PbAdSlot and GPID
+### Defining GPID
 
-Here's what the module does to define these values:
+Here's what the module does to define GPID:
 
 1. If AdUnit.ortb2Imp.ext.gpid already exists, use that for GPID.
-1. If AdUnit.ortb2Imp.ext.data.pbadslot already exists, use that for PbAdSlot.
-1. Otherwise, if a customPreAuction function is specified, run that. If the result isn't empty, place it in pbAdSlot and GPID.
-1. Otherwise, if useDefaultPreAuction is true, run the default logic and place the return value in both pbAdSlot and GPID
-    1. If ortb2Imp.ext.data.pbadslot is specified, use that.
-    1. If ortb2Imp.ext.gpid is specified, use that.
-    1. If GPT isn't in the page, give up.
-    1. Query GPT slots with the adunit.code
+1. Otherwise, if a customPreAuction function is specified, run that. If the result isn't empty, place it in GPID.
+1. Otherwise, if useDefaultPreAuction is true, run the default logic and place the return value in GPID:
+    1. If GPT isn't on the page, give up.
+    1. Query GPT slots that match the ad unit's GPT ad unit path.
     1. If there aren't any, give up.
-    1. If there's just one, use that slot name as the GPID
-    1. If there's more than on slot with the same name, append the div-id
-1. Otherwise, if a customPbAdSlot function is specified and the result is not empty, place it in pbAdSlot and GPID.
-1. Otherwise, if the AdUnit.code matched one or more GAM AdSlots, use that for both PbAdSlot and GPID
-1. Otherwise use the AdUnit.code for PbAdSlot.
+    1. If there's just one, use that slot name as the GPID.
+    1. If there's more than one slot with the same name, append the div-id.
 
-## Example customPbAdSlot function
+## Example customPreAuction function
 
-{: .alert.alert-info :}
-In PBJS 6.5 and later, we recommend using the useDefaultPreAuction flag or the customPreAuction function.
-
-The following customPbAdSlot function will work for many publishers. Assumptions:
+The following customPreAuction function will work for many publishers. Assumptions:
 
 * AdUnits have been registered with [pbjs.addAdUnits](/dev-docs/publisher-api-reference/addAdUnits.html).
 * AdUnit.code is either the GPT slot name or the div-id.
@@ -122,42 +101,30 @@ The following customPbAdSlot function will work for many publishers. Assumptions
 If either of these isn't the case, you'll need to supply your own function.
 
 ```javascript
-// Use adunit.ortb2Imp.ext.data.pbadslot if it exists.
-// compare adunit.code to find a single matching slot in GPT
-// if there is a single slot match, just use that slot name
-// finally, there must be multiple slots that match. Define pbadslot as slot#div
-
 pbjs.setConfig({
     gptPreAuction: {
         enabled: true, // enabled by default
-        customPbAdSlot: function(adUnitCode, adServerAdSlot) {
-            // get adunit object
-            au=pbjs.adUnits.filter(au => au.code==adUnitCode);
-            if (au.length==0) {
-                return;
-            }
-
-            // use pbadslot if supplied
-            if (au[0].ort2bImp && au[0].ort2bImp.ext && au[0].ort2bImp.ext.data && au[0].ort2bImp.ext.data.pbadslot) {
-                return au[0].ort2bImp.ext.data.pbadslot;
-            }
-
+        customPreAuction: function(adUnit, adServerAdSlot, gptAdUnitPath) {
             // confirm that GPT is set up
             if (!(googletag && googletag.apiReady)) {
                 return;
             }
+
             // find all GPT slots with this name
             var gptSlots = googletag.pubads().getSlots().filter(function(gpt) {
-                return gpt.getAdUnitPath() == adServerAdSlot;
+                return gpt.getAdUnitPath() == gptAdUnitPath;
             });
+
             if (gptSlots.length==0) {
                 return;  // should never happen
             }
+
             if (gptSlots.length==1) {
                 return adServerAdSlot;
             }
+
             // else the adunit code must be div id. append it.
-            return adServerAdSlot+"#"+adUnitCode;
+            return adServerAdSlot+"#"+adUnit.code;
         }
     }
 });
@@ -165,4 +132,4 @@ pbjs.setConfig({
 
 # Further Reading
 
-* [Prebid Ad Slot and GPID](/features/pbAdSlot.html)
+* [GPID](/features/pbAdSlot.html#the-gpid)
