@@ -4,6 +4,7 @@ title: Sportplatz Media
 description: Prebid spm Bidder Adapter
 pbjs: true
 biddercode: spm
+aliasCode: nexx360
 gvl_id: 965
 tcfeu_supported: true
 usp_supported: true

@@ -5,6 +5,7 @@ description: Prebid Glomex Bidder Adapter
 pbjs: true
 pbs: true
 biddercode: glomexbidder
+aliasCode: nexx360
 gvl_id: 967
 tcfeu_supported: true
 usp_supported: true
