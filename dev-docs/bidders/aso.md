@@ -55,7 +55,7 @@ For more information about [Adserver.Online](https://adserver.online), please co
 }
 ```
 
-#### Video Caching
+### Video Caching
 
 Note that the Adserver.Online adapter expects a client-side Prebid Cache to be enabled for video bidding.
 

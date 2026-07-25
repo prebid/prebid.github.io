@@ -35,7 +35,7 @@ The Bidgency Group adapter requires approval and setup. Please reach out to <aso
 | `server`      | required | Server endpoint  | `https://srv.bidgx.com`     | `String`  |
 | `zone`        | required | Zone ID          | `73815`                     | `Integer` |
 
-#### Video Caching
+### Video Caching
 
 Note that the Bidgency Group adapter expects a client-side Prebid Cache to be enabled for video bidding.
 

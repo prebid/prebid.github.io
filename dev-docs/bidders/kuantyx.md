@@ -35,7 +35,7 @@ The Kuantyx adapter requires approval and setup. Please reach out to <ssp@kuanty
 | `server`      | required | Server endpoint  | `https://srv.kntxy.com`     | `String`  |
 | `zone`        | required | Zone ID          | `73815`                     | `Integer` |
 
-#### Video Caching
+### Video Caching
 
 Note that the Kuantyx adapter expects a client-side Prebid Cache to be enabled for video bidding.
 
