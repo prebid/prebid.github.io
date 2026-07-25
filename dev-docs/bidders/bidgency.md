@@ -23,11 +23,12 @@ userIds: all
 sidebarType: 1
 aliasCode: aso
 ---
-### Note
+
+## About
 
 The Bidgency Group adapter requires approval and setup. Please reach out to <aso@bidgency.com> or visit us at [bidgency.com](https://bidgency.com) for more details.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description      | Example                     | Type      |
@@ -35,7 +36,7 @@ The Bidgency Group adapter requires approval and setup. Please reach out to <aso
 | `server`      | required | Server endpoint  | `https://srv.bidgx.com`     | `String`  |
 | `zone`        | required | Zone ID          | `73815`                     | `Integer` |
 
-### Video Caching
+## Video Caching
 
 Note that the Bidgency Group adapter expects a client-side Prebid Cache to be enabled for video bidding.
 
