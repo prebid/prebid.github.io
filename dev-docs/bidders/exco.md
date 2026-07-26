@@ -3,7 +3,6 @@ layout: bidder
 title: EX.CO
 description: Prebid EX.CO Bidder Adaptor
 biddercode: exco
-filename: excoBidAdapter
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 tcfeu_supported: true
 gvl_id: 444
