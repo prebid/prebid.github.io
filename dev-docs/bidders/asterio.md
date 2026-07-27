@@ -5,7 +5,7 @@ description: Prebid Asterio Bidder Adapter
 biddercode: asterio
 pbjs: true
 pbs: false
-media_types: banner, video
+media_types: banner, video, native
 tcfeu_supported: false
 dsa_supported: false
 gvl_id: none
@@ -67,6 +67,25 @@ var adUnits = [{
       playbackmethod: [2],
       plcmt: 4
     }
+  },
+  bids: [{
+    bidder: 'asterio',
+    params: {
+      adUnitToken: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+    }
+  }]
+}];
+```
+
+## Native Test Ad Unit
+
+Asterio uses `adUnitToken` to resolve the ad unit and format. For native ad units, include `mediaTypes.native` and render the returned native assets in the publisher layout. See the [Prebid Native Implementation Guide](/prebid/native-implementation.html) for rendering options.
+
+```javascript
+var adUnits = [{
+  code: 'test-native',
+  mediaTypes: {
+    native: {}
   },
   bids: [{
     bidder: 'asterio',

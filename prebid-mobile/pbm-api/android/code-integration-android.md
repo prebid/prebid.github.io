@@ -313,7 +313,7 @@ PrebidMobile.setStoredAuctionResponse("response-prebid-banner-320-50")
 Stored Bid Responses are similar to Stored Auction Responses in that they signal to Prebid Server to respond with a static pre-defined response, except Stored Bid Responses is done at the bidder level, with bid requests sent out for any bidders not specified in the bidder parameter. For more information on how stored auction responses work, refer to the written [description on github issue 133](https://github.com/prebid/prebid-mobile-android/issues/133).
 
 ```kotlin
-PrebidMobile.addStoredBidResponse("appnexus", "221144");
+PrebidMobile.addStoredBidResponse("msft", "221144");
 PrebidMobile.addStoredBidResponse("rubicon", "221155");
 ```
 

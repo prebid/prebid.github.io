@@ -44,7 +44,7 @@ pbjs.setConfig({
       name: 'permutive',
       waitForIt: true, // should be true if there's an `auctionDelay`
       params: {
-        acBidders: ['appnexus']
+        acBidders: ['msft']
       }
     }]
   },

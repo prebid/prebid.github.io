@@ -33,7 +33,7 @@ This function returns the bid responses at the given moment.
 | `creativeId`     | String  | Bidder-specific creative ID | `"12345678"` |
 | `mediaType`  | String  | One of: banner, native, video | `banner` |
 | `dealId`            | String  | (Optional) If the bid is [associated with a Deal]({{site.baseurl}}/adops/deals.html), this field contains the deal ID.          |                                                 "ABC_123" |
-| `adserverTargeting`  | Object  | Contains all the adserver targeting parameters | `{ "hb_bidder": "appnexus", "hb_adid": "7a53a9d3" }` |
+| `adserverTargeting`  | Object  | Contains all the adserver targeting parameters | `{ "hb_bidder": "msft", "hb_adid": "7a53a9d3" }` |
 | `native`  | Object  | Contains native key value pairs. | `{ "title": "", "body": "" }` |
 | `status`  | String  | Status of the bid. Possible values: targetingSet, rendered | `"targetingSet"` |
 | `ttl`  | Integer  | How long (in seconds) this bid is considered valid. See this [FAQ entry]({{site.github.url}}/dev-docs/faq.html#does-prebidjs-cache-bids) for more info. | `300` |
@@ -70,7 +70,7 @@ This function returns the bid responses at the given moment.
 {
   "/9968336/header-bid-tag-0":  [
       {
-        "bidderCode": "appnexus",
+        "bidderCode": "msft",
         "width": 300,
         "height": 250,
         "adId": "7a53a9d3",
@@ -81,11 +81,11 @@ This function returns the bid responses at the given moment.
         "responseTimestamp": 1444844944180,
         "timeToRespond": 85,
         "adUnitCode": "/19968336/header-bid-tag-0",
-        "bidder": "appnexus",
+        "bidder": "msft",
         "usesGenericKeys": true,
         "size": "300x250",
         "adserverTargeting": {
-          "hb_bidder": "appnexus",
+          "hb_bidder": "msft",
           "hb_adid": "7a53a9d3",
           "hb_pb": "0.50"
         }
@@ -203,7 +203,7 @@ This function returns the bid responses at the given moment.
             "pbCg" : "",
             "adUnitCode" : "div-banner-outstream-native",
             "size" : "0x0",
-            "bidder" : "appnexus",
+            "bidder" : "msft",
             "pbAg" : "10.00",
             "adId" : "473965c9df19d2",
             "adserverTargeting" : {
@@ -213,7 +213,7 @@ This function returns the bid responses at the given moment.
                 "hb_adid" : "473965c9df19d2",
                 "hb_pb" : "10.00",
                 "hb_source" : "client",
-                "hb_bidder" : "appnexus",
+                "hb_bidder" : "msft",
                 "hb_native_image" : "https://vcdn.adnxs.com/p/creative-image/9e/26/5f/b2/9e265fb2-50c8-43f0-88ef-a5a48a9d0dcf.jpg",
                 "hb_size" : "0x0",
                 "hb_mediatype" : "native",
@@ -244,7 +244,7 @@ This function returns the bid responses at the given moment.
             },
             "timeToRespond" : 143,
             "mediaType" : "native",
-            "bidderCode" : "appnexus",
+            "bidderCode" : "msft",
             "source" : "client",
             "auctionId" : "1338a6fb-e514-48fc-8db6-872ddf3babdb",
             "responseTimestamp" : 1516315716205,

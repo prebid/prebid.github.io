@@ -68,8 +68,8 @@ but we recommend migrating to the new config structure as soon as possible.
 | gdpr | `Object` | | |
 | gdpr.enabled | `boolean` | Enables or disables the TCF consent management module. When set to `false`, Prebid does not initialize the CMP integration, does not delay auctions for consent, removes any active CMP event listeners. Defaults to `true` if not specified. | `false` |
 | gdpr.cmpApi | `string` | The CMP interface that is in use. Supported values are **'iab'** or **'static'**. Static allows integrations where IAB-formatted consent strings are provided in a non-standard way. Default is `'iab'`. | `'iab'` |
-| gdpr.timeout | `integer` | Length of time (in milliseconds) to allow the CMP to obtain the GDPR consent string. Default is `10000`. | `10000` |
-| gdpr.actionTimeout | `integer` | Length of time (in milliseconds) to allow the user to take action to consent if they have not already done so. The actionTimer first waits for the CMP to load, then the actionTimeout begins for the specified duration. Default is `undefined`. | `10000` |
+| gdpr.timeout | `integer` | Length of time (in milliseconds) to allow an already-discovered CMP interface to obtain the GDPR consent string. This timer does not wait for a missing IAB CMP API/stub/locator to appear; if no CMP interface is found when Prebid checks for one, the CMP lookup fails immediately. Default is `10000`. | `10000` |
+| gdpr.actionTimeout | `integer` | Length of time (in milliseconds) to allow the user to take action to consent if they have not already done so. The action timer begins after the already-discovered CMP returns an initial/provisional response indicating that user action is still needed. Default is `undefined`. | `10000` |
 | gdpr.defaultGdprScope | `boolean` | Defines what the `gdprApplies` flag should be when the CMP doesn't respond in time or the static data doesn't supply. Defaults to `false`. | `true` |
 | gdpr.consentData | `Object` | An object representing the GDPR consent data being passed directly; only used when cmpApi is 'static'. Default is `undefined`. | |
 | gpdr.dsaPlatform | `boolean` | If true, indicates that the publisher is to be considered an "Online Platform" for the purposes of the [Digital Services Act](https://digital-strategy.ec.europa.eu/en/policies/digital-services-act-package) | |  
@@ -93,7 +93,9 @@ A related parameter is `deviceAccess`, which is at the global level of Prebid.js
 
 ### TCF v2.x Examples
 
-Example 1: IAB CMP using custom timeout and setting GDPR in-scope by default.
+For the IAB CMP examples below, Prebid must be able to discover the CMP API/stub/locator when it checks for one. The `timeout` setting limits how long Prebid waits for that already-discovered CMP interface to return consent data; it is not a polling period for a missing CMP interface to appear.
+
+Example 1: IAB CMP using custom timeout for a discoverable CMP interface and setting GDPR in-scope by default.
 
 ```javascript
      var pbjs = pbjs || {};
@@ -111,7 +113,7 @@ Example 1: IAB CMP using custom timeout and setting GDPR in-scope by default.
      });
 ```
 
-Example 2: IAB CMP using custom timeout in combination with actionTimeout and setting GDPR in-scope by default. The following will wait `500ms` for the CMP to load, if it does an additional `10000ms` will be waited for a user to provide consent (if none had yet been provided).
+Example 2: IAB CMP using custom timeout in combination with actionTimeout and setting GDPR in-scope by default. For a discoverable CMP interface, the following waits up to `500ms` for an initial usable CMP response. If that response indicates that user consent is still pending, Prebid then waits up to an additional `10000ms` for the user to provide consent. If no CMP API/stub/locator is discoverable when Prebid checks for it, Prebid does not wait `500ms` for one to appear; the CMP lookup fails immediately.
 
 ```javascript
      var pbjs = pbjs || {};
@@ -308,7 +310,7 @@ At a high level, this could be done as follows:
 2. If SafeFrames are in use, build a message receiver function.
 3. Format consent data in a string according to the [IAB standard](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework).
 
-Below is sample code for implementing the stub functions. Sample code for formatting the consent string can be obtained [here](https://github.com/appnexus/cmp).
+Below is sample code for implementing the stub functions. Sample code for formatting the consent string can be obtained from the [AppNexus CMP repository](https://github.com/appnexus/cmp).
 
 ```javascript
 var iabConsentData;  // build the IAB consent string

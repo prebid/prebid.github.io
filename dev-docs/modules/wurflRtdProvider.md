@@ -100,7 +100,7 @@ While the WURFL RTD module enriches the OpenRTB 2.0 payload, SSP adapters must a
 To build the WURFL RTD module with Prebid.js:
 
 ```bash
-gulp build --modules="wurflRtdProvider,appnexusBidAdapter,..."
+gulp build --modules="wurflRtdProvider,msftBidAdapter,..."
 ```
 
 ## Configuration
@@ -137,7 +137,7 @@ pbjs.setConfig({
 To test the WURFL RTD module locally:
 
 ```bash
-gulp serve --modules=wurflRtdProvider,appnexusBidAdapter
+gulp serve --modules=wurflRtdProvider,msftBidAdapter
 ```
 
 Then navigate to:
