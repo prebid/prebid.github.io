@@ -82,13 +82,15 @@ If GPT slot matching succeeds:
 Here's what the module does to define GPID:
 
 1. If AdUnit.ortb2Imp.ext.gpid already exists, use that for GPID.
-1. Otherwise, if a customPreAuction function is specified, run that. If the result isn't empty, place it in GPID.
-1. Otherwise, if useDefaultPreAuction is true, run the default logic and place the return value in GPID:
+1. Otherwise, if a customPreAuction function is specified, run that. If the result isn't empty, place it in GPID. If the result is empty, no value is placed in GPID and the logic below is not executed.
+1. If a customPreAuction is not specified, if useDefaultPreAuction is true, run the default logic and place the return value in GPID:
     1. If GPT isn't on the page, give up.
     1. Query GPT slots that match the ad unit's GPT ad unit path.
     1. If there aren't any, give up.
     1. If there's just one, use that slot name as the GPID.
     1. If there's more than one slot with the same name, append the div-id.
+
+See the [Prebid.js implementation](https://github.com/prebid/Prebid.js/blob/87e112b1d12b51485a69027422ee18de2b834bfc/modules/gptPreAuction.ts#L142-L152), where `customPreAuction` and `useDefaultPreAuction` are handled as mutually exclusive branches.
 
 ## Example customPreAuction function
 
