@@ -62,7 +62,7 @@ For onboarding and production credentials, contact your Native Agents account re
 # Supported Features
 
 | Feature | Supported |
-|----------|-----------|
+| ---------- | ----------- |
 | Banner | ✓ |
 | Native | ✓ |
 | Video (Instream & Outstream) | ✓ |
@@ -83,10 +83,10 @@ Do **not** provide both.
 
 {: .table .table-bordered .table-striped }
 
-| Name | Required | Description | Type | Example |
-|------|----------|-------------|------|---------|
-| placementId | No* | Unique identifier for a Placement configured within the Native Agents platform. | String | `"100001"` |
-| endpointId | No* | Unique identifier for an Endpoint configured for your account. | String | `"200001"` |
+| Name        | Required | Description                                                                     | Type   | Example    |
+|-------------|----------|---------------------------------------------------------------------------------|--------|------------|
+| placementId | No*      | Unique identifier for a Placement configured within the Native Agents platform. | String | `"100001"` |
+| endpointId  | No*      | Unique identifier for an Endpoint configured for your account.                  | String | `"200001"` |
 
 \*One of `placementId` or `endpointId` is required.
 
@@ -249,7 +249,7 @@ The Native Agents bidder returns creatives compatible with standard Prebid rende
 Supported creative formats include:
 
 | Media Type | Response |
-|------------|----------|
+| ------------ | ---------- |
 | Banner | HTML Markup |
 | Native | OpenRTB Native Assets |
 | Video (Instream & Outstream) | VAST XML / VAST URL |
