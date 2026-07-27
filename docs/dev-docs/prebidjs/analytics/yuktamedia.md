@@ -1,5 +1,4 @@
 --- 
-layout: analytics
 title: YuktaMedia
 description: YuktaMedia Analytics Adapter
 modulecode: yuktamedia

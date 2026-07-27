@@ -1,5 +1,4 @@
 ---
-layout: page_v2
 title: Adagio Rtd Module
 display_name: Adagio Rtd Module
 description: The Adagio Rtd module computes and collects data required to leverage Adagio viewability and attention prediction engine.

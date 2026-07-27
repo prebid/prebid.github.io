@@ -1,5 +1,4 @@
 ---
-layout: page_v2
 title: All Prebid Training Video
 description: Directory of Prebid Video Overviews
 sidebarType: 0

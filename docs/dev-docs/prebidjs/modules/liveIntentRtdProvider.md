@@ -1,5 +1,4 @@
 ---
-layout: page_v2
 title: LiveIntent RTD Module
 display_name: LiveIntent RTD Module
 description: LiveIntent Real Time Data Module
