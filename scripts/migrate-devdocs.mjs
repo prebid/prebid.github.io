@@ -84,7 +84,10 @@ const INLINE_ALERT_MAP = {
 // ── Transformation functions ────────────────────────────────────────────────
 
 function splitFrontmatter(content) {
-  const match = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+  // Tolerate CRLF: several Jekyll sources are committed with \r\n terminators, and an
+  // LF-only delimiter match silently fell through to hasFrontmatter:false — which skipped
+  // cleanFrontmatter, leaking layout:/sidebarType: into the output on every CRLF file.
+  const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
   if (!match) return { frontmatter: '', body: content, hasFrontmatter: false };
   return { frontmatter: match[1], body: match[2], hasFrontmatter: true };
 }
@@ -97,15 +100,23 @@ function joinFrontmatter(frontmatter, body) {
 /** Stage 1: Remove Jekyll-specific frontmatter lines */
 function cleanFrontmatter(frontmatter, stats) {
   const removeKeys = ['layout', 'sidebarType', 'left_nav_override', 'top_nav_section', 'nav_section'];
-  const lines = frontmatter.split('\n');
+  const lines = frontmatter.split(/\r?\n/);
   const cleaned = [];
   let inMultilineValue = false;
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
-    // Check if this line starts a key we want to remove
-    const keyMatch = line.match(/^(\w[\w_-]*):/);
+    // Check if this line starts a key we want to remove (capture the value too)
+    const keyMatch = line.match(/^(\w[\w_-]*):\s*(.*)$/);
     if (keyMatch && removeKeys.includes(keyMatch[1])) {
+      // EXCEPTION: `layout: bidder` is load-bearing — _plugins/toc-plugin.ts reads it to
+      // generate bidders.json. Keep it until the BidderMetaData component replaces that
+      // dependency (per Muki); every other layout: value is Jekyll-only and gets stripped.
+      if (keyMatch[1] === 'layout' && keyMatch[2].trim() === 'bidder') {
+        cleaned.push(line);
+        inMultilineValue = false;
+        continue;
+      }
       stats.frontmatterLinesRemoved++;
       // Check if the value continues on next lines (multiline YAML)
       // Simple heuristic: next line starts with spaces but not a new key
