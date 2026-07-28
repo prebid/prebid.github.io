@@ -26,3 +26,15 @@ The Yaleo Bidding adapter requires setup before beginning. Please contact us at 
 | `placementId` | required | Yaleo placement identifier.                                                          |`460a301d-a9f7-4104-b55f-2a3d4674a973`|`string`|
 | `memberId`    | optional | Member identifier.                                                                   |`12345`.                              |`number`|
 | `maxCpm`      | optional | Maximum CPM value. Bids with a CPM higher than the specified value will be rejected. |`2.5`                                 |`number`|
+
+### Configuration
+
+The bidder endpoint can be overridden via global configuration (defaults to the production endpoint). This is primarily useful for testing against a non-production environment.
+
+```javascript
+pbjs.setConfig({
+  yaleo: {
+    endpoint: 'https://bidder.example.com/prebid'
+  }
+});
+```
