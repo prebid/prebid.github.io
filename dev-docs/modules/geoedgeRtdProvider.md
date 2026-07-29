@@ -59,14 +59,14 @@ pbjs.setConfig({
 Parameters details:
 
 {: .table .table-bordered .table-striped }
-|Name |Type |Description |Notes |
-| :------------ | :------------ | :------------ |:------------ |
-|name | String | Real time data module name |Required, always 'geoedge' |
-|params | Object | | |
-|params.key | String | Customer key |Required, contact Geoedge to get your key |
-|params.bidders | Object | Bidders to monitor |Optional, list of bidder to include / exclude from monitoring. Omitting this will monitor bids from all bidders. |
-|params.wap |Boolean |Wrap after preload |Optional, defaults to `false`. Set to `true` if you want to monitor only after the module has preloaded the monitoring client. |
-|params.outstream |Boolean |Monitor outstream video |Optional, defaults to `false`. Set to `true` to extend monitoring to outstream video bids. See [Outstream video](#outstream-video) below. |
+| Name | Type | Description | Notes |
+| :------------ | :------------ | :------------ | :------------ |
+| name | String | Real time data module name | Required, always 'geoedge' |
+| params | Object | | |
+| params.key | String | Customer key | Required, contact Geoedge to get your key |
+| params.bidders | Object | Bidders to monitor | Optional, list of bidder to include / exclude from monitoring. Omitting this will monitor bids from all bidders. |
+| params.wap | Boolean | Wrap after preload | Optional, defaults to `false`. Set to `true` if you want to monitor only after the module has preloaded the monitoring client. |
+| params.outstream | Boolean | Monitor outstream video | Optional, defaults to `false`. Set to `true` to extend monitoring to outstream video bids. See [Outstream video](#outstream-video) below. |
 
 ## Outstream video
 
