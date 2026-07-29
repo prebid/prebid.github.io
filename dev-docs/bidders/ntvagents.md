@@ -38,8 +38,6 @@ The adapter supports:
 
 Native Agents receives bid requests from Prebid, converts them into OpenRTB requests, executes an auction across eligible demand partners, and returns the highest qualifying bid to Prebid.
 
----
-
 # Registration
 
 Before integrating the Native Agents bidder, your inventory must be configured within the Native Agents platform.
@@ -57,24 +55,6 @@ Only **one** identifier is required when configuring the bidder.
 
 For onboarding and production credentials, contact your Native Agents account representative.
 
----
-
-# Supported Features
-
-| Feature | Supported |
-| ---------- | ----------- |
-| Banner | ✓ |
-| Native | ✓ |
-| Video (Instream & Outstream) | ✓ |
-| Prebid.js | ✓ |
-| Prebid Server | ✓ |
-| Floors | ✓ |
-| Supply Chain (schain) | ✓ |
-| USP / CCPA | ✓ |
-| COPPA | ✓ |
-
----
-
 # Bid Parameters
 
 Specify **either** `placementId` **or** `endpointId`.
@@ -89,8 +69,6 @@ Do **not** provide both.
 | endpointId  | No*      | Unique identifier for an Endpoint configured for your account.                  | String | `"200001"` |
 
 \*One of `placementId` or `endpointId` is required.
-
----
 
 # Banner Example
 
@@ -116,8 +94,6 @@ var adUnits = [{
     }]
 }];
 ```
-
----
 
 # Native Example
 
@@ -166,8 +142,6 @@ var adUnits = [{
     }]
 }];
 ```
-
----
 
 # Video Example
 
@@ -226,8 +200,6 @@ var adUnits = [{
 }];
 ```
 
----
-
 # OpenRTB Support
 
 The Native Agents bidder converts Prebid bid requests into OpenRTB bid requests before forwarding them to the Native Agents bidding platform.
@@ -240,25 +212,21 @@ The adapter supports OpenRTB requests for:
 
 using the corresponding OpenRTB object definitions.
 
----
-
 # Creative Rendering
 
 The Native Agents bidder returns creatives compatible with standard Prebid rendering workflows.
 
 Supported creative formats include:
 
-| Media Type | Response |
-| ------------ | ---------- |
-| Banner | HTML Markup |
-| Native | OpenRTB Native Assets |
-| Video (Instream & Outstream) | VAST XML / VAST URL |
+| Media Type                   | Response              |
+|------------------------------|-----------------------|
+| Banner                       | HTML Markup           |
+| Native                       | OpenRTB Native Assets |
+| Video (Instream & Outstream) | VAST XML / VAST URL   |
 
 Banner and Native creatives are rendered using Prebid's standard rendering pipeline.
 
 Video responses return VAST-compatible creatives suitable for both instream video players and supported outstream video players.
-
----
 
 # User Sync
 
@@ -283,32 +251,6 @@ pbjs.setConfig({
 
 User synchronization is performed only when permitted by applicable privacy regulations.
 
----
-
-# Privacy
-
-The Native Agents bidder supports the following privacy frameworks:
-
-- USP / CCPA
-- COPPA
-- Supply Chain Object (schain)
-
-When available, the adapter automatically forwards privacy signals received from Prebid to the Native Agents bidding platform.
-
----
-
-# Bidder Aliasing
-
-The Native Agents bidder supports Prebid bidder aliasing.
-
-```javascript
-pbjs.aliasBidder("ntvagents", "ntvagentsAlias");
-```
-
-Aliasing allows multiple Native Agents bidder instances to participate in the same auction using different configurations.
-
----
-
 # Test Parameters
 
 Native Agents provides test placements during onboarding.
@@ -324,8 +266,6 @@ Replace the example values below with the test identifiers supplied by your Nati
     }
 }
 ```
-
----
 
 # Notes
 
