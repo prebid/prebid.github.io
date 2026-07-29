@@ -2,8 +2,7 @@
 layout: bidder
 title: ProgrammaticX
 description: Prebid ProgrammaticX Bidder Adapter
-biddercode: ProgrammaticX
-filename: programmaticXBidAdapter
+biddercode: programmaticX
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 tcfeu_supported: true
 usp_supported: true

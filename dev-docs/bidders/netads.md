@@ -5,6 +5,7 @@ description: Prebid Netads Bidder Adapter
 pbjs: true
 pbs: true
 biddercode: netads
+aliasCode: nexx360
 gvl_id: 965
 usp_supported: true
 gpp_sids: tcfeu

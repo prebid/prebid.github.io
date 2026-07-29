@@ -5,6 +5,7 @@ description: Prebid Prismassp Bidder Adapter
 pbjs: true
 pbs: true
 biddercode: prismassp
+aliasCode: nexx360
 gvl_id: 965
 tcfeu_supported: true
 usp_supported: true
