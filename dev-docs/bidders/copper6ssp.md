@@ -35,7 +35,6 @@ sidebarType: 1
 | `pId`         | required | The publisher ID from Copper6 (pbjs only).                                               | `'59ac17c192832d0011283fe3'` | `string`   |
 | `bidFloor`    | optional | The minimum bid value desired. Copper6 will not respond with bids lower than this value. | `0.90`                       | `float`    |
 
-
 ### backward compatibility (will be removed in v12)
 {: .table .table-bordered .table-striped }
 
@@ -43,7 +42,6 @@ sidebarType: 1
 |---------------|----------|------------------------------------------------------------------------------------------|------------------------------|------------|
 | `placementId` | optional | Placement Id                                                                             | `'0'`                        | `'string'` |
 | `endpointId`  | optional | Endpoint Id                                                                              | `'0'`                        | `'string'` |
-
 
 ## Bid Params for Prebid Server
 
@@ -56,6 +54,7 @@ sidebarType: 1
 ### Example
 
 #### New request example
+
   ```javascript
 var adUnits = [{
     code: 'banner-div',
@@ -92,6 +91,7 @@ pbjs.setConfig({
 ```
 
 #### Supported backward compatibility
+
 ``` javascript
 var adUnits = [{
     code: 'banner-div',
