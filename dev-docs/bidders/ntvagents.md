@@ -29,13 +29,6 @@ sidebarType: 1
 
 The Native Agents bidder enables publishers to monetize their inventory through the Native Agents advertising platform using either **Prebid.js** or **Prebid Server**.
 
-The adapter supports:
-
-- Banner
-- Native (OpenRTB Native)
-- Video (Instream & Outstream)
-
-Native Agents receives bid requests from Prebid, converts them into OpenRTB requests, executes an auction across eligible demand partners, and returns the highest qualifying bid to Prebid.
 
 # Registration
 
