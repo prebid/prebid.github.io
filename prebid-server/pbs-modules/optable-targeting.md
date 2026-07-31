@@ -207,6 +207,7 @@ would result in this nesting in the JSON configuration:
 | adserver-targeting             | no       | boolean          | false         | Account-Level. If set to true - will add the Optable-specific adserver targeting keywords into the PBS response for every `seatbid[].bid[].ext.prebid.targeting` |
 | timeout                        | no       | integer          | none          | Account-Level. A soft timeout (in ms) sent as a hint to the Targeting API endpoint to limit the request times to Optable's external tokenizer services |
 | id-prefix-order                | no       | string           | none          | Account-Level. An optional string of comma separated id prefixes that prioritizes and specifies the order in which ids are provided to Targeting API in a query string. F.e. "c,c1,id5" will guarantee that Targeting API will see id=c:...,c1:...,id5:... if these ids are provided. Id-prefixes not mentioned in this list will be added in arbitrary order after the priority prefix ids. This affects Targeting API processing logic  |
+| hid-prefixes                   | no       | string           | none          | Account-Level. An optional string of comma separated id prefixes that should additionally be sent to the Targeting API as resolver hints in `hid=prefix:value` query parameters. See the section on Resolver Hints below for more detail. |
 | enrichment-percentage          | no       | integer          | 100           | Account-Level. Default percentage (0-100) of bid requests per bidder that will receive enrichment data. Set to 100 to enrich all requests, 0 to disable enrichment by default. |
 | bidder-enrichment-percentages  | no       | map              | none          | Account-Level. Per-bidder overrides for `enrichment-percentage`. Keys are bidder names, values are percentages (0-100). F.e. `{"appnexus": 75, "criteo": 0}` enriches 75% of appnexus requests and none for criteo. Bidders not listed in this map fall back to the default `enrichment-percentage` (100% unless overridden). |
 | enrich-web                     | no       | boolean          | true          | Account-Level. Whether to enrich web traffic (requests with a `site` object). |
@@ -249,8 +250,8 @@ on identifier types. Targeting API accepts multiple id parameters - and their or
 
 ### Optable input erasure
 
-**Note**: `user.ext.optable.email`, `.phone`, `.zip`, `.vid` fields will be removed by the module from the original
-OpenRTB request before being sent to bidders.
+**Note**: `user.ext.optable.email`, `.phone`, `.zip`, `.vid` and `.id5_signature` fields will be removed by the module
+from the original OpenRTB request before being sent to bidders.
 
 ### Publisher Provided IDs (PPID) Mapping
 
@@ -272,6 +273,71 @@ ppid-mapping: {"id5-sync.com": "c1"}
 ```
 
 This will lead to id5 ID supplied as `id=c1:...` to the Targeting API.
+
+### Resolver Hints (`hid`)
+
+In addition to the regular `id=prefix:value` parameters, the module can forward selected identifiers to the Targeting
+API as hint identifiers, using the `hid=prefix:value` query parameter form.
+
+The two parameters serve different purposes. `id=` values are used for the Optable identity graph lookup, while `hid=`
+values are passed on to the external resolvers, such as ID5, that the Targeting API calls on your behalf. An identifier
+that a resolver needs therefore has to be listed in `hid-prefixes` even when it is already being sent as an `id=`
+parameter; sending it only as `id=` will not make it available to the resolvers.
+
+The set of prefixes to send as hints is configured with `hid-prefixes`, a comma-separated list of prefix names from the
+ID Mapping table above. Whitespace around the entries is ignored, and prefixes that are not present on the request are
+skipped:
+
+```yaml
+hid-prefixes: "c, i6"
+```
+
+Each hint is sent as its own repeated `hid=` parameter rather than as a single comma-separated value, so the
+configuration above produces `&hid=c:...&hid=i6:...`. The IPv6 address is a special case: it is never sent as an `id=`
+parameter, as noted in the table above, so `i6` appears only as a hint.
+
+## Targeting API Query Attributes
+
+In addition to the identifier parameters, the module forwards the following attributes as query string parameters to
+the Targeting API:
+
+{: .table .table-bordered .table-striped }
+
+| Attribute       | Source                                                                                                                |
+|:----------------|:---------------------------------------------------------------------------------------------------------------------|
+| `gdpr`          | `1` if GDPR applies to the request, `0` otherwise. |
+| `gdpr_consent`  | TCF consent string, sent when available and the consent is valid. |
+| `gpp`           | GPP string, sent when available in the resolved GPP context. |
+| `gpp_sid`       | Comma-separated list of active GPP section IDs, limited to the first two, sent when the set is non-empty. |
+| `timeout`       | Soft timeout hint in ms, suffixed with `ms`, sent when the account-level `timeout` parameter is configured. |
+| `osdk`          | Always set to `prebid-server`, identifying the caller. |
+| `bundle`        | App bundle identifier, URL-encoded. Sent when the incoming request has an `app` object and `app.bundle` is non-empty. |
+| `ver`           | App version, URL-encoded. Sent only when `bundle` is non-empty and `app.ver` is present and non-empty. |
+| `id5_signature` | ID5 signature, URL-encoded. Sent when `user.ext.optable.id5_signature` is present in the incoming request. |
+
+### App bundle and version
+
+For app traffic, requests carrying an `app` object, the module forwards the application's bundle identifier as the
+`bundle=` query parameter and, when available, its version as `ver=`. Both values are URL-encoded. The `ver` parameter
+is only sent alongside a non-empty `bundle`, so a request with a version but no bundle produces neither parameter.
+
+### ID5 signature
+
+The ID5 signature is propagated in two directions:
+
+1. **Request-side.** When the incoming OpenRTB request carries `user.ext.optable.id5_signature`, that value is sent to
+   the Targeting API as the `id5_signature=` query parameter. Blank values are not sent.
+2. **Response-side.** When the Targeting API response carries an ID5 signature, the module resolves it through the
+   matching Optable-inserted EID and writes it into the bid response at
+   `ext.prebid.passthrough.optable.id5_signature`, where the client can read it and send it back up on the next
+   request.
+
+The response-side signature is written whenever the module enriched the request, and is independent of
+`adserver-targeting`: that parameter controls the ad server targeting keywords, while the signature is a separate
+value that is only stored on the client for the next Targeting API call. Conversely, if nothing was enriched there is
+no signature to return and the module leaves the bid response untouched.
+
+The `id5_signature` field is also part of the Optable input erasure described above.
 
 ## Analytics Tags
 
