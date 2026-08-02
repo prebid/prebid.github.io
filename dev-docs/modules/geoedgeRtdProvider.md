@@ -65,7 +65,7 @@ Parameters details:
 | params | Object | | |
 | params.key | String | Customer key | Required, contact Geoedge to get your key |
 | params.bidders | Object | Bidders to monitor | Optional, list of bidder to include / exclude from monitoring. Omitting this will monitor bids from all bidders. |
-| params.wap | Boolean | Wrap after preload | Optional, defaults to `false`. Set to `true` if you want to monitor only after the module has preloaded the monitoring client. |
+| params.wap | Boolean | Wrap after client load | Optional, defaults to `false`. Set to `true` if you want to monitor only after the module has loaded the monitoring client. |
 | params.outstream | Boolean | Monitor outstream video | Optional, defaults to `false`. Set to `true` to extend monitoring to outstream video bids. See [Outstream video](#outstream-video) below. |
 
 ## Outstream video
@@ -90,7 +90,7 @@ pbjs.setConfig({
 
 Behavior worth knowing before enabling it:
 
-* **Render timing.** The monitoring client is preloaded when the module initializes, so by the time a
+* **Render timing.** The monitoring client is loaded when the module initializes, so by the time a
   bid renders it has normally already answered and rendering proceeds immediately. Only a render that
   happens before the client is ready waits for the answer, and that wait is capped by a short
   deadline.
