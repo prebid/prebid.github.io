@@ -48,7 +48,6 @@ In addition, enable the **gptPreAuction** module. It automatically populates the
 | `bidFloor`   | optional | Lowest value of expected bid price | `1.1`      | `float`  |
 | `currency`   | optional | Currency of request and response   | `'GBP'`    | `string` |
 
-<a name="mgid-additional-config"></a>
 
 ### Additional Config
 
