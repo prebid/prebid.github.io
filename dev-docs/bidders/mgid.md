@@ -48,22 +48,23 @@ In addition, enable the **gptPreAuction** module. It automatically populates the
 | `bidFloor`   | optional | Lowest value of expected bid price | `1.1`      | `float`  |
 | `currency`   | optional | Currency of request and response   | `'GBP'`    | `string` |
 
-
 ### Additional Config
 
 The MGID adapter supports **enhanced bid data** — additional signals collected and sent with bid requests that help MGID buyers **bid more accurately**, which can improve **bid quality** and increase **monetization opportunities**. It is disabled by default and works even better together with a **Bid Viewability** module (see the recommendation above).
 
-To opt in, set `enhancedBidData` to `true` in `pbjs.bidderSettings`:
+To opt in, set both `enhancedBidData` and the standard [`storageAllowed`](/dev-docs/publisher-api-reference/bidderSettings.html#storageAllowed) option to `true` in `pbjs.bidderSettings`. Some of the enhanced signals are derived from values kept in local storage, so the feature requires both options enabled together:
 
 {: .table .table-bordered .table-striped }
-| Name              | Scope    | Description                                                                | Example | Type      |
-|-------------------|----------|----------------------------------------------------------------------------|---------|-----------|
-| `enhancedBidData` | optional | Collect and send enhanced bid data with bid requests. Defaults to `false`. | `true`  | `boolean` |
+| Name              | Scope    | Description                                                                                                 | Example | Type      |
+|-------------------|----------|-------------------------------------------------------------------------------------------------------------|---------|-----------|
+| `enhancedBidData` | optional | Collect and send enhanced bid data with bid requests. Defaults to `false`.                                  | `true`  | `boolean` |
+| `storageAllowed`  | optional | Allow the adapter to use local storage, where some enhanced bid data signals are kept. Defaults to `false`. | `true`  | `boolean` |
 
 ```javascript
 pbjs.bidderSettings = {
   mgid: {
-    enhancedBidData: true
+    enhancedBidData: true,
+    storageAllowed: true
   }
 };
 ```
