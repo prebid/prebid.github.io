@@ -27,8 +27,7 @@ sidebarType: 1
 
 # Native Agents Bidder Adapter
 
-The Native Agents bidder enables publishers to monetize their inventory through the Native Agents advertising platform using either **Prebid.js** or **Prebid Server**.
-
+The Native Agents bidder enables publishers to monetize their inventory through the Native Agents advertising platform using either **Prebid.js** or **Prebid Server**, for the ad formats described below.
 
 # Registration
 
