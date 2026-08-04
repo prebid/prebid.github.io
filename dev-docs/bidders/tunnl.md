@@ -25,7 +25,7 @@ pbs_app_supported: true
 sidebarType: 1
 ---
 
-### Before You Begin
+## Before You Begin
 
 Tunnl is available through Prebid Server. For questions or setup help, contact
 <prebid@tunnl.com>.
@@ -33,7 +33,7 @@ Tunnl is available through Prebid Server. For questions or setup help, contact
 For full functionality in GDPR territories, please ensure Tunnl is configured in
 your CMP.
 
-### Bid Params
+## Bid Params
 
 Tunnl does not require any bid parameters. Everything needed to serve a bid is
 taken from the standard OpenRTB request, so an empty params object is all you
@@ -52,13 +52,13 @@ need:
 |--------|----------|---------------------------------|---------|------|
 | (none) | optional | No bid parameters are required. | `{}`    | n/a  |
 
-### Multi-format Ad Units
+## Multi-format Ad Units
 
 Tunnl accepts banner, video and native, and will bid on any of the media types
 present on an ad unit. If you define an ad unit with more than one media type,
 Tunnl may return a bid for each of them, and the highest bid competes as usual.
 
-### Testing
+## Testing
 
 To receive test bids, set the OpenRTB `test` flag on your Prebid Server request:
 
