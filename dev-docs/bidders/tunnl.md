@@ -18,6 +18,7 @@ floors_supported: false
 safeframes_ok: true
 prebid_member: false
 ortb_blocking_supported: false
+privacy_sandbox: no
 endpoint_compression: true
 pbjs: false
 pbs: true
