@@ -24,17 +24,6 @@ pbs: false
 sidebarType: 1
 ---
 
-## Note
-
-The Bid Espresso adapter sends a single OpenRTB request per auction to the
-Bid Espresso gateway, which enriches it and fans out to demand server-side.
-Your `publisherId` and `inventoryId` are provided by Bid Espresso during
-onboarding.
-
-User syncing requires iframe syncs to be enabled for this bidder in the
-publisher's `userSync` configuration; the adapter registers no syncs in
-pixel-only mode.
-
 ## Bid Params
 
 {: .table .table-bordered .table-striped }
