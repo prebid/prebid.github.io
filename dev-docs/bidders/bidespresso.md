@@ -24,12 +24,12 @@ pbs: false
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 The Bid Espresso adapter sends a single OpenRTB request per auction to the
 Bid Espresso gateway, which enriches it and fans out to demand server-side.
 Bids are returned net of the Bid Espresso margin. Registration is required —
-contact prebid@bidespresso.com to receive your `publisherId` and `inventoryId`.
+contact <prebid@bidespresso.com> to receive your `publisherId` and `inventoryId`.
 
 Outstream video requires a publisher-supplied renderer. Mixed banner+video
 ad units are fully supported: both media objects are sent on a single imp
@@ -41,16 +41,16 @@ pixel-only mode. Price floors from the floors module are forwarded only when
 they resolve in USD; floors configured in another currency are converted
 automatically when the currency module is present.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 
-| Name          | Scope    | Description                                                                                    | Example      | Type     |
-|---------------|----------|------------------------------------------------------------------------------------------------|--------------|----------|
-| `publisherId` | required | Publisher ID on the Bid Espresso gateway. Provided by Bid Espresso during onboarding.           | `'k8xw2r4p'` | `string` |
-| `inventoryId` | required | Inventory segment ID. Always assigned by Bid Espresso during onboarding — single-placement integrations receive their default segment ID. | `'n7c3tkqe'` | `string` |
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| `publisherId` | required | Publisher ID on the Bid Espresso gateway. Provided by Bid Espresso during onboarding. | `'k8xw2r4p'` | `string` |
+| `inventoryId` | required | Inventory segment ID, assigned by Bid Espresso during onboarding. Single-placement integrations receive a default segment ID. | `'n7c3tkqe'` | `string` |
 
-### Example Ad Unit
+## Example Ad Unit
 
 ```javascript
 var adUnits = [
