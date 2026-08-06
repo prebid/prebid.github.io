@@ -57,8 +57,7 @@ var adUnits = [
   }
 ];
 
-// Enable iframe user syncing so Bid Espresso can match users to demand.
-// Required — without it no syncs fire and match rates drop.
+// Required - enables Bid Espresso user syncing
 pbjs.setConfig({
   userSync: {
     filterSettings: {
