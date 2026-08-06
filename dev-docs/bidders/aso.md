@@ -5,7 +5,7 @@ description: Prebid Adserver.Online Bidder Adapter
 biddercode: aso
 tcfeu_supported: true
 gvl_id: 1621
-gpp_supported: true
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 usp_supported: true
 media_types: video, native
 safeframes_ok: true

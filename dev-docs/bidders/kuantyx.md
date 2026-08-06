@@ -5,7 +5,7 @@ description: Kuantyx Bid Adapter
 biddercode: kuantyx
 tcfeu_supported: true
 gvl_id: 1374
-gpp_supported: true
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 usp_supported: true
 media_types: video, native
 safeframes_ok: true

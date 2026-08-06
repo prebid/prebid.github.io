@@ -5,7 +5,7 @@ description: Bidgency Group Bid Adapter
 biddercode: bidgency
 tcfeu_supported: false
 gvl_id: 1403
-gpp_supported: true
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 usp_supported: true
 media_types: video, native
 safeframes_ok: true
