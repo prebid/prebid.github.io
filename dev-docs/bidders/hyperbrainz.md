@@ -38,9 +38,10 @@ Please reach out to <it@hyperbrainz.com> for more details.
 
 {: .table .table-bordered .table-striped }
 
-| Name          | Scope    | Description                                    | Example            | Type     |
-|---------------|----------|------------------------------------------------|--------------------|----------|
-| `placementId` | required | Unique placement identifier                    | `'hb_test_banner'` | `string` |
-| `publisherId` | optional | Publisher identifier                           | `'pub-1'`          | `string` |
-| `bidFloor`    | optional | Minimum CPM floor override (USD)               | `0.30`             | `number` |
-| `ext`         | optional | Custom extension fields passed to the exchange | `{}`               | `object` |
+| Name           | Scope    | Description                                                      | Example           | Type     |
+|----------------|----------|------------------------------------------------------------------|-------------------|----------|
+| `placementId`  | required | Unique placement identifier                                      | `hb_test_banner`  | `string` |
+| `publisherId`  | optional | Publisher identifier                                             | `pub-1`           | `string` |
+| `bidFloor`     | optional | Minimum CPM floor override (USD)                                 | `0.30`            | `number` |
+| `userId`       | optional | User ID sent as `user.id`; overrides the local storage value     | `user-1`          | `string` |
+| `ext`          | optional | Custom extension fields passed to the exchange                   | `{}`              | `object` |
