@@ -67,4 +67,17 @@ var adUnits = [
     }]
   }
 ];
+
+// Enable iframe user syncing so Bid Espresso can match users to demand.
+// Required — without it no syncs fire and match rates drop.
+pbjs.setConfig({
+  userSync: {
+    filterSettings: {
+      iframe: {
+        bidders: ['bidespresso'],
+        filter: 'include'
+      }
+    }
+  }
+});
 ```
