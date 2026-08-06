@@ -5,7 +5,7 @@ description: CodeFuel Prebid Bidder Adapter
 pbjs: true
 pbs: true
 media_types: banner
-biddercode: CodeFuel
+biddercode: codefuel
 tcfeu_supported: false
 usp_supported: false
 floors_supported: false

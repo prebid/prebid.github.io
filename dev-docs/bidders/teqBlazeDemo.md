@@ -3,6 +3,7 @@ layout: bidder
 title: TeqBlazeDemo
 description: Prebid TeqBlazeDemo Bidder Adapter
 biddercode: tqblz_demo
+filename: teqBlazeDemoBidAdapter
 gpp_sids: usstate_all
 tcfeu_supported: false
 usp_supported: true
