@@ -22,7 +22,7 @@ gvl_id: 32
 sidebarType: 1
 ---
 
-### Bid Params
+## Bid Params
 
 **NOTE**
 msftstaila is an aliased bidder of Microsoft.
@@ -31,8 +31,7 @@ Either `placement_id` OR both `member` and `inv_code` are required.  Please don'
 **NOTE**
 We recommend to use the “use_pmt_rule” parameter set to true, when integrating, to ensure the bidding is net.
 
-For setup with Staila Media, please reach out to prebid@stailamedia.com.
-
+For setup with Staila Media, please reach out to [prebid@stailamedia.com](mailto:prebid@stailamedia.com).
 
 {: .table .table-bordered .table-striped }
 
@@ -90,7 +89,6 @@ The following table shows how the bid parameters have changed between the two ad
 With the AppNexus adapter, keywords followed this format: keyname=keyvalue1,keyvalue2,keyvalue3
 
 In the Microsoft Bid Adapter, the new required format is: keyname=keyvalue1,keyname=keyvalue2,keyname=keyvalue3
-
 
 ### First Party Data
 
