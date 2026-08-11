@@ -15,7 +15,7 @@ Create a new `NativeAdUnit` associated with a Prebid Server configuration ID.
 
 **Parameters**
 
-`configId (String)`: Prebid Server configuration ID. Note: this is a Prebid Server [impression-level stored request ID](/prebid-server/features/pbs-storedreqs).
+`configId (String)`: Prebid Server configuration ID. Note: this is a Prebid Server [impression-level stored request ID](/dev-docs/prebid-server/features/pbs-storedreqs).
 
 ## Examples
 

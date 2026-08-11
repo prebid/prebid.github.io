@@ -10,4 +10,4 @@ enable_download: true
 min_js_version: 7.27.0
 ---
 
-See [module documentation](/dev-docs/modules/genericAnalyticsAdapter).
+See [module documentation](/dev-docs/prebidjs/next/modules/genericAnalyticsAdapter).

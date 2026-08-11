@@ -5,7 +5,7 @@ description: Description of the cross-player Prebid component API
 
 # Cross-Player Prebid Component API
 
-The [Cross-Player Prebid Component](/dev-docs/plugins/cross-player-prebid-component/about-cross-player-prebid-component) supports the doPrebid(prebidConfig) API.
+The [Cross-Player Prebid Component](/dev-docs/prebidjs/next/plugins/cross-player-prebid-component/about-cross-player-prebid-component) supports the doPrebid(prebidConfig) API.
 
 ## doPrebid(prebidConfig)
 
@@ -32,7 +32,7 @@ None
 
 ## Further Reading
 
-* [About the Cross Player Prebid Component](/dev-docs/plugins/cross-player-prebid-component/about-cross-player-prebid-component)
-* [Cross Player Prebid Component Configuration](/dev-docs/plugins/cross-player-prebid-component/cross-player-config)
-* [Communication Between Prebid Component and Player](/dev-docs/plugins/cross-player-prebid-component/cross-player-communication)
+* [About the Cross Player Prebid Component](/dev-docs/prebidjs/next/plugins/cross-player-prebid-component/about-cross-player-prebid-component)
+* [Cross Player Prebid Component Configuration](/dev-docs/prebidjs/next/plugins/cross-player-prebid-component/cross-player-config)
+* [Communication Between Prebid Component and Player](/dev-docs/prebidjs/next/plugins/cross-player-prebid-component/cross-player-communication)
 * [Download Cross-Player Prebid Component](https://github.com/prebid/cross-player-prebid-component)

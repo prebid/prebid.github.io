@@ -31,8 +31,8 @@ The Prebid Plugin for the Brightcove Player can be registered either directly on
 
 You can specify all options needed by the plugin in the Studio:
 
-* **[Prebid Options](/dev-docs/plugins/bc/bc-prebid-plugin-prebid-options)**
-* **[Render Options](/dev-docs/plugins/bc/bc-prebid-plugin-render-options)** (used to customize the playback of the ad)
+* **[Prebid Options](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-prebid-options)**
+* **[Render Options](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-render-options)** (used to customize the playback of the ad)
 
 #### Getting to Brightcove Studio
 
@@ -44,7 +44,7 @@ There are two ways to register the Brightcove Prebid Plugin in Brightcove Studio
 
 * **General Integration**
   * Adds the plugin to the Brightcove Player when the player is embedded on the page, without calling prebid
-  * Publisher needs to add the prebid options and render options on the page and pass them into `renderAd()` as described in the **[Brightcove Prebid Plugin API](/dev-docs/plugins/bc/bc-prebid-plugin-api)**.
+  * Publisher needs to add the prebid options and render options on the page and pass them into `renderAd()` as described in the **[Brightcove Prebid Plugin API](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-api)**.
   * Publisher may use this method when they want to use a third-party ad server other than Google Ad Manager as their primary ad server
 
 * **Configured Integration**
@@ -107,7 +107,7 @@ In Brightcove Studio:
 
 #### Code to Add to Your Publisher Page
 
-<a name="renderad-step1"></a>
+<a id="renderad-step1"></a>
 
 * Step 1: After adding the Brightcove Player embed code to your publisher page, add the `id` attribute to the `<video>` tag present in the embed code to specify the id for the Brightcove Player video element.
 
@@ -119,7 +119,7 @@ Example:
 
 * Step 2: After you embed the Brightcove Player on the page, you must call the `renderAd()` method on `BCVideo_PrebidVastPlugin`.
 Pass in the required arguments:
-  * `options` - the JSON object containing the prebid options and other desired options as described in **[Prebid Options](/dev-docs/plugins/bc/bc-prebid-plugin-prebid-options)** and **[Render Options](/dev-docs/plugins/bc/bc-prebid-plugin-render-options)**. Examples are also provided below.
+  * `options` - the JSON object containing the prebid options and other desired options as described in **[Prebid Options](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-prebid-options)** and **[Render Options](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-render-options)**. Examples are also provided below.
   * `id` - id of the Brightcove Player video tag - this is value you specified in the preceding step.
 
 Example:
@@ -166,7 +166,7 @@ BCVideo_PrebidVastPlugin.renderAd(adOptions, 'bcplayer');
 
 ##### What Your Page Would Look Like
 
-Visit **[sample publisher page using the General Integration Method](/dev-docs/plugins/bc/bc-prebid-plugin-sample-studio-integration-general-method)** for details.
+Visit **[sample publisher page using the General Integration Method](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-sample-studio-integration-general-method)** for details.
 
 ## Configured Integration Option
 
@@ -209,8 +209,8 @@ Link to the plugin:
 
 Complete set of prebid options and other parameters that should be passed to the plugin to retrieve and render the ad. Options and targeting parameters are specified in a JSON object as described on these pages:
 
-* **[Prebid Options](/dev-docs/plugins/bc/bc-prebid-plugin-prebid-options)**
-* **[Render Options](/dev-docs/plugins/bc/bc-prebid-plugin-render-options)**
+* **[Prebid Options](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-prebid-options)**
+* **[Render Options](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-render-options)**
 
 Examples are provided below.
 
@@ -240,7 +240,7 @@ In Brightcove Studio:
 
 None
 
-<a name="sample-config"></a>
+<a id="sample-config"></a>
 
 #### Sample Plugin Configuration in Brightcove Studio
 
@@ -367,11 +367,11 @@ None
 
 #### What Your Page Would Look Like
 
-Visit **[sample publisher page after using the Configured Integration Method](/dev-docs/plugins/bc/bc-prebid-plugin-sample-studio-integration-configured-method)** for details.
+Visit **[sample publisher page after using the Configured Integration Method](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-sample-studio-integration-configured-method)** for details.
 
 ## How To Use Other Plugin API Methods When Registering Plugin in Brightcove Studio
 
-The plugin API supports a few other methods, which can be used even if you have registered the plugin in Brightcove Studio. See [Brightcove Prebid Plugin API](/dev-docs/plugins/bc/bc-prebid-plugin-api) for complete details about the API for this plugin.
+The plugin API supports a few other methods, which can be used even if you have registered the plugin in Brightcove Studio. See [Brightcove Prebid Plugin API](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-api) for complete details about the API for this plugin.
 
 To use any of the additional API methods for the plugin, you must first call the `init()` method on the Plugin Component name `BCVideo_PrebidVastPlugin`. You only need to call the `init()` method once even if you call the other API methods multiple times. Any use of these additional API methods should be used after the Brightcove Player has been embedded on the page.
 
@@ -393,12 +393,12 @@ BCVideo_PrebidVastPlugin.stop();
 
 ### Dynamic Integration with Brightcove Player - On the Page
 
-See **[Dynamic Plugin Integration With Brightcove Player - On the Page](/dev-docs/plugins/bc/bc-prebid-plugin-integration-dynamic)**
+See **[Dynamic Plugin Integration With Brightcove Player - On the Page](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-integration-dynamic)**
 
 ### Plugin API
 
-Information about the plugin API can be found at **[Prebid Plugin for Brightcove (Videojs) Player API](/dev-docs/plugins/bc/bc-prebid-plugin-api)**
+Information about the plugin API can be found at **[Prebid Plugin for Brightcove (Videojs) Player API](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-api)**
 
 ### Plugin Options
 
-Details about the options supported by the Brightcove Prebid Plugin can be found at:   **[Prebid Plugin for Brightcove (Videojs) Player - Plugin Options](/dev-docs/plugins/bc/bc-prebid-plugin-options)**
+Details about the options supported by the Brightcove Prebid Plugin can be found at:   **[Prebid Plugin for Brightcove (Videojs) Player - Plugin Options](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-options)**

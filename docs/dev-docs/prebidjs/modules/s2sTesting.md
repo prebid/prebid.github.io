@@ -10,7 +10,7 @@ sidebarType : 1
 
 # Prebid JS Module: Server-to-Server Testing
 
-This module allows publishers the chance to ramp-up on [Prebid Server](/prebid-server/overview/prebid-server-overview),
+This module allows publishers the chance to ramp-up on [Prebid Server](/dev-docs/prebid-server/overview/prebid-server-overview),
 testing the impact of server-side header bidding before fully switching.
 Without this module, the s2sConfig settings direct all requests to
 Prebid Server. By including this module in the PrebidJS build, there are
@@ -70,7 +70,7 @@ The `testing: true` attribute is required to enable the bidderControl and
 bidSource features. This shouldn't be confused with the `enabled: true` flag
 which enables the entire server-to-server feature.
 
-When 'includeSourceKvp' is specified in s2sConfig and the appropriate [addTargetingKeys targetingControl](/dev-docs/publisher-api-reference/setConfig#setConfig-targetingControls) is added, the system will log an
+When 'includeSourceKvp' is specified in s2sConfig and the appropriate [addTargetingKeys targetingControl](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-targetingControls) is added, the system will log an
 additional Key Value Pair (KVP) to the ad server. This will allow reporting
 to confirm the ratio of client-vs-server administered requests, as well as
 more advanced reporting.
@@ -275,4 +275,4 @@ The test KVP hb_source_bidderA on this page will always sent with the value "cli
 
 ## Further Reading
 
-* [Prebid Server](/prebid-server/overview/prebid-server-overview)
+* [Prebid Server](/dev-docs/prebid-server/overview/prebid-server-overview)

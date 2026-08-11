@@ -26,8 +26,8 @@ In case of Interstitial ad this is just inflated in the foreground regardless th
 ### Setup
 
 * Provide your Prebid Bidder Adapter
-  * [Go integration](/prebid-server/developers/add-new-bidder-go)
-  * [Java integration](/prebid-server/developers/add-new-bidder-java)
+  * [Go integration](/dev-docs/prebid-server/developers/add-new-bidder-go)
+  * [Java integration](/dev-docs/prebid-server/developers/add-new-bidder-java)
 * Create your implementation from the interface `PrebidMobilePluginRenderer`
 * Initialise your Plugin Renderer before starting to request ads
 * Take advantage of the Plugin Renderer fields

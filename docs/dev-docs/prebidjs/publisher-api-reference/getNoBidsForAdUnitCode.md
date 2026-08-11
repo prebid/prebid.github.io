@@ -4,7 +4,7 @@ description: getNoBidsForAdUnitCode API
 ---
 
 
-Returns bid requests that resulted in a NO_BID for the specified adUnitCode.  See full documentation at [pbjs.getNoBids()](/dev-docs/publisher-api-reference/getNoBids).
+Returns bid requests that resulted in a NO_BID for the specified adUnitCode.  See full documentation at [pbjs.getNoBids()](/dev-docs/prebidjs/next/publisher-api-reference/getNoBids).
 
 **Kind**: static method of `pbjs`
 

@@ -99,4 +99,4 @@ array returned from the `interpretResponse` function.
 
 ## Related Topics
 
-* [MultiBid in the Prebid Server /openrtb2/auction endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction#multibid)
+* [MultiBid in the Prebid Server /openrtb2/auction endpoint](/dev-docs/prebid-server/endpoints/openrtb2/pbs-endpoint-auction#multibid)

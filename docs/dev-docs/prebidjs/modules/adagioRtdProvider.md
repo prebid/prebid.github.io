@@ -1,5 +1,4 @@
 ---
-layout: page_v2
 title: Adagio Rtd Module
 display_name: Adagio Rtd Module
 description: The Adagio Rtd module computes and collects data required to leverage Adagio viewability and attention prediction engine.
@@ -15,7 +14,7 @@ sidebarType : 1
 
 ## Overview
 
-This module can be used in combination with [Adagio Bid Adapter](/dev-docs/bidders/adagio) (SSP) and/or with Adagio prebid server endpoint.
+This module can be used in combination with [Adagio Bid Adapter](/dev-docs/prebidjs/next/bidders/adagio) (SSP) and/or with Adagio prebid server endpoint.
 It computes and collects data required to leverage Adagio viewability and attention prediction engine.
 
 Please contact [contact@adagio.io](mailto:contact@adagio.io) for more information.

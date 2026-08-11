@@ -6,7 +6,7 @@ description: Configuring the cross-player Prebid component
 # Cross Player Prebid Component Configuration
 
 
-Options that configure the behavior of the Prebid process are passed to the [Cross-Player Prebid Component](/dev-docs/plugins/cross-player-prebid-component/about-cross-player-prebid-component) in a JSON structure.  These options include the bidders and bidder settings for Prebid.js to use, the URL to your custom Prebid.js build, and any ad server parameters.
+Options that configure the behavior of the Prebid process are passed to the [Cross-Player Prebid Component](/dev-docs/prebidjs/next/plugins/cross-player-prebid-component/about-cross-player-prebid-component) in a JSON structure.  These options include the bidders and bidder settings for Prebid.js to use, the URL to your custom Prebid.js build, and any ad server parameters.
 
 The Prebid Component supports almost all the Prebid options supported by the other Prebid plugins, with some exceptions.  The following is the list of Prebid options supported in the Component:
 
@@ -19,7 +19,7 @@ The Prebid Component supports almost all the Prebid options supported by the oth
 * [prebidTimeout](#prebidTimeout)
 * [enablePrebidCache](#enablePrebidCache)
 
-<a name="prebidPath"></a>
+<a id="prebidPath"></a>
 
 ## prebidPath
 
@@ -47,7 +47,7 @@ Not required but recommended.
 
 `options.prebidPath = 'https://your-path/prebid.js'`
 
-<a name="biddersSpec"></a>
+<a id="biddersSpec"></a>
 
 ## biddersSpec
 
@@ -57,7 +57,7 @@ The parameters that are used in making a prebid call. These parameters include d
 
 **Acceptable Values:**
 
-The value of `biddersSpec` should be a JSON structure providing the definition of the bidders to use as well as placement configuration. The syntax for these parameters is defined in [Bidder Params](/dev-docs/bidders).
+The value of `biddersSpec` should be a JSON structure providing the definition of the bidders to use as well as placement configuration. The syntax for these parameters is defined in [Bidder Params](/dev-docs/prebidjs/next/bidders).
 
 **Required?**
 
@@ -71,7 +71,7 @@ Yes - if you want the plugin to execute prebid.
 
 See [Sample Configuration](#sample-config) below.
 
-<a name="bidderAliases"></a>
+<a id="bidderAliases"></a>
 
 ## bidderAliases
 
@@ -113,7 +113,7 @@ None
 ]
 ```
 
-<a name="bidderSettings"></a>
+<a id="bidderSettings"></a>
 
 ## bidderSettings
 
@@ -123,7 +123,7 @@ Define some behaviors for the platform and specific adapters. The basic structur
 
 **Acceptable Values:**
 
-When you are defining all options to the prebid plugin directly on the page, you may use a JSON object using same syntax described under “bidderSettings” in the [Publisher API Reference](/dev-docs/publisher-api-reference/bidderSettings)
+When you are defining all options to the prebid plugin directly on the page, you may use a JSON object using same syntax described under “bidderSettings” in the [Publisher API Reference](/dev-docs/prebidjs/next/publisher-api-reference/bidderSettings)
 
 **Required?**
 
@@ -169,7 +169,7 @@ options. bidderSettings = {
 }
 ```
 
-<a name="prebidConfigOptions"></a>
+<a id="prebidConfigOptions"></a>
 
 ## prebidConfigOptions
 
@@ -181,7 +181,7 @@ Additional options that are passed in to the prebid.js `setConfig()` method.
 
 JSON object.
 
-Supported fields are documented in the [Publisher API Reference](/dev-docs/publisher-api-reference/setConfig)
+Supported fields are documented in the [Publisher API Reference](/dev-docs/prebidjs/next/publisher-api-reference/setConfig)
 
 **Required?**
 
@@ -195,7 +195,7 @@ None
 
 `options.prebidConfigOptions = { pageUrl: "https://www.mydomain.com"};`
 
-<a name="dfpParameters"></a>
+<a id="dfpParameters"></a>
 
 ## dfpParameters
 
@@ -203,7 +203,7 @@ None
 
 Parameters used when using Google Ad Manager (formerly DFP) as the ad server.
 
-See documentation for [buildVideoUrl](/dev-docs/publisher-api-reference/adServers.dfp.buildVideoUrl) for more information.
+See documentation for [buildVideoUrl](/dev-docs/prebidjs/next/publisher-api-reference/adServers.dfp.buildVideoUrl) for more information.
 
 **Acceptable Values:**
 
@@ -244,7 +244,7 @@ options.dfpParameters = {
 }
 ```
 
-<a name="prebidTimeout"></a>
+<a id="prebidTimeout"></a>
 
 ## prebidTimeout
 
@@ -272,7 +272,7 @@ NOTE:  You might need to increase the `prebidTimeout` value when running on mobi
 
 `options.prebidTimeout = 900;`
 
-<a name="enablePrebidCache"></a>
+<a id="enablePrebidCache"></a>
 
 ## enablePrebidCache
 
@@ -296,7 +296,7 @@ true
 
 `options.enablePrebidCache = false;`
 
-<a name="sample-config"></a>
+<a id="sample-config"></a>
 
 ## Sample Configuration
 
@@ -412,7 +412,7 @@ Here is a sample Prebid configuration JSON object returned via URL:
 
 ## Further Reading
 
-* [About the Cross Player Prebid Component](/dev-docs/plugins/cross-player-prebid-component/about-cross-player-prebid-component)
-* [Cross Player Prebid Component API](/dev-docs/plugins/cross-player-prebid-component/cross-player-api)
-* [Communication Between Prebid Component and Player](/dev-docs/plugins/cross-player-prebid-component/cross-player-communication)
+* [About the Cross Player Prebid Component](/dev-docs/prebidjs/next/plugins/cross-player-prebid-component/about-cross-player-prebid-component)
+* [Cross Player Prebid Component API](/dev-docs/prebidjs/next/plugins/cross-player-prebid-component/cross-player-api)
+* [Communication Between Prebid Component and Player](/dev-docs/prebidjs/next/plugins/cross-player-prebid-component/cross-player-communication)
 * [Download Cross-Player Prebid Component](https://github.com/prebid/cross-player-prebid-component)

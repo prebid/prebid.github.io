@@ -12,16 +12,16 @@ An overview of the Prebid.js and Prebid Server price floor features.
 <p/>
 Notes:
 
-- [Prebid.js Price Floors Module](/dev-docs/modules/floors#overview)
-- [Price Floors in Prebid Server](/prebid-server/features/pbs-floors#prebid-server--features--price-floors)
-- [Prebid Floor Service Providers](/dev-docs/modules/floors#floors-providers)
+- [Prebid.js Price Floors Module](/dev-docs/prebidjs/next/modules/floors#overview)
+- [Price Floors in Prebid Server](/dev-docs/prebid-server/features/pbs-floors#prebid-server--features--price-floors)
+- [Prebid Floor Service Providers](/dev-docs/prebidjs/next/modules/floors#floors-providers)
 
 Related Videos:
 
 - [Introduction to Prebid.js](/prebid/prebidjs-video)
 - [Components of Prebid.js](/prebid/prebidjs-components-video)
-- [Prebid Server Overview](/prebid-server/overview/prebid-server-overview-video)
-- [All Videos](/overview/all-videos)
+- [Prebid Server Overview](/dev-docs/prebid-server/overview/prebid-server-overview-video)
+- [All Videos](/all-videos)
 
 ## Transcript
 

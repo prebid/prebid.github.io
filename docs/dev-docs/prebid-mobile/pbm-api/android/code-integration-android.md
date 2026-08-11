@@ -79,7 +79,7 @@ In SDK 2.5 and before, if you're using the AppNexus Prebid Server you would do t
 PrebidMobile.setPrebidServerHost(Host.APPNEXUS)
 ```
 
-In SDK 2.5 and before, if you have opted to host your own Prebid Server solution you will need to store the url to the server in your app. Make sure that your URL points to the [/openrtb2/auction](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction) endpoint.
+In SDK 2.5 and before, if you have opted to host your own Prebid Server solution you will need to store the url to the server in your app. Make sure that your URL points to the [/openrtb2/auction](/dev-docs/prebid-server/endpoints/openrtb2/pbs-endpoint-auction) endpoint.
 
 ```kotlin
 PrebidMobile.setPrebidServerHost(Host.createCustomHost("https://prebidserver.example.com/openrtb2/auction"))
@@ -122,7 +122,7 @@ PrebidMobile.initializeSdk(applicationContext, PREBID_SERVER_URL) { status ->
 Pay attention that SDK should be initialized on the main thread.
 :::
 
-During the initialization, SDK creates internal classes and performs the health check request to the [/status](/prebid-server/endpoints/pbs-endpoint-status)  endpoint. If your Prebid Server provider has a non-standard path (anything other than `/status`), you should provide a the alternate status endpoint:
+During the initialization, SDK creates internal classes and performs the health check request to the [/status](/dev-docs/prebid-server/endpoints/pbs-endpoint-status)  endpoint. If your Prebid Server provider has a non-standard path (anything other than `/status`), you should provide a the alternate status endpoint:
 
 ```kotlin
 PrebidMobile.setCustomStatusEndpoint(PREBID_SERVER_STATUS_ENDPOINT)

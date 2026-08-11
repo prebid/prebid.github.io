@@ -32,7 +32,7 @@ This base EU TCF consent management module performs these actions:
 1. Fetch the user's GDPR & Google additional consent data from the CMP.
 2. Incorporate this data into the auction objects for adapters to collect.
 
-The optional [TCF control module](/dev-docs/modules/tcfControl) adds on these actions:
+The optional [TCF control module](/dev-docs/prebidjs/next/modules/tcfControl) adds on these actions:
 
 1. Allows the page to define which activities should be enforced at the Prebid.js level.
 2. Actively enforces those activities based on user consent data (in the TCF string, not the AC string).
@@ -51,7 +51,7 @@ Please start by understanding the IAB's [TCF Implementation Guide](https://githu
 
 To utilize this module, a Consent Management Platform (CMP) compatible with the IAB TCF v2.0 or [v2.2](https://iabeurope.eu/tcf-2-2-launches-all-you-need-to-know/) spec needs to be implemented on the site to interact with the user and obtain their consent choices. It's important to understand the details of how the CMP works before integrating it with Prebid.js
 
-In general, implementation details for CMPs are not covered by Prebid.org, but we do recommend to that you place the CMP code before the Prebid.js code in the head of the page in order to ensure the CMP's framework is loaded before the Prebid code executes. In addition, the community is collecting a set of [CMP best practices](/dev-docs/cmp-best-practices).
+In general, implementation details for CMPs are not covered by Prebid.org, but we do recommend to that you place the CMP code before the Prebid.js code in the head of the page in order to ensure the CMP's framework is loaded before the Prebid code executes. In addition, the community is collecting a set of [CMP best practices](/dev-docs/prebidjs/next/cmp-best-practices).
 
 Once the CMP is implemented, simply include this module into your build and add a `consentManagement` object in the `setConfig()` call.  Adapters that support this feature will then be able to retrieve the consent information and incorporate it in their requests.
 
@@ -276,8 +276,8 @@ Here are some things that publishers can do to control various activities:
 
 1. If the current page view is known to be in GDPR scope, make sure the adapters are aware of it even on the first page where CMP hasn't been activated by setting the defaultGdprScope: `consentManagement.gdpr.defaultGdprScope: true`
 2. If the user hasn't consented to Purpose 1:
-   - Set [deviceAccess: false](/dev-docs/publisher-api-reference/setConfig#setConfig-deviceAccess)
-   - Don't enable [userSync](/dev-docs/publisher-api-reference/setConfig#setConfig-Configure-User-Syncing)
+   - Set [deviceAccess: false](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-deviceAccess)
+   - Don't enable [userSync](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-Configure-User-Syncing)
    - Don't enable [userId](/dev-docs/modules/userId) modules
 
 3. If you're working with bidders that don't support GDPR, consider dynamically populating adunits as needed. See the list below for bidders supporting GDPR.
@@ -371,7 +371,7 @@ This should be false if there was some error in the consent data; otherwise set 
 
 ## Further Reading
 
-- [TCF Control Module](/dev-docs/modules/tcfControl)
+- [TCF Control Module](/dev-docs/prebidjs/next/modules/tcfControl)
 - [IAB TCF Implementation Guide](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/TCF-Implementation-Guidelines.md)
 - [IAB Transparancy and Consent Framework Policies](https://iabeurope.eu/iab-europe-transparency-consent-framework-policies/)
 - [Prebid Consent Management - US Privacy Module](/dev-docs/modules/consentManagementUsp)

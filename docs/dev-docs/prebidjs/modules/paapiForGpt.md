@@ -20,7 +20,7 @@ Note that Prebid can't help anyone with which fields to include in auctionconfig
 
 To use PAAPI with GPT:
 
-- include this module with your Prebid.js bundle; this also automatically includes the [PAAPI module](/dev-docs/modules/paapi)
+- include this module with your Prebid.js bundle; this also automatically includes the [PAAPI module](/dev-docs/prebidjs/next/modules/paapi)
 
 ```
 ```bash
@@ -31,13 +31,13 @@ To use PAAPI with GPT:
 ```
 
 - [configure PAAPI](/dev-docs/modules/paapi#config)
-- (optional) invoke [setPAAPIConfigForGPT](/dev-docs/publisher-api-reference/setPAAPIConfigForGPT) at end of auction.
+- (optional) invoke [setPAAPIConfigForGPT](/dev-docs/prebidjs/next/publisher-api-reference/setPAAPIConfigForGPT) at end of auction.
 
 ## Explicit configuration
 
-By default, Prebid.js attempts to configure GPT slots for PAAPI together with their targeting (that is, when [setTargetingForGPTAsync](/dev-docs/publisher-api-reference/setTargetingForGPTAsync) is called).
+By default, Prebid.js attempts to configure GPT slots for PAAPI together with their targeting (that is, when [setTargetingForGPTAsync](/dev-docs/prebidjs/next/publisher-api-reference/setTargetingForGPTAsync) is called).
 
-For more control how GPT slots are configured, you can set `configWithTargeting: false` and explicitly call [setPAAPIConfigForGPT](/dev-docs/publisher-api-reference/setPAAPIConfigForGPT). For example:  
+For more control how GPT slots are configured, you can set `configWithTargeting: false` and explicitly call [setPAAPIConfigForGPT](/dev-docs/prebidjs/next/publisher-api-reference/setPAAPIConfigForGPT). For example:  
 
 ```js
 pbjs.setConfig({
@@ -62,9 +62,9 @@ pbjs.requestBids({
 
 It's important to invoke the `pbjs.setPAAPIConfigForGPT()` function within the `bidsBackHandler` whenever new bids are requested, such as when refreshing ad slots. This ensures that the auctionConfig is manually applied to a GPT slot when autoconfig is disabled. Without this manual configuration, GPT slots will not be properly set up to handle new bids, potentially resulting in duplicate impression calls.
 
-See the [API reference](/dev-docs/publisher-api-reference/setPAAPIConfigForGPT) for more options.
+See the [API reference](/dev-docs/prebidjs/next/publisher-api-reference/setPAAPIConfigForGPT) for more options.
 
 ## Related Reading
 
-- [PAAPI module](/dev-docs/modules/paapi)
+- [PAAPI module](/dev-docs/prebidjs/next/modules/paapi)
 - [FLEDGE](https://github.com/WICG/turtledove/blob/main/FLEDGE.md)

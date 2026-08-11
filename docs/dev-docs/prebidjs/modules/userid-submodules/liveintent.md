@@ -111,7 +111,7 @@ The attributes `uid2`, `medianet`, `magnite`, `bidswitch`, `pubmatic`, `openx`, 
 #### Note
 
 * `thetradedesk` will be exposed as `tdid` because of historical reasons.
-* In order for `segments` to be present in `ortb2.user.data` of the bid requests, you need to configure the [liveIntentRTDProvider](/dev-docs/modules/liveIntentRtdProvider) module.
+* In order for `segments` to be present in `ortb2.user.data` of the bid requests, you need to configure the [liveIntentRTDProvider](/dev-docs/prebidjs/next/modules/liveIntentRtdProvider) module.
 
 For example, in case `uid2` is configured to be requested in addition to the `nonID`, the `request.userId` object would look like the following:
 

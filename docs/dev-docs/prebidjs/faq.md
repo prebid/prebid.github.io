@@ -14,8 +14,8 @@ This page has answers to some frequently asked questions about Prebid.js.  If yo
 
 Nope. The only approval process is a code review. There are separate instructions for:
 
-- [adding a bidder in Prebid.js](/dev-docs/bidder-adaptor)
-- [adding an analytics adapter in Prebid.js](/dev-docs/integrate-with-the-prebid-analytics-api)
+- [adding a bidder in Prebid.js](/dev-docs/prebidjs/next/bidder-adaptor)
+- [adding an analytics adapter in Prebid.js](/dev-docs/prebidjs/next/integrate-with-the-prebid-analytics-api)
 
 As for [membership](https://prebid.org/membership/) in Prebid.org, that's entirely optional -- we'd be happy to have you join and participate in the various committees,
 but it's not necessary for contributing code as a community member.
@@ -32,8 +32,8 @@ Prebid.org does not support any version of Prebid.js prior to the previous versi
 
 We would love for Amazon to contribute a TAM adapter, but so far that's not happened. Publishers that want to sync IDs across multiple header bidding wrappers should be aware of these resources:
 
-- You can generate the auctionId parameter outside of Prebid and pass it when calling [pbjs.requestBids()](/dev-docs/publisher-api-reference/requestBids)
-- [Example of Synchronizing Transaction IDs with Another Library](/dev-docs/examples/sync-tid)
+- You can generate the auctionId parameter outside of Prebid and pass it when calling [pbjs.requestBids()](/dev-docs/prebidjs/next/publisher-api-reference/requestBids)
+- [Example of Synchronizing Transaction IDs with Another Library](/dev-docs/prebidjs/next/examples/sync-tid)
 
 ### Should Prebid bidders be in ads.txt?
 
@@ -50,22 +50,22 @@ To get started, first talk to your lawyers to determine your legal obligations. 
 
 After you’ve determined your legal obligations, consider the tools Prebid makes available to publishers so that their pages can determine what actions are needed based on their interpretation of the user’s actions and the company’s policies:
 
-- Consider utilizing an [Activity Control](/dev-docs/activity-controls). These are available with Prebid.js 7.48 and may help cover a number of common privacy concerns.
+- Consider utilizing an [Activity Control](/dev-docs/prebidjs/next/activity-controls). These are available with Prebid.js 7.48 and may help cover a number of common privacy concerns.
 - Turn off Prebid.js usersync:
-  - [for client-side adapters](/dev-docs/publisher-api-reference/setConfig#setConfig-Configure-User-Syncing) - either completely or for certain bidders.
-  - [for server-side adapters](/dev-docs/modules/prebidServer) - override the s2sConfig.syncEndpoint
+  - [for client-side adapters](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-Configure-User-Syncing) - either completely or for certain bidders.
+  - [for server-side adapters](/dev-docs/prebidjs/next/modules/prebidServer) - override the s2sConfig.syncEndpoint
 - [Disable User ID modules](/dev-docs/modules/userId) - there are controls for different ID modules and which bidders can get which IDs.
-- [Disable device access](/dev-docs/publisher-api-reference/setConfig#setConfig-deviceAccess) - no adapter or module will be able to create a cookie or HTML5 localstorage object.
+- [Disable device access](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-deviceAccess) - no adapter or module will be able to create a cookie or HTML5 localstorage object.
 - For GDPR:
-  - Consider the [TCF](/dev-docs/modules/consentManagementTcf) and [TCF Control](/dev-docs/modules/tcfControl) modules, which flexibly support various actions like cancelling usersyncs, auctions, and analytics. Using these modules, bid adapters can receive the IAB TCF string from the CMP.
+  - Consider the [TCF](/dev-docs/prebidjs/next/modules/consentManagementTcf) and [TCF Control](/dev-docs/prebidjs/next/modules/tcfControl) modules, which flexibly support various actions like cancelling usersyncs, auctions, and analytics. Using these modules, bid adapters can receive the IAB TCF string from the CMP.
   - Note that TCF 2.2 is functionally the same as TCF 2.0 from the Prebid.js perspective. The code has always relied on event listeners to get the TCF string, so when `getTCData` was deprecated in 2.2 the modules were unaffected. There are still references in the code only because it is still accepted as a place for statically-supplied data.
   - Alternatively, the page can just avoid turning on certain bidders or modules.
 - For CCPA / CPRA / US-Privacy:
   - Consider the [US-Privacy](/dev-docs/modules/consentManagementUsp) module, which passes the IAB USP string through to bid adapters and supports data deletion events for User ID modules and other interested adapters and modules.
-  - Also consider implementing an [Activity Control](/dev-docs/activity-controls) to suppress activities upon opt-out or in environments without legal notice. An example implementation is available on the activity control documentation page.
-  - Also consider implementing the [GPP control module - usnat section](/dev-docs/modules/gppControl_usnat) to implement reasonable default expressions of activity controls when a usnat string is available as section 7 of a GPP string.
-- Set the [COPPA flag](/dev-docs/publisher-api-reference/setConfig#setConfig-coppa), which passes this value through to modules and bid adapters.
-  - Also consider implementing an [Activity Control](/dev-docs/activity-controls) to suppress activities when COPPA applies. The implementation is very similar to the example CCPA implementation available on the activity control documentation page.
+  - Also consider implementing an [Activity Control](/dev-docs/prebidjs/next/activity-controls) to suppress activities upon opt-out or in environments without legal notice. An example implementation is available on the activity control documentation page.
+  - Also consider implementing the [GPP control module - usnat section](/dev-docs/prebidjs/next/modules/gppControl_usnat) to implement reasonable default expressions of activity controls when a usnat string is available as section 7 of a GPP string.
+- Set the [COPPA flag](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-coppa), which passes this value through to modules and bid adapters.
+  - Also consider implementing an [Activity Control](/dev-docs/prebidjs/next/activity-controls) to suppress activities when COPPA applies. The implementation is very similar to the example CCPA implementation available on the activity control documentation page.
 - The IAB is still refining the definition of [GPP](https://iabtechlab.com/gpp/). Prebid has built a GPP module that supports GPP 1.0, with 1.1 support coming soon after the specification is finalized and merged. Many bid adapters support both statically setting GPP strings, e.g. `pbjs.setConfig({ortb2: {regs: {gpp: "blah", gpp_sid: [1,2]}}});` and module-read consent.
 - Avoid adding certain bidders or modules to the AdUnit.
 - Turn off header bidding altogether.
@@ -74,7 +74,7 @@ Prebid relies on the IAB and community members to determine what tools are neede
 
 ### Why doesn't Prebid.org have a GVL ID?
 
-Back when there was a 3rd party component to [SharedID](/identity/sharedid), Prebid did have a Global Vendor List ID. But that 3rd party aspect of SharedID has been shut down for a long time, so Prebid.org is completely out of the user data path and has not renewed the GVL registration.
+Back when there was a 3rd party component to [SharedID](/dev-docs/prebidjs/next/modules/userid-submodules/sharedid), Prebid did have a Global Vendor List ID. But that 3rd party aspect of SharedID has been shut down for a long time, so Prebid.org is completely out of the user data path and has not renewed the GVL registration.
 
 Because Prebid.org doesn't touch data, the only TCF Purpose that's relevant for Prebid.js functionality is Purpose 1: Device Access. The way it works is that several Prebid-based modules support a "VENDORLESS_GVLID". These are seen as the publisher asking Prebid.js to store stuff on their behalf:
 
@@ -92,7 +92,7 @@ This option to the ConsentManagement module was removed a long time ago in PBJS 
 - It was a poorly named flag. What it did was let the auction happen on the first page before the user had responded to the CMP.
 - It was replaced by a combination of the "defaultGdprScope" flag and the ability for a publisher to disable enforcement of the `basicAds` TCF purpose.
 
-See the [TCF Control Module](/dev-docs/modules/tcfControl) documentation for more details.
+See the [TCF Control Module](/dev-docs/prebidjs/next/modules/tcfControl) documentation for more details.
 
 ## Implementation
 
@@ -107,7 +107,7 @@ The former setting is used to track the auction once it started; if it expires, 
 
 The latter setting is used when for some reason Prebid did not load (or there's some other serious issue); if it expires, we will default to the adserver.
 
-For examples of setting up these timeouts, please refer to the [Basic Example](/dev-docs/examples/basic-example) page.
+For examples of setting up these timeouts, please refer to the [Basic Example](/dev-docs/prebidjs/next/examples/basic-example) page.
 
 See the [Prebid Timeouts Reference](/features/timeouts) for more information about timeouts in general.
 
@@ -125,7 +125,7 @@ There is an analysis from the Prebid team here which may be useful:
 
 ### Does Prebid.js cache bids?
 
-It can. Versions 1.x of Prebid.js would re-consider previous bids under limited circumstances. In Prebid.js 2.0 and later, the [`useBidCache`](/dev-docs/publisher-api-reference/setConfig#setConfig-Use-Bid-Cache) option can be used to enable this functionality.
+It can. Versions 1.x of Prebid.js would re-consider previous bids under limited circumstances. In Prebid.js 2.0 and later, the [`useBidCache`](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-Use-Bid-Cache) option can be used to enable this functionality.
 
 The "limited bid caching" feature applies only:
 
@@ -137,7 +137,7 @@ The "limited bid caching" feature applies only:
 Since the storage is in the browser, cached bids only apply to a single page context. If the user refreshes the page, the bid is lost.
 
 Each bid adapter defines the amount of time their bids can be cached and reconsidered.
-This setting is called “Time to Live” (TTL), documented in the <code>pbjs.getBidResponse</code> [parameter table here](/dev-docs/publisher-api-reference/getBidResponses).
+This setting is called “Time to Live” (TTL), documented in the <code>pbjs.getBidResponse</code> [parameter table here](/dev-docs/prebidjs/next/publisher-api-reference/getBidResponses).
 
 Examples of scenarios where a bid may be reconsidered in Prebid.js:
 
@@ -152,13 +152,13 @@ Here's how it works:
 1. When all the new bids are back or the timeout is reached, Prebid.js considers both the new bids on that AdUnit and previously cached bids.
 1. Previously cached bids will be discarded if they've reached their TTL or if they have status `targetingSet` or `rendered`.
 1. A cached bid may be used if its CPM beats the new bids.
-1. Bids that win are removed from the pool. This is automatic for display and native ads, and can be done manually by the publisher for video ads by using the [markWinningBidAsUsed](/dev-docs/publisher-api-reference/markWinningBidAsUsed) function.
+1. Bids that win are removed from the pool. This is automatic for display and native ads, and can be done manually by the publisher for video ads by using the [markWinningBidAsUsed](/dev-docs/prebidjs/next/publisher-api-reference/markWinningBidAsUsed) function.
 
 ### Some of my demand partners send gross bids while others send net bids; how can I account for this difference?
 
 You will want to adjust the gross bids so that they compete fairly with the rest of your demand, so that you are seeing the most revenue possible.
 
-In Prebid.js, you can use a `bidCpmAdjustment` function in [the `bidderSettings` object](/dev-docs/publisher-api-reference/bidderSettings) to adjust any bidder that sends gross bids.
+In Prebid.js, you can use a `bidCpmAdjustment` function in [the `bidderSettings` object](/dev-docs/prebidjs/next/publisher-api-reference/bidderSettings) to adjust any bidder that sends gross bids.
 
 ### Does Prebid.js support synchronous ad server tags?
 
@@ -178,7 +178,7 @@ Here are a couple of alternative workarounds:
 
 - **Option 2:**
 
-    Use post-bid. The downsides are that post-bid no longer allows your header bidding partners to compete with Google Ad Manager/AdX, but they can still compete with each other.  For more information, see [What is post-bid?](/overview/what-is-post-bid).
+    Use post-bid. The downsides are that post-bid no longer allows your header bidding partners to compete with Google Ad Manager/AdX, but they can still compete with each other.  For more information, see [What is post-bid?](/what-is-post-bid).
 
 ### How do I use Prebid.js on secure (HTTPS) pages?
 
@@ -194,7 +194,7 @@ In other words, you shouldn't have to do anything other than make sure your own 
 
 ### How can I change the price granularity for different ad units?
 
-If you need different [price granularities](/dev-docs/publisher-api-reference/setConfig#setConfig-Price-Granularity) for different AdUnits (e.g. video and display), the only way for now is to make sure the auctions don't run at the same time. e.g. Run one of them first, then kick off the other in the bidsBackHandler. e.g. here's one approach:
+If you need different [price granularities](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-Price-Granularity) for different AdUnits (e.g. video and display), the only way for now is to make sure the auctions don't run at the same time. e.g. Run one of them first, then kick off the other in the bidsBackHandler. e.g. here's one approach:
 
 1. Call `setConfig` to define the priceGranularity for the first set of AdUnits
 1. Initiate the first auction with `requestBids`
@@ -207,11 +207,11 @@ The handling of this scenario will be improved in a future release.
 
 ### How can I control how many targeting variables are sent to my ad server?
 
-One way to limit the number of bytes sent to the ad server is to send only the winning bid by disabling the [enableSendAllBids](/dev-docs/publisher-api-reference/setConfig#setConfig-Send-All-Bids) option. However, there are optimization and reporting
+One way to limit the number of bytes sent to the ad server is to send only the winning bid by disabling the [enableSendAllBids](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-Send-All-Bids) option. However, there are optimization and reporting
 benefits for sending more than one bid.
 
 Once you find the right balance for your application, you can specify
-what's sent to the ad server with [targetingControls.auctionKeyMaxChars](/dev-docs/publisher-api-reference/setConfig#setConfig-targetingControls) and/or [sendBidsControl.bidLimit](/dev-docs/publisher-api-reference/setConfig#setConfig-Send-Bids-Control)
+what's sent to the ad server with [targetingControls.auctionKeyMaxChars](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-targetingControls) and/or [sendBidsControl.bidLimit](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-Send-Bids-Control)
 
 ### Can I run multiple different versions of Prebid.js concurrently?
 
@@ -226,12 +226,12 @@ If all this wasn't enough to warn you away from trying, it should work if you na
 ### Can I filter bid responses that don't meet my criteria?
 
 Yes. Many bidders provide metadata about the bid that can be used in troubleshooting
-and filtering. See the [list of bid response metadata](/dev-docs/bidder-adaptor#interpreting-the-response) and the [filtering example](/dev-docs/examples/meta-bid-filtering).
+and filtering. See the [list of bid response metadata](/dev-docs/prebidjs/next/bidder-adaptor#interpreting-the-response) and the [filtering example](/dev-docs/prebidjs/next/examples/meta-bid-filtering).
 
 ### Does Prebid.js resolve the AUCTION_PRICE macro?
 
 Yes, but in a way that could cause discrepancies in reporting. It's recommended
-that [bid adapters resolve OpenRTB macros](/dev-docs/bidder-adaptor#resolve-openrtb-macros-in-the-creatives) themselves before giving them to Prebid.js.
+that [bid adapters resolve OpenRTB macros](/dev-docs/prebidjs/next/bidder-adaptor#resolve-openrtb-macros-in-the-creatives) themselves before giving them to Prebid.js.
 
 For historic reasons, Prebid will resolve the AUCTION_PRICE macro.
  Header Bidding is a first-price auction, the best candidate for “clearing price” is the original bid itself. Prebid may deprecate this resolution; it is not recommended to be resolved client-side, as it opens opportunities for abuse.
@@ -244,8 +244,8 @@ What we know about yield group feature:
 
 1. The feature is limited to premium GAM accounts.
 1. The beta is limited to which publishers are involved.
-1. These use cases currently don't work with yield groups: [Native](/formats/native), [video](/formats/video), [AMP](/formats/amp), [Post-Bid](/overview/what-is-post-bid). Google is open to feedback from the community about these scenarios.
-1. The [Prebid Universal Creative](/overview/prebid-universal-creative) is not utilized. Google has ported some portions of the PUC to an internal creative. For safeframes, the special creative calls postMessage, or if not a safeframe, it calls pbjs.renderAd() in the parent frame.
+1. These use cases currently don't work with yield groups: [Native](/formats/native), [video](/dev-docs/prebidjs/next/modules/video), [AMP](/formats/amp), [Post-Bid](/what-is-post-bid). Google is open to feedback from the community about these scenarios.
+1. The [Prebid Universal Creative](/prebid-universal-creative) is not utilized. Google has ported some portions of the PUC to an internal creative. For safeframes, the special creative calls postMessage, or if not a safeframe, it calls pbjs.renderAd() in the parent frame.
 1. The in-page Google Publisher Toolkit (GPT) reads Prebid.js objects directly from the 'pbjs' global. If window.pbjs does not exist, it attempts to locate a non-standard Prebid global via window._pbjsGlobals; looking for the first instance that exists with the required functionality.
 1. Not all Prebid bid adapters are supported.
 1. Aliases are not currently supported, but Google aims to support aliases that are commonly used. There may be future updates to support custom aliases.
@@ -268,5 +268,5 @@ Sometimes the owner of a bid adapter or other kind of module wants to rename the
 ## Related Reading
 
 - [Prebid.js Troubleshooting Guide](/troubleshooting/troubleshooting-guide)
-- [Prebid.js Common Issues](/dev-docs/common-issues)
+- [Prebid.js Common Issues](/dev-docs/prebidjs/next/common-issues)
 - [Prebid.js issues tagged 'question'](https://github.com/prebid/Prebid.js/issues?utf8=%E2%9C%93&q=is%3Aissue%20label%3Aquestion%20)

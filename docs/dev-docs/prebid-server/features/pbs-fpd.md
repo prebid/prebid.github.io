@@ -38,14 +38,14 @@ First Party Data in the OpenRTB JSON in several locations:
 | user.ext.data.ATTR | Any other user-related attributes should go here. | config ortb2.user.ext.data.ATTR | Targeting addUserData() | n/a |
 | imp[].ext.data.ATTR | AdUnit-specific attributes should go here. | AdUnit.ortb2.ext.data | AdUnit addContextData() | AMP targeting attribute or Stored Request |
 | ext.prebid. data.bidders[] | If specified, only these bidders are allowed to see fields in {site/app/user}.ext.data. | n/a | addBidderTo AccessControlList() | Stored Request |
-| ext.prebid. bidderconfig | Bidder-specific config | [setBidderConfig()](/dev-docs/prebidjs/publisher-api-reference/setBidderConfig) | n/a | Stored Request |
+| ext.prebid. bidderconfig | Bidder-specific config | [setBidderConfig()](/dev-docs/prebidjs/next/publisher-api-reference/setBidderConfig) | n/a | Stored Request |
 
 This diagram summarizes how first party data flows into the OpenRTB JSON:
 
 ![First Party Data Summary](/images/flowcharts/FirstPartyData-Detailed.png)
 
 :::info
-Note that Prebid.js directly supports the [`setBidderConfig`](/dev-docs/prebidjs/publisher-api-reference/setBidderConfig) method of defining
+Note that Prebid.js directly supports the [`setBidderConfig`](/dev-docs/prebidjs/next/publisher-api-reference/setBidderConfig) method of defining
 bidder-specific first party data, while SDK only supports the `ext.prebid.data.bidders[]` approach with an in-app call.
 Both SDK and AMP can have the stored request define bidder FPD permissions.
 :::

@@ -535,15 +535,15 @@ The following is a sample JSON definition of the plugin configuration defining c
 
 ### Configuration Options
 
-Details about the options supported by the Brightcove Prebid Plugin can be found at: **[Prebid Plugin for Brightcove (Videojs) Player - Plugin Options](/dev-docs/plugins/bc/bc-prebid-plugin-options)**
+Details about the options supported by the Brightcove Prebid Plugin can be found at: **[Prebid Plugin for Brightcove (Videojs) Player - Plugin Options](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-options)**
 
 ### Prebid Options
 
-Information about the Prebid Options supported by the plugin can be found at: **[Prebid Options](/dev-docs/plugins/bc/bc-prebid-plugin-prebid-options)**
+Information about the Prebid Options supported by the plugin can be found at: **[Prebid Options](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-prebid-options)**
 
 ### Plugin Render Options
 
 Information about the Render Options supported by the plugin can be found at:
-**[Render Options](/dev-docs/plugins/bc/bc-prebid-plugin-render-options)**
+**[Render Options](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-render-options)**
 
 </div>

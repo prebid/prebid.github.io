@@ -41,7 +41,7 @@ Each adapter definition is an object, which should contain the following fields:
 
 ### More Information
 
-For more information about adapter configuration, see  **[Prebid Options](/dev-docs/plugins/bc/bc-prebid-plugin-prebid-options#pb-adapters)**.
+For more information about adapter configuration, see  **[Prebid Options](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-prebid-options#pb-adapters)**.
 
 ## Adapter API
 
@@ -200,4 +200,4 @@ window.test = {disablePrebidPlugin: {adapter: testAdapter}};
 
 ### Prebid Options
 
-Information about the Prebid Options supported by the plugin can be found at: **[Prebid Options](/dev-docs/plugins/bc/bc-prebid-plugin-prebid-options)**
+Information about the Prebid Options supported by the plugin can be found at: **[Prebid Options](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-prebid-options)**

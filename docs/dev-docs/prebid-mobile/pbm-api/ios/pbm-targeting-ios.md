@@ -50,14 +50,14 @@ Prebid.shared.customStatusEndpoint="https://pbs.example.com/v2/status"
 | timeoutMillis | optional | integer | init | (SDK v1.2+) The Prebid SDK timeout. When this number of milliseconds passes, the Prebid SDK returns control to the ad server SDK to fetch an ad without Prebid bids. | 1000 |
 | creativeFactoryTimeout | optional | integer | SDK control | Controls how long a banner creative has to load before it is considered a failure. This value is in seconds. The default is 6 seconds. | 10 |
 | creativeFactory<wbr>TimeoutPreRenderContent | optional | integer | SDK control | Controls how much time video and interstitial creatives have to load before it is considered a failure. This value is in seconds. The default is 30 seconds. | 60 |
-| storedAuctionResponse | optional | string | ORTB | For testing and debugging. Get this value from your Prebid Server team. It signals Prebid Server to respond with a static response from the Prebid Server Database. See [more information on stored auction responses](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction#stored-responses). | "abc123-sar-test-320x50" |
+| storedAuctionResponse | optional | string | ORTB | For testing and debugging. Get this value from your Prebid Server team. It signals Prebid Server to respond with a static response from the Prebid Server Database. See [more information on stored auction responses](/dev-docs/prebid-server/endpoints/openrtb2/pbs-endpoint-auction#stored-responses). | "abc123-sar-test-320x50" |
 | pbsDebug | optional | boolean | ORTB | Adds the debug flag (`test`:1) on the outbound http call to the Prebid Server. The `test` flag signals to the Prebid Server to emit the full resolved request and the full Bid Request and Bid Response to and from each bidder. | true |
 | shouldAssign<wbr>NativeAssetID | optional | boolean | ORTB | Whether to automatically assign an assetID for a Native ad. Default is `false`. | true |
 | useCacheForReporting<wbr>WithRenderingAPI | optional | boolean | ORTB | Indicates whether PBS should cache the bid on the server side. If the value is `true` the Prebid SDK will make the cache request to retrieve the cached asset. Default is `false`. | true |
 | useExternal<wbr>ClickthroughBrowser | optional | boolean | SDK control | Starting from PrebidMobile `3.0.0` the property is removed<wbr>Controls whether to use PrebidMobile's in-app browser or the Safari App for displaying ad clickthrough content. Default is false. | true |
 | impClickbrowserType | optional | enum | ORTB | Starting from PrebidMobile `3.0.0` the property is removed<wbr>Indicates the type of browser opened upon clicking the creative in an app. This corresponds to the OpenRTB imp.clickbrowser field. Values are "embedded" and "native". Default is "native". | "native". |
-| includeWinners | optional | boolean | ORTB | If `true`, Prebid sdk will add `includewinners` flag inside the targeting object described in [PBS Documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction#targeting) . Default is `false`. | `true` |
-| includeBidderKeys | optional | boolean | ORTB | If `true`, Prebid sdk will add `includebidderkeys` flag inside the targeting object described in [PBS Documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction#targeting) . Default is `false`. | `true` |
+| includeWinners | optional | boolean | ORTB | If `true`, Prebid sdk will add `includewinners` flag inside the targeting object described in [PBS Documentation](/dev-docs/prebid-server/endpoints/openrtb2/pbs-endpoint-auction#targeting) . Default is `false`. | `true` |
+| includeBidderKeys | optional | boolean | ORTB | If `true`, Prebid sdk will add `includebidderkeys` flag inside the targeting object described in [PBS Documentation](/dev-docs/prebid-server/endpoints/openrtb2/pbs-endpoint-auction#targeting) . Default is `false`. | `true` |
 | eventDelegate | optional | PrebidEventDelegate | init | Sets an event delegate to handle all auction requests and responses. It allows to collect some statistical data. Note that the SDK stores this callback as a weak reference so you need to store a reference to it. | `class PrebidEventDelegateTestsMockDelegate: PrebidEventDelegate { func prebidBidRequestDidFinish(requestData: Data?, responseData: Data?) { ... } }` |
 
 ### Prebid Class Global Methods
@@ -72,7 +72,7 @@ Defines which Prebid Server to connect to. See the initialization page for [iOS]
 
 #### addStoredBidResponse()
 
-Stored Bid Responses are for testing and debugging similar to Stored Auction Responses (see the Global Properties above). They signal Prebid Server to respond with a static pre-defined response, except Stored Bid Responses actually exercise the bidder adapter. For more information on how stored bid responses work, refer to the [Prebid Server endpoint doc](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction#stored-responses). Your Prebid Server team will help you determine how best to setup test and debug.
+Stored Bid Responses are for testing and debugging similar to Stored Auction Responses (see the Global Properties above). They signal Prebid Server to respond with a static pre-defined response, except Stored Bid Responses actually exercise the bidder adapter. For more information on how stored bid responses work, refer to the [Prebid Server endpoint doc](/dev-docs/prebid-server/endpoints/openrtb2/pbs-endpoint-auction#stored-responses). Your Prebid Server team will help you determine how best to setup test and debug.
 
 Signature:
 
@@ -579,9 +579,9 @@ The `Targeting.shared.setGlobalORTBConfig()` also allows to **add** impression o
 Pay attention that there are certain protected fields such as `regs`, `device`, `geo`, `ext.gdpr`, `ext.us_privacy`, and `ext.consent` which cannot be changed using the `setGlobalORTBConfig()` method.
 
 - App and User first party data should use the [functions defined for those purposes](/dev-docs/prebid-mobile/pbm-api/ios/pbm-targeting-ios#first-party-data)
-- See the [Prebid Server auction endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction#prebid-server-ortb2-extension-summary) reference for more information about how it will process incoming fields.
+- See the [Prebid Server auction endpoint](/dev-docs/prebid-server/endpoints/openrtb2/pbs-endpoint-auction#prebid-server-ortb2-extension-summary) reference for more information about how it will process incoming fields.
 
 ## Further Reading
 
-- [Prebid Mobile Overview](/dev-docs/prebid-mobile/prebid-mobile)
+- [Prebid Mobile Overview](/dev-docs/prebid-mobile)
 - [Prebid SDK iOS integration](/dev-docs/prebid-mobile/pbm-api/ios/code-integration-ios)

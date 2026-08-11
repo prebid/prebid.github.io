@@ -15,7 +15,7 @@ The ad unit object is where you configure what kinds of ads you will show in a g
 It's also where you will configure bidders, e.g.:
 
 * Which bidders are allowed to bid for that ad slot
-* What information is passed to those bidders via their [parameters](/dev-docs/prebidjs/bidders)
+* What information is passed to those bidders via their [parameters](/dev-docs/prebidjs/next/bidders)
 
 This page describes the properties of the `adUnit` object.
 
@@ -25,16 +25,16 @@ See the table below for the list of properties on the ad unit. For example ad un
 
 | Name           | Scope     | Type                | Description                                                                                                                                                                                                                                                                         |
 | -------------- | --------- | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `code`         | Required  | String              | An identifier you create and assign to this ad unit. Generally this is set to the ad slot name or the div element ID. Used by [setTargetingForGPTAsync()](/dev-docs/prebidjs/publisher-api-reference/setTargetingForGPTAsync) to match which auction is for which ad slot.           |
+| `code`         | Required  | String              | An identifier you create and assign to this ad unit. Generally this is set to the ad slot name or the div element ID. Used by [setTargetingForGPTAsync()](/dev-docs/prebidjs/next/publisher-api-reference/setTargetingForGPTAsync) to match which auction is for which ad slot.           |
 | `bids`         | Optional  | Array[Object]       | Array of bid objects representing demand partners and associated parameters for a given ad unit. See [Bids](#adunitbids) below.                                                                                                              |
 | `mediaTypes`   | Optional  | Object              | Defines one or more media types that can serve into the ad unit. For a list of properties, see [`adUnit.mediaTypes`](#adunitmediatypes) below.                                                                                               |
 | `labelAny`     | Optional  | Array[String]       | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                                                                                                                       |
 | `labelAll`     | Optional  | Array[String]       | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                                                                                                                       |
-| `ortb2Imp`     | Optional  | Object              | ortb2Imp is used to signal OpenRTB Imp objects at the adUnit grain. Similar to the global ortb2 field used for [global first party data configuration](/dev-docs/prebidjs/publisher-api-reference/setConfig#setConfig-fpd), but specific to this adunit.                             |
-| `ttlBuffer`    | Optional  | Number              | TTL buffer override for this adUnit. See [`setConfig({ttlBuffer})`](/dev-docs/prebidjs/publisher-api-reference/setConfig#setConfig-ttlBuffer)                                                                                                |
-| `renderer`     | Optional  | Object              | Custom renderer, typically used for [outstream video](/dev-docs/prebidjs/show-outstream-video-ads)                                                                                                                                           |
+| `ortb2Imp`     | Optional  | Object              | ortb2Imp is used to signal OpenRTB Imp objects at the adUnit grain. Similar to the global ortb2 field used for [global first party data configuration](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-fpd), but specific to this adunit.                             |
+| `ttlBuffer`    | Optional  | Number              | TTL buffer override for this adUnit. See [`setConfig({ttlBuffer})`](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-ttlBuffer)                                                                                                |
+| `renderer`     | Optional  | Object              | Custom renderer, typically used for [outstream video](/dev-docs/prebidjs/next/show-outstream-video-ads)                                                                                                                                           |
 | `video`        | Optional  | Object              | Used to link an Ad Unit to the [Video Module][videoModule]. For allowed params see the [adUnit.video reference](#adunitvideo).                                                                                                               |
-| `deferBilling` | Optional  | Boolean             | Used by a publisher to flag adUnits as being separately billable. This allows for a publisher to trigger billing manually for winning bids. See [pbjs.triggerBilling](/dev-docs/prebidjs/publisher-api-reference/triggerBilling) and [onBidBillable](/dev-docs/prebidjs/bidder-adaptor#registering-on-bid-billable) for more info. |
+| `deferBilling` | Optional  | Boolean             | Used by a publisher to flag adUnits as being separately billable. This allows for a publisher to trigger billing manually for winning bids. See [pbjs.triggerBilling](/dev-docs/prebidjs/next/publisher-api-reference/triggerBilling) and [onBidBillable](/dev-docs/prebidjs/next/bidder-adaptor#registering-on-bid-billable) for more info. |
 
 ### adUnit.bids
 
@@ -44,9 +44,9 @@ Note that `bids` is optional only for [Prebid Server stored impressions](#stored
 
 | Name        | Scope    | Type          | Description                                                                                                                                         |
 |-------------|----------|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| `bidder`    | Optional | String        | Unique code identifying the bidder. For bidder codes, see the [bidder param reference](/dev-docs/prebidjs/bidders).                                 |
+| `bidder`    | Optional | String        | Unique code identifying the bidder. For bidder codes, see the [bidder param reference](/dev-docs/prebidjs/next/bidders).                                 |
 | `module`    | Optional | String        | Module code - for requesting bids from modules that are not bid adapters. See [Prebid Server stored impressions](#stored-imp).                      |
-| `params`    | Required | Object        | Bid request parameters for a given bidder. For allowed params, see the [bidder param reference](/dev-docs/prebidjs/bidders).                        |
+| `params`    | Required | Object        | Bid request parameters for a given bidder. For allowed params, see the [bidder param reference](/dev-docs/prebidjs/next/bidders).                        |
 | `labelAny`  | Optional | Array[String] | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                              |
 | `labelAll`  | Optional | Array[String] | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                              |
 | `ortb2Imp`  | Optional | Object        | OpenRTB first-party data specific to this bidder. This is merged with, and takes precedence over, `adUnit.ortb2Imp`.                                |
@@ -149,7 +149,7 @@ When using the Video Module, the mediaTypes.video properties get filled out auto
 
 ### Banner
 
-For an example of a banner ad unit, see below. For more detailed instructions, see [Getting Started]({{site.baseurl}}/dev-docs/getting-started.html).
+For an example of a banner ad unit, see below. For more detailed instructions, see [Getting Started](/dev-docs/prebidjs/next/getting-started).
 
 ```javascript
 pbjs.addAdUnits({
@@ -202,7 +202,7 @@ pbjs.addAdUnits({
 
 #### Instream Sound-On
 
-For an example of an instream video ad unit that you handle on your own, see below. For more detailed instructions, see [Show Video Ads]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html).
+For an example of an instream video ad unit that you handle on your own, see below. For more detailed instructions, see [Show Video Ads](/dev-docs/prebidjs/next/show-video-with-a-dfp-video-tag).
 
 ```javascript
 pbjs.addAdUnits({
@@ -262,7 +262,7 @@ pbjs.addAdUnits({
 
 This is the scenario formerly known as Outstream. As of April 2023, the IAB now calls this scenario "No Content/Standalone".
 
-For an example of an outstream video ad unit that you handle on your own, see below. For more detailed instructions, see [Show Outstream Video Ads]({{site.baseurl}}/dev-docs/show-outstream-video-ads.html).
+For an example of an outstream video ad unit that you handle on your own, see below. For more detailed instructions, see [Show Outstream Video Ads](/dev-docs/prebidjs/next/show-outstream-video-ads).
 
 ```javascript
 pbjs.addAdUnits({
@@ -354,7 +354,7 @@ var longFormatAdUnit = {
 
 ### Native
 
-For an example of a native ad unit, see below. For more detailed instructions, see [Show Native Ads]({{site.baseurl}}/dev-docs/show-native-ads.html).
+For an example of a native ad unit, see below. For more detailed instructions, see [Show Native Ads](/dev-docs/prebidjs/next/show-native-ads).
 
 ```javascript
 pbjs.addAdUnits({
@@ -416,7 +416,7 @@ pbjs.addAdUnits({
 
 ### Multi-Format
 
-For an example of a multi-format ad unit, see below. For more detailed instructions, see [Show Multi-Format Ads]({{site.baseurl}}/dev-docs/show-multi-format-ads.html).
+For an example of a multi-format ad unit, see below. For more detailed instructions, see [Show Multi-Format Ads](/dev-docs/prebidjs/next/show-multi-format-ads).
 
 ```javascript
 pbjs.addAdUnits([
@@ -591,7 +591,7 @@ pbjs.addAdUnits({
 
 Notes:
 
-* Only contextual data should be added on the AdUnit; user-related data goes in the [global first party data](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd) config.
+* Only contextual data should be added on the AdUnit; user-related data goes in the [global first party data](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-fpd) config.
 * For additional help with analytics and reporting you can use the [Prebid Ad Slot](/features/pbAdSlot.html), a special type of first party data.
 
 ### Interstitial Ads
@@ -613,11 +613,11 @@ pbjs.addAdUnits({
 });
 ```
 
-For more information on Interstitial ads, reference the [Interstitial feature page](/features/InterstitialAds.html). Additionally, to assist with billing optimization and interstitial ads, the triggerBilling and onBidBillable functionality can be utilized. See [pbjs.triggerBilling](/dev-docs/publisher-api-reference/triggerBilling.html) and [onBidBillable](/dev-docs/bidder-adaptor.html#registering-on-bid-billable) for more info.
+For more information on Interstitial ads, reference the [Interstitial feature page](/features/InterstitialAds.html). Additionally, to assist with billing optimization and interstitial ads, the triggerBilling and onBidBillable functionality can be utilized. See [pbjs.triggerBilling](/dev-docs/prebidjs/next/publisher-api-reference/triggerBilling) and [onBidBillable](/dev-docs/prebidjs/next/bidder-adaptor#registering-on-bid-billable) for more info.
 
 ### Prebid Server stored impressions
 
-When using [PBS stored impressions](/dev-docs/modules/prebidServer.html#stored-imp), `bids` is not required:
+When using [PBS stored impressions](/dev-docs/prebidjs/next/modules/prebidServer#stored-imp), `bids` is not required:
 
 ```javascript
 pbjs.addAdUnits({
@@ -683,11 +683,11 @@ pbjs.addAdUnits({
 * [Publisher API Reference](/dev-docs/publisher-api-reference)
 * [Conditional Ad Units][conditionalAds]
 * [Show Native Ads](/prebid/native-implementation.html)
-* [Show Video Ads](/dev-docs/show-video-with-a-dfp-video-tag.html)
-* [Show Outstream Video Ads](/dev-docs/show-outstream-video-ads.html)
+* [Show Video Ads](/dev-docs/prebidjs/next/show-video-with-a-dfp-video-tag)
+* [Show Outstream Video Ads](/dev-docs/prebidjs/next/show-outstream-video-ads)
 * [Show Long-Form Video Ads](/prebid-video/video-long-form.html)
-* [Prebid.org Video Examples](/examples/video/)
-* [Prebid.org Native Examples](/dev-docs//examples/native-ad-example.html)
+* [Prebid.org Video Examples](/dev-docs/prebidjs/next/modules/video)
+* [Prebid.org Native Examples](/dev-docs/prebidjs/next/examples/native-ad-example)
 
 <!-- Reference Links -->
 

@@ -28,7 +28,7 @@ Here's how these IDs get placed in the cookie from Prebid.js:
 
 ![Prebid Server Cookie Sync](/images/prebid-server/pbs-cookie-sync.png)
 
-1. When the [s2sConfig](/dev-docs/prebidjs/modules/prebidServer) is set, Prebid.js initiates a call to the Prebid Server [`/cookie_sync`](../endpoints/pbs-endpoint-cookieSync), letting it know which server-side bidders will be participating in the header bidding auction.
+1. When the [s2sConfig](/dev-docs/prebidjs/next/modules/prebidServer) is set, Prebid.js initiates a call to the Prebid Server [`/cookie_sync`](../endpoints/pbs-endpoint-cookieSync), letting it know which server-side bidders will be participating in the header bidding auction.
 
 ```text
     POST https://prebid-server.example.com/cookie_sync
@@ -80,7 +80,7 @@ This approach works in a way quite similar to Prebid.js except that the [/cookie
 
 1. The Prebid Server hosting company places the [load-cookie.html](#manually-initiating-a-sync) file onto a CDN.
 
-    See [the AMP implementation guide](/dev-docs/prebidjs/show-prebid-ads-on-amp-pages#user-sync) for more information.
+    See [the AMP implementation guide](/dev-docs/prebidjs/next/show-prebid-ads-on-amp-pages#user-sync) for more information.
 
 2. The publisher places a 'load-cookie' iframe into the page:
 
@@ -188,5 +188,5 @@ Then the next time the client then calls `www.prebid-domain.com/openrtb2/auction
 ## Further Reading
 
 * [Prebid Server Overview](/dev-docs/prebid-server/overview/prebid-server-overview)
-* [Prebid.js s2sConfig](/dev-docs/prebidjs/publisher-api-reference/setConfig#setConfig-Server-to-Server)
-* [Prebid AMP Implementation Guide](/dev-docs/prebidjs/show-prebid-ads-on-amp-pages)
+* [Prebid.js s2sConfig](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-Server-to-Server)
+* [Prebid AMP Implementation Guide](/dev-docs/prebidjs/next/show-prebid-ads-on-amp-pages)

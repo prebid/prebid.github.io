@@ -1,5 +1,4 @@
 ---
-layout: page_v2
 title: Prebid Statement on Sustainability
 description: Prebid Statement on Sustainability
 sidebarType: 0

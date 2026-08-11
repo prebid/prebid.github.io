@@ -13,7 +13,7 @@ Below is an outline of how it's done for both versions of the server.
 
 :::warning
 Analytics adapters are subject to a number of specific technical rules. Please become familiar
-with the [module rules](/dev-docs/prebidjs/module-rules) that apply globally and to analytics adapters in particular.
+with the [module rules](/dev-docs/prebidjs/next/module-rules) that apply globally and to analytics adapters in particular.
 :::
 
 

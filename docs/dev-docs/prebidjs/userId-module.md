@@ -11,7 +11,7 @@ description: Documentation on how to add a Prebid.js new user ID module
 A user ID module is responsible for providing user ID data to Prebid.js. The flow is as follows:
 
 1. The publisher includes and configures your module as described in [Module - User ID](/dev-docs/modules/userId);
-2. Prebid.js determines whether your ID should be included, depending on [consent management](/support/privacy-resources) or other [activity controls](/dev-docs/activity-controls);
+2. Prebid.js determines whether your ID should be included, depending on [consent management](/support/privacy-resources) or other [activity controls](/dev-docs/prebidjs/next/activity-controls);
 3. If it is, it invokes your module's `getId` and `decode` methods to obtain an ID, and uses your `eids` configuration to transform it into an ORTB [EID](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/main/2.6.md#objecteid) object;
 4. Prebid.js then stores your ID (optionally and depending on the publisher's [storage configuration](/dev-docs/modules/userId#basic-configuration)) and injects it into the bid stream;
 5. On subsequent sessions, Prebid.js retrieves your ID from storage (if applicable) and repeats this flow using `extendId` instead of `getId`.
@@ -47,7 +47,7 @@ Invoked when:
 * Prebid.js did not previously store your ID, or
 * your previously stored ID has expired (depending on the publisher's `expires` and/or `refreshInSeconds`[storage configuration](/dev-docs/modules/userId#basic-configuration)), or
 * consent data has changed since the last time it was stored, or
-* the publisher explicitly asked for a refresh using [`refreshUserIds`](/dev-docs/publisher-api-reference/refreshUserIds).
+* the publisher explicitly asked for a refresh using [`refreshUserIds`](/dev-docs/prebidjs/next/publisher-api-reference/refreshUserIds).
  
 #### Arguments
 
@@ -56,7 +56,7 @@ Invoked when:
  |---------------------|--------|-------------------------------------------------------------------------------------------------------------------------------|
  | `config`            | Object | Configuration for your module as provided by the publisher                                                                    |
  | `consentData`       | Object |                                                                                                                               |
- | `consentData.gdpr`  | Object | TCF consent data when [consentManagementTcf](/dev-docs/modules/consentManagementTcf) is included, or null otherwise      |
+ | `consentData.gdpr`  | Object | TCF consent data when [consentManagementTcf](/dev-docs/prebidjs/next/modules/consentManagementTcf) is included, or null otherwise      |
  | `consentData.gpp`   | Object | GPP consent data when [consentManagementGpp](/dev-docs/modules/consentManagementGpp) is included, or null otherwise      |
  | `consentData.usp`   | String  | US Privacy string when [consentManagementUsp](/dev-docs/modules/consentManagementUsp) is included, or null otherwise     |
  | `consentData.coppa` | Boolean | COPPA flag as set by [publisher configuration](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html#coppa) |
@@ -135,7 +135,7 @@ Arguments are:
 
 Should return an object with at least one entry where the key is an identifier for your ID provider and the value is the ID (which can have any type or structure).
 
-The return value is what's made available to publishers through [`getUserIds()`](/dev-docs/publisher-api-reference/getUserIds) and to bid adapters in `bidRequest.userId`; it's also used to generate EIDs using your [EID configuration](#eidConfig).
+The return value is what's made available to publishers through [`getUserIds()`](/dev-docs/prebidjs/next/publisher-api-reference/getUserIds) and to bid adapters in `bidRequest.userId`; it's also used to generate EIDs using your [EID configuration](#eidConfig).
 
 For example:
 

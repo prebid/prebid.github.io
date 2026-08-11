@@ -14,8 +14,8 @@ In this tutorial, we'll detail how to set up Prebid.js to display a Programmatic
 The code example below was built with Prebid.js and the following:
 
 * At least one video-enabled bidder supporting `adpod`.  
-* The [`dfpAdServerVideo` module](/dev-docs/modules/dfp_video), which will provide the video ad support.  
-* The [`categoryTranslation` module](/dev-docs/modules/categoryTranslation), to enable competitive separation.
+* The [`dfpAdServerVideo` module](/dev-docs/prebidjs/next/modules/dfp_video), which will provide the video ad support.  
+* The [`categoryTranslation` module](/dev-docs/prebidjs/next/modules/categoryTranslation), to enable competitive separation.
 
 For example, to build with the AppNexus bidder adapter and GAM use the following command:
 
@@ -23,10 +23,10 @@ For example, to build with the AppNexus bidder adapter and GAM use the following
 gulp build --modules=appnexusBidAdapter,dfpAdServerVideo
 ```
 
-For more information about how to build with modules, see the [Prebid module documentation](/dev-docs/modules/).
+For more information about how to build with modules, see the [Prebid module documentation](/dev-docs/prebidjs/next/category/modules).
 
 :::caution
-If competitve separation is required the optional [`categoryTranslation` module](/dev-docs/modules/categoryTranslation) needs to be added to the build command.
+If competitve separation is required the optional [`categoryTranslation` module](/dev-docs/prebidjs/next/modules/categoryTranslation) needs to be added to the build command.
 :::
 
 :::caution
@@ -35,7 +35,7 @@ Ensure your ad ops team has set up line items in Google Ad Manager.
 
 ## Ad Pod Module
 
-When the [`dfpAdServerVideo` module](/dev-docs/modules/dfp_video) is included in the Prebid.js build, the [Ad Pod module](/dev-docs/modules/adpod), for working with ad pods, is automatically included. This module enables developers to add support for an adserver, like Google Ad Manager or Freewheel, that handles ad unit types of adpod. Specifically, the module provides functions to validate, cache, and modify long-form video bids.
+When the [`dfpAdServerVideo` module](/dev-docs/prebidjs/next/modules/dfp_video) is included in the Prebid.js build, the [Ad Pod module](/dev-docs/prebidjs/next/modules/adpod), for working with ad pods, is automatically included. This module enables developers to add support for an adserver, like Google Ad Manager or Freewheel, that handles ad unit types of adpod. Specifically, the module provides functions to validate, cache, and modify long-form video bids.
 
 ## Implementation
 
@@ -127,7 +127,7 @@ pbjs.setConfig({
 });
 ```
 
-When this setting is enabled, it requires the bidder to include a brand category id on the incoming adpod bids (otherwise the bid is rejected). The bid’s brand category will be processed and transformed to the corresponding brand category used by the publisher’s adserver (see the [Category Translation module page](/dev-docs/modules/categoryTranslation) for more details). The transformed brand category is then used in the bid caching process and targeting keys that get sent to the adserver for the winning bid(s).
+When this setting is enabled, it requires the bidder to include a brand category id on the incoming adpod bids (otherwise the bid is rejected). The bid’s brand category will be processed and transformed to the corresponding brand category used by the publisher’s adserver (see the [Category Translation module page](/dev-docs/prebidjs/next/modules/categoryTranslation) for more details). The transformed brand category is then used in the bid caching process and targeting keys that get sent to the adserver for the winning bid(s).
 
 Publishers need to provide a mapping file that will convert IAB sub categories to their labels. Publishers can set the mapping file using:
 
@@ -170,9 +170,9 @@ hb_pb_cat_dur = '10.00_10s'
 
 ### 4. Implement Custom Price Buckets
 
-By default, Prebid.js caps all CPMs at $20. With sell side video there may be an expecation to see CPMs over $20. In order to receive those bids, custom price buckets need to be implemented by setting the [priceGranularity](/dev-docs/publisher-api-reference/setConfig#setConfig-Price-Granularity) object of the `setConfig` method.
+By default, Prebid.js caps all CPMs at $20. With sell side video there may be an expecation to see CPMs over $20. In order to receive those bids, custom price buckets need to be implemented by setting the [priceGranularity](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-Price-Granularity) object of the `setConfig` method.
 
-For instructions on setting custom price buckets, view the [Custom Price Granularity Buckets](/dev-docs/examples/custom-price-buckets) documentation on prebid.org.
+For instructions on setting custom price buckets, view the [Custom Price Granularity Buckets](/dev-docs/prebidjs/next/examples/custom-price-buckets) documentation on prebid.org.
 
 ### 5. Send request for bids and build video URL
 

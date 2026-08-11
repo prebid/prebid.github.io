@@ -32,7 +32,7 @@ Notes:
 - PBS-Java support the "mediatypepricegranularity" enhancement, which lets you define different
 granularities for banner and video
 
-<a name="autoGranularityBucket"></a>
+<a id="autoGranularityBucket"></a>
 
 ### Auto Granularity
 
@@ -44,7 +44,7 @@ granularities for banner and video
 | CPM <= $20 and > $10 |     $0.50 increments             | $14.26 floored to $14.00 |
 | CPM > $20           |     Caps the price bucket at $20 | $24.82 floored to $20.00 |
 
-<a name="denseGranularityBucket"></a>
+<a id="denseGranularityBucket"></a>
 
 ### Dense Granularity
 
@@ -60,4 +60,4 @@ Please contact your Prebid Mobile host company for details about how to implemen
 
 ## Further Reading
 
-- [Prebid.js MediaTypePriceGranularity](/dev-docs/publisher-api-reference/setConfig#setConfig-MediaType-Price-Granularity)
+- [Prebid.js MediaTypePriceGranularity](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-MediaType-Price-Granularity)

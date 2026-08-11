@@ -23,11 +23,11 @@ The process is similar to [Prebid.js client side](/prebid-video/video-long-form)
 1. Application makes request for a video stream.
 2. An SSAI Server sends a video request to PBS, specifying the pod requirements.
 3. PBS sends a request for bids to selected demand partners by relaying OpenRTB requests to them.
-4. Demand partners return a bid response to PBS. If competitive separation is enabled, PBS performs [category translation](/dev-docs/prebidjs/modules/categoryTranslation) on each bid. Whether category translation is required or not, the bids are stored in prebid cache.
+4. Demand partners return a bid response to PBS. If competitive separation is enabled, PBS performs [category translation](/dev-docs/prebidjs/next/modules/categoryTranslation) on each bid. Whether category translation is required or not, the bids are stored in prebid cache.
 5. PBS generates key-value pairs that are comprised of price, category, and duration values. The key is `hb_pb_cat_dur` and each component of the key name after the `hb` represents a related value.  
 &nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;  `_pb` represents the price bucket.
-&nbsp;&nbsp;&nbsp;&nbsp; `_cat` indicates the industry code that is derived from the  [category translation](/dev-docs/prebidjs/modules/categoryTranslation).
+&nbsp;&nbsp;&nbsp;&nbsp; `_cat` indicates the industry code that is derived from the  [category translation](/dev-docs/prebidjs/next/modules/categoryTranslation).
 &nbsp;&nbsp;&nbsp;&nbsp; `_dur` is the length of the bid response in seconds.
 &nbsp;&nbsp;&nbsp;&nbsp;
 A PBS generated key-value of  `hb_pb_cat_dur = 1200_399_30s` would indicate:
@@ -48,7 +48,7 @@ These key-values are returned to the SSAI server as part of the video response.
 <img src="/images/flowcharts/pb-lfv-serverside.png" alt="architecture diagram" />
 <br/>
 
- **Parameters**<a name="parameters"></a>
+ **Parameters**<a id="parameters"></a>
 
 | Param | Scope | Type | Description |
 | --- | --- | --- | --- |
@@ -342,6 +342,6 @@ The SSAI should take the key-values from the response `adPods.[].targeting.[]${k
 
 * [Prebid Server overview](/dev-docs/prebid-server/overview/prebid-server-overview)  
 * [OpenRTB auction endpoint](/dev-docs/prebid-server/endpoints/openrtb2/pbs-endpoint-auction)  
-* [Category Translation module](/dev-docs/prebidjs/modules/categoryTranslation)  
-* [Freewheel module](/dev-docs/prebidjs/modules/freewheel)  
-* [Ad Pod module](/dev-docs/prebidjs/modules/adpod)  
+* [Category Translation module](/dev-docs/prebidjs/next/modules/categoryTranslation)  
+* [Freewheel module](/dev-docs/prebidjs/next/modules/freewheel)  
+* [Ad Pod module](/dev-docs/prebidjs/next/modules/adpod)  

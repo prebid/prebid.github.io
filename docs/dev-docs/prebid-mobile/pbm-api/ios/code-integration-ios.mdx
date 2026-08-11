@@ -106,7 +106,7 @@ In SDK 2.5 and before, if you're using the AppNexus Prebid Server, you would do 
 Prebid.shared.prebidServerHost = .Appnexus
 ```
 
-In SDK 2.5 and before, if you have opted to host your own Prebid Server solution, you will need to store the URL to the server in your app. Make sure that your URL points to the [/openrtb2/auction](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction) endpoint.
+In SDK 2.5 and before, if you have opted to host your own Prebid Server solution, you will need to store the URL to the server in your app. Make sure that your URL points to the [/openrtb2/auction](/dev-docs/prebid-server/endpoints/openrtb2/pbs-endpoint-auction) endpoint.
 
 ```swift
 try! Prebid.shared.setCustomPrebidServer(url: "https://prebidserver.example.com/openrtb2/auction")
@@ -214,7 +214,7 @@ Prebid.initializeSDK(PREBID_SERVER_URL) { status, error in
 
 All initialization methods may throw an exception if the provided server URL is invalid.
 
-During the initialization, SDK creates internal classes and performs the health check request to the [/status](/prebid-server/endpoints/pbs-endpoint-status)  endpoint. If your Prebid Server provider has a non-standard path (anything other than `/status`), you should provide a the alternate status endpoint:
+During the initialization, SDK creates internal classes and performs the health check request to the [/status](/dev-docs/prebid-server/endpoints/pbs-endpoint-status)  endpoint. If your Prebid Server provider has a non-standard path (anything other than `/status`), you should provide a the alternate status endpoint:
 
 ```swift
 Prebid.shared.customStatusEndpoint = PREBID_SERVER_STATUS_ENDPOINT

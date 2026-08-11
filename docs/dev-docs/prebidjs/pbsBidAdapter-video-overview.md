@@ -12,17 +12,17 @@ An introduction to using server-to-server header bidding with Prebid.js on websi
 <p/>
 Notes:
 
-- [Prebid Server Overview](/prebid-server/overview/prebid-server-overview)
+- [Prebid Server Overview](/dev-docs/prebid-server/overview/prebid-server-overview)
 - [Prebid Managed Services](https://prebid.org/managed-services/)
-- [Header Bidding with Prebid](/overview/intro)
+- [Header Bidding with Prebid](/intro)
 
 Related Videos:
 
 - [Introduction to Prebid.js](/prebid/prebidjs-video)
 - [Prebid.js Impression Flow](/prebid/prebidjs-flow-video)
 - [Components of Prebid.js](/prebid/prebidjs-components-video)
-- [Prebid Server Overview](/prebid-server/overview/prebid-server-overview-video)
-- [All Videos](/overview/all-videos)
+- [Prebid Server Overview](/dev-docs/prebid-server/overview/prebid-server-overview-video)
+- [All Videos](/all-videos)
 
 ## Transcript
 

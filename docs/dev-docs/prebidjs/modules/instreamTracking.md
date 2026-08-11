@@ -79,4 +79,4 @@ pbjs.setConfig({
 
 ​
 [Prebid.js for Video](/prebid-video/video-overview)  
-[Client-side Caching of VAST XML](/dev-docs/publisher-api-reference/setConfig#setConfig-vast-cache)
+[Client-side Caching of VAST XML](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-vast-cache)

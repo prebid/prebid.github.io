@@ -37,8 +37,8 @@ The Brightcove Prebid Plugin supports the following features:
 * The plugin supports the use of one or more optional adapters.
   * Adapters are a mechanism that a publisher can use to add some specific behavior at runtime to customize the behavior of the Prebid plugin.
   * Adapters can be especially useful to modify the runtime behavior of the plugin when the plugin is configured with Brightcove Studio.
-  * Adapters are defined within the Prebid configuration parameters.  See [Prebid Options](/dev-docs/plugins/bc/bc-prebid-plugin-prebid-options#pb-adapters) for more details on how to specify the use of an adapter.
-  * See [How To Build An Adapter for Prebid Plugin](/dev-docs/plugins/bc/bc-prebid-plugin-building-adapter) for details on how to build an adapter.
+  * Adapters are defined within the Prebid configuration parameters.  See [Prebid Options](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-prebid-options#pb-adapters) for more details on how to specify the use of an adapter.
+  * See [How To Build An Adapter for Prebid Plugin](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-building-adapter) for details on how to build an adapter.
 
 * Open source project
 
@@ -226,7 +226,7 @@ The plugin can run the prebid process in the header so that it can be started be
 **Disadvantages**
 
 * Requires publisher code both in the header, to start the prebid process, and also in the body, to render the ad once the Brightcove Player is loaded.
-  * See **[Sample Brightcove Player Prebid Plugin Integration * Prebid in Header](/dev-docs/plugins/bc/bc-prebid-plugin-sample-prebid-header)**
+  * See **[Sample Brightcove Player Prebid Plugin Integration * Prebid in Header](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-sample-prebid-header)**
 * Publisher *must* register the plugin on the page; it cannot register the plugin in the Brightcove Studio.
 
 **Caveats**
@@ -243,7 +243,7 @@ The plugin can run the prebid process after the Brightcove Player has been loade
 * Simpler publisher integration: the integration code only needs to occur in the body of the document where the Brightcove Player is loaded.
 * Publisher can register and completely configure the plugin in the Brightcove Studio or on page, according to their preference. Doing this means you do not need to add any code to a publisher page when using this plugin.
 * Because all of the code will run in the same document where the Brightcove Player is located, there are no cross-domain issues (with one potential exception, noted in the Caveats below).
-* See **[Sample Brightcove Player Prebid Plugin Integration * Prebid After Player is Loaded](/dev-docs/plugins/bc/bc-prebid-plugin-sample-prebid-body)**
+* See **[Sample Brightcove Player Prebid Plugin Integration * Prebid After Player is Loaded](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-sample-prebid-body)**
 
 **Disadvantages**
 
@@ -287,11 +287,11 @@ The Brightcove Prebid Plugin can be integrated and configured in one of two ways
 * Directly on the publisher page and/or through scripts that are loaded directly by the publisher page. This method of integration is required if you want to run prebid in the header of the page.
 * In the Brightcove Studio in the same area where you set up the Brightcove Player instance that you are going to use.
 
-Details about the Integration Methods can be found in [How to Integrate and Configure Prebid Plugin for Brightcove (Videojs) Player](/dev-docs/plugins/bc/bc-prebid-plugin-integration).
+Details about the Integration Methods can be found in [How to Integrate and Configure Prebid Plugin for Brightcove (Videojs) Player](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-integration).
 
 ## Plugin API
 
-The Brightcove Prebid Plugin supports an API. Information about this API can be found in the [Prebid Plugin for Brightcove (Videojs) Player API](/dev-docs/plugins/bc/bc-prebid-plugin-api).
+The Brightcove Prebid Plugin supports an API. Information about this API can be found in the [Prebid Plugin for Brightcove (Videojs) Player API](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-api).
 
 ## Plugin Options
 
@@ -310,17 +310,17 @@ Configuration options are passed into the plugin via a JSON structure. This stru
   * Custom translations for UI components such as the Ad Indicator, the Skip button and the countdown text
 
 :::info
-NOTE:  If you are requesting prebid for more than one ad break in a video, you need to define an array of configuration options, one for each ad break.  The configuration should include the `timeOffset` option to identify when the ad break should occur.  See [Specifying Multiple Ad Breaks for a Video](/dev-docs/plugins/bc/bc-prebid-plugin-multiad-options) for more details.
+NOTE:  If you are requesting prebid for more than one ad break in a video, you need to define an array of configuration options, one for each ad break.  The configuration should include the `timeOffset` option to identify when the ad break should occur.  See [Specifying Multiple Ad Breaks for a Video](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-multiad-options) for more details.
 :::
 
-Details about the options supported by the Brightcove Prebid Plugin can be found in [Prebid Plugin for Brightcove (Videojs) Player - Plugin Options](/dev-docs/plugins/bc/bc-prebid-plugin-options).
+Details about the options supported by the Brightcove Prebid Plugin can be found in [Prebid Plugin for Brightcove (Videojs) Player - Plugin Options](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-options).
 
 ## Sample Implementations
 
 Sample implementations are provided at:
 
-* **[Sample Brightcove Player Prebid Plugin Integration - Prebid in Header](/dev-docs/plugins/bc/bc-prebid-plugin-sample-prebid-header)**
-* **[Sample Brightcove Player Prebid Plugin Integration - Prebid After Player is Loaded](/dev-docs/plugins/bc/bc-prebid-plugin-sample-prebid-body)**
-* **[Sample Brightcove Player Prebid Plugin Integration - Using Publisher Preferred Ad Server](/dev-docs/plugins/bc/bc-prebid-plugin-sample-third-party-ad-server)**
-* **[Sample Brightcove Player Prebid Plugin Integration - Publisher Uses Custom Header Bidding, Plugin Renders the Ad](/dev-docs/plugins/bc/bc-prebid-plugin-sample-custom-header-bidding)**
-* **[Specifying Multiple Ad Breaks for a Video](/dev-docs/plugins/bc/bc-prebid-plugin-multiad-options)**
+* **[Sample Brightcove Player Prebid Plugin Integration - Prebid in Header](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-sample-prebid-header)**
+* **[Sample Brightcove Player Prebid Plugin Integration - Prebid After Player is Loaded](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-sample-prebid-body)**
+* **[Sample Brightcove Player Prebid Plugin Integration - Using Publisher Preferred Ad Server](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-sample-third-party-ad-server)**
+* **[Sample Brightcove Player Prebid Plugin Integration - Publisher Uses Custom Header Bidding, Plugin Renders the Ad](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-sample-custom-header-bidding)**
+* **[Specifying Multiple Ad Breaks for a Video](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-multiad-options)**

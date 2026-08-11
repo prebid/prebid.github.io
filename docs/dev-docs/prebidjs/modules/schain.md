@@ -84,7 +84,7 @@ pbjs.setBidderConfig({
 });
 ```
 
-You can find more information about the `pbjs.setBidderConfig` function in the [Publisher API Reference](/dev-docs/publisher-api-reference/setBidderConfig).
+You can find more information about the `pbjs.setBidderConfig` function in the [Publisher API Reference](/dev-docs/prebidjs/next/publisher-api-reference/setBidderConfig).
 
 :::warning
 **Prebid 10 :** You can either use above method or `ortb2.source.schain` property to pass schain. You can read more about passing [First Party Data](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html#first-party-data). As far as precedence is concerned, `ortb2.source.schain` property takes precedence over the schain config setup via `pbjs.setConfig` using above mentioned method.

@@ -76,12 +76,12 @@ In the ad server's post-bid line item report, you'd only get an aggregated repor
 
 ### 1. If none of the post-bid demand sources fill, can I still passback to another tag, say from Adsense?
 
-Yes. Check out the [example](/dev-docs/prebidjs/examples/postbid).
+Yes. Check out the [example](/dev-docs/prebidjs/next/examples/postbid).
 
 ### 2. Can post-bid be used for mobile apps?
 
-Yes, it works the same as for browsers. When utilizing a server-to-server architecture, the [app](/dev-docs/prebidjs/publisher-api-reference/setConfig#setConfig-app) config option can be used to forward the mobile app details.
+Yes, it works the same as for browsers. When utilizing a server-to-server architecture, the [app](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-app) config option can be used to forward the mobile app details.
 
 # Getting Started
 
-Please refer to the [example](/dev-docs/prebidjs/examples/postbid).
+Please refer to the [example](/dev-docs/prebidjs/next/examples/postbid).

@@ -12,8 +12,8 @@ sidebarType : 1
 # Google Ad Manager Adpod Support
 
 
-This module exposes the [`pbjs.adServers.dfp.buildAdpodVideoUrl](/dev-docs/publisher-api-reference/adServers.dfp.buildAdpodVideoUrl) method, required to use [adpod](/dev-docs/modules/adpod) with Google Ad Manager.
+This module exposes the [`pbjs.adServers.dfp.buildAdpodVideoUrl](/dev-docs/prebidjs/next/publisher-api-reference/adServers.dfp.buildAdpodVideoUrl) method, required to use [adpod](/dev-docs/prebidjs/next/modules/adpod) with Google Ad Manager.
 
 ## Further Reading
 
-- [Show long form video ads with GAM](/dev-docs/show-long-form-video-with-gam)
+- [Show long form video ads with GAM](/dev-docs/prebidjs/next/show-long-form-video-with-gam)

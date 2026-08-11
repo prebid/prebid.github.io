@@ -22,7 +22,7 @@ This page has instructions for writing your own bidder adapter.  The instruction
 
 ### Required Adapter Rules
 
-In order to provide a fast and safe header bidding environment for publishers, the Prebid.org team reviews all adapters for the required bid adapter conventions laid out in the [Module Rules](/dev-docs/prebidjs/module-rules). Here are additional details specific to Prebid.js:
+In order to provide a fast and safe header bidding environment for publishers, the Prebid.org team reviews all adapters for the required bid adapter conventions laid out in the [Module Rules](/dev-docs/prebidjs/next/module-rules). Here are additional details specific to Prebid.js:
 
 * **No loading of external code**: All code must be present in the adapter, not loaded at runtime. Exceptions are possible -- see [the full policy](https://github.com/prebid/prebid-js-external-js-template#policy).
 * **All user-sync activity must be registered via the provided functions**: The platform will place all registered syncs in the page after the auction is complete, subject to publisher configuration.
@@ -31,7 +31,7 @@ In order to provide a fast and safe header bidding environment for publishers, t
 * **All parameter conventions must be followed**: Video params must be read from AdUnit.mediaTypes.video when available; however, bidder config can override the ad unit.
 
 :::danger
-The above list is **not** the full list of requirements. Failure to follow any of the required conventions defined in the [Module Rules](/dev-docs/prebidjs/module-rules) could lead to delays in approving your adapter for inclusion in Prebid.js. If you'd like to apply for an exception to one of the rules, make your request in a new [Prebid.js issue](https://github.com/prebid/Prebid.js/issues).
+The above list is **not** the full list of requirements. Failure to follow any of the required conventions defined in the [Module Rules](/dev-docs/prebidjs/next/module-rules) could lead to delays in approving your adapter for inclusion in Prebid.js. If you'd like to apply for an exception to one of the rules, make your request in a new [Prebid.js issue](https://github.com/prebid/Prebid.js/issues).
 :::
 
 ### Required Files
@@ -97,13 +97,13 @@ Module that connects to Example's demand sources
     ];
 ```
 
-<a name="bidder-adaptor-Designing-your-Bid-Params"></a>
+<a id="bidder-adaptor-Designing-your-Bid-Params"></a>
 
 ## Designing your Bid Params
 
 The parameters of your ad request will be stored in the ad unit's `bid.params` object.  You can include tag info, ad size, keywords, and other data such as video parameters.
 
-For more information about the kinds of information that can be passed using these parameters, see the example below, as well as [the existing bidder parameters]({{site.baseurl}}/dev-docs/bidders.html).
+For more information about the kinds of information that can be passed using these parameters, see the example below, as well as [the existing bidder parameters](/dev-docs/prebidjs/next/bidders).
 
 ```javascript
 var adUnits = [{
@@ -131,7 +131,7 @@ var adUnits = [{
 }];
 ```
 
-<a name="bidder-adaptor-HTTP-simple-requests"></a>
+<a id="bidder-adaptor-HTTP-simple-requests"></a>
 
 ## HTTP Simple Requests
 
@@ -180,7 +180,7 @@ If your adapter interfaces with an ORTB backend, you may take advantage of Prebi
 * [Registering User Syncs](#bidder-adaptor-Registering-User-Syncs)
 * [Registering on Timeout](#bidder-adaptor-Registering-on-Timout)
 
-<a name="bidder-adaptor-Overview"></a>
+<a id="bidder-adaptor-Overview"></a>
 
 ### Overview
 
@@ -237,7 +237,7 @@ registerBidder(spec);
 
 If your adapter interfaces with an ORTB backend, you may take advantage of Prebid's [ORTB conversion library](https://github.com/prebid/Prebid.js/blob/master/libraries/ortbConverter/README.md), which provides most of the implementation for `buildRequests` and `interpretResponse`.
 
-<a name="bidder-adaptor-Building-the-Request"></a>
+<a id="bidder-adaptor-Building-the-Request"></a>
 
 ### Building the Request
 
@@ -315,7 +315,7 @@ Other notes:
 * **userId** is where bidders can look for IDs offered by the various [User ID modules](/dev-docs/modules/userId.html#prebidjs-adapters).
 * **userIdAsEid** is the EID-formatted version of `userId`.
 * **ortb2** a copy of `bidderRequest.ortb2` (see below), provided here for convenience.
-* **schain** is where bidders can look for any [Supply Chain](/dev-docs/modules/schain.html) data that they should pass through to the endpoint.
+* **schain** is where bidders can look for any [Supply Chain](/dev-docs/prebidjs/next/modules/schain) data that they should pass through to the endpoint.
 
 #### bidderRequest Parameters
 
@@ -364,7 +364,7 @@ Since version 7.29, if Prebid finds appropriate values for the following fields,
 Some of the data in `ortb2` is also made available through other `bidderRequest` fields:
 
 * **refererInfo** is provided so you don't have to call any utils functions. See below for more information.
-* **gdprConsent** is the object containing data from the [TCF ConsentManagement](/dev-docs/modules/consentManagementTcf.html) module. For TCF2+, it will contain both the tcfString and the addtlConsent string if the CMP sets the latter as part of the TCData object.
+* **gdprConsent** is the object containing data from the [TCF ConsentManagement](/dev-docs/prebidjs/next/modules/consentManagementTcf) module. For TCF2+, it will contain both the tcfString and the addtlConsent string if the CMP sets the latter as part of the TCData object.
 * **uspConsent** is the object containing data from the [US Privacy ConsentManagement](/dev-docs/modules/consentManagementUsp.html) module.
 
 <a id="tid-warning"></a>
@@ -374,7 +374,7 @@ Since version 8, `auctionId` and `transactionId` are being migrated to `ortb2.so
 When disabled, `auctionId`/`transactionId` are set to `null`; `ortb2.source.tid`/`ortb2Imp.ext.tid` are not populated. Your adapter should prefer the latter two, and be able to handle the case when they are undefined.
 :::
 
-<a name="std-param-location"></a>
+<a id="std-param-location"></a>
 
 #### Prebid Standard Parameter Locations
 
@@ -386,9 +386,9 @@ There are a number of important values that a publisher expects to be handled in
 | Bidder Timeout | Use if your endpoint needs to know how long the page is allowing the auction to run. | bidderRequest.timeout; |
 | COPPA | If your endpoint supports the Child Online Privacy Protection Act, you should read this value. | bidderRequest.ortb2.regs.coppa; |
 | First Party Data | The publisher, as well as a number of modules, may provide [first party data](/features/firstPartyData.html) (e.g. page type). | bidderRequest.ortb2; validBidRequests[].ortb2Imp|
-| Floors | Adapters that accept a floor parameter must also support the [floors module](https://docs.prebid.org/dev-docs/modules/floors.html) | [`bidRequest.getFloor()`](/dev-docs/modules/floors.html#bid-adapter-interface) |
+| Floors | Adapters that accept a floor parameter must also support the [floors module](https://docs.prebid.org/dev-docs/modules/floors.html) | [`bidRequest.getFloor()`](/dev-docs/prebidjs/next/modules/floors#bid-adapter-interface) |
 | Page URL and referrer | Instead of building your own function to find the page location, domain, or referrer, look in the standard bidRequest location. | bidderRequest.refererInfo.page |
-| [Supply Chain](/dev-docs/modules/schain.html) | Adapters cannot accept an schain parameter. Rather, they must look for the schain parameter at bidRequest.schain. | bidRequest.schain |
+| [Supply Chain](/dev-docs/prebidjs/next/modules/schain) | Adapters cannot accept an schain parameter. Rather, they must look for the schain parameter at bidRequest.schain. | bidRequest.schain |
 | Video Parameters | Video params must be read from AdUnit.mediaType.video when available; however bidder config can override the ad unit. | AdUnit.mediaType.video |
 
 #### Location and referrers
@@ -500,13 +500,13 @@ The parameters of the `bidResponse` object are:
 | `width`      | Required                                    | The width of the returned creative. For video, this is the player width.                                                                      | 300                                  |
 | `height`     | Required                                    | The height of the returned creative. For video, this is the player height.                                                                    | 250                                  |
 | `ad`         | Required                                    | The creative payload of the returned bid.                                                                                                     | `"<html><h3>I am an ad</h3></html>"` |
-| `ttl`        | Required                                    | Time-to-Live - how long (in seconds) Prebid can use this bid. See the [FAQ entry](/dev-docs/faq.html#does-prebidjs-cache-bids) for more info.   | 360                                  |
+| `ttl`        | Required                                    | Time-to-Live - how long (in seconds) Prebid can use this bid. See the [FAQ entry](/dev-docs/prebidjs/next/faq#does-prebidjs-cache-bids) for more info.   | 360                                  |
 | `creativeId` | Required                                    | A bidder-specific unique code that supports tracing the ad creative back to the source.                                                       | `"123abc"`                           |
 | `netRevenue` | Required                                    | Boolean defining whether the bid is Net or Gross. The value `true` is Net. Bidders responding with Gross-price bids should set this to false. | `false`                              |
 | `vastUrl`    | Either this or `vastXml` required for video | URL where the VAST document can be retrieved when ready for display.                                                                          | `"https://vid.example.com/9876`       |
 | `vastImpUrl` | Optional; only usable with `vastUrl` and requires prebid cache to be enabled | An impression tracking URL to serve with video Ad                                                                                             | `"https://vid.exmpale.com/imp/134"`   |
 | `vastXml`    | Either this or `vastUrl` required for video | XML for VAST document to be cached for later retrieval.                                                                                       | `<VAST version="3.0">...`            |
-| `bidderCode` | Optional                                    | Bidder code to use for the response - for adapters that wish to reply on behalf of other bidders. Defaults to the code registered with [`registerBidder`](#bidder-adaptor-Overview); note that any other code will need to be [explicitly allowed by the publisher](/dev-docs/publisher-api-reference/bidderSettings.html#allowAlternateBidderCodes). | 'exampleBidder' |  
+| `bidderCode` | Optional                                    | Bidder code to use for the response - for adapters that wish to reply on behalf of other bidders. Defaults to the code registered with [`registerBidder`](#bidder-adaptor-Overview); note that any other code will need to be [explicitly allowed by the publisher](/dev-docs/prebidjs/next/publisher-api-reference/bidderSettings#allowAlternateBidderCodes). | 'exampleBidder' |  
 | `dealId`     | Optional                                    | Deal ID                                                                                                                                       | `"123abc"`                           |
 | `meta`                   | Optional     | Object containing metadata about the bid                                                                                                                         |                                      |
 | `meta.networkId`         | Optional     | Bidder-specific Network/DSP Id               | `"1111"`             |
@@ -819,7 +819,7 @@ Video parameters are often passed in from the ad unit in a `video` object. As of
 
 The design of these parameters may vary depending on what your server-side bidder accepts.  If possible, we recommend using the video parameters in the [OpenRTB specification](https://iabtechlab.com/specifications-guidelines/openrtb/).
 
-For examples of video parameters accepted by different adapters, see [the list of bidders with video demand]({{site.baseurl}}/dev-docs/bidders.html#bidder-video-native).
+For examples of video parameters accepted by different adapters, see [the list of bidders with video demand](/dev-docs/prebidjs/next/bidders#bidder-video-native).
 
 #### Ingesting the Video Context
 
@@ -1001,7 +1001,7 @@ let primaryCatId = getIabSubCategory(bidderCode, pCategory)
 
 #### Outstream Video Renderers
 
-As described in [Show Outstream Video Ads]({{site.baseurl}}/dev-docs/show-outstream-video-ads.html), for an ad unit to play outstream ads, a "renderer" is required.  A renderer is the client-side code (usually a combination of JavaScript, HTML, and CSS) responsible for displaying a creative on a page.  A renderer must provide a player environment capable of playing a video creative (most commonly an XML document).
+As described in [Show Outstream Video Ads](/dev-docs/prebidjs/next/show-outstream-video-ads), for an ad unit to play outstream ads, a "renderer" is required.  A renderer is the client-side code (usually a combination of JavaScript, HTML, and CSS) responsible for displaying a creative on a page.  A renderer must provide a player environment capable of playing a video creative (most commonly an XML document).
 
 If possible, we recommend that publishers associate a renderer with their outstream video ad units.  By doing so, all video-enabled demand partners will be able to participate in the auction, regardless of whether a given demand partner provides a renderer on its bid responses.  Prebid.js will always invoke a publisher-defined renderer on a given ad unit.
 
@@ -1032,7 +1032,7 @@ function createBid(status, reqBid, response) {
 
 ### Deals in Ad Pods
 
-To do deals for long-form video (`adpod` ad unit) just add the `dielTier` integer value to `bid.video.dealTier`. For more details on conducting deals in ad pods see our [ad pod module documentation](/dev-docs/modules/adpod.html).
+To do deals for long-form video (`adpod` ad unit) just add the `dielTier` integer value to `bid.video.dealTier`. For more details on conducting deals in ad pods see our [ad pod module documentation](/dev-docs/prebidjs/next/modules/adpod).
 
 ## Supporting Native
 
@@ -1131,7 +1131,7 @@ Every adapter submission must include unit tests.  For details about adapter tes
 
 For example tests, see [the existing adapter test suites](https://github.com/prebid/Prebid.js/tree/master/test/spec/modules).
 
-<a name="bidder-example"></a>
+<a id="bidder-example"></a>
 
 ## Full Bid Adapter Example
 
@@ -1296,7 +1296,7 @@ registerBidder(spec);
   * Copy a file in [dev-docs/bidders](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) and name it to exactly the same as your biddercode. Add the following metadata to the header of your .md file:
     * Add 'biddercode' and set it to the code that publishers should be using to reference your bidder in an AdUnit. _This needs to be the same name as the docs file!_
     * Add 'aliasCode' if your biddercode is not the same name as your PBJS implementation file. e.g. if your biddercode is "ex", but the file in the PBJS repo is exampleBidAdapter.js, this value needs to be "example".
-    * Add `pbjs: true`. If you also have a [Prebid Server bid adapter](/prebid-server/developers/add-new-bidder-go.html), add `pbs: true`. Default is false for both.
+    * Add `pbjs: true`. If you also have a [Prebid Server bid adapter](/dev-docs/prebid-server/developers/add-new-bidder-go), add `pbs: true`. Default is false for both.
     * If you're on the IAB Global Vendor List (including just [Canada](https://vendor-list.consensu.org/v2/ca/vendor-list.json)), add your ID number in `gvl_id`.
     * If you support the IAB's TCF-EU consent string format and have a GVL ID, you may add `tcfeu_supported: true`. Default is false.
     * If you support the IAB's US Privacy consent string format, add `usp_supported: true`. Default is false.
@@ -1304,7 +1304,7 @@ registerBidder(spec);
     * If you support video and/or native mediaTypes add `media_types: video, native`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No default value.
     * If you support the COPPA flag, add `coppa_supported: true`. Default is false.
     * If you support the IAB's GPP consent string, add `gpp_sids` with a comma separated list of section names, e.g. `gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp`. Default is None.
-    * If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
+    * If you support the [supply chain](/dev-docs/prebidjs/next/modules/schain) feature, add `schain_supported: true`. Default is false.
     * If you support passing a demand chain on the response, add `dchain_supported: true`. Default is false.
     * If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default value.
     * If you support deals, set `deals_supported: true`. No default value..
@@ -1362,7 +1362,7 @@ The Example Bidding adapter requires setup before beginning. Please contact us a
 Within a few days, the code pull request will be assigned to a developer for review.
 Once the inspection passes, the code will be merged and included with the next release. Once released, the documentation pull request will be merged.
 
-The Prebid.org [download page](/download.html) will automatically be updated with your adapter once everything's been merged.
+The Prebid.org [download page](/download) will automatically be updated with your adapter once everything's been merged.
 
 ## Optional Code Update Notification
 
@@ -1373,4 +1373,4 @@ Likewise, your bidder documentation can receive alerts by updating the [docs cod
 ## Further Reading
 
 * [Prebid.js Repo - Bidder Adapter Sources](https://github.com/prebid/Prebid.js/tree/master/modules)
-* [Module Rules](/dev-docs/module-rules.html)
+* [Module Rules](/dev-docs/prebidjs/next/module-rules)

@@ -24,8 +24,8 @@ The standard options:
 
 ## Step 2: Integrate into your prebid.js configuration
 
-The method exposes the [`pbjs.adServers.dfp.buildVideoUrl`](/dev-docs/publisher-api-reference/adServers.dfp.buildVideoUrl) method to use. For an example, see the DFP video guide linked below.
+The method exposes the [`pbjs.adServers.dfp.buildVideoUrl`](/dev-docs/prebidjs/next/publisher-api-reference/adServers.dfp.buildVideoUrl) method to use. For an example, see the DFP video guide linked below.
 
 # Further Reading
 
-- [Show Video Ads with GAM](/dev-docs/show-video-with-a-dfp-video-tag)
+- [Show Video Ads with GAM](/dev-docs/prebidjs/next/show-video-with-a-dfp-video-tag)

@@ -56,7 +56,7 @@ These identifiers are extremely powerful for discrepancy reconciliation, ad qual
 
 ## Activity Controls
 
-[Activity controls](/dev-docs/activity-controls) were very recently released, and are even more powerful in Prebid.js 8. `transmitTid` is a new control added.
+[Activity controls](/dev-docs/prebidjs/next/activity-controls) were very recently released, and are even more powerful in Prebid.js 8. `transmitTid` is a new control added.
 
 Also, in order to allow publishers to better comply with regulations around precise location, bid adapters must read location from the global, not from their own parameters.
 
@@ -68,7 +68,7 @@ Additionally, bidder aliases should now have their own gvl id if a user has the 
 
 ## Size Mapping
 
-Users of the [label](/dev-docs/conditional-ad-units) feature should be careful to examine the new size mapping module. We moved it out of core to improve the build size. See [github.com/prebid/Prebid.js/issue/9597](https://github.com/prebid/Prebid.js/issues/9597)
+Users of the [label](/dev-docs/prebidjs/next/conditional-ad-units) feature should be careful to examine the new size mapping module. We moved it out of core to improve the build size. See [github.com/prebid/Prebid.js/issue/9597](https://github.com/prebid/Prebid.js/issues/9597)
 
 ## Misc changes
 

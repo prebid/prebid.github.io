@@ -114,7 +114,7 @@ Prebid Server's support for Fledge is a passthrough:
 1. If the request contains `imp[].ext.ae: 1`
 2. Bid adapters may respond with 'auction config' that's placed in `ext.prebid.fledge.auctionconfigs[]`.
 
-The auction config must then be used by the client. See the Prebid.js [PAAPI for GPT](/dev-docs/prebidjs/modules/paapiForGpt) module for more information.
+The auction config must then be used by the client. See the Prebid.js [PAAPI for GPT](/dev-docs/prebidjs/next/modules/paapiForGpt) module for more information.
 
 ### OpenRTB Fields
 
@@ -563,7 +563,7 @@ Note that these bidadjustments can also be specified in the PBS account config i
 ##### Targeting
 
 Targeting refers to strings that are sent to the adserver to
-[make header bidding possible](/overview/intro).
+[make header bidding possible](/intro).
 
 `request.ext.prebid.targeting` is an optional property that causes Prebid Server
 to set these params on the response at `response.seatbid[i].bid[j].ext.prebid.targeting`.
@@ -1672,7 +1672,7 @@ In order to pull AMP parameters out into targeting, Prebid Server places AMP que
 Allows a single bidder to bid more than once into an auction and have extra bids passed
 back to the client.
 
-See the [Prebid.js MultiBid Module](/dev-docs/prebidjs/modules/multibid) for background information and use cases.
+See the [Prebid.js MultiBid Module](/dev-docs/prebidjs/next/modules/multibid) for background information and use cases.
 
 The Prebid extension to the OpenRTB protocol is `ext.prebid.multibid`. For example:
 

@@ -6,7 +6,7 @@ description: An overview of Prebid org and products
 
 # Introduction to Prebid
 
-Prebid is the leading header bidding solution. It is free and fully open source, available to any publisher who wants to implement header bidding. This introduction describes Prebid and its benefits. For a general overview of header bidding, see [Introduction to Header Bidding](/overview/intro-to-header-bidding.html).
+Prebid is the leading header bidding solution. It is free and fully open source, available to any publisher who wants to implement header bidding. This introduction describes Prebid and its benefits. For a general overview of header bidding, see [Introduction to Header Bidding](/intro-to-header-bidding).
 
 :::info
 
@@ -22,8 +22,8 @@ A video overview of Prebid.
 
 Further Reading:
 
-- [Transcript of this video overview](/overview/intro-video.html)
-- [Introduction for Developers](/developers.html)
+- [Transcript of this video overview](/intro-video)
+- [Introduction for Developers](/dev-docs/prebid-server/category/developers)
 - [Prebid Membership](https://prebid.org/membership)
 - [Prebid on Github](https://github.com/prebid)
 
@@ -80,7 +80,7 @@ Prebid.js is a JavaScript library that runs in the browser, and is the core prod
 
 One of the many benefits to using Prebid.js as your header bidding solution is its ability to reduce latency. Latency - the delay between the bid requests being sent and the responses being returned - is one of the main concerns publishers have with header bidding. Prebid addresses this issue by concurrently calling the selected bidders within the set timeout. That setting is respected by Prebid.js, and any bidder not returning a result within the timeout duration is excluded from the auction. This dramatically decreases the page load time, providing a better user experience. (See [“Prebid and Latency”](#latency) below for more information on latency.)
 
-See [What is Prebid.js?](/prebid/prebidjs.html) for more information.
+See [What is Prebid.js?](/dev-docs/prebidjs) for more information.
 
 ### Prebid Server
 
@@ -92,17 +92,17 @@ Several Prebid.org members provide [managed solutions](https://prebid.org/produc
 
 If a publisher would prefer to implement their own solution, source code in Go and Java is available from our Github page and instructions for configuring, deploying and testing your implementation can be found in the Prebid Server section of this site.
 
-See [Prebid Server Overview](/prebid-server/overview/prebid-server-overview.html) for more information.
+See [Prebid Server Overview](/dev-docs/prebid-server/overview/prebid-server-overview) for more information.
 
 ### Prebid Mobile
 
 For mobile apps, Prebid provides Prebid Mobile (PBM) SDK, an end-to-end header bidding solution for both iOS and Android. Working in conjunction with Prebid Server, PBM enables access to more mobile buyers and provides options for banner, interstitial, and native ad formats as well as video ads.
 
-See [Prebid Mobile Overview](/prebid-mobile/prebid-mobile.html) for more information.
+See [Prebid Mobile Overview](/dev-docs/prebid-mobile) for more information.
 
 ### SharedID
 
-SharedId is a first party identifier. For more information, see [Prebid SharedID](/identity/sharedid.html).
+SharedId is a first party identifier. For more information, see [Prebid SharedID](/dev-docs/prebidjs/next/modules/userid-submodules/sharedid).
 
 ### Modules
 
@@ -110,9 +110,9 @@ Along with our suite of products, Prebid comes with modules that enable you to i
 
 Bid adapter modules are used to communicate with the bidders (SSPs, DSPs, and exchanges) that will be participating in the header bidding auction. Bidders create these adapters and submit them to Prebid, where they’re reviewed and tested before being made publicly available. You choose your adapters when you build or download Prebid.js. (You can also add them in later.) To help you determine the adapters that are available and decide which are right for you, Prebid provides a spreadsheet that lists all Prebid bid adapters and information about them, including media formats, regulatory compliance, etc. <a href="/dev-docs/bidder-data.csv" download>Download the CSV spreadsheet.</a>
 
-Analytics adapter modules allow you to gather analytics from Prebid.js and send them to your analytics provider (such as Google Analytics). See [Prebid.js Analytics Adapters](/overview/analytics.html) for more information.
+Analytics adapter modules allow you to gather analytics from Prebid.js and send them to your analytics provider (such as Google Analytics). See [Prebid.js Analytics Adapters](/analytics) for more information.
 
-Additional modules are available that support identity, price floors, testing, currency, and much more. See [Prebid.js Module Overview](/dev-docs/modules/) for more information.
+Additional modules are available that support identity, price floors, testing, currency, and much more. See [Prebid.js Module Overview](/dev-docs/prebidjs/next/category/modules) for more information.
 
 <iframe
     src="https://sincera.metabaseapp.com/public/question/bf512a54-9ae6-4311-bb99-1fab9c6cd93a"
@@ -190,6 +190,6 @@ You don’t have to be a Prebid.org member to use Prebid. However, we do highly 
 
 ## Related Reading
 
-- [Introduction to Header Bidding](/overview/intro-to-header-bidding-video.html)
+- [Introduction to Header Bidding](/intro-to-header-bidding-video)
 - [Prebid Product Suite](https://prebid.org/product-suite/)
-- [What is Prebid.js](/prebid/prebidjs.html)
+- [What is Prebid.js](/dev-docs/prebidjs)

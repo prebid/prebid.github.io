@@ -42,7 +42,7 @@ Working with any Prebid project requires using Github. In general, we recommend 
 
 :::warning
 Analytics adapters are subject to a number of specific technical rules. Please become familiar
-with the [module rules](/dev-docs/module-rules) that apply globally and to analytics adapters in particular.
+with the [module rules](/dev-docs/prebidjs/next/module-rules) that apply globally and to analytics adapters in particular.
 :::
 
 ### Step 1: Add a markdown file describing the module
@@ -69,7 +69,7 @@ Analytics adapter for Example.com. Contact prebid@example.com for information.
 
 1. Create a JS file under `modules` with the name of the bidder suffixed with 'AnalyticsAdapter', e.g., `exAnalyticsAdapter.js`
 
-2. Create an analytics adapter to listen for [Prebid events](/dev-docs/publisher-api-reference/onEvent) and call the analytics library or server. See the existing *AnalyticsAdapter.js files in the repo under [modules](https://github.com/prebid/Prebid.js/tree/master/modules).
+2. Create an analytics adapter to listen for [Prebid events](/dev-docs/prebidjs/next/publisher-api-reference/onEvent) and call the analytics library or server. See the existing *AnalyticsAdapter.js files in the repo under [modules](https://github.com/prebid/Prebid.js/tree/master/modules).
 
 3. There are two types of analytics adapters. The example here focuses on the 'endpoint' type. See [AnalyticsAdapter.js](https://github.com/prebid/Prebid.js/blob/master/libraries/analyticsAdapter/AnalyticsAdapter.js) for more info on the 'bundle' type.
 
@@ -80,7 +80,7 @@ Analytics adapter for Example.com. Contact prebid@example.com for information.
 adapter needs to specify an enableAnalytics() function, but it should also call
 the base class function to set up the events.
 
-5. Doing analytics may require user permissions under [GDPR](/dev-docs/modules/consentManagementTcf), which means your adapter will need to be linked to your [IAB Global Vendor List](https://iabeurope.eu/vendor-list-tcf/) ID. If no GVL ID is found, and Purpose 7 (Measurement) is enforced, your analytics adapter will be blocked unless it is specifically listed under vendorExceptions. Your GVL ID can be added to the `registerAnalyticsAdapter()` call.
+5. Doing analytics may require user permissions under [GDPR](/dev-docs/prebidjs/next/modules/consentManagementTcf), which means your adapter will need to be linked to your [IAB Global Vendor List](https://iabeurope.eu/vendor-list-tcf/) ID. If no GVL ID is found, and Purpose 7 (Measurement) is enforced, your analytics adapter will be blocked unless it is specifically listed under vendorExceptions. Your GVL ID can be added to the `registerAnalyticsAdapter()` call.
 
 #### Basic prototype analytics adapter
 
@@ -196,6 +196,6 @@ We sometimes get pretty busy, so it can take a couple of weeks for the review pr
 
 ## Further Reading
 
-* [Analytics for Prebid](/overview/analytics) (Overview and list of analytics providers)
-* [Module Rules](/dev-docs/module-rules)
-* [Instream Video Ads Tracking](/dev-docs/modules/instreamTracking)
+* [Analytics for Prebid](/analytics) (Overview and list of analytics providers)
+* [Module Rules](/dev-docs/prebidjs/next/module-rules)
+* [Instream Video Ads Tracking](/dev-docs/prebidjs/next/modules/instreamTracking)

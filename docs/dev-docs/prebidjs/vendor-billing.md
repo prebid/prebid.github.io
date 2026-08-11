@@ -40,7 +40,7 @@ It is expected that vendors will not emit duplicate events.
 
 ## Analytics Adapter Interface
 
-[Analytics Adapters](/dev-docs/integrate-with-the-prebid-analytics-api) just listen for the **BILLABLE_EVENT**. It is assumed that analytics adapters and their downstream reporting handles their own tracking of events any validation of the contract between vendors and publishers.
+[Analytics Adapters](/dev-docs/prebidjs/next/integrate-with-the-prebid-analytics-api) just listen for the **BILLABLE_EVENT**. It is assumed that analytics adapters and their downstream reporting handles their own tracking of events any validation of the contract between vendors and publishers.
 
 ```javascript
 switch (eventType) {
@@ -51,6 +51,6 @@ switch (eventType) {
 
 ## Related Reading
 
-- [pbjs.getEvents()](/dev-docs/publisher-api-reference/getEvents)
-- [Real Time Data modules](/dev-docs/add-rtd-submodule)
-- [Analytics Adapters](/dev-docs/integrate-with-the-prebid-analytics-api)
+- [pbjs.getEvents()](/dev-docs/prebidjs/next/publisher-api-reference/getEvents)
+- [Real Time Data modules](/dev-docs/prebidjs/next/add-rtd-submodule)
+- [Analytics Adapters](/dev-docs/prebidjs/next/integrate-with-the-prebid-analytics-api)

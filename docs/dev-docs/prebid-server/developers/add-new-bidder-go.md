@@ -64,13 +64,13 @@ your interest to declare your scope of business. See below for syntax details.
 
 ### Respect The Rules
 
-We are proud to run the Prebid Server project as a transparent and trustworthy header bidding solution. You are expected to follow our community's [code of conduct](https://prebid.org/code-of-conduct/) and [module rules](/dev-docs/prebidjs/module-rules) when creating your adapter and when interacting with others through issues, code reviews, and discussions.
+We are proud to run the Prebid Server project as a transparent and trustworthy header bidding solution. You are expected to follow our community's [code of conduct](https://prebid.org/code-of-conduct/) and [module rules](/dev-docs/prebidjs/next/module-rules) when creating your adapter and when interacting with others through issues, code reviews, and discussions.
 
 **Please take the time to read the rules in full.** Below is a summary of some of the rules which apply to your Prebid Server bid adapter:
 
 - Adapters must include maintainer information with a group email address for Prebid.org to contact for ongoing support and maintenance.
 - Your bidder's endpoint domain name cannot be fully variable. We will accept endpoint domains that include account IDs, but we do not like them, and Prebid Server host companies may disable adapters using this approach if there are technical issues with it. We will not accept hostnames that have a required dynamic element for the purpose of sending traffic to different geographic regions.
-- If you have a client-side adapter, all parameters (including biddercodes and aliases) must be consistent between your client- and server-side adapters. This allows publishers to utilize the PBJS [s2sTesting module](/dev-docs/prebidjs/modules/s2sTesting).
+- If you have a client-side adapter, all parameters (including biddercodes and aliases) must be consistent between your client- and server-side adapters. This allows publishers to utilize the PBJS [s2sTesting module](/dev-docs/prebidjs/next/modules/s2sTesting).
 - Adapters must not modify bids from demand partners, except to either change the bid from gross to net or from one currency to another.
 - Adapters must use the functions provided by the core framework for all external communication. Initiation of any form of network connection outside of what is provided by the core framework is strictly prohibited. No exceptions will be made for this rule.
 - Adapters must support the creation of multiple concurrent instances. This means adapters may not mutate global or package scoped variables.
@@ -779,7 +779,7 @@ if request.Imp[i].W == nil && request.Imp[i].H == nil && len(request.Imp[i].Form
 
 The second argument, `requestInfo`, is for extra information and helper methods provided by the core framework. This includes:
 
-- `requestInfo.PbsEntryPoint` to access the entry point of the bid request, commonly used to determine if the request is for AMP or for a [Long Form Video Ad Pod](/dev-docs/prebidjs/modules/adpod).
+- `requestInfo.PbsEntryPoint` to access the entry point of the bid request, commonly used to determine if the request is for AMP or for a [Long Form Video Ad Pod](/dev-docs/prebidjs/next/modules/adpod).
 - `requestInfo.GlobalPrivacyControlHeader` to read the value of the `Sec-GPC` Global Privacy Control (GPC) header of the bid request.
 - `requestInfo.ConvertCurrency` a method to perform currency conversions.
 
@@ -936,7 +936,7 @@ Please review the entire [OpenRTB 2.x Bid Response](https://github.com/Interacti
 We recommend resolving creative OpenRTB macros in your adapter. Otherwise, AUCTION_PRICE will eventually get resolved by the [Prebid Universal Creative](https://github.com/prebid/prebid-universal-creative), but by then the bid price will be in the ad server currency and quantized by the price granularity.
 :::
 
-If you'd like to support [Long Form Video Ad Pods](/dev-docs/prebidjs/modules/adpod)s, then you'll need to provide the followings information:
+If you'd like to support [Long Form Video Ad Pods](/dev-docs/prebidjs/next/modules/adpod)s, then you'll need to provide the followings information:
 
 
 | BidderResponse Path | Description
@@ -1400,7 +1400,7 @@ The Example Bidding adapter requires setup before beginning. Please contact us a
 
 Notes on the metadata fields:
 
-- Add `pbs: true`. If you also have a [Prebid.js bid adapter](/dev-docs/prebidjs/bidder-adaptor), add `pbjs: true`. Default is false for both.
+- Add `pbs: true`. If you also have a [Prebid.js bid adapter](/dev-docs/prebidjs/next/bidder-adaptor), add `pbjs: true`. Default is false for both.
 - If you're on the IAB's Global Vendor List, place your ID in `gvl_id`. No default.
 - If you support the IAB's TCF protocol and have a GVL ID, you may add `tcfeu_supported: true`. Default is false.
 - If you support the US Privacy consentManagementUsp module, add `usp_supported: true`. Default is false.
@@ -1408,7 +1408,7 @@ Notes on the metadata fields:
 - If you support video, native, or audio mediaTypes add `media_types: video, native, audio`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No defaults.
 - If you support COPPA, add `coppa_supported: true`. Default is false.
 - If you support sections within the IAB's GPP consent string, add `gpp_sids:' and then which sections you support: tcfeu, tcfca, usnat, usstate_all, usp
-- If you support the [supply chain](/dev-docs/prebidjs/modules/schain) feature, add `schain_supported: true`. Default is false.
+- If you support the [supply chain](/dev-docs/prebidjs/next/modules/schain) feature, add `schain_supported: true`. Default is false.
 - If you support adding a demand chain on the bid response, add `dchain_supported: true`. Default is false.
 - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default.
 - If your bidder supports mobile apps, set `pbs_app_supported: true`. No default value.

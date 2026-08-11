@@ -8,7 +8,7 @@ description: Dev docs for getting started with Prebid.js for header bidding
 
 ## Overview
 
-To run heading bidding on your site with Prebid.js you need to [download the Prebid.js package](/content/download), including your selected bidders and adapters, and add the code to your page. This code will gather bids from your selected demand sources (bidders) and pass the information on to your ad server. For full details on how Prebid.js works, see [What is Prebid.js?](/dev-docs/prebidjs/prebidjs).
+To run heading bidding on your site with Prebid.js you need to [download the Prebid.js package](/download), including your selected bidders and adapters, and add the code to your page. This code will gather bids from your selected demand sources (bidders) and pass the information on to your ad server. For full details on how Prebid.js works, see [What is Prebid.js?](/dev-docs/prebidjs).
 
 Developers should work with their ad ops team to plan out your Prebid configuration. You'll need to add information to your code regarding things such as:
 
@@ -20,21 +20,21 @@ See the [Ad Ops Planning Guide](/content/guides/ad-ops/adops-planning-guide) for
 
 ## Quick Start
 
-The easiest way to get started with Prebid.js is to look at an example. Start with our [Basic Example](/dev-docs/prebidjs/examples/basic-example), then explore other examples under **Prebid.js > Examples** to find what you need.
+The easiest way to get started with Prebid.js is to look at an example. Start with our [Basic Example](/dev-docs/prebidjs/next/examples/basic-example), then explore other examples under **Prebid.js > Examples** to find what you need.
 
 ## Next Steps
 
 For more developer resources, see:
 
 * [Publisher API Reference](/dev-docs/prebidjs/publisher-api-reference)
-* [Prebid.js Module Overview](/dev-docs/prebidjs/modules/)
-* [Prebid.js Analytics Adapters](/content/analytics)
+* [Prebid.js Module Overview](/dev-docs/prebidjs/next/category/modules)
+* [Prebid.js Analytics Adapters](/analytics)
 
 To learn more about header bidding and Prebid see:
 
-* [Introduction to Header Bidding](/content/intro-to-header-bidding)
-* [Introduction to Prebid](/content/intro)
-* [What is Prebid.js?](/dev-docs/prebidjs/prebidjs)
+* [Introduction to Header Bidding](/intro-to-header-bidding)
+* [Introduction to Prebid](/intro)
+* [What is Prebid.js?](/dev-docs/prebidjs)
 
 For guidance on planning out your configuration and working with your ad server, see:
 

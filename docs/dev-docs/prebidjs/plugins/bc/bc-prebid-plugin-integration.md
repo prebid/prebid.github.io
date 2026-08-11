@@ -34,7 +34,7 @@ Publishers can integrate the Plugin directly on the page.  This method is requir
 
 * Publisher needs to manage cross-domain iframe issues.
 
-Visit [Brightcove Prebid Plugin Dynamic Integration](/dev-docs/plugins/bc/bc-prebid-plugin-integration-dynamic) for details on how to dynamically integrate the plugin on the publisher page.
+Visit [Brightcove Prebid Plugin Dynamic Integration](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-integration-dynamic) for details on how to dynamically integrate the plugin on the publisher page.
 
 ## Integration Directly in Brightcove Studio
 
@@ -51,12 +51,12 @@ Publishers can integrate the Plugin via Brightcove Player Studio.  Using this me
 * Publishers are unable to run prebid in the header of the page since the plugin will not be present until the player is loaded
 * Publishers may have limited ability to use the Brightcove Prebid Plugin API
 
-Visit [Brightcove Prebid Plugin - Integration via Brightcove Studio](/dev-docs/plugins/bc/bc-prebid-plugin-integration-studio) for details how to integrate the plugin via Brightcove Player Studio.
+Visit [Brightcove Prebid Plugin - Integration via Brightcove Studio](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-integration-studio) for details how to integrate the plugin via Brightcove Player Studio.
 
 ## Plugin API
 
-**[Brightcove Prebid Plugin API](/dev-docs/plugins/bc/bc-prebid-plugin-api)**
+**[Brightcove Prebid Plugin API](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-api)**
 
 ## Plugin Options
 
-**[Options Supported by Brightcove Prebid Plugin](/dev-docs/plugins/bc/bc-prebid-plugin-options)**
+**[Options Supported by Brightcove Prebid Plugin](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-options)**

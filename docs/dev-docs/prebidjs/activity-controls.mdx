@@ -14,12 +14,12 @@ These controls are intended to serve as building blocks for privacy protection m
 
 ## Overview
 
-There are many privacy regulations that Prebid publishers need to accommodate. Prebid supplies [modules](/dev-docs/faq#how-does-prebid-support-privacy-regulations) to help Publishers implement their legal policies, but there are scenarios where extra control is needed:
+There are many privacy regulations that Prebid publishers need to accommodate. Prebid supplies [modules](/dev-docs/prebidjs/next/faq#how-does-prebid-support-privacy-regulations) to help Publishers implement their legal policies, but there are scenarios where extra control is needed:
 
 * a Publisher's lawyers want to make a particular exception
 * a module hasn't been built for a regulation the Publisher needs to support
 
-Several, but not all, of the popular consent strings have modules (eg [Prebid Activity Controls -- GPP control module - usnat](/dev-docs/modules/gppControl_usnat)) that translate their contents into activity controls. These modules may have some overrides to default string interpretations available. When these overrides are insufficient for a publisher, or case law has abruptly changed, publishers may prefer direct control.
+Several, but not all, of the popular consent strings have modules (eg [Prebid Activity Controls -- GPP control module - usnat](/dev-docs/prebidjs/next/modules/gppControl_usnat)) that translate their contents into activity controls. These modules may have some overrides to default string interpretations available. When these overrides are insufficient for a publisher, or case law has abruptly changed, publishers may prefer direct control.
 
 ### Prebid Is a Toolkit
 
@@ -79,7 +79,7 @@ pbjs.setConfig({
 
 ## Configuration
 
-`allowActivities` is a new option to [setConfig](/dev-docs/publisher-api-reference/setConfig). It contains a list of activity names -- see the [full list of activities below](#activities). Each activity is an object that can contain these attributes:
+`allowActivities` is a new option to [setConfig](/dev-docs/prebidjs/next/publisher-api-reference/setConfig). It contains a list of activity names -- see the [full list of activities below](#activities). Each activity is an object that can contain these attributes:
 
 
 | Name | Type | Description |
@@ -113,7 +113,7 @@ Here's the list of the 'potentially restricted activities' that Prebid.js core c
 | `enrichUfpd` | A Real-Time Data (RTD) submodule wants to add user first-party data to outgoing requests (`user.data` in ORTB) | User FPD is discarded | None |
 | `fetchBids`  | A bid adapter wants to participate in an auction | Bidder is removed from the auction | [`configName`](#params-fetchBids) |
 | `reportAnalytics` | An analytics adapter is being enabled through `pbjs.enableAnalytics` | Adapter remains disabled | None |
-| `syncUser` | A bid adapter wants to fetch a [user sync](/dev-docs/publisher-api-reference/setConfig#setConfig-Configure-User-Syncing) | User sync is skipped | [`syncType`, `syncUrl`](#params-syncUser) |
+| `syncUser` | A bid adapter wants to fetch a [user sync](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-Configure-User-Syncing) | User sync is skipped | [`syncType`, `syncUrl`](#params-syncUser) |
 | `transmitEids` | A bid adapter or RTD submodule wants to access and/or transmit user IDs to their endpoint | User IDs are hidden from the component | [`configName`](#params-fetchBids) |
 | `transmitPreciseGeo` | A bid adapter or RTD submodule wants to access and/or transmit precise geolocation data to their endpoint | Component is allowed only 2-digit precision for latitude and longitude  | [`configName`](#params-fetchBids) |
 | `transmitTid` | A bid adapter or RTD submodule wants to access and/or transmit globally unique transaction IDs to their endpoint | Transaction IDs are hidden from the component | [`configName`](#params-fetchBids) |
@@ -151,7 +151,7 @@ For example, this rule would allow bidderX to perform the activity if no higher 
 Activity control rules in Prebid.js can be created by two main sources:
 
 * Publisher `setConfig({allowActivities})` as in the examples shown here. When set this way, rules are considered the highest priority value of 1.
-* Modules can set activity control rules, e.g. [usersync](/dev-docs/publisher-api-reference/setConfig#setConfig-Configure-User-Syncing), [bidderSettings](/dev-docs/publisher-api-reference/bidderSettings), the [GPP](/dev-docs/modules/consentManagementGpp) or [GDPR](/dev-docs/modules/tcfControl) modules. Rules set by modules have a less urgent priority of 10.
+* Modules can set activity control rules, e.g. [usersync](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-Configure-User-Syncing), [bidderSettings](/dev-docs/prebidjs/next/publisher-api-reference/bidderSettings), the [GPP](/dev-docs/modules/consentManagementGpp) or [GDPR](/dev-docs/prebidjs/next/modules/tcfControl) modules. Rules set by modules have a less urgent priority of 10.
 
 When rules are processed, they are sorted by priority, and all rules of the same priority are considered to happen at the same time. The details:
 
@@ -212,11 +212,11 @@ These are the parameters available to the condition function:
 
 | Name | Type | Available for | Description |  
 |------|------|-------------|---------------|
-| `componentType` | String | All activities | One of: `'bidder'`, `'userId'`, `'rtd'`, `'analytics'`, or `'prebid'`; identifies the type of component (usually a module) that wishes to perform the activity. `'prebid'` is reserved for Prebid core itself and a few "privileged" modules such as the [PBS adapter](/dev-docs/modules/prebidServer). |
+| `componentType` | String | All activities | One of: `'bidder'`, `'userId'`, `'rtd'`, `'analytics'`, or `'prebid'`; identifies the type of component (usually a module) that wishes to perform the activity. `'prebid'` is reserved for Prebid core itself and a few "privileged" modules such as the [PBS adapter](/dev-docs/prebidjs/next/modules/prebidServer). |
 | `componentName` | String | All activities | Name of the component; this is (depending on the type) either a bidder code, user ID or RTD submodule name, analytics provider code, or module name. |
 | `component`     | String | All activities | This is always a dot-separated concatenation of `componentType` and `componentName`; for example, with `{componentType: 'bidder', componentName: 'bidderX'}`, `component` is `'bidder.bidderX'`. |
-| `adapterCode`   | String | All activities | If `componentType` is `'bidder'`, and `componentName` is an [alias](/dev-docs/publisher-api-reference/aliasBidder), then `adapterCode` is the bidder code that was aliased; or identical to `componentName` if the bidder is not an alias. This is undefined when the component is not a bidder.|
-| `configName`    | String | <a id="params-fetchBids"></a> `fetchBids`    | When the Prebid Server adapter is part of an auction, this is the name given to its [s2s configuration](/dev-docs/modules/prebidServer), if any. |
+| `adapterCode`   | String | All activities | If `componentType` is `'bidder'`, and `componentName` is an [alias](/dev-docs/prebidjs/next/publisher-api-reference/aliasBidder), then `adapterCode` is the bidder code that was aliased; or identical to `componentName` if the bidder is not an alias. This is undefined when the component is not a bidder.|
+| `configName`    | String | <a id="params-fetchBids"></a> `fetchBids`    | When the Prebid Server adapter is part of an auction, this is the name given to its [s2s configuration](/dev-docs/prebidjs/next/modules/prebidServer), if any. |
 | `storageType`   | String | <a id="params-accessDevice"></a> `accessDevice` | Either `'html5'` or `'cookie'` - the device storage mechanism being accessed. |
 | `syncType`      | String | <a id="params-syncUser"></a> `syncUser`     | Either `'iframe'` or `'image'` - the type of user sync. |
 | `syncUrl`       | String | `syncUser`     | URL of the user sync. |
@@ -233,7 +233,7 @@ If `allow` is not defined, the rule is assumed to assert **true** (i.e. allow th
 
 #### Always include a particular bidder in auctions
 
-This is similar to the 'vendor exception' feature of the [TCF Control Module](/dev-docs/modules/tcfControl). This would always allow bidderA to participate in the auction, even without explicit consent in GDPR scenarios. It might indicate, for instance, that this is a 'first party bidder'.
+This is similar to the 'vendor exception' feature of the [TCF Control Module](/dev-docs/prebidjs/next/modules/tcfControl). This would always allow bidderA to participate in the auction, even without explicit consent in GDPR scenarios. It might indicate, for instance, that this is a 'first party bidder'.
 
 ```javascript
 pbjs.setConfig({
@@ -350,7 +350,7 @@ pbjs.setConfig({
 
 This example might be useful for publishers using a version
 of Prebid.js that supports activity controls but does not support
-the [USNat module](/dev-docs/modules/gppControl_usnat).
+the [USNat module](/dev-docs/prebidjs/next/modules/gppControl_usnat).
 
 ```javascript
 if (in-page code to detect that GPP SID 7 through 12 are in-scope or if the GPC flag is set) {
@@ -375,7 +375,7 @@ To make exceptions for certain IDs, there are two steps:
 1. Always allow the transmitEids activity to take place
 1. Configure the enrichEids activity to allow only the desired IDs
 
-This approach works in conjunction with other activity-control compiant modules (like the [GPP USNat module](/dev-docs/modules/gppControl_usnat).
+This approach works in conjunction with other activity-control compiant modules (like the [GPP USNat module](/dev-docs/prebidjs/next/modules/gppControl_usnat).
 
 ```javascript
     pbjs.setConfig({
@@ -401,4 +401,4 @@ This approach works in conjunction with other activity-control compiant modules 
 
 ## Further Reading
 
-* [FAQ: How does Prebid.js support privacy regulations](/dev-docs/faq#how-does-prebid-support-privacy-regulations)
+* [FAQ: How does Prebid.js support privacy regulations](/dev-docs/prebidjs/next/faq#how-does-prebid-support-privacy-regulations)

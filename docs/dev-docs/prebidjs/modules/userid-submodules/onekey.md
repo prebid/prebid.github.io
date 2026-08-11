@@ -22,7 +22,7 @@ It can be added to you Prebid.js package with:
 gulp build –modules=userId,oneKeyIdSystem
 ```
 
-⚠️ This module works with a RTD module. Both must be configured. See the [OneKey RTD Module](/dev-docs/modules/oneKeyRtdProvider).
+⚠️ This module works with a RTD module. Both must be configured. See the [OneKey RTD Module](/dev-docs/prebidjs/next/modules/oneKeyRtdProvider).
 
 ## OneKey Registration
 

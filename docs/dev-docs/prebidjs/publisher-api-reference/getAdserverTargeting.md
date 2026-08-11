@@ -3,11 +3,11 @@ title: pbjs.getAdserverTargeting()
 description: getAdserverTargeting API
 ---
 
-<a name="module_pbjs.getAdserverTargeting"></a>
+<a id="module_pbjs.getAdserverTargeting"></a>
 
 Returns all ad server targeting for all ad units. Note that some bidder's response may not have been received if you call this function too quickly after the requests are sent.
 
-The targeting keys can be configured in [ad server targeting](/dev-docs/publisher-api-reference/bidderSettings).
+The targeting keys can be configured in [ad server targeting](/dev-docs/prebidjs/next/publisher-api-reference/bidderSettings).
 
 When [deals are enabled](/adops/deals), the object returned by this method may include a field `hb_deal_BIDDERCODE`, where `BIDDERCODE` is replaced by the name of the bidder, e.g., AppNexus, Rubicon, etc.
 

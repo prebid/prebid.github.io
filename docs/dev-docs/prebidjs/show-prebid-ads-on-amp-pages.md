@@ -12,8 +12,8 @@ Through this implementation, [Prebid Server][PBS] fetches demand and returns key
 
 For more information about AMP RTC, see:
 
-- [Prebid Server and AMP](/prebid-server/use-cases/pbs-amp)
-- [Prebid Server AMP Endpoint Technical Documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-amp)
+- [Prebid Server and AMP](/dev-docs/prebid-server/use-cases/pbs-amp)
+- [Prebid Server AMP Endpoint Technical Documentation](/dev-docs/prebid-server/endpoints/openrtb2/pbs-endpoint-amp)
 - [Prebid Server Stored Bid Requests](https://github.com/prebid/prebid-server/blob/master/docs/developers/stored-requests.md#stored-bidrequests)
 - [AMP RTC Overview](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-documentation.md)
 - [AMP RTC Publisher Integration Guide](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-publisher-implementation-guide.md)
@@ -106,7 +106,7 @@ that doesn't come from /amp parameters:
 }
 ```
 
-This basic OpenRTB record will be enhanced by the parameters from the call to the [/amp endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-amp).
+This basic OpenRTB record will be enhanced by the parameters from the call to the [/amp endpoint](/dev-docs/prebid-server/endpoints/openrtb2/pbs-endpoint-amp).
 
 ### AMP content page
 
@@ -257,7 +257,7 @@ Or you can specify a full URL to another Prebid Server location (including a QA 
 </amp-iframe>
 ```
 
-See [manually initiating a sync](/prebid-server/developers/pbs-cookie-sync#manually-initiating-a-sync) for more information about the available parameters and for how to host the load-cookie script.
+See [manually initiating a sync](/dev-docs/prebid-server/developers/pbs-cookie-sync#manually-initiating-a-sync) for more information about the available parameters and for how to host the load-cookie script.
 
 ### AMP RTC
 
@@ -291,7 +291,7 @@ To review that Prebid on AMP is working properly the following aspects can be lo
 
 ## Further Reading
 
-- [Prebid Server and AMP](/prebid-server/use-cases/pbs-amp)
+- [Prebid Server and AMP](/dev-docs/prebid-server/use-cases/pbs-amp)
 - [Google Ad Manager with Prebid Step by Step](/adops/step-by-step) (Ad Ops Setup)
 - [AMP RTC Overview](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-documentation.md)
 - [callout-vendors.js]

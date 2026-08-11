@@ -5,7 +5,7 @@ description: getPAAPIConfig API
 
 Return the latest available PAAPI auction configuration for each ad unit, optionally filtered by auction or ad unit.
 
-**Kind**: static method of pbjs API. Only available when the [PAAPI module](/dev-docs/modules/paapi) is installed.
+**Kind**: static method of pbjs API. Only available when the [PAAPI module](/dev-docs/prebidjs/next/modules/paapi) is installed.
 
 **Returns**: `object` - Map from ad unit code to a (partial)  [PAAPI auction configuration](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#21-initiating-an-on-device-auction) object for that ad unit. Only the `componentAuctions` field is guaranteed to be present; future PAAPI modules may provide more. 
 

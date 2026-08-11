@@ -70,7 +70,7 @@ While Permutive is listed as a TCF vendor (ID: 361), Permutive does not obtain c
 
 This means that if GDPR enforcement is configured within the Permutive SDK _and_ the user consent isn’t given for Permutive to fire, no cohorts will populate.
 
-If you are also using the [TCF Control Module](/dev-docs/modules/tcfControl), in order to prevent Permutive from being blocked, it needs to be labeled within the Vendor Exceptions.
+If you are also using the [TCF Control Module](/dev-docs/prebidjs/next/modules/tcfControl), in order to prevent Permutive from being blocked, it needs to be labeled within the Vendor Exceptions.
 
 ### Instructions
 

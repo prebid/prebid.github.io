@@ -10,7 +10,7 @@ We encourage you to look at existing modules for working examples. You can also 
 
 ## Overview
 
-The ability to add optional modules in [Prebid.js](/prebid/prebidjs) has been widely used,
+The ability to add optional modules in [Prebid.js](/dev-docs/prebidjs) has been widely used,
 with dozens of interesting features forming a healthy ecosystem of vendor choice that's good for publishers and the industry.
 
 Prebid Server supports a rich module interface that
@@ -45,7 +45,7 @@ If you have an idea for a module that's not feasible (e.g. a new endpoint), open
 
 There are a number of things modules are not allowed to do
 without disclosing prominently on their documentation. Please review
-the [Module Rules](/dev-docs/prebidjs/module-rules) page. Here are some highlights:
+the [Module Rules](/dev-docs/prebidjs/next/module-rules) page. Here are some highlights:
 
 - a module can't add pixels to the creative without disclosure
 - every module must obey privacy regulations: TCF-EU, CCPA, COPPA, USNat, TCF-CA, etc.
