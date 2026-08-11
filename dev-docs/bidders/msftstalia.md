@@ -28,7 +28,7 @@ sidebarType: 1
 msftstaila is an aliased bidder of Microsoft.
 Either `placement_id` OR both `member` and `inv_code` are required.  Please don't specify all three together, it may impact delivery.
 
-**NOTE**
+{: .alert.alert-note :}
 We recommend to use the “use_pmt_rule” parameter set to true, when integrating, to ensure the bidding is net.
 
 For setup with Staila Media, please reach out to [prebid@stailamedia.com](mailto:prebid@stailamedia.com).
