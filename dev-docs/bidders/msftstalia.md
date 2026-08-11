@@ -24,7 +24,7 @@ sidebarType: 1
 
 ## Bid Params
 
-**NOTE**
+{: .alert.alert-note :}
 msftstaila is an aliased bidder of Microsoft.
 Either `placement_id` OR both `member` and `inv_code` are required.  Please don't specify all three together, it may impact delivery.
 
