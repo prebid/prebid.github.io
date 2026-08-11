@@ -49,7 +49,6 @@ For setup with Staila Media, please reach out to [prebid@stailamedia.com](mailto
 | `ext_imp_id` | optional | Specifies the unique identifier of an externally generated auction. | `'bacbab02626452b097f6030b3c89ac05'` | `string` |
 | `banner_frameworks` | optional | Array of integers listing API frameworks for Banner supported by the publisher. | `[1,2]` | `array of integers` |
 
-<a name="migration-from-appnexus-bid-params"></a>
 
 ### Migrating from the AppNexus Bid Adapter & Bid Params
 
