@@ -92,7 +92,7 @@ In the Microsoft Bid Adapter, the new required format is: keyname=keyvalue1,keyn
 
 ### First Party Data
 
-Publishers should use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html).
+Publishers should use the `ortb2` method of setting [First Party Data](/features/firstPartyData.html).
 
 PBS/PSP supports all first party data fields: site, user, segments, and imp-level first party data.
 
