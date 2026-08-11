@@ -49,7 +49,6 @@ For setup with Staila Media, please reach out to [prebid@stailamedia.com](mailto
 | `ext_imp_id` | optional | Specifies the unique identifier of an externally generated auction. | `'bacbab02626452b097f6030b3c89ac05'` | `string` |
 | `banner_frameworks` | optional | Array of integers listing API frameworks for Banner supported by the publisher. | `[1,2]` | `array of integers` |
 
-
 ### Migrating from the AppNexus Bid Adapter & Bid Params
 
 If you are migrating from the AppNexus bid adapter, a number of the previously available AppNexus bid parameters have been deprecated as available options for the Microsoft bid parameters. These deprecated bid parameters are still available however, they're just read from other standarized locations offered within Prebid.js. This change was implemented to help us align better to the publisher-aligned features (such as First Party Data) to use a single setup for many bidders.
@@ -95,4 +94,3 @@ In the Microsoft Bid Adapter, the new required format is: `keyname=keyvalue1,key
 Publishers should use the `ortb2` method of setting [First Party Data](/features/firstPartyData.html).
 
 PBS/PSP supports all first party data fields: site, user, segments, and imp-level first party data.
-
