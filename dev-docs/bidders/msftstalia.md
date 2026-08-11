@@ -96,4 +96,3 @@ Publishers should use the `ortb2` method of setting [First Party Data](/features
 
 PBS/PSP supports all first party data fields: site, user, segments, and imp-level first party data.
 
-<a name="debug-auction"></a>
