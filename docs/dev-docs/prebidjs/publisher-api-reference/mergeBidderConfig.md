@@ -3,7 +3,7 @@ title: pbjs.mergeBidderConfig(options)
 description: mergeBidderConfig API
 ---
 
-This is the same as [`setBidderConfig(options, true)`](/dev-docs/publisher-api-reference/setBidderConfig) -- it merges the supplied bidder config into the config structure rather than replacing it.
+This is the same as [`setBidderConfig(options, true)`](/dev-docs/prebidjs/next/publisher-api-reference/setBidderConfig) -- it merges the supplied bidder config into the config structure rather than replacing it.
 
 The page usage is:
 

@@ -51,7 +51,7 @@ gulp build --modules="rtdModule,humansecurityRtdProvider,..."
 ## Configuration
 
 This module is configured as part of the `realTimeData.dataProviders` object.
-Please refer to [Prebid Documentation](/dev-docs/publisher-api-reference/setConfig#setConfig-realTimeData)
+Please refer to [Prebid Documentation](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-realTimeData)
 on RTD module configuration for details on required and optional parameters of `realTimeData`.
 
 By default, using this submodule *does not require any prior communication with HUMAN, nor any special configuration*,

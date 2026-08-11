@@ -14,7 +14,7 @@ This module allows Prebid.js to support PAAPI by running on-device auctions as t
 
 ## Comparison with paapiForGpt
 
-Both this module and [paapiForGpt](/dev-docs/modules/paapiForGpt) allow bid adapters to participate in PAAPI auctions as component sellers.
+Both this module and [paapiForGpt](/dev-docs/prebidjs/next/modules/paapiForGpt) allow bid adapters to participate in PAAPI auctions as component sellers.
 
 With paapiForGpt, bidders' intent to participate in PAAPI is submitted to GPT, which can then decide how to run the on-device auction. 
 With topLevelPaapi, Prebid.js directly manages the on-device auction, trading ease of use for more control.
@@ -24,7 +24,7 @@ With topLevelPaapi, Prebid.js directly manages the on-device auction, trading ea
 To use topLevelPaapi:
 
 - you'll need a [decision logic URL](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#23-scoring-bids) that has been [attested](https://github.com/privacysandbox/attestation) with Google. How to write decision logic and how to attest it are both out of scope for this document.
-- include this module with your Prebid.js bundle; this also automatically includes the [PAAPI module](/dev-docs/modules/paapi)
+- include this module with your Prebid.js bundle; this also automatically includes the [PAAPI module](/dev-docs/prebidjs/next/modules/paapi)
 
 ```
 ```bash
@@ -70,7 +70,7 @@ pbjs.setConfig({
 })
 ```
 
-With the above, `navigator.runAdAuction` is invoked once per ad unit, and the result is made available through [`getPAAPIBids`](/dev-docs/publisher-api-reference/getPAAPIBids):
+With the above, `navigator.runAdAuction` is invoked once per ad unit, and the result is made available through [`getPAAPIBids`](/dev-docs/prebidjs/next/publisher-api-reference/getPAAPIBids):
 
 ```javascript
 pbjs.requestBids({
@@ -122,6 +122,6 @@ pbjs.requestBids({
 
 ## Related Reading
 
-- [PAAPI module](/dev-docs/modules/paapi)
+- [PAAPI module](/dev-docs/prebidjs/next/modules/paapi)
 - [FLEDGE](https://github.com/WICG/turtledove/blob/main/FLEDGE.md)
-- [getPAAPIBids](/dev-docs/publisher-api-reference/getPAAPIBids)
+- [getPAAPIBids](/dev-docs/prebidjs/next/publisher-api-reference/getPAAPIBids)

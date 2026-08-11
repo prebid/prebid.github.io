@@ -18,7 +18,7 @@ This optional module will trigger a BID_VIEWABLE event which can be consumed by 
 Notes:
 
 - The module works with any adserver, or with no ad server at all.
-- Publishers using GAM/GPT might consider using the [Bid Viewable Event - GAM](/dev-docs/modules/bidViewable) module
+- Publishers using GAM/GPT might consider using the [Bid Viewable Event - GAM](/dev-docs/prebidjs/next/modules/bidViewable) module
 - Requires the site to polyfill the [IntersectionObserver API](https://github.com/w3c/IntersectionObserver) (v1) to find when a bid is viewable. This implementation assumes that the publisher and the bidder are acting in good faith, and does not attempt to detect any bad behavior from either party. We assume that the ad is rendered into the element it has been told to render into, and is not hidden or obfuscated at any time.
 - This event is fired when an impression becomes viewable, according to IAB's viewability guidelines
 - When a rendered PBJS bid is determined to be viewable this module will trigger a BID_VIEWABLE event, which can be consumed by the winning bidder and analytics adapters
@@ -36,9 +36,9 @@ This feature is not intended to be a perfect measure of viewability. It is howev
 
 Note that there are other viewability modules in Prebid.js:
 
-- [Generic Viewability](/dev-docs/modules/viewability)
-- [Bid Viewability - GAM](/dev-docs/modules/bidViewable)
-- [Browsi Viewability](/dev-docs/modules/browsiRtdProvider)
+- [Generic Viewability](/dev-docs/prebidjs/next/modules/viewability)
+- [Bid Viewability - GAM](/dev-docs/prebidjs/next/modules/bidViewable)
+- [Browsi Viewability](/dev-docs/prebidjs/next/modules/browsiRtdProvider)
 
 ## Configuration
 
@@ -68,4 +68,4 @@ Note that there are other viewability modules in Prebid.js:
 
 ## Related Reading
 
-- Alternate module: [Generic Viewability](/dev-docs/modules/viewability)
+- Alternate module: [Generic Viewability](/dev-docs/prebidjs/next/modules/viewability)

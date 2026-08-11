@@ -29,7 +29,7 @@ Prebid multi-format ad units allow direct competition between banner, native, an
 
 At a high level, Prebid.js supports multi-format ads as follows:
 
-1. An ad unit may define a [`mediaTypes`](/dev-docs/publisher-api-reference/addAdUnits#addAdUnits-MediaTypes) object to specify one or more supported formats and their respective properties.
+1. An ad unit may define a [`mediaTypes`](/dev-docs/prebidjs/next/publisher-api-reference/addAdUnits#addAdUnits-MediaTypes) object to specify one or more supported formats and their respective properties.
 2. Each bidder specified on a given ad unit will be eligible to bid if the bidder supports at least one of the media types specified via `adUnit.mediaTypes`.
 3. Prebid.js sends bid requests to each eligible bidder.
 
@@ -43,7 +43,7 @@ The ad ops team will reference this key in the ad server to set targeting.  For 
 
 Keep the following prerequisites in mind during the implementation:
 
-* Make sure to work with bidders that support demand for the media types you want, particularly native and video.  To see which bidders have native and/or video demand, see [Bidders with Video and Native Demand](/dev-docs/bidders#bidders-with-video-and-native-demand).
+* Make sure to work with bidders that support demand for the media types you want, particularly native and video.  To see which bidders have native and/or video demand, see [Bidders with Video and Native Demand](/dev-docs/prebidjs/next/bidders#bidders-with-video-and-native-demand).
 
 ## Implementation
 
@@ -121,7 +121,7 @@ Add a tag like the following to your page.  Depending on who wins the auction, a
 
 ## Working Examples
 
-* [Multi-Format Example](/dev-docs/examples/multi-format-example)
+* [Multi-Format Example](/dev-docs/prebidjs/next/examples/multi-format-example)
 
 ## Further Reading
 

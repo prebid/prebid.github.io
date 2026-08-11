@@ -15,7 +15,7 @@ This module allows Prebid.js to support PAAPI, formerly known as [FLEDGE](https:
 This document covers the steps necessary for publishers to enable PAAPI on their inventory. It also describes
 the changes Bid Adapters need to implement in order to support PAAPI.
 
-A related module, [paapiForGpt](/dev-docs/modules/paapiForGpt), adds support specifically for GPT's [component auctions](https://developers.google.com/publisher-tag/reference#googletag.config.componentauctionconfig).
+A related module, [paapiForGpt](/dev-docs/prebidjs/next/modules/paapiForGpt), adds support specifically for GPT's [component auctions](https://developers.google.com/publisher-tag/reference#googletag.config.componentauctionconfig).
 
 ## Publisher Integration
 
@@ -28,7 +28,7 @@ To use PAAPI, publishers must:
    ```
 
 - enable PAAPI, globally or by ad unit, through [configuration](#config)
-- manage the PAAPI auctions. This can be delegated to GPT with the [paapiForGpt module](/dev-docs/modules/paapiForGpt); homegrown solutions are possible with [topLevelPaapi](/dev-docs/modules/topLevelPaapi).
+- manage the PAAPI auctions. This can be delegated to GPT with the [paapiForGpt module](/dev-docs/prebidjs/next/modules/paapiForGpt); homegrown solutions are possible with [topLevelPaapi](/dev-docs/prebidjs/next/modules/topLevelPaapi).
 
 <a id="config"></a>
 
@@ -123,7 +123,7 @@ bids to the final layer. To learn more about Component Auctions, go [here](https
 
 The PAAPI auction, including Component Auctions, are configured via an `AuctionConfig` object that defines the parameters of the auction for a given
 seller. This module enables PAAPI support by allowing bid adaptors to return `AuctionConfig` objects in addition to bids. If a bid adaptor returns an
-`AuctionConfig` object, Prebid.js will make it available through [`getPAAPIConfig`](/dev-docs/publisher-api-reference/getPAAPIConfig), as well as other PAAPI modules such as [paapiForGpt](/dev-docs/modules/paapiForGpt).
+`AuctionConfig` object, Prebid.js will make it available through [`getPAAPIConfig`](/dev-docs/prebidjs/next/publisher-api-reference/getPAAPIConfig), as well as other PAAPI modules such as [paapiForGpt](/dev-docs/prebidjs/next/modules/paapiForGpt).
 
 :::warning
 If your adapter interfaces with an ORTB backend, you may take advantage of Prebid's [ORTB conversion library](https://github.com/prebid/Prebid.js/blob/master/libraries/ortbConverter/README.md), which implements the following using [protected audience community extensions](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/Protected%20Audience%20Support.md)
@@ -138,7 +138,7 @@ Modifying a bid adapter to support PAAPI is a straightforward process and consis
 ### Input parameters
 
 <a id="paapi-input"></a>
-When PAAPI is configured, the following fields are made available to adapters' [`buildRequests`](/dev-docs/bidder-adaptor#building-the-request):
+When PAAPI is configured, the following fields are made available to adapters' [`buildRequests`](/dev-docs/prebidjs/next/bidder-adaptor#building-the-request):
 
 
 |Name |Type |Description |Notes |
@@ -278,7 +278,7 @@ For example:
 
 ## Related Reading
 
-- [paapiForGpt module](/dev-docs/modules/paapiForGpt)
+- [paapiForGpt module](/dev-docs/prebidjs/next/modules/paapiForGpt)
 - [Protected Audience API (PAAPI)](https://github.com/WICG/turtledove/blob/main/FLEDGE.md), formerly FLEDGE
 - [Component Auctions](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#21-initiating-an-on-device-auction)
-- [getPAAPIConfig](/dev-docs/publisher-api-reference/getPAAPIConfig)
+- [getPAAPIConfig](/dev-docs/prebidjs/next/publisher-api-reference/getPAAPIConfig)

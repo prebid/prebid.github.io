@@ -34,9 +34,9 @@ This module does not work on IE because it uses the IntersectionObserver.
 
 Note that there are other viewability modules in Prebid.js:
 
-- [Bid Viewability - Ad Server Independent](/dev-docs/modules/bidViewableIO)
-- [Bid Viewability - GAM](/dev-docs/modules/bidViewable)
-- [Browsi Viewability](/dev-docs/modules/browsiRtdProvider)
+- [Bid Viewability - Ad Server Independent](/dev-docs/prebidjs/next/modules/bidViewableIO)
+- [Bid Viewability - GAM](/dev-docs/prebidjs/next/modules/bidViewable)
+- [Browsi Viewability](/dev-docs/prebidjs/next/modules/browsiRtdProvider)
 
 ## Usage
 
@@ -135,4 +135,4 @@ window.parent.postMessage(JSON.stringify(viewabilityRecord), '*');
 
 ## Related Reading
 
-- Alternate module: [Bid Viewability - Ad Server Independent](/dev-docs/modules/bidViewableIO)
+- Alternate module: [Bid Viewability - Ad Server Independent](/dev-docs/prebidjs/next/modules/bidViewableIO)

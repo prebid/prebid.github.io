@@ -17,12 +17,12 @@ using the [improved Prebid.js native ad](/prebid/native-implementation) support.
 
 In this tutorial, we'll set up Prebid.js to show native ads.
 
-We'll use the [AppNexus adapter](/dev-docs/bidders#appnexus) since that adapter supports native ads, but the concepts and setup will be largely the same for any bidder adapter that supports the `"native"` media type.
+We'll use the [AppNexus adapter](/dev-docs/prebidjs/next/bidders#appnexus) since that adapter supports native ads, but the concepts and setup will be largely the same for any bidder adapter that supports the `"native"` media type.
 
 Similarly, we'll use Google Ad Manager as the ad server, but the concept and implementation should be pretty similar to other ad servers.
 
 :::tip
-For a full working code sample using the techniques described on this page, see the [Prebid Native Example](/dev-docs/examples/native-ad-example).
+For a full working code sample using the techniques described on this page, see the [Prebid Native Example](/dev-docs/prebidjs/next/examples/native-ad-example).
 :::
 
 
@@ -57,7 +57,7 @@ The ad ops team will then reference these keys in the ad server to set up the ti
 
 Keep the following prerequisites in mind during the implementation:
 
-* Make sure to work with native-enabled bidders. To see which bidders have native demand, see [Bidders with Video and Native Demand](/dev-docs/bidders#bidders-with-video-and-native-demand).
+* Make sure to work with native-enabled bidders. To see which bidders have native demand, see [Bidders with Video and Native Demand](/dev-docs/prebidjs/next/bidders#bidders-with-video-and-native-demand).
 
 ## Implementation
 
@@ -75,7 +75,7 @@ const slot = {
 };
 ```
 
-<a name="native-ad-keys"></a>
+<a id="native-ad-keys"></a>
 
 ### 2. Add native ad units
 
@@ -107,7 +107,7 @@ Each key's value is an object with several fields.  Most important is the `requi
   </p>
 </div>
 
-<a name="native-object"></a>
+<a id="native-object"></a>
 
 ```javascript
 
@@ -152,7 +152,7 @@ pbjs.addAdUnits({
 ```
 
 :::danger
-For each native ad unit, all of the bidders within that ad unit must have declared native support in their adapter if you want ads to appear.  If there are any bidders without native support in a native ad unit, requests will not be made to those bidders.  For a list of bidders with native support, see [Bidders with Video and Native Demand](/dev-docs/bidders#bidders-with-video-and-native-demand).
+For each native ad unit, all of the bidders within that ad unit must have declared native support in their adapter if you want ads to appear.  If there are any bidders without native support in a native ad unit, requests will not be made to those bidders.  For a list of bidders with native support, see [Bidders with Video and Native Demand](/dev-docs/prebidjs/next/bidders#bidders-with-video-and-native-demand).
 :::
 
 #### Pre-defined native types
@@ -281,7 +281,7 @@ The `native-trk.js` script from `prebid-universal-creative` can replace native p
 
 ## Working Examples
 
-* [Prebid Native Examples](/dev-docs/examples/native-ad-example)
+* [Prebid Native Examples](/dev-docs/prebidjs/next/examples/native-ad-example)
 
 ## Further Reading
 

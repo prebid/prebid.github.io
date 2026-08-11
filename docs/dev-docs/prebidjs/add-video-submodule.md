@@ -134,7 +134,7 @@ const exampleSubmodule =  {
 };
 ```
 
-<a name="event-registration"></a>
+<a id="event-registration"></a>
 
 #### Event Registration
 

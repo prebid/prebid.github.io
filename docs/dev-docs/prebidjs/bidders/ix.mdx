@@ -67,7 +67,7 @@ Publishers can use Prebid.js to call Index Exchange (Index) in any of the follow
   * Open the **Developer tools**.
   * In **Developer tools**, click the **Network** tab.
   * In the **Network** tab, search for requests sent to `casalemedia.com/cygnus` (from version 6.28.0 and earlier) or `casalemedia.com/openrtb/pbjs` (from version 6.29.0 and later). These are the bid requests sent to Index.
-* **Recommended Global Bidder settings:** For our adapter, Index recommends enabling local storage. As of Prebid.js 7.x, local storage access must be explicitly specified. By leveraging local storage, Index is able to take advantage of the latest features our exchange has to offer. For instructions on enabling local storage, see Prebid’s [pbjs.bidderSettings](/dev-docs/publisher-api-reference/bidderSettings.html) documentation.
+* **Recommended Global Bidder settings:** For our adapter, Index recommends enabling local storage. As of Prebid.js 7.x, local storage access must be explicitly specified. By leveraging local storage, Index is able to take advantage of the latest features our exchange has to offer. For instructions on enabling local storage, see Prebid’s [pbjs.bidderSettings](/dev-docs/prebidjs/next/publisher-api-reference/bidderSettings) documentation.
 
 <StorageAllowed />
 
@@ -97,7 +97,7 @@ The following table lists the media types that Index supports. For information a
 
 ### Set up Prebid.js to call Index directly from the browser (client-side adapter)
 
-To call Index from a web browser environment using a Prebid Server integration, see the Index-specific configuration steps in [Setup instructions to call Index through Prebid Server](/dev-docs/bidders/ix-server.html#setup-instructions-to-call-index-through-prebid-server) in our Prebid Server documentation on the Prebid site.
+To call Index from a web browser environment using a Prebid Server integration, see the Index-specific configuration steps in [Setup instructions to call Index through Prebid Server](/dev-docs/prebidjs/next/bidders/ix-server#setup-instructions-to-call-index-through-prebid-server) in our Prebid Server documentation on the Prebid site.
 
 <a id="server-side-adapter"></a>
 
@@ -108,8 +108,8 @@ In this configuration, Prebid.js makes a call to Prebid Server and then Prebid S
 1. If you are hosting your own Prebid Server instance, see [Setup instructions to call Index through Prebid Server](/dev-docs/pbs-bidders.html#setup-instructions-to-call-index-through-prebid-server).
 2. In the `[pbjs.setConfig()]` function, within the `s2sConfig` property, add `ix` to the `bidders` attribute.
 3. Define the Index-specific parameters at the bidder level. For Index's bidder-specific parameters, see the [Bid request parameters](#bid-request-parameters) section below.
-4. Define your ad units in the `adUnit` object. For more information about this object, see Prebid's [Ad Unit Reference](/dev-docs/adunit-reference.html) documentation.
-5. Enable user syncing by adding the following code in the [pbjs.setConfig()](/dev-docs/publisher-api-reference/setConfig.html) function. Index strongly recommends enabling user syncing through iFrames, though we do also support image-based syncing. This functionality improves DSP user match rates and increases the Index bid rate and bid price. Be sure to call `pbjs.setConfig()` only once. This configuration is optional in Prebid, but required by Index.   <br />
+4. Define your ad units in the `adUnit` object. For more information about this object, see Prebid's [Ad Unit Reference](/dev-docs/prebidjs/next/adunit-reference) documentation.
+5. Enable user syncing by adding the following code in the [pbjs.setConfig()](/dev-docs/prebidjs/next/publisher-api-reference/setConfig) function. Index strongly recommends enabling user syncing through iFrames, though we do also support image-based syncing. This functionality improves DSP user match rates and increases the Index bid rate and bid price. Be sure to call `pbjs.setConfig()` only once. This configuration is optional in Prebid, but required by Index.   <br />
 
     ```javascript
     pbjs.setConfig({
@@ -129,7 +129,7 @@ In this configuration, Prebid.js makes a call to Prebid Server and then Prebid S
 7. (Optional) If you want to monetize instream video, see the [Monetize instream video](#monetize-instream-video) section below.
 8. (Optional) If you want to monetize outstream video, you can choose among the following options:
     * Use Index's outstream video player. For more information, see the [Index's outstream ad unit](#indexs-outstream-ad-unit) section below.
-    * Use your own outstream video player. For more information, see [Prebid’s documentation on how to show video ads.](/dev-docs/show-outstream-video-ads.html)
+    * Use your own outstream video player. For more information, see [Prebid’s documentation on how to show video ads.](/dev-docs/prebidjs/next/show-outstream-video-ads)
 9. (Optional) Configure Prebid Native with Index. For more information, see the [Prebid Native](#prebid-native-configuration) section below. Prebid Native is available from Prebid.js version 7.4.0 or higher.
 
 <a id="modules-to-include-in-your-build-process"></a>
@@ -385,8 +385,8 @@ Depending on the Prebid.js version that you are using, the steps to configure Pr
 
 **Configure Protected Audience API for Prebid.js versions 8.18.0 to 8.36.0**
 
-1. Build the [PAAPI module](/dev-docs/modules/paapi.html) and the Fledge for GPT module in your Prebid.js configuration by adding `paapi` and `fledgeForGpt` to the list of modules that you are already using. <br />
-**Note:** The `fledgeForGpt` module documentation no longer exists on Prebid's site. You can however refer to Prebid's [Protected Audience API (PAAPI) for GPT Module](/dev-docs/modules/paapiForGpt.html) documentation for information on adding module configurations.
+1. Build the [PAAPI module](/dev-docs/prebidjs/next/modules/paapi) and the Fledge for GPT module in your Prebid.js configuration by adding `paapi` and `fledgeForGpt` to the list of modules that you are already using. <br />
+**Note:** The `fledgeForGpt` module documentation no longer exists on Prebid's site. You can however refer to Prebid's [Protected Audience API (PAAPI) for GPT Module](/dev-docs/prebidjs/next/modules/paapiForGpt) documentation for information on adding module configurations.
 2. Configure your ad units to make them eligible for Protected Audience API demand. You can do this in the global-level configuration, bidder level, or ad-unit level. Index recommends that you do this in the global-level configuration by using the `defaultForSlots` parameter with a value of `1`. The following code is an example of the configuration done at the global level:
 
     ```javascript
@@ -416,8 +416,8 @@ Depending on the Prebid.js version that you are using, the steps to configure Pr
 
 **Configure Protected Audience API for Prebid.js versions 8.37.0 and up to 9.0.0**
 
-1. Build the PAAPI module in your Prebid.js configuration by adding `fledgeForGpt` to the list of modules that you are already using. When you add the `fledgeForGpt` module, the `paapi` module automatically gets included as a sub-module. For more information about the module, see Prebid's [PAAPI module](/dev-docs/modules/paapi.html) documentation. <br />
-**Note:** The `fledgeForGpt` module documentation no longer exists on Prebid's site. You can however refer to Prebid's [Protected Audience API (PAAPI) for GPT Module](/dev-docs/modules/paapiForGpt.html) documentation for information on adding module configurations.
+1. Build the PAAPI module in your Prebid.js configuration by adding `fledgeForGpt` to the list of modules that you are already using. When you add the `fledgeForGpt` module, the `paapi` module automatically gets included as a sub-module. For more information about the module, see Prebid's [PAAPI module](/dev-docs/prebidjs/next/modules/paapi) documentation. <br />
+**Note:** The `fledgeForGpt` module documentation no longer exists on Prebid's site. You can however refer to Prebid's [Protected Audience API (PAAPI) for GPT Module](/dev-docs/prebidjs/next/modules/paapiForGpt) documentation for information on adding module configurations.
 2. Complete the following steps to make your ad units eligible for Protected Audience API demand: <br />
 **Note:** If you continue to use the `fledgeForGpt` property, you will receive a warning message in the console logs stating that the `fledgeForGpt` configuration options will soon be renamed to `paapi`. Therefore, Index recommends that you use the `paapi` property, which is available in Prebid.js version 8.37.0 or later.
     * In the `pbjs.setConfig().paapi` field, set the `defaultForSlots` parameter to `1`:
@@ -468,9 +468,9 @@ Depending on the Prebid.js version that you are using, the steps to configure Pr
 
 **Configure Protected Audience API for Prebid.js version 9.0.0 or later**
 
-1. Build the PAAPI for GPT module in your Prebid.js configuration by adding `paapi` to the list of modules that you are already using. For more information about the module, see Prebid's [Protected Audience API (PAAPI) for GPT Module](/dev-docs/modules/paapiForGpt.html) documentation.
+1. Build the PAAPI for GPT module in your Prebid.js configuration by adding `paapi` to the list of modules that you are already using. For more information about the module, see Prebid's [Protected Audience API (PAAPI) for GPT Module](/dev-docs/prebidjs/next/modules/paapiForGpt) documentation.
 2. In the `pbjs.setConfig().paapi` field, set the `defaultForSlots` parameter to `1`. 
-3. In the `paapi.gpt.configWithTargeting` field, set `configWithTargeting` to `true`. For more control over configuring GPT slots to use PAAPI, set the `configWithTargeting` to `false` and use the `setPAAPIConfigForGPT` API. For more information about the configurations, see Prebid's [Protected Audience API (PAAPI) for GPT Module](/dev-docs/modules/paapiForGpt.html) documentation. <br />The following code is an example of the `defaultForSlots` and `configWithTargeting` configuration:
+3. In the `paapi.gpt.configWithTargeting` field, set `configWithTargeting` to `true`. For more control over configuring GPT slots to use PAAPI, set the `configWithTargeting` to `false` and use the `setPAAPIConfigForGPT` API. For more information about the configurations, see Prebid's [Protected Audience API (PAAPI) for GPT Module](/dev-docs/prebidjs/next/modules/paapiForGpt) documentation. <br />The following code is an example of the `defaultForSlots` and `configWithTargeting` configuration:
 
   ```javascript
   pbjs.que.push(function() {

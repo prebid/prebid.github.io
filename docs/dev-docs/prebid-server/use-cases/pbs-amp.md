@@ -20,7 +20,7 @@ Here's a workflow diagramming how this works.
 1. The auction takes place and bid responses are placed in a cache.
 1. Prebid Server responds to the AMP page with results and ad server targeting variables.
 1. The ad server targeting variables are sent along to the ad server with the ad request.
-1. When header bidding wins in the ad server, the ad server responds with a call to the [Prebid Universal Creative](/overview/prebid-universal-creative).
+1. When header bidding wins in the ad server, the ad server responds with a call to the [Prebid Universal Creative](/prebid-universal-creative).
 1. The Prebid Universal Creative pulls the winning bid from the cache.
 1. The Prebid Universal Creative displays the winning bid creative from the cache.
 
@@ -30,7 +30,7 @@ The following sections give additional details of the steps provided in the work
 
 ### AMP RTC Tags are Placed in the Page
 
-As described in the [Prebid AMP Implementation Guide](/dev-docs/prebidjs/show-prebid-ads-on-amp-pages), `amp-ad` tags are placed in the AMP content.
+As described in the [Prebid AMP Implementation Guide](/dev-docs/prebidjs/next/show-prebid-ads-on-amp-pages), `amp-ad` tags are placed in the AMP content.
 
 There are two basic ways of invoking AMP RTC:
 

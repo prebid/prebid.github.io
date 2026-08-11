@@ -4,7 +4,7 @@ description: getAdserverTargetingForAdUnitCode API
 ---
 
 
-This function returns the query string targeting parameters available at this moment for a given ad unit. For full documentation see function [pbjs.getAdserverTargeting()](/dev-docs/publisher-api-reference/getAdserverTargeting).
+This function returns the query string targeting parameters available at this moment for a given ad unit. For full documentation see function [pbjs.getAdserverTargeting()](/dev-docs/prebidjs/next/publisher-api-reference/getAdserverTargeting).
 
 **Kind**: static method of `pbjs`
 

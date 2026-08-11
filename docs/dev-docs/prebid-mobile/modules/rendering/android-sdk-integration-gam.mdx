@@ -205,7 +205,7 @@ To create the event handler you should provide a GAM Ad Unit Id and the list of 
 
 **BannerView** - is the view that will display a particular ad. It should be added to the UI. To create it you should provide:
 
-- **configId** - an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs) on the Prebid server
+- **configId** - an ID of a [Stored Impression](/dev-docs/prebid-server/features/pbs-storedreqs) on the Prebid server
 - **eventHandler** - the instance of the banner event handler
 
 Also, you should add the instance of `BannerView` to the UI.
@@ -290,7 +290,7 @@ To create an event handler you should provide a GAM Ad Unit.
 
 **InterstitialAdUnit** - is an object that will load and display a particular ad. To create it you should provide:
 
-- **configId** - an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs) on the Prebid server
+- **configId** - an ID of a [Stored Impression](/dev-docs/prebid-server/features/pbs-storedreqs) on the Prebid server
 - **minSizePercentage** - specifies the minimum width and height percent an ad may occupy of a device’s screen.
 - **eventHandler** - the instance of the interstitial event handler
 
@@ -372,7 +372,7 @@ To create an event handler you should provide a GAM Ad Unit.
 
 **RewardedAdUnit** - is an object that will load and display the particular ad. To create it you should provide
 
-- **configId** - is an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs) on the Prebid server
+- **configId** - is an ID of a [Stored Impression](/dev-docs/prebid-server/features/pbs-storedreqs) on the Prebid server
 - **eventHandler** - is the instance of the rewarded event handler
 
 You can also assign the listener for processing ad events.
@@ -435,6 +435,6 @@ adUnit.setAdPosition(AdPosition.FOOTER);
 
 ## Further Reading
 
-- [Prebid Mobile Overview](/dev-docs/prebid-mobile/prebid-mobile)
+- [Prebid Mobile Overview](/dev-docs/prebid-mobile)
 - [Prebid SDK Android Integration](/dev-docs/prebid-mobile/pbm-api/android/code-integration-android)
 - [Prebid SDK Android Global Parameters](/dev-docs/prebid-mobile/pbm-api/android/pbm-targeting-android)

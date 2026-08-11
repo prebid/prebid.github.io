@@ -16,7 +16,7 @@ The size mapping module enables the global `sizeConfig` configuration which, tog
 
 
 :::tip
-As of Prebid.js 3.11.0, the [Advanced SizeMapping module](/dev-docs/modules/sizeMappingV2) provides an alternate way to handle responsive AdUnits.
+As of Prebid.js 3.11.0, the [Advanced SizeMapping module](/dev-docs/prebidjs/next/modules/sizeMappingV2) provides an alternate way to handle responsive AdUnits.
 You should consider using that module if any of these scenarios are true:
 {::nomarkdown}
 <ul>
@@ -36,7 +36,7 @@ If, on the other hand, you're only working with the banner mediaType and the AdU
 
 The `sizeConfig` object passed to `pbjs.setConfig` provides a global way to describe types of devices and screens using [CSS media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries).  See below for an explanation of the feature and examples showing how to use it.
 
-<a name="sizeConfig-How-it-Works"></a>
+<a id="sizeConfig-How-it-Works"></a>
 
 ### How Size Config Works for Banners
 
@@ -54,7 +54,7 @@ For example, if a request  contained the `banner` and `video` `mediaTypes` and i
 
 If the ad unit does not include `banner` `mediaType` at all, then the sizeConfig logic will not influence that ad Unit; it will automatically be passed into the auction.
 
-<a name="sizeConfig-Example"></a>
+<a id="sizeConfig-Example"></a>
 
 ### Size Config Example
 
@@ -109,7 +109,7 @@ There are two parts to defining responsive and conditional ad units with labels:
 Labels may be defined in two ways:
 
 1. Through [`sizeConfig`](#configure-responsive-ads)
-2. As an argument to [`pbjs.requestBids`](/dev-docs/publisher-api-reference/requestBids)
+2. As an argument to [`pbjs.requestBids`](/dev-docs/prebidjs/next/publisher-api-reference/requestBids)
 
 ```javascript
 pbjs.requestBids({labels: []});
@@ -197,11 +197,11 @@ pbjs.addAdUnits([{
 
 ```
 
-See [Conditional Ad Units](/dev-docs/conditional-ad-units) for additional use cases around labels.
+See [Conditional Ad Units](/dev-docs/prebidjs/next/conditional-ad-units) for additional use cases around labels.
 
-<a name="setConfig-coppa"></a>
+<a id="setConfig-coppa"></a>
 
 ## Further Reading
 
-* [Advanced size mapping](/dev-docs/modules/sizeMappingV2)
-* [Conditional Ad Units](/dev-docs/conditional-ad-units)
+* [Advanced size mapping](/dev-docs/prebidjs/next/modules/sizeMappingV2)
+* [Conditional Ad Units](/dev-docs/prebidjs/next/conditional-ad-units)

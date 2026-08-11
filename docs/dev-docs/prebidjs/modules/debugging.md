@@ -17,7 +17,7 @@ Bids intercepted in this way are never seen by bid adapters or their backend SSP
 
 For convenience, `debugging` configuration is persisted to the browser's session storage, so that you may type `pbjs.setConfig({debugging: ...})` in the console and reload the page to immediately see the effects. This means that you need to remember to **deactivate debugging (or clear session storage) when you are done**.
 
-<a name="example"></a>
+<a id="example"></a>
 
 ## Usage example
 
@@ -57,7 +57,7 @@ pbjs.setConfig({
 
 Rules are evaluated on each bid in the order they are provided: the first one that has a matching `when` definition takes the bid out of the normal auction flow and replaces it according to its `then` definition.
 
-<a name="match"></a>
+<a id="match"></a>
 
 ### Match rules
 
@@ -105,7 +105,7 @@ To illustrate, these definitions are equivalent:
 };
 ```
 
-<a name="replace"></a>
+<a id="replace"></a>
 
 ### Replace rules
 
@@ -147,7 +147,7 @@ To illustrate, the following definitions are equivalent:
 }
 ```
 
-<a name="options"></a>
+<a id="options"></a>
 
 ### Rule options
 

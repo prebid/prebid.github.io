@@ -11,7 +11,7 @@ The Price Floors feature provides an open framework for Publishers to configure 
 
 A ‘floor’ is defined as the lowest price a bid that will be accepted for each Prebid auction. It’s a way for publishers to signal to bidders the price to beat, thereby protecting the value of their inventory. Proper floors are dynamic and determined based on detailed factors like mediaType, adSlot, size, and other factors.
 
-The Prebid Server version of this feature is similar to the [Prebid.js Price Floors Module](/dev-docs/prebidjs/modules/floors) with a few differences. Here are the advantages to having this feature on the server-side:
+The Prebid Server version of this feature is similar to the [Prebid.js Price Floors Module](/dev-docs/prebidjs/next/modules/floors) with a few differences. Here are the advantages to having this feature on the server-side:
 
 - Mobile APP and AMP scenarios can support floors. However, neither Prebid SDK nor AMP supports specifying complex floor data. The intention is that floor data is either in the top-level stored request, or obtained with a dynamic fetch.
 - Floor data is cached by PBS, so using server-side floors may lighten the load on the browser and perhaps improve auction performance. It no longer has to load floor data with the PBJS package or make a dynamic fetch for them. However, this PBS-based floors feature does not currently support client-side analytics, so in many cases, the Prebid.js client-side floors feature may still be necessary.
@@ -46,10 +46,10 @@ Specifically, modules don't support the feature where bid adapters need access t
 <p/>
 Notes:
 
-- [Prebid.js Price Floors Module](/dev-docs/prebidjs/modules/floors#overview)
+- [Prebid.js Price Floors Module](/dev-docs/prebidjs/next/modules/floors#overview)
 - [Price Floors in Prebid Server](/dev-docs/prebid-server/features/pbs-floors#prebid-server--features--price-floors)
-- [Prebid Floor Service Providers](/dev-docs/prebidjs/modules/floors#floors-providers)
-- [Transcript of this video](/dev-docs/prebidjs/floors-video-overview)
+- [Prebid Floor Service Providers](/dev-docs/prebidjs/next/modules/floors#floors-providers)
+- [Transcript of this video](/dev-docs/prebidjs/next/floors-video-overview)
 
 ## How Floors work in Prebid Server
 
@@ -87,7 +87,7 @@ may optionally decide to work with an external vendor to provide optimized floor
 
 Setting up the service is straightforward:
 
-- Choose a vendor. See the [floors provider list](/dev-docs/prebidjs/modules/floors#floors-providers) in the Prebid.js documentation.
+- Choose a vendor. See the [floors provider list](/dev-docs/prebidjs/next/modules/floors#floors-providers) in the Prebid.js documentation.
 - Work with that vendor to determine the details: the schema, period, and other configurable values.
 - Obtain a URL from the vendor for each publisher account. This URL should be a file on a CDN or otherwise be available within a few seconds around the globe.
 - Define the URL in the account-specific configuration.
@@ -144,14 +144,14 @@ The enforcement stage of the Floors feature validates bid responses from the ada
 
 ## Floor Data
 
-Prebid Server floors data must always be formatted using the [Schema 2](/dev-docs/prebidjs/modules/floors#schema-2) format supported by Prebid.js.
+Prebid Server floors data must always be formatted using the [Schema 2](/dev-docs/prebidjs/next/modules/floors#schema-2) format supported by Prebid.js.
 There a few fields supported by Prebid Server not supported in Prebid.js, but it's
 completely backwards-compatible -- PBS will accept and process any Prebid.js floors data formatted in Schema 2.
 
 ### Defining Floor data
 
 :::warning
-You **cannot** set the `floorMin` parameter without specifying a `data` object. See the [simple static floor](/dev-docs/prebidjs/modules/floors#simple-static-floors) section for more info.
+You **cannot** set the `floorMin` parameter without specifying a `data` object. See the [simple static floor](/dev-docs/prebidjs/next/modules/floors#simple-static-floors) section for more info.
 :::
 
 As described in the [Signaling](#floor-signaling) section above, floor data may be defined in several ways. Here's the order of priority:
@@ -202,13 +202,13 @@ please [open an issue](https://github.com/prebid/prebid-server/issues) with as m
 
 :::info
 Note: when producing a floors file, be aware that the entire contents are mered under
-the 'data' object of [Schema 2](/dev-docs/prebidjs/modules/floors#schema-2). i.e.
+the 'data' object of [Schema 2](/dev-docs/prebidjs/next/modules/floors#schema-2). i.e.
 the file should not contain the 'data' object, just attributes of the 'data' object.
 :::
 
 ### Processing Floor Rules
 
-To understand how floor rules look and operate, see the [rules selection process](/dev-docs/prebidjs/modules/floors#rule-selection-process) in the Prebid.js floors module doc.
+To understand how floor rules look and operate, see the [rules selection process](/dev-docs/prebidjs/next/modules/floors#rule-selection-process) in the Prebid.js floors module doc.
 
 ### Floor Schema Dimensions
 
@@ -365,7 +365,7 @@ See the developer bid adapter documentation for details:
 To get floors information, developers of an analytics adapter will need to
 pull data from both the bidrequest object and bidresponse object.
 
-In most scenarios, floor data is all in the bidrequest object, specifically in the ext.prebid.floors object. See [Schema 2](/dev-docs/prebidjs/modules/floors#schema-2) for the available fields.
+In most scenarios, floor data is all in the bidrequest object, specifically in the ext.prebid.floors object. See [Schema 2](/dev-docs/prebidjs/next/modules/floors#schema-2) for the available fields.
 
 Here are some scenarios where looking at the bid response level data is used:
 
@@ -388,5 +388,5 @@ See the [developer's guide to building an analytics adapter](/dev-docs/prebid-se
 
 ## Related Reading
 
-- [Prebid.js Floors module](/dev-docs/prebidjs/modules/floors)
-- [Floor Provider Vendor list](/dev-docs/prebidjs/modules/floors#floors-providers)
+- [Prebid.js Floors module](/dev-docs/prebidjs/next/modules/floors)
+- [Floor Provider Vendor list](/dev-docs/prebidjs/next/modules/floors#floors-providers)

@@ -8,7 +8,7 @@ title: Prebid Server | Endpoints | OpenRTB2 | AMP
 
 This document describes the behavior of the Prebid Server AMP endpoint in detail.
 For a more general reference, see the [Prebid AMP Implementation Guide
-](/dev-docs/prebidjs/show-prebid-ads-on-amp-pages).
+](/dev-docs/prebidjs/next/show-prebid-ads-on-amp-pages).
 
 ## GET /openrtb2/amp
 
@@ -164,7 +164,7 @@ A sample response payload looks like this:
 }
 ```
 
-In [the typical AMP setup](/dev-docs/prebidjs/show-prebid-ads-on-amp-pages),
+In [the typical AMP setup](/dev-docs/prebidjs/next/show-prebid-ads-on-amp-pages),
 these targeting params will be sent to Google Ad Manager.
 
 ### Error Messages

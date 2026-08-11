@@ -6,7 +6,7 @@ title: Prebid Server | Use Cases | Prebid.js
 # Use Case: Prebid Server | Prebid.js
 
 
-When publishers specify bidders in [Prebid.js `s2sConfig`](/dev-docs/prebidjs/publisher-api-reference/setConfig#setConfig-Server-to-Server), the browser connects to Prebid Server to coordinate the header bidding auction for those bidders.
+When publishers specify bidders in [Prebid.js `s2sConfig`](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-Server-to-Server), the browser connects to Prebid Server to coordinate the header bidding auction for those bidders.
 
 ## Workflow
 
@@ -44,7 +44,7 @@ The following sections give additional details of the steps provided in the work
 
 ### Prebid.js s2sConfig is Placed in the Page
 
-Here's a page example assuming that you're running your own Prebid Server. See [Prebid.js `s2sConfig`](/dev-docs/prebidjs/publisher-api-reference/setConfig#setConfig-Server-to-Server) for more information. Note that this config would handle both banner and video auctions server-side for bidderA and bidderB.
+Here's a page example assuming that you're running your own Prebid Server. See [Prebid.js `s2sConfig`](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-Server-to-Server) for more information. Note that this config would handle both banner and video auctions server-side for bidderA and bidderB.
 
 ```
 pbjs.setConfig({
@@ -257,5 +257,5 @@ actual creative asset when it's time to display.
 
 ## Further Reading
 
-- [What is Prebid.js?](/prebid/prebidjs)
-- [Prebid Video Ads](/formats/video)
+- [What is Prebid.js?](/dev-docs/prebidjs)
+- [Prebid Video Ads](/dev-docs/prebidjs/next/modules/video)

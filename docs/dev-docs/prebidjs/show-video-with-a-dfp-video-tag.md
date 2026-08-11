@@ -71,14 +71,14 @@ var videoAdUnit = {
 };
 ```
 
-For full details on video ad unit parameters, see [Ad Unit Reference for Video](/dev-docs/adunit-reference#adunitmediatypesvideo)
+For full details on video ad unit parameters, see [Ad Unit Reference for Video](/dev-docs/prebidjs/next/adunit-reference#adunitmediatypesvideo)
 
 ### 2. Implement Custom Price Buckets
 
-By default, Prebid.js caps all CPMs at $20.  As a video seller, you may expect to see CPMs over $20.  In order to receive those bids, you'll need to implement custom price buckets setting the [priceGranularity](/dev-docs/publisher-api-reference/setConfig#setConfig-Price-Granularity) object in the `setConfig` method.
+By default, Prebid.js caps all CPMs at $20.  As a video seller, you may expect to see CPMs over $20.  In order to receive those bids, you'll need to implement custom price buckets setting the [priceGranularity](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-Price-Granularity) object in the `setConfig` method.
 
 For instructions and sample code, see [Custom Price Granularity Buckets
-](/dev-docs/examples/custom-price-buckets).
+](/dev-docs/prebidjs/next/examples/custom-price-buckets).
 
 ### 3. Request bids, build video URL
 
@@ -86,7 +86,7 @@ Next, we need to do the standard Prebid "add ad units and request bids" dance.
 
 In the example below, our callback builds the video URL the player needs using the `buildVideoUrl` method from the Google Ad Manager ad server module that we built into our copy of Prebid.js in the **Prerequisites** section.
 
-For more information, see the API documentation for [pbjs.adServers.dfp.buildVideoUrl](/dev-docs/publisher-api-reference/adServers.dfp.buildVideoUrl).  Understanding the arguments to this method is *especially* important if you plan to pass any custom parameters to Google Ad Manager.  The `params` key in the argument to `buildVideoUrl` supports all parameters from the [Google Ad Manager API](https://support.google.com/admanager/answer/1068325).
+For more information, see the API documentation for [pbjs.adServers.dfp.buildVideoUrl](/dev-docs/prebidjs/next/publisher-api-reference/adServers.dfp.buildVideoUrl).  Understanding the arguments to this method is *especially* important if you plan to pass any custom parameters to Google Ad Manager.  The `params` key in the argument to `buildVideoUrl` supports all parameters from the [Google Ad Manager API](https://support.google.com/admanager/answer/1068325).
 
 ```javascript
 pbjs.que.push(function() {
@@ -118,9 +118,9 @@ pbjs.que.push(function() {
 The VAST XML has to be cached somewhere because most video players can only work with a URL that returns VAST XML, not VAST directly. Some bidders cache the VAST XML on the server side, while others depend on Prebid.js to perform the caching.
 
 * In general, video-enabled bidders must supply `bid.videoCacheKey`, `bid.vastXml`, or `bid.vastUrl` on their responses, and can provide any combination of the three.
-* If `pbjs.setConfig({cache: {URL}})` isn't set and the bidder supplies only `bid.vastXml` in its bid response, [`pbjs.adServers.dfp.buildVideoUrl`](/dev-docs/publisher-api-reference/adServers.dfp.buildVideoUrl) will not be able to generate a videoCacheKey, and it will be dropped from the auction.
+* If `pbjs.setConfig({cache: {URL}})` isn't set and the bidder supplies only `bid.vastXml` in its bid response, [`pbjs.adServers.dfp.buildVideoUrl`](/dev-docs/prebidjs/next/publisher-api-reference/adServers.dfp.buildVideoUrl) will not be able to generate a videoCacheKey, and it will be dropped from the auction.
 * If `pbjs.setConfig({cache: {URL}})` is defined and the bidder responds with `bid.videoCacheKey`, Prebid.js will not re-cache the VAST XML.
-* If `options.url` is passed as an argument to [`pbjs.adServers.dfp.buildVideoUrl`](/dev-docs/publisher-api-reference/adServers.dfp.buildVideoUrl):
+* If `options.url` is passed as an argument to [`pbjs.adServers.dfp.buildVideoUrl`](/dev-docs/prebidjs/next/publisher-api-reference/adServers.dfp.buildVideoUrl):
   * If Prebid Cache is disabled, Prebid sets `description_url` field to the bid response's `bid.vastUrl`.
   * If Prebid Cache is enabled, Prebid sets `description_url` field to the cache URL.
 
@@ -195,7 +195,7 @@ Below, find links to end-to-end "working examples" integrating Prebid.js demand 
 * [JWPlayer - Platform](/examples/video/instream/jwplayer/pb-ve-jwplayer-platform)
 * [JWPlayer - Hosted](/examples/video/instream/jwplayer/pb-ve-jwplayer-hosted)
 * [VideoJS](/examples/video/instream/videojs/pb-ve-videojs)
-* [Instream and Banner Mixed](/dev-docs/examples/instream-banner-mix)
+* [Instream and Banner Mixed](/dev-docs/prebidjs/next/examples/instream-banner-mix)
 
 ## Related Topics
 

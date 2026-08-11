@@ -10,7 +10,7 @@ description: Ad Unit Reference
 
 You can define and integrate the Prebid Plugin in Brightcove Studio but define all the prebid and rendering options on the publisher page if you wish.  
 
-See **[Plugin Integration with Brightcove Player Using Brightcove Studio](/dev-docs/plugins/bc/bc-prebid-plugin-integration-studio)** for details about the General Method of integrating the plugin in Brightcove Studio.
+See **[Plugin Integration with Brightcove Player Using Brightcove Studio](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-integration-studio)** for details about the General Method of integrating the plugin in Brightcove Studio.
 
 This page presents a sample publisher page using the General Integration Method via Brightcove Studio.
 

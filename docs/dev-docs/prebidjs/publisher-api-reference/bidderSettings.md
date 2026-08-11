@@ -68,8 +68,8 @@ The key value pair targeting is applied to the bid's corresponding ad unit. Your
 
 If you'd like to customize the key value pairs, you can overwrite the settings as the below example shows. *Note* that once you updated the settings, let your ad ops team know about the change, so they can update the line item targeting accordingly. See the [Ad Ops](/adops/before-you-start) documentation for more information.
 
-<a name="bidderSettingsDefault"></a>
-<a name="default-keywords"></a>
+<a id="bidderSettingsDefault"></a>
+<a id="default-keywords"></a>
 
 There's no need to include the following code if you choose to use the *below default setting*.
 
@@ -115,7 +115,7 @@ Note that the existence of `bidderSettings.adserverTargeting.standard` will prev
 
 :::
 
-<a name="key-targeting-specific-bidder"></a>
+<a id="key-targeting-specific-bidder"></a>
 **Keyword targeting for a specific bidder**
 
 Let’s say the bidder prefers a separate set of line items. You can overwrite the bidder
@@ -150,7 +150,7 @@ Note that sendStandardTargeting is set to false so that the standard Prebid targ
 
 **Price Buckets**
 
-Now let's say you would like to define a bidder-specific price bucket function rather than use the ones available by default in prebid.js. Even the [priceGranularity config](/dev-docs/publisher-api-reference/setConfig#setConfig-Price-Granularity) option applies to all bidders -- with this approach you can overwrite price buckets.
+Now let's say you would like to define a bidder-specific price bucket function rather than use the ones available by default in prebid.js. Even the [priceGranularity config](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-Price-Granularity) option applies to all bidders -- with this approach you can overwrite price buckets.
 
 *Note: this will only impact the price bucket sent to the ad server for targeting. It won't actually impact the cpm value used for ordering the bids.*
 
@@ -210,7 +210,7 @@ In the above example, the AOL bidder will inherit from "standard" adserverTarget
 
 ##### 2.3. inverseBidAdjustment
 
-When using [price floors](/dev-docs/modules/floors), Prebid attempts to calculate the inverse of `bidCpmAdjustment`, so that the floor values it requests from SSPs take into account how the bid will be adjusted.
+When using [price floors](/dev-docs/prebidjs/next/modules/floors), Prebid attempts to calculate the inverse of `bidCpmAdjustment`, so that the floor values it requests from SSPs take into account how the bid will be adjusted.
 For example, if the adjustment is `bidCpm * .85` as above, floors are adjusted by `bidFloor * 1 / .85`.
 
 The automatically derived inverse function is correct only when `bidCpmAdjustment` is a simple multiplication. 
@@ -266,7 +266,7 @@ This setting defines if the bid adapter can access browser cookies or local stor
 
 Note that:
 
-* [Disabling device access](/dev-docs/publisher-api-reference/setConfig#setConfig-deviceAccess) will prevent access to storage regardless of this setting;  
+* [Disabling device access](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-deviceAccess) will prevent access to storage regardless of this setting;  
 * `storageAllowed` will only affect bid adapters and not any other type of module (such as analytics or RTD).
 
 <a id="allowAlternateBidderCodes"></a>

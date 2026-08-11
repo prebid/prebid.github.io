@@ -43,7 +43,7 @@ sidebarType: 1
 :::danger
 :::
 All AppNexus (Microsoft/Xandr) placements included in a single call to `requestBids` must belong to the same parent Publisher.  If placements from two different publishers are included in the call, the AppNexus bidder will not return any demand for those placements. <br />
-*Note: This requirement does not apply to adapters that are [aliasing](/dev-docs/publisher-api-reference/aliasBidder.html) the AppNexus adapter.*
+*Note: This requirement does not apply to adapters that are [aliasing](/dev-docs/prebidjs/next/publisher-api-reference/aliasBidder) the AppNexus adapter.*
 
 #### Bid Params
 
@@ -115,7 +115,7 @@ For details on how these video params work with the params set in the adUnit.med
 
 #### App Object
 
-AppNexus supports using prebid within a mobile app's webview. If you are interested in using an SDK, please see [Prebid Mobile]({{site.baseurl}}/prebid-mobile/prebid-mobile.html) instead.
+AppNexus supports using prebid within a mobile app's webview. If you are interested in using an SDK, please see [Prebid Mobile](/dev-docs/prebid-mobile) instead.
 
 
 | Name              | Description                                                                                                                     | Example                                                                  | Type             |
@@ -223,7 +223,7 @@ PBS/PSP supports all first party data fields: site, user, segments, and imp-leve
 
 #### User Sync in AMP
 
-If you are syncing user id's with Prebid Server and are using AppNexus' managed service, see [AMP Implementation Guide cookie-sync instructions](/dev-docs/show-prebid-ads-on-amp-pages.html#user-sync) for details.
+If you are syncing user id's with Prebid Server and are using AppNexus' managed service, see [AMP Implementation Guide cookie-sync instructions](/dev-docs/prebidjs/next/show-prebid-ads-on-amp-pages#user-sync) for details.
 
 
 

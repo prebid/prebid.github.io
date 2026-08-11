@@ -9,7 +9,7 @@ description: Getting Started with Prebid Mobile
 This page gives an overview of steps you need to take, either as an ad ops user or as a developer, to start using Prebid Mobile.
 
 :::info
-If this is your first time working with header bidding, we recommend that you read [What is Prebid?](/overview/intro) before diving into Prebid Mobile.
+If this is your first time working with header bidding, we recommend that you read [What is Prebid?](/intro) before diving into Prebid Mobile.
 :::
 
 
@@ -28,7 +28,7 @@ Further Content:
 
 - [Transcript of this video](/dev-docs/prebid-mobile/prebid-mobile-video-flow)
 - [Getting Started with Prebid Mobile](/dev-docs/prebid-mobile/prebid-mobile-getting-started)
-- [All videos](/overview/all-videos)
+- [All videos](/all-videos)
 
 
 <div style={{padding: "56.25% 0 0 0", margin: "1rem 0", position: "relative"}}>
@@ -44,7 +44,7 @@ Further Content:
 - [Transcript of this video](/dev-docs/prebid-mobile/prebid-mobile-video-planning)
 - [Getting Started with Prebid Mobile](/dev-docs/prebid-mobile/prebid-mobile-getting-started)
 - [Prebid Managed Services](https://prebid.org/product-suite/managed-services/)
-- [All videos](/overview/all-videos)
+- [All videos](/all-videos)
 
 ## Set Up Prebid Server
 
@@ -57,7 +57,7 @@ Before you begin using Prebid Mobile in your apps, you need to prepare your end-
 
 Prebid Server is an open source project. This allows you to host your own implementation of Prebid Server, though it's not as easy as downloading Prebid.js, because it needs to be hosted. The source code is available for [Prebid Server Go](https://github.com/prebid/prebid-server) and [Prebid Server Java](https://github.com/prebid/prebid-server-java).
 
-See the [Prebid Server documentation](/prebid-server/overview/prebid-server-overview) for more information on [setting up your own server host](/prebid-server/hosting/pbs-hosting).
+See the [Prebid Server documentation](/dev-docs/prebid-server/overview/prebid-server-overview) for more information on [setting up your own server host](/dev-docs/prebid-server/hosting/pbs-hosting).
 
 ### Accounts and Account Settings
 
@@ -79,7 +79,7 @@ See the "integration" pages for each platform for details on how to set up both 
 
 ### Auction Setting IDs / Top-Level Stored Requests
 
-Working with your Prebid Server host, you will need to create at least one "account settings" block. Prebid Server calls this a [top-level stored request](/prebid-server/features/pbs-storedreqs). Each top-level stored request contains parameters that are global to the entire auction, not just
+Working with your Prebid Server host, you will need to create at least one "account settings" block. Prebid Server calls this a [top-level stored request](/dev-docs/prebid-server/features/pbs-storedreqs). Each top-level stored request contains parameters that are global to the entire auction, not just
 one adunit. The configuration will be in the form of a JSON structure that will be merged into the OpenRTB. Something like this:
 
 ```json
@@ -107,7 +107,7 @@ Your Prebid Server team should be able to help you decide which parameters are n
 
 ### Config IDs / Impression-Level Stored Requests
 
-Again, working with your Prebid Server host, there are likely to be many adunit configurations. Prebid Mobile calls this thing a "Config ID", while Prebid Server calls it an [impression-level stored request](/prebid-server/features/pbs-storedreqs). Each stored request configuration contains a list of bidders and their parameters. The configuration will be in the form of a JSON structure that will be merged into the OpenRTB `imp` element. Something like this:
+Again, working with your Prebid Server host, there are likely to be many adunit configurations. Prebid Mobile calls this thing a "Config ID", while Prebid Server calls it an [impression-level stored request](/dev-docs/prebid-server/features/pbs-storedreqs). Each stored request configuration contains a list of bidders and their parameters. The configuration will be in the form of a JSON structure that will be merged into the OpenRTB `imp` element. Something like this:
 
 ```json
 {
@@ -160,5 +160,5 @@ The following resources are available for further information on working with Pr
 
 ## Futher Reading
 
-- [How Prebid Server works with Prebid SDK](/prebid-server/use-cases/pbs-sdk)
+- [How Prebid Server works with Prebid SDK](/dev-docs/prebid-server/use-cases/pbs-sdk)
 - [Prebid Mobile FAQ](https://docs.prebid.org/faq/prebid-mobile-faq.html)

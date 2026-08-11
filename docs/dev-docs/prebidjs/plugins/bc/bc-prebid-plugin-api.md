@@ -61,7 +61,7 @@ If the results of the prebid process is being determined outside of the plugin, 
   * A publisher-preferred ad server is being used to determine whether to select the results of prebid or the ad provided by their ad server
     * If prebid is being run in the header, then the code to manage the third-party ad server should call `renderAd()` with the selected ad to play
     * If prebid is being run after the Brightcove Player has been loaded, then `renderAd()` should be called after the player has been loaded and the ad server code should use a callback to pass the selected ad back to the plugin to render.
-    * See **[Sample Brightcove Player Prebid Plugin Integration - Using Publisher Preferred Ad Server](/dev-docs/plugins/bc/bc-prebid-plugin-sample-third-party-ad-server)**
+    * See **[Sample Brightcove Player Prebid Plugin Integration - Using Publisher Preferred Ad Server](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-sample-third-party-ad-server)**
   * The entire bidding process has been executed outside of the plugin
 * The publisher can specify all prebid options needed to run the prebidding process
 * The publisher can specify preferences about how and when to render the ad
@@ -72,7 +72,7 @@ If the results of the prebid process is being determined outside of the plugin, 
 
 | Field | Description | Acceptable Values | Required | Default | Example |
 | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
-| `options` | Publisher configuration settings needed to do prebid and /or execute the ad playback | JSON objects containing any of the supported options as defined in  **[Plugin Options](/dev-docs/plugins/bc/bc-prebid-plugin-options)**  | Yes | null | See sample code below |
+| `options` | Publisher configuration settings needed to do prebid and /or execute the ad playback | JSON objects containing any of the supported options as defined in  **[Plugin Options](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-options)**  | Yes | null | See sample code below |
 | `id` | Identifies the Brightcove video tag element | String that represents the id of the Brightcove video tag as it appears on the page | Yes | null | 'bc_player' |
 | `creative` | The VAST XML that defined the video creative to be played |Either a String containing the URL pointing to the creative VAST XML or a String containing the creative VAST XML. If no value is specified, then this signals the plugin to run prebid | This value is not required if the plugin is invoking the prebid process.  The value is required if the prebid process is being run outside of the plugin. | null | `'https://path-to-creative/creative.xml'` |
 
@@ -207,13 +207,13 @@ None
 ## Plugin Options
 
 Details about the options supported by the Brightcove Prebid Plugin can be found at:
-**[Prebid Plugin for Brightcove (Videojs) Player - Plugin Options](/dev-docs/plugins/bc/bc-prebid-plugin-options)**
+**[Prebid Plugin for Brightcove (Videojs) Player - Plugin Options](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-options)**
 
 ## Sample Implementations
 
 Sample implementations are provided at:
 
-* **[Sample Brightcove Player Prebid Plugin Integration - Prebid in Header](/dev-docs/plugins/bc/bc-prebid-plugin-sample-prebid-header)**
-* **[Sample Brightcove Player Prebid Plugin Integration - Prebid After Player is Loaded](/dev-docs/plugins/bc/bc-prebid-plugin-sample-prebid-body)**
-* **[Sample Brightcove Player Prebid Plugin Integration - Using Publisher Preferred Ad Server](/dev-docs/plugins/bc/bc-prebid-plugin-sample-third-party-ad-server)**
-* **[Sample Brightcove Player Prebid Plugin Integration - Publisher Uses Custom Header Bidding, Plugin Renders the Ad](/dev-docs/plugins/bc/bc-prebid-plugin-sample-custom-header-bidding)**
+* **[Sample Brightcove Player Prebid Plugin Integration - Prebid in Header](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-sample-prebid-header)**
+* **[Sample Brightcove Player Prebid Plugin Integration - Prebid After Player is Loaded](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-sample-prebid-body)**
+* **[Sample Brightcove Player Prebid Plugin Integration - Using Publisher Preferred Ad Server](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-sample-third-party-ad-server)**
+* **[Sample Brightcove Player Prebid Plugin Integration - Publisher Uses Custom Header Bidding, Plugin Renders the Ad](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-sample-custom-header-bidding)**

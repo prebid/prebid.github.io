@@ -8,7 +8,7 @@ pid: 10
 
 ## Overview
 
-Configuration options for a single ad break are typically passed into the plugin in a JSON object structure. However, if you want to configure more than one ad break (containing a single ad slot) in a single video, configuration options would be passed into the plugin as an array of JSON objects, each object representing the configuration settings for one of the ad breaks. (See [Specifying Multiple Ad Breaks for a Video](/dev-docs/plugins/bc/bc-prebid-plugin-multiad-options) for more details.) These options can include:
+Configuration options for a single ad break are typically passed into the plugin in a JSON object structure. However, if you want to configure more than one ad break (containing a single ad slot) in a single video, configuration options would be passed into the plugin as an array of JSON objects, each object representing the configuration settings for one of the ad breaks. (See [Specifying Multiple Ad Breaks for a Video](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-multiad-options) for more details.) These options can include:
 
 * Prebid options, which configure how the prebid process should be executed.
 * Rendering options, which customize the ad playback.
@@ -37,7 +37,7 @@ Many of the rendering options listed below are ignored when the Brightcove IMA P
 * [frequencyRules](#frequencyRules)
 * [label](#labeloption)
 
-<a name="adrenderer"></a>
+<a id="adrenderer"></a>
 
 ### adRenderer
 
@@ -83,7 +83,7 @@ None. If this option is not specified with a valid value, the renderer selection
 
 `options1.adRenderer = 'ima';`
 
-<a name="skippable"></a>
+<a id="skippable"></a>
 
 ### skippable
 
@@ -115,7 +115,7 @@ This means that the publisher does not have a client-side preference. Skippable 
 
 `options.skippable = {};`
 
-<a name="enabled"></a>
+<a id="enabled"></a>
 
 ### skippable.enabled
 
@@ -147,7 +147,7 @@ None - If missing, then skippable behavior is controlled by the presence of the 
 
 `options.skippable.enabled = true;`
 
-<a name="videoThreshold"></a>
+<a id="videoThreshold"></a>
 
 ### skippable.videoThreshold
 
@@ -176,7 +176,7 @@ None - If missing and `skippable.enabled = true` then the ad will be skippable r
 
 `options.skippable.videoThreshold = 30;`
 
-<a name="videoOffset"></a>
+<a id="videoOffset"></a>
 
 ### skippable.videoOffset
 
@@ -205,7 +205,7 @@ None
 
 `options.skippable.videoOffset = 10`
 
-<a name="skipText"></a>
+<a id="skipText"></a>
 
 ### skippable.skipText
 
@@ -234,7 +234,7 @@ No
 
 `options.skippable.skipText = 'Your ad may be skipped in %%TIME%% seconds'`
 
-<a name="skipButtonText"></a>
+<a id="skipButtonText"></a>
 
 ### skippable.skipButtonText
 
@@ -263,7 +263,7 @@ No
 
 `options.skippable.skipButtonText = 'SKIP AD';`
 
-<a name="adStartTimeout"></a>
+<a id="adStartTimeout"></a>
 
 ### adStartTimeout
 
@@ -289,7 +289,7 @@ No
 
 `options.adStartTimeout=2500;`
 
-<a name="timeOffset"></a>
+<a id="timeOffset"></a>
 
 ### timeOffset
 
@@ -320,7 +320,7 @@ String that can be one of the following:
 
 `options.timeOffset = '15%';`
 
-<a name="adText"></a>
+<a id="adText"></a>
 
 ### adText
 
@@ -355,7 +355,7 @@ No
 
 `options.adText = 'Publicité'`
 
-<a name="wrapperLimit"></a>
+<a id="wrapperLimit"></a>
 
 ### wrapperLimit
 
@@ -388,7 +388,7 @@ No
 
 `wrapperLimit: 3`
 
-<a name="frequencyRules"></a>
+<a id="frequencyRules"></a>
 
 ### frequencyRules
 
@@ -425,7 +425,7 @@ frequencyRules
   }
 ```
 
-<a name="labeloption"></a>
+<a id="labeloption"></a>
 
 ### label
 
@@ -453,22 +453,22 @@ None
 
 ### Prebid Options
 
-Information about the Prebid Options supported by the plugin can be found at: **[Prebid Options](/dev-docs/plugins/bc/bc-prebid-plugin-prebid-options)**
+Information about the Prebid Options supported by the plugin can be found at: **[Prebid Options](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-prebid-options)**
 
 ### Plugin API
 
-The Brightcove Prebid Plugin supports an API.  Information about this API can be found at **[Brightcove Prebid Plugin API](/dev-docs/plugins/bc/bc-prebid-plugin-api)**
+The Brightcove Prebid Plugin supports an API.  Information about this API can be found at **[Brightcove Prebid Plugin API](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-api)**
 
 ### Sample Implementations
 
 Sample implementations are provided at:
 
-* **[Sample Brightcove Player Prebid Plugin Integration - Prebid in Header](/dev-docs/plugins/bc/bc-prebid-plugin-sample-prebid-header)**
+* **[Sample Brightcove Player Prebid Plugin Integration - Prebid in Header](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-sample-prebid-header)**
 
-* **[Sample Brightcove Player Prebid Plugin Integration - Prebid After Player is Loaded](/dev-docs/plugins/bc/bc-prebid-plugin-sample-prebid-body)**
+* **[Sample Brightcove Player Prebid Plugin Integration - Prebid After Player is Loaded](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-sample-prebid-body)**
 
-* **[Sample Brightcove Player Prebid Plugin Integration - Using Publisher Preferred Ad Server](/dev-docs/plugins/bc/bc-prebid-plugin-sample-third-party-ad-server)**
+* **[Sample Brightcove Player Prebid Plugin Integration - Using Publisher Preferred Ad Server](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-sample-third-party-ad-server)**
 
-* **[Sample Brightcove Player Prebid Plugin Integration - Publisher Uses Custom Header Bidding, Plugin Renders the Ad](/dev-docs/plugins/bc/bc-prebid-plugin-sample-custom-header-bidding)**
+* **[Sample Brightcove Player Prebid Plugin Integration - Publisher Uses Custom Header Bidding, Plugin Renders the Ad](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-sample-custom-header-bidding)**
 
-* **[Specifying Multiple Ad Breaks for a Video](/dev-docs/plugins/bc/bc-prebid-plugin-multiad-options)**
+* **[Specifying Multiple Ad Breaks for a Video](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-multiad-options)**

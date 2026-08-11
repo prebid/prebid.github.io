@@ -82,9 +82,9 @@ All global rules apply.
     1. Building a Real-Time Data sub-module that obtains data in a way that can be utilized by other bidders as well if a bidder would like to incorporate an external data fetch that would influence the auction.
 1. Bidder modules must not obtain bid information from or about any other party in the auction. E.g., they cannot listen to ad server events and forward information naming other bidders back to their endpoint - that is the job of an analytics module. They cannot import the events system; they can only use event methods provided such as onBidWon().
 1. Bidder modules must not cache bids from previous auctions. That functionality is reserved for Prebid core.
-1. Bidders must accept parameters in the conventional location in preference to bidder-specific parameters. The list of these parameters is in the bidder adapter documentation for [PBJS](/dev-docs/bidder-adaptor#std-param-location) and [PBS](/prebid-server/developers/add-new-bidder-go#bidder-parameters).
+1. Bidders must accept parameters in the conventional location in preference to bidder-specific parameters. The list of these parameters is in the bidder adapter documentation for [PBJS](/dev-docs/prebidjs/next/bidder-adaptor#std-param-location) and [PBS](/dev-docs/prebid-server/developers/add-new-bidder-go#bidder-parameters).
 1. Bidders must not override the standard ad server targeting values: hb_adid, hb_bidder, hb_pb, hb_deal, or hb_size, hb_source, hb_format.
-1. If a bidder has adapters for both Prebid.js and Prebid Server, all parameters (including biddercodes and aliases) must be consistent between client- and server-side adapters. This allows publishers to utilize the PBJS [s2sTesting module](/dev-docs/modules/s2sTesting).
+1. If a bidder has adapters for both Prebid.js and Prebid Server, all parameters (including biddercodes and aliases) must be consistent between client- and server-side adapters. This allows publishers to utilize the PBJS [s2sTesting module](/dev-docs/prebidjs/next/modules/s2sTesting).
 1. Bid adapters must not create their own transaction IDs or overwrite the tids supplied by Prebid.
 
 #### Rules that May Someday Be Enforced
@@ -143,6 +143,6 @@ To manage this, we plan to:
 
 # Related Reading
 
-* Adding a bid adapter: [Prebid.js](/dev-docs/bidder-adaptor), [Prebid Server](/prebid-server/developers/add-new-bidder-go)
-* Adding an analytics adapter: [Prebid.js](/dev-docs/integrate-with-the-prebid-analytics-api), [Prebid Server](/prebid-server/developers/pbs-build-an-analytics-adapter)
-* Adding a module: [Prebid.js](/dev-docs/add-rtd-submodule), [Prebid Server](/prebid-server/developers/add-a-module)
+* Adding a bid adapter: [Prebid.js](/dev-docs/prebidjs/next/bidder-adaptor), [Prebid Server](/dev-docs/prebid-server/developers/add-new-bidder-go)
+* Adding an analytics adapter: [Prebid.js](/dev-docs/prebidjs/next/integrate-with-the-prebid-analytics-api), [Prebid Server](/dev-docs/prebid-server/developers/pbs-build-an-analytics-adapter)
+* Adding a module: [Prebid.js](/dev-docs/prebidjs/next/add-rtd-submodule), [Prebid Server](/dev-docs/prebid-server/developers/add-a-module)

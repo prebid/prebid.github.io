@@ -29,7 +29,7 @@ The available events are:
 | beforeBidderHttp | bidder network request is about be triggered | Array of Bid request objects |
 | bidRequested  | A bid was requested from a specific bidder | Bid request object |
 | bidResponse   | A bid response has arrived              | Bid response object |
-| pbsAnalytics    | Prebid Server has returned extra information for analytics adapters. | { [seatnonbid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction#seat-non-bid), auctionId, [atag](/prebid-server/developers/module-atags) } |
+| pbsAnalytics    | Prebid Server has returned extra information for analytics adapters. | { [seatnonbid](/dev-docs/prebid-server/endpoints/openrtb2/pbs-endpoint-auction#seat-non-bid), auctionId, [atag](/dev-docs/prebid-server/developers/module-atags) } |
 | seatNonBid    | DEPRECATED - use pbsAnalytics instead. Prebid Server has returned nonbid information. Must be enabled in s2sConfig.extPrebid | None |
 | bidRejected   | A bid was rejected                      | Bid response object |
 | bidAdjustment | A bid was adjusted                      | Bid response object |
@@ -56,5 +56,5 @@ pbjs.getEvents().forEach(event => {
 
 ## See Also
 
-* [onEvent](/dev-docs/publisher-api-reference/onEvent)
-* [offEvent](/dev-docs/publisher-api-reference/offEvent)
+* [onEvent](/dev-docs/prebidjs/next/publisher-api-reference/onEvent)
+* [offEvent](/dev-docs/prebidjs/next/publisher-api-reference/offEvent)

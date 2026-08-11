@@ -41,7 +41,7 @@ This endpoint was developed for the use case where client-side adapters return V
 and the publisher's Prebid Server is doing analytics for video impressions. Originally
 this was the only reliable way to measure imps for video.
 
-This is the Prebid.js [setConfig({cache})](/dev-docs/prebidjs/publisher-api-reference/setConfig#setConfig-vast-cache) call:
+This is the Prebid.js [setConfig({cache})](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-vast-cache) call:
 
 ```json
 pbjs.setConfig({

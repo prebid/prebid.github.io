@@ -66,7 +66,7 @@ Publishers can use Prebid.js to call Consumable Exchange (Consumable) in any of 
 
 **Notes:**
 
-* **Recommended Global Bidder settings:** For our adapter, Consumable recommends enabling local storage. As of Prebid.js 7.x, local storage access must be explicitly specified. By leveraging local storage, Consumable is able to take advantage of the latest features our exchange has to offer. For instructions on enabling local storage, see Prebid’s [pbjs.bidderSettings](/dev-docs/publisher-api-reference/bidderSettings.html) documentation.
+* **Recommended Global Bidder settings:** For our adapter, Consumable recommends enabling local storage. As of Prebid.js 7.x, local storage access must be explicitly specified. By leveraging local storage, Consumable is able to take advantage of the latest features our exchange has to offer. For instructions on enabling local storage, see Prebid’s [pbjs.bidderSettings](/dev-docs/prebidjs/next/publisher-api-reference/bidderSettings) documentation.
 
 <StorageAllowed />
 
@@ -93,7 +93,7 @@ The following table lists the media types that Consumable supports.
 
 ### Set up Prebid.js to call Consumable directly from the browser (client-side adapter)
 
-To call Consumable from a web browser environment using a Prebid Server integration, see the Consumable-specific configuration steps in [Setup instructions to call Consumable through Prebid Server](/dev-docs/bidders/consumable-server.html#setup-instructions-to-call-consumable-through-prebid-server) in our Prebid Server documentation on the Prebid site.
+To call Consumable from a web browser environment using a Prebid Server integration, see the Consumable-specific configuration steps in [Setup instructions to call Consumable through Prebid Server](/dev-docs/prebidjs/next/bidders/consumable-server#setup-instructions-to-call-consumable-through-prebid-server) in our Prebid Server documentation on the Prebid site.
 
 ### Set up Prebid.js to call Consumable through Prebid Server (server-side adapter)
 
@@ -102,8 +102,8 @@ In this configuration, Prebid.js makes a call to Prebid Server and then Prebid S
 1. If you are hosting your own Prebid Server instance, see [Setup instructions to call Consumable through Prebid Server](/dev-docs/pbs-bidders.html#setup-instructions-to-call-consumable-through-prebid-server).
 2. In the `[pbjs.setConfig()]` function, within the `s2sConfig` property, add `consumable` to the `bidders` attribute.
 3. Define the Consumable-specific parameters at the bidder level. For Consumable's bidder-specific parameters, see the [Bid request parameters](#bid-request-parameters) section below.
-4. Define your ad units in the `adUnit` object. For more information about this object, see Prebid's [Ad Unit Reference](/dev-docs/adunit-reference.html) documentation.
-5. Enable user syncing by adding the following code in the [pbjs.setConfig()](/dev-docs/publisher-api-reference/setConfig.html) function. Consumable strongly recommends enabling user syncing through iFrames, though we do also support image-based syncing. This functionality improves DSP user match rates and increases the Consumable bid rate and bid price. Be sure to call `pbjs.setConfig()` only once. This configuration is optional in Prebid, but required by Consumable.   <br />
+4. Define your ad units in the `adUnit` object. For more information about this object, see Prebid's [Ad Unit Reference](/dev-docs/prebidjs/next/adunit-reference) documentation.
+5. Enable user syncing by adding the following code in the [pbjs.setConfig()](/dev-docs/prebidjs/next/publisher-api-reference/setConfig) function. Consumable strongly recommends enabling user syncing through iFrames, though we do also support image-based syncing. This functionality improves DSP user match rates and increases the Consumable bid rate and bid price. Be sure to call `pbjs.setConfig()` only once. This configuration is optional in Prebid, but required by Consumable.   <br />
     
    ```javascript
     pbjs.setConfig({

@@ -46,7 +46,7 @@ The GAM Bidding-Only Integration method assumes that you have the following comp
 - **Google Mobile Ads (GMA) SDK** - This refers to the software development kit provided by Google. You need to ensure that you have the latest version of the GMA SDK supported by Prebid SDK. This SDK integration is necessary to communicate with the ad server and display ads in your app.
 - **Prebid SDK** - You will need the latest version of the Prebid Mobile SDK for either [Android](/dev-docs/prebid-mobile/pbm-api/android/code-integration-android) or [iOS](/dev-docs/prebid-mobile/pbm-api/ios/code-integration-ios).
 - **Prebid Universal Creative** - This needs to be hosted on a CDN and loaded from the creative in GAM as detailed in the [AdOps GAM creative reference](/adops/gam-creative-banner-sbs#prebid-universal-creative).
-- **Prebid Server** - You will need a cluster of servers running [Prebid Server](/prebid-server/use-cases/pbs-sdk). You can set up your own Prebid Server or work with a [Prebid Server managed service](https://prebid.org/managed-services/). Prebid Server provides you with the following:
+- **Prebid Server** - You will need a cluster of servers running [Prebid Server](/dev-docs/prebid-server/use-cases/pbs-sdk). You can set up your own Prebid Server or work with a [Prebid Server managed service](https://prebid.org/managed-services/). Prebid Server provides you with the following:
   - Configuration storage - rather than hardcoding all the details of your current business arrangements in the app, Prebid Server stores which bidders you're currently working with, their inventory details, and other settings that can be changed without updating your app.
   - Server-side auction - the server will make the connections to multiple auction bidding partners so the app doesn't have to.
   - Creative caching - Prebid Cache stores the creatives until the app needs to render them, reducing the auction response bandwidth.
@@ -92,7 +92,7 @@ The Ad Operations team will need to create line items in GAM. The creatives used
 
 | AdUnit Format | Line Item Targeting | Creative Type | Prebid Cache? | Ad Ops Details |
 | --- | --- | --- | --- | --- |
-| HTML banner, interstitial banner | hb_pb<br />hb_format=banner | 3rd party HTML that loads the [PUC](/overview/prebid-universal-creative) | yes | [link](/adops/gam-creative-banner-sbs) |
+| HTML banner, interstitial banner | hb_pb<br />hb_format=banner | 3rd party HTML that loads the [PUC](/prebid-universal-creative) | yes | [link](/adops/gam-creative-banner-sbs) |
 | Video (instream, non-instream, interstitial) | hb_pb<br />hb_format=video<br />inventoryType in (instream, mobile app) | VastUrl pointing to Prebid Cache | yes | [link](/adops/setting-up-prebid-video-in-dfp) |
 | Rewarded Video | hb_pb<br />hb_format=video<br />inventoryType in (instream, mobile app)<br />rewarded adunits | VastUrl pointing to Prebid Cache | yes | [link](/adops/setting-up-prebid-video-in-dfp) |
 | In-app native | hb_pb<br />hb_format=native | GAM native | no | [link](/adops/gam-native#create-a-new-native-creative) |
@@ -321,6 +321,6 @@ After the invocation of `activatePrebidImpressionTracker(),` the Prebid SDK will
 
 ## Further Reading
 
-- [Prebid Mobile Overview](/dev-docs/prebid-mobile/prebid-mobile)
+- [Prebid Mobile Overview](/dev-docs/prebid-mobile)
 - [Prebid SDK iOS integration](/dev-docs/prebid-mobile/pbm-api/ios/code-integration-ios)
 - [Prebid SDK iOS Global Parameters](/dev-docs/prebid-mobile/pbm-api/ios/pbm-targeting-ios)

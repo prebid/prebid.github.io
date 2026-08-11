@@ -78,6 +78,6 @@ var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
 });
 ```
 
-<a name="module_pbjs.requestBids"></a>
+<a id="module_pbjs.requestBids"></a>
 
 In the event of collisions, querystring values passed via `options.params` take precedence over those passed via `options.url`.

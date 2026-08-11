@@ -6,7 +6,7 @@ title: Prebid Server | Use Cases | Mobile SDK
 # Use Case: Prebid Server | Prebid Mobile SDK
 
 
-Unlike Prebid.js, the [Prebid Mobile SDK](/prebid-mobile/prebid-mobile) doesn't make requests to demand sources directly. Instead, it relies entirely on Prebid Server to handle the bidder communication.
+Unlike Prebid.js, the [Prebid Mobile SDK](/dev-docs/prebid-mobile) doesn't make requests to demand sources directly. Instead, it relies entirely on Prebid Server to handle the bidder communication.
 
 ## Workflow
 
@@ -19,7 +19,7 @@ Here's a workflow diagramming how this works.
 1. The auction takes place and bid responses are placed in a cache.
 1. Prebid Server responds to the Prebid SDK with results and ad server targeting variables.
 1. The ad server targeting variables are sent along with the ad request to the publisher ad server.
-1. When header bidding wins in the ad server, the ad server responds with a call to the [Prebid Universal Creative](/overview/prebid-universal-creative).
+1. When header bidding wins in the ad server, the ad server responds with a call to the [Prebid Universal Creative](/prebid-universal-creative).
 1. The Prebid Universal Creative pulls the winning bid from the Prebid Cache.
 1. The Prebid Universal Creative displays the winning bid creative from the cache.
 
@@ -264,4 +264,4 @@ The Prebid Universal Creative will parse the response, looking for the `adm` obj
 
 ## Further Reading
 
-- [Prebid Mobile Overview](/prebid-mobile/prebid-mobile)
+- [Prebid Mobile Overview](/dev-docs/prebid-mobile)

@@ -6,7 +6,7 @@ description: Communication between the Cross Player Prebid Component and the Pla
 # Communication Between Cross Player Prebid Component and Player
 
 
-The [Cross-Player Prebid Component](/dev-docs/plugins/cross-player-prebid-component/about-cross-player-prebid-component) communicates with the publisher's player using `window.postMessage` as supported by all browsers. The message can be initiated either by the Component or by the Player.
+The [Cross-Player Prebid Component](/dev-docs/prebidjs/next/plugins/cross-player-prebid-component/about-cross-player-prebid-component) communicates with the publisher's player using `window.postMessage` as supported by all browsers. The message can be initiated either by the Component or by the Player.
 
 The following rules apply for this communication:
 
@@ -211,7 +211,7 @@ var responseHandler = function(event) {
 
 ## Further Reading
 
-- [About the Cross Player Prebid Component](/dev-docs/plugins/cross-player-prebid-component/about-cross-player-prebid-component)
-- [Cross Player Prebid Component API](/dev-docs/plugins/cross-player-prebid-component/cross-player-api)
-- [Cross Player Prebid Component Configuration](/dev-docs/plugins/cross-player-prebid-component/cross-player-config)
+- [About the Cross Player Prebid Component](/dev-docs/prebidjs/next/plugins/cross-player-prebid-component/about-cross-player-prebid-component)
+- [Cross Player Prebid Component API](/dev-docs/prebidjs/next/plugins/cross-player-prebid-component/cross-player-api)
+- [Cross Player Prebid Component Configuration](/dev-docs/prebidjs/next/plugins/cross-player-prebid-component/cross-player-config)
 - [Download Cross-Player Prebid Component](https://github.com/prebid/cross-player-prebid-component)

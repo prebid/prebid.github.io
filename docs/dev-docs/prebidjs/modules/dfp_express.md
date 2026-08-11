@@ -210,6 +210,6 @@ pbjs.express(adUnits);
 
 ## Further Reading
 
-* [Learn more about AdUnits](/dev-docs/getting-started)
+* [Learn more about AdUnits](/dev-docs/prebidjs/next/getting-started)
 
 * More about [Google Publisher Tags](https://developers.google.com/doubleclick-gpt/reference)

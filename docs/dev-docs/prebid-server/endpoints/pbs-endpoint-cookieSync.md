@@ -11,8 +11,8 @@ This endpoint is used to initiate cookie syncs.
 
 Generally, two clients invoke the /cookie_sync endpoint:
 
-1. The Prebid.js pbsBidAdapter module. See the options for [s2sConfig](/dev-docs/prebidjs/publisher-api-reference/setConfig#setConfig-Server-to-Server)
-1. For AMP, the load-cookie.html file delivered with the Prebid Universal Creative. See the [AMP User Sync Guide](/dev-docs/prebidjs/show-prebid-ads-on-amp-pages#user-sync) for more info.
+1. The Prebid.js pbsBidAdapter module. See the options for [s2sConfig](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-Server-to-Server)
+1. For AMP, the load-cookie.html file delivered with the Prebid Universal Creative. See the [AMP User Sync Guide](/dev-docs/prebidjs/next/show-prebid-ads-on-amp-pages#user-sync) for more info.
 
 ## Basic Request/Response
 
@@ -113,7 +113,7 @@ It could be specified in a detailed way like this:
 }
 ```
 
-But the main use case for Prebid Server is what [load-cookie.html](/dev-docs/prebidjs/show-prebid-ads-on-amp-pages#user-sync) does in AMP, which is to disallow iframes:
+But the main use case for Prebid Server is what [load-cookie.html](/dev-docs/prebidjs/next/show-prebid-ads-on-amp-pages#user-sync) does in AMP, which is to disallow iframes:
 
 ```json
 "filterSettings": {

@@ -15,6 +15,6 @@ sidebarType : 1
 Audigent Halo has been rebranded as Audigent Hadron.  Please review the updated
 docs here:
 
-[Audigent Hadron Real-time Data Submodule](/dev-docs/modules/hadronRtdProvider)
+[Audigent Hadron Real-time Data Submodule](/dev-docs/prebidjs/next/modules/hadronRtdProvider)
 
 Please update your Halo references to Hadron before Prebid 7 is released.

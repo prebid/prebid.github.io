@@ -12,4 +12,4 @@ sidebarType : 1
 
 # allowActivities module
 
-This module provides the `allowActivities` configuration system for [activity controls](/dev-docs/activity-controls); refer to that page for more information.
+This module provides the `allowActivities` configuration system for [activity controls](/dev-docs/prebidjs/next/activity-controls); refer to that page for more information.

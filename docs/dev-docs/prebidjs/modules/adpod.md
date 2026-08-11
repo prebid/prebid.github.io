@@ -25,7 +25,7 @@ pbjs.setConfig({
 });
 ```
 
-When this setting is enabled, it requires the bidder to include a brand category id on the incoming adpod bids (otherwise the bid is rejected).  The bid's brand category will be processed and transformed to the corresponding brand category used by the publisher's adserver (see the [Category Translation](/dev-docs/modules/categoryTranslation) module page for more details).   The transformed brand category is then used in the bid caching process and as well as targeting keys that get sent to the adserver for the winning bid(s).
+When this setting is enabled, it requires the bidder to include a brand category id on the incoming adpod bids (otherwise the bid is rejected).  The bid's brand category will be processed and transformed to the corresponding brand category used by the publisher's adserver (see the [Category Translation](/dev-docs/prebidjs/next/modules/categoryTranslation) module page for more details).   The transformed brand category is then used in the bid caching process and as well as targeting keys that get sent to the adserver for the winning bid(s).
 
 Below is an example of the targeting key's value with the setting enabled (where `123` is the category id):
 
@@ -128,6 +128,6 @@ pbjs.adServers.freewheel.getTargeting({
 
 ## Further Reading
 
-[Prebid.js](/dev-docs/getting-started)
+[Prebid.js](/dev-docs/prebidjs/next/getting-started)
 [Prebid Video](/prebid-video/video-overview)  
-[Freewheel Module](/dev-docs/modules/freewheel)
+[Freewheel Module](/dev-docs/prebidjs/next/modules/freewheel)

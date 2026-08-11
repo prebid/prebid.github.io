@@ -8,22 +8,22 @@ description: Using labels for conditional ad units
 # Conditional Ad Units
 
 
-The [Size Mapping](/dev-docs/modules/sizeMapping) and [Advanced Size Mapping](/dev-docs/modules/sizeMappingV2) features are useful for standard responsive ad designs, but a number of other scenarios are supported as well.
+The [Size Mapping](/dev-docs/prebidjs/next/modules/sizeMapping) and [Advanced Size Mapping](/dev-docs/prebidjs/next/modules/sizeMappingV2) features are useful for standard responsive ad designs, but a number of other scenarios are supported as well.
 
 
 By supporting these scenarios, header bidding can be more efficient; the browser can send bids to a more surgical set of bidders based on device size or other attributes the page code can create.
 
 The basic steps are:
 
-1. Build up an array of 'labels' from two sources: as an output of [`sizeConfig`](/dev-docs/publisher-api-reference/setConfig#setConfig-Configure-Responsive-Ads), as an optional argument to [`requestBids()`](/dev-docs/publisher-api-reference/requestBids), or both.
+1. Build up an array of 'labels' from two sources: as an output of [`sizeConfig`](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-Configure-Responsive-Ads), as an optional argument to [`requestBids()`](/dev-docs/prebidjs/next/publisher-api-reference/requestBids), or both.
 1. Apply label targeting to AdUnits or specific bids.
 
-See the [Publisher API reference](/dev-docs/publisher-api-reference/setConfig#setConfig-Configure-Responsive-Ads) for syntax.
+See the [Publisher API reference](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-Configure-Responsive-Ads) for syntax.
 
 ## Some Bidders Should Be Skipped for Some Devices
 
 :::info
-The following example uses [Size Mapping](/dev-docs/modules/sizeMapping). See the [Advanced Size Mapping module](/dev-docs/modules/sizeMappingV2) for another way to handle this scenario. Note that you must use Advanced Size Mapping for mediaTypes other than banner.
+The following example uses [Size Mapping](/dev-docs/prebidjs/next/modules/sizeMapping). See the [Advanced Size Mapping module](/dev-docs/prebidjs/next/modules/sizeMappingV2) for another way to handle this scenario. Note that you must use Advanced Size Mapping for mediaTypes other than banner.
 :::
 
 Say a particular bidder is focused on mobile phone demand, so it's really not worthwhile
@@ -213,11 +213,11 @@ var AdUnits = [{
 }]
 ```
 
-See the [Advanced Size Mapping module](/dev-docs/modules/sizeMappingV2) if you need to do something like this for video.
+See the [Advanced Size Mapping module](/dev-docs/prebidjs/next/modules/sizeMappingV2) if you need to do something like this for video.
 
 ## Some Bid Requests Apply Only to Users Originating from Certain Countries
 
-Labels aren't constrained to describing device size -- they can be used for many types of conditions the page maywant to define. Besides being defined as part of `sizeConfig`, labels can also be passed into the [`requestBids()`](/dev-docs/publisher-api-reference/requestBids) function as an argument.
+Labels aren't constrained to describing device size -- they can be used for many types of conditions the page maywant to define. Besides being defined as part of `sizeConfig`, labels can also be passed into the [`requestBids()`](/dev-docs/prebidjs/next/publisher-api-reference/requestBids) function as an argument.
 
 A specific use case: suppose that a certain bidder doesn't have a data center outside of a
 certain region. It's really not worth sending them bid
@@ -258,11 +258,11 @@ var AdUnits = [{
 This example shows that the 'euroMobileBidder' is only interested in receiving bids that have **both**
 labels:
 
-* "eur" as passed into [`requestBids()`](/dev-docs/publisher-api-reference/requestBids)
+* "eur" as passed into [`requestBids()`](/dev-docs/prebidjs/next/publisher-api-reference/requestBids)
 * "phone" as created by `sizeConfig`
 
 ## Further Reading
 
-* [Size Mapping Module](/dev-docs/modules/sizeMapping)
-* [Advanced Size Mapping Module](/dev-docs/modules/sizeMappingV2)
+* [Size Mapping Module](/dev-docs/prebidjs/next/modules/sizeMapping)
+* [Advanced Size Mapping Module](/dev-docs/prebidjs/next/modules/sizeMappingV2)
 * [Using Media Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)

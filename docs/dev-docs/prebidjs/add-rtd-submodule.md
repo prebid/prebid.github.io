@@ -20,7 +20,7 @@ The RTD infrastructure is a generic module, not useful by itself. Instead, it al
 
 Publishers will decide which RTD sub-modules they want to use, and can set parameters like timeout, endpoints, etc. They will set limits on how long sub-modules are allowed to delay the auction, which will most likely be in the tens of milliseconds.
 
-See the [Publisher Real-Time Data Configuration](/dev-docs/publisher-api-reference/setConfig#setConfig-realTimeData) reference for more information.
+See the [Publisher Real-Time Data Configuration](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-realTimeData) reference for more information.
 
 Your module should not look at the values of the auctionDelay or waitForIt flags - just do what needs to be done as fast as possible. It's ok to *ask* publishers in your documentation
 to give you a certain amount of time or to flag your module as important, but
@@ -54,7 +54,7 @@ Working with any Prebid project requires using Github. In general, we recommend 
 
 :::warning
 RTD sub-modules are subject to a number of specific technical rules. Please become familiar
-with the [module rules](/dev-docs/module-rules) that apply globally and to Real Time Data modules in particular.
+with the [module rules](/dev-docs/prebidjs/next/module-rules) that apply globally and to Real Time Data modules in particular.
 :::
 
 ### Step 1: Add a markdown file describing the sub-module
@@ -119,9 +119,9 @@ submodule('realTimeData', subModuleObject);
 
 Several of the interfaces get a `userConsent` object. It's an object that carries these attributes:
 
-* [gdpr](/dev-docs/modules/consentManagementTcf#bidder-adapter-gdpr-integration) - GDPR
+* [gdpr](/dev-docs/prebidjs/next/modules/consentManagementTcf#bidder-adapter-gdpr-integration) - GDPR
 * [usp](/dev-docs/modules/consentManagementUsp#bidder-adapter-us-privacy-integration) - US Privacy (aka CCPA)
-* [coppa](/dev-docs/publisher-api-reference/setConfig#setConfig-coppa) - the Child Online Privacy Protection Act
+* [coppa](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-coppa) - the Child Online Privacy Protection Act
 
 These are provided so you can do the right thing with respect to regulations. The only privacy requirement imposed by the RTD-core is that sub-modules make make use of the StorageManager instead of attempting to access cookies or localstorage directly.
 
@@ -130,7 +130,7 @@ These are provided so you can do the right thing with respect to regulations. Th
 1. This function receives module configuration and userConsent parameters
 2. If the function returns `false`, the submodule will be ignored.
 
-See the [Building the Request](/dev-docs/bidder-adaptor#building-the-request) section of the Bid Adapter documentation for more details about GDPR and USP.
+See the [Building the Request](/dev-docs/prebidjs/next/bidder-adaptor#building-the-request) section of the Bid Adapter documentation for more details about GDPR and USP.
 
 #### getTargetingData
 
@@ -191,7 +191,7 @@ This is the function that will allow RTD sub-modules to modify the AdUnit object
 
 <a id="reqBidsConfigObj"></a>
 
-The `reqBidsConfigObj` parameter is a copy of the object passed to [`requestBids`](/dev-docs/publisher-api-reference/requestBids), except for:
+The `reqBidsConfigObj` parameter is a copy of the object passed to [`requestBids`](/dev-docs/prebidjs/next/publisher-api-reference/requestBids), except for:
 
 * `adUnits` and `timeout` are always defined (if the publisher didn't provide them, the default values are filled in - `pbjs.adUnits` and `getConfig('bidderTimeout')` respectively)
 * `ortb2` is replaced with an `ortb2Fragments` object, intended to be inspected and / or modified by your module.

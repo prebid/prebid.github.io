@@ -4,7 +4,7 @@ description: enableAnalytics API
 ---
 
 
-Enables sending event data to the analytics provider of your choice. For a list of analytics adapters, see [Analytics for Prebid](/overview/analytics).
+Enables sending event data to the analytics provider of your choice. For a list of analytics adapters, see [Analytics for Prebid](/analytics).
 
 ### Example
 
@@ -35,7 +35,7 @@ whether their system recommends the use of this parameter. They may have alterna
 
 ### See also
 
-* [Prebid.js events](/dev-docs/publisher-api-reference/getEvents)
-* [How to Add an Analytics Adapter](/dev-docs/integrate-with-the-prebid-analytics-api).
+* [Prebid.js events](/dev-docs/prebidjs/next/publisher-api-reference/getEvents)
+* [How to Add an Analytics Adapter](/dev-docs/prebidjs/next/integrate-with-the-prebid-analytics-api).
 
 <hr class="full-rule" />

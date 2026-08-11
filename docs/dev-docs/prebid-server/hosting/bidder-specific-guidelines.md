@@ -68,7 +68,7 @@ adapters:
 
 ### Rubicon
 
-If you'd like to run the [rubicon](/dev-docs/prebidjs/bidders/rubicon) Prebid Server adapter, here's the process:
+If you'd like to run the [rubicon](/dev-docs/prebidjs/next/bidders/rubicon) Prebid Server adapter, here's the process:
 
 1. Contact [accountservices@magite.com](mailto:accountservices@magite.com) explaining who you are and that you'd like to set up a Prebid Server that utilizes the rubicon adapter.
 2. They will ask you a bunch of questions and hopefully approve your application.

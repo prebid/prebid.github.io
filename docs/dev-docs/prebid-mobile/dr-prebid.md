@@ -277,6 +277,6 @@ Here are some more specific things to look for and actions to take based on whic
 
 ## Further Reading
 
-- [Prebid Mobile Overview](/dev-docs/prebid-mobile/prebid-mobile)
+- [Prebid Mobile Overview](/dev-docs/prebid-mobile)
 - [Getting Started with Prebid Mobile](/dev-docs/prebid-mobile/prebid-mobile-pbs)
 - [AdOps – Before You Start](/adops/before-you-start)

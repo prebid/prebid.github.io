@@ -10,12 +10,12 @@ sidebarType : 1
 
 # Native rendering module
 
-This module enables rendering of native ads through [pbjs.renderAd](/dev-docs/publisher-api-reference/renderAd) or [dynamic creatives](/adops/js-dynamic-creative).
+This module enables rendering of native ads through [pbjs.renderAd](/dev-docs/prebidjs/next/publisher-api-reference/renderAd) or [dynamic creatives](/adops/js-dynamic-creative).
 
-There's no configuration necessary except for installing the module; once included, you may use those rendering methods for native bids. If _not_ included, rendering native ads is only supported through [Prebid Universal Creative](/overview/prebid-universal-creative).
+There's no configuration necessary except for installing the module; once included, you may use those rendering methods for native bids. If _not_ included, rendering native ads is only supported through [Prebid Universal Creative](/prebid-universal-creative).
 
 ## Further reading
 
-- [renderAd reference](/dev-docs/publisher-api-reference/renderAd)
+- [renderAd reference](/dev-docs/prebidjs/next/publisher-api-reference/renderAd)
 - [Prebid.js dynamic creatives](/adops/js-dynamic-creative)
-- [Prebid Universal Creative](/overview/prebid-universal-creative)
+- [Prebid Universal Creative](/prebid-universal-creative)

@@ -5,7 +5,7 @@ description: getPAAPIBids API
 
 Returns a promise of the latest PAAPI bid for each ad unit, optionally filtered by auction or ad unit.
 
-**Kind**: static method of pbjs API. Only available when the [topLevelPaapi module](/dev-docs/modules/topLevelPaapi) is installed.
+**Kind**: static method of pbjs API. Only available when the [topLevelPaapi module](/dev-docs/prebidjs/next/modules/topLevelPaapi) is installed.
 
 **Returns**: `Promise<Object>` - Promise to a map from ad unit code to the PAAPI winner for that ad unit, if available.
 
@@ -24,7 +24,7 @@ The return value is a map where each value is either `null` (when there is no PA
 
 | Param         | Type    | Description                                                                    |
 | ---           | ---     | ---                                                                            |
-| adId          | String  | Ad ID. can be used with [renderAd](/dev-docs/publisher-api-reference/renderAd) |
+| adId          | String  | Ad ID. can be used with [renderAd](/dev-docs/prebidjs/next/publisher-api-reference/renderAd) |
 | auctionId     | String  | Auction ID tied to this bid                                                      |
 | adUnitCode    | String  | Ad unit code tied to this bid |
 | source        | String  | Always `"paapi"` |

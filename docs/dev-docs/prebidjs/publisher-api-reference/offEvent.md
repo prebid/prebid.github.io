@@ -3,7 +3,7 @@ title: pbjs.offEvent(eventType, handler, id)
 description: offEvent API
 ---
 
-Turns off an event callback defined with [onEvent](/dev-docs/publisher-api-reference/onEvent)
+Turns off an event callback defined with [onEvent](/dev-docs/prebidjs/next/publisher-api-reference/onEvent)
 
 **Kind**: static method of `pbjs`
 
@@ -11,7 +11,7 @@ Turns off an event callback defined with [onEvent](/dev-docs/publisher-api-refer
 
 **Returns**: none
 
-See the [getEvents](/dev-docs/publisher-api-reference/getEvents) function for the full list of eventTypes supported.
+See the [getEvents](/dev-docs/prebidjs/next/publisher-api-reference/getEvents) function for the full list of eventTypes supported.
 
 Causes PBJS to search through registered event callbacks and remove the
 supplied callbackFunction for the specific eventType.
@@ -51,5 +51,5 @@ pbjs.que.push(function () {
 
 ## See Also
 
-* [getEvents](/dev-docs/publisher-api-reference/getEvents)
-* [onEvent](/dev-docs/publisher-api-reference/onEvent)
+* [getEvents](/dev-docs/prebidjs/next/publisher-api-reference/getEvents)
+* [onEvent](/dev-docs/prebidjs/next/publisher-api-reference/onEvent)

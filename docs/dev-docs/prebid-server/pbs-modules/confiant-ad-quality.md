@@ -166,4 +166,4 @@ Here's an example analytics tag that might be produced for use in an analytics a
 
 - [Prebid Server Module List](/dev-docs/prebid-server/pbs-modules/index)
 - [Building a Prebid Server Module](/dev-docs/prebid-server/developers/add-a-module)
-- [Confiant Real-Time Protection Module](/dev-docs/prebidjs/modules/confiantRtdProvider)
+- [Confiant Real-Time Protection Module](/dev-docs/prebidjs/next/modules/confiantRtdProvider)

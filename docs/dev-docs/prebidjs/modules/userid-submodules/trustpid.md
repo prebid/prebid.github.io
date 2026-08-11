@@ -9,7 +9,7 @@ example:
 ---
 
 :::info
-This ID module has been renamed [utiq](/dev-docs/modules/userid-submodules/utiq) as of Prebid.js 8.0.
+This ID module has been renamed [utiq](/dev-docs/prebidjs/next/modules/userid-submodules/utiq) as of Prebid.js 8.0.
 :::
 
 Trustpid generates unique tokens, enabling improved efficiency in programmatic advertising while safeguarding transparency and control for end customers via `trustpid.com`. A website visitor’s Trustpid is generated based on network identifiers provided by network operators and requires explicit user consent.

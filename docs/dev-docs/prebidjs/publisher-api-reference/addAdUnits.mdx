@@ -6,12 +6,12 @@ description: addAdUnits API
 import IncludeTodo from '@site/src/components/IncludeTodo';
 
 
-Takes one ad unit object or an array of ad unit objects and adds them to the Prebid auction.  For usage examples, see [Examples](#addAdUnits-Examples) below and the [Getting Started](/dev-docs/getting-started) page.
+Takes one ad unit object or an array of ad unit objects and adds them to the Prebid auction.  For usage examples, see [Examples](#addAdUnits-Examples) below and the [Getting Started](/dev-docs/prebidjs/next/getting-started) page.
 
 * [Ad Unit Properties](#addAdUnits-AdUnitProperties)
 * [Examples](#addAdUnits-Examples)
 
-<a name="addAdUnits-AdUnitProperties"></a>
+<a id="addAdUnits-AdUnitProperties"></a>
 
 #### Ad Unit Properties
 
@@ -24,27 +24,27 @@ See the table below for the list of properties on the ad unit.  For example ad u
 | `sizes`      | Required | Array[Number] or Array[Array[Number]] | All the sizes that this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.  For 1.0 and later, prefer [`mediaTypes.banner.sizes`](#adUnit-banner).          |
 | `bids`       | Optional | Array[Object]                         | Each bid represents a request to a bidder.  For a list of properties, see [Bids](#addAdUnits-Bids) below.                                                                         |
 | `mediaTypes` | Optional | Object                                | Defines one or multiple media types the ad unit supports.  For a list of properties, see [Media Types](#addAdUnits-MediaTypes) below.                                                                     |
-| `labelAny` | optional  | array[string] | An array of string labels, used for showing responsive ads.  With the `labelAny` operator, just one label has to match for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig](/dev-docs/publisher-api-reference/setConfig).  |
-| `labelAll` | optional  | array[string] | An array of string labels, used for showing responsive and conditional ads. With the `labelAll` conditional, every element of the target array must match an element of the label array in order for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig](/dev-docs/publisher-api-reference/setConfig).  |
+| `labelAny` | optional  | array[string] | An array of string labels, used for showing responsive ads.  With the `labelAny` operator, just one label has to match for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig](/dev-docs/prebidjs/next/publisher-api-reference/setConfig).  |
+| `labelAll` | optional  | array[string] | An array of string labels, used for showing responsive and conditional ads. With the `labelAll` conditional, every element of the target array must match an element of the label array in order for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig](/dev-docs/prebidjs/next/publisher-api-reference/setConfig).  |
 | `video`      | Optional | Object                                | Used to link an Ad Unit to the [Video Module](/prebid-video/video-module). For allowed params see the [adUnit.video reference](#adUnit-video). |
 
-<a name="addAdUnits-Bids"></a>
+<a id="addAdUnits-Bids"></a>
 
 ##### Bids
 
 See the table below for the list of properties in the `bids` array of the ad unit.  For example ad units, see the [Examples](#addAdUnits-Examples) below.
 
-Note that `bids` is optional only for [Prebid Server stored impressions](/dev-docs/modules/prebidServer#stored-imp), and required in all other cases.
+Note that `bids` is optional only for [Prebid Server stored impressions](/dev-docs/prebidjs/next/modules/prebidServer#stored-imp), and required in all other cases.
 
 
 | Name     | Scope    | Type          | Description                                                                                                                                                                       |
 |----------+----------+---------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `bidder` | Required | String        | Bidder code. Find the [complete reference for all supported bidders here](/dev-docs/bidders).                                                                                          |
-| `params` | Required | Object        | Bidder's preferred way of identifying a bid request. Find the [complete reference for all supported bidders here](/dev-docs/bidders).                                                  |
-| `labelAny` | optional  | array[string] | An array of string labels, used for showing responsive ads.  With the `labelAny` operator, just one label has to match for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig](/dev-docs/publisher-api-reference/setConfig).  |
-| `labelAll` | optional  | array[string] | An array of string labels, used for showing responsive and conditional ads. With the `labelAll` conditional, every element of the target array must match an element of the label array in order for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig](/dev-docs/publisher-api-reference/setConfig).  |
+| `bidder` | Required | String        | Bidder code. Find the [complete reference for all supported bidders here](/dev-docs/prebidjs/next/bidders).                                                                                          |
+| `params` | Required | Object        | Bidder's preferred way of identifying a bid request. Find the [complete reference for all supported bidders here](/dev-docs/prebidjs/next/bidders).                                                  |
+| `labelAny` | optional  | array[string] | An array of string labels, used for showing responsive ads.  With the `labelAny` operator, just one label has to match for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig](/dev-docs/prebidjs/next/publisher-api-reference/setConfig).  |
+| `labelAll` | optional  | array[string] | An array of string labels, used for showing responsive and conditional ads. With the `labelAll` conditional, every element of the target array must match an element of the label array in order for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig](/dev-docs/prebidjs/next/publisher-api-reference/setConfig).  |
 
-<a name="addAdUnits-MediaTypes"></a>
+<a id="addAdUnits-MediaTypes"></a>
 
 ##### Media Types
 
@@ -59,9 +59,9 @@ See the table below for the list of properties in the `mediaTypes` object of the
 
 #### Video
 
-For the list of properties please visit the [adUnit.video reference](/dev-docs/adunit-reference#adUnit.video).
+For the list of properties please visit the [adUnit.video reference](/dev-docs/prebidjs/next/adunit-reference#adUnit.video).
 
-<a name="addAdUnits-Examples"></a>
+<a id="addAdUnits-Examples"></a>
 
 #### Examples
 
@@ -75,11 +75,11 @@ For the list of properties please visit the [adUnit.video reference](/dev-docs/a
   * [Banner](#mediatype-banner)
   * [Multi-format](#multi-format)
 
-<a name="adUnit-native"></a>
+<a id="adUnit-native"></a>
 
 ##### MediaType Native
 
-For an example of a native ad unit, see below.  For more detailed instructions, see [Show Native Ads](/dev-docs/show-native-ads).
+For an example of a native ad unit, see below.  For more detailed instructions, see [Show Native Ads](/dev-docs/prebidjs/next/show-native-ads).
 
 ```javascript
 pbjs.addAdUnits({
@@ -122,7 +122,7 @@ pbjs.addAdUnits({
 
 <IncludeTodo include={'{% include dev-docs/native-image-asset-sizes.md %}'} />
 
-<a name="adUnit-video"></a>
+<a id="adUnit-video"></a>
 
 ##### MediaType Video
 
@@ -150,7 +150,7 @@ pbjs.addAdUnits({
 });
 ```
 
-For an example of an instream video ad unit where the integration is handled on your own, see below.  For more detailed instructions, see [Show Video Ads](/dev-docs/show-video-with-a-dfp-video-tag).
+For an example of an instream video ad unit where the integration is handled on your own, see below.  For more detailed instructions, see [Show Video Ads](/dev-docs/prebidjs/next/show-video-with-a-dfp-video-tag).
 
 ```javascript
 pbjs.addAdUnits({
@@ -174,7 +174,7 @@ pbjs.addAdUnits({
 });
 ```
 
-For an example of an outstream video ad unit, see below.  For more detailed instructions, see [Show Outstream Video Ads](/dev-docs/show-outstream-video-ads).
+For an example of an outstream video ad unit, see below.  For more detailed instructions, see [Show Outstream Video Ads](/dev-docs/prebidjs/next/show-outstream-video-ads).
 
 ```javascript
 pbjs.addAdUnit({
@@ -202,11 +202,11 @@ pbjs.addAdUnit({
 })
 ```
 
-<a name="adUnit-banner"></a>
+<a id="adUnit-banner"></a>
 
 ##### MediaType Banner
 
-For an example of a banner ad unit, see below.  For more detailed instructions, see [Getting Started](/dev-docs/getting-started).
+For an example of a banner ad unit, see below.  For more detailed instructions, see [Getting Started](/dev-docs/prebidjs/next/getting-started).
 
 ```javascript
 pbjs.addAdUnits({
@@ -227,7 +227,7 @@ pbjs.addAdUnits({
 })
 ```
 
-<a name="adUnit-multi-format"></a>
+<a id="adUnit-multi-format"></a>
 
 ##### Multi-format
 

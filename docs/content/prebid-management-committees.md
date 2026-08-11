@@ -10,5 +10,5 @@ This page has moved to [prebid.org/project-management-committees/](https://prebi
 
 ## Further Reading
 
-* [What is Prebid.org?](/content/what-is-prebid-org)
+* [What is Prebid.org?](/what-is-prebid-org)
 * [Prebid.org Membership](/partners/partners)

@@ -51,7 +51,7 @@ enhancements to this system.
 
 There are a number of things modules in general are not allowed to do
 without disclosing prominently on their documentation. Please review
-the [Module Rules](/dev-docs/prebidjs/module-rules) page.
+the [Module Rules](/dev-docs/prebidjs/next/module-rules) page.
 
 Privacy Modules are particularly constrained in what they can do. Basically all they can do is answer `allow`, `disallow`, or `abstain` to a request from an Activity Control.
 They cannot make HTTP requests, log analytics, or affect the request/response in any way.

@@ -56,7 +56,7 @@ pbjs.setConfig({
 });  
 ```
 
-Please refer to [Publisher API Reference (Send All Bids)](/dev-docs/publisher-api-reference/setConfig#setConfig-Send-All-Bids) for more information on the Send All Bids settings.
+Please refer to [Publisher API Reference (Send All Bids)](/dev-docs/prebidjs/next/publisher-api-reference/setConfig#setConfig-Send-All-Bids) for more information on the Send All Bids settings.
 
 ## Step 3: Configure Google Ad Manager (GAM)
 
@@ -124,5 +124,5 @@ pbjs.que.push(function() {
 
 # Further Reading
 
-- [Getting Started Example](/dev-docs/getting-started)
+- [Getting Started Example](/dev-docs/prebidjs/next/getting-started)
 - [Prebid.js for Video](/prebid-video/video-overview)

@@ -23,17 +23,17 @@ The process for using the Cross-Player Prebid Component is as follows:
 
 | Step | Who | What | Comments |
 | :---- | :------------ | :------------------------------- |:------------------------- |
-| 1 | Publisher | Passes the Prebid configuration options to the Component. Options should be expressed in a JSON object. | Options can be defined a) in a file that is loaded using a URL or b) directly on the page where the Component is running. See [Cross Player Prebid Component Configuration](/dev-docs/plugins/cross-player-prebid-component/cross-player-config) for more information. |
+| 1 | Publisher | Passes the Prebid configuration options to the Component. Options should be expressed in a JSON object. | Options can be defined a) in a file that is loaded using a URL or b) directly on the page where the Component is running. See [Cross Player Prebid Component Configuration](/dev-docs/prebidjs/next/plugins/cross-player-prebid-component/cross-player-config) for more information. |
 | 2 | Component | Passes the Prebid configuration to Prebid.js and starts the Prebid process. | You can specify your custom build of Prebid.js. |
 | 3 | Prebid.js | Passes the Prebid results back to the Component. | |
 | 4 | Component | If the primary ad server has been indicated as Google Ad Manager, the Component passes the Prebid results to the primary ad server in a format supported by the ad server. | |
 | 5 | Component | If a primary ad server has been indicated, the Component receives the final results of the Prebid process from the primary ad server. | |
-| 6 | Component | Communicates the results of the Prebid process. The exact method of this communication varies depending on where the Component is running and whether the publisher is in the same HTML document as the Component. | See [Communication Between Prebid Component and Player](/dev-docs/plugins/cross-player-prebid-component/cross-player-communication) for more information. |
+| 6 | Component | Communicates the results of the Prebid process. The exact method of this communication varies depending on where the Component is running and whether the publisher is in the same HTML document as the Component. | See [Communication Between Prebid Component and Player](/dev-docs/prebidjs/next/plugins/cross-player-prebid-component/cross-player-communication) for more information. |
 | 7 | Publisher | Publisher uses the Prebid results to load and render the winning ad in their video player. | Result is typically a URL to the Prebid cache provided by Prebid.js where the VAST XML can be loaded. |
 
 ## Further Reading
 
-* [Cross-Player Prebid Component API](/dev-docs/plugins/cross-player-prebid-component/cross-player-api)
-* [Cross Player Prebid Component Configuration](/dev-docs/plugins/cross-player-prebid-component/cross-player-config)
-* [Communication Between Prebid Component and Player](/dev-docs/plugins/cross-player-prebid-component/cross-player-communication)
+* [Cross-Player Prebid Component API](/dev-docs/prebidjs/next/plugins/cross-player-prebid-component/cross-player-api)
+* [Cross Player Prebid Component Configuration](/dev-docs/prebidjs/next/plugins/cross-player-prebid-component/cross-player-config)
+* [Communication Between Prebid Component and Player](/dev-docs/prebidjs/next/plugins/cross-player-prebid-component/cross-player-communication)
 * [Download Cross-Player Prebid Component](https://github.com/prebid/cross-player-prebid-component)

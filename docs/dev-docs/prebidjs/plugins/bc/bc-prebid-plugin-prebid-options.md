@@ -8,7 +8,7 @@ pid: 10
 
 ## Overview
 
-Configuration options for a single ad break are typically passed into the plugin in a JSON object structure. However, if you want to configure more than one ad break (containing a single ad slot) in a single video, configuration options would be passed into the plugin as an array of JSON objects, each object representing the configuration settings for one of the ad breaks. (See [Specifying Multiple Ad Breaks for a Video](/dev-docs/plugins/bc/bc-prebid-plugin-multiad-options) for more details.) These options can include:
+Configuration options for a single ad break are typically passed into the plugin in a JSON object structure. However, if you want to configure more than one ad break (containing a single ad slot) in a single video, configuration options would be passed into the plugin as an array of JSON objects, each object representing the configuration settings for one of the ad breaks. (See [Specifying Multiple Ad Breaks for a Video](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-multiad-options) for more details.) These options can include:
 
 * Prebid options, which configure how the prebid process should be executed.
 * Rendering options, which customize the ad playback.
@@ -42,7 +42,7 @@ When configuring prebid options for more than one ad break, create an array of P
     * [Plugin API](#plugin-api)
     * [Sample Implementations](#sample-implementations)
 
-<a name="prebidPath"></a>
+<a id="prebidPath"></a>
 
 ### prebidPath
 
@@ -68,7 +68,7 @@ Not required but recommended.
 
 `options.prebidPath = 'https://your-path/prebid.js'`
 
-<a name="biddersSpec"></a>
+<a id="biddersSpec"></a>
 
 ### biddersSpec
 
@@ -94,7 +94,7 @@ Yes - if you want the plugin to execute prebid.
 
 See [Setting Up Prebid Parameters](#set-up-params) below
 
-<a name="bidderAliases"></a>
+<a id="bidderAliases"></a>
 
 ### bidderAliases
 
@@ -136,7 +136,7 @@ None
 ]
 ```
 
-<a name="bidderSettings"></a>
+<a id="bidderSettings"></a>
 
 ### bidderSettings
 
@@ -288,7 +288,7 @@ When `bidderSettings` are defined in Brightcove Studio:
 }
 ```
 
-<a name="prebidConfigOptions"></a>
+<a id="prebidConfigOptions"></a>
 
 ### prebidConfigOptions
 
@@ -300,7 +300,7 @@ Additional options that are passed in to the prebid.js `setConfig()` method.
 
 JSON object.
 
-Supported fields are documented in the [Prebid.org Publisher API Reference](/dev-docs/publisher-api-reference/setConfig)
+Supported fields are documented in the [Prebid.org Publisher API Reference](/dev-docs/prebidjs/next/publisher-api-reference/setConfig)
 
 **Required?**
 
@@ -314,7 +314,7 @@ None
 
 `options.prebidConfigOptions = { pageUrl: "https://www.theverge.com"};`
 
-<a name="dfpParameters"></a>
+<a id="dfpParameters"></a>
 
 ### dfpParameters
 
@@ -322,7 +322,7 @@ None
 
 Parameters used when using Google Ad Manager as the ad server.
 
-See prebid.org documentation for [buildVideoUrl](/dev-docs/publisher-api-reference/adServers.dfp.buildVideoUrl)
+See prebid.org documentation for [buildVideoUrl](/dev-docs/prebidjs/next/publisher-api-reference/adServers.dfp.buildVideoUrl)
 
 **Acceptable Values:**
 
@@ -363,7 +363,7 @@ options.dfpParameters = {
 }
 ```
 
-<a name="adServerCallback"></a>
+<a id="adServerCallback"></a>
 
 ### adServerCallback
 
@@ -401,7 +401,7 @@ None
 
 `options.adServerCallback =  myAdServerCallback(bids, pluginCallback)`
 
-<a name="prebidTimeout"></a>
+<a id="prebidTimeout"></a>
 
 ### prebidTimeout
 
@@ -429,7 +429,7 @@ NOTE:  You may need to increase the `prebidTimeout` value when running on mobile
 
 `options.prebidTimeout = 900;`
 
-<a name="enablePrebidCache"></a>
+<a id="enablePrebidCache"></a>
 
 ### enablePrebidCache
 
@@ -453,7 +453,7 @@ true
 
 `options.enablePrebidCache = false;`
 
-<a name="labeloption"></a>
+<a id="labeloption"></a>
 
 ### label
 
@@ -477,7 +477,7 @@ None
 
 `options1.label = 'midroll-at-5-minutes';`
 
-<a name="scriptLoadTimeout"></a>
+<a id="scriptLoadTimeout"></a>
 
 ### scriptLoadTimeout
 
@@ -501,7 +501,7 @@ No
 
 `options1.scriptLoadTimeout = 5000;`
 
-<a name="prebidPluginPath"></a>
+<a id="prebidPluginPath"></a>
 
 ### prebidPluginPath
 
@@ -533,7 +533,7 @@ No.
 
 `options1.prebidPluginPath = 'https://your-path/bc_prebid_vast_plugin.js';`
 
-<a name="pb-adapters"></a>
+<a id="pb-adapters"></a>
 
 ### adapters
 
@@ -543,7 +543,7 @@ Adapters are a mechanism that a publisher can use to add some specific behavior 
 
 The `adapters` option defines a list of adapters that the publisher would like the Prebid plugin to load and execute.
 
-See [How To Build An Adapter for Prebid Plugin](/dev-docs/plugins/bc/bc-prebid-plugin-building-adapter) for details on how to build an adapter.
+See [How To Build An Adapter for Prebid Plugin](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-building-adapter) for details on how to build an adapter.
 
 **Acceptable Values:**
 
@@ -566,7 +566,7 @@ No default value. If this option is not specified with a valid value, then the p
 
 `options.adapters = [{id : 'my-adapter', url : 'https://my-path/my-plugin-adapter.js'}]`
 
-<a name="loggerLevel"></a>
+<a id="loggerLevel"></a>
 
 ### loggerLevel
 
@@ -604,11 +604,11 @@ No
 
 `options.loggerLevel = 6`
 
-<a name="set-up-params"></a>
+<a id="set-up-params"></a>
 
 ### Setting Up Prebid Parameters
 
-The publisher must pass the prebid parameters to the plugin, via the `biddersSpec` option, if the plugin is expected to invoke the prebid process.  The syntax for these parameters is defined in [Bidders' Params](/dev-docs/bidders) on Prebid.org.
+The publisher must pass the prebid parameters to the plugin, via the `biddersSpec` option, if the plugin is expected to invoke the prebid process.  The syntax for these parameters is defined in [Bidders' Params](/dev-docs/prebidjs/next/bidders) on Prebid.org.
 
 Use the parameters for AppNexus bidder to include an AppNexus bidder for video ads.
 
@@ -620,24 +620,24 @@ If these parameters are not specified, the plugin assumes that the prebid proces
 
 Information about the Render Options supported by the plugin can be found at:
 
-**[Render Options](/dev-docs/plugins/bc/bc-prebid-plugin-render-options)**
+**[Render Options](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-render-options)**
 
 ### Plugin API
 
 The Brightcove Prebid Plugin supports an API.  Information about this API can be found at
 
-**[Brightcove Prebid Plugin API](/dev-docs/plugins/bc/bc-prebid-plugin-api)**
+**[Brightcove Prebid Plugin API](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-api)**
 
 ### Sample Implementations
 
 Sample implementations are provided at:
 
-* **[Sample Brightcove Player Prebid Plugin Integration - Prebid in Header](/dev-docs/plugins/bc/bc-prebid-plugin-sample-prebid-header)**
+* **[Sample Brightcove Player Prebid Plugin Integration - Prebid in Header](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-sample-prebid-header)**
 
-* **[Sample Brightcove Player Prebid Plugin Integration - Prebid After Player is Loaded](/dev-docs/plugins/bc/bc-prebid-plugin-sample-prebid-body)**
+* **[Sample Brightcove Player Prebid Plugin Integration - Prebid After Player is Loaded](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-sample-prebid-body)**
 
-* **[Sample Brightcove Player Prebid Plugin Integration - Using Publisher Preferred Ad Server](/dev-docs/plugins/bc/bc-prebid-plugin-sample-third-party-ad-server)**
+* **[Sample Brightcove Player Prebid Plugin Integration - Using Publisher Preferred Ad Server](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-sample-third-party-ad-server)**
 
-* **[Sample Brightcove Player Prebid Plugin Integration - Publisher Uses Custom Header Bidding, Plugin Renders the Ad](/dev-docs/plugins/bc/bc-prebid-plugin-sample-custom-header-bidding)**
+* **[Sample Brightcove Player Prebid Plugin Integration - Publisher Uses Custom Header Bidding, Plugin Renders the Ad](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-sample-custom-header-bidding)**
 
-* **[Specifying Multiple Ad Breaks for a Video](/dev-docs/plugins/bc/bc-prebid-plugin-multiad-options)**
+* **[Specifying Multiple Ad Breaks for a Video](/dev-docs/prebidjs/next/plugins/bc/bc-prebid-plugin-multiad-options)**

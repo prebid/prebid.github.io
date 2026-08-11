@@ -26,7 +26,7 @@ There should be no changes required on the ad ops side, since the outstream unit
 
 Use the `adUnit.mediaTypes` object to set up your ad units with the `video` media type and assign the appropriate context
 
-For full details on video ad unit parameters, see [Ad Unit Reference for Video](/dev-docs/adunit-reference#adunitmediatypesvideo)
+For full details on video ad unit parameters, see [Ad Unit Reference for Video](/dev-docs/prebidjs/next/adunit-reference#adunitmediatypesvideo)
 
 ```javascript
 var videoAdUnits = [{
@@ -190,9 +190,9 @@ pbjs.que.push(function () {
 
 For more information, see the API documentation for:
 
-* [requestBids](/dev-docs/publisher-api-reference/requestBids)
-* [getHighestCpmBids](/dev-docs/publisher-api-reference/getHighestCpmBids)
-* [renderAd](/dev-docs/publisher-api-reference/renderAd)
+* [requestBids](/dev-docs/prebidjs/next/publisher-api-reference/requestBids)
+* [getHighestCpmBids](/dev-docs/prebidjs/next/publisher-api-reference/getHighestCpmBids)
+* [renderAd](/dev-docs/prebidjs/next/publisher-api-reference/renderAd)
 
 ## Working Examples
 

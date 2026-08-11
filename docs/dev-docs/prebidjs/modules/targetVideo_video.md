@@ -24,4 +24,4 @@ The standard options:
 
 ## Step 2: Integrate into your prebid.js configuration
 
-The method exposes the [`pbjs.adServers.targetVideo.buildVideoUrl`](/dev-docs/publisher-api-reference/adServers.targetVideo.buildVideoUrl) method to use. 
+The method exposes the [`pbjs.adServers.targetVideo.buildVideoUrl`](/dev-docs/prebidjs/next/publisher-api-reference/adServers.targetVideo.buildVideoUrl) method to use. 

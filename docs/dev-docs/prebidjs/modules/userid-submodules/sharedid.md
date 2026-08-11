@@ -11,7 +11,7 @@ example: '{"id":"01EAJWWN...", "third":"01EAJ..."}'
 This module stores an unique user id in the first party domain and makes it accessible to all adapters. Similar to IDFA and AAID, this is a simple UUID that can be utilized to improve user matching, especially for iOS and MacOS browsers, and is compatible with ITP (Intelligent Tracking Prevention). It’s lightweight and self contained. Adapters that support SharedId will be able to pick up the user ID and return it for additional server-side cross device tracking.
 
 There is no special registration or configuration for SharedID. Each publisher's privacy policy should take
-SharedID into account.  Prebid  recommends implementing a method where users can easily opt-out of targeted advertising. Please refer to the User Opt-Out section located at the bottom of this page. For more information check out Prebid's dedicated [identity page](/identity/sharedid)
+SharedID into account.  Prebid  recommends implementing a method where users can easily opt-out of targeted advertising. Please refer to the User Opt-Out section located at the bottom of this page. For more information check out Prebid's dedicated [identity page](/dev-docs/prebidjs/next/modules/userid-submodules/sharedid)
 
 Add it to your Prebid.js package with:
 
@@ -29,7 +29,7 @@ In addition to the parameters documented above in the Basic Configuration sectio
 | name | Required | String | The name of this module. | `'sharedId'` |
 | params | Optional | Object | Customized parameters | |
 | params.create | Optional | Boolean | For publisher server support only.  If true, the publisher's server will create the (pubcid) cookie.  Default is true. | `true` |
-| params.pixelUrl | Optional | String | For publisher server support only. Where to call out to for a server cookie -- see [Prebid Identity](/identity/sharedid) for more information. | `/wp-json/pubcid/v1/extend/` |
+| params.pixelUrl | Optional | String | For publisher server support only. Where to call out to for a server cookie -- see [Prebid Identity](/dev-docs/prebidjs/next/modules/userid-submodules/sharedid) for more information. | `/wp-json/pubcid/v1/extend/` |
 | params.extend | Optional | Boolean | If true, the expiration time of the stored IDs will be refreshed during each page load.  Default is false. | `false` |
 | storage | Required | Object | The publisher must specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage.| |
 | storage.expires | Integer | Required | How long the user ID information will be stored. | `365` |
