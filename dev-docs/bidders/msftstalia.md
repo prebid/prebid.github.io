@@ -88,7 +88,7 @@ The following table shows how the bid parameters have changed between the two ad
 
 With the AppNexus adapter, keywords followed this format: keyname=keyvalue1,keyvalue2,keyvalue3
 
-In the Microsoft Bid Adapter, the new required format is: keyname=keyvalue1,keyname=keyvalue2,keyname=keyvalue3
+In the Microsoft Bid Adapter, the new required format is: `keyname=keyvalue1,keyname=keyvalue2,keyname=keyvalue3`
 
 ### First Party Data
 
