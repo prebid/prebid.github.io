@@ -10,20 +10,20 @@ biddercode: unicorn
 sidebarType: 1
 ---
 
-### bid params
+## bid params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description                               | Example    | Type      |
-|---------------|----------|-------------------------------------------|------------|-----------|
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
 | `placementId` | optional | Your placement ID | `'rectangle-ad-1'` | `string` |
 | `accountId` | required | Account ID for charge request (provided by UNICORN) | `12345` | `integer` |
-| `publisherId` | optional | Account specific publisher id. | `'67890'` | `string`  |
+| `publisherId` | optional | Account specific publisher id. | `'67890'` | `string` |
 | `mediaId` | optional | Publisher specific media id. | `'example'` | `string` |
-| `bcat` | optional for Prebid.js  | Blocked IAB categories | `['IAB-1', 'IAB-2']` | `[string]` |
+| `bcat` | optional for Prebid.js | Blocked IAB categories | `['IAB-1', 'IAB-2']` | `[string]` |
 
 `publisherId` as `integer` is also supported on Prebid.js
 
-### Ad slot position signals
+## Ad slot position signals
 
 For each bid request the adapter measures the ad slot's on-screen position,
 geometry and viewability, and sends it in the OpenRTB request it builds. This is
