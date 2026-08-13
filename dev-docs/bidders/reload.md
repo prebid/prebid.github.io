@@ -1,8 +1,8 @@
 ---
 layout: bidder
-title: HouseOfPubs
-description: House of Pubs Bid Adapter
-biddercode: houseofpubs
+title: ReLoad
+description: ReLoad Adaptor
+biddercode: reload
 aliasCode: adkernel
 tcfeu_supported: true
 dsa_supported: false
@@ -26,16 +26,18 @@ multiformat_supported: will-bid-on-any
 ortb_blocking_supported: true
 privacy_sandbox: no
 sidebarType: 1
+
 ---
 
-### Note
+## Note
 
-Please contact <info@houseofpubs.com> for any questions or for information about our Prebid program.
+The ReLoad bidding adaptor requires setup and approval before beginning. Please reach out to <reload@cultureg.eu> for more details
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name     | Scope    | Description           | Example                   | Type     |
-|----------|----------|-----------------------|---------------------------|----------|
-| `host`   | required | Our Host              | `'cpm.houseofpubs.com'`   | `string` |
-| `zoneId` | required | Example RTB zone id   |         `12345`         | `integer` |
+
+| Name     | Scope    | Description           | Example                   | Type      |
+|----------|----------|-----------------------|---------------------------|-----------|
+| `host`   | required | RTB host              | `'cpm.reload.ad'`         | `string`  |
+| `zoneId` | required | RTB zone id           | `30164`                   | `integer` |

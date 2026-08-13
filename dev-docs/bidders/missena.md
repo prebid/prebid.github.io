@@ -13,19 +13,18 @@ pbs_app_supported: true
 prebid_member: true
 ---
 
-### Note
+## Note
 
 The Missena Bidding adapter requires setup before beginning. Please contact us at <jney@missena.com>
 
 ### Bid params
 
 {: .table .table-bordered .table-striped }
-| Name       | Scope    | Description                | Example         | Type     |
-|------------|----------|----------------------------|-----------------|----------|
-| `apiKey`   | required | Missena's publisher token  | `'PA-34745704'` | `string` |
-| `placement`   | optional | Placement Type, default: 'sticky' | `'sticky'` | `string` |
-| `formats`  | optional | An array of formats to request (banner, native, or video) | `['banner', 'video']` | `array` |
-| `settings` | optional | An object containing extra settings for the Missena adapter | `{ settingName: 'value' }` | `object` |
+| Name        | Scope    | Description                                                 | Example                    | Type     |
+|-------------|----------|-------------------------------------------------------------|----------------------------|----------|
+| `apiKey`    | required | Missena's publisher token                                   | `'PA-34745704'`            | `string` |
+| `placement` | optional | Placement Type, default: 'sticky'                           | `'sticky'`                 | `string` |
+| `settings`  | optional | An object containing extra settings for the Missena adapter | `{ settingName: 'value' }` | `object` |
 
 #### Available Placement Values
 

@@ -20,7 +20,7 @@ using the [improved Prebid.js native ad](/prebid/native-implementation.html) sup
 
 In this tutorial, we'll set up Prebid.js to show native ads.
 
-We'll use the [AppNexus adapter]({{site.github.url}}/dev-docs/bidders.html#appnexus) since that adapter supports native ads, but the concepts and setup will be largely the same for any bidder adapter that supports the `"native"` media type.
+We'll use the [Micosoft adapter]({{site.github.url}}/dev-docs/bidders.html#msft) since that adapter supports native ads, but the concepts and setup will be largely the same for any bidder adapter that supports the `"native"` media type.
 
 Similarly, we'll use Google Ad Manager as the ad server, but the concept and implementation should be pretty similar to other ad servers.
 
@@ -69,7 +69,7 @@ This section describes the implementation using code samples, but ignores some o
 
 ### 1. Set up your ad slot
 
-In this example we'll store the ad slot info in a variable for reference throughout the page.  We use a 1x1 static ad slot size since AppNexus (our demand partner in this example) uses that size for native creatives.
+In this example we'll store the ad slot info in a variable for reference throughout the page.  We use a 1x1 static ad slot size since Microsoft (our demand partner in this example) uses that size for native creatives.
 
 ```javascript
 const slot = {
@@ -145,9 +145,9 @@ pbjs.addAdUnits({
         }
     },
     bids: [{
-        bidder: 'appnexus',
+        bidder: 'msft',
         params: {
-            placementId: 13232354
+            placement_id: 13232354
         }
     }, ]
 })
@@ -187,9 +187,9 @@ const adUnits = [{
         }
     }
     bids: [{
-        bidder: 'appnexus',
+        bidder: 'msft',
         params: {
-            placementId: 13232354
+            placement_id: 13232354
         }
     }]
 }];

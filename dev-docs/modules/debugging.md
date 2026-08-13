@@ -114,7 +114,9 @@ To illustrate, these definitions are equivalent:
 
 ### Replace rules
 
-The replace rule can be provided as a function that takes the bid request as its only argument and returns an object with the desired response properties. The [first example above](#example) could be written as:
+The replace rule can be provided as a function that takes the bid request as its only argument and returns an object with the desired response properties. 
+The function can also return `null` to indicate that there is no bid.
+The [first example above](#example) could be written as:
 
 ```javascript
 pbjs.setConfig({
@@ -136,6 +138,8 @@ Alternatively, the rule can be expressed as an object, and its `key`-`value` pai
 
 - if `value` is a function, then `bidResponse[key]` will be set to `value(bidRequest)`;
 - otherwise, `bidResponse[key]` will be set to `value`.
+
+Using `null` as the object indicates that there was no bid.
 
 To illustrate, the following definitions are equivalent:
 
