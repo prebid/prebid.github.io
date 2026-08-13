@@ -52,7 +52,7 @@ var adUnits = [
         ];
 ```
 
-#### First Party Data
+### First Party Data
 
 In release 4.30 and later, publishers should use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html). The following fields are supported:
 
