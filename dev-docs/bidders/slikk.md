@@ -3,6 +3,7 @@ layout: bidder
 title: Slikk
 description: Slikk Bidder Adapter
 biddercode: slikk
+aliasCode: xeworks
 media_types: banner, video
 coppa_supported: true
 tcfeu_supported: false
