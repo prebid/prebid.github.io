@@ -24,7 +24,7 @@ multiformat_supported: will-not-bid
 
 Matterfull RTB is a separately provisioned direct OpenRTB integration.
 
-### Prebid Server Bid Params
+## Prebid Server Bid Params
 
 {: .table .table-bordered .table-striped }
 
