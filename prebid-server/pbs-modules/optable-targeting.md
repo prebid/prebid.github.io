@@ -61,24 +61,25 @@ file. Here's the recommended account config:
 
 ```yaml
 hooks:
-  optable-targeting:
-    api-key: key
-    tenant: optable
-    origin: web-sdk-demo
-    enrichment-percentage: 100
-    bidder-enrichment-percentages:
-      appnexus: 75
-      rubicon: 75
-      pubmatic: 100
-      criteo: 0
-    enrich-web: true
-    enrich-app: true
-    ppid-mapping: { "pubcid.org": "c" }
-    adserver-targeting: true
-    cache:
-      enabled: false
-      ttlseconds: 86400
-  host-execution-plan: >
+  modules:
+    optable-targeting:
+      api-key: key
+      tenant: optable
+      origin: web-sdk-demo
+      enrichment-percentage: 100
+      bidder-enrichment-percentages:
+        appnexus: 75
+        rubicon: 75
+        pubmatic: 100
+        criteo: 0
+      enrich-web: true
+      enrich-app: true
+      ppid-mapping: { "pubcid.org": "c" }
+      adserver-targeting: true
+      cache:
+        enabled: false
+        ttlseconds: 86400
+  execution-plan: >
     {
       "endpoints": {
         "/openrtb2/auction": {
@@ -159,6 +160,11 @@ The `processed-auction-request` hook is still supported for backwards compatibil
 immediately without blocking the pipeline. If the new hooks are absent, it falls back to the legacy synchronous
 behavior. This means the legacy fragment can be kept during migration without negating the latency benefit of the new
 configuration.
+
+**Note:** `enrichment-percentage` and `bidder-enrichment-percentages` only take effect on the new configuration. The
+legacy `processed-auction-request` hook enriches the whole bid request before it is split per bidder, so it cannot
+sample per bidder: on the legacy path every bidder receives the enrichment, including bidders configured at `0`. If you
+rely on per-bidder sampling, migrate to the `raw-auction-request` and `bidder-request` hooks.
 
 ### Timeout considerations
 
@@ -341,14 +347,76 @@ The `id5_signature` field is also part of the Optable input erasure described ab
 
 ## Analytics Tags
 
-The following 2 activities are recorded by the module in the corresponding ATags on the corresponding stages: 
+The following activities are recorded by the module in the corresponding ATags on the corresponding stages:
 
-* `optable-enrich-request`
-* `optable-enrich-response`
+* `optable-enrich-bidder-request` - recorded on the `bidder-request` stage, once per bidder.
+* `optable-enrich-response` - recorded on the `auction-response` stage.
+* `optable-enrich-request` - recorded on the `processed-auction-request` stage, on the legacy configuration only.
 
-The `status` is either `success` or `failure`.  Where it is `failure` a `results[0].value.reason` is provided.  
-For the `optable-enrich-request` activity the `execution-time` value is logged. 
-Example:
+The `status` is either `success` or `failure`. Where it is `failure` a `results[0].value.reason` is provided.
+For the `optable-enrich-request` activity the `execution-time` value is logged.
+
+The `optable-enrich-bidder-request` activity is emitted separately for each bidder that the module considered, and
+names that bidder in `results[0].appliedto.bidders`. Its `results[0].values` carries an `outcome` alongside the
+`execution-time` (in ms, measured from the moment the Targeting API call was initiated in the `raw-auction-request`
+stage):
+
+{: .table .table-bordered .table-striped }
+
+| `outcome`  | Meaning                                                                                     |
+|:-----------|:--------------------------------------------------------------------------------------------|
+| `enriched` | The Targeting API returned data and the bidder request was enriched. `status` is `success`. |
+| `no-data`  | The call succeeded but returned nothing to enrich with. `status` is `failure`.               |
+| `timeout`  | The call did not complete within the `bidder-request` hook timeout. `status` is `failure`.   |
+| `error`    | The call failed. `status` is `failure`.                                                      |
+
+A bidder that was sampled out by `bidder-enrichment-percentages` produces no activity at all, so absence is expected
+rather than an error.
+
+Example, showing a bidder enriched on the new configuration:
+
+```json
+{
+    "analytics":
+    {
+        "tags":
+        [
+            {
+                "stage": "bidder-request",
+                "module": "optable-targeting",
+                "analyticstags":
+                {
+                    "activities":
+                    [
+                        {
+                            "name": "optable-enrich-bidder-request",
+                            "status": "success",
+                            "results":
+                            [
+                                {
+                                    "values":
+                                    {
+                                        "outcome": "enriched",
+                                        "execution-time": "275"
+                                    },
+                                    "appliedto":
+                                    {
+                                        "bidders": ["appnexus"],
+                                        "request": true
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}
+```
+
+On the legacy configuration the `optable-enrich-request` activity is recorded once for the whole request instead. The
+`auction-response` stage tag below is the same on both configurations:
 
 ```json
 {
