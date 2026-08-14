@@ -11,7 +11,7 @@ usp_supported: false
 schain_supported: false
 userIds: none
 enable_download: true
-media_types: banner
+media_types: banner, video
 sidebarType: 1
 ---
 ---
