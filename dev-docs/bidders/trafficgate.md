@@ -6,7 +6,8 @@ pbs: true
 pbjs: true
 biddercode: trafficgate
 media_types: banner, video
-tcfeu_supported: false
+gvl_id: 1272
+tcfeu_supported: true
 pbs_app_supported: true
 multiformat_supported: will-bid-on-any
 usp_supported: true
