@@ -71,7 +71,7 @@ Adapters should look for `bid.crumbs.pubcid` in buildRequests() method.
 ```javascript
 [
    {
-      "bidder":"appnexus",
+      "bidder":"msft",
       "params":{
          "placement":"12345"
       },

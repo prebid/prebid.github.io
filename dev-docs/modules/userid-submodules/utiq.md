@@ -62,4 +62,4 @@ pbjs.setConfig({
 
 ## Utiq ID onboarding
 
-If you wish to find out more about Utiq, please contact <csm@utiq.com>
+If you wish to find out more about Utiq, please contact <onboard@utiq.com>

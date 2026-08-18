@@ -13,7 +13,7 @@ sidebarType: 4
 
 In this tutorial, we'll show how to set up Prebid to show a video ad
 from Google Ad Manager.  We'll use the [Video.js](https://videojs.com/) player and
-the AppNexus bidder, but the principles are the same across
+the Microsoft bidder, but the principles are the same across
 different video players and video-enabled bidders.
 
 * TOC
@@ -31,11 +31,11 @@ Also, you need to make sure to build Prebid.js with:
 * Support for at least one video-enabled bidder
 * Support for the `gamAdServerVideo` ad server adapter, which will provide the video ad support
 
-For example, to build with the AppNexus bidder adapter and the Google Ad Manager
+For example, to build with the Microsoft bidder adapter and the Google Ad Manager
 Video ad server adapter, use the following command:
 
 ```bash
-gulp build --modules=gamAdServerVideo,appnexusBidAdapter
+gulp build --modules=gamAdServerVideo,msftBidAdapter
 ```
 
 For more information about how to build with modules, see the [Prebid.js project README](https://github.com/prebid/Prebid.js/blob/master/README.md#build-optimization).
@@ -68,9 +68,9 @@ var videoAdUnit = {
         },
     },
     bids: [{
-        bidder: 'appnexus',
+        bidder: 'msft',
         params: {
-            placementId: 13232361
+            placement_id: 13232361
         }
     }]
 };

@@ -5,7 +5,6 @@ description: adServers.gam.buildVideoUrl API
 sidebarType: 1
 ---
 
-
 {: .alert.alert-info :}
 The Google Ad Manager implementation of this function requires including the `gamAdServerVideo` module in your Prebid.js build.
 
