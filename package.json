@@ -10,8 +10,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npm run development",
-    "watch": "bundle exec jekyll serve",
-    "postinstall": "./npm-postinstall.sh"
+    "watch": "bundle exec jekyll serve"
   },
   "repository": {
     "type": "git",

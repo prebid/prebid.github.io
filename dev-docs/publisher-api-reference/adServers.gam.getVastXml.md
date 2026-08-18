@@ -7,15 +7,15 @@ sidebarType: 1
 
 
 {: .alert.alert-info :}
-The Google Ad Manager implementation of this function requires including the dfpAdServerVideo module in your Prebid.js build.
+The Google Ad Manager implementation of this function requires including the `gamAdServerVideo` module in your Prebid.js build.
 
 This method extends the behavior of `buildVideoUrl` by not only constructing the Google Ad Manager video ad tag URL, but also fetching and processing the resulting VAST wrapper returned by GAM.
 
 If the `cache.useLocal` flag is set to true, the function scans the received GAM VAST wrapper for the bid’s cached asset URL that corresponds to a locally stored blob in Prebid.js. When such a match is found, it replaces the contents of the GAM wrapper with the contents of the locally cached VAST XML blob, effectively inlining the ad markup instead of referencing it remotely.
 
-#### Argument Reference
+## Argument Reference
 
-##### The `options` object
+### The `options` object
 
 {: .table .table-bordered .table-striped }
 | Field    | Type   | Description                                                                                                                                                                        |
@@ -28,7 +28,7 @@ If the `cache.useLocal` flag is set to true, the function scans the received GAM
 {: .alert.alert-warning :}
 One or both of options.params and options.url is required. In other words, you may pass in one, the other, or both, but not neither.
 
-##### The `options.params` object
+### The `options.params` object
 
 {: .table .table-bordered .table-striped }
 | Field             | Type   | Description                                                                                                                 | Example                                         |
@@ -39,7 +39,7 @@ One or both of options.params and options.url is required. In other words, you m
 
 For more information on any of these params, see [the Google Ad Manager video tag documentation](https://support.google.com/admanager/answer/1068325).
 
-#### Example
+## Example
 
 ```javascript
 pbjs.requestBids({

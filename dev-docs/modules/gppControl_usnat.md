@@ -32,6 +32,28 @@ Prebid functionality created to address regulatory requirements does not replace
 
 This module activates if the `gpp` object in the consent management configuration section exists and the consentManagementGpp module exists. See that [module's documentation](/dev-docs/modules/consentManagementGpp.html) for parameter definitions. This module does **not** work with static GPP section 7 strings provided in the first-party data `regs.gpp` object, but **does** work if the `gpp.cmpApi` is set to `static` and `gpp.consentData` is appropriately populated via setConfig.
 
+Optional configuration options are:
+
+{: .table .table-bordered .table-striped }
+| Param | Type | Description | Example |
+| --- | --- | --- | --- |
+| gpp.mspa | `Object` | | |
+| gpp.mspa.restrictActivities | `Array` | A list of [activities](/dev-docs/activity-controls.html#activities) to be restricted in addition to the [default restrictions](/features/mspa-usnat.html#usnat-activity-restrictions). If specified, and if not already restricted, they will be treated similarly to `syncUser`. | `['accessDevice']` |
+
+### Example: disable device access on user opt-out
+
+```javascript
+pbjs.setConfig({
+  consentManagement: {
+    gpp: {
+      mspa: {
+        restrictActivities: ['accessDevice', 'accessRequestCredentials']
+      }
+    }
+  }
+})
+```
+
 ## Build the Package
 
 Follow the basic build instructions in the GitHub Prebid.js repo's main [README](https://github.com/prebid/Prebid.js/blob/master/README.md). To include the consent management module and the GPP Control - USNat module, an additional option must be added to the **gulp build** command:

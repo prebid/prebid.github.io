@@ -3,6 +3,7 @@ layout: bidder
 title: A1Media
 description: Prebid A1Media Bidder Adapter
 biddercode: a1media
+filename: a1MediaBidAdapter
 tcfeu_supported: false
 gvl_id: none
 usp_supported: false

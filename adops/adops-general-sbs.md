@@ -18,7 +18,7 @@ sidebarType: 3
 Prebid.org provides step-by-step instructions for manually configuring Prebid in the following ad servers:
 
 * [Google Ad Manager](/adops/step-by-step.html)
-* [Xandr Monetize Ad Server](/adops/setting-up-prebid-with-the-appnexus-ad-server.html)
+* [Xandr Monetize Ad Server](/adops/setting-up-prebid-with-the-microsoft-ad-server.html)
 * [Freewheel](/adops/setting-up-prebid-video-in-freewheel.html)
 * [Smart Ad Server](/adops/setting-up-prebidjs-with-Smart-Ad-Server.html)
 

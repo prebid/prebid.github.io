@@ -62,7 +62,7 @@ pbjs.setConfig({
                 orgId: "your-org-id",
                 endpoint: "<https://prebid.scope3.com/prebid>",
                 timeout: 1500,
-                bidders: ["appnexus", "rubicon", "pubmatic"],
+                bidders: ["msft", "rubicon", "pubmatic"],
                 includeKey: "axei",
                 excludeKey: "axex",
                 macroKey: "axem",
@@ -105,7 +105,7 @@ The Scope3 AEE returns signals in this format:
     "exclude": ["competitor_exposed"],
     "macro": "eyJjb250ZXh0IjogImhpZ2hfdmFsdWUifQ==",
     "bidders": {
-      "appnexus": {
+      "msft": {
         "segments": ["seg1", "seg2"],
         "deals": ["DEAL123"]
       },
