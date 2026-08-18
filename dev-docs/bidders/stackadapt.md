@@ -25,13 +25,13 @@ prebid_member: false
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 - Prebid.js supports `banner` and `video` format only.
 - Prebid Server supports `banner`, `video`, `native`, and `audio` formats.
 - `supplyId` is required for Prebid Server only. It identifies the supply source and is provided by StackAdapt.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope              | Description                               | Example            | Type     |
@@ -49,9 +49,9 @@ The following banner parameters are supported:
 |----------|----------|-----------------------------------|----------|------------------|
 | `expdir` | optional | Directions the banner may expand. | `[1, 3]` | `Array[integer]` |
 
-### Banner
+## Banner
 
-#### `mediaTypes.banner` Parameters
+### `mediaTypes.banner` Parameters
 
 The StackAdapt bid adapter requires `sizes` to be defined in valid format. 
 See [mediaTypes.banner](https://docs.prebid.org/dev-docs/adunit-reference.html#adUnit.mediaTypes.banner) for defining mediaTypes parameters.
@@ -101,9 +101,9 @@ Below are banner ad unit examples with required and optional parameters:
         ];
 ```
 
-### Video
+## Video
 
-#### `mediaTypes.video` Parameters
+### `mediaTypes.video` Parameters
 
 The StackAdapt bid adapter requires `mimes`, `protocols`, `maxduration`, `api`, and `plcmt` to be defined in valid format.
 See [mediaTypes.video](https://docs.prebid.org/dev-docs/adunit-reference.html#adUnit.mediaTypes.video) for defining mediaTypes parameters.
@@ -167,9 +167,9 @@ Below are video ad unit examples with required and optional parameters:
         ];
 ```
 
-### Native
+## Native
 
-#### `mediaTypes.native` Parameters
+### `mediaTypes.native` Parameters
 
 The StackAdapt bid adapter requires `request` to be defined with a valid native request payload containing `assets`.
 The `request` field is a JSON-encoded string following the [OpenRTB Native Ads Specification](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf). Each asset in the request must include at least one image (type 3 for main image) or video asset.
@@ -257,9 +257,9 @@ Below are native ad unit examples with required and optional parameters:
         ];
 ```
 
-### Audio
+## Audio
 
-#### `mediaTypes.audio` Parameters
+### `mediaTypes.audio` Parameters
 
 The StackAdapt bid adapter requires `mimes` and `protocols` to be defined in valid format.
 See [mediaTypes.audio](https://docs.prebid.org/dev-docs/adunit-reference.html#adUnit.mediaTypes.audio) for defining mediaTypes parameters.
