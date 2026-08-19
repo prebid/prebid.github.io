@@ -3,8 +3,8 @@ layout: bidder
 title: Epom Ad Server
 description: Prebid Epom Ad Server Bid Adapter
 pbjs: true
-pbs: false
-pbs_app_supported: false
+pbs: true
+pbs_app_supported: true
 biddercode: epom_as
 media_types: banner
 multiformat_supported: will-bid-on-one
