@@ -21,7 +21,7 @@ gulp build --modules=tncIdSystem,userId
 
 ## TNCIdSystem module Configuration 
 
-Disclosure: This module loads external script unreviewed by the prebid.js community
+{% include dev-docs/loads-external-javascript.md %}
 
 You can configure this submodule in your `userSync.userIds[]` configuration:
 
@@ -49,6 +49,7 @@ pbjs.setConfig({
 The following configuration parameters are available:
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this sub-module | `"tncId"` |

@@ -687,7 +687,7 @@ This attribute is related to the 'btype' of the request.
 
 See Table 5.2 in the [OpenRTB 2.5 spec](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) for the possible values.
 
-**Note:** no enforcement is possible because the creative type is not explictly
+**Note:** no enforcement is possible because the creative type is not explicitly
 part of the response and Prebid Server does not currently contain logic to
 parse creatives to derive the type.
 

@@ -111,6 +111,7 @@ Here's the list of the 'potentially restricted activities' that Prebid.js core c
 | Name           | Description | Effect when denied | Additional parameters |
 |----------------|-------------|---------------------------|--------------------------------|
 | `accessDevice` | A component wants to use device storage  | Storage is disabled | [`storageType`](#params-accessDevice) |
+| `accessRequestCredentials` | A component wants to [include credentials](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#including_credentials) (notably, cookies) in a request. Available since version 10. | Credentials are excluded | None |  
 | `enrichEids` | A user ID or RTD submodule wants to add user IDs to outgoing requests | User IDs are discarded | None |
 | `enrichUfpd` | A Real-Time Data (RTD) submodule wants to add user first-party data to outgoing requests (`user.data` in ORTB) | User FPD is discarded | None |
 | `fetchBids`  | A bid adapter wants to participate in an auction | Bidder is removed from the auction | [`configName`](#params-fetchBids) |
@@ -235,7 +236,7 @@ If `allow` is not defined, the rule is assumed to assert **true** (i.e. allow th
 
 #### Always include a particular bidder in auctions
 
-This is similiar to the 'vendor exception' feature of the [TCF Control Module](/dev-docs/modules/tcfControl.html). This would always allow bidderA to participate in the auction, even without explicit consent in GDPR scenarios. It might indicate, for instance, that this is a 'first party bidder'.
+This is similar to the 'vendor exception' feature of the [TCF Control Module](/dev-docs/modules/tcfControl.html). This would always allow bidderA to participate in the auction, even without explicit consent in GDPR scenarios. It might indicate, for instance, that this is a 'first party bidder'.
 
 ```javascript
 pbjs.setConfig({

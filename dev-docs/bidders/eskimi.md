@@ -3,7 +3,8 @@ layout: bidder
 title: Eskimi
 description: Prebid Eskimi Bidder Adapter
 pbjs: true
-pbs: false
+pbs: true
+pbs_app_supported: true
 biddercode: eskimi
 media_types: banner, video
 schain_supported: true
@@ -21,15 +22,20 @@ gvl_id: 814
 sidebarType: 1
 ---
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name              | Scope    | Description                     | Example                | Type      |
 |-------------------|----------|---------------------------------|------------------------|-----------|
 | `placementId`     | required | The placement ID from Eskimi.   | `612`                  | `integer` |
 | `bcat`            | optional | ORTB blocked categories         | `['IAB-1-1']`          | `string[]`|
 | `badv`            | optional | ORTB blocked advertiser domains | `['example.com']`      | `string[]`|
 | `bapp`            | optional | ORTB blocked applications       | `['com.example.game']` | `string[]`|
+| `bidFloor`        | optional | Minimum CPM                     | `0.3`                  | `number`  |
+| `bidFloorCur`     | optional | Currency of bid floor           | `'USD'`                | `string`  |
+| `coppa`           | optional | Set to `true` to enable COPPA   | `true`                 | `boolean` |
+| `test`            | optional | Set to `1` to enable test mode  | `1`                    | `integer` |
 
 Additionally `battr` ORTB blocking param may be set on `BANNER` and `VIDEO` media types to specify blocked creative
 attributes.

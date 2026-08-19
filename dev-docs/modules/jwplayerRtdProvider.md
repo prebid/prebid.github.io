@@ -12,7 +12,6 @@ sidebarType : 1
 ---
 
 # JW Player RTD Provider
-
 {:.no_toc}
 
 * TOC

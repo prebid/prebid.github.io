@@ -5,7 +5,7 @@ description: Prebid Adnuntius Bidder Adaptor
 pbjs: true
 pbs: true
 biddercode: adnuntius
-media_types: banner, video
+media_types: banner, video, native
 tcfeu_supported: true
 fpd_supported: true
 gvl_id: 855
@@ -191,4 +191,37 @@ Currently we only support client requests and instream context. An example reque
         }
     }]
 };
+```
+
+### Native requests
+
+An example native request we support is as follows:
+
+```json
+{
+  "bid": [
+    {
+      "bidId": "adn-0000000000000551",
+      "bidder": "adnuntius",
+      "params": {
+        "auId": "0000000000000551",
+        "network": "123",
+      },
+      "mediaTypes": {
+        "native": {
+          "ortb": {
+            "assets": [{
+              "id": 1,
+              "required": 1,
+              "img": {
+                "type": 3,
+                "w": 250,
+                "h": 250
+              }
+            }]
+          }
+        }
+      }
+    }
+  ]}
 ```

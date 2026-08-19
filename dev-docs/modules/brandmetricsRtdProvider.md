@@ -12,7 +12,6 @@ sidebarType : 1
 ---
 
 # brandmetrics Real Time Data Provider Module
-
 {:.no_toc}
 
 * TOC

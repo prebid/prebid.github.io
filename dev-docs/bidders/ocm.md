@@ -3,7 +3,6 @@ layout: bidder
 title: Orangeclickmedia
 description: Prebid OCM Bidder Adapter
 biddercode: ocm
-aliasCode: adtelligent
 media_types: video,banner
 tcfeu_supported: true
 gpp_supported: true

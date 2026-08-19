@@ -10,7 +10,6 @@ sidebarType : 1
 ---
 
 # IAB Category Translation
-
 {:.no_toc}
 
 This module converts the IAB sub category to Ad server industry group identifiers. The identifiers ensure competitive separation of industries and products.
@@ -38,6 +37,14 @@ pbjs.setConfig({
     }
 });
 ```
+
+### Parameters
+
+{: .table .table-bordered .table-striped }
+
+| Name | Type | Description | Required | Default |
+| :--- | :--- | :--- | :--- | :--- |
+| `translationFile` | String | URL of a custom brand category translation map | no | Prebid default map |
 
 This file will be stored locally to expedite the conversion process. If a publisher opts to not provide a conversion mapping file Prebid will use its default conversion mapping file.
 

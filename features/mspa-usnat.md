@@ -193,7 +193,7 @@ This table documents the default blocks of boolean logic that indicate whether a
 | transmitPreciseGeo | MspaServiceProviderMode=1 OR<br/>GPC=1 OR<br/>SensitiveDataProcessingOptOutNotice=2 OR<br/>SensitiveDataLimitUseNotice=2 OR<br/>((SensitiveDataProcessingOptOutNotice=0 OR SensitiveDataLimitUseNotice=0) AND SensitiveDataProcessing[8]=2)<br/>SensitiveDataProcessing[8]=1 OR<br/>KnownChildSensitiveDataConsents[2]==1 OR<br/>KnownChildSensitiveDataConsents[2]==2 OR<br/>KnownChildSensitiveDataConsents[1]=1 OR<br/>PersonalDataConsents=2 | Round IP address and lat/long in both device.geo and user.geo when the activity is not allowed.<br/><br/>The difference in this logic is that it includes "sensitive data 8" (geo) and does not include the UFPD- and ID-related fields. |
 | transmitTid | n/a | Sending transaction IDs is not an aspect of USNat. |
 
-NOTE -- Here's what the numbers in the logic above indicate in the [IAB GPP USNat specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md):
+NOTE -- Here's what the numbers in the logic above indicate in the [IAB GPP USNat specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20Multi-State%20Privacy%20Agreement%20(MSPA)%20US%20National%20Technical%20Specification.md:
 
 MspaServiceProviderMode:
 

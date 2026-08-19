@@ -4,6 +4,9 @@ title: Parrable ID
 description: Parrable ID User ID sub-module
 pbjs_version_notes: removed in 9.0
 useridmodule: parrableIdSystem
+bidRequestUserId: parrableId
+eidsource: parrable.com
+example: '{"eid":"01.15946..."}'
 ---
 
 
@@ -11,8 +14,9 @@ The Parrable ID is a Full Device Identifier that can be used to identify a devic
 
 Add it to your Prebid.js package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=parrableIdSystem
+```
 
 ## Parrable ID Registration
 
@@ -25,6 +29,7 @@ The Parrable privacy policy as at [www.parrable.com/privacy-policy/](https://www
 In addition to the parameters documented above in the Basic Configuration section the following Parrable specific configuration is required:
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | params | Required | Object | Details for the Parrable ID. | |

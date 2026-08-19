@@ -41,6 +41,30 @@ This section describes the integration details for different ad formats. In each
 
 {% include mobile/adunit-config-ios.md %}
 
+### Impression tracking
+
+In the Bidding Only integration scenario, PUC is responsible for tracking events for banner ads, like `burl`, `imp`, and `win`. The disadvantage of this approach is that PUC doesn't have reliable information about the viewability of the WebView. As a result, impression tracking happens at the rendering stage of the ad. Or, if MRAID is supported, once the `viewableChange` event is fired. It leads to big discrepancies since the "1 pixel in view" requirement is not met.
+
+Starting with version `2.4.0`, Prebid SDK introduced the API to track the viewability of the ad and track impression event, respectively. 
+
+To activate impression tracking for the banner ad unit - use the `activatePrebidImpressionTracker(adView)` method. The `adView` parameter should be an instance of AdManagerAdView:
+
+```swift
+adUnit.activatePrebidImpressionTracker(adView: gamBanner)
+adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
+    // ...
+}
+```
+
+For activation for the interstitial ad unit, you should set `activatePrebidImpressionTracker()` flag:
+
+```swift
+let adUnit = InterstitialAdUnit(configId: CONFIG_ID, minWidthPerc: WIDTH_PERC, minHeightPerc: HEIGTH_PERC)
+adUnit.activatePrebidImpressionTracker()
+```
+
+After the invocation of `activatePrebidImpressionTracker(),` the Prebid SDK will start analyzing the View Hierarchy and track the viewability of the ad view. Once the ad view is viewable for the user for at least 1 pixel for 1 second, the SDK will track an impression event for the presented ad. The SDK will stop analyzing the View Hierarchy once the caller object of `activatePrebidImpressionTracker()` is destroyed. 
+
 ## Further Reading
 
 - [Prebid Mobile Overview](/prebid-mobile/prebid-mobile.html)

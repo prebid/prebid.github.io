@@ -15,7 +15,7 @@ Integration example:
 
 ```kotlin
 private fun createAd() {
-    // 1. Create VideoAdUnit
+    // 1. Create InStreamVideoAdUnit
     adUnit = InStreamVideoAdUnit(CONFIG_ID, WIDTH, HEIGHT)
 
     // 2. Configure video parameters
@@ -47,7 +47,7 @@ private fun createAd() {
 ```
 
 {: .alert.alert-warning :}
-Starting from PrebidMobile `2.1.0` the `VideoAdUnit` class is deprecated. Use `InStreamVideoAdUnit` instead.
+Starting from PrebidMobile `2.1.0` the `VideoAdUnit` class is deprecated and from PrebidMobile `3.0.0` - removed. Use `InStreamVideoAdUnit` class with video ad format instead.
 
 Configure the video ad:
 

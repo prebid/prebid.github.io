@@ -3,6 +3,9 @@ layout: userid
 title: European Unified ID
 description: European Unified ID User ID sub-module
 useridmodule: euidIdSystem
+bidRequestUserId: euid
+eidsource:
+example: '"1111"'
 ---
 
 European Unified ID (EUID) is an open-source identity solution built for the open internet and based on the Unified ID 2.0 solution. It leverages encrypted email data to provide a privacy-conscious, secure, and accurate identity standard designed to meet market requirements in Europe and the UK.
@@ -11,8 +14,9 @@ EUID relies on user consent before an ID can be added to the bid stream. Consent
 
 To add EUID to your Prebid.js package, run the following:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=euidIdSystem
+```
 
 ## European Unified ID Registration
 
@@ -43,6 +47,25 @@ The following sample is fictitious, but shows what the token response object loo
 ```
 
 When this full data structure is provided, the module automatically refreshes the token periodically, as long as the refresh token hasn't expired.
+
+The following example shows the response for a user that has opted out:
+
+```json
+{
+  "identity": "optout",
+  "status": "optout"
+}
+```
+
+The following example shows the decoded EUID userId object:
+
+```json
+{
+  "euid": {
+    "optout": true
+  }
+}
+```
 
 ## Client Refresh mode
 
@@ -155,14 +178,21 @@ Prebid.js supports fully client side integration for EUID.  See the [official EU
 The following parameters apply only to the European Unified ID module integration.
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | ID value for the EUID module - `"euid"` | `"euid"` |
 | value | Optional, Server only | Object | An object containing the value for the advertising token. | See the example above. |
 | params.euidToken | Optional, Client refresh | Object | The initial EUID token. This should be `body` element of the decrypted response from a call to the `/token/generate` or `/token/refresh` endpoint. | See the sample token above. |
 | params.euidCookie | Optional, Client refresh | String | The name of a cookie which holds the initial EUID token, set by the server. The cookie should contain JSON in the same format as the euidToken param. **If euidToken is supplied, this param is ignored.** | See the sample token above. |
-| params.euidApiBase | Optional, Client refresh | String | Overrides the default EUID API endpoint. | `"https://prod.euid.eu"` _(default)_|
+| params.euidApiBase | Optional, Client refresh | String | Overrides the default EUID API endpoint. | `"https://prod.euid.eu"` _(default)_ |
 | params.storage | Optional, Client refresh | String | Specify whether to use `cookie` or `localStorage` for module-internal storage. It is recommended to not provide this and allow the module to use the default. | `localStorage` _(default)_ |
+| params.serverPublicKey | Optional | String | Server public key for client-side token generation | |
+| params.subscriptionId | Optional | String | Subscription id for client-side token generation, provided by the EUID team. | |
+| params.email | Optional | String | User email for client-side token generation. Only one of the DII parameters will be used. | |
+| params.phone | Optional | String | User phone number for client-side token generation. Only one of the DII parameters will be used. | |
+| params.emailHash | Optional | String | Hashed user email for client-side token generation. Only one of the DII parameters will be used. | |
+| params.phoneHash | Optional | String | Hashed phone number for client-side token generation. Only one of the DII parameters will be used. | |
 
 ## European Unified ID Examples
 

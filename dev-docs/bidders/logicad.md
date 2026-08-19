@@ -12,6 +12,7 @@ userIds: all
 tcfeu_supported: false
 prebid_member: false
 sidebarType: 1
+schain_supported: true
 ---
 
 

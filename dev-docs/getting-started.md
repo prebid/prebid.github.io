@@ -15,7 +15,7 @@ sidebarType: 1
 
 ## Overview
 
-To run heading bidding on your site with Prebid.js you need to [download the Prebid.js package](/download.html), including your selected bidders and adapters, and add the code to your page. This code will gather bids from your selected demand sources (bidders) and pass the information on to your ad server. For full details on how Prebid.js works, see [What is Prebid.js?](/prebid/prebidjs.html).
+To run header bidding on your site with Prebid.js you need to [download the Prebid.js package](/download.html), including your selected bidders and adapters, and add the code to your page. This code will gather bids from your selected demand sources (bidders) and pass the information on to your ad server. For full details on how Prebid.js works, see [What is Prebid.js?](/prebid/prebidjs.html).
 
 Developers should work with their ad ops team to plan out your Prebid configuration. You'll need to add information to your code regarding things such as:
 
