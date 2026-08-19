@@ -68,6 +68,26 @@ var adUnits = [{
 }];
 ```
 
+## Test Parameters
+
+A live placement that always fills, for checking the integration end to end:
+
+```javascript
+var adUnits = [{
+  code: 'test-div',
+  mediaTypes: {
+    banner: { sizes: [[300, 250]] }
+  },
+  bids: [{
+    bidder: 'epom_as',
+    params: {
+      host: 'aj2494.online',
+      placementKey: '63bad7a99f270394e7b4b370952cbff2'
+    }
+  }]
+}];
+```
+
 ## Multiple Deployments
 
 Inventory sold by two Epom networks can run in the same auction. Each host receives its own request, containing only the impressions addressed to it.
