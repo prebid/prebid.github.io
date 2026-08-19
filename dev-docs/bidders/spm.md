@@ -1,10 +1,11 @@
 ---
 layout: bidder
-title: stailamedia Bidder
-description: Prebid bidstailamedia Bidder Adapter
+title: Sportplatz Media
+description: Prebid spm Bidder Adapter
 pbjs: true
-biddercode: bidstailamedia
-gvl_id: 965 (nexx360)
+biddercode: spm
+aliasCode: nexx360
+gvl_id: 965
 tcfeu_supported: true
 usp_supported: true
 gpp_supported: true
@@ -24,9 +25,10 @@ multiformat_supported: will-bid-on-any
 
 ### Bid Params
 
+{: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                | Example                                   | Type      |
 |---------------|----------|----------------------------|--------------------------------------     |-----------|
-| `tagId`       | required | tag ID                     | `"hk15z9sy"`                             | `string`  |
+| `tagId`       | required | tag ID                     | `"n1x53vta"`                             | `string`  |
 
 ### First Party Data
 
@@ -51,9 +53,9 @@ var adUnits = [
         }
       },
       bids: [{
-         bidder: 'bidstailamedia',
+         bidder: 'spm',
          params: {
-            tagId: 'hk15z9sy'
+            tagId: 'n1x53vta'
          }
        }]
    },
@@ -67,9 +69,9 @@ var adUnits = [
             }
         },
         bids: [{
-            bidder: 'bidstailamedia',
+            bidder: 'spm',
             params: {
-               tagId: 'hk15z9sy'
+               tagId: 'n1x53vta'
             }
         }]
     },
@@ -90,9 +92,9 @@ var adUnits = [
             }
         },
         bids: [{
-            bidder: 'bidstailamedia',
+            bidder: 'spm',
             params: {
-               tagId: 'hk15z9sy'
+               tagId: 'n1x53vta'
             }
         }]
     },
@@ -109,10 +111,10 @@ var adUnits = [
             }
         },
         bids: [{
-            bidder: 'bidstailamedia',
+            bidder: 'spm',
             params: {
-               tagId: 'hk15z9sy',
-               videoTagId: 'hk15z9sy'
+               tagId: 'n1x53vta',
+               videoTagId: 'n1x53vta'
             }
         }]
     };

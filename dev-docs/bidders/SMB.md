@@ -1,8 +1,8 @@
 ---
 layout: bidder
-title: Anzu SSP
-description: Anzu SSP Bidder Adapter
-biddercode: anzuSSP
+title: SMB
+description: SMB Bidder Adapter
+biddercode: SMB
 usp_supported: true
 coppa_supported: true
 schain_supported: true

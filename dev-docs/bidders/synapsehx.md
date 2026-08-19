@@ -12,7 +12,7 @@ multiformat_supported: will-bid-on-any
 safeframes_ok: false
 schain_supported: false
 usp_supported: true
-pbjs: false
+pbjs: true
 pbs: true
 prebid_member: false
 fpd_supported: false
