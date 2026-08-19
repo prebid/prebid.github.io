@@ -20,7 +20,7 @@ prebid_member: false
 sidebarType: 1
 gpp_sids: tcfeu, usnat, usstate_all
 ---
-### Registration
+## Registration
 
 Before Ogury's adapter integration, you have to register an account in the Ogury Platform. Please contact <supply-development@ogury.co> if you're interested in a partnership.
 If you already have an account you'll need to register your websites (= assets) and the placements (= ad units) within the Platform. Alternatively reach out to your POC within Ogury to assist you with the placement creation.
@@ -34,10 +34,10 @@ This is the minimal list of params for integrating with Ogury:
 
 {: .table .table-bordered .table-striped }
 
-| Name          | Scope    | Description           | Example   | Type      |
-|---------------|----------|-----------------------|-----------|-----------|
-| `assetKey`    | required | The asset key provided by Ogury   | `'OGY-CA41D116484F'` | `string`  |
-| `adUnitId`    | required | Your ad unit id configured with Ogury | `'2c4d61d0-90aa-0139-0cda-0242ac120004'` | `string`  |
+| Name       | Scope    | Description                           | Example                                  | Type     |
+|------------|----------|---------------------------------------|------------------------------------------|----------|
+| `assetKey` | required | The asset key provided by Ogury       | `'OGY-CA41D116484F'`                     | `string` |
+| `adUnitId` | required | Your ad unit id configured with Ogury | `'2c4d61d0-90aa-0139-0cda-0242ac120004'` | `string` |
 
 NOTE: You don't need these params to integrate with Ogury, see [inventory mapping](#inventory-mapping)
 
@@ -165,7 +165,7 @@ pbjs.que.push(function () {
 
 ### Optional bid Params
 
-Depending on your advertising format needs, other optional parameters can be used. Supported parameters are detailed [here](https://ogury-ltd.gitbook.io/mobile-web/header-bidding/ogury-prebid.js-adapter-integration#optional-configuration).
+Depending on your advertising format needs, other optional parameters can be used. See the [optional configuration documentation](https://ogury-ltd.gitbook.io/mobile-web/header-bidding/ogury-prebid.js-adapter-integration#optional-configuration) for supported parameters.
 
 ### Contact information
 
