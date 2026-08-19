@@ -10,7 +10,7 @@ coppa_supported: false
 schain_supported: false
 floors_supported: true
 dchain_supported: false
-media_types: banner
+media_types: banner, video
 safeframes_ok: false
 deals_supported: false
 pbjs: true
@@ -78,6 +78,39 @@ Use this example configuration for enabling Ogury ad server integration on a spe
     ])
 })
 
+```
+
+For video ad units, configure the `video` media type as shown below:
+
+```javascript
+var videoAdUnits = [
+  {
+    code: 'video-ad-unit-code',
+    mediaTypes: {
+      video: {
+        context: 'instream',
+        playerSize: [[640, 480]],
+        mimes: ['video/mp4', 'video/webm'],
+        protocols: [2, 3, 5, 6],
+        playbackmethod: [1, 2],
+        maxduration: 30
+      }
+    },
+    bids: [
+      {
+        bidder: 'ogury',
+        params: {
+          assetKey: 'YOUR_OGURY_ASSET_KEY',
+          adUnitId: 'YOUR_OGURY_VIDEO_AD_UNIT_ID'
+        }
+      }
+    ]
+  }
+];
+
+pbjs.que.push(function () {
+    pbjs.addAdUnits(videoAdUnits);
+});
 ```
 
 #### Inventory mapping
