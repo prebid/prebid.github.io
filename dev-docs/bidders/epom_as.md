@@ -3,8 +3,8 @@ layout: bidder
 title: Epom Ad Server
 description: Prebid Epom Ad Server Bid Adapter
 pbjs: true
-pbs: true
-pbs_app_supported: true
+pbs: false
+pbs_app_supported: false
 biddercode: epom_as
 media_types: banner
 multiformat_supported: will-bid-on-one
@@ -45,6 +45,8 @@ All ad units on the page are auctioned in a **single request**, one `imp` per ad
 |----------------|----------|-----------------------------------------------------------------------------------------------------------------|---------------------|----------|
 | `host`         | required | Serving host of the publisher's Epom Ad Server deployment, as a bare hostname.                                   | `'ads.example.com'` | `string` |
 | `placementKey` | required | Placement identifier, copied from the placement's invocation-code tab in the Epom UI. Sent as `imp.tagid`.        | `'a4f21c9e7b'`      | `string` |
+| `channel`      | optional | Epom channel — a publisher traffic-slice label used for channel targeting and reporting. Sent as `imp.ext.epom_as.channel`. | `"sports-uk"` | `string` |
+| `customParams` | optional | Epom custom parameters, for custom targeting and creative macros. Merged into `imp.ext.data`. Scalar values only; at most 32 keys, keys up to 128 and values up to 512 characters. | `{section: 'sport'}` | `object` |
 | `bidFloor`     | optional | CPM floor for this impression. Applied only when the Price Floors module has not already resolved `imp.bidfloor`. | `0.50`              | `number` |
 | `bidFloorCur`  | optional | Currency of `bidFloor`. Defaults to `USD`.                                                                       | `'EUR'`             | `string` |
 
@@ -99,7 +101,7 @@ Every bid from Epom Ad Server carries a deal id, surfaced by Prebid as `bid.deal
 
 The adapter registers IAB TCF Global Vendor List ID **849** and forwards the standard OpenRTB privacy signals unchanged: `regs.ext.gdpr` and `user.ext.consent` for TCF, `regs.ext.us_privacy` for US Privacy, `regs.gpp` / `regs.gpp_sid` for GPP, and `regs.coppa`.
 
-No cookies are sent to the ad server (`withCredentials: false`) and the adapter performs no user syncs.
+The adapter sets `withCredentials: true`, so an existing Epom identity on the ad-server domain reaches the auction; the ad server answers with the request origin rather than a wildcard. The adapter performs no user syncs.
 
 ## Support
 
