@@ -15,7 +15,7 @@ safeframes_ok: false
 deals_supported: false
 floors_supported: true
 fpd_supported: true
-pbjs: false
+pbjs: true
 pbs: true
 pbs_app_supported: true
 multiformat_supported: will-bid-on-one
@@ -39,3 +39,24 @@ The Ezoic adapter requires no parameters.
 | Name          | Scope    | Description  | Example   | Type     |
 |---------------|----------|--------------|-----------|----------|
 | `placementId` | optional | Placement ID | `'11111'` | `string` |
+
+## User Sync
+
+The Ezoic bid adapter supports iframe-based user syncing. For best
+performance and higher match rates, enable iframe user syncs in your
+Prebid.js configuration:
+
+```javascript
+pbjs.setConfig({
+  userSync: {
+    filterSettings: {
+      iframe: {
+        bidders: ['ezoic'],
+        filter: 'include'
+      }
+    }
+  }
+});
+```
+
+The sync honors TCF (GVL ID 347), GPP, and US Privacy signals.
