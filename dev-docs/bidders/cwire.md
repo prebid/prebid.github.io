@@ -11,12 +11,12 @@ usp_supported: false
 schain_supported: false
 userIds: none
 enable_download: true
-media_types: banner
+media_types: banner, video
 sidebarType: 1
 ---
 ---
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          |  Scope   |                 Description                  | Example  |   Type    |
@@ -25,7 +25,7 @@ sidebarType: 1
 | `placementId` | optional |             C-WIRE placement id              | `113244` | `integer` |
 | `domainId`    | required |               C-WIRE domain id               |  `2453`  | `integer` |
 
-### URL parameters
+## URL parameters
 
 Additionally, the following parameters can be passed by URL parameters for testing.
 
