@@ -62,7 +62,6 @@ The endpoint is reached differently. In Prebid.js the adapter builds the URL its
 
 Two differences are worth knowing rather than discovering. A browser request carries the reader's cookies; a server-side one carries none, so any frequency capping Epom applies per user needs `user.buyeruid` from a cookie sync. And the reader's address reaches Epom in the header the adapter forwards from `device.ip`, since on a server-to-server call the connection itself comes from the Prebid Server host rather than from the reader.
 
-
 ## Example Ad Unit Configuration
 
 ```javascript
