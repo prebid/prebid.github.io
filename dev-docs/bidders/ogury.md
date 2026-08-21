@@ -11,6 +11,7 @@ schain_supported: false
 floors_supported: true
 dchain_supported: false
 media_types: banner, video
+multiformat_supported: will-bid-on-one
 safeframes_ok: false
 deals_supported: false
 pbjs: true
