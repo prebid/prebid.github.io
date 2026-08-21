@@ -56,9 +56,12 @@ Two details the table cannot hold comfortably:
 
 ## Prebid.js and Prebid Server
 
-The parameters above are the same on both transports, and both send the same OpenRTB payload, so an ad unit needs no change when it moves between them.
+The parameters above are the same on both transports, and the OpenRTB payload Epom Ad Server reads is the same, so an ad unit needs no change when it moves between them.
 
-The one difference is where the host comes from. In Prebid.js the adapter builds the URL itself from `params.host`. In Prebid Server the endpoint is host-templated as `https://{% raw %}{{.Host}}{% endraw %}/hb/bid`, resolved per impression from the same `host` parameter — a Prebid Server host operator does not configure a per-publisher endpoint.
+The endpoint is reached differently. In Prebid.js the adapter builds the URL itself from `params.host`. In Prebid Server it is host-templated as `https://{% raw %}{{.Host}}{% endraw %}/hb/bid`, resolved per impression from the same `host` parameter — a Prebid Server host operator does not configure a per-publisher endpoint.
+
+Two differences are worth knowing rather than discovering. A browser request carries the reader's cookies; a server-side one carries none, so any frequency capping Epom applies per user needs `user.buyeruid` from a cookie sync. And the reader's address reaches Epom in the header the adapter forwards from `device.ip`, since on a server-to-server call the connection itself comes from the Prebid Server host rather than from the reader.
+
 
 ## Example Ad Unit Configuration
 
