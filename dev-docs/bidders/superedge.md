@@ -15,16 +15,6 @@ floors_supported: true
 sidebarType: 1
 ---
 
-## Table of Contents
-
-* [Modules](#modules)
-* [Note](#note)
-* [Bid Params](#bid-params)
-  * [Prebid.js Bid Params](#prebidjs-bid-params)
-  * [Prebid Server Bid Params](#prebid-server-bid-params)
-* [Banner](#banner)
-* [Native](#native)
-* [Prebid Server Test Request](#prebid-server-test-request)
 
 ## Modules
 
