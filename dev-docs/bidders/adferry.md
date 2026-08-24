@@ -9,6 +9,7 @@ coppa_supported: true
 gpp_sids: usnat
 schain_supported: true
 fpd_supported: true
+userIds: all
 media_types: banner, video, audio
 floors_supported: true
 deals_supported: true
