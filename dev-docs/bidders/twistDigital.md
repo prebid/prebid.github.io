@@ -3,6 +3,7 @@ layout: bidder
 title: Twist Digital
 description: Prebid Twist Digital Bidder Adaptor
 biddercode: twistdigital
+filename: twistDigitalBidAdapter
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 media_types: banner, video
 gvl_id: 1292
