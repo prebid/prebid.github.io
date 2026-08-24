@@ -37,7 +37,7 @@ gulp build --modules=rtdModule,anonymisedRtdProvider,...
          waitForIt: true,
          params: {
            cohortStorageKey: "cohort_ids",
-           bidders: ["appnexus", "onetag", "pubmatic", "smartadserver", ...],
+           bidders: ["bidderA", "bidderB", "bidderC", ...],
            segtax: 1000,
            tagConfig: {
             clientId: 'testId'

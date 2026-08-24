@@ -3,7 +3,6 @@ layout: bidder
 title: Illumin
 description: Prebid Illumin Bidder Adaptor
 biddercode: illumin
-filename: illuminBidAdapter
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 tcfeu_supported: true
 usp_supported: true

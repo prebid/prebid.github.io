@@ -267,7 +267,7 @@
 
 - sbSecId: 1
   title: Using Prebid.js with Microsoft Monetize Ad Server
-  link: /dev-docs/examples/use-prebid-with-appnexus-ad-server.html
+  link: /dev-docs/examples/use-prebid-with-microsoft-ad-server.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1230,7 +1230,7 @@
 
 - sbSecId: 3
   title: 'Setting up Prebid'
-  link: /adops/setting-up-prebid-with-the-appnexus-ad-server.html
+  link: /adops/setting-up-prebid-with-the-microsoft-ad-server.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:

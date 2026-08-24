@@ -45,7 +45,7 @@ pbjs.setConfig({
 })
 ```
 
-You may like to consider limiting the SSPs that receive the martechpass by **adding the bidders array**, to make sure they are not forwarding this first party ID to DSPs. We are working with SSPs to blacklist the above source from being sent to DSPs, please reach out to <csm@utiq.com> to verify which are these SSPs.
+You may like to consider limiting the SSPs that receive the martechpass by **adding the bidders array**, to make sure they are not forwarding this first party ID to DSPs. We are working with SSPs to blacklist the above source from being sent to DSPs, please contact <onboard@utiq.com> to verify which are these SSPs.
 
 ## TCF Activity Integration
 
@@ -74,4 +74,4 @@ pbjs.setConfig({
 
 ## Utiq ID onboarding
 
-If you wish to find out more about Utiq, please contact <csm@utiq.com>
+If you wish to find out more about Utiq, please contact <onboard@utiq.com>
