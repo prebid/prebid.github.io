@@ -25,15 +25,15 @@ privacy_sandbox: no
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 The Engerio adapter requires an active publisher account. Please contact [info@thinkeasy.cz](mailto:info@thinkeasy.cz) to obtain an ad slot code (`adUnitCode`) for your placement.
 
-### Supply chain
+## Supply chain
 
 Engerio publishes [https://api.engerio.sk/sellers.json](https://api.engerio.sk/sellers.json). Your account's seller id from that file is what belongs in your `ads.txt`:
 
-```
+```text
 api.engerio.sk, <seller id>, DIRECT
 ```
 
@@ -58,9 +58,9 @@ pbjs.setBidderConfig({
 });
 ```
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example | Type |
-|------|-------|-------------|---------|------|
+| Name         | Scope    | Description                                                                | Example              | Type     |
+| ------------ | -------- | -------------------------------------------------------------------------- | -------------------- | -------- |
 | `adUnitCode` | required | The ad slot identifier configured in the Engerio admin for this placement. | `'homepage-sidebar'` | `string` |
