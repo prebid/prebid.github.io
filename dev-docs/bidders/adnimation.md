@@ -4,7 +4,7 @@ title: Adnimation
 description: Prebid Adnimation Bidder Adaptor
 biddercode: adnimation
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
-tcfeu_supported: false
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: false
 schain_supported: true
