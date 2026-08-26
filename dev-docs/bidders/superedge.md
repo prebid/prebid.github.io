@@ -10,8 +10,14 @@ coppa_supported: true
 gvl_id: 1554
 usp_supported: true
 pbjs: true
-pbs: true
+pbs: false
 floors_supported: true
+schain_supported: false
+dchain_supported: false
+deals_supported: false
+fpd_supported: true
+multiformat_supported: will-bid-on-any
+ortb_blocking_supported: false
 sidebarType: 1
 ---
 
