@@ -6,7 +6,7 @@ pbjs: true
 pbs: true
 pbs_app_supported: true
 biddercode: epom_as
-media_types: banner
+media_types: banner, video, native
 multiformat_supported: will-bid-on-one
 gvl_id: 849
 tcfeu_supported: true
@@ -82,7 +82,7 @@ var adUnits = [{
 
 ## Test Parameters
 
-A live placement on an Epom-operated demo deployment, which always fills, for checking the integration end to end:
+Live placements on an Epom-operated demo deployment, which always fill, one per media type, for checking the integration end to end. Each key names a placement of that type on the same host, because the ad server decides what a placement may answer from the placement's own type.
 
 ```javascript
 var adUnits = [{
@@ -97,8 +97,48 @@ var adUnits = [{
       placementKey: '63bad7a99f270394e7b4b370952cbff2'
     }
   }]
+}, {
+  code: 'test-video',
+  mediaTypes: {
+    video: {
+      context: 'instream',
+      playerSize: [[640, 480]],
+      mimes: ['video/mp4'],
+      protocols: [2, 3, 5, 6]
+    }
+  },
+  bids: [{
+    bidder: 'epom_as',
+    params: {
+      host: 'aj2494.online',
+      placementKey: '7659fd47e17263ba6ae1de3c9e137c74'
+    }
+  }]
+}, {
+  code: 'test-native',
+  mediaTypes: {
+    native: {
+      ortb: {
+        assets: [
+          { id: 1, required: 1, title: { len: 90 } },
+          { id: 2, required: 1, img: { type: 3, w: 1200, h: 627 } },
+          { id: 3, required: 0, img: { type: 1, w: 128, h: 128 } },
+          { id: 4, required: 0, data: { type: 1, len: 50 } }
+        ]
+      }
+    }
+  },
+  bids: [{
+    bidder: 'epom_as',
+    params: {
+      host: 'aj2494.online',
+      placementKey: 'f4dd0f413d5c4f8d8c515f8a999e038f'
+    }
+  }]
 }];
 ```
+
+Instream video needs a cache setting, or Prebid discards the bid before `bidsBackHandler` runs: `pbjs.setConfig({ cache: { allowVastXmlOnly: true } })` for a player that takes VAST as a string, or a Prebid Cache `url` when the ad server is rendered through Google Ad Manager.
 
 ## Multiple Deployments
 
