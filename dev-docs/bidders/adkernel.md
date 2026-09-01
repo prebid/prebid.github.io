@@ -4,7 +4,7 @@ title: AdKernel
 description: Prebid AdKernel Bidder Adaptor
 biddercode: adkernel
 tcfeu_supported: true
-dsa_supported: false
+dsa_supported: true
 gvl_id: 14
 usp_supported: true
 coppa_supported: true
