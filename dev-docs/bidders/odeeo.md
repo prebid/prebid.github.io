@@ -22,13 +22,13 @@ sidebarType: 1
 
 The Odeeo bid adapter requires setup before use.
 
-Please contact <prebid@odeeo.io> to be onboarded as a Supply Partner and to receive your Supply Partner ID (`sp`) and verification code (`tk`).
+Please contact <prebid@odeeo.io> to be onboarded as a Supply Partner and to receive your Supply Partner ID (`sp`) and verification token (`tk`).
 
 ## Bid Params
 
 {: .table .table-bordered .table-striped }
 
-| Name | Scope    | Description                    | Example       | Type     |
-|------|----------|--------------------------------|---------------|----------|
-| `sp` | required | Odeeo Supply Partner ID        | `'123456789'` | `string` |
-| `tk` | required | Odeeo-issued verification code | `'a1b2c3d4'`  | `string` |
+| Name | Scope    | Description                     | Example       | Type     |
+|------|----------|---------------------------------|---------------|----------|
+| `sp` | required | Odeeo Supply Partner ID         | `'123456789'` | `string` |
+| `tk` | required | Odeeo-issued verification token | `'a1b2c3d4'`  | `string` |
