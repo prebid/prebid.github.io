@@ -58,11 +58,13 @@ To ensure proper monetization and relevant targeting, the SDK should be enabled 
 
 {: .table .table-bordered .table-striped }
 
-|                     | deviceAccessConsent= true    | deviceAccessConsent= false     | deviceAccessConsent= undefined        |
-|---------------------|------------------------------|--------------------------------|---------------------------------------|
-|consentRequired=false<br>(gdprApplies = false)|The SDK will read and pass IDFA/AAID info to server. |The SDK will **not** read and pass IDFA/AAID info to server. | The SDK will read and pass IDFA/AAID info to server.|
-|consentRequired=true<br>(gdprApplies = true)|The SDK will read and pass IDFA/AAID info to server. |The SDK will **not** read and pass IDFA/AAID info to server. | The SDK will **not** read and pass IDFA/AAID info to server.|
-|consentRequired=undefined<br>(gdprApplies = undefined)|The SDK will read and pass IDFA/AAID info to server. |The SDK will **not** read and pass IDFA/AAID info to server. | The SDK will read and pass IDFA/AAID info to server.|
+|                                                        | deviceAccessConsent= true                            | deviceAccessConsent= false                                   | deviceAccessConsent= undefined                               |
+| ------------------------------------------------------ | ---------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| consentRequired=false<br>(gdprApplies = false)         | The SDK will read and pass IDFA/AAID info to server. | The SDK will read and pass IDFA/AAID info to server.         | The SDK will read and pass IDFA/AAID info to server.         |
+| consentRequired=true<br>(gdprApplies = true)           | The SDK will read and pass IDFA/AAID info to server. | The SDK will **not** read and pass IDFA/AAID info to server. | The SDK will **not** read and pass IDFA/AAID info to server. |
+| consentRequired=undefined<br>(gdprApplies = undefined) | The SDK will read and pass IDFA/AAID info to server. | The SDK will **not** read and pass IDFA/AAID info to server. | The SDK will read and pass IDFA/AAID info to server.         |
+
+When `gdprApplies` is explicitly set to `false`, the publisher has declared that GDPR does not apply to the user. In that case the TCF consent signals, including the Purpose 1 (device access) consent, are out of scope and are ignored, so the SDK reads and passes the device identifier regardless of the `deviceAccessConsent` value.
 
 {% capture codeNote %}
   Publishers set the value of `gdprApplies` in `Targeting.shared.subjectToGDPR` and `purposeConsent` in `Targeting.shared.purposeConsents`.
