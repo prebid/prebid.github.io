@@ -15,7 +15,7 @@ ortb_blocking_supported: partial
 sidebarType: 1
 gpp_supported: true
 pbs: true
-pbs_app_supported: false
+pbs_app_supported: true
 floors_supported: true
 ---
 
