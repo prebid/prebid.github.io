@@ -23,13 +23,13 @@ multiformat_supported: will-bid-on-any
 
 ---
 
-### Bid Params
+## Bid Params
 
 | Name          | Scope    | Description                | Example                                   | Type      |
 |---------------|----------|----------------------------|--------------------------------------     |-----------|
-| `tagId`       | required | tag ID                     | `"hk15z9sy"`                             | `string`  |
+| `tagId`       | required | tag ID                     | `"hk15z9sy"`                              | `string`  |
 
-### First Party Data
+## First Party Data
 
 Publishers should use the `ortb2` method of setting [First Party Data](/features/firstPartyData.html).
 The following fields are supported:
@@ -39,7 +39,7 @@ The following fields are supported:
 * ortb2.user.ext.data.*
 * ortb2.user.data[]
 
-### Test Parameters
+## Test Parameters
 
 ```javascript
 var adUnits = [
