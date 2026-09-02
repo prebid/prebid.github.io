@@ -31,6 +31,11 @@ sidebarType: 1
 Tunnl is available through Prebid Server. For questions or setup help, contact
 <prebid@tunnl.com>.
 
+Every request you send to Tunnl must carry an `ext.source` value identifying
+your integration. See
+[Required Partner Identification](#required-partner-identification) before you
+go live.
+
 For full functionality in GDPR territories, please ensure Tunnl is configured in
 your CMP.
 
@@ -52,6 +57,33 @@ need:
 | Name   | Scope    | Description                     | Example | Type |
 |--------|----------|---------------------------------|---------|------|
 | (none) | optional | No bid parameters are required. | `{}`    | n/a  |
+
+Note that this refers to bid parameters only. Your integration must still
+identify itself on the bid request, as described below.
+
+## Required Partner Identification
+
+Every request you send to Tunnl must carry an `ext.source` value at the top
+level of the OpenRTB request. This is how we attribute revenue to your
+integration:
+
+```json
+{
+  "ext": {
+    "source": "your-company-name"
+  }
+}
+```
+
+Pick any value that identifies you, such as your company name in lower case.
+There is nothing to request from us and no identifier to generate. Once you
+have picked a value, send that same value on every request for the lifetime of
+the integration: it is the key your revenue is grouped by, so varying it or
+changing it later splits your reporting.
+
+Requests that omit the field still receive bids, and no error is returned, so a
+missing `ext.source` is easy to overlook. Confirm the field is present on your
+live traffic, and contact <prebid@tunnl.com> if you are unsure.
 
 ## Multi-format Ad Units
 
