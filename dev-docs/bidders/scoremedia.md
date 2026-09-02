@@ -3,9 +3,10 @@ layout: bidder
 title: scoremedia
 description: Prebid scoremedia Bidder Adapter
 pbjs: true
+pbs: true
 biddercode: scoremedia
 aliasCode: nexx360
-gvl_id: 965
+gvl_id: 1090
 tcfeu_supported: true
 usp_supported: true
 gpp_supported: true
@@ -13,7 +14,6 @@ schain_supported: true
 dchain_supported: false
 floors_supported: true
 userIds: all
-tcfeu_supported: true
 media_types: banner, video, native
 safeframes_ok: true
 deals_supported: true

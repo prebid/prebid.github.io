@@ -13,7 +13,6 @@ schain_supported: true
 dchain_supported: false
 floors_supported: true
 userIds: all
-tcfeu_supported: true
 media_types: banner, video, native
 safeframes_ok: true
 deals_supported: true

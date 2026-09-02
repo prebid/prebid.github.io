@@ -3,6 +3,7 @@ layout: bidder
 title: stailamedia Bidder
 description: Prebid bidstailamedia Bidder Adapter
 pbjs: true
+pbs: true
 biddercode: bidstailamedia
 aliasCode: nexx360
 gvl_id: 965 (nexx360)
@@ -13,7 +14,6 @@ schain_supported: true
 dchain_supported: false
 floors_supported: true
 userIds: all
-tcfeu_supported: true
 media_types: banner, video, native
 safeframes_ok: true
 deals_supported: true
