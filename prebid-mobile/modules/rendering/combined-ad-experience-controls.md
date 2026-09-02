@@ -274,6 +274,34 @@ This option switches on or off the visibility of the sound/mute button for users
 
 {% include code/mobile-sdk.html id="sound-button" kotlin=android swift=ios %}
 
+### Video Progress Indicator
+
+This option switches the remaining-time countdown indicator on or off during full-screen video playback. Setting this property explicitly overrides the platform's default for that ad type; leaving it untouched preserves existing behavior.
+
+{% capture android %}
+  {: .table .table-bordered .table-striped }
+
+  |**API Object**         | *not yet available* |
+  |**Ad Unit Property**   | *not yet available* |
+  |**Server Property**    | `isvideoprogressindicatorvisible` |
+  |**Default Value**      | *not yet available* |
+
+  Not yet available on Android. Tracked in [prebid/prebid-mobile-ios#1298](https://github.com/prebid/prebid-mobile-ios/issues/1298){:target="_blank"}.
+{% endcapture %}
+
+{% capture ios %}
+  {: .table .table-bordered .table-striped }
+
+  |**API Object**         |`InterstitialRenderingAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedAdUnit` |
+  |**Ad Unit Property**   | `adUnit.isVideoProgressIndicatorVisible`|
+  |**Server Property**    | `isvideoprogressindicatorvisible` |
+  |**Default Value**      | `true` for rewarded ads, `false` for interstitials|
+
+  Implemented in [prebid/prebid-mobile-ios#1307](https://github.com/prebid/prebid-mobile-ios/pull/1307){:target="_blank"}, resolving [prebid/prebid-mobile-ios#1298](https://github.com/prebid/prebid-mobile-ios/issues/1298){:target="_blank"}.
+{% endcapture %}
+
+{% include code/mobile-sdk.html id="video-progress-indicator" kotlin=android swift=ios %}
+
 ### Code Example
 
 Here is how you can implement all the API's to customize your ad.
