@@ -2,7 +2,7 @@
 layout: page_v2
 title: Encypher Real Time Data Provider
 display_name: Encypher C2PA Content Provenance
-description: Injects C2PA content provenance signals into OpenRTB bid requests
+description: Injects verified C2PA provenance references into OpenRTB impressions
 page_type: module
 module_type: rtd
 module_code: encypherRtdProvider
@@ -19,25 +19,21 @@ sidebarType: 1
 
 ## Description
 
-The Encypher RTD provider injects [C2PA](https://c2pa.org/) content provenance signals into OpenRTB bid requests at `site.ext.data.c2pa`. This gives DSPs a cryptographic content-integrity signal they can use for brand safety and inventory quality decisioning.
+The Encypher RTD provider performs a credentialless lookup for the canonical page, verifies the returned compact ES256 attestation, and adds the verified provenance reference to each OpenRTB impression at `imp.ext.c2pa`.
 
-The module detects whether article content already carries embedded provenance markers (from a CMS plugin, CDN worker, or direct API integration) and verifies them server-side. If no existing provenance is found, it signs the content via the Encypher public API. In both cases the result is injected into the bid request.
-
-No external JavaScript is loaded. The module uses only Prebid.js core imports. Every code path calls `callback()`. The module never blocks an auction.
+The module does not extract or upload article text, fetch page manifests, sign content in the browser, use cookies or localStorage, or load external JavaScript.
 
 Contact [engineering@encypher.com](mailto:engineering@encypher.com) for more information.
 
 ## Integration
 
-Compile the Encypher RTD module into your Prebid build:
+Compile the provider with the RTD core module:
 
 ```bash
-gulp build -modules=rtdModule,encypherRtdProvider
+gulp build --modules=rtdModule,encypherRtdProvider
 ```
 
-## Configuration
-
-Add the Encypher RTD provider to your Prebid config:
+Configure one Encypher data provider. `auctionDelay` must be at least as large as the provider timeout.
 
 ```javascript
 pbjs.setConfig({
@@ -47,7 +43,7 @@ pbjs.setConfig({
       name: 'encypher',
       waitForIt: true,
       params: {
-        // All optional. Free tier works with zero config.
+        timeout: 300
       }
     }]
   }
@@ -58,58 +54,39 @@ pbjs.setConfig({
 
 {: .table .table-bordered .table-striped }
 
-| Name | Scope | Type | Description |
-| - | - | - | - |
-| `name` | Required | String | Must be `'encypher'` |
-| `waitForIt` | Optional | Boolean | Set to `true` to delay the auction until provenance data is available. Default: `false` |
-| `params` | Optional | Object | Configuration parameters (see below) |
-| `params.apiBase` | Optional | String | Override the API base URL (default: `https://api.encypher.com`). Useful for staging or development environments. |
-| `params.manifestUrl` | Optional | String | Manual manifest URL. When set, the module fetches this URL directly instead of calling the signing API. |
+| Name | Scope | Type | Default | Description |
+| - | - | - | - | - |
+| `name` | Required | String | | Must be `'encypher'` |
+| `waitForIt` | Required for asynchronous lookup | Boolean | `false` | Set to `true` so RTD core waits up to `auctionDelay` for the result |
+| `params.timeout` | Optional | Number | `300` | Total provider deadline in milliseconds for URL hashing, signal lookup, JWKS retrieval, and verification. The effective budget is the smaller of this value and `auctionDelay` |
+| `params.telemetry` | Optional | Boolean | `false` | Emit privacy-minimized diagnostic delivery events after the auction callback |
+| `params.adoptionReporting` | Optional | Boolean | `true` | Permit domain-level adoption observations on the existing lookup. Set exactly `false` to opt out |
 
-## How It Works
+The signal origin is fixed at `https://signals.encypher.com`. Publishers cannot configure a mirror, alternate subdomain, or path-prefix override.
 
-The module runs once per page load through three paths in strict priority:
+## How it works
 
-### Path A: Manifest Shortcut
+For each auction, the provider:
 
-If a `<meta name="c2pa-manifest-url">` tag or `params.manifestUrl` is present, the module fetches the manifest directly without calling the signing API.
+1. Selects the page's canonical URL, removes its fragment, normalizes percent encoding, and sorts query parameters.
+2. Computes the SHA-256 URL digest with browser WebCrypto.
+3. Requests the current decision from `https://signals.encypher.com/v1/attestations/{url_hash}`.
+4. Requires an exact JSON decision with `v`, `status`, `dataset_version`, and `record`.
+5. For a `ready` decision, verifies the compact JWS against the pinned issuer and JWKS at `https://api.encypher.com/api/v1/public/provenance/jwks.json`.
+6. Adds the verified four-field carrier to auction-local copies of each ad unit.
 
-### Path B: Cache
+`miss`, `revoked`, `stale`, malformed, oversized, unavailable, invalid, and timed-out results leave the auction unchanged.
 
-If provenance data for the current page exists in localStorage (30-day TTL, keyed by canonical URL hash), it is served immediately with no network call.
+## Data injected
 
-### Path C: API Signing and Verification
-
-The module extracts article text from the DOM and sends it to the Encypher API. The API detects whether the content already contains embedded C2PA provenance markers:
-
-- **If markers are present:** The API verifies them and returns the existing provenance data, including the original signer tier. No signing quota is consumed.
-- **If no markers are found:** The API signs the content fresh and returns a new manifest.
-
-The result is cached in localStorage and injected into the bid request.
-
-## Content Extraction
-
-Article text is extracted from the DOM in this priority order:
-
-1. **JSON-LD structured data:** `application/ld+json` scripts containing schema.org `Article`, `NewsArticle`, `BlogPosting`, or `Report` types.
-2. **`<article>` element:** `textContent` of the first `<article>` element.
-3. **`[role="main"]` element:** `textContent` of the first element with `role="main"`.
-
-Content shorter than 50 characters is skipped. Content longer than 50,000 characters is truncated.
-
-## Data Injected
-
-The following object is placed at `ortb2Fragments.global.site.ext.data.c2pa`:
+The provider adds one compact object at `imp.ext.c2pa`:
 
 ```json
 {
-  "manifest_url": "https://api.encypher.com/api/v1/public/prebid/manifest/abc123",
-  "verified": true,
-  "signer_tier": "connected",
-  "signed_at": "2026-04-01T10:00:00Z",
-  "content_hash": "a1b2c3d4e5f6",
-  "source": "auto",
-  "extraction_method": "json-ld"
+  "v": 1,
+  "id": "epa_01J...",
+  "ref": "https://api.encypher.com/api/v1/public/provenance/attestations/epa_01J...",
+  "att": "eyJhbGciOiJFUzI1NiIs..."
 }
 ```
 
@@ -117,38 +94,43 @@ The following object is placed at `ortb2Fragments.global.site.ext.data.c2pa`:
 
 | Field | Type | Description |
 | - | - | - |
-| `manifest_url` | String | URL to retrieve the C2PA manifest |
-| `verified` | Boolean | `true` if provenance was successfully verified or signed |
-| `signer_tier` | String | Signing identity tier (see table below) |
-| `signed_at` | String | ISO 8601 timestamp of signing |
-| `content_hash` | String | SHA-256 hash of article text |
-| `source` | String | How provenance was obtained: `cms`, `cache`, or `auto` |
-| `extraction_method` | String | DOM extraction method: `json-ld`, `article-element`, or `role-main` |
+| `v` | Integer | Protocol version, exactly `1` |
+| `id` | String | Stable provenance record identifier |
+| `ref` | HTTPS URL | Deterministic public attestation resource bound to the signed record subject |
+| `att` | Compact JWS | ES256 attestation binding the record to the canonical URL digest, publisher domain, policy version, revision, and expiration |
 
-## Signer Tiers
+The serialized extension is limited to 1 KiB. Existing impression fields, including GPID, remain unchanged. Supply-chain data remains separate.
 
-The `signer_tier` field tells DSPs how the content was authenticated:
+## Validation and freshness
 
-{: .table .table-bordered .table-striped }
+The provider requires:
 
-| Tier | Meaning |
-| - | - |
-| `byok` | Publisher signed with their own key (strongest identity) |
-| `connected` | Publisher authenticated with Encypher and signed at publish time |
-| `encypher_free` | Content was auto-signed by Encypher at first pageview (no publisher authentication) |
-| `local` | Manifest fetched from a local or self-hosted endpoint |
+- A fixed `https://signals.encypher.com` decision with status `ready`, `miss`, `revoked`, or `stale`.
+- `record` to be the exact compact carrier for `ready` and `null` for every other status.
+- An ES256 signature from the selected P-256 key in the pinned JWKS.
+- Exact issuer, subject, publisher domain, canonical URL digest, validation result, declaration, policy version, signed revision, and lifetime claims.
+- Exact equality between `ref` and the pinned public attestation URL derived from the signed subject.
+- At most 4 KiB of decoded decision JSON and 64 KiB of decoded JWKS JSON.
 
-DSPs can use this field for differential bidding. Content signed by authenticated publishers carries stronger brand-safety guarantees than content attested by a third party at pageview time.
+Signal and JWKS requests omit credentials and referrers, reject redirects, and bypass HTTP caches. A ready decision may be reused in page memory for at most 30 seconds, but its JWS and signed expiration are checked before every injection. JWKS entries expire after 60 seconds.
 
-## Free Tier
+Page-lifetime dataset, status, and signed-revision watermarks prevent older or delayed responses from replacing newer decisions. `miss`, `revoked`, and `stale` decisions block equal or older ready responses. The provider also isolates carrier writes to the current auction, so a successful result cannot persist on reusable publisher ad-unit objects.
 
-The free tier provides 1,000 unique content signatures per publisher domain per month. Re-requests for the same content (deduped by content hash) do not count against quota. Verification of already-signed content does not count against quota. When the quota is exceeded, the module continues without injecting provenance data (fail-open).
+## Trust model
 
-## Privacy
+The record JWS authenticates the carrier and its signed claims. The pinned `https://api.encypher.com` JWKS origin supplies verification keys. The exact `https://signals.encypher.com` origin is the online authority for current ready, miss, revoked, or stale status and dataset version.
 
-The module uses Prebid's `getStorageManager` for localStorage access, which enforces GDPR/TCF consent. If consent is denied, caching is disabled and Path C (auto-sign) is skipped entirely, so no page content leaves the browser. When consent is granted but caching is unavailable, the module falls back to API calls on each page load. Article text sent to the Encypher API for signing is not stored on Encypher's servers. Only content hashes and metadata are persisted. A 2-second timeout ensures the module never blocks the auction.
+Current status is not separately signed for the browser. Compromise of the signal authority, its Cloudflare account or route, or its TLS control plane can replay a still-unexpired issuer-signed record. Compromise of the pinned JWKS origin can substitute verification keys. These authority compromises are outside the browser protocol's protection.
 
-## Further Reading
+## Privacy and diagnostics
+
+Lookup requests disclose the canonical URL digest, canonical publisher hostname, and module version to the fixed signal authority. They do not disclose the raw URL, page content, manifest, user or cookie identifier, bid, price, deal, or creative. Requests omit browser credentials and referrers.
+
+When `params.telemetry` is `true`, the module sends one post-callback diagnostic event through Prebid's fetch wrapper. It contains only protocol and module versions, outcome, impression count, duration, and optional dataset version. Non-injected outcomes report an impression count of zero. Telemetry failure cannot affect the auction.
+
+When adoption reporting is enabled, the edge records an observation only when the browser Origin hostname exactly matches the requested publisher hostname. Retained fields are limited to the publisher FQDN, first and last seen times, module version, aggregate lookup/hit/miss counts, and dataset version. `params.adoptionReporting: false` adds the opt-out to the existing lookup and creates no second request.
+
+## Further reading
 
 - [C2PA Specification](https://c2pa.org/specifications/)
-- [Encypher Documentation](https://encypher.com/docs)
+- [Prebid Real-Time Data modules](https://docs.prebid.org/dev-docs/add-rtd-submodule.html)
