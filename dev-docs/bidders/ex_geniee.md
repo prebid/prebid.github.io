@@ -20,7 +20,7 @@ pbjs: true
 pbs: false
 prebid_member: false
 multiformat_supported: will-bid-on-one
-ortb_blocking_supported: false
+ortb_blocking_supported: partial
 privacy_sandbox: no
 maintainer_email: aladdin-back@geniee.co.jp
 sidebarType: 1
@@ -57,6 +57,18 @@ Ads are served when all of the following conditions are satisfied:
 - `imp.tagid` set through `ortb2Imp` is overridden when `params.placementId` is set.
 - User IDs are read from `user.ext.eids` and mirrored to `user.eids`.
 - The Exchange runs a first price auction only. If `at` is set to any value other than `1` through `ortb2`, no request is sent.
+
+## OpenRTB Blocking
+
+The following OpenRTB blocking parameters are supported. Set them through first party data; the adapter passes them to the Exchange unchanged.
+
+{: .table .table-bordered .table-striped }
+| Parameter | Where to set            | Description                                     |
+|-----------|-------------------------|-------------------------------------------------|
+| `bcat`    | `ortb2.bcat`            | Blocked IAB content categories                  |
+| `badv`    | `ortb2.badv`            | Blocked advertiser domains                      |
+| `bapp`    | `ortb2.bapp`            | Blocked app bundles                             |
+| `battr`   | `ortb2Imp.banner.battr` | Blocked creative attributes for the banner slot |
 
 ## User Sync
 
