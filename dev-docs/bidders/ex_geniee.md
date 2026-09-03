@@ -9,7 +9,7 @@ gvl_id: none
 usp_supported: false
 coppa_supported: false
 gpp_sids: none
-schain_supported: false
+schain_supported: true
 dchain_supported: false
 userIds: all
 media_types: banner
