@@ -14,23 +14,38 @@ coppa_supported: true
 ortb_blocking_supported: partial
 sidebarType: 1
 gpp_supported: true
+pbs: true
+pbs_app_supported: false
+floors_supported: true
 ---
 
-### Note
+## Note
 
 Please reach out to your seedtag account team before using this plugin.  
 The publisher id 0000-0000-01 returns demo responses.
 
-### Bid Params
+## Bid Params (pbjs)
 
 {: .table .table-bordered .table-striped }
+
 | Name              | Scope               | Description                                                                    | Example               | Type     |
 |-------------------|---------------------|--------------------------------------------------------------------------------|-----------------------|----------|
 | `publisherId`     | required            | The publisher id.                                                              | 0000-0000-01          | `string` |
-| `adUnitId`        | required            | The adunit id.                                                                 | 00000                 | `string` |
-| `placement`       | required            | Adunit placement, posibles values: inScreen, inArticle                         | inScreen              | `string` |
+| `adUnitId`        | optional            | The adunit id.                                                                 | 00000                 | `string` |
+| `placement`       | optional            | Adunit placement, posibles values: inScreen, inArticle                         | inScreen              | `string` |
+| `integrationType` | optional            | IntegrationType. Posibles values: publisherToken, ronId                        | publisherToken        | `string` |
 
-### InScreen example
+## Bid Params (pbs)
+
+{: .table .table-bordered .table-striped }
+
+| Name              | Scope               | Description                                                                    | Example               | Type     |
+|-------------------|---------------------|--------------------------------------------------------------------------------|-----------------------|----------|
+| `adUnitId`        | optional            | The adunit id (required if not RON id integration).                            | 00000                 | `string` |
+| `publisherId`     | optional            | The publisher id (required for RON id integration).                            | 00000                 | `string` |
+| `integrationType` | optional            | IntegrationType. Posibles values: ronId (not set in other case)                | ronId                 | `string` |
+
+## InScreen example
 
 The integration for Seedtag uses banner mediaTypes for all types of creatives (display/video)
 
@@ -48,8 +63,9 @@ const adUnits = [
         bidder: 'seedtag',
         params: {
           publisherId: '0000-0000-01',      // required
-          adUnitId: '0000',                 // required
-          placement: 'inScreen',            // required
+          adUnitId: '0000',                 // optional
+          placement: 'inScreen',            // optional
+          integrationType: 'publisherToken' // optional
         }
       }
     ]
@@ -57,7 +73,7 @@ const adUnits = [
 ]
 ```
 
-### InArticle example
+## InArticle example
 
 The integration for Seedtag uses banner mediaTypes for all types of creatives (display/video)
 
@@ -75,8 +91,9 @@ const adUnits = [
         bidder: 'seedtag',
         params: {
           publisherId: '0000-0000-01',      // required
-          adUnitId: '0000',                 // required
-          placement: 'inArticle',           // required
+          adUnitId: '0000',                 // optional
+          placement: 'inArticle',           // optional
+          integrationType: 'publisherToken' // optional
         }
       }
     ]
@@ -100,8 +117,9 @@ const adUnits = [
         bidder: 'seedtag',
         params: {
           publisherId: '0000-0000-01',      // required
-          adUnitId: '0000',                 // required
-          placement: 'inBanner',              // required
+          adUnitId: '0000',                 // optional
+          placement: 'inBanner',           // optional
+          integrationType: 'publisherToken' // optional
         }
       }
     ]
@@ -137,9 +155,10 @@ var adUnits = [{
     {
       bidder: 'seedtag',
       params: {
-        publisherId: '0000-0000-01',    // required
-        adUnitId: '0000',               // required
-        placement: 'inStream',          // required
+         publisherId: '0000-0000-01',      // required
+         adUnitId: '0000',                 // optional
+         placement: 'inStream',           // optional
+         integrationType: 'publisherToken' // optional
       }
     }
   ]

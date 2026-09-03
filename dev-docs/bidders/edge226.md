@@ -4,7 +4,7 @@ title: Edge226
 description: Prebid Edge226 Bidder Adapter
 biddercode: edge226
 usp_supported: true
-tcfeu_supported: false
+tcfeu_supported: true
 coppa_supported: true
 schain_supported: true
 floors_supported: true

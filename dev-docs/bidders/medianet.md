@@ -7,8 +7,7 @@ tcfeu_supported: true
 media_types: banner,native,video
 usp_supported: true
 coppa_supported: true
-gpp_supported: true
-userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+userIds: all
 prebid_member: true
 pbjs: true
 gvl_id: 142
@@ -16,23 +15,35 @@ schain_supported: true
 floors_supported: true
 pbs: true
 sidebarType: 1
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
+safeframes_ok: true
+pbs_app_supported: true
+multiformat_supported: will-bid-on-any
+dsa_supported: true
+dchain_supported: false
+deals_supported: true
+fpd_supported: true
+privacy_sandbox: paapi, topics
+endpoint_compression: false
 ---
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name       | Scope    | Description                            | Example       | Type     |
 |------------|----------|----------------------------------------|---------------|----------|
 | `cid`      | required | The customer id provided by Media.net. | `'8CUX0H51C'` | `string` |
 | `crid`     | required | The placement id provided by Media.net | `'1234567'`   | `string` |
 | `bidfloor` | optional | Bidfloor for the impression          | `1.0`         | `float`  |
-| `video`    | required for video Ad units | Object containing video targeting parameters.  See [Video Object](#media.net-video-object) for details.|`video: { maxduration: 60 }`         | `object`  |
+| `video`    | optional for video Ad units | Object containing video targeting parameters.  See [Video Object](#media.net-video-object) for details.|`video: { maxduration: 60 }`         | `object`  |
 
 <a name="media.net-video-object"></a>
 
 #### Video Object
 
 {: .table .table-bordered .table-striped }
+
 | Name       | Type    | Description   | Example|
 |------------|----------|--------------|--------|
 |mimes|array of strings|(Recommended) Specifies the video content MIME types supported; for example, video/x-ms-wmv and video/x-flv.|["video/x-ms-wmv","video/x-flv"]|
@@ -144,17 +155,17 @@ var adUnits = [{
 }];
 ```
 
-# Protected Audience API (FLEDGE)
+### Protected Audience API (FLEDGE)
 
 To enable PAAPI auctions follow the instructions below:
 
-1. Add the `fledgeForGpt` and `paapi` modules to your prebid bundle.
+1. Add the `paapiForGpt` and `paapi` modules to your prebid bundle.
 2. Add the following configuration for the module
 
 ```javascript
 pbjs.que.push(function() {
   pbjs.setConfig({
-    fledgeForGpt: {
+    paapi: {
       enabled: true,
       bidders: ['medianet'],
       defaultForSlots: 1
@@ -164,4 +175,4 @@ pbjs.que.push(function() {
 ```
 
 For a detailed guide to enabling PAAPI auctions follow Prebid's documentation 
-on [`fledgeForGpt`](https://docs.prebid.org/dev-docs/modules/fledgeForGpt.html)
+on [`paapiForGpt`](https://docs.prebid.org/dev-docs/modules/paapiForGpt.html)

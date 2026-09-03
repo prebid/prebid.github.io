@@ -25,7 +25,7 @@ sidebarType: 1
 
 ### Note
 
-For more information about [AnyClip](https://www.anyclip.com), please contact [support@anyclip.com](support@anyclip.com).
+For more information about [AnyClip](https://www.anyclip.com), please contact <support@anyclip.com>.
 
 ### Bid Params
 

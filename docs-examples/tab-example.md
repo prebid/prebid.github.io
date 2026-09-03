@@ -10,7 +10,8 @@ The prebid documentation uses bootstrap for styling. Bootstrap offers a [tab com
 
 ## Example
 
-{% capture iosCode %}struct Player {
+{% capture iosCode %}
+struct Player {
   var name: String
   var highScore: Int = 0
   var history: [Int] = []
@@ -20,18 +21,17 @@ The prebid documentation uses bootstrap for styling. Bootstrap offers a [tab com
   }
 }
 
-var player = Player("Tomas")
-{% endcapture %}
+var player = Player("Tomas"){% endcapture %}
 
-{% capture androidCode %}fun main() {
+{% capture androidCode %}
+fun main() {
   val name = "stranger"        // Declare your first variable
   println("Hi, $name!")        // ...and use it!
   print("Current count:")
   for (i in 0..10) {           // Loop over a range from 0 to 10
     print(" $i")
   }
-}
-{% endcapture %}
+}{% endcapture %}
 
 {% include code/mobile-sdk.html id="hello-world" kotlin=androidCode swift=iosCode %}
 

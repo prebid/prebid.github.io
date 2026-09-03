@@ -26,6 +26,7 @@ sidebarType: 1
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name          | Scope    | Description                                             | Example                    | Type         |
 |---------------|----------|---------------------------------------------------------|----------------------------|--------------|
 | `placementId`       | required | The placement id.  | `'6204e83a077_620f9e8e4fe'`      | `String`     |
@@ -36,6 +37,7 @@ sidebarType: 1
 ### Config Parameters
 
 {: .table .table-bordered .table-striped }
+
 | Name          | Scope    | Description                                             | Example                    | Type         |
 |---------------|----------|---------------------------------------------------------|----------------------------|--------------|
 | `pbsHost` | required if not set in bid parameters | Host name of the server. | `'pbs-example.relevant-digital.com'`                | `String`     |
@@ -71,7 +73,7 @@ var adUnits = [
 ];
 ```
 
-## Example setup using only bid params
+### Example setup using only bid params
 
 This method to set the global configuration parameters (like **pbsHost**) in **params** could simplify integration of a provider for some publishers. Setting different global config-parameters on different bids is not supported in general*, as the first settings found will be used and any subsequent global settings will be ignored.
 

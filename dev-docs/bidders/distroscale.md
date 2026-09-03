@@ -19,6 +19,12 @@ gvl_id: 754
 sidebarType: 1
 ---
 
+### Registration
+
+To use the DistroScale bidder you will need a pubid (Publisher ID) from an account on DistroScale.
+
+For further information, please contact <support@distroscale.com>.
+
 ### Bid Params
 
 {: .table .table-bordered .table-striped }

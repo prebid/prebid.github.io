@@ -687,7 +687,7 @@ This attribute is related to the 'btype' of the request.
 
 See Table 5.2 in the [OpenRTB 2.5 spec](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) for the possible values.
 
-**Note:** no enforcement is possible because the creative type is not explictly
+**Note:** no enforcement is possible because the creative type is not explicitly
 part of the response and Prebid Server does not currently contain logic to
 parse creatives to derive the type.
 
@@ -760,7 +760,9 @@ This attribute is related to the 'battr' of the request and 'attr' of the respon
 {: .table .table-bordered .table-striped }
 | Setting | Description | Data Type | Override Conditions Supported |
 |---+---+---+---|
-| blocked-banner-attr | List of IAB banner attributes not allowed to display on this inventory | array of int | bidders (array of strings), media-types (array of strings) |
+| blocked-banner-attr | List of IAB banner attributes not allowed to display on this inventory | array of int | bidders (array of strings) |
+| blocked-video-attr | (PBS-Java 3.14+) List of IAB video attributes not allowed to display on this inventory | array of int | bidders (array of strings) |
+| blocked-audio-attr | (PBS-Java 3.14+) List of IAB audio attributes not allowed to display on this inventory | array of int | bidders (array of strings) |
 | enforce-blocks | Whether to enforce attr in responses.   Default is false. | boolean | bidders (array of strings), media-types (array of strings) |
 | allowed-banner-attr-for-deals | List of IAB attributes allowed for deals in general or a specific dealid. | array of strings | deal-ids (array of strings). This isn't a true override - values are added to the global. |
 
@@ -779,6 +781,7 @@ Here's an example account config for PBS-Java:
               "enforce-blocks": false,
               // block these attributes for all bidders
               "blocked-banner-attr": [ 1, 8, 9, 10 ],
+              "blocked-video-attr": [ 1, 8, 9, 10 ],
               "action-overrides": {
                   "enforce-blocks": [
                     {

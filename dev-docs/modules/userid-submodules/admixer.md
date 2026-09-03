@@ -3,6 +3,9 @@ layout: userid
 title: AdmixerID
 description: AdmixerID User ID sub-module
 useridmodule: admixerIdSystem
+bidRequestUserId: admixerId
+eidsource: admixer.net
+example: '"1111"'
 ---
 
 
@@ -12,12 +15,14 @@ The Admixer privacy policy is at <https://admixer.com/privacy/>
 
 Add Admixer ID module to your Prebid.js package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=admixerIdSystem
+```
 
 ## AdmixerID Configuration
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | `"admixerId"` | `"admixerId"` |

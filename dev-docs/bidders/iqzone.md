@@ -22,7 +22,7 @@ safeframes_ok: true
 sidebarType: 1
 ---
 
-### Prebid.js Bid Params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type       |

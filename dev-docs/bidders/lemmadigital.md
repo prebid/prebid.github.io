@@ -13,6 +13,7 @@ multiformat_supported: will-bid-on-one
 safeframes_ok: true
 ortb_blocking_supported: partial
 userIds: all
+filename: lemmaDigitalBidAdapter
 sidebarType: 1
 ---
 

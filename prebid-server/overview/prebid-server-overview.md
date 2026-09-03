@@ -18,7 +18,7 @@ Prebid Server is a header bidding server with a growing list of features. At a h
     1. Resolves dynamic 'stored requests', enriching data server-side
     1. Enforces privacy regulations
 2. Next, it calls server-side bid adapters
-    1. There are 180+ server-side bid adapters available
+    1. There are 230+ server-side bid adapters available
 3. After everyone's responded (or the timeout period has expired), it formulates an appropriate response
     1. Currency conversion
     1. Quantizes bids as needed for header bidding targeting
@@ -40,15 +40,22 @@ Further Reading:
 
 - [Transcript of this video overview](/prebid-server/overview/prebid-server-overview-video.html)
 
+## Who can Run a Prebid Server?
+
+There are 2 common scenarios for using Prebid Server:
+
+1. Tech-savvy publishers: website providers who are excellent with technical infrastructure. 
+2. Managed service providers: for everyone else.
+
 ## Where to Run Prebid Server
 
-Unlike Prebid.js, Prebid Server is a server. It needs somewhere to run, and that somewhere ought to be scaleable, distributed, and fast.
+Unlike Prebid.js, Prebid Server is a server. It needs somewhere to run, and that somewhere ought to be scalable, distributed, and fast. It also needs a process for updating configurations for stored requests and modules. There are no configuration tools provided by the open source community.
 
 ### Hosted
 
 The simplest route to working with Prebid Server is to sign up for a hosted solution. Several [Prebid.org members](https://prebid.org/product-suite/managed-services/) host up-to-date server software with a global footprint, and provide tools to manage stored requests.
 
-### DIY
+### Do-It-Youself
 
 But of course this is open source, so you're welcome to do this on your own. If you'd like to explore implementing your own Prebid Server solution, check out the [Prebid Server host company overview](/prebid-server/hosting/pbs-hosting.html). Be warned that installing PBS is not nearly as easy as Prebid.js.
 

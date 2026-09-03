@@ -12,7 +12,6 @@ sidebarType: 1
 ---
 
 # Reconciliation SDK Module
-
 {:.no_toc}
 
 * TOC

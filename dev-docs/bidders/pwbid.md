@@ -5,7 +5,6 @@ description: PubWise Bidder Adaptor
 pbjs: true
 pbs: true
 biddercode: pwbid
-aliasCode: pubwise
 media_types: banner, native, video
 tcfeu_supported: true
 usp_supported: true
@@ -27,6 +26,7 @@ The PubWise bid adapter is now availalbe self service. Visit <http://www.PubWise
 siteID is sufficient for bidding.
 
 {: .table .table-bordered .table-striped }
+
 | Name         | Scope    | Description                                                                                       | Example                  | Type      |
 |--------------|----------|---------------------------------------------------------------------------------------------------|--------------------------|-----------|
 | `siteId`     | required | The site ID provided by the PubWise system                                                       | `'XXXXXX'`               | `string`  |
@@ -38,6 +38,7 @@ siteID is sufficient for bidding.
 The PubWise adapter supports video as of Prebid v7.39.0. Outstream is NOT supported currently.
 
 {: .table .table-bordered .table-striped }
+
 | Name                      | Scope    | Description                                                  | Example |
 | :----------------------| :------- | :---------------------------------------------------------- | :------ |
 | `video.mimes`          | required | Video MIME types                                               | `['video/mp4','video/x-flv']` |
@@ -51,7 +52,7 @@ The PubWise adapter supports video as of Prebid v7.39.0. Outstream is NOT suppor
 | `video.battr`          | optional | Blocked creative attributes, See [OpenRTB 2.5 specification](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf), List 5.3 for values             | `[3, 9]` |
 | `video.linearity`      | optional | Indicates if the impression is linear or nonlinear<br/>Values:<br/>`1`: Linear/In-Stream<br/>`2`: Non-Linear/Overlay.                                                                                | `1` |
 | `video.placement`      | optional | Video placement type.  See [OpenRTB 2.5 specification](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf), List 5.9 for Values                            | `1` |
-| `video.minbitrate`      | optional | Minumim bit rate in Kbps.                                   | 50 |
+| `video.minbitrate`      | optional | Minimum bit rate in Kbps.                                   | 50 |
 | `video.maxbitrate`      | optional | Maximum bit rate in Kbps.                                   | 70 |
 
 ### Example

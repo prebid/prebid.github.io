@@ -3,6 +3,9 @@ layout: userid
 title: Utiq ID
 description: Utiq User ID sub-module
 useridmodule: utiqIdSystem
+bidRequestUserId: utiqId
+eidsource: utiq.com
+example: '"1111"'
 ---
 
 Utiq generates unique tokens, enabling improved efficiency in programmatic advertising while safeguarding transparency and control for end customers via `consenthub.utiq.com`. A website visitor’s Utiq is generated based on network identifiers provided by network operators and requires explicit user consent.
@@ -12,6 +15,7 @@ Utiq is also the brand name of the service, which is provided by Utiq SA/NV.
 ## Utiq ID configuration
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of the module | `"utiqId"` |
@@ -38,6 +42,8 @@ If you use the Prebid.js [TCF Control Module](/dev-docs/modules/tcfControl.html)
 
 To do that, you can use below configuration:
 
+{% include dev-docs/vendor-exception.md %}
+
 ```javascript
 pbjs.setConfig({
   consentManagement: {
@@ -56,4 +62,4 @@ pbjs.setConfig({
 
 ## Utiq ID onboarding
 
-If you wish to find out more about Utiq, please contact <csm@utiq.com>
+If you wish to find out more about Utiq, please contact <onboard@utiq.com>

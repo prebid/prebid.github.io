@@ -1,36 +1,47 @@
 ---
 layout: bidder
 title: HyperBrainz
-description: HyperBrainz Adaptor
+description: Prebid.js HyperBrainz Bid Adapter
 biddercode: hyperbrainz
-pbjs: true
-pbs: false
-media_types: banner, native, video
-gvl_id: 14 (adkernel)
-tcfeu_supported: true
-gpp_sids: tcfeu, usp
+tcfeu_supported: false
+gvl_id: none
+dsa_supported: false
 usp_supported: true
 coppa_supported: true
-pbs_app_supported: false
+gpp_sids: usnat, usstate_all, usp
 schain_supported: true
+dchain_supported: false
 userIds: all
-fpd_supported: true
-prebid_member: false
-ortb_blocking_supported: true
-multiformat_supported: will-bid-on-one
+media_types: banner, video, native
+safeframes_ok: true
+deals_supported: false
 floors_supported: true
-aliasCode: adkernel
+fpd_supported: true
+pbjs: true
+pbs: false
+pbs_app_supported: false
+prebid_member: false
+multiformat_supported: will-bid-on-any
+ortb_blocking_supported: false
+privacy_sandbox: no
+maintainer_email: it@hyperbrainz.com
 sidebarType: 1
 ---
 
-### Note
+## Note
 
-The HyperBrainz bidding adapter requires setup and approval before implementation. Please reach out to <info@hyperbrainz.com> for more details.
+The HyperBrainz bid adapter requires setup and approval before
+implementation.
+Please reach out to <it@hyperbrainz.com> for more details.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name     | Scope    | Description           | Example                   | Type     |
-|----------|----------|-----------------------|---------------------------|----------|
-| `host`   | required | RTB host | `'cpm.hb.hyperbrainz.com'` | `string` |
-| `zoneId` | required | Zone Id           | 30164                 | `integer` |
+
+| Name           | Scope    | Description                                                      | Example           | Type     |
+|----------------|----------|------------------------------------------------------------------|-------------------|----------|
+| `placementId`  | required | Unique placement identifier                                      | `hb_test_banner`  | `string` |
+| `publisherId`  | optional | Publisher identifier                                             | `pub-1`           | `string` |
+| `bidFloor`     | optional | Minimum CPM floor override (USD)                                 | `0.30`            | `number` |
+| `userId`       | optional | User ID sent as `user.id`; overrides the local storage value     | `user-1`          | `string` |
+| `ext`          | optional | Custom extension fields passed to the exchange                   | `{}`              | `object` |

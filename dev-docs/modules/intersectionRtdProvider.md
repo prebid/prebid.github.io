@@ -2,6 +2,7 @@
 layout: page_v2
 title: Intersection Module
 display_name: Intersection
+
 description: Real Time Intersection
 page_type: module
 module_type: rtd
@@ -11,7 +12,6 @@ sidebarType : 1
 ---
 
 # Intersection Module
-
 {:.no_toc}
 
 * TOC
@@ -27,6 +27,7 @@ Implementation works like this:
 1. Build the Intersection module into the Prebid.js package with:
 
     ```bash
+
     gulp build --modules=intersectionRtdProvider&...
     ```
 
@@ -37,6 +38,7 @@ Implementation works like this:
 This module is configured as part of the `realTimeData.dataProviders` object:
 
 ```javascript
+
 pbjs.setConfig({
     "realTimeData": {
         auctionDelay: 100,
@@ -46,7 +48,10 @@ pbjs.setConfig({
         }]
     }
 });
+
 ```
+
+The optional `waitForIt` flag instructs the module to delay the auction until intersection data is collected for all ad units or the `auctionDelay` timeout is reached. It defaults to `false`.
 
 ## Output
 
@@ -54,6 +59,7 @@ For each bidder, the module adds intersection in a JSON format.
 Example:
 
 ```javascript
+
 {
   "intersection":{
     'boundingClientRect': {

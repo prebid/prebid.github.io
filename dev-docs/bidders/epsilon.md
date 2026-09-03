@@ -5,13 +5,14 @@ description: Epsilon Prebid Bidder Adaptor (formerly Conversant)
 pbjs: true
 pbs: true
 biddercode: conversant
-media_types: video
+media_types: banner, video, audio, native
 tcfeu_supported: true
 userIds: criteo, id5Id, identityLink, liveIntentId, parrableId, pubCommonId, unifiedId, publinkId
 prebid_member: true
 schain_supported: true
 gvl_id: 24
 sidebarType: 1
+multiformat_supported: will-not-bid
 ---
 
 
@@ -84,11 +85,11 @@ The following values are defined in the [ORTB 2.5 spec](https://www.iab.com/wp-c
 Publishers should use the `ortb2` method of setting for setting First Party Data.
 Example first party data configuration that is available to all adUnits
 
-```
+```javascript
 pbjs.setConfig({
     debug: true,
     cache: {
-    url: 'https://prebid.adnxs.com/pbc/v1/cache'
+    url: 'https://prebid.example.com/pbc/v1/cache'
     },
     ortb2: { 
         site: { 
@@ -105,7 +106,7 @@ pbjs.setConfig({
 
 Example AdUnit specific data using the `ortb2Imp` object
 
-```
+```javascript
         var videoAdUnit = {
             code: 'video1',
             mediaTypes: {

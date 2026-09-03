@@ -39,7 +39,7 @@ Proceed as follows:
 - Make sure you specify the timeout; the timeout is the maximum time to wait until the Smart AdServer ad call is executed - even if some partners have not responded yet.
 - Implement the Prebid.js file on the site.
 
-This step is also documented [here](https://support.smartadserver.com/s/article/Holistic-Setup#implement-wrapper).
+This step is also documented [Smart AdServer setup documentation](https://support.smartadserver.com/s/article/Holistic-Setup#implement-wrapper).
 
 ### Step 2 - Implement Smart AdServer’s tag
 
@@ -47,7 +47,7 @@ Smart AdServer’s OneCall tagging is strongly recommended. With OneCall, you ca
 
 Make sure you use Smart AdServer’s **new OneCall tagging**, which uses POST requests with all the necessary information in the request body; simply check if you see the `formats` array in your tag. If you see `formatId`, you are still dealing with an old tag - in this case, get back to your service contact at Smart AdServer.
 
-For samples of both the new and legacy OneCall as well as a full implementation example, read [here](https://support.smartadserver.com/s/article/Holistic-Setup#onecall).
+For samples of both the new and legacy OneCall as well as a full implementation example, read [OneCall documentation](https://support.smartadserver.com/s/article/Holistic-Setup#onecall).
 
 **Additional resources**:
 
@@ -63,7 +63,7 @@ Things to keep in mind for the Setup in [Smart AdServer’s UI](https://manage.s
 - The Holistic+ feature must be enabled on the network.
 - You must use the official and Holistic RTB+ script templates in the insertions.
 
-For more details, read [here](https://support.smartadserver.com/s/article/Holistic-Setup#setup-ui).
+For more details, read [setup instructions](https://support.smartadserver.com/s/article/Holistic-Setup#setup-ui).
 
 ### Step 4 - Get reporting
 

@@ -3,6 +3,9 @@ layout: userid
 title: AMX ID
 description: AMX ID User ID sub-module
 useridmodule: amxIdSystem
+bidRequestUserId: amxId
+eidsource: amxdt.net
+example: '"3ca11058-..."'
 ---
 
 

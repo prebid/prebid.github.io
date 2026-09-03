@@ -11,6 +11,11 @@ sidebarType: 3
 {: .alert.alert-warning :}
 This guide is not written, maintained, or endorsed by Freewheel. Freewheel recommends speaking to your account team before implementing any header-bidding setup to ensure full implications for direct-sold ad delivery, forecasting, and reporting is understood.
 
+{: .alert.alert-warning :}
+The approach described here could create too many line items in the ad server
+if the price buckets are too granular. We recommend that you consider how many
+line items can be supported and plan out the price granularity/category/duration combinations.
+
 This page describes how to set up Campaigns for long form video using FreeWheel's ad server.
 
 As with Google Ad Manager for digital ads, ad ops will need to configure their FreeWheel server account so that the server can provide the correct creatives for the video player. If you do not have an account visit [FreeWheel](https://www.freewheel.com/) to create one.  
@@ -131,7 +136,7 @@ The scheme, host, and path should point to your Prebid Server cache. For instanc
 utilize Xandr's AppNexus cache:
 
 ```text
-https://prebid.adnxs.com/pbc/v1/cache
+https://prebid.example.com/pbc/v1/cache
 ```
 
 The query should have one key-value items:
@@ -147,13 +152,13 @@ The second macro, `#{request.keyValue(“hb_cache_id”)`, formats the unique Pr
 In real-time, when the dynamic URL is formatted it will appear like:
 
 ```text
-https://prebid.adnxs.com/pbc/v1/cache?uuid=12.00_391_30s_6c422e51-46cf-4b0a-ae41-64c61c1ca125
+https://prebid.example.com/pbc/v1/cache?uuid=12.00_391_30s_6c422e51-46cf-4b0a-ae41-64c61c1ca125
 ```
 
 In order for the above URL to format correctly ensure that the URL in the text box appears as:  
 
 ```text
-https://prebid.adnxs.com/pbc/v1/cache?uuid=#{ad.placement.name}_#{request.keyValue("hb_cache_id")}
+https://prebid.example.com/pbc/v1/cache?uuid=#{ad.placement.name}_#{request.keyValue("hb_cache_id")}
 ```
 
 Your ad ops should now be completed and set up for premium long-form video.

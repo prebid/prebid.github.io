@@ -3,6 +3,9 @@ layout: userid
 title: Fabrick ID by Neustar
 description: Fabrick ID by Neustar User ID sub-module
 useridmodule: fabrickIdSystem
+bidRequestUserId: fabrickId
+eidsource: neustar.biz
+example: '"1111"'
 ---
 
 
@@ -10,8 +13,9 @@ useridmodule: fabrickIdSystem
 
 Add it to your Prebid.js package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=fabrickIdSystem
+```
 
 ## Fabrick Registration
 
@@ -20,6 +24,7 @@ Please reach out to [FabrickIntegrations@team.neustar](mailto:FabrickIntegration
 ## Fabrick Configuration
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module. | `"fabrickId"` |

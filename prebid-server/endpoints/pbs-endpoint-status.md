@@ -11,7 +11,7 @@ title: Prebid Server | Endpoints | /status
 
 This endpoint will return an HTTP 200 response whenever Prebid Server is ready to serve requests.
 Its exact response can be configured with the `status_response`
-config option. For eample, in `pbs.yaml`:
+config option. For example, in `pbs.yaml`:
 
 ```yaml
 status_response: "ok"

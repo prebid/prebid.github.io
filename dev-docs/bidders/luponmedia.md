@@ -20,7 +20,6 @@ The LuponMedia bidder adapter requires setup and approval from the LuponMedia su
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name   | Scope    | Description              | Example | Type      |
-|--------|----------|--------------------------|---------|-----------|
-| `siteId`  | required | The publisher's unique site ID | `12345`   | `integer` |
-| `keyId` | required | The key ID              | `4o2c4` | `string` |
+| Name   | Scope    | Description              | Example         | Type      |
+|--------|----------|--------------------------|-----------------|-----------|
+| `keyId`| required | The key ID               | `uid_test_1234` | `string`  |

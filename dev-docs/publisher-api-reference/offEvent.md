@@ -16,7 +16,7 @@ Turns off an event callback defined with [onEvent](/dev-docs/publisher-api-refer
 See the [getEvents](/dev-docs/publisher-api-reference/getEvents.html) function for the full list of eventTypes supported.
 
 Causes PBJS to search through registered event callbacks and remove the
-supplied callbackFunction for the specifc eventType.
+supplied callbackFunction for the specific eventType.
 
 The optional `id` parameter provides more finely-grained event
 callback de-registration.  This makes it possible to de-register callback

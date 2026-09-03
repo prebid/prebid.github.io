@@ -3,7 +3,7 @@ layout: bidder
 title: Embi Media
 description: Prebid Embi Media Bidder Adaptor
 biddercode: embimedia
-pbjs: false
+pbjs: true
 pbs: true
 media_types: banner, video, audio, native
 userIds: all
@@ -20,11 +20,11 @@ aliasCode: limelightDigital
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 The Embi Media Bidding adapter requires setup before beginning.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 
@@ -32,3 +32,7 @@ The Embi Media Bidding adapter requires setup before beginning.
 |:--------------|:---------|:----------------------|:-----------------------|:----------|
 | `host`        | required | Ad network's RTB host | `'bidder-embi.media'`  | `string`  |
 | `publisherId` | required | Publisher ID          | `12345`                | `integer` |
+
+Prebid Embi Media server-side Prebid Server adapter requires only `publisherId` and `host` parameters. But Prebid Embi Media client-side Prebid.js adapter requires only `host`, `adUnitId`, `adUnitType`.
+
+Prebid Embi Media server-side Prebid Server adapter supports only `banner`, `video`, `audio`, `native` media types. But Prebid Embi Media client-side Prebid.js adapter supports only `banner` and `video` media types, doesn't support `audio` and `native`.

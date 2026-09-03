@@ -93,6 +93,22 @@ The structure of your module source code inside the modules directory must have 
 +- README.md <- documentation
 ```
 
+### Optional Code Update Notification
+
+The core Prebid engineering team sometimes makes changes to module files for various reasons: general refactoring, internal API changes, bug fixes, etc. If you want to receive an email alert about any changes made to your codebase, you can update the [codepath notification file](https://github.com/prebid/prebid-server-java/blob/master/.github/workflows/scripts/codepath-notification). Please read the instructions in the file. In many cases, the regex will just be your modulecode, but if you have a short modulecode, you might need to be more precise or you'll get false notifications.
+
+## Module Configuration
+There are several places to configure a module:
+
+- **Host/Bean config** is stored in one of the YAML files (generally application.yaml), primarily used for enabling the module at the server level with `hooks.<MODULE_CODE>.enabled`. It should only contain static config which applies to initial startup independent from any account. Most modules have no host-level config at all, apart from enabled flag.
+- **Default account config** is stored in a YAML file, but only used when account config is available (i.e. it's not seen at the entrypoint stage). It is used to define defaults for all accounts.
+- **Account/Runtime config** is stored in the database, YAML file, or whatever other account backend used. It is used to define individual account configuration.
+
+Important Notes:
+
+- Host config will be provided to module once on application start.
+- Account config will be provided to module on each request.
+
 ## Module Code
 
 The quick start is to take a look in two places:
@@ -123,6 +139,7 @@ These are the available hooks that can be implemented in a module:
 - org.prebid.server.hooks.v1.bidder.RawBidderResponseHook
 - org.prebid.server.hooks.v1.bidder.AllProcessedBidResponsesHook
 - org.prebid.server.hooks.v1.auction.AuctionResponseHook
+- org.prebid.server.hooks.v1.exitpoint.ExitpointHook
 
 In a module it is not necessary to implement all mentioned interfaces but only one (or several) required by your functionality.
 
@@ -130,6 +147,17 @@ Each hook interface internally extends org.prebid.server.hooks.v1.Hook basic int
 
 - `code()` - returns module code.
 - `call(...)` - returns result of hook invocation.
+
+### Difference between AuctionResponseHook and ExitpointHook
+In a nutshell, both hooks allow the modification of the OpenRTB Bid Response but in different ways. 
+The `AuctionResponseHook` provides a last chance to work with the Java objects that modify the auction response.
+The `ExitpointHook` allows you to build a completely different response based on the received auction context. i.e. something that's not OpenRTB JSON - something like VAST. These hooks could modify the auction/amp/video response that PBS has built, or it could build another one and modify response headers accordingly.
+
+Important Notes:
+
+- The ExitpointHook is a powerful tool that allows rewriting the auction results, so make sure important data won't be lost for the client.
+- Since the response body is not modified after calling the ExitpointHook, debug and traces won't be added by PBS-core. The exitpoint hook is responsible for adding its own tracing to the generated output.
+- Analytics adapters doesn't have access to the response built by the ExitpointHook, but they receive the up-to-date auction context with the ExitpointHook execution status and analytics tags. 
 
 ### Examples
 

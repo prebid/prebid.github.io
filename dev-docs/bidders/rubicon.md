@@ -270,7 +270,6 @@ var nativeAdUnit = {
     code: 'myNativeAdUnit',
     mediaTypes: {
         native: {
-            sendTargetingKeys: false,
             ortb: {
                 ver:"1.2",
                 context: 2,       // required for 1.2

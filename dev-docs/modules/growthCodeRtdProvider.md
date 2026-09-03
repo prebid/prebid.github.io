@@ -12,7 +12,6 @@ sidebarType : 1
 ---
 
 # GrowthCode Real-time Data Submodule
-
 {:.no_toc}
 
 * TOC
@@ -29,7 +28,7 @@ your advertising strategies.
 
 Compile the GrowthCode RTD module into your Prebid build:
 
-`gulp build --modules=userId,rtdModule,growthCodeRtdProvider,appnexusBidAdapter`
+`gulp build --modules=userId,rtdModule,growthCodeRtdProvider,msftBidAdapter`
 
 Please visit [growthcode.io](https://growthcode.io) for more information.
 

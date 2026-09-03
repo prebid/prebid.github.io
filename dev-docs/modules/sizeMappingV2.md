@@ -10,7 +10,6 @@ sidebarType: 1
 ---
 
 # Advanced Size Mapping Module
-
 {: .no_toc }
 
 * TOC
