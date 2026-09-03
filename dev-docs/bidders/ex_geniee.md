@@ -25,7 +25,7 @@ privacy_sandbox: no
 maintainer_email: aladdin-back@geniee.co.jp
 sidebarType: 1
 ---
-### Note
+## Note
 
 This is the [Geniee](https://geniee.co.jp) *Exchange* Bidder Adapter for Prebid.js.
 
@@ -41,16 +41,16 @@ Ads are served when all of the following conditions are satisfied:
 - The request contains either `site` (with `site.page`) or `app` (with `app.bundle`).
 - GDPR does not apply to the request. The Exchange does not serve GDPR territories, so consent signals are not forwarded and no request is sent when `gdprApplies` is true.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-|      Name     |  Scope   |      Description                                                                                                                                                                                                                            |     Example      |   Type    |
-|---------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|-----------|
-| `partnerId`   | required | The per-publisher ID issued by Geniee. Must be an integer >= 1 (number only; string forms such as `'123'` are rejected).                                                                                                                    | `123`            | `integer` |
-| `currency`    | optional | Currency setting, `'JPY'` or `'USD'`. When omitted, the currency module's `adServerCurrency` is used, then `'USD'`. If the resolved currency is neither `JPY` nor `USD`, no request is sent.                                                                                        | `'JPY'`          | `string`  |
+| Name          | Scope    | Description                                                                                                                                                                                                                                                                  | Example          | Type      |
+|---------------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|-----------|
+| `partnerId`   | required | The per-publisher ID issued by Geniee. Must be an integer >= 1 (number only; string forms such as `'123'` are rejected).                                                                                                                                                     | `123`            | `integer` |
+| `currency`    | optional | Currency setting, `'JPY'` or `'USD'`. When omitted, the currency module's `adServerCurrency` is used, then `'USD'`. If the resolved currency is neither `JPY` nor `USD`, no request is sent.                                                                                 | `'JPY'`          | `string`  |
 | `placementId` | optional | Reporting label for the ad unit, defined by the publisher (not issued by Geniee). Use a fixed value per ad unit; if omitted, Geniee reports cannot be broken down by ad unit. Alphanumeric, hyphen and underscore, max 40 characters, case-insensitive. Sent as `imp.tagid`. | `'top-banner_1'` | `string`  |
 
-### First Party Data
+## First Party Data
 
 `ortb2` and `ortb2Imp` first party data are included in the OpenRTB request. Note the following:
 
@@ -58,7 +58,7 @@ Ads are served when all of the following conditions are satisfied:
 - User IDs are read from `user.ext.eids` and mirrored to `user.eids`.
 - The Exchange runs a first price auction only. If `at` is set to any value other than `1` through `ortb2`, no request is sent.
 
-### User Sync
+## User Sync
 
 On a winning response the Exchange returns a single cookie-sync URL, which the adapter registers as an iframe sync. Only the iframe type is supported; no sync is registered on a no-bid.
 
