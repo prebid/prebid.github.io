@@ -31,59 +31,34 @@ sidebarType: 1
 Tunnl is available through Prebid Server. For questions or setup help, contact
 <prebid@tunnl.com>.
 
-Every request you send to Tunnl must carry an `ext.source` value identifying
-your integration. See
-[Required Partner Identification](#required-partner-identification) before you
-go live.
+Tunnl issues you a sid, and it is required on every ad unit. See
+[Bid Params](#bid-params) before you go live.
 
 For full functionality in GDPR territories, please ensure Tunnl is configured in
 your CMP.
 
 ## Bid Params
 
-Tunnl does not require any bid parameters. Everything needed to serve a bid is
-taken from the standard OpenRTB request, so an empty params object is all you
-need:
+{: .table .table-bordered .table-striped }
+
+| Name  | Scope    | Description    | Example        | Type     |
+|-------|----------|----------------|----------------|----------|
+| `sid` | required | Your Tunnl sid | `'tunnl_x_g'`  | `string` |
 
 ```javascript
 {
   bidder: 'tunnl',
-  params: {}
-}
-```
-
-{: .table .table-bordered .table-striped }
-
-| Name   | Scope    | Description                     | Example | Type |
-|--------|----------|---------------------------------|---------|------|
-| (none) | optional | No bid parameters are required. | `{}`    | n/a  |
-
-Note that this refers to bid parameters only. Your integration must still
-identify itself on the bid request, as described below.
-
-## Required Partner Identification
-
-Every request you send to Tunnl must carry an `ext.source` value at the top
-level of the OpenRTB request. This is how we attribute revenue to your
-integration:
-
-```json
-{
-  "ext": {
-    "source": "your-company-name"
+  params: {
+    sid: 'tunnl_x_g'
   }
 }
 ```
 
-Pick any value that identifies you, such as your company name in lower case.
-There is nothing to request from us and no identifier to generate. Once you
-have picked a value, send that same value on every request for the lifetime of
-the integration: it is the key your revenue is grouped by, so varying it or
-changing it later splits your reporting.
+Note:
 
-Requests that omit the field still receive bids, and no error is returned, so a
-missing `ext.source` is easy to overlook. Confirm the field is present on your
-live traffic, and contact <prebid@tunnl.com> if you are unsure.
+* sid will be issued by Tunnl. Contact <prebid@tunnl.com> to get one.
+* Use the same sid on every ad unit. The adapter sends one call per bid
+  request, under the sid of the first impression.
 
 ## Multi-format Ad Units
 
@@ -93,13 +68,5 @@ Tunnl may return a bid for each of them, and the highest bid competes as usual.
 
 ## Testing
 
-To receive test bids, set the OpenRTB `test` flag on your Prebid Server request:
-
-```json
-{
-  "test": 1
-}
-```
-
-Test bids are returned for each supported media type. Remember to remove the
-flag before going live.
+Contact <prebid@tunnl.com> to have test bids enabled for your sid. Remember to
+disable them before going live.
