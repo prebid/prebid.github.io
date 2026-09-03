@@ -1,27 +1,20 @@
-# Emits the raw Markdown source of every content page/doc as a sibling
-# static file at "<page-url>.md" (e.g. /dev-docs/foo.html -> /dev-docs/foo.html.md),
-# so the Markdown behind any doc page can be fetched by appending ".md" to its URL.
-#
-# NOTE: this generator is NOT on the GitHub Pages safe-plugin whitelist, so it only
-# runs when the site is built with plain `jekyll build` (see
-# .github/workflows/pages-deploy.yml). It is silently skipped by GitHub's legacy
-# "Deploy from a branch" Jekyll build.
+# Copies the exact raw Markdown source of every page/doc as a static asset 
+# at "<page-url>.md" without applying layouts or Liquid transformations.
 module Jekyll
-  class RawMarkdownPage < PageWithoutAFile
-    def initialize(site, source_item, raw_content)
-      target_path = source_item.url + ".md" # literal "append .md to the URL"
+  class RawMarkdownFile < StaticFile
+    def initialize(site, source_item)
+      rel_path = source_item.respond_to?(:relative_path) ? source_item.relative_path : source_item.path
+      dir = File.dirname(rel_path)
+      name = File.basename(rel_path)
 
-      super(site, site.source, File.dirname(target_path), File.basename(target_path))
+      super(site, site.source, dir, name)
 
-      self.content = raw_content
-      data["permalink"] = target_path
-      data["sitemap"] = false # avoid duplicate-content entries next to the rendered page
+      url = source_item.url
+      @custom_url = url.end_with?("/") ? "#{url}index.html.md" : "#{url}.md"
     end
 
-    # Skip Markdown->HTML conversion and layout rendering entirely: the output
-    # IS the raw source content, verbatim.
-    def render(_layouts, _site_payload)
-      self.output = content
+    def url
+      @custom_url
     end
   end
 
@@ -40,7 +33,7 @@ module Jekyll
         next if item.data["published"] == false
         next if item.url.nil? || item.url.empty?
 
-        site.pages << RawMarkdownPage.new(site, item, item.content)
+        site.static_files << RawMarkdownFile.new(site, item)
       end
     end
 
