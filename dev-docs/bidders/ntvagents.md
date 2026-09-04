@@ -25,6 +25,13 @@ safeframes_ok: true
 sidebarType: 1
 ---
 
+# Overview
+
+Publishers may integrate with Native Agents through our Prebid.js and/or Prebid Server adapters. See below.
+
+{: .alert.alert-info :}
+The Native Agents Prebid Server bidding adapter and user sync endpoint require setup before starting. Please contact us at <prebid@nativeagents.ai>.
+
 # Native Agents Bidder Adapter
 
 The Native Agents bidder enables publishers to monetize their inventory through the Native Agents advertising platform using either **Prebid.js** or **Prebid Server**, for the ad formats described below.
