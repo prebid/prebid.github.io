@@ -14,7 +14,6 @@ schain_supported: true
 dchain_supported: true
 floors_supported: true
 userIds: all
-tcfeu_supported: true
 media_types: banner, video, native
 safeframes_ok: true
 deals_supported: true
@@ -24,7 +23,7 @@ multiformat_supported: will-bid-on-any
 
 ---
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                | Example                                   | Type      |
@@ -34,7 +33,7 @@ multiformat_supported: will-bid-on-any
 
 For the prebid.js you only need to use one parameter: either tagId or placement
 
-### First Party Data
+## First Party Data
 
 Publishers should use the `ortb2` method of setting [First Party Data](/features/firstPartyData.html).
 The following fields are supported:
@@ -44,7 +43,7 @@ The following fields are supported:
 * ortb2.user.ext.data.*
 * ortb2.user.data[]
 
-### Test Parameters
+## Test Parameters
 
 ```javascript
 var adUnits = [
