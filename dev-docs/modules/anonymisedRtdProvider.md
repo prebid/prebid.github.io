@@ -69,3 +69,33 @@ For any questions or assistance with integrating Prebid, `anonymisedRtdProvider`
 | params.segtax | `Integer` | The taxonomy for Anonymised | '1000' always |
 | params.tagConfig | `Object` | Configuration for the Anonymised Marketing Tag | Optional. Defaults to `{}`. |
 | params.tagUrl | `String` | The URL of the Anonymised Marketing Tag script | **Deprecated.** Optional. Defaults to `https://static.anonymised.io/light/loader.js`. |
+
+## Publisher Provided Signals (PPS) / Seller-Defined Audiences (SDA)
+
+If the publisher has Anonymised's SignalLift service installed with PPS enabled, the Anonymised Marketing Tag makes IAB Audience Taxonomy 1.1 category IDs available on the page. The `anonymisedRtdProvider` picks these up and writes them as its own `user.data` entry with `segtax: 4`, as the IAB Seller-Defined Audiences spec requires:
+
+```javascript
+{
+  name: 'anonymised.io',
+  ext: { segtax: 4 },
+  segment: [{ id: '522' }]
+}
+```
+
+No additional configuration is required. This entry is independent of the `cohortStorageKey` and `segtax` params, and is written even when no cohort segment is present, and vice versa.
+
+A publisher who wants only this entry, and who already installs the Anonymised Marketing Tag on the page directly, can configure the module with `name` alone. Note that `params.tagConfig.clientId` is what makes this module load the Marketing Tag: omit `params` and the tag must be installed by other means, or no audience signals will be available to read:
+
+```javascript
+ pbjs.setConfig({
+   realTimeData: {
+     dataProviders: [
+       {
+         name: "anonymised"
+       }
+     ]
+   }
+ });
+```
+
+The entry is not written when PPS is not enabled in the publisher's Marketing Tag configuration, when no audience signals are available, or when the session is in the SignalLift holdout group.
