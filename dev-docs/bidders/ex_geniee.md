@@ -23,7 +23,6 @@ prebid_member: false
 multiformat_supported: will-bid-on-one
 ortb_blocking_supported: partial
 privacy_sandbox: no
-maintainer_email: aladdin-back@geniee.co.jp
 sidebarType: 1
 ---
 ## Note
