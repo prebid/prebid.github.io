@@ -60,15 +60,22 @@ Ads are served when all of the following conditions are satisfied:
 
 ## OpenRTB Blocking
 
-The following OpenRTB blocking parameters are supported. Set them through first party data; the adapter passes them to the Exchange unchanged.
+Support for OpenRTB blocking parameters is partial. All four parameters below are forwarded to demand partners, but only `badv` and `bapp` are enforced by the Exchange when it filters bid responses. `bcat` and `battr` are passed on to demand partners only; the Exchange does not reject a bid that violates them, so blocking depends on each demand partner honoring the value. Set them through first party data; the adapter passes them to the Exchange unchanged.
 
 {: .table .table-bordered .table-striped }
-| Parameter | Where to set            | Description                                     |
-|-----------|-------------------------|-------------------------------------------------|
-| `bcat`    | `ortb2.bcat`            | Blocked IAB content categories                  |
-| `badv`    | `ortb2.badv`            | Blocked advertiser domains                      |
-| `bapp`    | `ortb2.bapp`            | Blocked app bundles                             |
-| `battr`   | `ortb2Imp.banner.battr` | Blocked creative attributes for the banner slot |
+| Parameter | Where to set            | Forwarded to demand partners | Enforced on bid responses by the Exchange |
+|-----------|-------------------------|------------------------------|-------------------------------------------|
+| `badv`    | `ortb2.badv`            | yes                          | yes                                       |
+| `bapp`    | `ortb2.bapp`            | yes                          | yes                                       |
+| `bcat`    | `ortb2.bcat`            | yes                          | no                                        |
+| `battr`   | `ortb2Imp.banner.battr` | yes                          | no                                        |
+
+Notes:
+
+- `badv`: every listed domain is checked against the winning bid's advertiser domains. A bid whose advertiser domain contains a listed value is dropped, so `example.com` also blocks subdomains such as `ads.example.com`. An empty array is forwarded as an explicit "nothing blocked" declaration.
+- `bapp`: matched case-insensitively against the bid's app bundle.
+- `bcat`: only IAB content taxonomy codes with the `IAB` prefix (for example `IAB1`, `IAB26-1`) are forwarded; codes in any other format are dropped.
+- `battr`: only `banner.battr` applies, since this adapter is banner-only.
 
 ## User Sync
 
