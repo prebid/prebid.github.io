@@ -13,6 +13,7 @@ schain_supported: true
 dchain_supported: false
 userIds: all
 media_types: banner
+safeframes_ok: false
 deals_supported: false
 floors_supported: true
 fpd_supported: true
