@@ -67,6 +67,7 @@ Parameters details:
 | params.bidders | Object | Bidders to monitor | Optional, list of bidder to include / exclude from monitoring. Omitting this will monitor bids from all bidders. |
 | params.wap | Boolean | Wrap after client load | Optional, defaults to `false`. Set to `true` if you want to monitor only after the module has loaded the monitoring client. |
 | params.outstream | Boolean | Monitor outstream video | Optional, defaults to `false`. Set to `true` to extend monitoring to outstream video bids. See [Outstream video](#outstream-video) below. |
+| params.display | Boolean | Monitor display | Optional, defaults to `true`. Set to `false` to opt out of display monitoring, leaving display bids unwrapped. |
 
 ## Outstream video
 
