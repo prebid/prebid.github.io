@@ -3,6 +3,7 @@ layout: bidder
 title: Public Good
 description: Public Gppd Bid Adapter
 biddercode: publicgood
+filename: publicGoodBidAdapter
 tcfeu_supported: false
 dsa_supported: false
 gvl_id: none

@@ -10,7 +10,7 @@ safeframes_ok: true
 sidebarType: 1
 tcfeu_supported: true
 dsa_supported: false
-gvl_id: none
+gvl_id: 1609
 usp_supported: true
 coppa_supported: true
 gpp_supported: true
@@ -25,29 +25,29 @@ ortb_blocking_supported: true
 privacy_sandbox: no
 ---
 
-### Note
+## Note
 
 The Floxis bidder adapter enables integration with the Floxis programmatic advertising platform via Prebid.js. It supports banner, video, and native formats with OpenRTB 2.x compliance. Please contact Floxis to set up your partner account and obtain the required parameters.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 
 | Name | Scope | Description | Example | Type |
-|------|-------|-------------|---------|------|
+| ------ | ------- | ----------- | ------- | ---- |
 | `seat` | required | Seat identifier provided by Floxis | `"testSeat"` | `string` |
 | `region` | required | Region identifier for routing | `"us-e"` | `string` |
 | `partner` | required | Partner identifier provided by Floxis | `"floxis"` | `string` |
 
-### Floors Support
+## Floors Support
 
 The Floxis adapter supports the Prebid.js [Floors Module](https://docs.prebid.org/dev-docs/modules/floors.html). Floor values are automatically included in the OpenRTB request as `imp.bidfloor` and `imp.bidfloorcur`.
 
-### Privacy Support
+## Privacy Support
 
 Privacy fields (GDPR, USP, GPP, COPPA) are handled by Prebid.js core and automatically included in the OpenRTB request.
 
-### AdUnit Configuration for Banner
+## AdUnit Configuration for Banner
 
 ```javascript
 var adUnits = [{
@@ -68,7 +68,7 @@ var adUnits = [{
 }];
 ```
 
-### AdUnit Configuration for Video
+## AdUnit Configuration for Video
 
 ```javascript
 var adUnits = [{
@@ -94,7 +94,7 @@ var adUnits = [{
 }];
 ```
 
-### AdUnit Configuration for Native
+## AdUnit Configuration for Native
 
 ```javascript
 var adUnits = [{
@@ -128,7 +128,7 @@ var adUnits = [{
 }];
 ```
 
-### Example
+## Example
 
 ```javascript
 var pbjs = pbjs || {};

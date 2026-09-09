@@ -13,11 +13,11 @@ pbs: false
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 The Yaleo Bidding adapter requires setup before beginning. Please contact us at [hola@yaleo.com](mailto:hola@yaleo.com).
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 
@@ -26,3 +26,15 @@ The Yaleo Bidding adapter requires setup before beginning. Please contact us at 
 | `placementId` | required | Yaleo placement identifier.                                                          |`460a301d-a9f7-4104-b55f-2a3d4674a973`|`string`|
 | `memberId`    | optional | Member identifier.                                                                   |`12345`.                              |`number`|
 | `maxCpm`      | optional | Maximum CPM value. Bids with a CPM higher than the specified value will be rejected. |`2.5`                                 |`number`|
+
+## Configuration
+
+The bidder endpoint can be overridden via global configuration for testing against a non-production environment. Only the approved HTTPS Yaleo endpoints are accepted (`https://bidder.yaleo.com/prebid` and `https://dev-bidder.yaleo.com/prebid`); any other value is ignored and the production endpoint is used.
+
+```javascript
+pbjs.setConfig({
+  yaleo: {
+    endpoint: 'https://dev-bidder.yaleo.com/prebid'
+  }
+});
+```

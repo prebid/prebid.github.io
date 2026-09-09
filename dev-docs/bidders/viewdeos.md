@@ -5,6 +5,7 @@ description: Prebid Server ViewDeos Adapter
 pbjs: false
 pbs: true
 biddercode: viewdeos
+aliasCode: viewdeosDX
 media_types: banner,video
 tcfeu_supported: true
 gvl_id: 924

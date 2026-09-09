@@ -4,6 +4,7 @@ title: stailamedia Bidder
 description: Prebid bidstailamedia Bidder Adapter
 pbjs: true
 biddercode: bidstailamedia
+aliasCode: nexx360
 gvl_id: 965 (nexx360)
 tcfeu_supported: true
 usp_supported: true
