@@ -156,8 +156,8 @@ To avoid this, add "wurfl" to the storage purpose's `vendorExceptions`:
 });
 ```
 
-### This only matters if your site enforces TCF vendor consent for "storage".
-### Sites with no CMP, or with GDPR enforcement disabled, are unaffected.
+### This only matters if your site enforces TCF vendor consent for "storage"
+### Sites with no CMP, or with GDPR enforcement disabled, are unaffected
 
 ## Testing
 
