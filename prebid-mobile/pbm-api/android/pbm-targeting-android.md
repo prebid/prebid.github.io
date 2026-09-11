@@ -846,6 +846,14 @@ TargetingParams.setGlobalOrtbConfig("")
 
 The `TargetingParams.setGlobalOrtbConfig()` also allows to **add** impression objects to the request. All objects in the `$.imp[]` array will be added to the request. Note that Ad Unit's `imp` object won't be changed using Global Config. To change the `imp` config, use the `setImpORTBConfig()` method of a particular Ad Unit. See the Ad Unit documentation for the details. 
 
+The global config is also the way to set OpenRTB fields that have no dedicated `TargetingParams` method. For instance, to pass the URL of the content displayed alongside the ad in `$.app.content.url`:
+
+``` kotlin
+TargetingParams.setGlobalOrtbConfig("{\"app\":{\"content\":{\"url\":\"https://example.com/articles/123\"}}}")
+```
+
+Each call replaces the previously set global config, so put all global-level fields in a single JSON object.
+
 Pay attention that there are certain protected fields such as `regs`, `device`, `geo`, `ext.gdpr`, `ext.us_privacy`, and `ext.consent` which cannot be changed using the `setGlobalOrtbConfig()` method.
 
 - App and User first party data should use the [functions defined for those purposes](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#first-party-data)

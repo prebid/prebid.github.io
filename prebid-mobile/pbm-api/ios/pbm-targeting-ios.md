@@ -527,7 +527,6 @@ Note that several of the properties noted here are also mentioned above for othe
 | Parameter | Scope | Type | Platform | Description | Example |
 | --- | --- | --- | --- | --- | --- |
 | storeURL | recommended | string | both | App store URL for an installed app; for Inventory Quality Guidelines 2.1 compliance. Translates to OpenRTB app.storeurl | `https://apps.apple.com/app/id111111111` |
-| contentUrl | recommended | string | both | This is the deep-link URL for the app screen that is displaying the ad. This can be an iOS universal link. | |
 | publisherName | recommended | string | both | OpenRTB app.publisher.name | "Example, Co." |
 | itunesID | recommended | string | both | Translates to OpenRTB app.bundle | "11111111" |
 | coppa | optional | integer | objC | Defines whether this content is meant for children. 0=false, 1=true. Defaults to false. | 1 |
@@ -580,6 +579,14 @@ Targeting.shared.setGlobalORTBConfig("")
 ```
 
 The `Targeting.shared.setGlobalORTBConfig()` also allows to **add** impression objects to the request. All objects in the `$.imp[]` array will be added to the request. Note that Ad Unit's `imp` object won't be changed using Global Config. To change the `imp` config, use the `setImpORTBConfig()` method of a particular Ad Unit. See the Ad Unit documentation for the details. 
+
+The global config is also the way to set OpenRTB fields that have no dedicated `Targeting` property. For instance, to pass the URL of the content displayed alongside the ad in `$.app.content.url`:
+
+``` swift
+Targeting.shared.setGlobalORTBConfig("{\"app\":{\"content\":{\"url\":\"https://example.com/articles/123\"}}}")
+```
+
+Each call replaces the previously set global config, so put all global-level fields in a single JSON object.
 
 Pay attention that there are certain protected fields such as `regs`, `device`, `geo`, `ext.gdpr`, `ext.us_privacy`, and `ext.consent` which cannot be changed using the `setGlobalORTBConfig()` method.
 
