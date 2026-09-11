@@ -146,7 +146,7 @@ The `Log` class is designed to handle logging functionality for the SDK. It allo
 
 | Property     | Type      | Description                                                                                               |
 |--------------|-----------|-----------------------------------------------------------------------------------------------------------|
-| `logLevel`   | `LogLevel`| The current logging level. Only messages at this level or higher will be logged. Default: `.debug`         |
+| `logLevel`   | `LogLevel`| The current logging level. Only messages at this level or higher will be logged. Default: `.debug`        |
 | `logToFile`  | `Bool`    | Indicates whether logs should also be saved to a file. Default: `false`                                   |
 
 ### `Log` Class Methods
@@ -536,7 +536,7 @@ Note that several of the properties noted here are also mentioned above for othe
 | omidPartnerName | optional | string | both | The [IAB OMSDK compliant partner name](https://complianceomsdkapi.iabtechlab.com/compliance/latest) responsible for integrating with the OMSDK spec. | "Google" |
 | omidPartnerVersion | optional | string | both | The OMSDK version number for the integration partner. | "1.0" |
 | userGender | optional | enum | both | "M" = male, "F" = female, "O" = known to be other (i.e., omitted is unknown) | "F" |
-| userExt | optional | array of key-value pairs | both | This is a dictionary of key-value pairs that forms the user.ext object. Prebid requires user-first party data in user.ext.data, so this should be a dictionary that contains a 'data' key whose value is another dictionary. | { data: { key1: val1, key2: val2 }}|
+| userExt | optional | array of key-value pairs | both | This is a dictionary of key-value pairs that forms the user.ext object. Prebid requires user-first party data in user.ext.data, so this should be a dictionary that contains a 'data' key whose value is another dictionary. | { data: { key1: val1, key2: val2 }} |
 | subjectToGDPR | discouraged | boolean | ? | Defines whether this request is in-scope for European privacy regulations. See [above](/prebid-mobile/pbm-api/ios/pbm-targeting-ios#gdpr--tcf-eu) for more information. | `true` |
 | gdprConsentString | discouraged | string | both | See the [GDPR settings](/prebid-mobile/pbm-api/ios/pbm-targeting-ios#gdpr--tcf-eu) section above. | |
 | purposeConsents | discouraged | string | both | See the [GDPR settings](/prebid-mobile/pbm-api/ios/pbm-targeting-ios#gdpr--tcf-eu) section above. | |

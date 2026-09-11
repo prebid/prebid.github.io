@@ -810,7 +810,7 @@ Parameters:
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| precision | optional | integer | Number of decimal places to keep, or null for no limit. Values outside the 0-6 range will be clamped to valid range. Default is `null`| 2 |
+| precision | optional | integer | Number of decimal places to keep, or null for no limit. Values outside the 0-6 range will be clamped to valid range. Default is `null` | 2 |
 
 Related function: getLocationDecimalPrecision().
 
