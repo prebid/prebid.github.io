@@ -527,6 +527,7 @@ Note that several of the properties noted here are also mentioned above for othe
 | Parameter | Scope | Type | Platform | Description | Example |
 | --- | --- | --- | --- | --- | --- |
 | storeURL | recommended | string | both | App store URL for an installed app; for Inventory Quality Guidelines 2.1 compliance. Translates to OpenRTB app.storeurl | `https://apps.apple.com/app/id111111111` |
+| contentUrl | deprecated | string | both | Deprecated, will be removed in PrebidMobile 4.0. The SDK does not send this value in the bid request. Set `app.content.url` with [`setGlobalORTBConfig()`](/prebid-mobile/pbm-api/ios/pbm-targeting-ios#arbitrary-openrtb) instead. | |
 | publisherName | recommended | string | both | OpenRTB app.publisher.name | "Example, Co." |
 | itunesID | recommended | string | both | Translates to OpenRTB app.bundle | "11111111" |
 | coppa | optional | integer | objC | Defines whether this content is meant for children. 0=false, 1=true. Defaults to false. | 1 |
