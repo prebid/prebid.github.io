@@ -148,8 +148,13 @@ To avoid this, add "wurfl" to the storage purpose's `vendorExceptions`:
   consentManagement: {
     gdpr: {
       rules: [
-        { purpose: 'storage', enforcePurpose: true, enforceVendor: true,
-          vendorExceptions: ['wurfl'] }
+        { 
+          purpose: 'storage', 
+          enforcePurpose: true,
+          enforceVendor: true,
+          vendorExceptions: [],
+          softVendorExceptions: ['wurfl'] 
+        }
       ]
     }
   }
