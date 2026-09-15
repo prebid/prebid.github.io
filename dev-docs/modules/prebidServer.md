@@ -37,14 +37,13 @@ Video notes:
 
 ## Configuration
 
-Here's an example config enabling the AppNexus Prebid Server:
+Here's an example config enabling the appnexuspsp Prebid Server:
 
 ```javascript
 pbjs.setConfig({
     s2sConfig: {
         accountId : '12345',
-        bidders : ['appnexus','pubmatic', 'rubicon'],
-        defaultVendor: 'appnexus',
+        bidders : ['msft','pubmatic', 'rubicon'],
         timeout: 300
     }
 });
@@ -55,22 +54,21 @@ The same bidder cannot be set in both configs. For example:
 
 ```javascript
 pbjs.setConfig({
-    s2sConfig: [
-      {
-          name: "pbs-appnexus",
-          accountId: '12345',
-          bidders: ['appnexus','pubmatic'],
-          defaultVendor: 'appnexus',
-          timeout: 300,
-      },
-      {
-          name: "pbs-rubicon",
-          accountId: '678910',
-          bidders: ['rubicon'],
-          defaultVendor: 'rubicon',
-          timeout: 300,
-      },
-    ],
+  s2sConfig: {
+    accountId: YOUR_SELLER_MEMBER_ID,
+    bidders: ['msft'],
+    enabled: true,
+    allowUnknownBidderCodes: true,
+    timeout: 1000,
+    endpoint: {
+      p1Consent:   'https://ib.adnxs.com/openrtb2/prebid',
+      noP1Consent: 'https://ib.adnxs-simple.com/openrtb2/prebid'
+    },
+    syncEndpoint: {
+      p1Consent:   'https://prebid.adnxs.com/pbs/v1/cookie_sync',
+      noP1Consent: 'https://prebid.adnxs-simple.com/pbs/v1/cookie_sync'
+    }
+  }
 });
 ```
 
@@ -83,7 +81,6 @@ There are many configuration options for s2sConfig:
 | `name` | Optional | String | A handle for this configuration, used to reference a specific server (when multiple are present) from [ad unit configuration](/dev-docs/adunit-reference.html#stored-imp) |
 | `bidders` | Optional | Array of Strings | Which bidders auctions should take place on the server side |
 | `allowUnknownBidderCodes` | Optional | Boolean | Allow Prebid Server to bid on behalf of bidders that are not explicitly listed in the adUnit. See important [note](#allowUnknownBidderCodes) below. Defaults to `false`. |
-| `defaultVendor` | Optional | String | Automatically includes all following options in the config with vendor's default values.  Individual properties can be overridden by including them in the config along with this setting. See the Additional Notes below for more information. |
 | `enabled` | Optional | Boolean | Enables this s2sConfig block - defaults to `false` |
 | `timeout` | Optional | Integer | Number of milliseconds allowed for the server-side auctions. This should be approximately 200ms-300ms less than your Prebid.js timeout to allow for all bids to be returned in a timely manner. Defaults to 75% of [`bidderTimeout`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Bidder-Timeouts) or 750ms, whichever is lesser. | 
 | `adapter` | Required | String | Adapter to use to connect to Prebid Server. Defaults to 'prebidServer' |
@@ -111,8 +108,6 @@ If `endpoint` and `syncEndpoint` are objects, these are the supported properties
 
 **Notes on s2sConfig properties**
 
-- Currently supported vendors are: appnexus, openx, and rubicon
-- When using `defaultVendor` option, `accountId` still needs to be defined.
 - If `bidders` is omitted, only adUnits that also omit bidders will be sent to Prebid Server. See the [stored impressions](#stored-imp) example below.
 - If the `s2sConfig` timeout is not specified, Prebid Server will utilize a configured default for `tmax`.
 - When using the `endpoint` or `syncEndpoint` object configs, you should define both properties.  If either property is not defined, Prebid Server requests for that type of user will not be made.  If you do not need to distinguish endpoints for consent reasons, you can simply define the same URL value in both fields or use the String version of the field (which is configured to use defined URL for all users).
@@ -147,7 +142,7 @@ the bad parameter.
 
 ### Defining endpoints
 
-s2sConfig example with the endpoint attributes defined instead of using the 'defaultVendor' approach:
+s2sConfig example with the endpoint attributes defined:
 
 ```javascript
 pbjs.setConfig({
@@ -191,7 +186,8 @@ pbjs.setConfig({
   s2sConfig: [{
     accountId: '1',
     bidders: ['tripleliftVideo'],
-    defaultVendor: 'appnexus',
+    endpoint: 'https://mypbs.example.com/path',
+    syncEndpoint: 'https://mypbs.example.com/path',
     timeout: 500,
     extPrebid: {
       aliases: {
@@ -261,7 +257,6 @@ pbjs.setConfig({
     s2sConfig: [{
         accountId: '1001',
         bidders: ['rubicon', 'pubmatic'],
-        defaultVendor: 'rubicon',
         timeout: 250,
         extPrebid: {
             cache: {

@@ -123,9 +123,9 @@ If the results of the prebid process is being determined outside of the plugin, 
             }
         },
         "bids": [{
-            "bidder": "appnexus",
+            "bidder": "msft",
             "params": {
-                "placementId": 8845778
+                "placement_id": 8845778
             }
         }]
     },

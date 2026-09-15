@@ -204,7 +204,7 @@ Here's an example analytics tag that might be produced for use in an analytics a
                 "fingerprint": "ad63524e-b13f-4359-a975-dba9b5dc08f4",
                 "keptInAuction": {
                   "improvedigital": false,
-                  "appnexus": true,
+                  "msft": true,
                   "pubmatic": false,
                   "rubicon": true,
                   "teads": false

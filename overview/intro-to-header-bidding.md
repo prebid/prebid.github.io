@@ -6,6 +6,9 @@ description: An beginner's guide to header bidding.
 sidebarType: 0
 ---
 
+<div style="text-align: center;">
+  <img src="/assets/images/logos/prebid-js-logo.png" alt="Prebid.js Logo" width="500" height="80" style="max-width: 100%; height: auto;" />
+</div>
 
 # Introduction to Header Bidding
 

@@ -51,7 +51,7 @@ The markdown files are linted via [markdownlint-cli](https://github.com/igorshub
 You may need to configure the disabled rules specified in [.markdownlint.json](.markdownlint.json) directly in your project settings. You can invoke linting in CLI via
 
 ```bash
-markdownlint --config .markdownlint.json --ignore-path .markdownlintignore "**/*.md"
+markdownlint --config .markdownlint.json "**/*.md"
 ```
 
 <a name="running-jekyll-locally"></a>

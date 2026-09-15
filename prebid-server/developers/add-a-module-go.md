@@ -229,11 +229,11 @@ Notes:
                                     "attributes": []string{"bcat"},
                                     "bcat":       []string{"IAB-1"},
                                 },
-                                AppliedTo: hookanalytics.AppliedTo{Bidder: "appnexus", ImpIds: []string{"imp_ID1"}},
+                                AppliedTo: hookanalytics.AppliedTo{Bidder: "msft", ImpIds: []string{"imp_ID1"}},
                             },
                             {
                                 Status:    hookanalytics.ResultStatusAllow,
-                                AppliedTo: hookanalytics.AppliedTo{Bidder: "appnexus", ImpIds: []string{"imp_ID2"}},
+                                AppliedTo: hookanalytics.AppliedTo{Bidder: "msft", ImpIds: []string{"imp_ID2"}},
                             },
                         },
                     },

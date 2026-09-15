@@ -45,7 +45,7 @@ Since version 10.11.0, Prebid.js populates the `hb_ver` ad server key-value whic
 This loads the PUC from the Prebid-maintained location. Your managed
 service provider may have a different location.
 
-To see specific examples of how to use the PUC within your ad server, see the guides for [GAM](/adops/gam-creative-banner-sbs.html), [Microsoft](/adops/setting-up-prebid-with-the-appnexus-ad-server.html), or [other ad servers](/adops/adops-general-sbs.html).
+To see specific examples of how to use the PUC within your ad server, see the guides for [GAM](/adops/gam-creative-banner-sbs.html), [Microsoft](/adops/setting-up-prebid-with-the-microsoft-ad-server.html), or [other ad servers](/adops/adops-general-sbs.html).
 
 ## Features of the PUC
 
@@ -114,5 +114,5 @@ If safeframe support is required, some options are:
 ## Further Reading
 
 - [Step by Step Guide to Google Ad Manager Setup](/adops/step-by-step.html)
-- [Setting up Prebid with the Xandr Monetize Ad Server](/adops/setting-up-prebid-with-the-appnexus-ad-server.html)
+- [Setting up Prebid with the Xandr Monetize Ad Server](/adops/setting-up-prebid-with-the-microsoft-ad-server.html)
 - [Prebid.js dynamic creatives](/adops/js-dynamic-creative.html)

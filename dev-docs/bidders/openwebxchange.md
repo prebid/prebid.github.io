@@ -5,6 +5,7 @@ description: Prebid OpenWebXChange Bidder Adapter
 multiformat_supported: will-bid-on-any
 pbjs: true
 biddercode: openwebxchange
+aliasCode: rise
 media_types: banner, video, native
 schain_supported: true
 coppa_supported: true

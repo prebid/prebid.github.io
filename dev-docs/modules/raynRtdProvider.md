@@ -43,7 +43,7 @@ pbjs.setConfig(
                 name: "rayn",
                 waitForIt: true,
                 params: {
-                    bidders: ["appnexus", "pubmatic"],
+                    bidders: ["msft", "pubmatic"],
                     integration: {
                         iabAudienceCategories: {
                             v1_1: {
@@ -103,7 +103,7 @@ Please note that raynRtdProvider should be integrated into the website along wit
 To view an example of the on page setup:
 
 ```bash
-gulp serve-fast --modules=rtdModule,raynRtdProvider,appnexusBidAdapter
+gulp serve-fast --modules=rtdModule,raynRtdProvider,msftBidAdapter
 ```
 
 Then in your browser access: [http://localhost:9999/integrationExamples/gpt/raynRtdProvider_example.html](http://localhost:9999/integrationExamples/gpt/raynRtdProvider_example.html)

@@ -402,7 +402,7 @@ Prebid.shared.pbsDebug = true
 Prebid.shared.storedAuctionResponse = "111122223333"
 
 //or
-Prebid.shared.addStoredBidResponse(bidder: "appnexus", responseId: "221144")
+Prebid.shared.addStoredBidResponse(bidder: "msft", responseId: "221144")
 Prebid.shared.addStoredBidResponse(bidder: "rubicon", responseId: "221155")
 ```
 
