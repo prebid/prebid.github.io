@@ -30,4 +30,25 @@ The SilverMob Bidding adapter requires setup before beginning. Please contact us
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
 | `zoneid`      | required | Placement id         | `'3011'`    | `string` |
-| `host`      | required | Data center location         | `'us'`    | `string` |
+| `host`      | optional | Data center location: `us` (default), `eu`, `ru` or `apac` | `'eu'`    | `string` |
+| `bidfloor`  | optional | Floor price in `currency`, used when the price floors module gives no value | `0.5` | `number` |
+| `currency`  | optional | Request currency, `USD` by default | `'EUR'` | `string` |
+
+Ad units on different zones or data centers are sent as separate requests.
+
+### User Sync
+
+The adapter registers one user sync per data center used in the auction (iframe when enabled, pixel otherwise). Enable iframe syncs to let SilverMob sync with its demand partners in one hop:
+
+```javascript
+pbjs.setConfig({
+  userSync: {
+    filterSettings: {
+      iframe: {
+        bidders: ['silvermob'],
+        filter: 'include'
+      }
+    }
+  }
+});
+```
