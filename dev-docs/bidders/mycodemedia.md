@@ -1,8 +1,8 @@
 ---
 layout: bidder
-title: MyCodeMedia
-description: Prebid MyCodeMedia Bidder Adapter
-biddercode: mycodemedia
+title: MCodeMedia
+description: Prebid MCodeMedia Bidder Adapter
+biddercode: mcodemedia
 gpp_sids: usstate_all
 tcfeu_supported: false
 usp_supported: true
