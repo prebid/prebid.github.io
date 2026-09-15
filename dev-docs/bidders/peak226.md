@@ -45,11 +45,11 @@ Requests are routed to a per-data-center endpoint (US, EU or JP). Bids are net r
 ## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description                                                                        | Example       | Type     |
-|---------------|----------|------------------------------------------------------------------------------------|---------------|----------|
-| `publisherId` | required* | Your Peak226 publisher/account ID.                                                | `'hb-test'`   | `string` |
-| `placementId` | required* | Placement ID for this ad unit / impression. Sent as `imp.tagid`.                  | `'hb-test'`   | `string` |
-| `region`      | optional | Data center to send the request to: `'us'`, `'eu'` or `'jp'`. Defaults to `'us'`.  | `'eu'`        | `string` |
+| Name          | Scope     | Description                                                                       | Example     | Type     |
+|---------------|-----------|-----------------------------------------------------------------------------------|-------------|----------|
+| `publisherId` | required* | Your Peak226 publisher/account ID.                                                | `'hb-test'` | `string` |
+| `placementId` | required* | Placement ID for this ad unit / impression. Sent as `imp.tagid`.                  | `'hb-test'` | `string` |
+| `region`      | optional  | Data center to send the request to: `'us'`, `'eu'` or `'jp'`. Defaults to `'us'`. | `'eu'`      | `string` |
 
 \* In Prebid.js both IDs may instead come from standard ORTB first party data —
 `ortb2.{site|app|dooh}.publisher.id` and `ortb2Imp.tagid` — in which case the bid params are
