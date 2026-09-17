@@ -25,7 +25,7 @@ The Cloud API is **free** to integrate and use. To increase limits please check 
 
 ## Description
 
-51Degrees module enriches an OpenRTB request with [51Degrees Device Data](https://51degrees.com/documentation/index.html) and (optionally) IP-derived geo plus a 51Did (51Degrees identifier) entry in `user.eids`.
+51Degrees module enriches an OpenRTB request with [51Degrees Device Data](https://51degrees.com/documentation/index.html) and (optionally) IP-derived geo plus 51Did (51Degrees identifier) entries in `user.eids`.
 
 51Degrees module sets the following fields of the device object: `devicetype`, `make`, `model`, `hwv`, `os`, `osv`, `h`, `w`, `ppi`, `pxratio`. Interested bidder adapters may use these fields as needed. 
 
@@ -39,11 +39,22 @@ When 51Degrees IPI is available in the cloud response, the module sets `device.i
 
 51Did is not anonymous. What protects the user is the contract every party is bound by, rather than anything about the string itself. A 51Did is sent and received under the [Model Terms for Marketing](https://m4ow.uk/mtm), published by the Movement for an Open Web, whose full text is at [m4ow.uk/mtm/2.txt](https://m4ow.uk/mtm/2.txt). Under those terms a receiver may use the data only for a closed list of purposes and only as the user's preference allows, must not modify it or store its parts separately, must not combine it with special category data or profile on such data, and must not attempt to identify the user from it. Only the operator, being the party running the interface where the user gave the preference, may link the identifier to a user. Each party warrants that it has no means reasonably likely to be used to identify anyone from the data, which is what puts the data outside personal data for that transaction where data protection law applies, and that warranty is a promise about the receiver rather than a fact about the string.
 
-A 51Did is produced only where the user has given a usage preference (`id.usage`). On the cloud request this module makes, that preference is either standard marketing or personalized marketing as those are described to the user in Appendix 1 of the [Model Terms](https://m4ow.uk/mtm/2.txt). Standard marketing means content unrelated to browsing history, such as content chosen by time, region and the page in view. Personalized marketing means content related to browsing history or interactions. Where no preference has been given, no 51Did is produced. Where the page already carries its own 51Degrees integration, the module uses that response as it finds it, so the preference is whichever one that integration was loaded with. The recommended way to collect and store that preference is the [51Degrees Preference Management Platform (PMP)](https://51degrees.com/documentation/4.5/_identifiers__p_m_p.html) — a lightweight consent widget that writes the user's choice to `localStorage`. When PMP is present on the page the module picks up that preference automatically. When PMP is absent the module falls back to inferring the preference from the publisher's existing TCF or GPP consent string (see below).
+A 51Did is produced only where the user has given a usage preference (`id.usage`). On the cloud request this module makes, that preference is either standard marketing or personalized marketing as those are described to the user in Appendix 1 of the [Model Terms](https://m4ow.uk/mtm/2.txt). Standard marketing means content unrelated to browsing history, such as content chosen by time, region and the page in view. Personalized marketing means content related to browsing history or interactions. Where no preference has been given, no 51Did is produced. Where the page already carries its own 51Degrees integration, the module uses that response as it finds it, so the preference is whichever one that integration was loaded with (see [On-page integration](#on-page-integration)). The recommended way to collect and store that preference is the [51Degrees Preference Management Platform (PMP)](https://51degrees.com/documentation/4.5/_identifiers__p_m_p.html) — a lightweight consent widget that writes the user's choice to `localStorage`. When PMP is present on the page the module picks up that preference automatically. When PMP is absent the module falls back to inferring the preference from the publisher's existing TCF or GPP consent string (see below).
 
-When 51Did is available, the module appends an entry to `user.eids` with `source = "51d.es"`, `inserter = "51degrees.com"`, `mm = 5` (inference), and `uids` carrying `idproblic` and `idprobglobal`. Every entry carries `ext.tdl`, an array of terms documents naming the legal basis the identifier is shared under. The [Model Terms for Marketing](https://m4ow.uk/mtm/2.txt) are always first, because every party sending or receiving a 51Did is bound by them. The publisher's own Terms Document Locator follows when `params.tdlUrl` is configured.
+When 51Did is available, the module appends one `user.eids` entry per identifier type returned by the cloud, each with `source = "51d.es"` and `inserter = "51degrees.com"`. The match method (`mm`) is an eid-level field, so a type cannot share an entry with another type:
+
+{: .table .table-bordered .table-striped }
+| Type | `mm` | `atype` |
+| :--- | :--- | :--- |
+| Probabilistic | 5 (inference) | 1 (browser or device tied) |
+| Random | 0 (unknown) | 1 (browser or device tied) |
+| Hashed Email | 3 (authenticated) | 3 (person based) |
+
+A type's license and global values share its entry as `uids`, license value first. Every entry carries `ext.tdl`, an array of terms documents naming the legal basis the identifier is shared under. The [Model Terms for Marketing](https://m4ow.uk/mtm/2.txt) are always first, because every party sending or receiving a 51Did is bound by them. The publisher's own Terms Document Locator follows when `params.tdlUrl` is configured. Random and Hashed Email appear only when the resource key includes those properties, and Hashed Email additionally requires evidence supplied to the 51Degrees integration itself (see [On-page integration](#on-page-integration)).
 
 The module forwards the publisher's consent strings to the cloud as evidence when present. The TCF consent string (from Prebid's GDPR consent) is sent as `tcstring` and the GPP string (from Prebid's GPP consent) is sent as `gppstring`; the cloud can infer the marketing usage preference from either when PMP is not present, so 51Did works for publishers running any TCF or GPP CMP. These come from Prebid's consent data, not module params.
+
+When the consent evidence changes mid-session, the module reloads its script so the new strings reach the cloud, and removes the `fod` entry the 51Degrees script keeps in session storage. That entry is the script's cached cloud response and is keyed on nothing but the script's object name, so leaving it in place would let the reloaded script replay the response the previous consent produced. The module writes nothing to session storage and removes only that one key, only on a consent change; where session storage is not permitted the removal is skipped.
 
 The module supports on premise and cloud device detection services with free options for both. 
 
@@ -152,6 +163,37 @@ pbjs.setConfig({
 });
 ```
 
+### On-page integration
+
+When the page already runs its own 51Degrees integration, the module detects it automatically (the integration's `window.fod` object) and consumes its result instead of loading a second copy of the script. No module params are needed in this mode:
+
+```javascript
+pbjs.setConfig({
+    realTimeData: {
+        auctionDelay: 250,
+        dataProviders: [
+            {
+                name: '51Degrees',
+                waitForIt: true,
+            },
+        ],
+    },
+});
+```
+
+The module converts the integration's payload and enriches the ORTB2 request exactly as it does with its own script, and `tdlUrl` is still honoured. It sends nothing to the cloud itself, so the integration's script URL must carry the same parameters the module would send: `id.usage` (or the `tcstring` / `gppstring` consent strings) and any client-hint parameters. When an integration is present on the page the module uses it even if `resourceKey` is configured.
+
+Publisher requirements:
+
+* Load the 51Degrees script **synchronously**, before Prebid runs the auction. Do not use `async` or `defer` on the script tag, and do not inject it from a later-running script. Detection is a point-in-time check for `window.fod` at auction time: if the integration has not executed by then, the module does not see it and falls back to its configured behaviour, which with `resourceKey` set means loading a second copy of the script.
+* Keep the default object name (`fod`); the module reads `window.fod`, so an integration publishing under a different object name is not detected.
+* Identifiers that require additional evidence, such as Hashed Email, are configured on the 51Degrees integration itself. See the [51Degrees documentation](https://51degrees.com/documentation/index.html).
+
+Two limitations follow from consuming the page integration directly:
+
+* A consent change during the session does not re-run the page integration. Its payload reflects the consent state it was loaded under, and the new preference takes effect from the next page load.
+* If the integration never completes, the module never calls back and the auction proceeds only after the configured `auctionDelay`. The module does not fall back to loading its own script while `window.fod` is present, because two integrations on one page would conflict.
+
 ### Parameters 
 
 > Note that `resourceKey` and `onPremiseJSUrl` are mutually exclusive parameters.  Use strictly one of them: either a `resourceKey` for cloud integration and `onPremiseJSUrl` for the on-premise self-hosted integration. 
@@ -180,6 +222,9 @@ run the following command:
 and then open the following URL in your browser:
 
 `http://localhost:9999/integrationExamples/gpt/51DegreesRtdProvider_example.html`
+
+A second example shows the on-page integration mode:\
+`http://localhost:9999/integrationExamples/gpt/51DegreesRtdProvider_pageIntegration_example.html`
 
 Open the browser console to see the logs.
 
