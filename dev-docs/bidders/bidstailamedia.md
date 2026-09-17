@@ -1,10 +1,11 @@
 ---
 layout: bidder
-title: Sportplatz Media
-description: Prebid spm Bidder Adapter
+title: stailamedia Bidder
+description: Prebid bidstailamedia Bidder Adapter
 pbjs: true
-biddercode: spm
-gvl_id: 965
+biddercode: bidstailamedia
+aliasCode: nexx360
+gvl_id: 965 (nexx360)
 tcfeu_supported: true
 usp_supported: true
 gpp_supported: true
@@ -24,10 +25,9 @@ multiformat_supported: will-bid-on-any
 
 ### Bid Params
 
-{: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                | Example                                   | Type      |
 |---------------|----------|----------------------------|--------------------------------------     |-----------|
-| `tagId`       | required | tag ID                     | `"n1x53vta"`                             | `string`  |
+| `tagId`       | required | tag ID                     | `"hk15z9sy"`                             | `string`  |
 
 ### First Party Data
 
@@ -52,9 +52,9 @@ var adUnits = [
         }
       },
       bids: [{
-         bidder: 'spm',
+         bidder: 'bidstailamedia',
          params: {
-            tagId: 'n1x53vta'
+            tagId: 'hk15z9sy'
          }
        }]
    },
@@ -68,9 +68,9 @@ var adUnits = [
             }
         },
         bids: [{
-            bidder: 'spm',
+            bidder: 'bidstailamedia',
             params: {
-               tagId: 'n1x53vta'
+               tagId: 'hk15z9sy'
             }
         }]
     },
@@ -91,9 +91,9 @@ var adUnits = [
             }
         },
         bids: [{
-            bidder: 'spm',
+            bidder: 'bidstailamedia',
             params: {
-               tagId: 'n1x53vta'
+               tagId: 'hk15z9sy'
             }
         }]
     },
@@ -110,10 +110,10 @@ var adUnits = [
             }
         },
         bids: [{
-            bidder: 'spm',
+            bidder: 'bidstailamedia',
             params: {
-               tagId: 'n1x53vta',
-               videoTagId: 'n1x53vta'
+               tagId: 'hk15z9sy',
+               videoTagId: 'hk15z9sy'
             }
         }]
     };

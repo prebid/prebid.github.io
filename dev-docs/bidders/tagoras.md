@@ -3,7 +3,6 @@ layout: bidder
 title: Tagoras
 description: Prebid Tagoras Bidder Adaptor
 biddercode: tagoras
-filename: tagorasBidAdapter
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 tcfeu_supported: true
 usp_supported: true

@@ -2,7 +2,7 @@
 layout: bidder
 title: Anzu SSP
 description: Anzu SSP Bidder Adapter
-biddercode: AnzuSSP
+biddercode: anzuSSP
 usp_supported: true
 coppa_supported: true
 schain_supported: true

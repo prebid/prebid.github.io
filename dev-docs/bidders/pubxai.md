@@ -5,6 +5,7 @@ description: Prebid PubxAi Bidder Adapter
 pbjs: true
 pbs: true
 biddercode: pubxai
+aliasCode: nexx360
 gvl_id: 1485
 usp_supported: true
 gpp_sids: tcfeu

@@ -3,7 +3,6 @@ layout: bidder
 title: ShinezRTB
 description: Prebid Shinez RTB Bidder Adaptor
 biddercode: shinezRtb
-filename: shinezRtbBidAdapter
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 tcfeu_supported: true
 usp_supported: true
