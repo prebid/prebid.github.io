@@ -587,7 +587,7 @@ Pay attention that there are certain protected fields such as `regs`, `device`, 
 
 ## ORTB Response Customization
 
-Prebid SDK allows customizing the parsing of the of and the types used to represent the ORTB respnse. Use `CustomModelObjects.registerCustomType(_:)` to specify the custom types to use and override the `init(jsonDictionary:)` with custom parsing logic.
+Prebid SDK allows customizing the parsing of the types used to represent the ORTB response. Use `CustomModelObjects.registerCustomType(_:)` to specify the custom types to use and override the `init(jsonDictionary:)` with custom parsing logic.
 
 ```swift
 class MyCustomORTBBidResponse: ORTBBidResponse {
