@@ -141,4 +141,4 @@ When adoption reporting is enabled, the edge records an observation only when th
 ## Further reading
 
 - [C2PA Specification](https://c2pa.org/specifications/)
-- [Prebid Real-Time Data modules](https://docs.prebid.org/dev-docs/add-rtd-submodule.html)
+- [Prebid Real-Time Data modules](/dev-docs/add-rtd-submodule.html)
