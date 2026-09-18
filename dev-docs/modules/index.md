@@ -115,6 +115,49 @@ results. See [the userSync setConfig](/dev-docs/publisher-api-reference/setConfi
 </tbody>
 </table>
 
+## Loading modules separately
+
+There are situations where a publisher uses different modules depending on various factors, such as specific pages or locations. This creates the inconvenience of having to load a Prebid build that is larger than what a particular page actually needs. While it’s possible to work around this by creating separate Prebid builds for different pages, that approach doesn’t scale well. Since a Prebid build is composed of concatenated chunks, it’s possible to load modules separately, allowing you to have a main Prebid file that contains only the modules shared across all pages.
+
+### Example
+
+This is the example of loading modules separately for the self-hosted (e.g. CDN) Prebid build.
+Instructions for importing modules when using the npm package can be found in the [Readme file](https://github.com/prebid/Prebid.js/blob/master/README.md)
+
+1. Perform full Prebid build `gulp build`
+1. Generate the main `prebid.js` file containing only the modules required across all pages: `gulp bundle --modules=<...>`
+1. Host `build/dist` folder content on your server or CDN
+1. Check the dependencies of the modules you plan to load dynamically on the current page [Dependency tree](https://cdn.jsdelivr.net/npm/prebid.js@latest/dist/chunks/dependencies.json)
+1. Load the required modules, their dependencies using script tags:
+
+```html
+<html>
+<head>
+    <title>Page 1</title>>
+    <script src="https://<your-cdn>/prebid/ortbConverter.js"></script> <!-- Depedency of openxBidAdapter !-->
+    <script src="https://<your-cdn>/prebid/openxBidAdapter.js"></script> <!-- Bid adapter module !-->
+    <script src="https://<your-cdn>/prebid/id5IdSystem.js"></script> <!-- Another module (doesn't require any additional dependencies) !-->
+    <script src="https://<your-cdn>/prebid/prebid.js"></script> <!-- Load prebid.js last !-->
+</head>
+```
+
+### Storage control usage
+
+When working with the `storageControl` module you will need to explicitly import disclosure metadata. To do this, pair each module import with its corresponding metadata file `<module>.metadata.js`
+
+```html
+<html>
+<head>
+    <title>Page 1</title>>
+    <script src="https://<your-cdn>/prebid/ortbConverter.js"></script> <!-- Depedency of openxBidAdapter !-->
+    <script src="https://<your-cdn>/prebid/openxBidAdapter.js"></script> <!-- Bid adapter module !-->
+    <script src="https://<your-cdn>/prebid/openxBidAdapter.metadata.js"></script> <!-- Bid adapter module's metadata !-->
+    <script src="https://<your-cdn>/prebid/id5IdSystem.js"></script> <!-- Another module (doesn't require any additional dependencies) !-->
+    <script src="https://<your-cdn>/prebid/id5IdSystem.metadata.js"></script> <!-- Another module's metadata !-->
+    <script src="https://<your-cdn>/prebid/prebid.js"></script> <!-- Load prebid.js last !-->
+</head>
+```
+
 ## Further Reading
 
 - [Source code of all modules](https://github.com/prebid/Prebid.js/tree/master/modules)

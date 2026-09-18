@@ -26,7 +26,7 @@ This endpoint returns JSON like:
 
 ```json
 [
-  "appnexus",
+  "msft",
   "audienceNetwork",
   "pubmatic",
   "rubicon",
@@ -94,7 +94,7 @@ For example:
 
 ```json
 {
-  "appnexus": { /* A json-schema describing AppNexus' bidder params */ },
+  "msft": { /* A json-schema describing Microsoft's bidder params */ },
   "magnite": { /* A json-schema describing Rubicon's bidder params */ },
   "otherBidder": { /* A json-schema describing Rubicon's bidder params */ }
 }

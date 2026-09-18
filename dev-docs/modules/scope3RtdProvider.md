@@ -62,10 +62,10 @@ pbjs.setConfig({
                 orgId: "your-org-id",
                 endpoint: "<https://prebid.scope3.com/prebid>",
                 timeout: 1500,
-                bidders: ["appnexus", "rubicon", "pubmatic"],
-                includeKey: "scope3_include",
-                excludeKey: "scope3_exclude",
-                macroKey: "scope3_macro",
+                bidders: ["msft", "rubicon", "pubmatic"],
+                includeKey: "axei",
+                excludeKey: "axex",
+                macroKey: "axem",
                 publisherTargeting: true,
                 advertiserTargeting: true,
                 cacheEnabled: true,
@@ -86,9 +86,9 @@ pbjs.setConfig({
 | endpoint | String | No | API endpoint (default: `https://prebid.scope3.com/prebid`) |
 | timeout | Number | No | Request timeout in milliseconds (default: 1000) |
 | bidders | Array | No | List of bidders to target (default: all auction bidders) |
-| includeKey | String | No | GAM targeting key for include signals (default: "scope3_include") |
-| excludeKey | String | No | GAM targeting key for exclude signals (default: "scope3_exclude") |
-| macroKey | String | No | GAM targeting key for macro data (default: "scope3_macro") |
+| includeKey | String | No | GAM targeting key for include signals (default: "axei") |
+| excludeKey | String | No | GAM targeting key for exclude signals (default: "axex") |
+| macroKey | String | No | GAM targeting key for macro data (default: "axem") |
 | publisherTargeting | Boolean | No | Enable publisher-level targeting (default: true) |
 | advertiserTargeting | Boolean | No | Enable advertiser-level targeting (default: true) |
 | cacheEnabled | Boolean | No | Enable response caching (default: true) |
@@ -105,7 +105,7 @@ The Scope3 AEE returns signals in this format:
     "exclude": ["competitor_exposed"],
     "macro": "eyJjb250ZXh0IjogImhpZ2hfdmFsdWUifQ==",
     "bidders": {
-      "appnexus": {
+      "msft": {
         "segments": ["seg1", "seg2"],
         "deals": ["DEAL123"]
       },
@@ -126,19 +126,19 @@ Create GAM line items with key-value targeting using the configured keys:
 
 **Include Targeting:**
 
-* Key: `scope3_include` (or your configured includeKey)
+* Key: `axei` (or your configured includeKey)
 * Values: `sports_fan`, `auto_intender`, etc.
 * Operator: "is any of"
 
 **Exclude Targeting:**
 
-* Key: `scope3_exclude` (or your configured excludeKey)
+* Key: `axex` (or your configured excludeKey)
 * Values: `competitor_exposed`, etc.
 * Operator: "is none of"
 
 **Macro Targeting:**
 
-* Key: `scope3_macro` (or your configured macroKey)
+* Key: `axem` (or your configured macroKey)
 * Values: Base64-encoded contextual data
 
 ### Example Line Item Configuration
@@ -146,9 +146,9 @@ Create GAM line items with key-value targeting using the configured keys:
 ```text
 Creative: 300x250 Banner
 Targeting:
-  * scope3_include is any of "sports_fan", "auto_intender"
-  * scope3_exclude is none of "competitor_exposed"
-  * scope3_macro is "eyJjb250ZXh0IjogImhpZ2hfdmFsdWUifQ=="
+  * axei is any of "sports_fan", "auto_intender"
+  * axex is none of "competitor_exposed"
+  * acem is "eyJjb250ZXh0IjogImhpZ2hfdmFsdWUifQ=="
 ```
 
 ## Data Flow

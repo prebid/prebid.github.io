@@ -10,7 +10,8 @@ coppa_supported: false
 schain_supported: false
 floors_supported: true
 dchain_supported: false
-media_types: banner
+media_types: banner, video
+multiformat_supported: will-bid-on-one
 safeframes_ok: false
 deals_supported: false
 pbjs: true
@@ -20,7 +21,7 @@ prebid_member: false
 sidebarType: 1
 gpp_sids: tcfeu, usnat, usstate_all
 ---
-### Registration
+## Registration
 
 Before Ogury's adapter integration, you have to register an account in the Ogury Platform. Please contact <supply-development@ogury.co> if you're interested in a partnership.
 If you already have an account you'll need to register your websites (= assets) and the placements (= ad units) within the Platform. Alternatively reach out to your POC within Ogury to assist you with the placement creation.
@@ -34,10 +35,10 @@ This is the minimal list of params for integrating with Ogury:
 
 {: .table .table-bordered .table-striped }
 
-| Name          | Scope    | Description           | Example   | Type      |
-|---------------|----------|-----------------------|-----------|-----------|
-| `assetKey`    | required | The asset key provided by Ogury   | `'OGY-CA41D116484F'` | `string`  |
-| `adUnitId`    | required | Your ad unit id configured with Ogury | `'2c4d61d0-90aa-0139-0cda-0242ac120004'` | `string`  |
+| Name       | Scope    | Description                           | Example                                  | Type     |
+|------------|----------|---------------------------------------|------------------------------------------|----------|
+| `assetKey` | required | The asset key provided by Ogury       | `'OGY-CA41D116484F'`                     | `string` |
+| `adUnitId` | required | Your ad unit id configured with Ogury | `'2c4d61d0-90aa-0139-0cda-0242ac120004'` | `string` |
 
 NOTE: You don't need these params to integrate with Ogury, see [inventory mapping](#inventory-mapping)
 
@@ -80,14 +81,48 @@ Use this example configuration for enabling Ogury ad server integration on a spe
 
 ```
 
-#### Inventory mapping
+For video ad units, configure the `video` media type as shown below:
 
-_"Inventory mapping" is only available for request coming from **web**. For **in-app** request use the "bid param" integration method._
+```javascript
+var videoAdUnits = [
+  {
+    code: 'video-ad-unit-code',
+    mediaTypes: {
+      video: {
+        context: 'instream',
+        playerSize: [[640, 480]],
+        mimes: ['video/mp4', 'video/webm'],
+        protocols: [2, 3, 5, 6],
+        playbackmethod: [1, 2],
+        maxduration: 30
+      }
+    },
+    bids: [
+      {
+        bidder: 'ogury',
+        params: {
+          assetKey: 'YOUR_OGURY_ASSET_KEY',
+          adUnitId: 'YOUR_OGURY_VIDEO_AD_UNIT_ID'
+        }
+      }
+    ]
+  }
+];
+
+pbjs.que.push(function () {
+    pbjs.addAdUnits(videoAdUnits);
+});
+```
+
+#### Inventory mapping
 
 _Note: If you choose inventory mapping, you can skip specifying assetKey and adUnitId per ad unit._
 
-With inventory mapping you don't need to setup `assetKey/adUnitId` for every ad unit that you want to integrate. You use a single `id` and provide Ogury with list of sites and `ad_unit_code`s that you want to integrate and the mapping will be done on our side.
-The example configuration for this type of integration looks like this:
+With inventory mapping you don't need to setup `assetKey/adUnitId` for every ad unit that you want to integrate. You use a single `id` and provide Ogury with list of sites or bundles and `ad_unit_code`s that you want to integrate and the mapping will be done on our side.
+
+The example configuration for this type of integration looks like bellow.
+
+Web example:
 
 ```javascript
 pbjs.que.push(function () {
@@ -107,11 +142,31 @@ pbjs.que.push(function () {
 })
 ````
 
+In-app example:
+
+```javascript
+pbjs.que.push(function () {
+            // setup publisherId for ogury
+            pbjs.setBidderConfig({
+                bidders: ['ogury'],
+                config: {
+                    ortb2: {
+                        app: {
+                            publisher: {
+                                id: '$OGURY_PUBLISHER_ID',
+                            },
+                        }
+                    }
+                }
+            })
+})
+````
+
 `$OGURY_PUBLISHER_ID` is a Ogury provided id. 
 
 ### Optional bid Params
 
-Depending on your advertising format needs, other optional parameters can be used. Supported parameters are detailed [here](https://ogury-ltd.gitbook.io/mobile-web/header-bidding/ogury-prebid.js-adapter-integration#optional-configuration).
+Depending on your advertising format needs, other optional parameters can be used. See the [optional configuration documentation](https://ogury-ltd.gitbook.io/mobile-web/header-bidding/ogury-prebid.js-adapter-integration#optional-configuration) for supported parameters.
 
 ### Contact information
 

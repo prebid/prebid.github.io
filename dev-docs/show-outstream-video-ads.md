@@ -48,9 +48,9 @@ var videoAdUnits = [{
         }
     },
     bids: [{
-        bidder: 'appnexus',
+        bidder: 'msft',
         params: {
-            placementId: 13232385,
+            placement_id: 13232385,
         }
     }]
 }];

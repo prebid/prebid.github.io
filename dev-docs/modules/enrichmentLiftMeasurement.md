@@ -56,7 +56,7 @@ pbjs.setConfig({
 });
 ```
 
-The following object will be attached to analytics labels based on the configuration above:
+The following object will be attached to [analytics labels](/dev-docs/integrate-with-the-prebid-analytics-api.html#analytics-labels) based on the configuration above:
 
 ```javascript
 {
@@ -65,3 +65,14 @@ The following object will be attached to analytics labels based on the configura
     { name: '33acrossIdSystem', percentage: 0.5, enabled: false } // May be true or false depending on random selection
   ]
 }
+```
+
+### Analytics Labels
+
+The module adds one analytics label whose key matches the configured `testRun` value. The value is an array that lists every User ID submodule participating in the experiment along with its configured percentage and whether it was enabled for the current page view. Analytics adapters can use that label to segment reporting by experiment group.
+
+- `name`: The User ID submodule name.
+- `percentage`: The configured rollout percentage, which is useful for validating traffic splits.
+- `enabled`: Indicates whether the submodule ran for the current user; this is the randomized value that identifies the treatment/control groups.
+
+See the [Analytics labels](/dev-docs/integrate-with-the-prebid-analytics-api.html#analytics-labels) section for guidance on how analytics adapters consume this metadata.

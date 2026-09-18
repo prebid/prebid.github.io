@@ -4,6 +4,7 @@ title: Saambaa
 description: Prebid Saambaa Bidder Adapter
 pbjs: true
 biddercode: saambaa
+aliasCode: advangelists
 sidebarType: 1
 ---
 

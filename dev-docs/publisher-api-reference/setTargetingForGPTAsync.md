@@ -14,7 +14,7 @@ Set query string targeting on GPT ad units after the auction.
 | Param | Scope | Type | Description |
 | --- | --- | --- | -- |
 | [codeArr] | Optional | `array` | an array of adUnitCodes to set targeting for. |
-| customSlotMatching | Optional | `function` | gets a GoogleTag slot and returns a filter function for adUnitCode. |
+| customSlotMatching | Optional | `function` | REMOVED in 11.0; use [customGptSlotMatching](/dev-docs/publisher-api-reference/setConfig.html#customGptSlotMatching) instead. Gets a GoogleTag slot and returns a filter function for adUnitCode. |
 
 This function matches AdUnits that have returned from the auction to a GPT ad slot and adds the `hb_`
 targeting attributes to the slot so they get sent to GAM.

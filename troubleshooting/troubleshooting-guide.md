@@ -376,7 +376,7 @@ The following parameters in the `bidResponse` object are common across all bidde
 {: .table .table-bordered .table-striped }
 | Name     | Type    | Description                                                                                                                                                       | Example                                                                 |
 |----------+---------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------|
-| `bidder` | String  | Unique bidder code used by ad server's line items to identify the bidder                                                                                          | `"appnexus"`                                                            |
+| `bidder` | String  | Unique bidder code used by ad server's line items to identify the bidder                                                                                          | `"msft"`                                                            |
 | `adId`   | String  | Unique identifier of a bid creative. Used by the line item's creative as in [this example](/adops/gam-creative-banner-sbs.html) | `"123"`                                                                 |
 | `pbLg`   | String  | Low granularity price bucket: $0.50 increment, capped at $5, floored to 2 decimal places (0.50, 1.00, 1.50, ..., 5.00)                                            | `"1.50"`                                                                |
 | `pbMg`   | String  | Medium granularity price bucket: 0.10 increment, capped at $20, floored to 2 decimal places (0.10, 0.20, ..., 19.90, 20.00)                                       | `"1.60"`                                                                |
@@ -395,7 +395,7 @@ The below snippet can be added to your page to better understand the Auction whe
 ```javascript
 pbjs.que.push(function() {
   pbjs.addAdUnits(adUnits);
-  pbjs.aliasBidder('appnexus', 'waitForMe');
+  pbjs.aliasBidder('msft', 'waitForMe');
   pbjs.aliasBidder('rubicon', 'doNotWaitForMe');
   pbjs.setConfig({
       'auctionOptions': {

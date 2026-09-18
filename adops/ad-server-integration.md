@@ -49,7 +49,7 @@ We don’t currently have details on specific header bidding support in other ad
 
 For step-by-step instructions on using some of the other ad servers, see the following documentation:
 
-- [Xandr Monetize Ad Server](/adops/setting-up-prebid-with-the-appnexus-ad-server.html)
+- [Xandr Monetize Ad Server](/adops/setting-up-prebid-with-the-microsoft-ad-server.html)
 - [Smart Ad Server](/adops/setting-up-prebidjs-with-Smart-Ad-Server.html)
 - [FreeWheel](/adops/setting-up-prebid-video-in-freewheel.html)
 

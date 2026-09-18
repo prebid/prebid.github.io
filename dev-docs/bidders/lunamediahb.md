@@ -1,7 +1,7 @@
 ---
 layout: bidder
 title: LunamediaHB
-description: Prebid Lunamedia Bidder Adapter
+description: LunamediaHB Bidder Adapter
 biddercode: lunamediahb
 usp_supported: true
 schain_supported: true
@@ -9,14 +9,24 @@ gvl_id: 998
 tcfeu_supported: true
 coppa_supported: true
 media_types: banner, video, native
+floors_supported: true
+fpd_supported: true
+userIds: all
 pbjs: true
 pbs: false
+multiformat_supported: will-bid-on-any
 sidebarType: 1
 ---
 
-### Prebid.Server Bid Params
+## Note
+
+The LunamediaHB Bidding adapter requires setup before beginning. Please contact us at <prebid@lunamedia.io>
+
+### Prebid.js Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name           | Scope    | Description                                              | Example    | Type      |
-|----------------|----------|----------------------------------------------------------|------------|-----------|
-| `placementId` | required | Placement Id will be generated on Lunamedia Platform. | `'0'`        | `string` |
+| Name | Scope | Description | Example | Type |
+| --------------- | ---------- | ------------------------------------ | ----------------------------------- | ---------- |
+| `publisherId` | required | Publisher ID on the LunamediaHB platform. | `'publisher-123'` | `string` |
+| `adUnitId` | required | Ad unit ID on the LunamediaHB platform. | `'ad-unit-456'` | `string` |
+| `tenantId` | required | Tenant ID on the LunamediaHB platform. | `'tenant-789'` | `string` |

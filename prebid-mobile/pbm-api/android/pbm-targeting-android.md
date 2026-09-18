@@ -795,6 +795,25 @@ Parameters:
 | latitude | required | double | The device latitude. | 40.71 |
 | longitude | required | double | The device longitude. | 74.01 |
 
+### setLocationDecimalPrecision()
+
+Sets the decimal precision for location coordinates (latitude/longitude) in geo-targeting. This helps control the precision of location data sent in ad requests for privacy purposes.
+
+Signature:
+
+```kotlin
+void setLocationDecimalPrecision(Int? precision)
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| precision | optional | integer | Number of decimal places to keep, or null for no limit. Values outside the 0-6 range will be clamped to valid range. Default is `null` | 2 |
+
+Related function: getLocationDecimalPrecision().
+
 ---
 
 ## Arbitrary OpenRTB
@@ -826,6 +845,14 @@ TargetingParams.setGlobalOrtbConfig("")
 ```
 
 The `TargetingParams.setGlobalOrtbConfig()` also allows to **add** impression objects to the request. All objects in the `$.imp[]` array will be added to the request. Note that Ad Unit's `imp` object won't be changed using Global Config. To change the `imp` config, use the `setImpORTBConfig()` method of a particular Ad Unit. See the Ad Unit documentation for the details. 
+
+The global config is also the way to set OpenRTB fields that have no dedicated `TargetingParams` method. For instance, to pass the URL of the content displayed alongside the ad in `$.app.content.url`:
+
+``` kotlin
+TargetingParams.setGlobalOrtbConfig("{\"app\":{\"content\":{\"url\":\"https://example.com/articles/123\"}}}")
+```
+
+Each call replaces the previously set global config, so put all global-level fields in a single JSON object.
 
 Pay attention that there are certain protected fields such as `regs`, `device`, `geo`, `ext.gdpr`, `ext.us_privacy`, and `ext.consent` which cannot be changed using the `setGlobalOrtbConfig()` method.
 
