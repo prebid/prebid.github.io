@@ -25,7 +25,7 @@ privacy_sandbox: no
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 The BidWave bidder adapter requires setup before beginning. Please contact <hello@bidwave.net> for onboarding.
 
