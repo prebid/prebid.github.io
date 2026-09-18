@@ -4,7 +4,8 @@ title: Reklamup
 description: Prebid Reklamup Bidder Adapter
 biddercode: reklamup
 gpp_sids: usstate_all
-tcfeu_supported: false
+gvl_id: 1619
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
@@ -33,3 +34,29 @@ sidebarType: 1
 ## Note
 
 For the prebid server and prebid.js you only need to use one parameter: either placementId or endpointId
+
+## Regional Endpoints
+
+Reklamup supports the following regional endpoint subdomains:
+
+- `eu-node` — EU
+- `node` — US East
+
+### Prebid Server
+
+The Prebid Server config endpoint is defined with a `REGION` placeholder:
+
+```yaml
+endpoint: "https://REGION.reklamup.com/pserver"
+```
+
+Please deploy this config in each of your datacenters and replace `REGION` with the appropriate regional subdomain (`eu-node` or `node`).
+
+### Prebid.js
+
+The Prebid.js adapter automatically selects the regional endpoint based on the browser timezone:
+
+- Europe / Africa / Atlantic / Arctic / Asia → `eu-node`
+- Australia / Antarctica / Pacific / Indian → `node`
+- America → `node`
+- Unknown / unresolved timezone → `node` (fallback)
