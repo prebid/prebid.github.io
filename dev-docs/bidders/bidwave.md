@@ -31,7 +31,7 @@ The BidWave bidder adapter requires setup before beginning. Please contact <hell
 
 BidWave bids in USD. Prebid Server sends BidWave requests in USD and converts bid floors to USD when currency conversion is configured.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 
