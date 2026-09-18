@@ -132,6 +132,38 @@ pbjs.setConfig({
 | `params.abName` | String | A/B test name identifier | `'unknown'` |
 | `params.abSplit` | Number | Fraction of users in treatment group (0-1) | `0.8` |
 
+## IMPORTANT:  GDPR / TCF Vendor Consent
+
+WURFL is a privacy-safe signal. WURFL RTD does not have a registered IAB Global Vendor List (GVL) ID. 
+If your site enforces TCF vendor consent for the "storage" purpose — which is Prebid's *default*
+behavior the moment `consentManagement.gdpr` is configured, whether or not you set
+`rules` yourself — Prebid has no vendor ID to check consent against for this module,
+and will deny it local storage access for every GDPR-scoped visitor. The module still
+runs, but permanently falls back to lightweight client-side enrichment (LCE) instead
+of full WURFL device-database enrichment for that traffic.
+
+To avoid this, add "wurfl" to the storage purpose's `vendorExceptions`:
+
+```pbjs.setConfig({
+  consentManagement: {
+    gdpr: {
+      rules: [
+        { 
+          purpose: 'storage', 
+          enforcePurpose: true,
+          enforceVendor: true,
+          vendorExceptions: [],
+          softVendorExceptions: ['wurfl'] 
+        }
+      ]
+    }
+  }
+});
+```
+
+### This only matters if your site enforces TCF vendor consent for "storage"
+### Sites with no CMP, or with GDPR enforcement disabled, are unaffected
+
 ## Testing
 
 To test the WURFL RTD module locally:
