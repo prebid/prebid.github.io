@@ -41,6 +41,6 @@ The Example Bidding adapter requires setup before beginning. Please contact us a
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
 |---------------|----------|-----------------------|-----------|-----------|
-| `accountId` | optional | account id | `'hash'` | `string` |
-| `placementId` | optional | ssp placement id | `'hash'` | `string` |
-| `region` | optional | optional target region: `us-east`(default), `eu`, `apac` | `'hash'`|`string` |
+| `accountId` | optional | account id, only for exchange integration | `'hash'` | `string` |
+| `placementId` | optional | ssp placement id, only for ssp integration | `'hash'` | `string` |
+| `region` | optional | optional target region, for ssp and exchnage integrations | `'us-east'`(default), `'eu'`, `'apac'`| `string` |
