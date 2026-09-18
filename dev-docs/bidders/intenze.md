@@ -24,12 +24,23 @@ userIds: all
 ---
 
 ### Note
+
 Intenze will bid only on first impresion in bid request.
 The Example Bidding adapter requires setup before beginning. Please contact us at <connect@intenze.co>
 
-### Bid Params
+### Prebid.js Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description           | Example   | Type      |
+| Name | Scope | Description | Example | Type |
 |---------------|----------|-----------------------|-----------|-----------|
-| `accountId`      | required | account id | `'hash'`    | `string` |
+| `accountId` | optional | account id | `'hash'` | `string` |
+| `placementId` | optional | ssp placement id | `'hash'` | `string` |
+
+### Prebid Server Bid Params
+
+{: .table .table-bordered .table-striped }
+| Name | Scope | Description | Example | Type |
+|---------------|----------|-----------------------|-----------|-----------|
+| `accountId` | optional | account id | `'hash'` | `string` |
+| `placementId` | optional | ssp placement id | `'hash'` | `string` |
+| `region` | optional | optional target region: `us-east`(default), `eu`, `apac` | `'hash'`|`string` |
