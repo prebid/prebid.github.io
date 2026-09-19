@@ -62,6 +62,20 @@ The Floxis adapter supports the Prebid.js [Floors Module](https://docs.prebid.or
 
 Privacy signals (GDPR/TCF EU, US Privacy, GPP, COPPA) are provided by Prebid.js core / Prebid Server and forwarded on the OpenRTB request. The Floxis exchange enforces IAB TCF EU vendor consent (GVL ID 1609) and honors US Privacy and GPP US national/state opt-out signals.
 
+## First-Party Fallback Id (Storage Use)
+
+In browsers that block third-party cookies, the Prebid.js adapter maintains a first-party fallback identifier: a random v4 UUID stored under the key `flx_uid` in `localStorage` (preferred) and a cookie (~30-day lifetime), both scoped to the publisher's own origin. The id is per-publisher — it is never shared across sites — and is sent as `user.ext.floxisId`. It is used only as an identity of last resort when the Floxis `__fxId` cookie is unavailable. Storage details are disclosed at [floxis.tech/vendor-storage.json](https://floxis.tech/vendor-storage.json).
+
+All storage access goes through the Prebid.js `storageManager`, so it is gated by the standard `deviceAccess` configuration and GDPR purpose-1 consent under GVL ID 1609. Bidder-level storage access is denied by default and requires an explicit publisher opt-in — without it, no id is generated or sent (a safe no-op):
+
+```javascript
+pbjs.bidderSettings = {
+    floxis: {
+        storageAllowed: true
+    }
+};
+```
+
 ## AdUnit Configuration for Banner
 
 ```javascript

@@ -11,7 +11,7 @@ tcfeu_supported: true
 coppa_supported: true
 usp_supported: true
 pbjs: true
-pbs: false
+pbs: true
 floors_supported: true
 gvl_id: 1575
 pbjs_version_notes: Registered as an alias of mediagoBidAdapter
