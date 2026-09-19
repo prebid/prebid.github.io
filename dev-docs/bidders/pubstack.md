@@ -25,7 +25,7 @@ ortb_blocking_supported: true
 sidebarType: 1
 ---
 
-### Integration Note
+## Integration Note
 
 The Pubstack bidding adapter requires setup and approval before use. Contact your Pubstack account team to enable production traffic.
 
