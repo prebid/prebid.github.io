@@ -39,7 +39,7 @@ The Pubstack bidding adapter requires setup and approval before use. Contact you
 | `adUnitName` | required | Pubstack ad unit name associated with the placement. | `'homepage-top-banner'` | `string` |
 | `stackId` | optional | Pubstack stack identifier. | `'example-stack-id'` | `string` |
 
-### Test Parameters
+## Test Parameters
 
 ```javascript
 var adUnits = [
