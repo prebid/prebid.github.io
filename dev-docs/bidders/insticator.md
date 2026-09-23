@@ -11,6 +11,7 @@ coppa_supported: true
 gdpr_supported: true
 schain_supported: true
 floors_supported: true
+fpd_supported: true
 media_types: banner, video, audio
 multiformat_supported: will-bid-on-any
 pbjs: true
@@ -23,24 +24,26 @@ userIds: all
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name                        | Scope    | Description                                                                             | Example                            | Type     |
-|-----------------------------|----------|-----------------------------------------------------------------------------------------|------------------------------------|----------|
-| `adUnitId`                  | Required | The ad unit ID provided by Insticator                                                   | `'test'`                           | `string` |
-| `publisherId`               | optional | The publisher ID provided by Insticator                                                 | `'test'`                           | `string` |
-| `yob`                       | optional | Year of Birth                                                                           | `'1982'`                           | `string` |
-| `gender`                    | optional | Gender                                                                                  | `'M'`                              | `string` |
-| `instl`                     | optional | 1 = the ad is interstitial or full screen, 0 = not interstitial.                        | `1`                                | `number` |
-| `pos`                       | optional | ad position as per IAB standards                                                        | `1`                                | `number` |
-| `bid_endpoint_request_url`  | optional | Url string representing the endpoint Insticator adaptor should make the request bids to.| `https://ex.ingage.com/v1/openrtb` | `string` |
-| `floor`                     | optional | Sets a floor for bidder.                                                                | `0.50`                             | `float`  |
-| `bidfloorcur`               | optional | Currency of the floor. (Insticator only supports USD floors)                            | `USD`                              | `string` |
+| Name                       | Scope    | Description                                                                              | Example                            | Type      |
+|----------------------------|----------|------------------------------------------------------------------------------------------|------------------------------------|-----------|
+| `adUnitId`                 | Required | The ad unit ID provided by Insticator                                                    | `'test'`                           | `string`  |
+| `publisherId`              | optional | The publisher ID provided by Insticator                                                  | `'test'`                           | `string`  |
+| `user.yob`                 | optional | Year of birth                                                                            | `1982`                             | `integer` |
+| `user.gender`              | optional | Gender: `M`, `F` or `O`                                                                  | `'M'`                              | `string`  |
+| `user.keywords`            | optional | Comma separated keywords                                                                 | `'kw1,kw2'`                        | `string`  |
+| `user.data`                | optional | OpenRTB user.data segments, concatenated after `ortb2.user.data`                         | `[{ name: 'p' }]`                  | `array`   |
+| `user.ext`                 | optional | Merged under `user.ext`, taking precedence over `ortb2.user.ext`                         | `{ custom: 'value' }`              | `object`  |
+| `bid_endpoint_request_url` | optional | Url string representing the endpoint Insticator adaptor should make the request bids to. | `https://ex.ingage.com/v1/openrtb` | `string`  |
+| `floor`                    | optional | Sets a floor for bidder.                                                                 | `0.50`                             | `float`   |
+| `bidfloorcur`              | optional | Currency of the floor. (Insticator only supports USD floors)                             | `USD`                              | `string`  |
 
 ### Banner Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description               | Example              | Type     |
-|---------------|----------|---------------------------|----------------------|----------|
-| `pos`         | optional | ad position as per IAB standards       | `1`                | `number` |
+| Name  | Scope    | Description                      | Example               | Type     |
+|-------|----------|----------------------------------|-----------------------|----------|
+| `pos` | optional | ad position as per IAB standards | `1`                   | `number` |
+| `ext` | optional | Exchange-specific extensions     | `{ custom: 'value' }` | `object` |
 
 ### Example
 
@@ -72,16 +75,32 @@ var adUnitsBannerOnly = [
 
 #### First Party Data
 
-In release 8.45 and later, Insticator has added support for first party data which are optional and partners can send us. The following fields are supported:
+Insticator supports the following optional first party data fields:
 
+* ortb2.ext
+* ortb2.source.ext
 * ortb2.site.keywords
 * ortb2.site.content.*
 * ortb2.site.search
 * ortb2.site.cat
 * ortb2.site.pagecat
 * ortb2.site.sectioncat
+* ortb2.site.mobile
+* ortb2.site.ext
+* ortb2.site.publisher.ext
+* ortb2.device.ext
 * ortb2.user.ext.*
 * ortb2.user.data.*
+* ortb2.regs.ext
+* ortb2Imp.instl
+* ortb2Imp.rwdd
+* ortb2Imp.ext
+* mediaTypes.banner.ext
+* mediaTypes.video.ext
+* mediaTypes.audio.ext
+* ortb2Imp.banner.ext
+* ortb2Imp.video.ext
+* ortb2Imp.audio.ext
 
 Here is an example first party data that insticator support.
 
@@ -144,6 +163,14 @@ pbjs.setConfig({
 | `video.delivery`       | optional    | Supported delivery methods (1 = streaming, 2 = progressive, 3 = download). If none specified, assume all are supported. | `[1, 2]`                      |
 | `video.pos`            | optional    | Ad position on screen. (see OpenRTB v2.5 section 5.4 for options)     | `1`                           |
 | `video.api`            | optional    | List of supported API frameworks for this impression. Supported API frameworks are between 1-7 (See [OpenRTB v2.6](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/develop/AdCOM%20v1.0%20FINAL.md) List API Frameworks) | `[2, 7]`                   |
+| `video.ext`            | optional    | Exchange-specific extensions                                    | `{ custom: 'value' }`         |
+| `video.podid`          | optional    | Identifier of the ad pod this impression belongs to             | `'pod-1'`                     |
+| `video.podseq`         | optional    | Ad pod position in the content stream. -1 last, 0 any, 1 first  | `0`                           |
+| `video.poddur`         | optional    | Total duration of the ad pod in seconds                         | `60`                          |
+| `video.slotinpod`      | optional    | Ad position in the pod. -1 last, 0 any, 1 first, 2 first/last   | `0`                           |
+| `video.mincpmpersec`   | optional    | Minimum CPM per second the publisher will accept                | `0.5`                         |
+| `video.maxseq`         | optional    | Maximum number of ads allowed in the pod                        | `4`                           |
+| `video.rqddurs`        | optional    | Exact durations in seconds that the publisher will accept       | `[15, 30]`                    |
 
 ### Example
 
