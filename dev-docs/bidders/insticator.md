@@ -11,7 +11,7 @@ coppa_supported: true
 gdpr_supported: true
 schain_supported: true
 floors_supported: true
-media_types: banner, video
+media_types: banner, video, audio
 multiformat_supported: will-bid-on-any
 pbjs: true
 pbs: true
@@ -179,5 +179,70 @@ var adUnits = [
             }
         }],
         ...
+    }];
+```
+
+#### Audio parameters
+
+{: .table .table-bordered .table-striped }
+| Name                   | Scope       | Description                                                     | Example                       |
+|------------------------|-------------|-----------------------------------------------------------------|-------------------------------|
+| `audio.mimes`          | recommended | Audio MIME types                                                | `['audio/mp4',`<br/>`'audio/mpeg',`<br/>`'audio/aac',`<br/>`'audio/ogg']` |
+| `audio.minduration`    | optional    | Minimum audio ad duration in seconds                            | `5`                           |
+| `audio.maxduration`    | optional    | Maximum audio ad duration in seconds                            | `30`                          |
+| `audio.poddur`         | optional    | Total time in seconds advertisers may fill for a dynamic audio ad pod | `120`                   |
+| `audio.protocols`      | optional    | Supported audio bid response protocol values. (see OpenRTB v2.5 section 5.8 for options) | `[2, 3, 5, 6, 7, 8]` |
+| `audio.startdelay`     | optional    | Start delay in seconds for pre-roll, mid-roll or post-roll placements. (see OpenRTB v2.5 section 5.12 for options) | `0` |
+| `audio.rqddurs`        | optional    | Exact acceptable creative durations in seconds                  | `[15, 30]`                    |
+| `audio.podid`          | optional    | Identifier marking the impressions that belong to the same audio ad pod | `'pod-1'`               |
+| `audio.podseq`         | optional    | Sequence of the audio ad pod within the content stream, where -1 = last pod, 0 = any pod, 1 = first pod | `0` |
+| `audio.sequence`       | optional    | For multiple ads in the same bid request, to allow coordinated delivery | `1` |
+| `audio.slotinpod`      | optional    | Slot position in the pod the seller can guarantee delivery against, where -1 = last ad, 0 = any ad, 1 = first ad, 2 = first or last ad | `1` |
+| `audio.mincpmpersec`   | optional    | Minimum CPM per second, a price floor for the dynamic portion of an audio ad pod | `0.05`        |
+| `audio.battr`          | optional    | Blocked creative attributes. (see OpenRTB v2.5 section 5.3 for options) | `[13, 14]`             |
+| `audio.maxextended`    | optional    | Max extended ad duration beyond `maxduration` if extension is allowed. Blank or 0 = blocked, -1 = no time limit. | `30` |
+| `audio.minbitrate`     | optional    | Minimum bit rate in Kbps                                        | `32`                          |
+| `audio.maxbitrate`     | optional    | Maximum bit rate in Kbps                                        | `320`                         |
+| `audio.delivery`       | optional    | Supported delivery methods (1 = streaming, 2 = progressive, 3 = download). If none specified, assume all are supported. | `[1, 2]` |
+| `audio.companionad`    | optional    | Array of Banner objects for the available companion ads         | `[{ w: 300, h: 250 }]`        |
+| `audio.api`            | optional    | List of supported API frameworks for this impression. (see OpenRTB v2.5 section 5.6 for options) | `[2, 7]` |
+| `audio.companiontype`  | optional    | Supported companion ad types. (see OpenRTB v2.5 section 5.14 for options) | `[1, 2]`              |
+| `audio.maxseq`         | optional    | Maximum number of ads that can be played in an ad pod           | `4`                           |
+| `audio.feed`           | optional    | Type of audio feed. 1 = Music Streaming Service, 2 = FM/AM Broadcast, 3 = Podcast, 4 = Catch-up Radio, 5 = Web Radio, 6 = Video Game, 7 = Text to Speech. | `3` |
+| `audio.stitched`       | optional    | Indicates if the ad is stitched into the audio content, where 0 = no, 1 = yes | `0`             |
+| `audio.nvol`           | optional    | Volume normalization mode. 0 = None, 1 = Ad Volume Average Normalized to Content, 2 = Ad Volume Peak Normalized to Content, 3 = Ad Loudness Normalized to Content, 4 = Custom. | `1` |
+| `audio.durfloors`      | optional    | Floor prices for audio creatives of various durations           | `[{ maxdur: 15,`<br/>`bidfloor: 5 }]` |
+| `audio.ext`            | optional    | Exchange-specific extensions                                    | `{ custom: 'value' }`         |
+
+### Example
+
+```javascript
+var adUnitsAudioOnly = [
+    {
+        code: 'insticator-audio-ad-1',
+        mediaTypes: {
+            audio: {
+                mimes: ['audio/mp4', 'audio/mpeg', 'audio/aac', 'audio/ogg'],
+                minduration: 5,
+                maxduration: 30,
+                protocols: [2, 3, 5, 6, 7, 8],
+                startdelay: 0,
+                minbitrate: 32,
+                maxbitrate: 320,
+                delivery: [1, 2],
+                api: [2, 7],
+                battr: [13, 14],
+                feed: 3,
+                stitched: 0,
+                nvol: 1
+            }
+        },
+        bids: [{
+            bidder: 'insticator',
+            params: {
+                adUnitId: 'example_adunit_id',
+                publisherId: 'example_publisher_id',
+            }
+        }]
     }];
 ```
