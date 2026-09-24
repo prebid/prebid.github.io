@@ -40,7 +40,7 @@ please visit <a href="https://audigent.com">https://audigent.com</a> or contact 
 
 Compile the Hadron RTD module into your Prebid build:
 
-`gulp build --modules=userId,unifiedIdSystem,rtdModule,hadronRtdProvider,appnexusBidAdapter`
+`gulp build --modules=userId,unifiedIdSystem,rtdModule,hadronRtdProvider,msftBidAdapter`
 
 Add the Hadron RTD provider to your Prebid config. In this example we will configure
 publisher 1234 to retrieve segments from Audigent. See the
@@ -134,7 +134,7 @@ on how to best configure your own Hadron RTD & Open RTB data handlers.
 
 To view an example of available segments returned by Audigent's backends:
 
-`gulp serve --modules=userId,unifiedIdSystem,rtdModule,hadronRtdProvider,appnexusBidAdapter`
+`gulp serve --modules=userId,unifiedIdSystem,rtdModule,hadronRtdProvider,msftBidAdapter`
 
 and then point your browser at:
 

@@ -87,7 +87,7 @@ The YOC VIS.X Prebid.js adapter responds with VAST XML (in the `vastXml` field) 
 ```javascript
 pbjs.setConfig({
         cache: {
-            url: 'https://prebid.adnxs.com/pbc/v1/cache'
+            url: 'https://prebid.example.com/pbc/v1/cache'
         }
 });
 ```

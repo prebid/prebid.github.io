@@ -11,7 +11,7 @@ Returns all ad server targeting for all ad units. Note that some bidder's respon
 
 The targeting keys can be configured in [ad server targeting](/dev-docs/publisher-api-reference/bidderSettings.html).
 
-When [deals are enabled]({{site.baseurl}}/adops/deals.html), the object returned by this method may include a field `hb_deal_BIDDERCODE`, where `BIDDERCODE` is replaced by the name of the bidder, e.g., AppNexus, Rubicon, etc.
+When [deals are enabled]({{site.baseurl}}/adops/deals.html), the object returned by this method may include a field `hb_deal_BIDDERCODE`, where `BIDDERCODE` is replaced by the name of the bidder, e.g., Microsoft, Rubicon, etc.
 
 **Kind**: static method of `pbjs`
 
@@ -32,10 +32,10 @@ When [deals are enabled]({{site.baseurl}}/adops/deals.html), the object returned
     "hb_pb": "1.00"
   },
   "/9968336/header-bid-tag-2": {
-    "hb_bidder": "appnexus",
+    "hb_bidder": "msft",
     "hb_adid": "147ac541a",
     "hb_pb": "2.50",
-    "hb_deal_appnexus": "ABC_123"
+    "hb_deal_msft": "ABC_123"
   }
 }
 ```

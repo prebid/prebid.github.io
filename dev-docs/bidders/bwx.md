@@ -5,7 +5,7 @@ description: BoldwinX Bidder Adapter
 biddercode: bwx
 media_types: banner, video, native
 coppa_supported: true
-tcfeu_supported: false
+tcfeu_supported: true
 usp_supported: true
 prebid_member: false
 pbjs: false
@@ -15,6 +15,7 @@ floors_supported: true
 multiformat_supported: will-bid-on-any
 sidebarType: 1
 safeframes_ok: true
+gvl_id: 1151
 ---
 
 ### Prebid Server Bid Params

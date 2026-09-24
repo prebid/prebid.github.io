@@ -45,9 +45,9 @@ var adUnits = [{
     }
   },
   bids: [{
-    bidder: 'appnexus',
+    bidder: 'msft',
     params: {
-      placementId: 'XXXXXXX' //not used in prod
+      placement_id: 'XXXXXXX' //not used in prod
     }
   }]
 }];

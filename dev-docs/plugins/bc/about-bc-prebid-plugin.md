@@ -29,9 +29,9 @@ The Brightcove Prebid Plugin supports the following features:
   * Single Ad Playback via VAST XML at one or more ad break positions within a video. (For example, you can specify options for a preroll and a postroll ad in a single call to the plugin.)
   * Versions up thru VAST 3.0
   * Both Video and VPAID creatives
-  * If the AppNexus Viewability Wrapper is delivered:
-    * AppNexus viewability measurement
-    * AppNexus domain detection
+  * If the Microsoft Viewability Wrapper is delivered:
+    * Microsoft viewability measurement
+    * Microsoft domain detection
 
 * The plugin supports more than one ad renderer by default.
   * If Google Ad Manager is detected as the primary ad server (indicated by the presence of dfpParameters) for *any* of the ad breaks specified in the Prebid options, then the Brightcove IMA Plugin will be used to render the ad.

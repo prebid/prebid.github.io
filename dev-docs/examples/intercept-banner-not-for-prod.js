@@ -5,7 +5,7 @@ pbjs.que.push(() => {
            enabled: true,
            intercept: [{
                when: {
-                     bidder: 'appnexus',
+                     bidder: 'msft',
                },
                then: {
                      ad: '<html><body><img src="https://files.prebid.org/creatives/prebid300x250.png" width="300" height="250" /></body></html>'

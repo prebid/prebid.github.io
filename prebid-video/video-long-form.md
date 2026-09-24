@@ -78,9 +78,9 @@ var longFormatAdUnit = {
     }
 
     bids: [{
-            bidder: 'appnexus',
+            bidder: 'msft',
             params: {
-                placementId: 123456789,
+                placement_id: 123456789,
             }
         }]
 }
@@ -171,7 +171,7 @@ pbjs.setConfig({
   adpod: {
     prioritizeDeals: true,
     dealTier: {
-      'appnexus': {
+      'msft': {
         prefix: 'tier',
         minDealTier: 5
       },

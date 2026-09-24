@@ -37,6 +37,28 @@ For instructions on integrating an analytics provider, see the next section.
 
 ![Prebid Analytics Architecture Diagram]({{ site.baseurl }}/assets/images/prebid-analytics-architecture.png){: .pb-md-img :}
 
+## Analytics Labels
+
+Prebid events can carry an object of **analytics labels** that annotate the payload with experiment, rollout, or troubleshooting context. Labels are available to every analytics adapter in two places:
+
+* as a top-level `labels` object that combines every active label
+* as `args.analyticsLabels` inside the event payload so adapters that only inspect the args can still read them
+
+Publishers can declare their own labels with standard configuration:
+
+```javascript
+pbjs.setConfig({
+  analyticsLabels: {
+    experiment_1: 'group_a',
+    releaseTrain: 'B'
+  }
+});
+```
+
+Modules can also contribute labels by calling `setLabels` from `AnalyticsAdapter`. One example is the [Enrichment Lift Measurement Module](/dev-docs/modules/enrichmentLiftMeasurement.html), which attaches the active A/B test configuration so analytics adapters can report on each test run. All labels defined by publishers or modules are merged together before being delivered to analytics adapters.
+
+Analytics adapters that want to use this metadata simply read either `event.labels` or `event.args.analyticsLabels` in their `track` implementation.
+
 ## Creating an Analytics Module
 
 Working with any Prebid project requires using Github. In general, we recommend the same basic workflow for any project:
@@ -77,7 +99,7 @@ Analytics adapter for Example.com. Contact prebid@example.com for information.
 
 2. Create an analytics adapter to listen for [Prebid events](/dev-docs/publisher-api-reference/onEvent.html) and call the analytics library or server. See the existing *AnalyticsAdapter.js files in the repo under [modules](https://github.com/prebid/Prebid.js/tree/master/modules).
 
-3. There are two types of analytics adapters. The example here focuses on the 'endpoint' type. See [AnalyticsAdapter.js](https://github.com/prebid/Prebid.js/blob/master/libraries/analyticsAdapter/AnalyticsAdapter.js) for more info on the 'bundle' type.
+3. There are two types of analytics adapters. The example here focuses on the 'endpoint' type. See [AnalyticsAdapter.ts](https://github.com/prebid/Prebid.js/blob/master/libraries/analyticsAdapter/AnalyticsAdapter.ts) for more info on the 'bundle' type.
 
     1. endpoint - Calls the specified URL on analytics events. Doesn't require a global context.
     2. bundle - An advanced option expecting a global context.

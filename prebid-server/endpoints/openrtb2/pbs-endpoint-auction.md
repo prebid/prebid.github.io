@@ -589,8 +589,8 @@ to set these params on the response at `response.seatbid[i].bid[j].ext.prebid.ta
 | mediatypepricegranularity.native | no | Defines how PBS quantizes bid prices into buckets for native. | (see below) | object |
 | mediatypepricegranularity.TYPE.precision | no | How many decimal places are there in price buckets. | Defaults to 2 | integer |
 | mediatypepricegranularity.TYPE.ranges | no | Same as pricegranularity.ranges | (see below) | array of objects |
-| includewinners | no | Whether to include targeting for the winning bids in response.seatbid[].bid[]. ext.prebid.targeting. Defaults to false. | true | boolean |
-| includebidderkeys | no | Whether to include targeting for the best bid from each bidder in response.seatbid[].bid[]. ext.prebid.targeting. Defaults to false. | true | boolean |
+| includewinners | no | Whether to include targeting for the winning bids in response.seatbid[].bid[]. ext.prebid.targeting. Defaults to true. | true | boolean |
+| includebidderkeys | no | Whether to include targeting for the best bid from each bidder in response.seatbid[].bid[]. ext.prebid.targeting. Defaults to true. | true | boolean |
 | includeformat | no | Whether to include the "hb_format" targeting key. Defaults to false. | false | boolean |
 | preferdeals | no | If targeting is returned and this is true, PBS will choose the highest value deal before choosing the highest value non-deal. Defaults to false. | true | boolean |
 | alwaysincludedeals | no | If true, generate hb_ATTR_BIDDER values for all bids that have a dealid | true | boolean |
@@ -611,10 +611,10 @@ to set these params on the response at `response.seatbid[i].bid[j].ext.prebid.ta
                               // "pricegranularity": "medium"
           }]
         },
-        "includewinners": true,     // Optional param defaulting to false
-        "includebidderkeys": false, // Optional param defaulting to false
+        "includewinners": true,     // Optional param defaulting to true
+        "includebidderkeys": false, // Optional param defaulting to true
         "includeformat": false,     // Optional param defaulting to false
-        "preferdeals": true         // Optional param defaulting to false
+        "preferdeals": true,        // Optional param defaulting to false
         "alwaysincludedeals": true  // Optional param defaulting to false
       }
     }
@@ -626,7 +626,7 @@ The list of price granularity ranges must be given in order of increasing `max` 
 
 For backwards compatibility the following strings will also be allowed as price granularity definitions. There is no guarantee that these will be honored in the future. "One of ['low', 'med', 'high', 'auto', 'dense']" See [price granularity definitions](/adops/price-granularity.html).
 
-One of "includewinners" or "includebidderkeys" should be true if you want targeting - both default to false if unset. If both are false, then no targeting keys will be set, which is better configured by omitting targeting altogether.
+One of "includewinners" or "includebidderkeys" should be true if you want targeting - both default to true if unset. If both are true, then all the targeting keys will be set, which is better configured by omitting targeting altogether.
 
 The parameter "includeformat" indicates the type of the bid (banner, video, etc) for multiformat requests. It will add the key `hb_format` and/or `hb_format_{bidderName}` as per "includewinners" and "includebidderkeys" above.
 
@@ -739,18 +739,18 @@ This can be used to request bids from the same Bidder with different params. For
       "mimes": ["video/mp4"]
     },
     "ext": {
-      "appnexus": {
-        "placementId": 123
+      "msft": {
+        "placement_id": 123
       },
       "districtm": {
-        "placementId": 456
+        "placement_id": 456
       }
     }
   }],
   "ext": {
     "prebid": {
       "aliases": {
-        "districtm": "appnexus"
+        "districtm": "msft"
       }
     }
   }
@@ -768,12 +768,12 @@ For example, if the Request defines an alias like this:
 
 ```json5
 "aliases": {
-  "appnexus": "rubicon"
+  "msft": "rubicon"
 }
 ```
 
-then any `imp[].ext.appnexus` params will actually go to the **rubicon** adapter.
-It will become impossible to fetch bids from AppNexus within that Request.
+then any `imp[].ext.msft` params will actually go to the **rubicon** adapter.
+It will become impossible to fetch bids from Microsoft within that Request.
 
 ##### Bidder Alias GVL IDs
 
@@ -1923,9 +1923,9 @@ For example, a request may return this in `response.ext`
 {
   "ext": {
     "errors": {
-      "appnexus": [{
+      "msft": [{
         "code": 2,
-        "message": "A hybrid Banner/Audio Imp was offered, but Appnexus doesn't support Audio."
+        "message": "A hybrid Banner/Audio Imp was offered, but Microsoft doesn't support Audio."
       }],
       "rubicon": [{
         "code": 1,

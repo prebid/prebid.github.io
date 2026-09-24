@@ -53,7 +53,7 @@ Add the file `stored_imps/{id}.json` and populate it with some [imp](https://www
   "ext": {
     "prebid": {
       "bidder": {
-        "appnexus": {
+        "msft": {
           "placement_id": 10433394
         }
       }
@@ -104,7 +104,7 @@ You can also store _part_ of the `imp` on the server. For example:
   "ext": {
     "prebid": {
       "bidder": {
-        "appnexus": {
+        "msft": {
           "placement_id": 10433394
         }
       }

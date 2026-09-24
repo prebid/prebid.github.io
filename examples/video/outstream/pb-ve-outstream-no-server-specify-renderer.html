@@ -135,14 +135,30 @@ sidebarType: 4
               }
           },
           bids: [{
-              bidder: 'appnexus',
+              bidder: 'msft',
               params: {
-                  placementId: 13232385
+                  placement_id: 13232385
               }
           }]
       }];
 
       pbjs.que.push(function() {
+          pbjs.setConfig({
+            debugging: {
+              enabled: true,
+              intercept: [
+                {
+                  when: {
+                    bidder: 'msft',
+                  },
+                  then: {
+                    cpm: 10,
+                    mediaType: "video",
+                  }
+                }
+              ]
+            }
+          });
           pbjs.addAdUnits(adUnits);
           pbjs.requestBids({
               timeout: 1000,

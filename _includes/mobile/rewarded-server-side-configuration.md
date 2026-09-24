@@ -1,3 +1,5 @@
+<!-- markdownlint-disable MD041 -->
+
 ##### Server-side Rewarded Ad Unit Configuration
 
 The Rewarded Ad Unit assumes special behavior that should be configurable by the platform or publisher according to the application or ad experience guides.  
@@ -7,6 +9,7 @@ Configuration of rewarded ad unit can be done by defining the Prebid Server [pas
 Prebid SDK will search for a particular `rwdd` object in `$.seatbid.bid.ext.prebid.passthrough` of bid response to configure the behavior and rendering of the Rewarded Ad Unit. The following table describes the structure and usage purpose of `rwdd` configuration parameters.  
 
 {: .table .table-bordered .table-striped }
+<!-- markdownlint-disable MD060 -->
 | Attribute | Type | Description | Example |  
 |-----------|------|-------------|---------|
 | `reward`             | object <br> (optional)   | Metadata provided by the publisher to describe the reward.                                                             |<code>{<br>&nbsp;"type": "SuperDollars",<br>&nbsp;"count": 10<br>}</code> | 
@@ -26,7 +29,38 @@ Prebid SDK will search for a particular `rwdd` object in `$.seatbid.bid.ext.preb
 | `close`              | object <br> (optional)   | Describes the ad close behavior after the reward is earned. |<code>{<br>&nbsp;"postrewardtime": 3,<br>&nbsp;"action": "autoclose"<br>}</code> | 
 | `close.postrewardtime` | integer  | Time interval (seconds) after reward event when SDK should close interstitial. | `3` | 
 | `close.action`       | string   | Action SDK should make: `"autoclose"` (close interstitial) or `"closebutton"` (show close button) | `"autoclose"` | 
+<!-- markdownlint-enable MD060 -->
 
+Publishers can also supply the same impression-level configuration from the app with the ad unit's `setImpORTBConfig()` method. This is useful when a bidder does not return `rwdd` and the app needs to replace the default 120-second end-card completion time. Pass the `ext.prebid.passthrough` portion of the impression, for example:
+
+```json
+{
+  "ext": {
+    "prebid": {
+      "passthrough": [
+        {
+          "type": "prebidmobilesdk",
+          "rwdd": {
+            "completion": {
+              "video": {
+                "endcard": {
+                  "time": 15
+                }
+              }
+            },
+            "close": {
+              "postrewardtime": 0,
+              "action": "closebutton"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+Serialize this object as JSON and pass it to `RewardedAdUnit.setImpORTBConfig()`. Prebid Server returns the passthrough data with the bid, where the SDK reads the `rwdd` configuration.
 
 An example of an impression-level stored request:
 

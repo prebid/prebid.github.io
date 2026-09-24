@@ -19,9 +19,9 @@ This page walks you through the steps required to set up native ads in GAM for t
 - Create a native ad template within the Google Ad Manager (GAM) native design tool.
 - Prebid Mobile In-App native
 
-You don't necessarily need to use GAM's native design tool - if you're using Prebid.js and have chosen to use
-in-adunit or external native templates, then you can just follow the
-instructions for [banner creatives with the PUC](/adops/gam-creative-banner-sbs.html).
+You don't necessarily need to use GAM's native design tool. If you're using Prebid.js and have chosen to use
+in-adunit or external native templates, the recommended ad ops workflow is to use a
+[Prebid.js dynamic creative](/adops/js-dynamic-creative.html) rather than Prebid Universal Creative (PUC).
 
 {: .alert.alert-success :}
 For complete instructions on setting up Prebid line items in Google Ad Manager, see [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html).
@@ -71,8 +71,8 @@ If this creative is served, it will fire impression trackers on load. Clicking t
 The creative template HTML will depend on which of the three scenarios you're implementing. You can choose to manage the native template in one of these ways:
 
 - in GAM ([Managing the Native Template in GAM](#managing-the-native-template-in-gam) below)
-- in the Prebid.js AdUnit - this is handled as a 3rd party HTML creative using the Prebid Universal Creative.
-- in a separate JavaScript file - this is handled as a 3rd party HTML creative using the Prebid Universal Creative.
+- in the Prebid.js AdUnit, handled as a third-party HTML creative using the [Prebid.js dynamic creative workflow](#managing-the-native-template-outside-of-gam)
+- in a separate JavaScript file, handled as a third-party HTML creative using the [Prebid.js dynamic creative workflow](#managing-the-native-template-outside-of-gam)
 
 {: .alert.alert-info :}
 For engineering instructions, see [Native Implementation Guide](/prebid/native-implementation.html).
@@ -81,6 +81,29 @@ For engineering instructions, see [Native Implementation Guide](/prebid/native-i
 2. After entering your HTML and CSS per the approriate instructions below, click **Continue**.
 3. Add any targeting you want to apply and click **Save and activate** (or **Save** if you're not yet ready to activate your template.)
 4. Provide a **Name** for your native style and click **Save**.
+
+#### Managing the Native Template Outside of GAM
+
+If your native template is defined in the Prebid.js AdUnit or in a separate JavaScript renderer,
+set up the ad server creative with the [Prebid.js dynamic creative](/adops/js-dynamic-creative.html).
+This is the recommended browser workflow for Prebid.js native ads because the creative asks
+Prebid.js to render the winning bid directly instead of loading PUC.
+
+Use this workflow when all of the following are true:
+
+- the line item targets browser inventory where Prebid.js is present on the page;
+- your Prebid.js bundle includes the [nativeRendering](/dev-docs/modules/nativeRendering.html) module;
+- you are using Prebid.js 8.36 or later.
+
+For GAM, create a third-party HTML creative and paste the dynamic creative from the
+[Prebid.js dynamic creatives](/adops/js-dynamic-creative.html) guide. Keep the GAM macros in the
+second `script` block. In Send All Bids setups, replace `%%PATTERN:hb_adid%%` with the bidder-specific
+`%%PATTERN:hb_adid_BIDDERCODE%%` value for each bidder creative, truncating the key name as required
+by GAM.
+
+{: .alert.alert-info :}
+Dynamic creatives are for Prebid.js browser line items. Continue to use the GAM native design-tool
+workflow below when GAM owns the native template, and use the mobile in-app workflow for Prebid Mobile.
 
 #### Managing the Native Template in GAM
 
@@ -104,7 +127,7 @@ Example creative HTML:
     <div class="attribution">##hb_native_brand##</div>
   </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/%%PATTERN:hb_format%%.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@%%PATTERN:hb_ver%%/dist/%%PATTERN:hb_format%%.js"></script>
 <script>
     var pbNativeTagData = {};
     pbNativeTagData.pubUrl = "%%PATTERN:url%%";
@@ -235,6 +258,6 @@ Follow the instructions in [Google Ad Manager with Prebid Step by Step](/adops/s
 - [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html)
 - [Prebid Native Implementation Guide](/prebid/native-implementation.html)
 - [Send All Bids vs Top Price](/adops/send-all-vs-top-price.html)
-- [Prebid Universal Creative](/overview/prebid-universal-creative.html)
+- [Prebid.js dynamic creatives](/adops/js-dynamic-creative.html)
 - [Creative Considerations](/adops/creative-considerations.html)
 - [Ad Ops Planning Guide](/adops/adops-planning-guide.html)

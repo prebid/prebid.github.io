@@ -25,13 +25,40 @@ The Cloud API is **free** to integrate and use. To increase limits please check 
 
 ## Description
 
-51Degrees module enriches an OpenRTB request with [51Degrees Device Data](https://51degrees.com/documentation/index.html).
+51Degrees module enriches an OpenRTB request with [51Degrees Device Data](https://51degrees.com/documentation/index.html) and (optionally) IP-derived geo plus 51Did (51Degrees identifier) entries in `user.eids`.
 
-51Degrees module sets the following fields of the device object: `make`, `model`, `os`, `osv`, `h`, `w`, `ppi`, `pxratio` - interested bidder adapters may use these fields as needed. In addition the module sets `device.ext.fiftyonedegrees_deviceId` to a permanent device ID which can be rapidly looked up in on premise data exposing over 250 properties including the device age, chip set, codec support, and price, operating system and app/browser versions, age, and embedded features.
+51Degrees module sets the following fields of the device object: `devicetype`, `make`, `model`, `hwv`, `os`, `osv`, `h`, `w`, `ppi`, `pxratio`. Interested bidder adapters may use these fields as needed. 
+
+The module also adds a `device.ext.fod` extension object (fod == fifty one degrees) and sets `device.ext.fod.deviceId` to the 51Degrees device identifier. That value names the combination of hardware, platform and browser profiles detected, so every device of the same model and configuration carries the same value and it identifies no individual device or person. It can be rapidly looked up in on-premise data, exposing over 250 properties, including device age, chipset, codec support, price, operating system and app/browser versions, age, and embedded features.
+
+It also sets `device.ext.fod.tpc` to a binary value to indicate whether third-party cookies are enabled in the browser (1 if enabled, 0 if disabled).
+
+When 51Degrees IPI is available in the cloud response, the module sets `device.ip` and `device.ipv6`, and (if the location confidence is `high` or `medium`) populates `device.geo.{lat,lon,country,zip,utcoffset,accuracy,type,ipservice}` per OpenRTB 2.6 and AdCOM 1.0.
+
+[51Did](https://51degrees.com/documentation/4.5/_identifiers_51_did.html) is a 51Degrees identifier derived from device signals. It carries a match key, being the stable alphanumeric string two recipients compare to decide they have seen the same browser, together with the user's marketing preference, the creator domain, a timestamp and a cryptographic signature.
+
+51Did is not anonymous. What protects the user is the contract every party is bound by, rather than anything about the string itself. A 51Did is sent and received under the [Model Terms for Marketing](https://m4ow.uk/mtm), published by the Movement for an Open Web, whose full text is at [m4ow.uk/mtm/2.txt](https://m4ow.uk/mtm/2.txt). Under those terms a receiver may use the data only for a closed list of purposes and only as the user's preference allows, must not modify it or store its parts separately, must not combine it with special category data or profile on such data, and must not attempt to identify the user from it. Only the operator, being the party running the interface where the user gave the preference, may link the identifier to a user. Each party warrants that it has no means reasonably likely to be used to identify anyone from the data, which is what puts the data outside personal data for that transaction where data protection law applies, and that warranty is a promise about the receiver rather than a fact about the string.
+
+A 51Did is produced only where the user has given a usage preference (`id.usage`). On the cloud request this module makes, that preference is either standard marketing or personalized marketing as those are described to the user in Appendix 1 of the [Model Terms](https://m4ow.uk/mtm/2.txt). Standard marketing means content unrelated to browsing history, such as content chosen by time, region and the page in view. Personalized marketing means content related to browsing history or interactions. Where no preference has been given, no 51Did is produced. Where the page already carries its own 51Degrees integration, the module uses that response as it finds it, so the preference is whichever one that integration was loaded with (see [On-page integration](#on-page-integration)). The recommended way to collect and store that preference is the [51Degrees Preference Management Platform (PMP)](https://51degrees.com/documentation/4.5/_identifiers__p_m_p.html) — a lightweight consent widget that writes the user's choice to `localStorage`. When PMP is present on the page the module picks up that preference automatically. When PMP is absent the module falls back to inferring the preference from the publisher's existing TCF or GPP consent string (see below).
+
+When 51Did is available, the module appends one `user.eids` entry per identifier type returned by the cloud, each with `source = "51d.es"` and `inserter = "51degrees.com"`. The match method (`mm`) is an eid-level field, so a type cannot share an entry with another type:
+
+{: .table .table-bordered .table-striped }
+| Type | `mm` | `atype` |
+| :--- | :--- | :--- |
+| Probabilistic | 5 (inference) | 1 (browser or device tied) |
+| Random | 0 (unknown) | 1 (browser or device tied) |
+| Hashed Email | 3 (authenticated) | 3 (person based) |
+
+A type's license and global values share its entry as `uids`, license value first. Every entry carries `ext.tdl`, an array of terms documents naming the legal basis the identifier is shared under. The [Model Terms for Marketing](https://m4ow.uk/mtm/2.txt) are always first, because every party sending or receiving a 51Did is bound by them. The publisher's own Terms Document Locator follows when `params.tdlUrl` is configured. Random and Hashed Email appear only when the resource key includes those properties, and Hashed Email additionally requires evidence supplied to the 51Degrees integration itself (see [On-page integration](#on-page-integration)).
+
+The module forwards the publisher's consent strings to the cloud as evidence when present. The TCF consent string (from Prebid's GDPR consent) is sent as `tcstring` and the GPP string (from Prebid's GPP consent) is sent as `gppstring`; the cloud can infer the marketing usage preference from either when PMP is not present, so 51Did works for publishers running any TCF or GPP CMP. These come from Prebid's consent data, not module params.
+
+When the consent evidence changes mid-session, the module reloads its script so the new strings reach the cloud, and removes the `fod` entry the 51Degrees script keeps in session storage. That entry is the script's cached cloud response and is keyed on nothing but the script's object name, so leaving it in place would let the reloaded script replay the response the previous consent produced. The module writes nothing to session storage and removes only that one key, only on a consent change; where session storage is not permitted the removal is skipped.
 
 The module supports on premise and cloud device detection services with free options for both. 
 
-A free resource key for use with 51Degrees cloud service can be obtained from [51Degrees cloud configuration](https://configure.51degrees.com/HNZ75HT1?utm_source=Prebid&utm_medium=Documentation).  This is the simplest approach to trial the module.
+A free resource key for use with 51Degrees cloud service can be obtained from [51Degrees cloud configuration](https://configure.51degrees.com/Q5cD1H9W?utm_source=Prebid&utm_medium=Documentation).  This is the simplest approach to trial the module.
 
 An interface compatible self hosted service can be used with .NET, Java, Node, PHP, and Python.  See [51Degrees examples](https://51degrees.com/documentation/_examples__device_detection__getting_started__web__on_premise.html).
 
@@ -44,7 +71,7 @@ Free cloud and on premise solutions can be expanded to support unlimited request
 Compile the 51Degrees RTD Module with other modules and adapters into your Prebid.js build:
 
 ```bash
-gulp build --modules="rtdModule,51DegreesRtdProvider,appnexusBidAdapter,..."  
+gulp build --modules="rtdModule,51DegreesRtdProvider,bidderABidAdapter,..."  
 ```
 
 > Note that the 51Degrees RTD module is dependent on the global real-time data module, `rtdModule`.
@@ -53,14 +80,16 @@ gulp build --modules="rtdModule,51DegreesRtdProvider,appnexusBidAdapter,..."
 
 #### Resource Key
 
-In order to use the module please first obtain a Resource Key using the [Configurator tool](https://configure.51degrees.com/HNZ75HT1?utm_source=Prebid&utm_medium=Documentation) - choose the following properties:
+In order to use the module please first obtain a Resource Key using the [Configurator tool](https://configure.51degrees.com/Q5cD1H9W?utm_source=Prebid&utm_medium=Documentation) - choose the following properties:
 
 * DeviceId
 * DeviceType
 * HardwareVendor
 * HardwareName
+* HardwareNamePrefix
+* HardwareNameVersion
 * HardwareModel
-* PlatformName 
+* PlatformName
 * PlatformVersion
 * ScreenPixelsHeight
 * ScreenPixelsWidth
@@ -69,6 +98,7 @@ In order to use the module please first obtain a Resource Key using the [Configu
 * ScreenInchesHeight
 * ScreenInchesWidth
 * PixelRatio
+* ThirdPartyCookiesEnabled
 
 The Cloud API is **free** to integrate and use. To increase limits please check [51Degrees pricing](https://51degrees.com/pricing).
 
@@ -102,7 +132,7 @@ In summary we recommend using `Delegate-CH` http-equiv as the preferred method o
 
 ##### Illustrative Cases
 
-* if the device is iPhone/iPad then there is no point checking for or calling GetHighEntropyValues at the moment because iOS does not support this API. However this might change in the future.  Platforms like iOS require additional techniques to identify the model which are not covered via a single API call, and change from version to version of the operating system and browser rendering engine. **When used with iOS 51Degrees resolves the [iPhone/iPad model groups](https://51degrees.com/documentation/4.4/_device_detection__features__apple_device_table.html) using these techniques.** That is one of the benefits the module brings to the Prebid community as most solutions do not resolve iPhone/iPad model groups. More on Apple Device Detection [here](https://51degrees.com/documentation/4.4/_device_detection__features__apple_detection.html).
+* if the device is iPhone/iPad then there is no point checking for or calling GetHighEntropyValues at the moment because iOS does not support this API. However this might change in the future.  Platforms like iOS require additional techniques to identify the model which are not covered via a single API call, and change from version to version of the operating system and browser rendering engine. **When used with iOS 51Degrees resolves the [iPhone/iPad model groups](https://51degrees.com/documentation/4.4/_device_detection__features__apple_device_table.html) using these techniques.** That is one of the benefits the module brings to the Prebid community as most solutions do not resolve iPhone/iPad model groups. Read more on [Apple Device Detection](https://51degrees.com/documentation/4.4/_device_detection__features__apple_detection.html).
 
 * if the browser is Firefox on Android or desktop then there is similarly no point requesting GHEV as the API is not supported.
 
@@ -123,7 +153,7 @@ pbjs.setConfig({
                 waitForIt: true, // should be true, otherwise the auctionDelay will be ignored
                 params: {
                     resourceKey: '<YOUR_RESOURCE_KEY>',
-                    // Get your resource key from https://configure.51degrees.com/HNZ75HT1?utm_source=Prebid&utm_medium=Documentation
+                    // Get your resource key from https://configure.51degrees.com/Q5cD1H9W?utm_source=Prebid&utm_medium=Documentation
                     // alternatively, you can use the on-premise version of the 51Degrees service and connect to your chosen end point
                     // onPremiseJSUrl: 'https://localhost/51Degrees.core.js'
                 },
@@ -133,18 +163,50 @@ pbjs.setConfig({
 });
 ```
 
+### On-page integration
+
+When the page already runs its own 51Degrees integration, the module detects it automatically (the integration's `window.fod` object) and consumes its result instead of loading a second copy of the script. No module params are needed in this mode:
+
+```javascript
+pbjs.setConfig({
+    realTimeData: {
+        auctionDelay: 250,
+        dataProviders: [
+            {
+                name: '51Degrees',
+                waitForIt: true,
+            },
+        ],
+    },
+});
+```
+
+The module converts the integration's payload and enriches the ORTB2 request exactly as it does with its own script, and `tdlUrl` is still honoured. It sends nothing to the cloud itself, so the integration's script URL must carry the same parameters the module would send: `id.usage` (or the `tcstring` / `gppstring` consent strings) and any client-hint parameters. When an integration is present on the page the module uses it even if `resourceKey` is configured.
+
+Publisher requirements:
+
+* Load the 51Degrees script **synchronously**, before Prebid runs the auction. Do not use `async` or `defer` on the script tag, and do not inject it from a later-running script. Detection is a point-in-time check for `window.fod` at auction time: if the integration has not executed by then, the module does not see it and falls back to its configured behaviour, which with `resourceKey` set means loading a second copy of the script.
+* Keep the default object name (`fod`); the module reads `window.fod`, so an integration publishing under a different object name is not detected.
+* Identifiers that require additional evidence, such as Hashed Email, are configured on the 51Degrees integration itself. See the [51Degrees documentation](https://51degrees.com/documentation/index.html).
+
+Two limitations follow from consuming the page integration directly:
+
+* A consent change during the session does not re-run the page integration. Its payload reflects the consent state it was loaded under, and the new preference takes effect from the next page load.
+* If the integration never completes, the module never calls back and the auction proceeds only after the configured `auctionDelay`. The module does not fall back to loading its own script while `window.fod` is present, because two integrations on one page would conflict.
+
 ### Parameters 
 
 > Note that `resourceKey` and `onPremiseJSUrl` are mutually exclusive parameters.  Use strictly one of them: either a `resourceKey` for cloud integration and `onPremiseJSUrl` for the on-premise self-hosted integration. 
 
 {: .table .table-bordered .table-striped }
-| Name                  | Type    | Description                                                                                      | Default            |
-|:----------------------|:--------|:-------------------------------------------------------------------------------------------------|:-------------------|
-| name                  | String  | Real time data module name                                                                       | Always '51Degrees' |
-| waitForIt             | Boolean | Should be `true` if there's an `auctionDelay` defined (mandatory)                                | `false`            |
-| params                | Object  |                                                                                                  |                    |
-| params.resourceKey    | String  | Your 51Degrees Cloud Resource Key                                                                |                    |
-| params.onPremiseJSUrl | String  | Direct URL to your self-hosted on-premise JS file (e.g. `https://your.domain/51Degrees.core.js`) |                    |
+| Name | Type | Description | Default |
+| :--- | :--- | :--- | :--- |
+| name | String | Real time data module name | Always '51Degrees' |
+| waitForIt | Boolean | Should be `true` if there's an `auctionDelay` defined (mandatory) | `false` |
+| params | Object | | |
+| params.resourceKey | String | Your 51Degrees Cloud Resource Key | |
+| params.onPremiseJSUrl | String | Direct URL to your self-hosted on-premise JS file (e.g. `https://your.domain/51Degrees.core.js`) | |
+| params.tdlUrl | String | URL of your Terms Document Locator (TDL), a document declaring the data usage terms under which the identifier is shared, per the [data-labels proposal](https://github.com/jwrosewell/data-labels/tree/main) and its [OpenRTB extension](https://github.com/jwrosewell/data-labels/blob/main/OpenRTB.md). The URL is added to the `ext.tdl` array of the `51d.es` eids entry, after the [Model Terms for Marketing](https://m4ow.uk/mtm/2.txt), which are always present. Omit if you do not publish a TDL; the module logs a warning and the entry names the Model Terms alone. | |
 
 ## Example 
 
@@ -155,14 +217,19 @@ pbjs.setConfig({
 If you want to see an example of how the 51Degrees RTD module works,\
 run the following command:
 
-`gulp serve --modules=rtdModule,51DegreesRtdProvider,appnexusBidAdapter`
+`gulp serve --modules=rtdModule,51DegreesRtdProvider,bidderABidAdapter`
 
 and then open the following URL in your browser:
 
 `http://localhost:9999/integrationExamples/gpt/51DegreesRtdProvider_example.html`
+
+A second example shows the on-page integration mode:\
+`http://localhost:9999/integrationExamples/gpt/51DegreesRtdProvider_pageIntegration_example.html`
 
 Open the browser console to see the logs.
 
 ## Customer Notices
 
 When using the 51Degrees cloud service publishers need to reference the 51Degrees [client services privacy policy](https://51degrees.com/terms/client-services-privacy-policy) in their customer notices.
+
+Where a publisher sends or receives a 51Did under the [Model Terms for Marketing](https://m4ow.uk/mtm), the terms carry their own notice obligation. Each party bound by them must publish a notice on its own site saying that it is bound by them, linking the version it is bound by, saying which of the data it handles is covered by them and which is not, and explaining what the match key is and why the party cannot identify anyone from it. The notice can sit inside an existing policy as long as that policy says these things and stays publicly reachable. See clause 7.4 of the [full text](https://m4ow.uk/mtm/2.txt).

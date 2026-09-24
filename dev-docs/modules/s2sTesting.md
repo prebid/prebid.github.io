@@ -116,7 +116,7 @@ keep in mind the various data sources you may have access to:
 monitor revenue impact before going entirely to server-side header bidding.
 I don't want to modify AdUnits because that's time consuming in the CMS.*
 
-Example S2S Config defining that 10% of Rubicon requests and 100% of AppNexus requests go through the server:
+Example S2S Config defining that 10% of Rubicon requests and 100% of Microsoft requests go through the server:
 
 ```javascript
 pbjs.setConfig({

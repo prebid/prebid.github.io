@@ -5,6 +5,10 @@ description: A video overview of a Prebid.js Auction
 sidebarType: 1
 ---
 
+<div style="text-align: center;">
+  <img src="/assets/images/logos/prebid-js-logo.png" alt="Prebid.js Logo" width="500" height="80" style="max-width: 100%; height: auto;" />
+</div>
+
 # A Video Walkthrough of a Typical Prebid.js Auction
 
 A step-by-step walkthrough of a typical Prebid.js auction.
