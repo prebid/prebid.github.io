@@ -9,7 +9,7 @@ tcfeu_supported: false
 usp_supported: true
 prebid_member: false
 pbjs: true
-pbs: false
+pbs: true
 schain_supported: true
 floors_supported: true
 multiformat_supported: will-bid-on-any
@@ -30,3 +30,11 @@ privacy_sandbox: no
 | `pid`       | required | Placement ID                | `0e232769e6f71d291ee7dbc9d157cf84` | `string`  |
 | `env`       | required | Environment name            | `matterfull`                       | `string`  |
 | `ext`       | optional | Specific integration config | `{}`                               | `object`  |
+
+## Prebid Server Bid Params
+
+{: .table .table-bordered .table-striped }
+| Name        | Scope    | Description                 | Example                            | Type      |
+|-------------|----------|-----------------------------|------------------------------------|-----------|
+| `pid`       | required | Placement ID                | `0e232769e6f71d291ee7dbc9d157cf84` | `string`  |
+| `env`       | required | Environment name            | `matterfull`                       | `string`  |

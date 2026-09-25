@@ -33,3 +33,30 @@ sidebarType: 1
 ## Note
 
 For the prebid server you only need to use one parameter: either `placementId` or `endpointId`
+
+## Regional Endpoints
+
+Cortex supports the following regional endpoint subdomains:
+
+- `eu` — EU
+- `us-east` — US East
+- `apac` — APAC
+
+### Prebid Server
+
+The Prebid Server config endpoint is defined with a `REGION` placeholder:
+
+```yaml
+endpoint: "https://REGION.targetadserver.com/pserver"
+```
+
+Please deploy this config in each of your datacenters and replace `REGION` with the appropriate regional subdomain (`eu`, `us-east`, or `apac`).
+
+### Prebid.js
+
+The Prebid.js adapter automatically selects the regional endpoint based on the browser timezone:
+
+- Europe / Africa / Atlantic / Arctic → `eu`
+- Asia / Australia / Antarctica / Pacific / Indian → `apac`
+- America / US / Canada → `us-east`
+- Unknown / unresolved timezone → `eu` (fallback)
