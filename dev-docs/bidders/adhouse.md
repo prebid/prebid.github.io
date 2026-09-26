@@ -30,7 +30,7 @@ Video responses are VAST. A hosted MP4 is an InLine document; a third-party VAST
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
-|---------------|----------|------------------------------------------------------------------|--------------------|----------|
+| --- | --- | --- | --- | --- |
 | `placementId` | required | Adhouse ad unit id | `'12345'` | `string` |
 | `bidfloor` | optional | Static CPM floor, only if the floors module is not used | `0.50` | `number` |
 | `currency` | optional | Currency of `bidfloor`. Defaults to USD | `'USD'` | `string` |
