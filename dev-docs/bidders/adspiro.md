@@ -30,7 +30,7 @@ sidebarType: 1
 
 ## Note
 
-Adspiro is an OpenRTB 2.6 ad exchange for US traffic. To get a `publisherId`, contact [support@adspiro.io](mailto:support@adspiro.io).
+Adspiro is an OpenRTB 2.6 ad exchange for US traffic. To get a `publisherId`, contact [connect@adspiro.io](mailto:connect@adspiro.io).
 
 Add Adspiro's line to your `ads.txt` (`app-ads.txt` for apps): `adspiro.io, <publisherId>, DIRECT`.
 
