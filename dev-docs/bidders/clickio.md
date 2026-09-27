@@ -4,7 +4,7 @@ title: Clickio
 description: Clickio Bidder Adapter
 biddercode: clickio
 pbjs: true
-pbs: false
+pbs: true
 gvl_id: 1500
 tcfeu_supported: true
 usp_supported: true
@@ -31,6 +31,7 @@ To get started, simply replace the ``said`` with the ID assigned to you.
 
 ## Bid Params
 
+{: .table .table-bordered .table-striped }
 | Name   | Scope    | Description  | Example   | Type     |
 |--------|----------|--------------|-----------|----------|
 | `said` | required | Site Area ID | `'11111'` | `string` |
