@@ -22,23 +22,33 @@ ortb_blocking_supported: true
 userIds: all
 ---
 
-### Note
+# Note
 
 The Escalax Bidding adapter requires setup before beginning. Please contact us at <connect@escalax.io>
 
-### Bid Params for Prebid Server
+# Integration Types
+
+Escalax supports two integration types. Use one or the other per ad unit, not both:
+
+- **Exchange** - `sourceId` + `accountId`
+- **SSP** - `supplyPlacementId`
+
+The regional endpoint is detected automatically from the caller's location; there is no region param to set.
+
+# Bid Params for Prebid Server
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
-|---------------|----------|-----------------------|-----------|-----------|
-| `sourceId` | required | Patner name | `'partner'` | `string` |
-| `accountId` | required | Hash | `'0800fc577294'` | `string` |
+| --------------- | ---------- | ----------------------- | ----------- | ----------- |
+| `sourceId` | required for exchange integration | Partner name | `'partner'` | `string` |
+| `accountId` | required for exchange integration | Hash | `'0800fc577294'` | `string` |
+| `supplyPlacementId` | required for SSP integration | Supply-side placement id | `'0800fc577294'` | `string` |
 
-### Bid Params for Prebid.js
+# Bid Params for Prebid.js
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
-|---------------|----------|-----------------------|-----------|-----------|
-| `sourceId` | required | Unique hash | `'partner'` | `string` |
-| `accountId` | required | Unique name | `'0800fc577294'` | `string` |
-| `subdomain` | optional | Escalax region | `'bidder_us'` | `string` |
+| --------------- | ---------- | ----------------------- | ----------- | ----------- |
+| `sourceId` | required for exchange integration | Unique hash | `'partner'` | `string` |
+| `accountId` | required for exchange integration | Unique name | `'0800fc577294'` | `string` |
+| `supplyPlacementId` | required for SSP integration | Supply-side placement id | `'0800fc577294'` | `string` |
