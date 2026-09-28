@@ -12,7 +12,7 @@ gdpr_supported: true
 schain_supported: true
 floors_supported: true
 fpd_supported: true
-media_types: banner, video, audio
+media_types: banner, video, audio, native
 multiformat_supported: will-bid-on-any
 pbjs: true
 pbs: true
@@ -262,6 +262,66 @@ var adUnitsAudioOnly = [
                 feed: 3,
                 stitched: 0,
                 nvol: 1
+            }
+        },
+        bids: [{
+            bidder: 'insticator',
+            params: {
+                adUnitId: 'example_adunit_id',
+                publisherId: 'example_publisher_id',
+            }
+        }]
+    }];
+```
+
+#### Native parameters
+
+Native ad units are declared with the ORTB-style config on `mediaTypes.native.ortb`, following the
+[OpenRTB Dynamic Native Ads 1.2 specification](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf).
+Prebid validates and normalizes that config, and the adapter sends it as the native request; a
+config Prebid rejects is not sent. The winning bid returns the native response object on
+`bid.native.ortb`.
+
+{: .table .table-bordered .table-striped }
+| Name                          | Scope       | Description                                                                 | Example                        |
+|-------------------------------|-------------|-----------------------------------------------------------------------------|--------------------------------|
+| `native.ortb.assets`          | required    | The assets requested. Each needs a unique integer `id`; mark the ones the creative must include with `required: 1` | see the example below |
+| `native.ortb.ver`             | optional    | Native specification version. Defaults to `1.2`                             | `'1.2'`                        |
+| `native.ortb.plcmttype`       | optional    | Placement type. (see the Native 1.2 spec for options)                       | `1`                            |
+| `native.ortb.plcmtcnt`        | optional    | Number of identical placements in this layout                               | `1`                            |
+| `native.ortb.context`         | optional    | Context in which the ad appears. (see the Native 1.2 spec for options)      | `1`                            |
+| `native.ortb.contextsubtype`  | optional    | A more detailed context. (see the Native 1.2 spec for options)              | `10`                           |
+| `native.ortb.eventtrackers`   | optional    | Event trackers the creative should support. Defaults to an impression tracker supporting both image and JavaScript methods | `[{ event: 1,`<br/>`methods: [1, 2] }]` |
+| `native.ortb.privacy`         | optional    | Set to `1` to indicate the buyer's privacy notice is supported              | `1`                            |
+| `native.api`                  | optional    | Supported API frameworks for this impression. (see OpenRTB v2.5 section 5.6 for options) | `[7]`               |
+| `native.battr`                | optional    | Blocked creative attributes. (see OpenRTB v2.5 section 5.3 for options)     | `[1, 8]`                       |
+| `native.ext`                  | optional    | Exchange-specific extensions                                                | `{ custom: 'value' }`          |
+
+### Example
+
+```javascript
+    var adUnits = [{
+        code: 'native-div',
+        mediaTypes: {
+            native: {
+                ortb: {
+                    ver: '1.2',
+                    plcmttype: 1,
+                    plcmtcnt: 1,
+                    context: 1,
+                    assets: [
+                        { id: 1, required: 1, title: { len: 90 } },
+                        { id: 2, required: 1, img: { type: 3, wmin: 300, hmin: 250 } },
+                        { id: 3, required: 0, data: { type: 1, len: 25 } },
+                        { id: 4, required: 0, data: { type: 2, len: 140 } },
+                        { id: 5, required: 0, data: { type: 12, len: 15 } }
+                    ],
+                    eventtrackers: [
+                        { event: 1, methods: [1, 2] }
+                    ]
+                },
+                api: [7],
+                battr: [1, 8]
             }
         },
         bids: [{
