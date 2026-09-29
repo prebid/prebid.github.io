@@ -20,6 +20,7 @@ Both methods update the runtime config:
 ### Object/scalar properties
 
 `setConfig` iterates each top-level key in the incoming object and assigns it directly.
+It makes no changes to other properties that might already exist in the current version of the config.
 
 ```js
 config = {
@@ -42,13 +43,15 @@ Result:
 ```
 
 `mergeConfig` deep-merges the object into the current config.
+Just like `setConfig`, it makes no changes to other properties that might already exist in the current version of the config.
 
 ```js
 config = {
   bidderTimeout: 3000,
   ortb2: {
     site: { page: 'old.example.com' }
-  }
+  },
+  debug: false
 };
 
 mergeConfig({
@@ -69,7 +72,8 @@ Result:
       page: 'old.example.com',
       domain: 'example.com'
     }
-  }
+  },
+  debug: false
 }
 ```
 
