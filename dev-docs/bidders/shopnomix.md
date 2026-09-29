@@ -20,14 +20,14 @@ prebid_member: false
 sidebarType: 1
 ---
 
-### Registration
+## Registration
 
-Contact prebid@shopnomix.com for a publisher ID and native placement IDs. The
+Contact <prebid@shopnomix.com> for a publisher ID and native placement IDs. The
 bidding endpoint only answers requests from origins registered against the
 publisher, so the origins a site serves from have to be registered before it can
 bid.
 
-### Note
+## Note
 
 Native only. The adapter does not bid on banner or video.
 
@@ -38,7 +38,7 @@ Billing runs through Prebid's billing API, so the page needs no billing code.
 Setting `deferBilling: true` bills on viewable impressions instead, released by
 the publisher's own check or the `bidViewability` module.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 
