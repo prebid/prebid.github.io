@@ -13,6 +13,7 @@ sidebarType: 1
 `setConfig()` is the main way to tell Prebid.js how you want to run the header bidding auction. Every
 call to `setConfig()` overwrites supplied values at the top level. e.g. if `ortb2` is provided as a value, any previously-supplied `ortb2` values will disappear.
 If this is not the desired behavior, there is a [`mergeConfig()`](mergeConfig.html) function that will preserve previous values to do not conflict with the newly supplied values.
+Consult the [`mergeConfig()`](mergeConfig.html) documentation for more details about the differences in behavior between these two methods.
 
 This page covers the setConfig() values supported by the core of Prebid.js. There are other options available if certain modules are included in the Prebid.js build:
 
