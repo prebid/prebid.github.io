@@ -31,6 +31,7 @@ setConfig({
   bidderTimeout: 5000
 });
 ```
+
 Result:
 
 ```js
@@ -57,6 +58,7 @@ mergeConfig({
   }
 });
 ```
+
 Result:
 
 ```js
