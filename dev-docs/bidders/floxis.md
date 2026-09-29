@@ -25,7 +25,6 @@ prebid_member: false
 multiformat_supported: will-bid-on-any
 ortb_blocking_supported: true
 privacy_sandbox: no
-endpoint_compression: true
 ---
 
 ## Note
