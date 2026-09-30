@@ -18,6 +18,14 @@ Get started with Prebid Mobile by creating a [Prebid Server account](/prebid-mob
 - TOC
 {:toc}
 
+## Supported iOS versions
+
+Prebid SDK supports the following minimum iOS versions by release:
+
+- Prebid SDK version 3.4.0+ supports iOS 15.0+
+- Prebid SDK versions 3.3.0 to 3.3.4 support iOS 13.0+
+- Prebid SDK versions 3.0.0 to 3.2.1 support iOS 12.0+
+
 ## SDK Integration
 
 ### Cocoapods

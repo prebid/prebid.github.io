@@ -29,7 +29,7 @@ dependencies {
     ////
     
     // Prebid SDK
-    implementation 'org.prebid:prebid-mobile-sdk:2.0.4'
+    implementation 'org.prebid:prebid-mobile-sdk:3.4.0'
 }
 ```
 
@@ -214,11 +214,20 @@ See the [global parameters page](/prebid-mobile/pbm-api/android/pbm-targeting-an
 
 ## Supported Android versions
 
-Prebid supports the following versions by release:
+Prebid supports the following minimum Android API levels (`minSdkVersion`) by release:
 
-- Prebid SDK version 1.0 or 1.1 supports Android 16+
-- Prebid SDK version 1.1.1+ supports Android 19+
-- Prebid SDK version 2.0.0+ supporst Android 16+
+- Prebid SDK version 1.0 or 1.1 supports API level 16+
+- Prebid SDK version 1.1.1+ supports API level 19+
+- Prebid SDK versions 2.0.0 to 3.3.3 support API level 16+
+- Prebid SDK version 3.3.4+ supports API level 19+
+
+Some modules require a higher API level:
+
+{: .table .table-bordered .table-striped }
+| Module | Minimum API level |
+| --- | --- |
+| `prebid-mobile-sdk-gam-event-handlers`, `prebid-mobile-sdk-admob-adapters` | 24 starting from Prebid SDK 3.4.0, which depends on Google Mobile Ads SDK 25.5.0. Versions 2.5.0 to 3.3.4 require 23. |
+| `prebid-mobile-sdk-next-gen-event-handlers` | 24 |
 
 ## Setup SDK
 
