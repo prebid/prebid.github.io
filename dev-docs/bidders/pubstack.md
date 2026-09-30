@@ -25,7 +25,7 @@ ortb_blocking_supported: true
 sidebarType: 1
 ---
 
-### Integration Note
+## Integration Note
 
 The Pubstack bidding adapter requires setup and approval before use. Contact your Pubstack account team to enable production traffic.
 
@@ -37,8 +37,9 @@ The Pubstack bidding adapter requires setup and approval before use. Contact you
 | --- | --- | --- | --- | --- |
 | `siteId` | required | Pubstack site identifier. | `'example-site-id'` | `string \| uuid` |
 | `adUnitName` | required | Pubstack ad unit name associated with the placement. | `'homepage-top-banner'` | `string` |
+| `stackId` | optional | Pubstack stack identifier. | `'example-stack-id'` | `string` |
 
-### Test Parameters
+## Test Parameters
 
 ```javascript
 var adUnits = [
@@ -54,7 +55,8 @@ var adUnits = [
         bidder: 'pubstack',
         params: {
           siteId: 'example-site-id',
-          adUnitName: 'homepage-top-banner'
+          adUnitName: 'homepage-top-banner',
+          stackId: 'example-stack-id'
         }
       }
     ]
