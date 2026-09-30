@@ -5,8 +5,7 @@ description: Prebid BidDigi Bidder Adapter
 biddercode: biddigi
 sidebarType: 1
 pbjs: true
-pbs: true
-pbs_app_supported: true
+pbs: false
 prebid_member: false
 media_types: banner, video, native
 multiformat_supported: will-bid-on-one
@@ -37,8 +36,6 @@ only when the Price Floors module has not already set one.
 
 ## Bid Params
 
-These are the **Prebid.js** parameters. The Prebid Server integration takes a different set -- see below.
-
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
 | ------ | ----- | ----------- | ------- | ---- |
@@ -47,25 +44,6 @@ These are the **Prebid.js** parameters. The Prebid Server integration takes a di
 | `region` | optional | Routes the bid request to a regional BidDigi endpoint. Defaults to `'in'`. | `'in'`, `'us'` | `string` |
 | `bidfloor` | optional | Per-imp floor override, in `bidfloorcur` (defaults to INR). Ignored when the Price Floors module supplies a floor. | `12.5` | `float` |
 | `bidfloorcur` | optional | Currency of `bidfloor` | `'INR'` | `string` |
-
-## Prebid Server Bid Params
-
-Prebid Server calls BidDigi's authenticated server-to-server endpoint, which resolves the
-publisher from the authenticated seat together with `site.domain` / `app.bundle`. There is
-therefore no `publisherId` parameter on this integration, and the credential is issued per
-integration rather than per ad unit.
-
-{: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example | Type |
-| ------ | ----- | ----------- | ------- | ---- |
-| `seatKey` | required | Seat API key issued by BidDigi when your integration is onboarded. Sent as an `Authorization` header; never included in the bid request body. | `'bds_xxxxxxxx'` | `string` |
-| `placementId` | optional | BidDigi placement identifier for this ad unit | `'placement-123'` | `string` |
-
-Impressions carrying different `seatKey` values are split into separate calls, since one HTTP
-request carries one `Authorization` header.
-
-BidDigi does not yet hold an IAB Europe GVL vendor ID, so the Prebid Server adapter ships with
-`geoscope: "!EEA"` and should not be enabled for EEA traffic until that registration completes.
 
 ## Test Parameters
 
