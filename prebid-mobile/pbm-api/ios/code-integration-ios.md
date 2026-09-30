@@ -50,9 +50,12 @@ We strongly recommend that publishers migrate to Swift Package Manager (SPM) to 
 If you are not familiar with the Carthage package builder, please refer to the project [github page](https://github.com/Carthage/Carthage) for more details.
 
 1. Install Carthage
-2. Add `github "prebid/prebid-mobile-ios" == 2.0.4-carthage` to your `Cartfile`.
-3. Run `carthage update`.
-4. Drag `PrebidMobile.xcframework` from `Carthage/Build` to `General -> Linked Frameworks and Libraries`
+2. Add `github "prebid/prebid-mobile-ios" == 3.4.0-carthage` to your `Cartfile`.
+3. Run `carthage update --use-xcframeworks --platform ios`.
+4. Drag `PrebidMobile.xcframework` from `Carthage/Build` to `General -> Frameworks, Libraries, and Embedded Content` and select `Embed & Sign`.
+5. Drag `OMSDK_Prebidorg.xcframework` from `Carthage/Checkouts/prebid-mobile-ios/Frameworks` to the same section and select `Embed & Sign`. `PrebidMobile` links the Open Measurement SDK dynamically, and Carthage doesn't copy it to `Carthage/Build`.
+
+Only the core SDK is available through Carthage. The GAM, AdMob, and MAX adapters are not.
 
 {: .alert.alert-warning :}
 Support for Carthage will be discontinued in Q4 2026.
@@ -62,8 +65,9 @@ We strongly recommend that publishers migrate to Swift Package Manager (SPM) to 
 ### XCFramework
 
 1. Clone the project and run script `scripts/buildPrebidMobile.sh`
-2. Drag `PrebidMobile.xcframework` from `generated/output` directory into your project. Make sure "Copy items if needed" is selected.
+2. Drag `XCPrebidMobile.xcframework` from `generated/output` directory into your project. Make sure "Copy items if needed" is selected. The same directory contains `XCPrebidMobileGAMEventHandlers.xcframework`, `XCPrebidMobileAdMobAdapters.xcframework`, and `XCPrebidMobileMAXAdapters.xcframework` if you need an adapter.
 3. Go to your Xcode project’s `General -> Frameworks, Libraries, and Embedded Content` settings. Use `Embed & Sign` for dynamic and `Do Not Embed` for static linking
+4. Add `Frameworks/OMSDK_Prebidorg.xcframework` from the cloned repo the same way, with `Embed & Sign`. The SDK links the Open Measurement SDK dynamically, and the build script doesn't copy it to `generated/output`.
 
 ### Swift Package Manager (SPM)
 
@@ -430,19 +434,19 @@ In the table below, you can find Prebid's test IDs that are used in the Demo App
 
 {: .table .table-bordered .table-striped }
 
-| Config ID            | Ad Format        | Description            |
-| -------------------- | ---------------- | ---------------------- |
-|`https://prebid-server-test-j.prebid.org/openrtb2/auction` | **Custom Prebid Server Host**|A PBS instance that is dedicated to testing purposes.|
-|`0689a263-318d-448b-a3d4-b02e8a709d9d`| **Stored Request ID**|The test account ID on the test server.|
-|`prebid-demo-banner-320-50`|**HTML Banner**|Returns a stored response that contains a Banner 320x50 winning bid.|
-|`prebid-demo-display-interstitial-320-480`|**HTML Interstitial**|Returns a stored response that contains a Interstitial 320x480 winning bid.|
-|`prebid-demo-video-outstream-original-api`|**Outstream Video** (Original API)|Returns a stored response that contains a Video 320x50 winning bid.|
-|`prebid-demo-video-outstream`|**Outstream Video** (Rendering API)|Returns a stored response that contains a Video 320x50 winning bid.|
-|`prebid-demo-video-interstitial-320-480-original-api`|**Video Interstitial** (Original API)|Returns a stored response that contains a Video Interstitial 320x480 winning bid.|
-|`prebid-demo-video-interstitial-320-480`|**Video Interstitial** (Rendering API)|Returns a stored response that contains a Video Interstitial 320x480 winning bid.|
-|`prebid-demo-video-rewarded-320-480-original-api`|**Rewarded Video** (Original API)|Returns a stored response that contains a Rewarded Video 320x480 winning bid.|
-|`prebid-demo-banner-rewarded-time`|**Rewarded HTML** Returns a stored response that contains a Rewarded HTML 320x480 winning bid with rewarded configuration.||
-|`prebid-demo-video-rewarded-endcard-time`|**Rewarded Video** Returns a stored response that contains a Rewarded Video 320x480 winning bid with rewarded configuration.||
-|`prebid-demo-video-interstitial-320-480`|**Instream Video**|Returns a stored response that contains a Video 320x480 winning bid.|
-|`prebid-demo-banner-native-styles`|**Native Styles**|Returns a stored response that contains a Native winning bid.|
-|`prebid-demo-banner-native-styles`|**In-App Native**|Returns a stored response that contains a Native winning bid.|
+| Config ID | Ad Format | Description |
+| --- | --- | --- |
+| `https://prebid-server-test-j.prebid.org/openrtb2/auction` | **Custom Prebid Server Host** | A PBS instance that is dedicated to testing purposes. |
+| `0689a263-318d-448b-a3d4-b02e8a709d9d` | **Stored Request ID** | The test account ID on the test server. |
+| `prebid-demo-banner-320-50` | **HTML Banner** | Returns a stored response that contains a Banner 320x50 winning bid. |
+| `prebid-demo-display-interstitial-320-480` | **HTML Interstitial** | Returns a stored response that contains a Interstitial 320x480 winning bid. |
+| `prebid-demo-video-outstream-original-api` | **Outstream Video** (Original API) | Returns a stored response that contains a Video 320x50 winning bid. |
+| `prebid-demo-video-outstream` | **Outstream Video** (Rendering API) | Returns a stored response that contains a Video 320x50 winning bid. |
+| `prebid-demo-video-interstitial-320-480-original-api` | **Video Interstitial** (Original API) | Returns a stored response that contains a Video Interstitial 320x480 winning bid. |
+| `prebid-demo-video-interstitial-320-480` | **Video Interstitial** (Rendering API) | Returns a stored response that contains a Video Interstitial 320x480 winning bid. |
+| `prebid-demo-video-rewarded-320-480-original-api` | **Rewarded Video** (Original API) | Returns a stored response that contains a Rewarded Video 320x480 winning bid. |
+| `prebid-demo-banner-rewarded-time` | **Rewarded HTML** | Returns a stored response that contains a Rewarded HTML 320x480 winning bid with rewarded configuration. |
+| `prebid-demo-video-rewarded-endcard-time` | **Rewarded Video** | Returns a stored response that contains a Rewarded Video 320x480 winning bid with rewarded configuration. |
+| `prebid-demo-video-interstitial-320-480` | **Instream Video** | Returns a stored response that contains a Video 320x480 winning bid. |
+| `prebid-demo-banner-native-styles` | **Native Styles** | Returns a stored response that contains a Native winning bid. |
+| `prebid-demo-banner-native-styles` | **In-App Native** | Returns a stored response that contains a Native winning bid. |
