@@ -1399,6 +1399,24 @@ The `auctionOptions` object controls aspects related to auctions.
 | `legacyRender`     | Optional  | Boolean | When true, uses "legacy" rendering logic  (see [note](#legacyRender))                               |
 | `rejectUnknownMediaTypes` | Optional | Boolean | Since Pbjs 11, When true, reject bids when the adapter response omits `mediaType` for an ad unit that has explicit `mediaTypes` configured. Default is false. |
 | `rejectInvalidMediaTypes` | Optional | Boolean | Since Pbjs 11, When true, reject bids when response `mediaType` does not match one of the ad unit's configured `mediaTypes`. Default is true. |
+| `viewabilityMeasurement` | Optional | `'observer'`, `'boundingBox'` | Determines how the viewability of each ad unit is measured. `'observer'` (the default) uses an `IntersectionObserver` which comes with a pre-auction delay. The `'boundingBox'` approach is faster, but less accurate resulting in bad viewability. | 
+
+#### Viewability measurement
+
+Prebid 11 added a `startAuction` hook that waits for `IntersectionObserver` entries for
+every ad unit element before the auction may begin, so that `percentInView()` can report
+observer-derived viewability. That wait is a pre-auction delay that did not exist in Prebid 10, and it could cause slowdowns in the auction.
+
+The `auctionOptions.viewabilityMeasurement` lets a publisher choose not to wait at all, 
+but rather use a bounding-rect path.
+This path is substantially
+less accurate than the observer, so opting out used to mean accepting bad viewability.
+
+* `'observer'` (default): reading the measurement costs no layout at all and correctly accounts for everything that clips the ad, including the bounds of a cross-origin iframe. But the auction cannot start until the observer reports, which requires yielding the main thread; on a page busy with long tasks, that yield is only taken once the longest of them finishes.
+
+* `'boundingBox'`: nothing is waited for, so the auction never queues behind the rest of the page. In exchange each measurement forces a layout, and inside a cross-origin iframe it can only measure against the frame's own viewport.
+
+It also follows (`pbjs.yield`)[/dev-docs/publisher-api-reference/yield.html]: with no explicit setting, `pbjs.yield = false` selects `'boundingBox'`, since that flag already asks Prebid not to yield the main thread. An explicit `viewabilityMeasurement` wins over `pbjs.yield` in both directions.
 
 #### Examples
 {: .no_toc}
