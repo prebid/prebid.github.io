@@ -18,7 +18,8 @@ deals_supported: false
 floors_supported: true
 fpd_supported: true
 pbjs: true
-pbs: false
+pbs: true
+pbs_app_supported: true
 prebid_member: false
 multiformat_supported: will-bid-on-any
 ortb_blocking_supported: true
@@ -91,6 +92,10 @@ pbjs.setBidderConfig({
   },
 });
 ```
+
+## Prebid Server
+
+On Prebid Server (Go and Java), `equativ` is an alias of the [Smart AdServer](/dev-docs/bidders/smartadserver.html) adapter (bidder code `smartadserver`). It is built into Prebid Server Go; on Prebid Server Java, hosts enable it in their bidder configuration. The bid params accepted on Prebid Server are the ones documented on that page: `networkId` (required), `placementuuid` (preferred way to identify inventory) and the `siteId` / `pageId` / `formatId` identifiers kept for the ramp-up. They match the params of this Prebid.js adapter, so an `equativ` ad unit works unchanged when Prebid.js forwards the bid to Prebid Server.
 
 ## Supported Media Types
 
