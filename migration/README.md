@@ -7,6 +7,8 @@ collector/reference-verifier corrections.
 source cases. [CONTEXT_NOTES.md](CONTEXT_NOTES.md) carries durable lessons.
 [M1_VALIDATION.md](M1_VALIDATION.md) documents the current runtime, CI, and
 authored-content/regression runner, including its acceptance boundaries.
+[M2_PILOT.md](M2_PILOT.md) records the bounded two-snapshot converter pilot,
+lossless metadata contract, independent checks, and remaining acceptance gates.
 The [execution plan](../DOCUSAURUS_EXECUTION_PLAN.md) controls sequencing and open
 decisions; these tools do not authorize deployment or resolve domain policies.
 

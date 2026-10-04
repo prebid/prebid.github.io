@@ -44,19 +44,25 @@
     "react-dom": "^19.0.4"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.10.2",
-    "@docusaurus/tsconfig": "3.10.2",
-    "@docusaurus/types": "3.10.2",
-    "typescript": "^5.9.3",
+    "@11ty/gray-matter": "1.0.0",
     "@docusaurus/mdx-loader": "3.10.2",
-    "@docusaurus/utils": "3.10.2",
-    "cheerio": "1.0.0-rc.12",
-    "js-yaml": "4.3.2",
-    "remark-lint-fenced-code-flag": "4.2.0",
-    "@docusaurus/utils-validation": "3.10.2",
+    "@docusaurus/module-type-aliases": "3.10.2",
     "@docusaurus/plugin-content-docs": "3.10.2",
     "@docusaurus/plugin-content-pages": "3.10.2",
-    "@11ty/gray-matter": "1.0.0"
+    "@docusaurus/tsconfig": "3.10.2",
+    "@docusaurus/types": "3.10.2",
+    "@docusaurus/utils": "3.10.2",
+    "@docusaurus/utils-validation": "3.10.2",
+    "cheerio": "1.0.0-rc.12",
+    "js-yaml": "4.3.2",
+    "liquidjs": "10.30.0",
+    "remark-directive": "3.0.1",
+    "remark-gfm": "4.0.1",
+    "remark-lint-fenced-code-flag": "4.2.0",
+    "remark-mdx": "3.1.1",
+    "remark-parse": "11.0.0",
+    "typescript": "^5.9.3",
+    "unified": "11.0.5"
   },
   "browserslist": {
     "production": [

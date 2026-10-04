@@ -19,6 +19,35 @@ the decisions that should survive a fresh session.
   `unresolved_mapping` are not completion percentages or confirmed missing pages.
   Retained legacy files and ambiguous/renamed destinations need disposition.
 
+## Lessons demonstrated by the M2 pilot
+
+* Check the actual emitted files and their raw frontmatter, not a parallel
+  semantic summary. Valid Markdown can lose every required notice or metadata
+  field while compilation remains green. Bind post-compilation disk bytes too.
+* Shared-source includes must be dependencies. An unchanged including page can
+  change through its includes; hardcoded replacement prose hides that change.
+  Specialized code-template adapters need reviewed source-hash preconditions.
+* Protect exact code ranges before evaluating Liquid or rewriting syntax. Include
+  whitespace-controlled captures and internal placeholder collisions in controls;
+  an implementation marker can occur in a legitimate example.
+* Apply confinement and ownership checks to every writer, including auxiliary
+  assets/configuration. A guarded document writer does not protect later writes.
+* Require each expected notice branch and the exact bounded CSV membership;
+  aggregate counts, nonempty records, and selected-cell matches can hide omissions
+  or unexpected additions.
+* Independently authored expectations can still mishandle emphasis, inline HTML,
+  admonition delimiters, or included code. Correct the oracle against original
+  pinned source, retain negative controls, and never adjust it merely to fit output.
+* A generated historical snapshot is a known replay base only for that generated
+  lineage. Do not invent ancestry for the existing migrated tree. Keep controlled
+  replay, existing-tree observations, and synthetic lifecycle events separate.
+* Preserve raw metadata before choosing policy. Source-backed projections can
+  expose real contradictions; valid preservation does not approve canonical
+  meanings. The field table and remaining M2 gates are in [M2_PILOT.md](M2_PILOT.md).
+* A standard Docusaurus component still needs rendered/browser checks. The pilot
+  verifies both Tabs payloads/default in SSR, while hydration, keyboard use, and
+  accessibility remain distinct follow-up evidence.
+
 ## Lessons demonstrated by M0 tooling review
 
 * Control build environment and installation policy explicitly. Inherited

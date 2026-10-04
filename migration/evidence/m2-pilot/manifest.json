@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "kind": "bounded-m2-local-receipt",
+  "authority": "Local observations; no independent custody, full M2 approval, or production deployment.",
+  "files": {
+    "report.json.gz": {
+      "sha256": "959971f67a0e536243c1f707876c82966c6fbb0f00dfe2f56f7f23bc5b1904fb",
+      "uncompressed_sha256": "0185cd1f2a98c1c326883d2017c3c0f11424378b8c1b496960c21362e03cc062",
+      "uncompressed_bytes": 222793
+    },
+    "tests.log.gz": {
+      "sha256": "74cde2989f80e4c1489c53d8944112e707caca001f64b782c196920608f4eff9",
+      "uncompressed_sha256": "806b3336201f4fc32b0242b4af0d9ad653c374b922831f725c55f5c87a119f36",
+      "uncompressed_bytes": 13568
+    },
+    "render-build.log.gz": {
+      "sha256": "b0d7e9930c8509cf9b39e01a88cd19955beec185f40965f4313222dbad41485e",
+      "uncompressed_sha256": "b1f4f773db5bd2611283ab9a5156d9a8a23c5b1f5a52325e9a355eaf87bc2040",
+      "uncompressed_bytes": 4593
+    },
+    "render-checks.json.gz": {
+      "sha256": "f84ebf8b0cd3a1492e8161e82201c2e6830be35e26f5747d4f10c4b442e34e13",
+      "uncompressed_sha256": "cf09feef6195a82ef6e2b823dfb52e9c6cf187fc8b3673c841dad4b94c090300",
+      "uncompressed_bytes": 1953
+    },
+    "render-config.cjs.gz": {
+      "sha256": "bb7f74554cbc9538b238d172edcbdca4ea034de14601f993ca84e8ccb8d823eb",
+      "uncompressed_sha256": "8188aaa89330438c6f1f1784ce4f527938ae8a26373e45c320f9b989b5a26a91",
+      "uncompressed_bytes": 562
+    },
+    "html/dev-docs/bidders/appnexus/index.html.gz": {
+      "sha256": "787c8dca2ac38b5d0d15d3779d1fe970b6f549e257517c663796ce05f0a4a11f",
+      "uncompressed_sha256": "4303ed29d4f596353142b17f84c93aec07d0fa9e4ba878ec06808c0e22ad7aa7",
+      "uncompressed_bytes": 62816
+    },
+    "html/dev-docs/bidders/bidsxchange/index.html.gz": {
+      "sha256": "5ab89237ac69b2d68a071cfab927e0191719d62f737fa8707f4dddd0de1d6168",
+      "uncompressed_sha256": "de7ec5d5e8213e725619784ef32570f0c4eb2c34a74d0efda2b0d31e3e5c170e",
+      "uncompressed_bytes": 36185
+    },
+    "html/dev-docs/modules/tcfControl/index.html.gz": {
+      "sha256": "7364c5a0f3b0441d2e57761e061425d40b199b5ce04285574255615ef30ec3a0",
+      "uncompressed_sha256": "1bf1f2887274755e577c748801c0be0b89929ea91f3f1f8020839d8260407f38",
+      "uncompressed_bytes": 74503
+    },
+    "html/dev-docs/modules/permutiveRtdProvider/index.html.gz": {
+      "sha256": "06512ecd80bfdb0202a947d3a9d93b9d9152038c45e070d253c157d26833e7df",
+      "uncompressed_sha256": "530e1ef6aafaaf6b99dcd3e5930e8f55e20ea16dad19964f73df42b74b1b841a",
+      "uncompressed_bytes": 37756
+    },
+    "html/prebid-mobile/modules/rendering/ios-sdk-integration-gam/index.html.gz": {
+      "sha256": "3014027dadd58d2284a444f48ec094e402700817a753085d96cafc5aeae032cd",
+      "uncompressed_sha256": "7ce1519b2381b3fd39e62ec7b845639d6777e538e105b3ebdc465a7672108d74",
+      "uncompressed_bytes": 104900
+    },
+    "html/dev-docs/examples/basic-example/index.html.gz": {
+      "sha256": "9b2bf0dc1fc0a9d4333f69cab3b6dc213eee9e99bc904adad48960c2d93ced61",
+      "uncompressed_sha256": "2753ba6b465f075882a9c1f55594a62c59cf2b40b4acc61d09d93e9dde84320e",
+      "uncompressed_bytes": 47745
+    }
+  },
+  "source_pins": {
+    "A": "1f6c748039ad008b9d2a4b9870a26b507e46a542",
+    "B": "b16d95ac1ee95238c070bc9f137d52718287d1cc"
+  },
+  "unexecuted": [
+    "Jekyll runtime equivalence",
+    "browser hydration and keyboard",
+    "full M2 domain policy and consumer acceptance",
+    "production deployment"
+  ]
+}

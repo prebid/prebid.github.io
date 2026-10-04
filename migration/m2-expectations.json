@@ -1,0 +1,2131 @@
+{
+  "schema_version": 1,
+  "kind": "independent-m2-source-expectations",
+  "authority": "Manually chosen source obligations and mechanical exact-byte extractions from pinned Git objects; no converter or generated output used.",
+  "derivation": "Source fences extracted by an independent delimiter/indent scanner; capture payloads come from named Liquid capture ranges. Only capture framing newlines may be removed. Required notice selections and semantic expectations are source-reviewed, not generated from converter output.",
+  "source_paths": [
+    "dev-docs/bidders/appnexus.md",
+    "dev-docs/bidders/bidsxchange.md",
+    "dev-docs/modules/tcfControl.md",
+    "dev-docs/modules/permutiveRtdProvider.md",
+    "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md",
+    "dev-docs/examples/basic-example.md"
+  ],
+  "csv_path": "dev-docs/bidder-data.csv",
+  "allowed_include_overrides": [
+    "_includes/dev-docs/vendor-exception.md"
+  ],
+  "allowed_migration_overrides": [
+    "mobile-rewarded-process-typo"
+  ],
+  "snapshots": {
+    "1f6c748039ad008b9d2a4b9870a26b507e46a542": {
+      "artifacts": {
+        "dev-docs/bidders/appnexus.md": {
+          "sha256": "78a8c33cd79b041dcd15b3991838670af92c5f8cbfc71e143deb6f1cbd20d5ec",
+          "bytes": 25289
+        },
+        "dev-docs/bidders/bidsxchange.md": {
+          "sha256": "32709a001d1df0aa9d8b8f628f7a00ce604907ab7bc71d07466daf535dbfb070",
+          "bytes": 2927
+        },
+        "dev-docs/modules/tcfControl.md": {
+          "sha256": "b168eb5397eba2e7926ef1c8358c8f78e0b4bb40816cf4e2187d55903827265f",
+          "bytes": 14110
+        },
+        "dev-docs/modules/permutiveRtdProvider.md": {
+          "sha256": "d62380dde697fb02780463564c1a4c1f5309ccaee1e4c7f4d70f90f9930ee04c",
+          "bytes": 8559
+        },
+        "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md": {
+          "sha256": "f26bc3b5ffefce574235f2b8f7d4e0a86b91e5099e707d4b2e4ca0fb63b74ba9",
+          "bytes": 9988
+        },
+        "dev-docs/examples/basic-example.md": {
+          "sha256": "ac9a3b1aaed5949f7032e5ecaec0b859117be1d462c5c72271fe30370f98e547",
+          "bytes": 2194
+        },
+        "_includes/dev-docs/vendor-exception.md": {
+          "sha256": "7129528da3493053b3013c831cc72232b8ce6c439ba8d73ee0ae71982a8a5223",
+          "bytes": 290
+        },
+        "_includes/legal-warning.html": {
+          "sha256": "2aaa25c472bb5ffdd9390562bddb9e2600fdf6c6528eb4e944a4f11114dd654c",
+          "bytes": 736
+        },
+        "_includes/dev-docs/not-for-production-warning.md": {
+          "sha256": "59574da451358ed92dc776f1a672851c2f158bf235d398da623af67de529563b",
+          "bytes": 224
+        },
+        "_includes/dev-docs/build-from-source-warning.md": {
+          "sha256": "422713ece163e39282b377d6300f58b78396458acb79b61e43d627aafa4f3632",
+          "bytes": 313
+        },
+        "_includes/mobile/intro-prebid-rendered.md": {
+          "sha256": "5bfa377b33d57701df12dd1140759f3ccb97b90ad390b1d1eb441f602998ad30",
+          "bytes": 10365
+        },
+        "_includes/mobile/rewarded-server-side-configuration.md": {
+          "sha256": "60a7ed5d66c6f25b0576f4d6eb5df42fbc2fe2108843fe25b3685a31fa689ae2",
+          "bytes": 4265
+        },
+        "_includes/mobile/rendering-adunit-config-ios.md": {
+          "sha256": "e3486421cbb96418ec17e8304682abec80e66b175fb363905645f72d01cc1276",
+          "bytes": 575
+        },
+        "_includes/code/gma-versions-tabs.html": {
+          "sha256": "5eb02e6c35a0726a820bb8cf9349a812ea0d47ccbdf188980ca07aeae0f32084",
+          "bytes": 1542
+        },
+        "_layouts/bidder.html": {
+          "sha256": "b9697850df101196390764335624941031f6d0bf168e2d71ae6f674f39b19799",
+          "bytes": 4073
+        },
+        "_layouts/example.html": {
+          "sha256": "ce62edf6656ae9ad0948b200028fc68095f8fb6ef82fdcf250e6081c8a70343e",
+          "bytes": 2307
+        },
+        "dev-docs/bidder-data.csv": {
+          "sha256": "9a9ac142c2422fa08665e6af8a059840e9601df70bb24fbd5d3904baa133d1ce",
+          "bytes": 2865
+        },
+        "dev-docs/bidders/browsi.md": {
+          "sha256": "aa4f3418fe24f285abc5abdd9dfcda91acee7ec1b6e0a33a017f0d789eb8c49d",
+          "bytes": 1301
+        },
+        "dev-docs/bidders/rtbdemand_com.md": {
+          "sha256": "7492fcbca84723c3c4fc5be7bdd6122ca5bc586cc818a31f028a381f75f7d9e3",
+          "bytes": 1177
+        },
+        "dev-docs/bidders/lemmadigital.md": {
+          "sha256": "392e7b2ad5610f15f0fb966aee111d4f4e5ddd5d9f1eba0a905e3eb80b1b3c5c",
+          "bytes": 5855
+        }
+      },
+      "vendor_include": "{: .alert.alert-warning :}\nPrebid.org recommends working with a privacy lawyer before making enforcement exceptions for any vendor.\n{% if include.gvlId %}We recommend publishers let Prebid.js make use of their registered GVL ID {{ include.gvlId }} instead of a vendor exception.{% endif %}\n",
+      "documents": {
+        "dev-docs/bidders/appnexus.md": {
+          "code": [
+            {
+              "language": "javascript",
+              "text": "pbjs.bidderSettings = {\n  appnexus: {\n    adserverTargeting: [\n      {\n        key: \"apn_buyer_memberid\", // Use key configured in your adserver\n        val: function(bidResponse) {\n          return bidResponse.appnexus.buyerMemberId;\n        }\n      },\n      {\n        key: \"apn_prio\", // Use key configured in your adserver\n        val: function(bidResponse) {\n          return bidResponse.appnexus.dealPriority;\n        }\n      }, {\n        key: \"apn_dealcode\", // Use key configured in your adserver\n        val: function(bidResponse) {\n          return bidResponse.appnexus.dealCode;\n        }\n      }\n    ]\n  }\n}",
+              "sha256": "4a3a698c7f3878e15e6e75064fb148c1a5e5b2a7a9ed202432b1c5b845cdede8",
+              "source_path": "dev-docs/bidders/appnexus.md",
+              "source_indent": "",
+              "start_line": 131,
+              "end_line": 153
+            },
+            {
+              "language": "javascript",
+              "text": "pbjs.setConfig({\n  appnexusAuctionKeywords: {\n    genre: ['classical', 'jazz'],\n    instrument: 'piano'\n  }\n});",
+              "sha256": "a42da4cf79c4b42b61daeae30a2debe4bea710462e98f2e0a234e616b9f22bd4",
+              "source_path": "dev-docs/bidders/appnexus.md",
+              "source_indent": "",
+              "start_line": 175,
+              "end_line": 180
+            },
+            {
+              "language": "javascript",
+              "text": "keywords: {\n  myKeyword: '',\n  myOtherKeyword: ['']\n}",
+              "sha256": "0dcd9038046b6326051a14830f3b9933a7c6e7429b165a54ab13f5f25e733039",
+              "source_path": "dev-docs/bidders/appnexus.md",
+              "source_indent": "",
+              "start_line": 192,
+              "end_line": 195
+            },
+            {
+              "language": "javascript",
+              "text": "keywords: {\n  color: ['red', 'blue', 'green'],\n  otherKeyword: ['']\n}",
+              "sha256": "589edb6a254f8aa39817d5ea864aa07707805c8fd499a13278f85b2607d2a06f",
+              "source_path": "dev-docs/bidders/appnexus.md",
+              "source_indent": "",
+              "start_line": 203,
+              "end_line": 206
+            },
+            {
+              "language": "javascript",
+              "text": "{ \"enabled\": true, \"dongle\": \"QWERTY\", \"debug_timeout\": 1000, \"member_id\": 958 }",
+              "sha256": "ab8d5ffa0de674c3c5a1778fd19ed84d3e097440db5d7d60d32aaa485fb4306c",
+              "source_path": "dev-docs/bidders/appnexus.md",
+              "source_indent": "",
+              "start_line": 244,
+              "end_line": 244
+            },
+            {
+              "language": "json",
+              "text": "\"imp\": [{\n  \"id\": \"some-impression-id\",\n  \"banner\": {\n    \"format\": [{\n      \"w\": 600,\n      \"h\": 500\n    }, {\n      \"w\": 300,\n      \"h\": 600\n    }]\n  },\n  \"ext\": {\n    \"appnexus\": {\n      \"placement_id\": 13144370\n    }\n  }\n}]",
+              "sha256": "a8d53440f28ece0f5b94170d0cf43bd363e8af71d030ac10ab98254329a95338",
+              "source_path": "dev-docs/bidders/appnexus.md",
+              "source_indent": "",
+              "start_line": 264,
+              "end_line": 280
+            }
+          ],
+          "headings": [
+            {
+              "depth": 3,
+              "text": "Table of Contents"
+            },
+            {
+              "depth": 4,
+              "text": "Bid Params"
+            },
+            {
+              "depth": 4,
+              "text": "Video Object"
+            },
+            {
+              "depth": 4,
+              "text": "User Object"
+            },
+            {
+              "depth": 4,
+              "text": "App Object"
+            },
+            {
+              "depth": 4,
+              "text": "Custom Targeting keys"
+            },
+            {
+              "depth": 4,
+              "text": "Video Bid params and Video MediaTypes params"
+            },
+            {
+              "depth": 4,
+              "text": "Auction Level Keywords"
+            },
+            {
+              "depth": 4,
+              "text": "Passing Keys Without Values"
+            },
+            {
+              "depth": 4,
+              "text": "First Party Data"
+            },
+            {
+              "depth": 4,
+              "text": "User Sync in AMP"
+            },
+            {
+              "depth": 4,
+              "text": "Mobile App Display Manager Version"
+            },
+            {
+              "depth": 4,
+              "text": "Debug Auction"
+            },
+            {
+              "depth": 4,
+              "text": "Prebid Server Test Request"
+            }
+          ],
+          "anchors": [
+            "appnexus-bid-params",
+            "appnexus-video-object",
+            "appnexus-user-object",
+            "appnexus-app-object",
+            "custom-targeting-keys",
+            "appnexus-video-params",
+            "appnexus-auction-keywords",
+            "appnexus-no-value",
+            "appnexus-fpd",
+            "appnexus-amp",
+            "appnexus-debug-auction"
+          ],
+          "prose": [
+            {
+              "id": "appnexus-warning-1",
+              "text": "All AppNexus (Microsoft/Xandr) placements included in a single call to requestBids must belong to the same parent Publisher. If placements from two different publishers are included in the call, the AppNexus bidder will not return any demand for those placements. Note: This requirement does not apply to adapters that are aliasing the AppNexus adapter."
+            },
+            {
+              "id": "appnexus-warning-2",
+              "text": "Starting with Prebid.js version 9.0, an update was made to the appnexusBidAdapter.js file to remove the support for the transformBidParams function. Previously this standard adapter function was used in conjunction of Prebid.js > PBS requests to modify any bid params for that bidder to the bid param format used by the PBS endpoint. Part of the changes for 9.0 in general were to remove these functions from the client-side adapter files, in order to reduce the build size of Prebid.js for those publishers who wanted to make the PBS requests. In the case of our adapter, we instead created a new module named anPspParamsConverter that would mimic behavior of the transformBidParams function. There's no setup instructions needed on the Prebid.js configs, the module only needs to be included in the Prebid.js build file and it will perform the needed steps. If you have any questions on this change, please reach out to your Microsoft representative and they can help."
+            },
+            {
+              "id": "appnexus-warning-3",
+              "text": "Starting with Prebid.js version 7.36.0, an update was made to the appnexusBidAdapter.js file to support bid params in a lower-case underscore format (eg invCode to inv_code) similar to how the params are formatted for the Prebid Server AppNexus bidder. This change was implemented to streamline publisher setups for both projects instead of maintaining separate versions of the same params depending on what setup is used. To avoid breaking changes, the old 'camelCase' format is still currently supported for all AppNexus bid params in the appnexusBidAdapter.js file. If you are using an older version of Prebid.js, you will need to continue to use the older 'camelCase' format as appropriate. The table below will reflect both formats, though it's recommended to use the lower-case underscore format where possible going forward (assuming you're using a compatible version of Prebid.js)."
+            },
+            {
+              "id": "appnexus-warning-4",
+              "text": "Enabling the AppNexus Debug Auction feature should only be done for diagnosing the AppNexus auction. Do not enable this feature in a production setting where it may impact users."
+            }
+          ],
+          "tables": [
+            {
+              "id": "placement-parameter",
+              "cells": [
+                "placement_id (PBS+PBJS) or placementId (PBJS)",
+                "required",
+                "The placement ID from AppNexus. You may identify a placement using the invCode and member instead of a placement ID. This parameter can be either a string or integer for Prebid.js, however integer is preferred. Legacy code can retain the string value. Prebid Server requires an integer value.",
+                "234234",
+                "integer"
+              ]
+            }
+          ],
+          "images": [],
+          "links": []
+        },
+        "dev-docs/bidders/bidsxchange.md": {
+          "code": [
+            {
+              "language": "javascript",
+              "text": "    var adUnits = [\n\n      // Video instream adUnit\n      {\n        code: 'test-div',\n        mediaTypes: {\n          video: {\n            context: 'instream',\n            playerSize: [640, 480]\n          }\n        },\n        bids: [{\n          bidder: 'bidsxchange',\n          params: {\n            aid: 472386\n          }\n        }]\n      },\n\n      // Video outstream adUnit\n      {\n        code: 'test-div',\n        mediaTypes: {\n          video: {\n            context: 'outstream',\n            playerSize: [640, 480]\n          }\n        },\n        bids: [{\n          bidder: 'bidsxchange',\n          params: {\n            aid: 472386\n          }\n        }]\n      },\n\n       // Video ADPOD adUnit\n      {\n        code: 'test-div',\n        sizes: [[640, 480]],\n        mediaTypes: {\n          video: {\n            context: 'adpod',\n            playerSize: [640, 480]            \n          }\n        },\n        bids: [{\n          bidder: 'bidsxchange',\n          params: {\n            aid: 472386\n          }\n        }]\n      },\n\n      // Banner adUnit\n      {\n        code: 'test-div',\n        mediaTypes:{\n            banner:{\n                sizes: [[300, 250]]\n            }\n        }\n        bids: [{\n          bidder: 'bidsxchange',\n          params: {\n            aid: 529814\n          }\n        }]\n      }\n    ];",
+              "sha256": "df4dc4fde7abf048a1fbaba44c00f9f60d717190bcc0a0a484b5c469018af0da",
+              "source_path": "dev-docs/bidders/bidsxchange.md",
+              "source_indent": "",
+              "start_line": 43,
+              "end_line": 112
+            },
+            {
+              "language": "javascript",
+              "text": "pbjs.setBidderConfig({\n    config: {              \n        bidsxchange: {\n            chunkSize: 1   // makes 1 http request per 1 adunit configured\n        }\n    }\n});",
+              "sha256": "3b594ffddddbfbf7bd2feeeb75e39546fd433dae2bc80e1bd414207055f2344d",
+              "source_path": "dev-docs/bidders/bidsxchange.md",
+              "source_indent": "",
+              "start_line": 121,
+              "end_line": 127
+            }
+          ],
+          "headings": [
+            {
+              "depth": 3,
+              "text": "Bid params"
+            },
+            {
+              "depth": 3,
+              "text": "Description"
+            },
+            {
+              "depth": 3,
+              "text": "Test Parameters"
+            },
+            {
+              "depth": 3,
+              "text": "Additional Configuration"
+            }
+          ],
+          "anchors": [],
+          "prose": [
+            {
+              "id": "removed-bidder-notice",
+              "text": "This adapter is not available in current versions of Prebid.js. Reason: removed in 8.13.0"
+            }
+          ],
+          "tables": [
+            {
+              "id": "aid-parameter",
+              "cells": [
+                "aid",
+                "required",
+                "The source ID from bidsxchange.",
+                "529814",
+                "integer"
+              ]
+            }
+          ],
+          "images": [],
+          "links": []
+        },
+        "dev-docs/modules/tcfControl.md": {
+          "code": [
+            {
+              "language": "javascript",
+              "text": "pbjs.setConfig({\n    gvlMapping: {\n        bidderA: 12345,\n        bidderB: 67890\n    }\n});",
+              "sha256": "043fb6adf794e23bc8bdbec60e6157d58becd59eb0913c5aad10be42d95a3cae",
+              "source_path": "dev-docs/modules/tcfControl.md",
+              "source_indent": "",
+              "start_line": 90,
+              "end_line": 95
+            },
+            {
+              "language": "javascript",
+              "text": "pbjs.setConfig({\n  consentManagement: {\n    gdpr: {\n      cmpApi: 'iab',   // activates the control module\n      defaultGdprScope: true,\n      rules: [{        // these are the default values\n        purpose: \"storage\",\n        enforcePurpose: true,\n        enforceVendor: true\n      },{\n        purpose: \"basicAds\",\n        enforcePurpose: true,\n        enforceVendor: true\n      },{\n        purpose: \"personalizedAds\",\n        enforcePurpose: true,\n        enforceVendor: true\n      },{\n        purpose: \"measurement\",\n        enforcePurpose: true,\n        enforceVendor: true\n      },{\n        purpose: \"transmitPreciseGeo\",\n        enforcePurpose: true\n      }]\n    }\n  }\n});",
+              "sha256": "7f5347ffa2486d0bdb1e9f9e250c59e9631bee19c9f5ddc5526de6aecf39bdcc",
+              "source_path": "dev-docs/modules/tcfControl.md",
+              "source_indent": "    ",
+              "start_line": 108,
+              "end_line": 135
+            },
+            {
+              "language": "javascript",
+              "text": "  ...\n  rules: [{\n    purpose: \"storage\",\n    enforcePurpose: true,\n    enforceVendor: true,\n    vendorExceptions: [\"idSystemA\"]\n  }]",
+              "sha256": "c4736ee461de250c6a9ece85fc87b628669a4230c922390d99306b8d90820264",
+              "source_path": "dev-docs/modules/tcfControl.md",
+              "source_indent": "    ",
+              "start_line": 141,
+              "end_line": 147
+            },
+            {
+              "language": "javascript",
+              "text": "  ...\n  rules: [{\n    purpose: \"storage\",\n    enforcePurpose: true,\n    enforceVendor: true\n  },{\n    purpose: \"basicAds\",\n    enforcePurpose: true,\n    enforceVendor: true,\n    vendorExceptions: [\"firstPartyBidder\"]\n  }]",
+              "sha256": "9b887e3c4571f3498f68738022596f4a5873a77968d37d6a3e4df79918512ac5",
+              "source_path": "dev-docs/modules/tcfControl.md",
+              "source_indent": "    ",
+              "start_line": 153,
+              "end_line": 163
+            },
+            {
+              "language": "javascript",
+              "text": "  ...\n  rules: [{\n    purpose: \"storage\",\n    enforcePurpose: false,\n    enforceVendor: false\n  }]",
+              "sha256": "2defe958c1de6238bff072b3aa1022303de6d4a12ec3b6bc09630546d4841598",
+              "source_path": "dev-docs/modules/tcfControl.md",
+              "source_indent": "    ",
+              "start_line": 169,
+              "end_line": 174
+            },
+            {
+              "language": "javascript",
+              "text": "  ...\n  rules: [{\n    purpose: \"measurement\",\n    enforcePurpose: true,\n    enforceVendor: true,\n    vendorExceptions: [\"analyticsB\"]\n  }]",
+              "sha256": "db2a9eeef9192f17bc49df0d84e9afcfc334ee544ffb9d11fafff1e19b6cb82e",
+              "source_path": "dev-docs/modules/tcfControl.md",
+              "source_indent": "    ",
+              "start_line": 180,
+              "end_line": 186
+            },
+            {
+              "language": "javascript",
+              "text": "  ...\n  rules: [{\n    purpose: \"personalizedAds\",\n    eidsRequireP4Consent: true\n  }]",
+              "sha256": "ae5e24e0daa72ab4618ce0d72a59abb1264d5a834ee70cc775c4c9f5651ad5d0",
+              "source_path": "dev-docs/modules/tcfControl.md",
+              "source_indent": "",
+              "start_line": 235,
+              "end_line": 239
+            },
+            {
+              "language": "bash",
+              "text": "gulp build --modules=consentManagement,tcfControl,bidAdapter1,bidAdapter2",
+              "sha256": "34388fe249819890425e2c1af465329cddb1e19002754f668cb554d0fe0369c6",
+              "source_path": "dev-docs/modules/tcfControl.md",
+              "source_indent": "",
+              "start_line": 247,
+              "end_line": 247
+            }
+          ],
+          "headings": [
+            {
+              "depth": 1,
+              "text": "TCF Control Module"
+            },
+            {
+              "depth": 2,
+              "text": "Overview"
+            },
+            {
+              "depth": 2,
+              "text": "Page Integration"
+            },
+            {
+              "depth": 3,
+              "text": "Examples"
+            },
+            {
+              "depth": 2,
+              "text": "Basic Legal Basis"
+            },
+            {
+              "depth": 3,
+              "text": "Note on Extended User IDs"
+            },
+            {
+              "depth": 2,
+              "text": "Build the Package"
+            },
+            {
+              "depth": 2,
+              "text": "Further Reading"
+            }
+          ],
+          "anchors": [
+            "strictStorageEnforcement",
+            "note-transmitEids"
+          ],
+          "prose": [
+            {
+              "id": "complete-legal-warning",
+              "text": "Important: This resource should not be construed as legal advice and Prebid.org makes no guarantees about compliance with any law or regulation. Please note that because every company and its collection, use, and storage of personal data is different, you should seek independent legal advice relating to obligations under your regional regulations, including the GDPR, the ePrivacy Directive and individual country/province/state laws. Only a lawyer can provide you with legal advice specifically tailored to your situation. Nothing in this guide is intended to provide you with, or should be used as a substitute for, legal advice tailored to your business."
+            }
+          ],
+          "tables": [
+            {
+              "id": "eids-consent-setting",
+              "cell_contains": [
+                "gdpr.rules[].eidsRequireP4Consent",
+                "Boolean",
+                "Defaults to false."
+              ]
+            }
+          ],
+          "images": [],
+          "links": [],
+          "vendor_include_parameters": {}
+        },
+        "dev-docs/modules/permutiveRtdProvider.md": {
+          "code": [
+            {
+              "language": "bash",
+              "text": "gulp build --modules=rtdModule,permutiveRtdProvider",
+              "sha256": "89d8fe6c3bb655b998a5a8881a1814296f5acd00660e60f6d48b65ce3e3a8776",
+              "source_path": "dev-docs/modules/permutiveRtdProvider.md",
+              "source_indent": "",
+              "start_line": 31,
+              "end_line": 31
+            },
+            {
+              "language": "javascript",
+              "text": "pbjs.setConfig({\n  ...,\n  realTimeData: {\n    auctionDelay: 50, // optional auction delay\n    dataProviders: [{\n      name: 'permutive',\n      waitForIt: true, // should be true if there's an `auctionDelay`\n      params: {\n        acBidders: ['appnexus']\n      }\n    }]\n  },\n  ...\n})",
+              "sha256": "01c4f24a2557c78e7dcea287f60847996ed010a3398285471f1b717a2aadc24e",
+              "source_path": "dev-docs/modules/permutiveRtdProvider.md",
+              "source_indent": "",
+              "start_line": 39,
+              "end_line": 52
+            },
+            {
+              "language": "javascript",
+              "text": "[\n  {\n    purpose: 'storage',\n    enforcePurpose: true,\n    enforceVendor: true,\n    vendorExceptions: [\"permutive\"]\n  },\n  {\n    purpose: 'basicAds',\n    enforcePurpose: true,\n    enforceVendor: true,\n    vendorExceptions: []\n  }\n]",
+              "sha256": "90239823654889513c3662056dfb9e93709539cbc49e652c1fbbe25060a67a4f",
+              "source_path": "dev-docs/modules/permutiveRtdProvider.md",
+              "source_indent": "",
+              "start_line": 88,
+              "end_line": 101
+            }
+          ],
+          "headings": [
+            {
+              "depth": 1,
+              "text": "Permutive RTD Provider"
+            },
+            {
+              "depth": 2,
+              "text": "Prebid Config for Permutive RTD Module"
+            },
+            {
+              "depth": 3,
+              "text": "Permutive Real-time Data Submodule"
+            },
+            {
+              "depth": 4,
+              "text": "Usage"
+            },
+            {
+              "depth": 4,
+              "text": "Parameters"
+            },
+            {
+              "depth": 2,
+              "text": "Parameters"
+            },
+            {
+              "depth": 3,
+              "text": "Context"
+            },
+            {
+              "depth": 3,
+              "text": "Instructions"
+            },
+            {
+              "depth": 2,
+              "text": "Cohort Activation with Permutive RTD Module"
+            },
+            {
+              "depth": 3,
+              "text": "Enabling Publisher Cohorts"
+            },
+            {
+              "depth": 4,
+              "text": "Standard Cohorts"
+            },
+            {
+              "depth": 4,
+              "text": "Bidder Specific Requirements for Standard Cohorts"
+            },
+            {
+              "depth": 4,
+              "text": "Custom Cohorts"
+            },
+            {
+              "depth": 3,
+              "text": "Enabling Advertiser Cohorts"
+            },
+            {
+              "depth": 3,
+              "text": "Managing acbidders"
+            },
+            {
+              "depth": 4,
+              "text": "Option 1 - Automated"
+            },
+            {
+              "depth": 5,
+              "text": "Create Integration"
+            },
+            {
+              "depth": 5,
+              "text": "Update acbidders"
+            },
+            {
+              "depth": 4,
+              "text": "Option 2 - Manual"
+            }
+          ],
+          "anchors": [],
+          "prose": [],
+          "tables": [
+            {
+              "id": "waitForIt-setting",
+              "cells": [
+                "waitForIt",
+                "Boolean",
+                "Should be true if there's an auctionDelay defined (optional)",
+                "false"
+              ]
+            }
+          ],
+          "images": [
+            {
+              "alt": "Alt text",
+              "title": "Permutive Prebid integration - create",
+              "allowed_urls": [
+                "/assets/images/dev-docs/modules/permutiveRtdProvider-integration-create.png?raw=true",
+                "/images/dev-docs/modules/permutiveRtdProvider-integration-create.png?raw=true"
+              ]
+            },
+            {
+              "alt": "Alt text",
+              "title": "Permutive Prebid integration - update",
+              "allowed_urls": [
+                "/assets/images/dev-docs/modules/permutiveRtdProvider-integration-update.png?raw=true",
+                "/images/dev-docs/modules/permutiveRtdProvider-integration-update.png?raw=true"
+              ]
+            }
+          ],
+          "links": [],
+          "vendor_include_parameters": {
+            "gvlId": "361"
+          }
+        },
+        "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md": {
+          "code": [
+            {
+              "language": "pod",
+              "text": "pod 'PrebidMobileGAMEventHandlers'",
+              "sha256": "a16e24674286c646590579ee5ff244071dba359347337758a8d86373753441f8",
+              "source_path": "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md",
+              "source_indent": "",
+              "start_line": 27,
+              "end_line": 27
+            },
+            {
+              "language": "swift",
+              "text": "GAMUtils.shared.initializeGAM()",
+              "sha256": "f9a7634c8b4454ee7ca85a6b501678bb182024bcf9853f1f93521300f3741f9b",
+              "source_path": "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md",
+              "source_indent": "",
+              "start_line": 38,
+              "end_line": 38
+            },
+            {
+              "language": "swift",
+              "text": "// 1. Create an Event Handler\nlet eventHandler = GAMBannerEventHandler(adUnitID: GAM_AD_UNIT_ID,\n                                         validGADAdSizes: [NSValueFromGADAdSize(adSize)])\n       \n// 2. Create a Banner View\nlet banner = BannerView(configID: CONFIG_ID,\n                        eventHandler: eventHandler)\n\nbanner.delegate = self\n\naddBannerToUI(banner: banner)\n        \n// 3. Load an Ad\nbanner.loadAd()",
+              "sha256": "c319afc0310ab60947652e9e7081a17765a226ffe3a2085da236f7fad0121ebb",
+              "source_path": "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md",
+              "source_indent": "",
+              "start_line": 52,
+              "end_line": 65
+            },
+            {
+              "language": "swift",
+              "text": "banner.adFormat = .video",
+              "sha256": "0723729c80472a115f65689b10fbec67bcccf1c438f569f4d2d5b4c5ce0cc64e",
+              "source_path": "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md",
+              "source_indent": "",
+              "start_line": 99,
+              "end_line": 99
+            },
+            {
+              "language": "swift",
+              "text": "// 1. Create Event Handler\nlet eventHandler = GAMInterstitialEventHandler(adUnitID: GAM_AD_UNIT_ID)\n    \n// 2. Create Interstitial Ad Unit\ninterstitial = InterstitialRenderingAdUnit(configID: CONFIG_ID,\n                                           minSizePercentage: MIN_SIZE_PERC,\n                                           eventHandler: eventHandler)\n    \ninterstitial.delegate = self\n    \n// 3. Load an Ad\ninterstitial.loadAd()\n\n/// .......\n\n// 4. Show Ad\nif interstitial.isReady {\n    interstitial.show(from: self)\n}\n",
+              "sha256": "5464dfe9f8e3ebf8f25f12b8fdbbce0f89f56f37192c8cca70bed0486f06d1aa",
+              "source_path": "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md",
+              "source_indent": "",
+              "start_line": 125,
+              "end_line": 144
+            },
+            {
+              "language": "swift",
+              "text": "// Make bid request for video ad                                     \nadUnit?.adFormats = [.video]\n\n// Make bid request for both video amd disply ads                                     \nadUnit?.adFormats = [.video, .banner]\n\n// Make bid request for banner ad (default behaviour)                                     \nadUnit?.adFormats = [.banner]\n",
+              "sha256": "a6f00eaa1e0f8da934d285e348c573ba895d2d4b3527c1f44e9131db16070c69",
+              "source_path": "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md",
+              "source_indent": "",
+              "start_line": 150,
+              "end_line": 158
+            },
+            {
+              "language": "swift",
+              "text": "// MARK: InterstitialAdUnitDelegate\n    \nfunc interstitialDidReceiveAd(_ interstitial: InterstitialAdUnit) {\n    // Now the ad is ready for display\n}",
+              "sha256": "d5838547b3955a989832219ee825a7dccf3d0760842700b979930528f5bc46e3",
+              "source_path": "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md",
+              "source_indent": "",
+              "start_line": 188,
+              "end_line": 192
+            },
+            {
+              "language": "swift",
+              "text": " // 1. Create an Event Handler\nlet eventHandler = GAMRewardedEventHandler(adUnitID: GAM_AD_UNIT_ID)\n    \n// 2. Create an Ad Unit\nrewardedAd = RewardedAdUnit(configID: CONFIG_ID, eventHandler: eventHandler)\n    \nrewardedAd.delegate = self\n    \n// 3. Load an Ad\nrewardedAd.loadAd()\n\n/// .......\n\n// 4. Display Ad\nif rewardedAd.isReady {\n    rewardedAd.show(from: self)\n}\n",
+              "sha256": "043e100ec3d51abf6fa0d3a16c1108b69f850020cf3daab90f75596d4cf5c149",
+              "source_path": "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md",
+              "source_indent": "",
+              "start_line": 218,
+              "end_line": 235
+            },
+            {
+              "language": "swift",
+              "text": "func rewardedAdUserDidEarnReward(_ rewardedAd: RewardedAdUnit, reward: PrebidReward) {}",
+              "sha256": "b1ae7e858acc20f43d322634d37c0c57dd02a1cd0f10e2e7e8a3eb4608512d65",
+              "source_path": "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md",
+              "source_indent": "",
+              "start_line": 243,
+              "end_line": 243
+            },
+            {
+              "language": "swift",
+              "text": "// MARK: RewardedAdUnitDelegate\n    \nfunc rewardedAdDidReceiveAd(_ rewardedAd: RewardedAdUnit) {\n    // Now the ad is ready for display\n}",
+              "sha256": "286bbb3c339c3552965d5ddad9e898a231417231eeafbd4715d44eaf2e466b77",
+              "source_path": "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md",
+              "source_indent": "",
+              "start_line": 283,
+              "end_line": 287
+            },
+            {
+              "language": "swift",
+              "text": "// MARK: RewardedAdUnitDelegate\n\nfunc rewardedAdUserDidEarnReward(_ rewardedAd: RewardedAdUnit, reward: PrebidReward) {\n    let type = reward.type\n    let count = reward.count\n    let ext = reward.ext\n        \n    // Process the reward\n}",
+              "sha256": "5d14f3e7b5ee86f3be44f6e62a8a234f3679284e54107883da8e7b1fe9cdfefb",
+              "source_path": "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md",
+              "source_indent": "",
+              "start_line": 296,
+              "end_line": 304
+            },
+            {
+              "language": "swift",
+              "text": "if let reward = rewardedAd.reward as? GoogleMobileAds.AdReward {\n    // ...\n}",
+              "sha256": "f18b14d4977b8e7a75e2fb48bd09ff28978803091dff1e0034f293d641e38c8b",
+              "source_path": "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md",
+              "capture": "gma12",
+              "source_capture_sha256": "a73fa07e94830fff6b8aefff69acc0a03b8ff1a4df9fbb3a034ea52931e3969a"
+            },
+            {
+              "language": "swift",
+              "text": "if let reward = rewardedAd.reward as? GADAdReward {\n    // ...\n}",
+              "sha256": "06e4a642312903f6e7f5d8c7cbb78bf7dcbba789e7c291ba9b2a8f557cc2a787",
+              "source_path": "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md",
+              "capture": "gma11",
+              "source_capture_sha256": "d1a337115dbfaf1c966da2c00e03e45ce6d0135ed13ebf0999948e8d73061cb9"
+            },
+            {
+              "language": "json",
+              "text": "{\n  \"video\": {\n    \"h\": 480,\n    \"w\": 320,\n    \"mimes\": [\"video/mp4\"],\n    \"linearity\": 1,\n    \"placement\": 2,\n    \"playbackmethod\": [2]\n  },\n  \"ext\": {\n    \"prebid\": {\n      \"passthrough\": [\n        {\n          \"type\": \"prebidmobilesdk\",\n          \"rwdd\": {\n            \"reward\": {\n              \"type\": \"SuperDollars\",\n              \"count\": 10\n            },\n            \"completion\": {\n              \"video\": {\n                \"endcard\": {\n                  \"time\": 5\n                }\n              }\n            },\n            \"close\": {\n              \"postrewardtime\": 3,\n              \"action\": \"autoclose\"\n            }\n          }\n        }\n      ]\n    }\n  }\n}",
+              "sha256": "4c0400e2ecdd1bf70127b6fdcd67e971a3d8f61c9cb73633cf0f5c929ce53273",
+              "source_path": "_includes/mobile/rewarded-server-side-configuration.md",
+              "source_indent": "",
+              "start_line": 34,
+              "end_line": 69
+            },
+            {
+              "language": "swift",
+              "text": "adUnit.adPosition = .footer",
+              "sha256": "86793b910e29593e2e41930560c57bb3804c1cfa6d92e9817c7d4e4e3c4b1f86",
+              "source_path": "_includes/mobile/rendering-adunit-config-ios.md",
+              "source_indent": "",
+              "start_line": 8,
+              "end_line": 8
+            }
+          ],
+          "headings": [
+            {
+              "depth": 1,
+              "text": "Prebid SDK iOS with the GAM Prebid-Rendered Integration Method"
+            },
+            {
+              "depth": 2,
+              "text": "Event Handlers"
+            },
+            {
+              "depth": 3,
+              "text": "Integrate Event Handlers"
+            },
+            {
+              "depth": 3,
+              "text": "Event Handlers Initialization"
+            },
+            {
+              "depth": 2,
+              "text": "AdUnit-Specific instructions"
+            },
+            {
+              "depth": 3,
+              "text": "Banners"
+            },
+            {
+              "depth": 4,
+              "text": "Display Banners"
+            },
+            {
+              "depth": 5,
+              "text": "Step 1: Create Event Handler"
+            },
+            {
+              "depth": 5,
+              "text": "Step 2: Create Ad View"
+            },
+            {
+              "depth": 5,
+              "text": "Step 3: Load the Ad"
+            },
+            {
+              "depth": 4,
+              "text": "Banner Video (non-instream)"
+            },
+            {
+              "depth": 4,
+              "text": "Migrating banners from a Bidding-Only integration"
+            },
+            {
+              "depth": 3,
+              "text": "Interstitials"
+            },
+            {
+              "depth": 4,
+              "text": "Step 1: Create Event Handler"
+            },
+            {
+              "depth": 4,
+              "text": "Step 2: Create Interstitial Ad Unit"
+            },
+            {
+              "depth": 4,
+              "text": "Step 3: Load the Ad"
+            },
+            {
+              "depth": 4,
+              "text": "Step 4: Show the Ad when it is ready"
+            },
+            {
+              "depth": 4,
+              "text": "Migrating interstitials from a Bidding-Only integration"
+            },
+            {
+              "depth": 3,
+              "text": "Rewarded"
+            },
+            {
+              "depth": 4,
+              "text": "Integration example"
+            },
+            {
+              "depth": 5,
+              "text": "Step 1: Create Event Handler"
+            },
+            {
+              "depth": 5,
+              "text": "Step 2: Create Rewarded Ad Unit"
+            },
+            {
+              "depth": 5,
+              "text": "Step 3: Load the Ad"
+            },
+            {
+              "depth": 5,
+              "text": "Step 4: Show the Ad when it is ready"
+            },
+            {
+              "depth": 6,
+              "text": "Step 4: Handle the reward"
+            },
+            {
+              "depth": 4,
+              "text": "Migrating Rewarded Video from a Bidding-Only integration"
+            },
+            {
+              "depth": 2,
+              "text": "Additional Ad Unit Configuration"
+            },
+            {
+              "depth": 2,
+              "text": "Further Reading"
+            },
+            {
+              "depth": 2,
+              "text": "Overview"
+            },
+            {
+              "depth": 3,
+              "text": "Alternative Approaches"
+            },
+            {
+              "depth": 3,
+              "text": "Prerequisites"
+            },
+            {
+              "depth": 2,
+              "text": "How it Works"
+            },
+            {
+              "depth": 2,
+              "text": "Major Integration Steps"
+            },
+            {
+              "depth": 2,
+              "text": "Ad Operations Guidance"
+            },
+            {
+              "depth": 3,
+              "text": "Rendering and Tracking"
+            },
+            {
+              "depth": 5,
+              "text": "Server-side Rewarded Ad Unit Configuration"
+            },
+            {
+              "depth": 3,
+              "text": "Ad Position"
+            }
+          ],
+          "anchors": [],
+          "prose": [
+            {
+              "id": "gma-initialization-warning",
+              "text": "Warning: GMA SDK is a closed library that sometimes works in unexpected ways. The GADMobileAds.sharedInstance().start() should be called in all bundles where it is used. Otherwise, GMA SDK won't load the ads with an error of: adView:didFailToReceiveAdWithError: SDK tried to perform a networking task before being initialized."
+            },
+            {
+              "id": "rewarded-process-sentence",
+              "text": "The proccess for displaying the Rewarded Ad is the same as for the Interstitial Ad."
+            },
+            {
+              "id": "reward-configuration-introduction",
+              "text": "Prebid SDK will search for a particular rwdd object in $.seatbid.bid.ext.prebid.passthrough of bid response to configure the behavior and rendering of the Rewarded Ad Unit."
+            }
+          ],
+          "tables": [
+            {
+              "id": "reward-count",
+              "cell_contains": [
+                "reward.count",
+                "integer",
+                "10"
+              ]
+            }
+          ],
+          "images": [
+            {
+              "alt": "GAM Prebid-Rendered Integration Details",
+              "title": null,
+              "allowed_urls": [
+                "/assets/images/prebid-mobile/mobile-details-gam-prebid-rendered.png",
+                "/images/prebid-mobile/mobile-details-gam-prebid-rendered.png"
+              ]
+            }
+          ],
+          "links": [],
+          "tabs": {
+            "default_value": "gma12",
+            "items": [
+              {
+                "value": "gma12",
+                "label": "GMA SDK v12",
+                "payload_sha256": "f18b14d4977b8e7a75e2fb48bd09ff28978803091dff1e0034f293d641e38c8b",
+                "payload_text": "if let reward = rewardedAd.reward as? GoogleMobileAds.AdReward {\n    // ...\n}"
+              },
+              {
+                "value": "gma11",
+                "label": "GMA SDK v11",
+                "payload_sha256": "06e4a642312903f6e7f5d8c7cbb78bf7dcbba789e7c291ba9b2a8f557cc2a787",
+                "payload_text": "if let reward = rewardedAd.reward as? GADAdReward {\n    // ...\n}"
+              }
+            ],
+            "accessibility_rendering": "unexecuted"
+          }
+        },
+        "dev-docs/examples/basic-example.md": {
+          "code": [
+            {
+              "language": "html",
+              "text": "<!-- DO NOT add this script in prod -->\n<script src=\"intercept-banner-not-for-prod.js\" ></script>\n<!-- END -->\n\n<h5>Div-1</h5>\n<div id='div-1' style=\"min-height:250px;\">\n  <script type='text/javascript'>\n    googletag.cmd.push(function() {\n      googletag.display('div-1');\n    });\n  </script>\n</div>",
+              "sha256": "9f1457fd6e4732fa4d0bd174dcea68d708247b65d039984d636873149a00a881",
+              "source_path": "dev-docs/examples/basic-example.md",
+              "capture": "htmlCodePrebid",
+              "source_capture_sha256": "1eb00a523286553668bf4aabb3f7cbd8520a7c709cae741ab196f2cc6be1a87e"
+            },
+            {
+              "language": "javascript",
+              "text": "var sizes = [\n  [300, 250]\n];\nvar PREBID_TIMEOUT = 700;\n\nvar adUnits = [{\n  code: '/19968336/header-bid-tag-1',\n  mediaTypes: {\n    banner: {\n      sizes: sizes\n    }\n  },\n  bids: [{\n    bidder: 'appnexus',\n    params: {\n      placementId: 'XXXXXXX' //not used in prod\n    }\n  }]\n}];\n\n// ======== DO NOT EDIT BELOW THIS LINE =========== //\nvar googletag = googletag || {};\ngoogletag.cmd = googletag.cmd || [];\ngoogletag.cmd.push(function() {\n  googletag.pubads().disableInitialLoad();\n});\n\nvar pbjs = pbjs || {};\npbjs.que = pbjs.que || [];\n\npbjs.que.push(function() {\n  pbjs.addAdUnits(adUnits);\n  pbjs.requestBids({\n    bidsBackHandler: initAdserver\n  });\n});\n\nfunction initAdserver() {\n  if (pbjs.initAdserverSet) return;\n  pbjs.initAdserverSet = true;\n  googletag.cmd.push(function() {\n    if (pbjs.libLoaded) {\n      pbjs.que.push(function() {\n        pbjs.setTargetingForGPTAsync();\n        googletag.pubads().refresh();\n      });\n    } else {\n      googletag.pubads().refresh();\n    }\n  });\n}\n\nsetTimeout(function() {\n  initAdserver();\n}, PREBID_TIMEOUT);\n\ngoogletag.cmd.push(function() {\n  googletag.defineSlot('/19968336/header-bid-tag-1', sizes, 'div-1')\n    .addService(googletag.pubads());\n  googletag.pubads().enableSingleRequest();\n  googletag.enableServices();\n});",
+              "sha256": "bdade00212290b1e031b4fed3904e5c65f39d3ddfd6de2cd6c6f234991520147",
+              "source_path": "dev-docs/examples/basic-example.md",
+              "capture": "jsCode",
+              "source_capture_sha256": "f7c33db8aba0200c48f73bc729c4d4efc784938bc41f33ce3e5c95f0d9b355ba"
+            }
+          ],
+          "headings": [
+            {
+              "depth": 2,
+              "text": "Basic Prebid.js Example"
+            }
+          ],
+          "anchors": [],
+          "prose": [
+            {
+              "id": "about-heading",
+              "text": "About this example:"
+            },
+            {
+              "id": "about-1",
+              "text": "This example demonstrates asynchronous Prebid.js integration with a single Google Ad Manager ad slot"
+            },
+            {
+              "id": "about-2",
+              "text": "Default keyword targeting setup"
+            },
+            {
+              "id": "about-3",
+              "text": "Default price granularity"
+            },
+            {
+              "id": "production-warning",
+              "text": "This example uses a test version of Prebid.js hosted on our CDN that is not recommended for production use."
+            },
+            {
+              "id": "build-warning",
+              "text": "This example includes all available adapters and modules. Production implementations should build from source or customize the build using the Download page to make sure only the necessary bidder adapters and modules are included."
+            }
+          ],
+          "tables": [],
+          "images": [],
+          "links": [
+            {
+              "label": "Download",
+              "allowed_urls": [
+                "/download.html",
+                "/download"
+              ]
+            },
+            {
+              "label": "reference",
+              "target_suffix": "bidderSettings"
+            }
+          ]
+        }
+      }
+    },
+    "b16d95ac1ee95238c070bc9f137d52718287d1cc": {
+      "artifacts": {
+        "dev-docs/bidders/appnexus.md": {
+          "sha256": "267fac789a0a520b3e7a04761377925653ac1ac58e02f26a7cf0115d7c6896c3",
+          "bytes": 19477
+        },
+        "dev-docs/bidders/bidsxchange.md": {
+          "sha256": "32709a001d1df0aa9d8b8f628f7a00ce604907ab7bc71d07466daf535dbfb070",
+          "bytes": 2927
+        },
+        "dev-docs/modules/tcfControl.md": {
+          "sha256": "50c092ef0468efa1c0221e60b0f945e988e40aeedc4b87428cb60eaaf48664fe",
+          "bytes": 19808
+        },
+        "dev-docs/modules/permutiveRtdProvider.md": {
+          "sha256": "c0e01aa8fdbf0fb01e4cf75f1509f6d21b05d5a5cde6b8fd4b7d97d94b7e7f7f",
+          "bytes": 10843
+        },
+        "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md": {
+          "sha256": "f26bc3b5ffefce574235f2b8f7d4e0a86b91e5099e707d4b2e4ca0fb63b74ba9",
+          "bytes": 9988
+        },
+        "dev-docs/examples/basic-example.md": {
+          "sha256": "8bd4fa56d5343bfbc05e3c2ee76da348fd9b4481296ef36d557c05e5bd693964",
+          "bytes": 2191
+        },
+        "_includes/dev-docs/vendor-exception.md": {
+          "sha256": "7129528da3493053b3013c831cc72232b8ce6c439ba8d73ee0ae71982a8a5223",
+          "bytes": 290
+        },
+        "_includes/legal-warning.html": {
+          "sha256": "2aaa25c472bb5ffdd9390562bddb9e2600fdf6c6528eb4e944a4f11114dd654c",
+          "bytes": 736
+        },
+        "_includes/dev-docs/not-for-production-warning.md": {
+          "sha256": "59574da451358ed92dc776f1a672851c2f158bf235d398da623af67de529563b",
+          "bytes": 224
+        },
+        "_includes/dev-docs/build-from-source-warning.md": {
+          "sha256": "422713ece163e39282b377d6300f58b78396458acb79b61e43d627aafa4f3632",
+          "bytes": 313
+        },
+        "_includes/mobile/intro-prebid-rendered.md": {
+          "sha256": "5bfa377b33d57701df12dd1140759f3ccb97b90ad390b1d1eb441f602998ad30",
+          "bytes": 10365
+        },
+        "_includes/mobile/rewarded-server-side-configuration.md": {
+          "sha256": "1a8a471c12e8a645004f720a2dfa490584ededfde778d77773178a1dd377155a",
+          "bytes": 5335
+        },
+        "_includes/mobile/rendering-adunit-config-ios.md": {
+          "sha256": "e3486421cbb96418ec17e8304682abec80e66b175fb363905645f72d01cc1276",
+          "bytes": 575
+        },
+        "_includes/code/gma-versions-tabs.html": {
+          "sha256": "5eb02e6c35a0726a820bb8cf9349a812ea0d47ccbdf188980ca07aeae0f32084",
+          "bytes": 1542
+        },
+        "_layouts/bidder.html": {
+          "sha256": "919eb87c478266b0a6725693bebd9c18d537bd20aebd933b72b6d5c26a46103f",
+          "bytes": 4073
+        },
+        "_layouts/example.html": {
+          "sha256": "ce62edf6656ae9ad0948b200028fc68095f8fb6ef82fdcf250e6081c8a70343e",
+          "bytes": 2307
+        },
+        "dev-docs/bidder-data.csv": {
+          "sha256": "9a9ac142c2422fa08665e6af8a059840e9601df70bb24fbd5d3904baa133d1ce",
+          "bytes": 2865
+        },
+        "dev-docs/bidders/browsi.md": {
+          "sha256": "aa4f3418fe24f285abc5abdd9dfcda91acee7ec1b6e0a33a017f0d789eb8c49d",
+          "bytes": 1301
+        },
+        "dev-docs/bidders/rtbdemand_com.md": {
+          "sha256": "7492fcbca84723c3c4fc5be7bdd6122ca5bc586cc818a31f028a381f75f7d9e3",
+          "bytes": 1177
+        },
+        "dev-docs/bidders/lemmadigital.md": {
+          "sha256": "392e7b2ad5610f15f0fb966aee111d4f4e5ddd5d9f1eba0a905e3eb80b1b3c5c",
+          "bytes": 5855
+        }
+      },
+      "vendor_include": "{: .alert.alert-warning :}\nPrebid.org recommends working with a privacy lawyer before making enforcement exceptions for any vendor.\n{% if include.gvlId %}We recommend publishers let Prebid.js make use of their registered GVL ID {{ include.gvlId }} instead of a vendor exception.{% endif %}\n",
+      "documents": {
+        "dev-docs/bidders/appnexus.md": {
+          "code": [
+            {
+              "language": "javascript",
+              "text": "pbjs.bidderSettings = {\n  appnexus: {\n    adserverTargeting: [\n      {\n        key: \"apn_buyer_memberid\", // Use key configured in your adserver\n        val: function(bidResponse) {\n          return bidResponse.appnexus.buyerMemberId;\n        }\n      },\n      {\n        key: \"apn_prio\", // Use key configured in your adserver\n        val: function(bidResponse) {\n          return bidResponse.appnexus.dealPriority;\n        }\n      }, {\n        key: \"apn_dealcode\", // Use key configured in your adserver\n        val: function(bidResponse) {\n          return bidResponse.appnexus.dealCode;\n        }\n      }\n    ]\n  }\n}",
+              "sha256": "4a3a698c7f3878e15e6e75064fb148c1a5e5b2a7a9ed202432b1c5b845cdede8",
+              "source_path": "dev-docs/bidders/appnexus.md",
+              "source_indent": "",
+              "start_line": 134,
+              "end_line": 156
+            },
+            {
+              "language": "javascript",
+              "text": "pbjs.setConfig({\n  appnexusAuctionKeywords: {\n    genre: ['classical', 'jazz'],\n    instrument: 'piano'\n  }\n});",
+              "sha256": "a42da4cf79c4b42b61daeae30a2debe4bea710462e98f2e0a234e616b9f22bd4",
+              "source_path": "dev-docs/bidders/appnexus.md",
+              "source_indent": "",
+              "start_line": 178,
+              "end_line": 183
+            },
+            {
+              "language": "javascript",
+              "text": "keywords: {\n  myKeyword: '',\n  myOtherKeyword: ['']\n}",
+              "sha256": "0dcd9038046b6326051a14830f3b9933a7c6e7429b165a54ab13f5f25e733039",
+              "source_path": "dev-docs/bidders/appnexus.md",
+              "source_indent": "",
+              "start_line": 195,
+              "end_line": 198
+            },
+            {
+              "language": "javascript",
+              "text": "keywords: {\n  color: ['red', 'blue', 'green'],\n  otherKeyword: ['']\n}",
+              "sha256": "589edb6a254f8aa39817d5ea864aa07707805c8fd499a13278f85b2607d2a06f",
+              "source_path": "dev-docs/bidders/appnexus.md",
+              "source_indent": "",
+              "start_line": 206,
+              "end_line": 209
+            },
+            {
+              "language": "javascript",
+              "text": "{ \"enabled\": true, \"dongle\": \"QWERTY\", \"debug_timeout\": 1000, \"member_id\": 958 }",
+              "sha256": "ab8d5ffa0de674c3c5a1778fd19ed84d3e097440db5d7d60d32aaa485fb4306c",
+              "source_path": "dev-docs/bidders/appnexus.md",
+              "source_indent": "",
+              "start_line": 247,
+              "end_line": 247
+            },
+            {
+              "language": "json",
+              "text": "\"imp\": [{\n  \"id\": \"some-impression-id\",\n  \"banner\": {\n    \"format\": [{\n      \"w\": 600,\n      \"h\": 500\n    }, {\n      \"w\": 300,\n      \"h\": 600\n    }]\n  },\n  \"ext\": {\n    \"appnexus\": {\n      \"placement_id\": 13144370\n    }\n  }\n}]",
+              "sha256": "a8d53440f28ece0f5b94170d0cf43bd363e8af71d030ac10ab98254329a95338",
+              "source_path": "dev-docs/bidders/appnexus.md",
+              "source_indent": "",
+              "start_line": 267,
+              "end_line": 283
+            }
+          ],
+          "headings": [
+            {
+              "depth": 2,
+              "text": "Table of Contents"
+            },
+            {
+              "depth": 3,
+              "text": "Bid Params"
+            },
+            {
+              "depth": 3,
+              "text": "Video Object"
+            },
+            {
+              "depth": 3,
+              "text": "User Object"
+            },
+            {
+              "depth": 3,
+              "text": "App Object"
+            },
+            {
+              "depth": 3,
+              "text": "Custom Targeting keys"
+            },
+            {
+              "depth": 3,
+              "text": "Video Bid params and Video MediaTypes params"
+            },
+            {
+              "depth": 3,
+              "text": "Auction Level Keywords"
+            },
+            {
+              "depth": 3,
+              "text": "Passing Keys Without Values"
+            },
+            {
+              "depth": 3,
+              "text": "First Party Data"
+            },
+            {
+              "depth": 3,
+              "text": "User Sync in AMP"
+            },
+            {
+              "depth": 3,
+              "text": "Mobile App Display Manager Version"
+            },
+            {
+              "depth": 3,
+              "text": "Debug Auction"
+            },
+            {
+              "depth": 3,
+              "text": "Prebid Server Test Request"
+            }
+          ],
+          "anchors": [
+            "appnexus-bid-params",
+            "appnexus-video-object",
+            "appnexus-user-object",
+            "appnexus-app-object",
+            "custom-targeting-keys",
+            "appnexus-video-params",
+            "appnexus-auction-keywords",
+            "appnexus-no-value",
+            "appnexus-fpd",
+            "appnexus-amp",
+            "appnexus-debug-auction"
+          ],
+          "prose": [
+            {
+              "id": "appnexus-warning-1",
+              "text": "Support for the AppNexus adapter will be reduced beginning July 1, 2026, with full deprecation planned for early 2027. To maintain uninterrupted support and access to the latest features, please migrate to the Microsoft adapter."
+            },
+            {
+              "id": "appnexus-warning-2",
+              "text": "All AppNexus (Microsoft/Xandr) placements included in a single call to requestBids must belong to the same parent Publisher. If placements from two different publishers are included in the call, the AppNexus bidder will not return any demand for those placements. Note: This requirement does not apply to adapters that are aliasing the AppNexus adapter."
+            },
+            {
+              "id": "appnexus-warning-3",
+              "text": "Starting with Prebid.js version 9.0, an update was made to the appnexusBidAdapter.js file to remove the support for the transformBidParams function. Previously this standard adapter function was used in conjunction of Prebid.js > PBS requests to modify any bid params for that bidder to the bid param format used by the PBS endpoint. Part of the changes for 9.0 in general were to remove these functions from the client-side adapter files, in order to reduce the build size of Prebid.js for those publishers who wanted to make the PBS requests. In the case of our adapter, we instead created a new module named anPspParamsConverter that would mimic behavior of the transformBidParams function. There's no setup instructions needed on the Prebid.js configs, the module only needs to be included in the Prebid.js build file and it will perform the needed steps. If you have any questions on this change, please reach out to your Microsoft representative and they can help."
+            },
+            {
+              "id": "appnexus-warning-4",
+              "text": "Starting with Prebid.js version 7.36.0, an update was made to the appnexusBidAdapter.js file to support bid params in a lower-case underscore format (eg invCode to inv_code) similar to how the params are formatted for the Prebid Server AppNexus bidder. This change was implemented to streamline publisher setups for both projects instead of maintaining separate versions of the same params depending on what setup is used. To avoid breaking changes, the old 'camelCase' format is still currently supported for all AppNexus bid params in the appnexusBidAdapter.js file. If you are using an older version of Prebid.js, you will need to continue to use the older 'camelCase' format as appropriate. The table below will reflect both formats, though it's recommended to use the lower-case underscore format where possible going forward (assuming you're using a compatible version of Prebid.js)."
+            },
+            {
+              "id": "appnexus-warning-5",
+              "text": "Enabling the AppNexus Debug Auction feature should only be done for diagnosing the AppNexus auction. Do not enable this feature in a production setting where it may impact users."
+            }
+          ],
+          "tables": [
+            {
+              "id": "placement-parameter",
+              "cells": [
+                "placement_id (PBS+PBJS) or placementId (PBJS)",
+                "required",
+                "The placement ID from AppNexus. You may identify a placement using the invCode and member instead of a placement ID. This parameter can be either a string or integer for Prebid.js, however integer is preferred. Legacy code can retain the string value. Prebid Server requires an integer value.",
+                "234234",
+                "integer"
+              ]
+            }
+          ],
+          "images": [],
+          "links": [
+            {
+              "label": "Microsoft adapter",
+              "target_suffix": "msft"
+            }
+          ]
+        },
+        "dev-docs/bidders/bidsxchange.md": {
+          "code": [
+            {
+              "language": "javascript",
+              "text": "    var adUnits = [\n\n      // Video instream adUnit\n      {\n        code: 'test-div',\n        mediaTypes: {\n          video: {\n            context: 'instream',\n            playerSize: [640, 480]\n          }\n        },\n        bids: [{\n          bidder: 'bidsxchange',\n          params: {\n            aid: 472386\n          }\n        }]\n      },\n\n      // Video outstream adUnit\n      {\n        code: 'test-div',\n        mediaTypes: {\n          video: {\n            context: 'outstream',\n            playerSize: [640, 480]\n          }\n        },\n        bids: [{\n          bidder: 'bidsxchange',\n          params: {\n            aid: 472386\n          }\n        }]\n      },\n\n       // Video ADPOD adUnit\n      {\n        code: 'test-div',\n        sizes: [[640, 480]],\n        mediaTypes: {\n          video: {\n            context: 'adpod',\n            playerSize: [640, 480]            \n          }\n        },\n        bids: [{\n          bidder: 'bidsxchange',\n          params: {\n            aid: 472386\n          }\n        }]\n      },\n\n      // Banner adUnit\n      {\n        code: 'test-div',\n        mediaTypes:{\n            banner:{\n                sizes: [[300, 250]]\n            }\n        }\n        bids: [{\n          bidder: 'bidsxchange',\n          params: {\n            aid: 529814\n          }\n        }]\n      }\n    ];",
+              "sha256": "df4dc4fde7abf048a1fbaba44c00f9f60d717190bcc0a0a484b5c469018af0da",
+              "source_path": "dev-docs/bidders/bidsxchange.md",
+              "source_indent": "",
+              "start_line": 43,
+              "end_line": 112
+            },
+            {
+              "language": "javascript",
+              "text": "pbjs.setBidderConfig({\n    config: {              \n        bidsxchange: {\n            chunkSize: 1   // makes 1 http request per 1 adunit configured\n        }\n    }\n});",
+              "sha256": "3b594ffddddbfbf7bd2feeeb75e39546fd433dae2bc80e1bd414207055f2344d",
+              "source_path": "dev-docs/bidders/bidsxchange.md",
+              "source_indent": "",
+              "start_line": 121,
+              "end_line": 127
+            }
+          ],
+          "headings": [
+            {
+              "depth": 3,
+              "text": "Bid params"
+            },
+            {
+              "depth": 3,
+              "text": "Description"
+            },
+            {
+              "depth": 3,
+              "text": "Test Parameters"
+            },
+            {
+              "depth": 3,
+              "text": "Additional Configuration"
+            }
+          ],
+          "anchors": [],
+          "prose": [
+            {
+              "id": "removed-bidder-notice",
+              "text": "This adapter is not available in current versions of Prebid.js. Reason: removed in 8.13.0"
+            }
+          ],
+          "tables": [
+            {
+              "id": "aid-parameter",
+              "cells": [
+                "aid",
+                "required",
+                "The source ID from bidsxchange.",
+                "529814",
+                "integer"
+              ]
+            }
+          ],
+          "images": [],
+          "links": []
+        },
+        "dev-docs/modules/tcfControl.md": {
+          "code": [
+            {
+              "language": "javascript",
+              "text": "pbjs.setConfig({\n    gvlMapping: {\n        bidderA: 12345,\n        bidderB: 67890\n    }\n});",
+              "sha256": "043fb6adf794e23bc8bdbec60e6157d58becd59eb0913c5aad10be42d95a3cae",
+              "source_path": "dev-docs/modules/tcfControl.md",
+              "source_indent": "",
+              "start_line": 92,
+              "end_line": 97
+            },
+            {
+              "language": "javascript",
+              "text": "pbjs.setConfig({\n  consentManagement: {\n    gdpr: {\n      cmpApi: 'iab',   // activates the control module\n      defaultGdprScope: true,\n      rules: [{        // these are the default values\n        purpose: \"storage\",\n        enforcePurpose: true,\n        enforceVendor: true\n      },{\n        purpose: \"basicAds\",\n        enforcePurpose: true,\n        enforceVendor: true\n      },{\n        purpose: \"personalizedAds\",\n        enforcePurpose: true,\n        enforceVendor: true\n      },{\n        purpose: \"measurement\",\n        enforcePurpose: true,\n        enforceVendor: true\n      },{\n        purpose: \"transmitPreciseGeo\",\n        enforcePurpose: true\n      }]\n    }\n  }\n});",
+              "sha256": "7f5347ffa2486d0bdb1e9f9e250c59e9631bee19c9f5ddc5526de6aecf39bdcc",
+              "source_path": "dev-docs/modules/tcfControl.md",
+              "source_indent": "    ",
+              "start_line": 114,
+              "end_line": 141
+            },
+            {
+              "language": "javascript",
+              "text": "  ...\n  rules: [{\n    purpose: \"storage\",\n    enforcePurpose: true,\n    enforceVendor: true,\n    vendorExceptions: [\"idSystemA\"]\n  }]",
+              "sha256": "c4736ee461de250c6a9ece85fc87b628669a4230c922390d99306b8d90820264",
+              "source_path": "dev-docs/modules/tcfControl.md",
+              "source_indent": "    ",
+              "start_line": 147,
+              "end_line": 153
+            },
+            {
+              "language": "javascript",
+              "text": "  ...\n  rules: [{\n    purpose: \"storage\",\n    enforcePurpose: true,\n    enforceVendor: true\n  },{\n    purpose: \"basicAds\",\n    enforcePurpose: true,\n    enforceVendor: true,\n    vendorExceptions: [\"firstPartyBidder\"]\n  }]",
+              "sha256": "9b887e3c4571f3498f68738022596f4a5873a77968d37d6a3e4df79918512ac5",
+              "source_path": "dev-docs/modules/tcfControl.md",
+              "source_indent": "    ",
+              "start_line": 159,
+              "end_line": 169
+            },
+            {
+              "language": "javascript",
+              "text": "  ...\n  rules: [{\n    purpose: \"storage\",\n    enforcePurpose: false,\n    enforceVendor: false\n  }]",
+              "sha256": "2defe958c1de6238bff072b3aa1022303de6d4a12ec3b6bc09630546d4841598",
+              "source_path": "dev-docs/modules/tcfControl.md",
+              "source_indent": "    ",
+              "start_line": 175,
+              "end_line": 180
+            },
+            {
+              "language": "javascript",
+              "text": "  ...\n  rules: [{\n    purpose: \"measurement\",\n    enforcePurpose: true,\n    enforceVendor: true,\n    vendorExceptions: [\"analyticsB\"]\n  }]",
+              "sha256": "db2a9eeef9192f17bc49df0d84e9afcfc334ee544ffb9d11fafff1e19b6cb82e",
+              "source_path": "dev-docs/modules/tcfControl.md",
+              "source_indent": "    ",
+              "start_line": 186,
+              "end_line": 192
+            },
+            {
+              "language": "javascript",
+              "text": "{\n  purposes: [1, 2, 4, 7],\n  flexiblePurposes: [2],\n  legIntPurposes: [],\n  specialFeatures: [1]\n}",
+              "sha256": "59f6de05caefdc18fbb9e8a26ab58f333d4c054dbf9ed52ed8d6259733f440e0",
+              "source_path": "dev-docs/modules/tcfControl.md",
+              "source_indent": "",
+              "start_line": 277,
+              "end_line": 282
+            },
+            {
+              "language": "javascript",
+              "text": "pbjs.setConfig({\n  consentManagement: {\n    gdpr: {\n      cmpApi: 'iab',\n      defaultLegalBasis: {\n        purposes: [1, 2, 4],\n        legIntPurposes: [7],\n        flexiblePurposes: [2],\n        specialFeatures: [1]\n      }\n    }\n  }\n});",
+              "sha256": "edbc649002f259ac97f1bdbc683e8e474c77ce62a1efa25bd742376492b24b73",
+              "source_path": "dev-docs/modules/tcfControl.md",
+              "source_indent": "",
+              "start_line": 291,
+              "end_line": 303
+            },
+            {
+              "language": "javascript",
+              "text": "  ...\n  rules: [{\n    purpose: \"personalizedAds\",\n    eidsRequireP4Consent: true\n  }]",
+              "sha256": "ae5e24e0daa72ab4618ce0d72a59abb1264d5a834ee70cc775c4c9f5651ad5d0",
+              "source_path": "dev-docs/modules/tcfControl.md",
+              "source_indent": "",
+              "start_line": 326,
+              "end_line": 330
+            },
+            {
+              "language": "bash",
+              "text": "gulp build --modules=consentManagement,tcfControl,bidAdapter1,bidAdapter2",
+              "sha256": "34388fe249819890425e2c1af465329cddb1e19002754f668cb554d0fe0369c6",
+              "source_path": "dev-docs/modules/tcfControl.md",
+              "source_indent": "",
+              "start_line": 338,
+              "end_line": 338
+            }
+          ],
+          "headings": [
+            {
+              "depth": 1,
+              "text": "TCF Control Module"
+            },
+            {
+              "depth": 2,
+              "text": "Overview"
+            },
+            {
+              "depth": 2,
+              "text": "Page Integration"
+            },
+            {
+              "depth": 3,
+              "text": "Examples"
+            },
+            {
+              "depth": 2,
+              "text": "Legal basis"
+            },
+            {
+              "depth": 3,
+              "text": "Full enforcement (since Prebid.js 11.15)"
+            },
+            {
+              "depth": 3,
+              "text": "Basic enforcement (Prebid.js versions prior to 11.15)"
+            },
+            {
+              "depth": 3,
+              "text": "Default Legal Basis"
+            },
+            {
+              "depth": 3,
+              "text": "Note on Extended User IDs"
+            },
+            {
+              "depth": 2,
+              "text": "Build the Package"
+            },
+            {
+              "depth": 2,
+              "text": "Further Reading"
+            }
+          ],
+          "anchors": [
+            "strictStorageEnforcement",
+            "full-enforcement",
+            "note-transmitEids"
+          ],
+          "prose": [
+            {
+              "id": "complete-legal-warning",
+              "text": "Important: This resource should not be construed as legal advice and Prebid.org makes no guarantees about compliance with any law or regulation. Please note that because every company and its collection, use, and storage of personal data is different, you should seek independent legal advice relating to obligations under your regional regulations, including the GDPR, the ePrivacy Directive and individual country/province/state laws. Only a lawyer can provide you with legal advice specifically tailored to your situation. Nothing in this guide is intended to provide you with, or should be used as a substitute for, legal advice tailored to your business."
+            }
+          ],
+          "tables": [
+            {
+              "id": "eids-consent-setting",
+              "cell_contains": [
+                "gdpr.rules[].eidsRequireP4Consent",
+                "Boolean",
+                "Defaults to false."
+              ]
+            }
+          ],
+          "images": [],
+          "links": [],
+          "vendor_include_parameters": {}
+        },
+        "dev-docs/modules/permutiveRtdProvider.md": {
+          "code": [
+            {
+              "language": "bash",
+              "text": "gulp build --modules=rtdModule,permutiveRtdProvider",
+              "sha256": "89d8fe6c3bb655b998a5a8881a1814296f5acd00660e60f6d48b65ce3e3a8776",
+              "source_path": "dev-docs/modules/permutiveRtdProvider.md",
+              "source_indent": "",
+              "start_line": 31,
+              "end_line": 31
+            },
+            {
+              "language": "javascript",
+              "text": "pbjs.setConfig({\n  ...,\n  realTimeData: {\n    auctionDelay: 50, // optional auction delay\n    dataProviders: [{\n      name: 'permutive',\n      waitForIt: true, // should be true if there's an `auctionDelay`\n      params: {\n        acBidders: ['msft']\n      }\n    }]\n  },\n  ...\n})",
+              "sha256": "134f416911d4fba5b17ec4ce498df7a5a1475999753a36d9d957aa386a416679",
+              "source_path": "dev-docs/modules/permutiveRtdProvider.md",
+              "source_indent": "",
+              "start_line": 39,
+              "end_line": 52
+            },
+            {
+              "language": "javascript",
+              "text": "[\n  {\n    purpose: 'storage',\n    enforcePurpose: true,\n    enforceVendor: true,\n    vendorExceptions: [\"permutive\"]\n  },\n  {\n    purpose: 'basicAds',\n    enforcePurpose: true,\n    enforceVendor: true,\n    vendorExceptions: []\n  }\n]",
+              "sha256": "90239823654889513c3662056dfb9e93709539cbc49e652c1fbbe25060a67a4f",
+              "source_path": "dev-docs/modules/permutiveRtdProvider.md",
+              "source_indent": "",
+              "start_line": 93,
+              "end_line": 106
+            },
+            {
+              "language": "javascript",
+              "text": "params: {\n  acBidders: ['msft'],\n  bidders: {\n    msft: {\n      customCohorts: { source: 'ls', key: '_papns' }\n    }\n  }\n}",
+              "sha256": "e6fd83cb1c8a0b488827c0d62f5e8de9990eaf27b985ce253efa999cde6c2b10",
+              "source_path": "dev-docs/modules/permutiveRtdProvider.md",
+              "source_indent": "",
+              "start_line": 149,
+              "end_line": 156
+            }
+          ],
+          "headings": [
+            {
+              "depth": 1,
+              "text": "Permutive RTD Provider"
+            },
+            {
+              "depth": 2,
+              "text": "Prebid Config for Permutive RTD Module"
+            },
+            {
+              "depth": 3,
+              "text": "Permutive Real-time Data Submodule"
+            },
+            {
+              "depth": 4,
+              "text": "Usage"
+            },
+            {
+              "depth": 4,
+              "text": "Parameters"
+            },
+            {
+              "depth": 2,
+              "text": "Parameters"
+            },
+            {
+              "depth": 3,
+              "text": "Context"
+            },
+            {
+              "depth": 3,
+              "text": "Instructions"
+            },
+            {
+              "depth": 2,
+              "text": "Cohort Activation with Permutive RTD Module"
+            },
+            {
+              "depth": 3,
+              "text": "Enabling Publisher Cohorts"
+            },
+            {
+              "depth": 4,
+              "text": "Standard Cohorts"
+            },
+            {
+              "depth": 4,
+              "text": "Bidder Specific Requirements for Standard Cohorts"
+            },
+            {
+              "depth": 4,
+              "text": "Custom Cohorts"
+            },
+            {
+              "depth": 3,
+              "text": "Enabling Advertiser Cohorts"
+            },
+            {
+              "depth": 3,
+              "text": "Managing acbidders"
+            },
+            {
+              "depth": 4,
+              "text": "Option 1 - Automated"
+            },
+            {
+              "depth": 5,
+              "text": "Create Integration"
+            },
+            {
+              "depth": 5,
+              "text": "Update acbidders"
+            },
+            {
+              "depth": 4,
+              "text": "Option 2 - Manual"
+            }
+          ],
+          "anchors": [],
+          "prose": [],
+          "tables": [
+            {
+              "id": "waitForIt-setting",
+              "cells": [
+                "waitForIt",
+                "Boolean",
+                "Should be true if there's an auctionDelay defined (optional)",
+                "false"
+              ]
+            }
+          ],
+          "images": [
+            {
+              "alt": "Alt text",
+              "title": "Permutive Prebid integration - create",
+              "allowed_urls": [
+                "/assets/images/dev-docs/modules/permutiveRtdProvider-integration-create.png?raw=true",
+                "/images/dev-docs/modules/permutiveRtdProvider-integration-create.png?raw=true"
+              ]
+            },
+            {
+              "alt": "Alt text",
+              "title": "Permutive Prebid integration - update",
+              "allowed_urls": [
+                "/assets/images/dev-docs/modules/permutiveRtdProvider-integration-update.png?raw=true",
+                "/images/dev-docs/modules/permutiveRtdProvider-integration-update.png?raw=true"
+              ]
+            }
+          ],
+          "links": [],
+          "vendor_include_parameters": {
+            "gvlId": "361"
+          }
+        },
+        "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md": {
+          "code": [
+            {
+              "language": "pod",
+              "text": "pod 'PrebidMobileGAMEventHandlers'",
+              "sha256": "a16e24674286c646590579ee5ff244071dba359347337758a8d86373753441f8",
+              "source_path": "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md",
+              "source_indent": "",
+              "start_line": 27,
+              "end_line": 27
+            },
+            {
+              "language": "swift",
+              "text": "GAMUtils.shared.initializeGAM()",
+              "sha256": "f9a7634c8b4454ee7ca85a6b501678bb182024bcf9853f1f93521300f3741f9b",
+              "source_path": "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md",
+              "source_indent": "",
+              "start_line": 38,
+              "end_line": 38
+            },
+            {
+              "language": "swift",
+              "text": "// 1. Create an Event Handler\nlet eventHandler = GAMBannerEventHandler(adUnitID: GAM_AD_UNIT_ID,\n                                         validGADAdSizes: [NSValueFromGADAdSize(adSize)])\n       \n// 2. Create a Banner View\nlet banner = BannerView(configID: CONFIG_ID,\n                        eventHandler: eventHandler)\n\nbanner.delegate = self\n\naddBannerToUI(banner: banner)\n        \n// 3. Load an Ad\nbanner.loadAd()",
+              "sha256": "c319afc0310ab60947652e9e7081a17765a226ffe3a2085da236f7fad0121ebb",
+              "source_path": "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md",
+              "source_indent": "",
+              "start_line": 52,
+              "end_line": 65
+            },
+            {
+              "language": "swift",
+              "text": "banner.adFormat = .video",
+              "sha256": "0723729c80472a115f65689b10fbec67bcccf1c438f569f4d2d5b4c5ce0cc64e",
+              "source_path": "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md",
+              "source_indent": "",
+              "start_line": 99,
+              "end_line": 99
+            },
+            {
+              "language": "swift",
+              "text": "// 1. Create Event Handler\nlet eventHandler = GAMInterstitialEventHandler(adUnitID: GAM_AD_UNIT_ID)\n    \n// 2. Create Interstitial Ad Unit\ninterstitial = InterstitialRenderingAdUnit(configID: CONFIG_ID,\n                                           minSizePercentage: MIN_SIZE_PERC,\n                                           eventHandler: eventHandler)\n    \ninterstitial.delegate = self\n    \n// 3. Load an Ad\ninterstitial.loadAd()\n\n/// .......\n\n// 4. Show Ad\nif interstitial.isReady {\n    interstitial.show(from: self)\n}\n",
+              "sha256": "5464dfe9f8e3ebf8f25f12b8fdbbce0f89f56f37192c8cca70bed0486f06d1aa",
+              "source_path": "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md",
+              "source_indent": "",
+              "start_line": 125,
+              "end_line": 144
+            },
+            {
+              "language": "swift",
+              "text": "// Make bid request for video ad                                     \nadUnit?.adFormats = [.video]\n\n// Make bid request for both video amd disply ads                                     \nadUnit?.adFormats = [.video, .banner]\n\n// Make bid request for banner ad (default behaviour)                                     \nadUnit?.adFormats = [.banner]\n",
+              "sha256": "a6f00eaa1e0f8da934d285e348c573ba895d2d4b3527c1f44e9131db16070c69",
+              "source_path": "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md",
+              "source_indent": "",
+              "start_line": 150,
+              "end_line": 158
+            },
+            {
+              "language": "swift",
+              "text": "// MARK: InterstitialAdUnitDelegate\n    \nfunc interstitialDidReceiveAd(_ interstitial: InterstitialAdUnit) {\n    // Now the ad is ready for display\n}",
+              "sha256": "d5838547b3955a989832219ee825a7dccf3d0760842700b979930528f5bc46e3",
+              "source_path": "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md",
+              "source_indent": "",
+              "start_line": 188,
+              "end_line": 192
+            },
+            {
+              "language": "swift",
+              "text": " // 1. Create an Event Handler\nlet eventHandler = GAMRewardedEventHandler(adUnitID: GAM_AD_UNIT_ID)\n    \n// 2. Create an Ad Unit\nrewardedAd = RewardedAdUnit(configID: CONFIG_ID, eventHandler: eventHandler)\n    \nrewardedAd.delegate = self\n    \n// 3. Load an Ad\nrewardedAd.loadAd()\n\n/// .......\n\n// 4. Display Ad\nif rewardedAd.isReady {\n    rewardedAd.show(from: self)\n}\n",
+              "sha256": "043e100ec3d51abf6fa0d3a16c1108b69f850020cf3daab90f75596d4cf5c149",
+              "source_path": "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md",
+              "source_indent": "",
+              "start_line": 218,
+              "end_line": 235
+            },
+            {
+              "language": "swift",
+              "text": "func rewardedAdUserDidEarnReward(_ rewardedAd: RewardedAdUnit, reward: PrebidReward) {}",
+              "sha256": "b1ae7e858acc20f43d322634d37c0c57dd02a1cd0f10e2e7e8a3eb4608512d65",
+              "source_path": "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md",
+              "source_indent": "",
+              "start_line": 243,
+              "end_line": 243
+            },
+            {
+              "language": "swift",
+              "text": "// MARK: RewardedAdUnitDelegate\n    \nfunc rewardedAdDidReceiveAd(_ rewardedAd: RewardedAdUnit) {\n    // Now the ad is ready for display\n}",
+              "sha256": "286bbb3c339c3552965d5ddad9e898a231417231eeafbd4715d44eaf2e466b77",
+              "source_path": "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md",
+              "source_indent": "",
+              "start_line": 283,
+              "end_line": 287
+            },
+            {
+              "language": "swift",
+              "text": "// MARK: RewardedAdUnitDelegate\n\nfunc rewardedAdUserDidEarnReward(_ rewardedAd: RewardedAdUnit, reward: PrebidReward) {\n    let type = reward.type\n    let count = reward.count\n    let ext = reward.ext\n        \n    // Process the reward\n}",
+              "sha256": "5d14f3e7b5ee86f3be44f6e62a8a234f3679284e54107883da8e7b1fe9cdfefb",
+              "source_path": "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md",
+              "source_indent": "",
+              "start_line": 296,
+              "end_line": 304
+            },
+            {
+              "language": "swift",
+              "text": "if let reward = rewardedAd.reward as? GoogleMobileAds.AdReward {\n    // ...\n}",
+              "sha256": "f18b14d4977b8e7a75e2fb48bd09ff28978803091dff1e0034f293d641e38c8b",
+              "source_path": "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md",
+              "capture": "gma12",
+              "source_capture_sha256": "a73fa07e94830fff6b8aefff69acc0a03b8ff1a4df9fbb3a034ea52931e3969a"
+            },
+            {
+              "language": "swift",
+              "text": "if let reward = rewardedAd.reward as? GADAdReward {\n    // ...\n}",
+              "sha256": "06e4a642312903f6e7f5d8c7cbb78bf7dcbba789e7c291ba9b2a8f557cc2a787",
+              "source_path": "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md",
+              "capture": "gma11",
+              "source_capture_sha256": "d1a337115dbfaf1c966da2c00e03e45ce6d0135ed13ebf0999948e8d73061cb9"
+            },
+            {
+              "language": "json",
+              "text": "{\n  \"ext\": {\n    \"prebid\": {\n      \"passthrough\": [\n        {\n          \"type\": \"prebidmobilesdk\",\n          \"rwdd\": {\n            \"completion\": {\n              \"video\": {\n                \"endcard\": {\n                  \"time\": 15\n                }\n              }\n            },\n            \"close\": {\n              \"postrewardtime\": 0,\n              \"action\": \"closebutton\"\n            }\n          }\n        }\n      ]\n    }\n  }\n}",
+              "sha256": "60ea0c02128f09b34d2fcc39a05bd418ecedec47e4ae0f758c76a6705c3580bb",
+              "source_path": "_includes/mobile/rewarded-server-side-configuration.md",
+              "source_indent": "",
+              "start_line": 37,
+              "end_line": 60
+            },
+            {
+              "language": "json",
+              "text": "{\n  \"video\": {\n    \"h\": 480,\n    \"w\": 320,\n    \"mimes\": [\"video/mp4\"],\n    \"linearity\": 1,\n    \"placement\": 2,\n    \"playbackmethod\": [2]\n  },\n  \"ext\": {\n    \"prebid\": {\n      \"passthrough\": [\n        {\n          \"type\": \"prebidmobilesdk\",\n          \"rwdd\": {\n            \"reward\": {\n              \"type\": \"SuperDollars\",\n              \"count\": 10\n            },\n            \"completion\": {\n              \"video\": {\n                \"endcard\": {\n                  \"time\": 5\n                }\n              }\n            },\n            \"close\": {\n              \"postrewardtime\": 3,\n              \"action\": \"autoclose\"\n            }\n          }\n        }\n      ]\n    }\n  }\n}",
+              "sha256": "4c0400e2ecdd1bf70127b6fdcd67e971a3d8f61c9cb73633cf0f5c929ce53273",
+              "source_path": "_includes/mobile/rewarded-server-side-configuration.md",
+              "source_indent": "",
+              "start_line": 68,
+              "end_line": 103
+            },
+            {
+              "language": "swift",
+              "text": "adUnit.adPosition = .footer",
+              "sha256": "86793b910e29593e2e41930560c57bb3804c1cfa6d92e9817c7d4e4e3c4b1f86",
+              "source_path": "_includes/mobile/rendering-adunit-config-ios.md",
+              "source_indent": "",
+              "start_line": 8,
+              "end_line": 8
+            }
+          ],
+          "headings": [
+            {
+              "depth": 1,
+              "text": "Prebid SDK iOS with the GAM Prebid-Rendered Integration Method"
+            },
+            {
+              "depth": 2,
+              "text": "Event Handlers"
+            },
+            {
+              "depth": 3,
+              "text": "Integrate Event Handlers"
+            },
+            {
+              "depth": 3,
+              "text": "Event Handlers Initialization"
+            },
+            {
+              "depth": 2,
+              "text": "AdUnit-Specific instructions"
+            },
+            {
+              "depth": 3,
+              "text": "Banners"
+            },
+            {
+              "depth": 4,
+              "text": "Display Banners"
+            },
+            {
+              "depth": 5,
+              "text": "Step 1: Create Event Handler"
+            },
+            {
+              "depth": 5,
+              "text": "Step 2: Create Ad View"
+            },
+            {
+              "depth": 5,
+              "text": "Step 3: Load the Ad"
+            },
+            {
+              "depth": 4,
+              "text": "Banner Video (non-instream)"
+            },
+            {
+              "depth": 4,
+              "text": "Migrating banners from a Bidding-Only integration"
+            },
+            {
+              "depth": 3,
+              "text": "Interstitials"
+            },
+            {
+              "depth": 4,
+              "text": "Step 1: Create Event Handler"
+            },
+            {
+              "depth": 4,
+              "text": "Step 2: Create Interstitial Ad Unit"
+            },
+            {
+              "depth": 4,
+              "text": "Step 3: Load the Ad"
+            },
+            {
+              "depth": 4,
+              "text": "Step 4: Show the Ad when it is ready"
+            },
+            {
+              "depth": 4,
+              "text": "Migrating interstitials from a Bidding-Only integration"
+            },
+            {
+              "depth": 3,
+              "text": "Rewarded"
+            },
+            {
+              "depth": 4,
+              "text": "Integration example"
+            },
+            {
+              "depth": 5,
+              "text": "Step 1: Create Event Handler"
+            },
+            {
+              "depth": 5,
+              "text": "Step 2: Create Rewarded Ad Unit"
+            },
+            {
+              "depth": 5,
+              "text": "Step 3: Load the Ad"
+            },
+            {
+              "depth": 5,
+              "text": "Step 4: Show the Ad when it is ready"
+            },
+            {
+              "depth": 6,
+              "text": "Step 4: Handle the reward"
+            },
+            {
+              "depth": 4,
+              "text": "Migrating Rewarded Video from a Bidding-Only integration"
+            },
+            {
+              "depth": 2,
+              "text": "Additional Ad Unit Configuration"
+            },
+            {
+              "depth": 2,
+              "text": "Further Reading"
+            },
+            {
+              "depth": 2,
+              "text": "Overview"
+            },
+            {
+              "depth": 3,
+              "text": "Alternative Approaches"
+            },
+            {
+              "depth": 3,
+              "text": "Prerequisites"
+            },
+            {
+              "depth": 2,
+              "text": "How it Works"
+            },
+            {
+              "depth": 2,
+              "text": "Major Integration Steps"
+            },
+            {
+              "depth": 2,
+              "text": "Ad Operations Guidance"
+            },
+            {
+              "depth": 3,
+              "text": "Rendering and Tracking"
+            },
+            {
+              "depth": 5,
+              "text": "Server-side Rewarded Ad Unit Configuration"
+            },
+            {
+              "depth": 3,
+              "text": "Ad Position"
+            }
+          ],
+          "anchors": [],
+          "prose": [
+            {
+              "id": "gma-initialization-warning",
+              "text": "Warning: GMA SDK is a closed library that sometimes works in unexpected ways. The GADMobileAds.sharedInstance().start() should be called in all bundles where it is used. Otherwise, GMA SDK won't load the ads with an error of: adView:didFailToReceiveAdWithError: SDK tried to perform a networking task before being initialized."
+            },
+            {
+              "id": "rewarded-process-sentence",
+              "text": "The proccess for displaying the Rewarded Ad is the same as for the Interstitial Ad."
+            },
+            {
+              "id": "reward-configuration-introduction",
+              "text": "Prebid SDK will search for a particular rwdd object in $.seatbid.bid.ext.prebid.passthrough of bid response to configure the behavior and rendering of the Rewarded Ad Unit."
+            }
+          ],
+          "tables": [
+            {
+              "id": "reward-count",
+              "cell_contains": [
+                "reward.count",
+                "integer",
+                "10"
+              ]
+            }
+          ],
+          "images": [
+            {
+              "alt": "GAM Prebid-Rendered Integration Details",
+              "title": null,
+              "allowed_urls": [
+                "/assets/images/prebid-mobile/mobile-details-gam-prebid-rendered.png",
+                "/images/prebid-mobile/mobile-details-gam-prebid-rendered.png"
+              ]
+            }
+          ],
+          "links": [],
+          "tabs": {
+            "default_value": "gma12",
+            "items": [
+              {
+                "value": "gma12",
+                "label": "GMA SDK v12",
+                "payload_sha256": "f18b14d4977b8e7a75e2fb48bd09ff28978803091dff1e0034f293d641e38c8b",
+                "payload_text": "if let reward = rewardedAd.reward as? GoogleMobileAds.AdReward {\n    // ...\n}"
+              },
+              {
+                "value": "gma11",
+                "label": "GMA SDK v11",
+                "payload_sha256": "06e4a642312903f6e7f5d8c7cbb78bf7dcbba789e7c291ba9b2a8f557cc2a787",
+                "payload_text": "if let reward = rewardedAd.reward as? GADAdReward {\n    // ...\n}"
+              }
+            ],
+            "accessibility_rendering": "unexecuted"
+          }
+        },
+        "dev-docs/examples/basic-example.md": {
+          "code": [
+            {
+              "language": "html",
+              "text": "<!-- DO NOT add this script in prod -->\n<script src=\"intercept-banner-not-for-prod.js\" ></script>\n<!-- END -->\n\n<h5>Div-1</h5>\n<div id='div-1' style=\"min-height:250px;\">\n  <script type='text/javascript'>\n    googletag.cmd.push(function() {\n      googletag.display('div-1');\n    });\n  </script>\n</div>",
+              "sha256": "9f1457fd6e4732fa4d0bd174dcea68d708247b65d039984d636873149a00a881",
+              "source_path": "dev-docs/examples/basic-example.md",
+              "capture": "htmlCodePrebid",
+              "source_capture_sha256": "1eb00a523286553668bf4aabb3f7cbd8520a7c709cae741ab196f2cc6be1a87e"
+            },
+            {
+              "language": "javascript",
+              "text": "var sizes = [\n  [300, 250]\n];\nvar PREBID_TIMEOUT = 700;\n\nvar adUnits = [{\n  code: '/19968336/header-bid-tag-1',\n  mediaTypes: {\n    banner: {\n      sizes: sizes\n    }\n  },\n  bids: [{\n    bidder: 'msft',\n    params: {\n      placement_id: 'XXXXXXX' //not used in prod\n    }\n  }]\n}];\n\n// ======== DO NOT EDIT BELOW THIS LINE =========== //\nvar googletag = googletag || {};\ngoogletag.cmd = googletag.cmd || [];\ngoogletag.cmd.push(function() {\n  googletag.pubads().disableInitialLoad();\n});\n\nvar pbjs = pbjs || {};\npbjs.que = pbjs.que || [];\n\npbjs.que.push(function() {\n  pbjs.addAdUnits(adUnits);\n  pbjs.requestBids({\n    bidsBackHandler: initAdserver\n  });\n});\n\nfunction initAdserver() {\n  if (pbjs.initAdserverSet) return;\n  pbjs.initAdserverSet = true;\n  googletag.cmd.push(function() {\n    if (pbjs.libLoaded) {\n      pbjs.que.push(function() {\n        pbjs.setTargetingForGPTAsync();\n        googletag.pubads().refresh();\n      });\n    } else {\n      googletag.pubads().refresh();\n    }\n  });\n}\n\nsetTimeout(function() {\n  initAdserver();\n}, PREBID_TIMEOUT);\n\ngoogletag.cmd.push(function() {\n  googletag.defineSlot('/19968336/header-bid-tag-1', sizes, 'div-1')\n    .addService(googletag.pubads());\n  googletag.pubads().enableSingleRequest();\n  googletag.enableServices();\n});",
+              "sha256": "6f12a90d0561d03ff080e236effeaba48ba78a224d9c7595d359078902eac219",
+              "source_path": "dev-docs/examples/basic-example.md",
+              "capture": "jsCode",
+              "source_capture_sha256": "fd44cd550835f91dab366eeb37f499bc8eab768d4377c5242e94368e495afb38"
+            }
+          ],
+          "headings": [
+            {
+              "depth": 2,
+              "text": "Basic Prebid.js Example"
+            }
+          ],
+          "anchors": [],
+          "prose": [
+            {
+              "id": "about-heading",
+              "text": "About this example:"
+            },
+            {
+              "id": "about-1",
+              "text": "This example demonstrates asynchronous Prebid.js integration with a single Google Ad Manager ad slot"
+            },
+            {
+              "id": "about-2",
+              "text": "Default keyword targeting setup"
+            },
+            {
+              "id": "about-3",
+              "text": "Default price granularity"
+            },
+            {
+              "id": "production-warning",
+              "text": "This example uses a test version of Prebid.js hosted on our CDN that is not recommended for production use."
+            },
+            {
+              "id": "build-warning",
+              "text": "This example includes all available adapters and modules. Production implementations should build from source or customize the build using the Download page to make sure only the necessary bidder adapters and modules are included."
+            }
+          ],
+          "tables": [],
+          "images": [],
+          "links": [
+            {
+              "label": "Download",
+              "allowed_urls": [
+                "/download.html",
+                "/download"
+              ]
+            },
+            {
+              "label": "reference",
+              "target_suffix": "bidderSettings"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "csv": {
+    "headers": [
+      "bidder-code",
+      "bidder-name",
+      "banner",
+      "video",
+      "native",
+      "schain",
+      "dchain",
+      "tcfeu",
+      "coppa",
+      "gpp",
+      "usp",
+      "safeframes",
+      "deals",
+      "client-adapter",
+      "server-adapter",
+      "user-ids",
+      "mobile-apps",
+      "floors",
+      "fpd",
+      "prebid-member",
+      "ortb-blocking",
+      "multiformat",
+      "aliasOf",
+      "adapterFilename"
+    ],
+    "selected_cells": {
+      "appnexus": {
+        "bidder-name": "AppNexus",
+        "banner": "yes",
+        "video": "yes",
+        "native": "yes",
+        "gpp": "some (check with bidder)",
+        "adapterFilename": "appnexusBidAdapter"
+      },
+      "bidsxchange": {
+        "aliasOf": "adtelligent",
+        "adapterFilename": "adtelligentBidAdapter"
+      },
+      "browsi": {
+        "banner": "no",
+        "video": "yes",
+        "native": "no"
+      },
+      "rtbdemand_com": {
+        "gpp": "tcfeu  usp",
+        "aliasOf": "adkernel",
+        "adapterFilename": "adkernelBidAdapter"
+      },
+      "lemmadigital": {
+        "adapterFilename": "lemmaDigitalBidAdapter"
+      }
+    }
+  },
+  "limitations": [
+    "Source-only checks do not establish rendered notices, generated tab aria relationships, hydration, keyboard use, asset bytes, final routes, or external service behavior.",
+    "Metadata losslessness, disputed field policy, complete CSV row semantics, CSV ordering, and download eligibility need separate checks.",
+    "Tables and image checks are selected obligations, not a proof of whole-page semantic parity."
+  ]
+}

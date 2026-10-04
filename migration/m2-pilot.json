@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "kind": "bounded-m2-input-selection",
+  "migration_commit": "6a64af82939bc1bc04a44b8a5b03751b86eb87e8",
+  "snapshots": {
+    "A": {
+      "commit": "1f6c748039ad008b9d2a4b9870a26b507e46a542",
+      "inputs": {
+        "dev-docs/bidders/appnexus.md": "78a8c33cd79b041dcd15b3991838670af92c5f8cbfc71e143deb6f1cbd20d5ec",
+        "dev-docs/bidders/bidsxchange.md": "32709a001d1df0aa9d8b8f628f7a00ce604907ab7bc71d07466daf535dbfb070",
+        "dev-docs/modules/tcfControl.md": "b168eb5397eba2e7926ef1c8358c8f78e0b4bb40816cf4e2187d55903827265f",
+        "dev-docs/modules/permutiveRtdProvider.md": "d62380dde697fb02780463564c1a4c1f5309ccaee1e4c7f4d70f90f9930ee04c",
+        "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md": "f26bc3b5ffefce574235f2b8f7d4e0a86b91e5099e707d4b2e4ca0fb63b74ba9",
+        "dev-docs/examples/basic-example.md": "ac9a3b1aaed5949f7032e5ecaec0b859117be1d462c5c72271fe30370f98e547",
+        "dev-docs/bidder-data.csv": "9a9ac142c2422fa08665e6af8a059840e9601df70bb24fbd5d3904baa133d1ce",
+        "dev-docs/bidders/browsi.md": "aa4f3418fe24f285abc5abdd9dfcda91acee7ec1b6e0a33a017f0d789eb8c49d",
+        "dev-docs/bidders/rtbdemand_com.md": "7492fcbca84723c3c4fc5be7bdd6122ca5bc586cc818a31f028a381f75f7d9e3",
+        "dev-docs/bidders/lemmadigital.md": "392e7b2ad5610f15f0fb966aee111d4f4e5ddd5d9f1eba0a905e3eb80b1b3c5c",
+        "_includes/legal-warning.html": "2aaa25c472bb5ffdd9390562bddb9e2600fdf6c6528eb4e944a4f11114dd654c",
+        "_includes/dev-docs/vendor-exception.md": "7129528da3493053b3013c831cc72232b8ce6c439ba8d73ee0ae71982a8a5223",
+        "_includes/dev-docs/not-for-production-warning.md": "59574da451358ed92dc776f1a672851c2f158bf235d398da623af67de529563b",
+        "_includes/dev-docs/build-from-source-warning.md": "422713ece163e39282b377d6300f58b78396458acb79b61e43d627aafa4f3632",
+        "_includes/mobile/intro-prebid-rendered.md": "5bfa377b33d57701df12dd1140759f3ccb97b90ad390b1d1eb441f602998ad30",
+        "_includes/mobile/rewarded-server-side-configuration.md": "60a7ed5d66c6f25b0576f4d6eb5df42fbc2fe2108843fe25b3685a31fa689ae2",
+        "_includes/mobile/rendering-adunit-config-ios.md": "e3486421cbb96418ec17e8304682abec80e66b175fb363905645f72d01cc1276",
+        "_includes/code/gma-versions-tabs.html": "5eb02e6c35a0726a820bb8cf9349a812ea0d47ccbdf188980ca07aeae0f32084",
+        "_includes/code/web-example.html": "5f25b467ddc7d95aa8a423d2272418daecd4faf75a5b0b570ea3b9615c2a34ab",
+        "_layouts/bidder.html": "b9697850df101196390764335624941031f6d0bf168e2d71ae6f674f39b19799",
+        "_layouts/example.html": "ce62edf6656ae9ad0948b200028fc68095f8fb6ef82fdcf250e6081c8a70343e",
+        "_config.yml": "0900647e413d7661358080bbbc13619b03e2aa1a4121b02042c84eddca6bec76"
+      },
+      "adapterHashes": {
+        "code/web-example.html": "5f25b467ddc7d95aa8a423d2272418daecd4faf75a5b0b570ea3b9615c2a34ab",
+        "code/gma-versions-tabs.html": "5eb02e6c35a0726a820bb8cf9349a812ea0d47ccbdf188980ca07aeae0f32084"
+      },
+      "assets": {
+        "assets/images/dev-docs/modules/permutiveRtdProvider-integration-create.png": "53a044621007028e6cca4715aa90fb7257374a6d1e789b01dfb203239e4c9e77",
+        "assets/images/dev-docs/modules/permutiveRtdProvider-integration-update.png": "4369261fad9328f262e8f556d17786bab2dabd90c0cea99b4bb3afbe737826ed",
+        "assets/images/prebid-mobile/mobile-details-gam-prebid-rendered.png": "3c377d6da2294c240b58dac7e55d05e9d37d51b60f54125c4ea6f3dd2e56b0f5"
+      }
+    },
+    "B": {
+      "commit": "b16d95ac1ee95238c070bc9f137d52718287d1cc",
+      "inputs": {
+        "dev-docs/bidders/appnexus.md": "267fac789a0a520b3e7a04761377925653ac1ac58e02f26a7cf0115d7c6896c3",
+        "dev-docs/bidders/bidsxchange.md": "32709a001d1df0aa9d8b8f628f7a00ce604907ab7bc71d07466daf535dbfb070",
+        "dev-docs/modules/tcfControl.md": "50c092ef0468efa1c0221e60b0f945e988e40aeedc4b87428cb60eaaf48664fe",
+        "dev-docs/modules/permutiveRtdProvider.md": "c0e01aa8fdbf0fb01e4cf75f1509f6d21b05d5a5cde6b8fd4b7d97d94b7e7f7f",
+        "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md": "f26bc3b5ffefce574235f2b8f7d4e0a86b91e5099e707d4b2e4ca0fb63b74ba9",
+        "dev-docs/examples/basic-example.md": "8bd4fa56d5343bfbc05e3c2ee76da348fd9b4481296ef36d557c05e5bd693964",
+        "dev-docs/bidder-data.csv": "9a9ac142c2422fa08665e6af8a059840e9601df70bb24fbd5d3904baa133d1ce",
+        "dev-docs/bidders/browsi.md": "aa4f3418fe24f285abc5abdd9dfcda91acee7ec1b6e0a33a017f0d789eb8c49d",
+        "dev-docs/bidders/rtbdemand_com.md": "7492fcbca84723c3c4fc5be7bdd6122ca5bc586cc818a31f028a381f75f7d9e3",
+        "dev-docs/bidders/lemmadigital.md": "392e7b2ad5610f15f0fb966aee111d4f4e5ddd5d9f1eba0a905e3eb80b1b3c5c",
+        "_includes/legal-warning.html": "2aaa25c472bb5ffdd9390562bddb9e2600fdf6c6528eb4e944a4f11114dd654c",
+        "_includes/dev-docs/vendor-exception.md": "7129528da3493053b3013c831cc72232b8ce6c439ba8d73ee0ae71982a8a5223",
+        "_includes/dev-docs/not-for-production-warning.md": "59574da451358ed92dc776f1a672851c2f158bf235d398da623af67de529563b",
+        "_includes/dev-docs/build-from-source-warning.md": "422713ece163e39282b377d6300f58b78396458acb79b61e43d627aafa4f3632",
+        "_includes/mobile/intro-prebid-rendered.md": "5bfa377b33d57701df12dd1140759f3ccb97b90ad390b1d1eb441f602998ad30",
+        "_includes/mobile/rewarded-server-side-configuration.md": "1a8a471c12e8a645004f720a2dfa490584ededfde778d77773178a1dd377155a",
+        "_includes/mobile/rendering-adunit-config-ios.md": "e3486421cbb96418ec17e8304682abec80e66b175fb363905645f72d01cc1276",
+        "_includes/code/gma-versions-tabs.html": "5eb02e6c35a0726a820bb8cf9349a812ea0d47ccbdf188980ca07aeae0f32084",
+        "_includes/code/web-example.html": "5f25b467ddc7d95aa8a423d2272418daecd4faf75a5b0b570ea3b9615c2a34ab",
+        "_layouts/bidder.html": "919eb87c478266b0a6725693bebd9c18d537bd20aebd933b72b6d5c26a46103f",
+        "_layouts/example.html": "ce62edf6656ae9ad0948b200028fc68095f8fb6ef82fdcf250e6081c8a70343e",
+        "_config.yml": "0900647e413d7661358080bbbc13619b03e2aa1a4121b02042c84eddca6bec76"
+      },
+      "adapterHashes": {
+        "code/web-example.html": "5f25b467ddc7d95aa8a423d2272418daecd4faf75a5b0b570ea3b9615c2a34ab",
+        "code/gma-versions-tabs.html": "5eb02e6c35a0726a820bb8cf9349a812ea0d47ccbdf188980ca07aeae0f32084"
+      },
+      "assets": {
+        "assets/images/dev-docs/modules/permutiveRtdProvider-integration-create.png": "53a044621007028e6cca4715aa90fb7257374a6d1e789b01dfb203239e4c9e77",
+        "assets/images/dev-docs/modules/permutiveRtdProvider-integration-update.png": "4369261fad9328f262e8f556d17786bab2dabd90c0cea99b4bb3afbe737826ed",
+        "assets/images/prebid-mobile/mobile-details-gam-prebid-rendered.png": "3c377d6da2294c240b58dac7e55d05e9d37d51b60f54125c4ea6f3dd2e56b0f5"
+      }
+    }
+  },
+  "limits": [
+    "Input hashes establish source identity; they are not semantic expectations.",
+    "No broad migration, final routes, deployment, or disputed policy approval."
+  ]
+}

@@ -1,12 +1,14 @@
 # Docusaurus adoption and migration execution plan
 
-Status: execution underway, October 4, 2026. The Docusaurus 3.10.2 package upgrade
-is published in [PR #6785](https://github.com/prebid/prebid.github.io/pull/6785),
-and [M0 local evidence](migration/M0_BASELINE.md) is captured. The
-[M1 runtime/validation foundation](migration/M1_VALIDATION.md) is implemented,
-with retained clean macOS and fresh Linux controls. Hosted acceptance is checked
-against the final published PR head, separately from these local receipts.
-M2 and later milestones have not been implemented or accepted by documenting them.
+Status: execution underway, October 4, 2026. The Docusaurus 3.10.2 upgrade and
+M0/M1 foundation are merged into `docusaurus` through
+[PR #6785](https://github.com/prebid/prebid.github.io/pull/6785) and
+[PR #6786](https://github.com/prebid/prebid.github.io/pull/6786), at `6a64af8`.
+The [M0 evidence](migration/M0_BASELINE.md) and
+[M1 validation](migration/M1_VALIDATION.md) retain their historical identities.
+The [bounded M2 pilot](migration/M2_PILOT.md) is implemented and locally verified;
+full M2 acceptance remains open on metadata authority, consumer validation, and
+the explicitly listed integration checks. M3 and later remain unimplemented.
 
 The [pre-implementation audit](DOCUSAURUS_PLAN_AUDIT.md) records the October 4
 discovery pass, its evidence, the corrections incorporated here, and its limits.
@@ -73,9 +75,9 @@ Specific evidence changes the work priorities:
 * The [bidder plugin](_plugins/toc-plugin.ts) writes JSON into tracked source and
   processes only `current`. Cache staleness has not been demonstrated, but
   freshness and version separation need explicit tests before relying on caching.
-* The [converter](scripts/migrate-devdocs.mjs) performs some substitutions across
-  fenced examples, and checks destination conflicts before choosing the final
-  `.mdx` name. Fix those behaviors before expanding automated conversion.
+* The historical converter performed substitutions across fenced examples and
+  checked conflicts before selecting the final `.mdx` name. M2 retires that writer
+  and tests a bounded replacement in staging; broader conversion remains gated.
 * The [introduction](docs/content/intro.mdx) renders an image at an absent
   `/assets/images/...` path although its `/images/...` counterpart exists.
   Route/link counts alone do not establish asset or content parity.
@@ -197,6 +199,12 @@ source/target failures, not merely higher aggregate counts. Any broader inventor
 must be versioned with its detector and reviewed rather than silently rebaselined.
 
 ### M2 — Converter safety and the content contract
+
+The [bounded pilot receipt and open gates](migration/M2_PILOT.md) are the current
+checkpoint. It selects staged regeneration for reviewed source-owned outputs
+with explicit repairs and manual reconciliation of existing migration work.
+Both controlled replay methods passed; this is not authority for a wholesale
+restart or full M2 acceptance. The field-policy decisions remain unresolved.
 
 * Specify preserved behavior for frontmatter, headings/IDs, tables, warnings,
   includes, code examples, raw HTML, links, images, and format-specific syntax.
