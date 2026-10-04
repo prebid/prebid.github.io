@@ -19,6 +19,12 @@ test('PR validation uses an unprivileged full-history candidate with retained ev
   assert.equal(config.defaults.run.shell, 'bash');
   assert.ok(config.on.pull_request.branches.includes('docusaurus'));
   assert.ok(config.on.pull_request.branches.includes('codex/docusaurus-*'));
+  for (const event of ['opened', 'synchronize', 'reopened', 'edited']) {
+    assert.ok(config.on.pull_request.types.includes(event), `Missing PR activity: ${event}`);
+  }
+  // Skipping the validation job on a metadata edit would publish a successful
+  // skipped check for that same head, potentially replacing a failed result.
+  assert.equal(config.jobs.validate.if, undefined);
   assert.ok(!read('.github/workflows/docusaurus.yml').includes('secrets.'));
   const steps = config.jobs.validate.steps;
   const checkout = steps.find(step => step.uses?.startsWith('actions/checkout@'));
@@ -36,6 +42,25 @@ test('PR validation uses an unprivileged full-history candidate with retained ev
   assert.equal(upload.with['include-hidden-files'], true);
   assert.equal(upload.with['if-no-files-found'], 'error');
   for (const step of steps.filter(step => step.uses)) assert.match(step.uses, /^actions\/(checkout|setup-node|upload-artifact)@[a-f0-9]{40}$/);
+});
+
+test('a base retarget remains subscribed even when the candidate SHA does not change', () => {
+  const config = workflow('docusaurus');
+  const original = {action: 'opened', pull_request: {head: {sha: 'a'.repeat(40)}, base: {ref: 'codex/docusaurus-3.10.2', sha: 'b'.repeat(40)}}};
+  const retargeted = {action: 'edited', changes: {base: {
+    ref: {from: original.pull_request.base.ref}, sha: {from: original.pull_request.base.sha}}},
+    pull_request: {head: original.pull_request.head, base: {ref: 'docusaurus', sha: 'c'.repeat(40)}}};
+  const subscribed = event => config.on.pull_request.types.includes(event.action)
+    && config.on.pull_request.branches.some(pattern => new RegExp(`^${pattern.replace('*', '.*')}$`).test(event.pull_request.base.ref));
+  assert.ok(subscribed(original));
+  assert.equal(retargeted.pull_request.head.sha, original.pull_request.head.sha);
+  assert.notEqual(retargeted.pull_request.base.sha, original.pull_request.base.sha);
+  assert.ok(subscribed(retargeted));
+  const removed = structuredClone(config);
+  removed.on.pull_request.types = removed.on.pull_request.types.filter(type => type !== 'edited');
+  assert.ok(!removed.on.pull_request.types.includes(retargeted.action));
+  assert.equal(config.jobs.validate.env.MIGRATION_BASE_SHA,
+    '${{ github.event.pull_request.base.sha || inputs.baseline_sha || github.event.before }}');
 });
 
 test('actual CI validation pipelines propagate both typecheck and test failures through tee', t => {

@@ -77,6 +77,26 @@ the decisions that should survive a fresh session.
   Isolate performance comparisons and pin resource limits before attributing a
   speedup to Faster or another build change.
 
+## Lessons from the pre-M2 review
+
+* A clean Git status does not exclude ignored local build inputs. Acceptance
+  builds use separate pinned checkouts; working-tree probes are explicitly weaker.
+  Bind selected Markdown and selector inputs to the captured manifest as well.
+* Inspect the framework's complete cleanup target set, including parent paths.
+  Docusaurus can log a removal failure yet exit successfully, so require the
+  targets to be absent before claiming a cold build.
+* Treat NUL-delimited Git output as raw bytes/text. Trimming can collapse a leading
+  whitespace filename into a different existing path and silently lose coverage.
+* Resolve effective framework configuration rather than assuming that one locale
+  means untranslated source, or that content plugins are always strings. Keep
+  unsupported forms explicit instead of treating every unknown plugin as non-content.
+* Partial compilation follows the imported file's loader, not its importer's
+  options. Cross-root imports require a deliberate ownership/fallback adapter.
+  Literal imports can also appear in nested expressions and JSX attributes.
+* Validation identity is a head/base pair. Retargeting can change the base without
+  changing the head, so subscribe to PR edits and recheck the recorded base before
+  relying on a green result. A metadata-edit job skip is not a replacement check.
+
 ## Source and consumer rules needing care
 
 * The converter's unchanged-input repeatability is different from applying newer

@@ -21,11 +21,15 @@ npm run validate:site -- --baseline-ref "$REVIEWED_BASE_SHA" --out .validation-r
 ```
 
 Supply a full 40-character reviewed base SHA and a new receipt directory. The
-candidate must be clean and have full Git history. Network access is needed for
-the base's locked installation into an empty temporary cache. Existing outputs
-are refused; cache/output symlinks are refused. The runner clears compiler caches
-and rewrites ignored build directories. Tracked source must remain byte-identical.
-`--allow-dirty` records a development probe, never clean-checkout acceptance.
+candidate must be clean and have full Git history. Both acceptance builds run in
+separate temporary checkouts of their pinned commits, with their own locked
+installations and an ephemeral npm cache. Ignored local Markdown, JavaScript,
+assets, or configuration cannot enter the candidate checkout. Existing outputs
+are refused; cleanup checks every Docusaurus deletion target and its ancestors,
+then verifies the targets are absent. Tracked source must remain byte-identical.
+`--allow-dirty` instead builds the working tree and always records a development
+probe, even if Git status is empty. Reported authored inputs must match its
+captured Git-visible manifest; ignored Markdown cannot silently become covered.
 The initial HEAD/index/input/tool snapshot is checked again before candidate
 capture and before the verdict. These checkpoints detect drift; they cannot
 detect edits restored between checkpoints or changes to ignored dependencies.
@@ -43,12 +47,22 @@ are explicit. Notification tooling has its own manifest and lockfile.
 ## Coverage and baseline authority
 
 * Strict TypeScript selects `src`, the TypeScript TOC plugin, Docusaurus config,
-  and sidebars: initially 19 files. Legacy assets JavaScript is excluded; Markdown
-  JSX/component props are not typechecked by `tsc`.
+  and sidebars: initially 17 TypeScript/TSX and two JavaScript inputs. Inherited
+  `allowJs` does not enable `checkJs`. Legacy assets JavaScript is excluded;
+  Markdown JSX/component props are not typechecked by `tsc`.
 * Source validation uses the pinned Docusaurus 3.10.2 compiler with configured
   frontmatter, Markdown/MDX mode, compatibility preprocessing, and plugins. It
-  selects docs/pages, configured versions, and explicit Markdown partial imports.
-  Empty/unsupported selections fail; non-content plugins are listed separately.
+  selects standard docs/pages plugins by package name, installed path, or exact
+  installed factory export, plus configured versions and explicit Markdown
+  partial imports. Empty/unsupported selections fail. Other plugin declarations,
+  including arbitrary wrappers, are inventoried but remain outside this adapter.
+* A single locale can still activate translated source through an `i18n` directory.
+  The validator resolves the framework's locale configuration and rejects both
+  inferred and explicit translations until localized discovery is implemented.
+  Static/re-export and literal dynamic imports, including JSX attributes and
+  uppercase extensions accepted by the framework, are followed within one
+  uniquely owned content root. Cross-root imports fail explicitly because another
+  content loader or the fallback loader may apply different compiler plugins.
 * Formatting covers the established fenced-code-language rule corresponding to
   enabled Markdownlint MD040. Other Markdownlint rules are not claimed for MDX.
   Changed repository Markdown still uses the repository Markdownlint policy.
@@ -62,8 +76,8 @@ are explicit. Notification tooling has its own manifest and lockfile.
   separately reviewed policy. No deletion waiver is introduced here.
 
 There is no editable head-side warning-count allowlist. CI supplies the PR base
-SHA from its event. The runner builds an isolated clone of that commit with its
-own lock; the candidate uses its own locked installation. Both source validators
+SHA from its event. The runner builds isolated clones of that commit and the
+candidate, each with its own lock and installation. Both source validators
 use the current pinned compiler/rule implementation. Incompatible compiler or
 selector scopes fail and require adapter/fixture review. This ratchets resolved
 findings: a later PR cannot reintroduce a fixed defect merely because it appeared
@@ -80,9 +94,14 @@ execute. This explicitly instrumented build is distinct from ordinary config use
 
 `Docusaurus validation` runs on PRs targeting `docusaurus` or stacked
 `codex/docusaurus-*` branches, pushes to `docusaurus`, and manual dispatch with an
-explicit base SHA. It checks out the exact candidate with full history, pins
+explicit base SHA. PR edits are included so retargeting a stacked PR reruns the
+comparison against its new base even when the head SHA is unchanged. Title/body
+edits also rerun validation; the job is never replaced by a successful skipped
+check. A green check remains evidence for its recorded head/base pair; advancing
+the base still requires current integration validation and maintainer merge rules.
+It checks out the exact candidate with full history, pins
 actions to commits, and does not persist credentials. Its token is read-only;
-notification/deployment secrets and shared dependency caches are absent. Logs,
+notification/deployment secrets and cross-run cache restoration/saving are absent. Logs,
 reports, manifests, and controls upload on success or failure for 30 days.
 The job has a 45-minute operational ceiling for the cold comparison and controls.
 This is a provisional timeout, not the performance budget reserved for M4.
@@ -143,6 +162,15 @@ No browser hydration, deployed redirects, CSS/srcset graph, legacy semantic
 fidelity, domain component props, independent CSV field semantics, or indirect
 JS-to-MDX import discovery is established by the source validator. The full build
 still resolves indirect imports. M2 must establish domain/content contracts.
+
+## Pre-M2 review
+
+The pre-M2 review exercised alternate valid source spellings and local filesystem
+state, rather than extending the original happy-path fixtures alone. It corrected
+translation/plugin/import selection, PR-retarget triggering, ignored-input
+isolation, complete cache cleanup, and byte-preserving Git filename handling.
+Historical receipts above keep their original source and detector identities;
+the corrected runner produces new receipts and requires current-head CI.
 
 ## Next dependency
 

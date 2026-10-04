@@ -3,6 +3,8 @@ name: Docusaurus validation
 on:
   pull_request:
     branches: [docusaurus, 'codex/docusaurus-*']
+    # A stacked PR can keep its head SHA while its comparison base changes.
+    types: [opened, synchronize, reopened, edited]
   push:
     branches: [docusaurus]
   workflow_dispatch:

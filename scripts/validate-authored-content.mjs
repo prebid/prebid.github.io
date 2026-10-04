@@ -11,6 +11,7 @@ import {isUtf8} from 'node:buffer';
 
 const require = createRequire(import.meta.url);
 const {loadSiteConfig} = require('@docusaurus/core/lib/server/config.js');
+const {loadI18n} = require('@docusaurus/core/lib/server/i18n.js');
 const {compileToJSX} = require('@docusaurus/mdx-loader/lib/utils.js');
 const {getFormat} = require('@docusaurus/mdx-loader/lib/format.js');
 const {DEFAULT_PARSE_FRONT_MATTER, Globby} = require('@docusaurus/utils');
@@ -26,7 +27,7 @@ const RULE = 'remark-lint:fenced-code-flag';
 const digest = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
 const relative = (root, file) => path.relative(root, file).split(path.sep).join('/');
 const within = (root, file) => file.startsWith(`${root}${path.sep}`);
-const markdownFile = file => /\.(md|mdx)$/.test(file);
+const markdownFile = file => /\.mdx?$/i.test(file);
 const sorted = values => [...values].sort();
 
 function packageVersion(name) {
@@ -67,22 +68,46 @@ function pluginTuple(entry) {
   return Array.isArray(entry) ? entry : [entry, {}];
 }
 
-function pluginKind(plugin) {
-  if (typeof plugin !== 'string') return null;
-  for (const kind of ['docs', 'pages', 'blog']) {
-    if ([kind, `@docusaurus/plugin-content-${kind}`].includes(plugin)) return kind;
-    if (path.isAbsolute(plugin) && plugin === require.resolve(`@docusaurus/plugin-content-${kind}`)) return kind;
+function standardModuleKinds(siteDir) {
+  const identities = new Map();
+  function register(identity, kind) {
+    const existing = identities.get(identity);
+    if (existing && existing !== kind) throw new Error(`Ambiguous standard Docusaurus module identity: ${existing} and ${kind}`);
+    identities.set(identity, kind);
   }
-  return null;
+  const sourceRequire = createRequire(path.join(siteDir, 'package.json'));
+  for (const kind of ['docs', 'pages', 'blog', 'classic']) {
+    const name = kind === 'classic' ? '@docusaurus/preset-classic' : `@docusaurus/plugin-content-${kind}`;
+    register(kind, kind); register(name, kind);
+    for (const resolver of [require, sourceRequire]) {
+      let resolved;
+      try { resolved = resolver.resolve(name); }
+      catch (error) { if (error.code === 'MODULE_NOT_FOUND') continue; throw error; }
+      register(resolved, kind);
+      // Compare exact installed exports; do not infer identity from a function
+      // name or execute arbitrary plugin factories to discover what they do.
+      const module = resolver(resolved);
+      const factory = module.default ?? module;
+      if (typeof factory !== 'function') throw new Error(`Unsupported standard Docusaurus module export: ${name}`);
+      register(factory, kind);
+    }
+  }
+  return identities;
 }
 
 export async function discoverAuthoredContent({siteDir, siteConfig}) {
   siteDir = fs.realpathSync(siteDir);
   if (siteConfig.i18n.locales.length !== 1) throw new Error('Authored-content selection currently supports one configured locale; expand selection before enabling translations.');
+  const i18n = await loadI18n({siteDir, config: siteConfig, currentLocale: siteConfig.i18n.defaultLocale,
+    automaticBaseUrlLocalizationDisabled: false});
+  if (i18n.localeConfigs[i18n.currentLocale].translate) {
+    throw new Error('Translated authored sources are unsupported, including automatic single-locale translations; add localized discovery before enabling translations.');
+  }
+  const moduleKinds = standardModuleKinds(siteDir);
   const plugins = [...siteConfig.plugins];
   for (const entry of siteConfig.presets) {
     const [preset, options] = pluginTuple(entry);
-    if (!['classic', '@docusaurus/preset-classic', require.resolve('@docusaurus/preset-classic')].includes(preset)) {
+    if (moduleKinds.get(preset) !== 'classic') {
       throw new Error('Unsupported preset in authored-content selection; add explicit discovery instead of silently skipping content.');
     }
     plugins.push(...classic({siteConfig}, options).plugins);
@@ -94,8 +119,9 @@ export async function discoverAuthoredContent({siteDir, siteConfig}) {
   for (const entry of plugins) {
     const [plugin, provided] = pluginTuple(entry);
     if (plugin === false || plugin == null) continue;
-    const kind = pluginKind(plugin);
+    const kind = moduleKinds.get(plugin);
     if (kind === 'blog') throw new Error('Blog content is outside the authored-content selector; add discovery before enabling it.');
+    if (kind === 'classic') throw new Error('The classic preset is not a content plugin; configure it under presets.');
     if (!kind) { ignoredPlugins.push(typeof plugin === 'function' ? `function:${plugin.name || 'anonymous'}` : String(plugin)); continue; }
     const options = (kind === 'docs' ? docsOptions : pagesOptions).validateOptions({validate: normalizePluginOptions, options: provided});
     options.id ??= 'default';
@@ -111,7 +137,7 @@ export async function discoverAuthoredContent({siteDir, siteConfig}) {
     for (const version of versionNames) {
       const root = version === 'current' ? path.resolve(siteDir, options.path) : getVersionDocsDirPath(siteDir, options.id, version);
       if (!within(siteDir, root) || fs.realpathSync(root) !== root) throw new Error(`Content root must be inside the site without symlinks: ${root}`);
-      const allMarkdown = sorted(await Globby('**/*.{md,mdx}', {cwd: root, dot: true, followSymbolicLinks: false}));
+      const allMarkdown = sorted(await Globby('**/*.{md,mdx}', {cwd: root, dot: true, caseSensitiveMatch: false, followSymbolicLinks: false}));
       const selected = sorted((await Globby(options.include, {cwd: root, ignore: options.exclude, followSymbolicLinks: false})).filter(markdownFile));
       if (kind === 'docs' && !selected.length) throw new Error(`No selected Markdown/MDX in ${instanceId}:${version}`);
       for (const name of selected) checkedFile(siteDir, path.join(root, name));
@@ -124,18 +150,37 @@ export async function discoverAuthoredContent({siteDir, siteConfig}) {
 }
 
 function collectMdxImports(tree) {
-  const imports = [];
+  const imports = new Set();
+  const seenEstree = new WeakSet();
+  const seenMdx = new WeakSet();
+  function visitEstree(node) {
+    if (!node || typeof node !== 'object' || seenEstree.has(node)) return;
+    seenEstree.add(node);
+    if (['ImportDeclaration', 'ExportNamedDeclaration', 'ExportAllDeclaration', 'ImportExpression'].includes(node.type)) {
+      const source = node.source;
+      const specifier = source?.type === 'TemplateLiteral' && source.expressions.length === 0
+        ? source.quasis[0]?.value.cooked : source?.value;
+      if (typeof specifier === 'string') imports.add(specifier);
+    }
+    for (const child of Object.values(node)) {
+      if (Array.isArray(child)) child.forEach(visitEstree);
+      else if (child && typeof child === 'object') visitEstree(child);
+    }
+  }
   function visit(node) {
-    if (node.type === 'mdxjsEsm') {
-      for (const statement of node.data?.estree?.body ?? []) {
-        if (['ImportDeclaration', 'ExportNamedDeclaration', 'ExportAllDeclaration'].includes(statement.type)
-            && typeof statement.source?.value === 'string') imports.push(statement.source.value);
-      }
+    if (!node || typeof node !== 'object' || seenMdx.has(node)) return;
+    seenMdx.add(node);
+    visitEstree(node.data?.estree);
+    // JSX spread attributes hold ESTree directly; named expression attributes
+    // hold it on their value. Neither position is part of MDX's children list.
+    for (const attribute of Array.isArray(node.attributes) ? node.attributes : []) {
+      visit(attribute);
+      visit(attribute.value);
     }
     for (const child of node.children ?? []) visit(child);
   }
   visit(tree);
-  return imports;
+  return [...imports];
 }
 
 function codeContext(tree, message) {
@@ -284,6 +329,12 @@ export async function validateAuthoredContent({siteDir, siteConfig, siteConfigPa
         const imported = specifier.startsWith('@site/') ? path.resolve(siteDir, specifier.slice(6))
           : specifier.startsWith('.') ? path.resolve(path.dirname(file), specifier) : null;
         if (!imported) throw new Error(`Unsupported Markdown import alias in ${sourcePath}: ${specifier}`);
+        if (!within(instance.root, imported)) {
+          throw new Error(`Cross-root Markdown/MDX import in ${sourcePath}: ${specifier}; only imports within ${relative(siteDir, instance.root)} are supported until compiler ownership is resolved.`);
+        }
+        if (discovery.instances.filter(owner => within(owner.root, imported)).length > 1) {
+          throw new Error(`Ambiguous content-root ownership for Markdown/MDX import in ${sourcePath}: ${specifier}`);
+        }
         try { checkedFile(siteDir, imported); }
         catch (error) {
           diagnostics.push({path: sourcePath, instance: instance.id, kind: 'compilation', rule_id: 'docusaurus:markdown-import',
@@ -295,7 +346,7 @@ export async function validateAuthoredContent({siteDir, siteConfig, siteConfigPa
     }
   }
   const scope = {compiler: COMPILER_VERSION, formatter: formatterVersion, rule: RULE, runtime_lock_sha256: runtimeLockSha,
-    selector: 'classic-docs-pages-and-explicit-markdown-imports-v1',
+    selector: 'classic-docs-pages-and-explicit-markdown-imports-v2',
     markdown: markdownSemantics(siteConfig.markdown),
     instances: discovery.instances.map(instance => ({id: instance.id, root: relative(siteDir, instance.root),
       include: instance.options.include, exclude: instance.options.exclude, admonitions: instance.options.admonitions,
@@ -324,8 +375,10 @@ export async function validateAuthoredContent({siteDir, siteConfig, siteConfigPa
       'The pinned default frontmatter parser cache is cleared before each parse so a failed parse cannot clear identical malformed input in a later file.',
       'Formatting is limited to the established fenced-code-flag rule corresponding to enabled MD040, using the compiler AST. Other markdownlint rules are not asserted for MDX.',
       'Reported parser positions refer to Docusaurus-preprocessed input; configured preprocessors may change source positions.',
-      'Classic preset docs/pages, explicit docs/pages plugins, selected versions, and one locale are supported. Other plugins are listed but not lifecycle-executed.',
-      'Explicit relative and @site imports ending .md/.mdx are followed. Indirect imports through JS/TS, extensionless imports, and bundler aliases still require the site build.',
+      'Classic preset docs/pages and explicit standard docs/pages plugins are recognized by package names, resolved installed paths, or exact installed factory exports. Arbitrary wrappers and other plugins are listed but not lifecycle-executed.',
+      'Selected versions and one untranslated locale are supported. Explicit or automatically enabled translations are rejected until localized discovery is implemented.',
+      'Static imports, re-exports, and literal dynamic relative or @site imports ending .md/.mdx are followed only within their unique importing content root. Cross-root imports and overlapping content-root ownership are rejected until compiler ownership and fallback options are modeled.',
+      'Indirect imports through JS/TS, non-literal dynamic imports, extensionless imports, query-suffixed imports, and bundler aliases still require the site build.',
       'Per-version Markdown link resolution, final route/anchor/asset checks, metadata semantics, domain component contracts, and production fidelity remain separate checks.',
       'Config and remark/rehype plugins execute trusted build-time code; run this check in the same unprivileged environment as a PR build.',
       'The runtime lock identifies the validator dependency declaration. The orchestrator must establish a matching locked installation; the source tree may have a different historical lock.',

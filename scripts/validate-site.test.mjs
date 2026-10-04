@@ -3,9 +3,12 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import {spawnSync} from 'node:child_process';
+import crypto from 'node:crypto';
+import childProcess, {spawnSync} from 'node:child_process';
+import {syncBuiltinESMExports} from 'node:module';
 import {fileURLToPath} from 'node:url';
-import {MARKER, parseMarkdownDiagnostics, compareSite, outputDirectory, captureSite} from './validate-site.mjs';
+import {MARKER, CLEANUP_TARGETS, parseMarkdownDiagnostics, compareSite, outputDirectory, captureSite,
+  prepareSource, visibleSourceManifest, bindAuthoredInputs, assertSafeCleanupPaths, assertCleanupComplete} from './validate-site.mjs';
 import {controlledEnvironment} from './migration-baseline.mjs';
 
 const repository = fileURLToPath(new URL('../', import.meta.url));
@@ -135,8 +138,143 @@ function fixtureRepository(t) {
       throw new Error(`${error.message}\n${logs}`, {cause: error});
     }
   }
-  return {siteDir, write, commit, capture, one, two, svg, csv};
+  return {root, siteDir, env, git, write, commit, capture, one, two, svg, csv};
 }
+
+test('clean candidate preparation clones the commit without ignored MDX, JavaScript, or assets', t => {
+  const fixture = fixtureRepository(t);
+  fs.appendFileSync(path.join(fixture.siteDir, '.gitignore'), 'docs/ignored.mdx\nsrc/ignored.js\nstatic/ignored.svg\n');
+  const revision = fixture.commit('Source preparation fixture');
+  fixture.write('docs/ignored.mdx', '# Ignored local document\n');
+  fixture.write('src/ignored.js', 'export const localOnly = true;\n');
+  fixture.write('static/ignored.svg', fixture.svg);
+  assert.equal(fixture.git('status', '--porcelain', '--untracked-files=all'), '');
+  const prepared = prepareSource({siteDir: fixture.siteDir, revision, cloneDir: path.join(fixture.root, 'clean-clone'), env: fixture.env});
+  assert.equal(prepared.source_mode, 'isolated_commit');
+  assert.equal(prepared.clean_acceptance_eligible, true);
+  assert.notEqual(prepared.siteDir, fixture.siteDir);
+  assert.equal(fs.readFileSync(path.join(prepared.siteDir, 'docs/one.md'), 'utf8'), fixture.one);
+  for (const name of ['docs/ignored.mdx', 'src/ignored.js', 'static/ignored.svg', 'node_modules']) {
+    assert.equal(fs.existsSync(path.join(prepared.siteDir, name)), false, name);
+  }
+  assert.equal(fixture.git('-C', prepared.siteDir, 'rev-parse', 'HEAD'), revision);
+  assert.equal(fixture.git('-C', prepared.siteDir, 'status', '--porcelain', '--untracked-files=all'), '');
+});
+
+test('Git-visible source manifest preserves whitespace and newline paths without shadow collisions', t => {
+  const fixture = fixtureRepository(t);
+  fixture.commit('Whitespace path control');
+  const before = visibleSourceManifest(fixture.siteDir, fixture.env);
+  const files = {' leading.js': 'leading-space payload\n', 'leading.js': 'shadow payload\n',
+    'trailing.js ': 'trailing-space payload\n', 'line\nbreak.js': 'newline payload\n'};
+  for (const [name, contents] of Object.entries(files)) fixture.write(name, contents);
+  fixture.commit('Add exact whitespace paths');
+  const manifest = visibleSourceManifest(fixture.siteDir, fixture.env);
+  assert.equal(manifest.length, before.length + Object.keys(files).length);
+  for (const [name, contents] of Object.entries(files)) {
+    const rows = manifest.filter(row => row.path === name);
+    assert.equal(rows.length, 1, JSON.stringify(name));
+    assert.equal(rows[0].sha256, crypto.createHash('sha256').update(contents).digest('hex'));
+  }
+});
+
+test('development mode is explicitly weaker and cannot cover ignored Markdown outside its source manifest', t => {
+  const fixture = fixtureRepository(t);
+  fs.appendFileSync(path.join(fixture.siteDir, '.gitignore'), 'docs/ignored.mdx\n');
+  const revision = fixture.commit('Development binding fixture');
+  fixture.write('docs/ignored.mdx', '# Ignored but selected\n');
+  assert.equal(fixture.git('status', '--porcelain', '--untracked-files=all'), '');
+  const preparation = prepareSource({siteDir: fixture.siteDir, revision,
+    cloneDir: path.join(fixture.root, 'unused-clone'), allowDirty: true, env: fixture.env});
+  assert.equal(preparation.siteDir, fixture.siteDir);
+  assert.equal(preparation.source_mode, 'working_tree_development');
+  assert.equal(preparation.clean_acceptance_eligible, false);
+  assert.equal(fs.existsSync(path.join(fixture.root, 'unused-clone')), false);
+  const outDir = path.join(fixture.root, 'ignored-capture');
+  assert.throws(() => captureSite({...preparation, outDir, env: fixture.env}), /not in the Git-visible source manifest.*docs\/ignored\.mdx/);
+  const rejected = JSON.parse(fs.readFileSync(path.join(outDir, 'authored.json'), 'utf8'));
+  assert.ok(rejected.documents.some(row => row.path === 'docs/ignored.mdx' && row.compiled));
+  assert.equal(fs.existsSync(path.join(outDir, 'clear.log')), false, 'binding must fail before cache deletion');
+  assert.equal(fs.existsSync(path.join(outDir, 'report.json')), false);
+
+  fs.unlinkSync(path.join(fixture.siteDir, 'docs/ignored.mdx'));
+  fixture.write('docs/untracked.mdx', '# Visible development document\n');
+  const authoredFile = path.join(fixture.root, 'development-authored.json');
+  const compiled = spawnSync(process.execPath, [path.join(repository, 'scripts/validate-authored-content.mjs'),
+    '--site-dir', fixture.siteDir, '--out', authoredFile], {cwd: fixture.siteDir, env: fixture.env, encoding: 'utf8'});
+  assert.equal(compiled.status, 0, compiled.stderr || compiled.stdout);
+  const authored = JSON.parse(fs.readFileSync(authoredFile, 'utf8'));
+  const visible = visibleSourceManifest(fixture.siteDir, fixture.env);
+  assert.ok(visible.some(row => row.path === 'docs/untracked.mdx'));
+  assert.equal(bindAuthoredInputs(authored, visible).documents, 3);
+});
+
+test('every pinned Docusaurus cleanup target and its ancestors reject external symlinks', t => {
+  assert.deepEqual(CLEANUP_TARGETS, ['.docusaurus', 'build', 'node_modules/.cache', '.yarn/.cache']);
+  for (const target of ['.docusaurus', 'build', 'node_modules', 'node_modules/.cache', '.yarn', '.yarn/.cache']) {
+    const root = temporaryRoot(t, 'prebid-site-cleanup-');
+    const siteDir = path.join(root, 'site'); fs.mkdirSync(siteDir);
+    const external = path.join(root, 'external'); fs.mkdirSync(external);
+    fs.writeFileSync(path.join(external, 'sentinel'), 'preserve external bytes');
+    const file = path.join(siteDir, target); fs.mkdirSync(file, {recursive: true});
+    assert.doesNotThrow(() => assertSafeCleanupPaths(siteDir));
+    fs.rmSync(file, {recursive: true}); fs.symlinkSync(external, file);
+    const outDir = path.join(root, 'receipt');
+    assert.throws(() => captureSite({siteDir, outDir}), /symlink/);
+    assert.equal(fs.readFileSync(path.join(external, 'sentinel'), 'utf8'), 'preserve external bytes');
+    assert.equal(fs.existsSync(outDir), false);
+  }
+});
+
+function interceptCaptureProcesses(callback, intercept) {
+  const original = childProcess.spawnSync;
+  childProcess.spawnSync = (executable, args, options) => intercept(original, executable, args, options);
+  syncBuiltinESMExports();
+  try { callback(); }
+  finally { childProcess.spawnSync = original; syncBuiltinESMExports(); }
+}
+
+test('capture rechecks cleanup safety after authored configuration executes', t => {
+  const fixture = fixtureRepository(t); fixture.commit('Pre-clear recheck fixture');
+  const external = path.join(fixture.root, 'external'); fs.mkdirSync(external);
+  fs.mkdirSync(path.join(external, '.cache')); fs.writeFileSync(path.join(external, '.cache/sentinel'), 'preserve');
+  let clearCalls = 0;
+  interceptCaptureProcesses(() => {
+    assert.throws(() => captureSite({siteDir: fixture.siteDir, outDir: path.join(fixture.root, 'late-symlink'), env: fixture.env}), /symlink.*\.yarn/);
+  }, (original, executable, args, options) => {
+    if (args[0]?.endsWith('/docusaurus.mjs') && args[1] === 'clear') clearCalls++;
+    const result = original(executable, args, options);
+    if (args[0]?.endsWith('/validate-authored-content.mjs') && result.status === 0) {
+      // Simulate a configuration/plugin creating this path after initial checks.
+      fs.symlinkSync(external, path.join(fixture.siteDir, '.yarn'));
+    }
+    return result;
+  });
+  assert.equal(clearCalls, 0);
+  assert.equal(fs.readFileSync(path.join(external, '.cache/sentinel'), 'utf8'), 'preserve');
+});
+
+test('zero-exit clear that leaves a cache fails before build; target absence uses lstat', t => {
+  const fixture = fixtureRepository(t); fixture.commit('Incomplete clear fixture');
+  assert.doesNotThrow(() => assertCleanupComplete(fixture.siteDir));
+  const cache = path.join(fixture.siteDir, 'node_modules/.cache'); fs.mkdirSync(cache);
+  fs.writeFileSync(path.join(cache, 'sentinel'), 'cache was not cleared');
+  let clearCalls = 0, buildCalls = 0;
+  interceptCaptureProcesses(() => {
+    assert.throws(() => captureSite({siteDir: fixture.siteDir, outDir: path.join(fixture.root, 'incomplete-clear'), env: fixture.env}), /cleanup left a deletion target behind/);
+  }, (original, executable, args, options) => {
+    if (args[0]?.endsWith('/docusaurus.mjs')) {
+      if (args[1] === 'clear') { clearCalls++; return {status: 0, stdout: '', stderr: ''}; }
+      if (args[1] === 'build') { buildCalls++; throw new Error('Build must not start after incomplete cleanup'); }
+    }
+    return original(executable, args, options);
+  });
+  assert.equal(clearCalls, 1); assert.equal(buildCalls, 0);
+  assert.equal(fs.readFileSync(path.join(cache, 'sentinel'), 'utf8'), 'cache was not cleared');
+  fs.rmSync(cache, {recursive: true});
+  fs.symlinkSync(path.join(fixture.root, 'missing-cache'), cache);
+  assert.throws(() => assertCleanupComplete(fixture.siteDir), /cleanup left a deletion target behind/);
+});
 
 function authoredSelection(report) {
   return report.authored.documents.map(row => [row.instance, row.path]).sort();
@@ -147,6 +285,9 @@ test('real tiny Docusaurus captures catch link/asset/CSV regressions and recover
   const cleanSha = fixture.commit('Clean fixture');
   const clean = fixture.capture('clean');
   assert.equal(clean.source_commit, cleanSha);
+  assert.equal(clean.source_mode, 'working_tree_development');
+  assert.equal(clean.clean_acceptance_eligible, false);
+  assert.equal(clean.authored_source_binding.status, 'bound_to_git_visible_source');
   assert.equal(clean.authored.coverage.compilation_units, 2);
   assert.deepEqual(clean.authored.documents.map(row => row.path).sort(), ['docs/one.md', 'docs/two.md']);
   assert.ok(clean.routes.length >= 2);
@@ -191,6 +332,17 @@ test('real tiny Docusaurus captures catch link/asset/CSV regressions and recover
   assert.equal(compareSite(restored, clean).status, 'passed');
   assert.equal(compareSite(restored, broken).status, 'passed');
   assert.equal(compareSite(restored, broken).diagnostics.markdown.resolved, broken.markdown.length);
+
+  await t.test('authored documents and input metadata bind to observed Git-visible source hashes', () => {
+    const sourceManifest = visibleSourceManifest(fixture.siteDir, fixture.env);
+    assert.equal(bindAuthoredInputs(clean.authored, sourceManifest).documents, 2);
+    const tamperedDocument = clone(clean.authored); tamperedDocument.documents[0].sha256 = '0'.repeat(64);
+    assert.throws(() => bindAuthoredInputs(tamperedDocument, sourceManifest), /hash differs/);
+    const tamperedMetadata = clone(clean.authored); tamperedMetadata.input_metadata[0].sha256 = '0'.repeat(64);
+    assert.throws(() => bindAuthoredInputs(tamperedMetadata, sourceManifest), /hash differs/);
+    const missingMetadata = sourceManifest.filter(row => row.path !== clean.authored.input_metadata[0].path);
+    assert.throws(() => bindAuthoredInputs(clean.authored, missingMetadata), /not in the Git-visible/);
+  });
 
   // Policy unit controls below transform actual captured reports. They do not
   // pretend the transformed records came from further builds.

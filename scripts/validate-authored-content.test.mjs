@@ -8,6 +8,8 @@ import {validateAuthoredContent, discoverAuthoredContent, compareFormatting} fro
 
 const require = createRequire(import.meta.url);
 const {validateConfig} = require('@docusaurus/core/lib/server/configValidation.js');
+const {loadI18n} = require('@docusaurus/core/lib/server/i18n.js');
+const docsFactory = require('@docusaurus/plugin-content-docs').default;
 
 function fixture(t, files, docs = {}, overrides = {}) {
   const siteDir = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'prebid-authored-test-')));
@@ -151,4 +153,177 @@ test('warning visibility changes do not masquerade as a different formatting par
   assert.equal(comparison.accepted_existing, 1);
   assert.equal(comparison.new_findings.length, 0);
   assert.equal(comparison.status, 'passed');
+});
+
+test('single-locale translations are rejected when explicit or inferred, with a restored control', async t => {
+  const input = fixture(t, {'content/main.mdx': '# Original\n'}, {sidebarPath: false});
+  const baseline = await validateAuthoredContent(input);
+  const translated = path.join(input.siteDir, 'i18n/en/docusaurus-plugin-content-docs/current/main.mdx');
+  fs.mkdirSync(path.dirname(translated), {recursive: true});
+  fs.writeFileSync(translated, '# Translation\n\n```\nconst n = 1;\n```\n');
+  const i18n = await loadI18n({siteDir: input.siteDir, config: input.siteConfig, currentLocale: 'en',
+    automaticBaseUrlLocalizationDisabled: false});
+  assert.equal(i18n.localeConfigs.en.translate, true);
+  const {instances} = await discoverAuthoredContent({...input,
+    siteConfig: {...input.siteConfig, i18n: {...input.siteConfig.i18n, localeConfigs: {en: {translate: false}}}}});
+  const plugin = await docsFactory({...input, i18n, baseUrl: '/',
+    generatedFilesDir: path.join(input.siteDir, '.docusaurus'), localizationDir: path.join(input.siteDir, 'i18n/en')}, instances[0].options);
+  const content = await plugin.loadContent();
+  assert.deepEqual(content.loadedVersions.flatMap(version => version.docs.map(doc => doc.source)),
+    ['@site/i18n/en/docusaurus-plugin-content-docs/current/main.mdx']);
+  await assert.rejects(validateAuthoredContent(input), /Translated authored sources are unsupported/);
+  fs.rmSync(path.join(input.siteDir, 'i18n'), {recursive: true});
+  assert.equal(compareFormatting(await validateAuthoredContent(input), baseline).status, 'passed');
+  input.siteConfig.i18n.localeConfigs.en = {translate: true};
+  await assert.rejects(validateAuthoredContent(input), /Translated authored sources are unsupported/);
+  input.siteConfig.i18n.localeConfigs.en = {translate: false};
+  assert.equal(compareFormatting(await validateAuthoredContent(input), baseline).status, 'passed');
+});
+
+test('standard factory plugins select new content and preserve formatting failure and restoration', async t => {
+  const input = fixture(t, {'content/main.md': '# Main\n', 'second/main.mdx': '# Second\n'}, {},
+    {plugins: [[docsFactory, {id: 'second', path: 'second', sidebarPath: false}]]});
+  const baseline = await validateAuthoredContent(input);
+  assert.deepEqual(baseline.documents.map(row => row.path), ['second/main.mdx', 'content/main.md']);
+  assert.equal(baseline.formatting.findings, 0);
+  const file = path.join(input.siteDir, 'second/main.mdx');
+  fs.writeFileSync(file, '# Second\n\n```\nconst n = 1;\n```\n');
+  const broken = await validateAuthoredContent(input);
+  assert.equal(broken.formatting.findings, 1);
+  assert.equal(compareFormatting(broken, baseline).status, 'failed');
+  input.siteConfig.plugins[0][0] = require.resolve('@docusaurus/plugin-content-docs');
+  assert.equal(compareFormatting(await validateAuthoredContent(input), baseline).status, 'failed');
+  fs.writeFileSync(file, '# Second\n');
+  assert.equal(compareFormatting(await validateAuthoredContent(input), baseline).status, 'passed');
+  input.siteConfig.plugins.push([require('@docusaurus/plugin-content-blog').default, {}]);
+  await assert.rejects(discoverAuthoredContent(input), /Blog content is outside/);
+});
+
+test('exact module identities include a separate source installation and classic preset exports', async t => {
+  const input = fixture(t, {'content/main.md': '# Main\n', 'pages/main.mdx': '# Page\n'});
+  // Copy only the installed packages under test; their dependencies remain the
+  // shared read-only installation. This creates distinct real module exports.
+  for (const name of ['@docusaurus/plugin-content-docs', '@docusaurus/plugin-content-pages', '@docusaurus/preset-classic']) {
+    const installedRoot = path.dirname(path.dirname(require.resolve(name)));
+    const copiedRoot = path.join(input.siteDir, 'node_modules', name);
+    fs.mkdirSync(copiedRoot, {recursive: true});
+    fs.copyFileSync(path.join(installedRoot, 'package.json'), path.join(copiedRoot, 'package.json'));
+    fs.cpSync(path.join(installedRoot, 'lib'), path.join(copiedRoot, 'lib'), {recursive: true});
+    fs.symlinkSync(path.resolve(installedRoot, '../..'), path.join(copiedRoot, 'node_modules'));
+  }
+  const sourceRequire = createRequire(path.join(input.siteDir, 'package.json'));
+  const sourceDocs = sourceRequire('@docusaurus/plugin-content-docs').default;
+  assert.notEqual(sourceDocs, docsFactory);
+  for (const docs of [sourceDocs, sourceRequire.resolve('@docusaurus/plugin-content-docs')]) {
+    input.siteConfig.presets = [];
+    input.siteConfig.plugins = [[docs, {path: 'content'}],
+      [sourceRequire('@docusaurus/plugin-content-pages').default, {path: 'pages'}]];
+    const report = await validateAuthoredContent(input);
+    assert.deepEqual(report.documents.map(row => row.path), ['content/main.md', 'pages/main.mdx']);
+  }
+  for (const preset of [require('@docusaurus/preset-classic').default,
+    sourceRequire('@docusaurus/preset-classic').default, sourceRequire.resolve('@docusaurus/preset-classic')]) {
+    input.siteConfig.plugins = [];
+    input.siteConfig.presets = [[preset, {docs: {path: 'content'}, pages: {path: 'pages'}, blog: false}]];
+    assert.equal((await validateAuthoredContent(input)).documents.length, 2);
+  }
+});
+
+test('unrecognized factories are not identified by name or invoked, and ambiguous exports fail', async t => {
+  let invoked = false;
+  function pluginContentDocs() { invoked = true; throw new Error('Do not invoke arbitrary factories'); }
+  const input = fixture(t, {'content/main.md': '# Main\n'}, {}, {plugins: [pluginContentDocs]});
+  const discovery = await discoverAuthoredContent(input);
+  assert.equal(invoked, false);
+  assert.ok(discovery.ignoredPlugins.includes('function:pluginContentDocs'));
+  input.siteConfig.presets.push([pluginContentDocs, {}]);
+  await assert.rejects(discoverAuthoredContent(input), /Unsupported preset/);
+  assert.equal(invoked, false);
+  input.siteConfig.presets.pop();
+  const packageRoot = path.join(input.siteDir, 'node_modules/@docusaurus/plugin-content-pages');
+  fs.mkdirSync(packageRoot, {recursive: true});
+  fs.writeFileSync(path.join(packageRoot, 'package.json'), '{"name":"@docusaurus/plugin-content-pages","main":"index.cjs"}');
+  fs.writeFileSync(path.join(packageRoot, 'index.cjs'), `module.exports = require(${JSON.stringify(require.resolve('@docusaurus/plugin-content-docs'))});\n`);
+  await assert.rejects(discoverAuthoredContent(input), /Ambiguous standard Docusaurus module identity/);
+});
+
+test('cross-root imports fail before applying importer plugins, with an in-root restored control', async t => {
+  function supplyLanguage() { return tree => { for (const node of tree.children) if (node.type === 'code') node.lang = 'text'; }; }
+  const input = fixture(t, {'content/main.mdx': 'import Partial from "./_partial.mdx";\n\n<Partial />\n',
+    'content/_partial.mdx': '```\nconst n = 1;\n```\n', 'shared.mdx': '```\nconst n = 1;\n```\n',
+    'second/main.md': '# Second\n', 'second/_partial.mdx': '```\nconst n = 1;\n```\n'},
+  {remarkPlugins: [supplyLanguage]}, {plugins: [['@docusaurus/plugin-content-docs', {id: 'second', path: 'second'}]]});
+  const baseline = await validateAuthoredContent(input);
+  assert.equal(baseline.coverage.imported_partials, 1);
+  assert.equal(baseline.formatting.findings, 0);
+  const main = path.join(input.siteDir, 'content/main.mdx');
+  for (const specifier of ['@site/shared.mdx', '../shared.mdx', '@site/second/_partial.mdx']) {
+    fs.writeFileSync(main, `import Partial from ${JSON.stringify(specifier)};\n\n<Partial />\n`);
+    await assert.rejects(validateAuthoredContent(input), /Cross-root Markdown\/MDX import/);
+  }
+  fs.writeFileSync(main, 'import Partial from "@site/content/_partial.mdx";\n\n<Partial />\n');
+  assert.equal(compareFormatting(await validateAuthoredContent(input), baseline).status, 'passed');
+  input.siteConfig.plugins.push(['@docusaurus/plugin-content-pages', {path: 'content'}]);
+  await assert.rejects(validateAuthoredContent(input), /Ambiguous content-root ownership/);
+  input.siteConfig.plugins.pop();
+  assert.equal(compareFormatting(await validateAuthoredContent(input), baseline).status, 'passed');
+});
+
+test('nested literal dynamic imports and re-exports follow partials and retain negative controls', async t => {
+  const main = 'export const load = () => ({nested: () => import("./_partial.mdx")});\n\n# Main\n';
+  const input = fixture(t, {'content/main.mdx': main, 'content/_partial.mdx': '# Partial\n'});
+  const baseline = await validateAuthoredContent(input);
+  assert.equal(baseline.coverage.imported_partials, 1);
+  const partial = path.join(input.siteDir, 'content/_partial.mdx');
+  fs.writeFileSync(partial, '# Partial\n\n```\nconst n = 1;\n```\n');
+  const broken = await validateAuthoredContent(input);
+  assert.equal(broken.formatting.findings, 1);
+  assert.equal(compareFormatting(broken, baseline).status, 'failed');
+  const mainFile = path.join(input.siteDir, 'content/main.mdx');
+  for (const source of [
+    'export const load = () => import(`./_partial.mdx`);\n',
+    '{import("./_partial.mdx")}\n',
+    '<div data-value={import("./_partial.mdx")} />\n',
+    '<div {...{data: import("./_partial.mdx")}} />\n',
+    'export {default as Partial} from "./_partial.mdx";\n',
+    'export * from "./_partial.mdx";\n',
+  ]) {
+    fs.writeFileSync(mainFile, source);
+    const report = await validateAuthoredContent(input);
+    assert.equal(report.coverage.imported_partials, 1);
+    assert.equal(report.formatting.findings, 1);
+  }
+  fs.writeFileSync(mainFile, 'export const load = () => import("package/_partial.mdx");\n');
+  await assert.rejects(validateAuthoredContent(input), /Unsupported Markdown import alias/);
+  fs.writeFileSync(mainFile, main.replace('./_partial.mdx', './_missing.mdx'));
+  assert.equal((await validateAuthoredContent(input)).compilation_failures, 1);
+  const uppercase = path.join(input.siteDir, 'content/_uppercase.MDX');
+  fs.writeFileSync(uppercase, '# Uppercase\n\n```\nconst n = 1;\n```\n');
+  for (const source of [
+    'import Partial from "./_uppercase.MDX";\n\n<Partial />\n',
+    'export const load = () => import("./_uppercase.MDX");\n',
+  ]) {
+    fs.writeFileSync(mainFile, source);
+    const report = await validateAuthoredContent(input);
+    assert.equal(report.coverage.imported_partials, 1);
+    assert.equal(report.documents.find(row => row.path === 'content/_uppercase.MDX')?.format, 'mdx');
+    assert.equal(report.formatting.findings, 1);
+  }
+  fs.writeFileSync(mainFile, main);
+  fs.writeFileSync(partial, '# Partial\n');
+  assert.equal(compareFormatting(await validateAuthoredContent(input), baseline).status, 'passed');
+  fs.writeFileSync(mainFile, 'export const load = (name) => import(`./${name}.mdx`);\n');
+  const nonliteral = await validateAuthoredContent(input);
+  assert.equal(nonliteral.coverage.imported_partials, 0);
+  assert.ok(nonliteral.limitations.some(limit => limit.includes('non-literal dynamic imports')));
+  const explicitUppercase = fixture(t, {'content/selected.MDX': '# Uppercase\n'}, {include: ['**/*.MDX']});
+  const uppercaseBaseline = await validateAuthoredContent(explicitUppercase);
+  assert.deepEqual(uppercaseBaseline.documents.map(row => row.path), ['content/selected.MDX']);
+  assert.equal(uppercaseBaseline.compilation_failures, 0);
+  assert.equal(uppercaseBaseline.formatting.findings, 0);
+  const selectedUppercase = path.join(explicitUppercase.siteDir, 'content/selected.MDX');
+  fs.writeFileSync(selectedUppercase, '# Uppercase\n\n```\nconst n = 1;\n```\n');
+  assert.equal(compareFormatting(await validateAuthoredContent(explicitUppercase), uppercaseBaseline).status, 'failed');
+  fs.writeFileSync(selectedUppercase, '# Uppercase\n');
+  assert.equal(compareFormatting(await validateAuthoredContent(explicitUppercase), uppercaseBaseline).status, 'passed');
 });
