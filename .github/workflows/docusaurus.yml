@@ -1,0 +1,69 @@
+name: Docusaurus validation
+
+on:
+  pull_request:
+    branches: [docusaurus, 'codex/docusaurus-*']
+  push:
+    branches: [docusaurus]
+  workflow_dispatch:
+    inputs:
+      baseline_sha:
+        description: Full commit SHA of the reviewed comparison base
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+concurrency:
+  group: docusaurus-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      MIGRATION_BASE_SHA: ${{ github.event.pull_request.base.sha || inputs.baseline_sha || github.event.before }}
+    steps:
+      - name: Check out the candidate with full history
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up the pinned runtime
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: .nvmrc
+          package-manager-cache: false
+
+      - name: Verify runtime and install locked dependencies
+        run: |
+          node scripts/validate-toolchain.mjs
+          mkdir -p .validation-results/setup
+          npm ci --include=dev --ignore-scripts 2>&1 | tee .validation-results/setup/install.log
+          npm ls --all --json > .validation-results/setup/dependencies.json
+
+      - name: Check strict types and validator controls
+        run: |
+          npm run typecheck 2>&1 | tee .validation-results/setup/typecheck.log
+          npm run test:migration 2>&1 | tee .validation-results/setup/tests.log
+
+      - name: Compare authored content and fresh site builds
+        run: npm run validate:site
+
+      - name: Retain validation evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          name: docusaurus-${{ github.event.pull_request.head.sha || github.sha }}
+          path: .validation-results/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

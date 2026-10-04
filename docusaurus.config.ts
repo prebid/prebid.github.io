@@ -3,6 +3,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 import { themes } from 'prism-react-renderer';
 import { tocPlugin } from './_plugins/toc-plugin';
+import type { TocPluginOptions } from './_plugins/toc-plugin';
 
 const lightCodeTheme = themes.github;
 const darkCodeTheme = themes.dracula;
@@ -36,7 +37,7 @@ const config: Config = {
   markdown: {
     format: 'detect', // .md files use CommonMark, .mdx files use MDX
     hooks: {
-      onBrokenMarkdownLinks: "ignore", // FIXME change this later in the migration process
+      onBrokenMarkdownLinks: "warn", // Inventory the migration backlog before making it blocking.
     },
   },
 
@@ -249,7 +250,7 @@ const config: Config = {
       filter: (doc) => doc.frontMatter.layout === 'bidder',
       contentDocsId: 'prebidjs',
       output: 'docs/dev-docs/prebidjs/bidders.json'
-    }],
+    } satisfies TocPluginOptions],
   ]
 };
 

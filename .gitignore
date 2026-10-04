@@ -21,3 +21,4 @@ node_modules/
 # docusaurus
 .docusaurus/
 build/
+.validation-results/

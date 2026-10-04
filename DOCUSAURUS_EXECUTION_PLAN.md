@@ -1,9 +1,11 @@
 # Docusaurus adoption and migration execution plan
 
 Status: execution underway, October 4, 2026. The Docusaurus 3.10.2 package upgrade
-is checkpointed locally, and [M0 local evidence](migration/M0_BASELINE.md) is
-captured. Hosted archival/fresh Linux verification remain pending M1. Other
-milestones have not been implemented or accepted merely by documenting them.
+is published in [PR #6785](https://github.com/prebid/prebid.github.io/pull/6785),
+and [M0 local evidence](migration/M0_BASELINE.md) is captured. The
+[M1 runtime/validation foundation](migration/M1_VALIDATION.md) is implemented;
+platform acceptance and hosted checks are recorded separately from implementation.
+M2 and later milestones have not been implemented or accepted by documenting them.
 
 The [pre-implementation audit](DOCUSAURUS_PLAN_AUDIT.md) records the October 4
 discovery pass, its evidence, the corrections incorporated here, and its limits.
@@ -157,6 +159,11 @@ as launch-ready. Re-estimate work after this inventory rather than treating the
 earlier rough 4–8 engineer-week range as a delivery commitment.
 
 ### M1 — Runtime, CI, and authored-content validation
+
+Implementation and commands: [M1 validation guide](migration/M1_VALIDATION.md).
+Exact execution receipts and PR checks determine acceptance; existing warning
+inventories remain migration work, and notification-only CI does not prove a
+Docusaurus build ran.
 
 * Pin a supported Node 24 release and npm policy across developer setup, engines,
   CI, and the devcontainer. Validate a fresh locked Linux installation as well as

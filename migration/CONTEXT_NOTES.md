@@ -44,6 +44,32 @@ the decisions that should survive a fresh session.
   reducing the number of captures checked. Preserve historical receipt/tool
   identities when correcting a validator.
 
+## Lessons demonstrated by M1 validation
+
+* A failed frontmatter parse can poison the parser cache: a second identical
+  malformed file may appear valid. Clear the exact default parser's cache before
+  each parse and retain the repeated-input negative control.
+* Warm MDX caches can skip diagnostic hooks. Clear caches for both sides, record
+  observer execution, and compare identities/multiplicity rather than totals or
+  line-number allowlists.
+* Docusaurus resolves preset/plugin packages relative to its config directory.
+  A diagnostic override must preserve that directory and URL behavior. Custom
+  function hooks need semantic review before instrumentation.
+* Source selection and emitted output retention are separate checks. A page or
+  CSV disappearing must not count as a repaired warning. Intentional transitions
+  need a reviewed policy rather than silently regenerated baselines.
+* Rebuild the pinned PR base with the current detector. An old inventory lets
+  fixed defects return; a current base comparison ratchets resolved findings.
+* A whole `node_modules` symlink makes cache clearing write into shared state.
+  Build fixtures need private dependency/cache directories, with package-entry
+  symlinks only. Type-only fixtures do not emit or clear caches.
+* CI checks and receipts are distinct from branch protection and human review.
+  Keep unprivileged PR builds separate from trusted-base notification execution;
+  PR artifacts are not release artifacts.
+* GitHub's implicit Linux shell does not enable pipeline failure propagation.
+  Steps using `tee` need explicit `shell: bash` (or `pipefail`) and a control that
+  makes the upstream command fail while the logger succeeds.
+
 ## Source and consumer rules needing care
 
 * The converter's unchanged-input repeatability is different from applying newer

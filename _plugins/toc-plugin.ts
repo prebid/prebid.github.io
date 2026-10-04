@@ -1,5 +1,5 @@
-import { LoadContext, PluginModule } from "@docusaurus/types";
-import { DocFrontMatter, LoadedContent, LoadedVersion } from "@docusaurus/plugin-content-docs";
+import type { LoadContext, PluginModule } from "@docusaurus/types";
+import type { DocMetadata, LoadedContent, LoadedVersion } from "@docusaurus/plugin-content-docs";
 import fs from 'fs';
 import path from 'path';
 
@@ -10,14 +10,17 @@ export interface TocPluginOptions {
     /**
      * filter the relevant doc files to generate
      */
-    filter: (doc: DocFrontMatter & Record<string, unknown>) => boolean;
+    filter: (doc: DocMetadata) => boolean;
 
     /** where to put the JSON file */
     output: string;
 }
 
 
-export const tocPlugin: PluginModule<TocPluginOptions> = (context: LoadContext, options: TocPluginOptions) => ({
+export const tocPlugin: PluginModule = (context: LoadContext, pluginOptions: unknown) => {
+    // Docusaurus erases plugin options to unknown; the registration checks this shape.
+    const options = pluginOptions as TocPluginOptions;
+    return {
     name: 'toc-plugin',
     allContentLoaded({ allContent, actions }) {
         if (!options.contentDocsId) {
@@ -45,4 +48,5 @@ export const tocPlugin: PluginModule<TocPluginOptions> = (context: LoadContext, 
         fs.writeFileSync(outputPath, JSON.stringify(output, null, 2), 'utf-8');
 
     },
-});
+    };
+};
