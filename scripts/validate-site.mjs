@@ -72,10 +72,15 @@ function staticRows(report) {
 
 export function compareSite(candidate, baseline) {
   for (const report of [candidate, baseline]) {
-    if (report.schema_version !== 1 || !report.routes?.length || !report.inspection?.documents?.length
+    if (report.schema_version !== 2 || !report.routes?.length || !report.inspection?.documents?.length
         || !report.inspection.coverage.checked_local_references || !Array.isArray(report.markdown)
         || !Array.isArray(report.warnings?.links) || !Array.isArray(report.warnings?.anchors)) {
       throw new Error('Empty or malformed site coverage');
+    }
+    for (const setting of ['onBrokenLinks', 'onBrokenAnchors', 'onBrokenMarkdownLinks']) {
+      if (!['ignore', 'log', 'warn', 'throw'].includes(report.reporting_policy?.[setting])) {
+        throw new Error(`Missing or unsupported original reporting policy: ${setting}`);
+      }
     }
   }
   const pair = row => JSON.stringify([row.source, row.target]);
@@ -97,9 +102,19 @@ export function compareSite(candidate, baseline) {
   const formatting = compareFormatting(candidate.authored, baseline.authored);
   const selected = new Set(candidate.authored.documents.map(row => `${row.instance}\0${row.path}`));
   const lostInputs = baseline.authored.documents.filter(row => !selected.has(`${row.instance}\0${row.path}`));
+  // Observation needs warnings even when a baseline ignored them. Acceptance
+  // must still honor stricter settings in the candidate's actual configuration.
+  const strictReportingFailures = [
+    ['onBrokenLinks', candidate.warnings.links.length],
+    ['onBrokenAnchors', candidate.warnings.anchors.length],
+    ['onBrokenMarkdownLinks', candidate.markdown.length],
+  ].filter(([setting, count]) => candidate.reporting_policy[setting] === 'throw' && count > 0)
+    .map(([setting, count]) => ({setting, severity: 'throw', observations: count}));
   return {status: Object.values(results).some(row => row.added.length) || formatting.status === 'failed'
-      || removedRoutes.length || removedHtml.length || removedCsv.length || lostInputs.length ? 'failed' : 'passed',
+      || removedRoutes.length || removedHtml.length || removedCsv.length || lostInputs.length
+      || strictReportingFailures.length ? 'failed' : 'passed',
     diagnostics: results, formatting, removed_routes: removedRoutes,
+    strict_reporting_failures: strictReportingFailures,
     removed_html: removedHtml, removed_csv: removedCsv, lost_authored_inputs: lostInputs,
     candidate_source_mode: candidate.source_mode ?? 'unspecified',
     clean_acceptance_eligible: candidate.source_mode === 'isolated_commit' && baseline.source_mode === 'isolated_commit',
@@ -236,9 +251,10 @@ export function captureSite({siteDir, outDir, env = controlledEnvironment(), con
   const generatedConfig = fs.readFileSync(path.join(siteDir, '.docusaurus/docusaurus.config.mjs'), 'utf8');
   const siteUrl = generatedConfig.match(/"url":\s*"([^"]+)"/)?.[1];
   if (!siteUrl) throw new Error('Cannot identify built site origin');
-  const report = {schema_version: 1, source_commit: git('rev-parse', 'HEAD'), source_tree: git('rev-parse', 'HEAD^{tree}'),
+  const report = {schema_version: 2, source_commit: git('rev-parse', 'HEAD'), source_tree: git('rev-parse', 'HEAD^{tree}'),
     source_manifest_sha256: hash(JSON.stringify(before)), lock_sha256: hash(fs.readFileSync(path.join(siteDir, 'package-lock.json'))),
     source_mode: sourceMode, clean_acceptance_eligible: sourceMode === 'isolated_commit',
+    reporting_policy: authored.site_reporting_policy,
     authored_source_binding: authoredSourceBinding,
     node: process.version, npm: run(siteDir, 'npm', ['--version'], env), platform: process.platform, architecture: process.arch,
     started_at: start, finished_at: new Date().toISOString(),

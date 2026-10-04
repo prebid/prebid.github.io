@@ -153,6 +153,19 @@ test('warning visibility changes do not masquerade as a different formatting par
   assert.equal(comparison.accepted_existing, 1);
   assert.equal(comparison.new_findings.length, 0);
   assert.equal(comparison.status, 'passed');
+  assert.equal((await validateAuthoredContent(before)).site_reporting_policy.onBrokenMarkdownLinks, 'ignore');
+  assert.equal((await validateAuthoredContent(after)).site_reporting_policy.onBrokenMarkdownLinks, 'warn');
+});
+
+test('original strict reporting settings survive source compilation for the site acceptance gate', async t => {
+  const input = fixture(t, {'content/main.md': '# Main\n'}, {}, {
+    onBrokenLinks: 'throw', onBrokenAnchors: 'throw',
+    markdown: {format: 'detect', hooks: {onBrokenMarkdownLinks: 'throw'}},
+  });
+  const report = await validateAuthoredContent(input);
+  assert.deepEqual(report.site_reporting_policy,
+    {onBrokenLinks: 'throw', onBrokenAnchors: 'throw', onBrokenMarkdownLinks: 'throw'});
+  assert.equal(report.compilation_failures, 0);
 });
 
 test('single-locale translations are rejected when explicit or inferred, with a restored control', async t => {

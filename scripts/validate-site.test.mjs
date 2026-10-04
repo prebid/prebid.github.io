@@ -288,6 +288,7 @@ test('real tiny Docusaurus captures catch link/asset/CSV regressions and recover
   assert.equal(clean.source_mode, 'working_tree_development');
   assert.equal(clean.clean_acceptance_eligible, false);
   assert.equal(clean.authored_source_binding.status, 'bound_to_git_visible_source');
+  assert.deepEqual(clean.reporting_policy, clean.authored.site_reporting_policy);
   assert.equal(clean.authored.coverage.compilation_units, 2);
   assert.deepEqual(clean.authored.documents.map(row => row.path).sort(), ['docs/one.md', 'docs/two.md']);
   assert.ok(clean.routes.length >= 2);
@@ -332,6 +333,28 @@ test('real tiny Docusaurus captures catch link/asset/CSV regressions and recover
   assert.equal(compareSite(restored, clean).status, 'passed');
   assert.equal(compareSite(restored, broken).status, 'passed');
   assert.equal(compareSite(restored, broken).diagnostics.markdown.resolved, broken.markdown.length);
+
+  await t.test('candidate throw policies reject existing defects even when regression identities are unchanged', () => {
+    const counts = {onBrokenLinks: broken.warnings.links.length, onBrokenAnchors: broken.warnings.anchors.length,
+      onBrokenMarkdownLinks: broken.markdown.length};
+    for (const [setting, count] of Object.entries(counts)) {
+      assert.ok(count > 0, `The real fixture must exercise ${setting}`);
+      const strict = clone(broken); strict.reporting_policy[setting] = 'throw';
+      const comparison = compareSite(strict, broken);
+      assert.equal(comparison.status, 'failed');
+      assert.ok(Object.values(comparison.diagnostics).every(row => row.added.length === 0));
+      assert.deepEqual(comparison.strict_reporting_failures, [{setting, severity: 'throw', observations: count}]);
+      strict.reporting_policy[setting] = 'warn';
+      assert.equal(compareSite(strict, broken).status, 'passed');
+    }
+    const strictClean = clone(clean);
+    for (const setting of Object.keys(counts)) strictClean.reporting_policy[setting] = 'throw';
+    assert.equal(compareSite(strictClean, clean).status, 'passed');
+    for (const value of [undefined, 'unknown-policy']) {
+      const invalid = clone(clean); invalid.reporting_policy.onBrokenLinks = value;
+      assert.throws(() => compareSite(invalid, clean), /Missing or unsupported original reporting policy/);
+    }
+  });
 
   await t.test('authored documents and input metadata bind to observed Git-visible source hashes', () => {
     const sourceManifest = visibleSourceManifest(fixture.siteDir, fixture.env);

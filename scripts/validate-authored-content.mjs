@@ -357,6 +357,9 @@ export async function validateAuthoredContent({siteDir, siteConfig, siteConfigPa
   const sourceInputs = identities.map(file => ({path: relative(siteDir, file), sha256: digest(fs.readFileSync(file))}));
   const lockPath = path.join(siteDir, 'package-lock.json');
   return {schema_version: 1, kind: 'authored-content-validation', scope, compiler_versions: compilerVersions,
+    site_reporting_policy: {onBrokenLinks: siteConfig.onBrokenLinks, onBrokenAnchors: siteConfig.onBrokenAnchors,
+      onBrokenMarkdownLinks: typeof siteConfig.markdown.hooks.onBrokenMarkdownLinks === 'function'
+        ? 'function' : siteConfig.markdown.hooks.onBrokenMarkdownLinks},
     tool_sha256: digest(fs.readFileSync(fileURLToPath(import.meta.url))), node: process.version, source_root: siteDir,
     input_metadata: sourceInputs, source_lock_sha256: fs.existsSync(lockPath) ? digest(fs.readFileSync(lockPath)) : null,
     runtime_lock_path: runtimeLockPath,

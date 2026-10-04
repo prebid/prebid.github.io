@@ -96,6 +96,9 @@ the decisions that should survive a fresh session.
 * Validation identity is a head/base pair. Retargeting can change the base without
   changing the head, so subscribe to PR edits and recheck the recorded base before
   relying on a green result. A metadata-edit job skip is not a replacement check.
+* Diagnostic instrumentation must preserve acceptance policy separately. Reporting
+  everything as warnings is useful for inventory, but an original `throw` setting
+  must still fail on existing defects even when no new identities were added.
 
 ## Source and consumer rules needing care
 

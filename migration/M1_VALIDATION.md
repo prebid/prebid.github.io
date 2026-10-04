@@ -89,6 +89,11 @@ custom function hooks that could change URL semantics. The execution copy sits
 beside the actual config to preserve preset/plugin resolution, is removed in
 `finally`, and is retained in the receipt. Compiler caches are cleared so hooks
 execute. This explicitly instrumented build is distinct from ordinary config use.
+The original resolved reporting policies are retained in site report schema 2.
+Candidate `throw` settings still fail acceptance when that category has existing
+diagnostics, even when comparison against the baseline adds no new identities.
+Instrumentation therefore collects the full inventory without weakening an
+explicitly strict candidate policy. Older report schemas must be regenerated.
 
 ## CI and notification boundaries
 
