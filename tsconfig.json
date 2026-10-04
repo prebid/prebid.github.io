@@ -1,6 +1,14 @@
 {
-    "extends": "@docusaurus/tsconfig",
-    "compilerOptions": {
-      "baseUrl": "."
-    }
-  }
+  "extends": "@docusaurus/tsconfig",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "strict": true
+  },
+  "include": [
+    "src/**/*",
+    "_plugins/**/*.ts",
+    "docusaurus.config.ts",
+    "sidebars*.ts"
+  ],
+  "exclude": ["node_modules", ".docusaurus", "build", "assets"]
+}

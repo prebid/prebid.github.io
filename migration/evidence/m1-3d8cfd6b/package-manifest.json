@@ -1,0 +1,392 @@
+{
+  "schema_version": 1,
+  "source_commit": "3d8cfd6b7f6635bc5dbcdb40a543eeec6f4a592e",
+  "baseline_commit": "0791a5b7a9c84f7ff4be1433a4bcb34f17f00c0d",
+  "node": "24.21.0",
+  "npm": "11.19.0",
+  "linux_image": "node:24.21.0-bookworm@sha256:64af3819f9275802414d7cdc38c27e9d82bd564dec4d4da87d008255d36c63b4",
+  "linux_limits": {
+    "cpus": 4,
+    "memory": "6g",
+    "pids": 512
+  },
+  "scope": "Local clean macOS and fresh Linux ARM64 validation; not hosted CI, human approval, or production fidelity",
+  "entries": [
+    {
+      "path": "linux/setup/dependencies.json.gz",
+      "bytes": 38141,
+      "sha256": "e388251b156369392b75a06210b851179ac51f8627a89c1cd3a991e2242e5eff",
+      "uncompressed_bytes": 556105,
+      "uncompressed_sha256": "5921afa2ed350008f8f4b73aced9df53b608dd3b6e0d83a807400f00ec617cc3"
+    },
+    {
+      "path": "linux/setup/input-sha256.txt.gz",
+      "bytes": 144,
+      "sha256": "3bf5ebeff71c4ed7ae51d487686bbe0893beacc878a360f2d8cd04d18784111b",
+      "uncompressed_bytes": 167,
+      "uncompressed_sha256": "250c46144f082b6a03cd7216e57ed6d54cd331de22599d8a668f417fb2139a80"
+    },
+    {
+      "path": "linux/setup/install.log.gz",
+      "bytes": 176,
+      "sha256": "a9d00dfa42cfd567e06810c04e962a482d88ce8b71b770e4a7af4c8520617479",
+      "uncompressed_bytes": 237,
+      "uncompressed_sha256": "7951e4674329ffbb7300dbc0d5b1c0b925e9676d82b9b334710a1e2df0b65b3a"
+    },
+    {
+      "path": "linux/setup/notifier-install.log.gz",
+      "bytes": 172,
+      "sha256": "d9c6238bb51a0e2303e2f4ed2b615de9c9a8f9b9f701623d359d0af1989069a2",
+      "uncompressed_bytes": 234,
+      "uncompressed_sha256": "d8e351b45596bad404c904817ffa079b3a5f1d6c78ca8cbca1728326afa4f4d2"
+    },
+    {
+      "path": "linux/setup/notifier-versions.json.gz",
+      "bytes": 58,
+      "sha256": "4ee297cdc78d69e072f8482956c2737c5b0aa31be77b8ebf7df91172846dc33f",
+      "uncompressed_bytes": 42,
+      "uncompressed_sha256": "321274e4023da6e3129a11cfe17f692860d71373cb6f58ad628176d6db658b7d"
+    },
+    {
+      "path": "linux/setup/platform.json.gz",
+      "bytes": 77,
+      "sha256": "8e1f96191bb9ec9dc37a6b443bbe90e8f5bed446c4fda8c59e94a290f5ce848a",
+      "uncompressed_bytes": 62,
+      "uncompressed_sha256": "6bd30da09f90efbcbfff3923efd0da2f50ba20c178f575dfacf1170d905d3e6c"
+    },
+    {
+      "path": "linux/setup/result.txt.gz",
+      "bytes": 59,
+      "sha256": "84790963a2dc0916e3199d9d20412c024d8333e2bd77bba54cc2a892daffa483",
+      "uncompressed_bytes": 39,
+      "uncompressed_sha256": "04c938fbba4617664b4f6bcb77bbb0a14ab23d8ae1fc42ccc912942cad91f48c"
+    },
+    {
+      "path": "linux/setup/site.log.gz",
+      "bytes": 311,
+      "sha256": "f4f9ec9ed759a60dc1ede16e0f7da4babe5ebbfeb214fc3e7202cd83b251271a",
+      "uncompressed_bytes": 496,
+      "uncompressed_sha256": "b096b069551fc09f98f666218bfa025b645c6df2076acef2035fcb0038cef0c8"
+    },
+    {
+      "path": "linux/setup/status-after.txt.gz",
+      "bytes": 20,
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "uncompressed_bytes": 0,
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "linux/setup/status-before.txt.gz",
+      "bytes": 20,
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "uncompressed_bytes": 0,
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "linux/setup/tests.log.gz",
+      "bytes": 2764,
+      "sha256": "72434533f1c2641c66c5e1b1e17714f7c521f56ff0dd38b830b3d3b5b221fddd",
+      "uncompressed_bytes": 6165,
+      "uncompressed_sha256": "edea3bab90197cf1aa46439d9f0c9e73175e0275ad54a2b4386a3369e5d11b43"
+    },
+    {
+      "path": "linux/setup/toolchain.json.gz",
+      "bytes": 113,
+      "sha256": "88a572cae22d2c43adf3744342ce6494d46c8c459e5362d8b62f19cda9660e0c",
+      "uncompressed_bytes": 156,
+      "uncompressed_sha256": "059b51480c00e06e93dad803cc5df529ea8348427dd98339986d9dbeae6366bc"
+    },
+    {
+      "path": "linux/setup/typecheck.log.gz",
+      "bytes": 72,
+      "sha256": "9afb6c0264f06d2c39d90fd6556a6302e1c84a8e5614e6b13b24728ee0bcef9c",
+      "uncompressed_bytes": 52,
+      "uncompressed_sha256": "89650ec85d9de67f61023dd8efee369faa8fd6b20551bd53e4e6e7df7730e1de"
+    },
+    {
+      "path": "linux/site/baseline/authored.json.gz",
+      "bytes": 76920,
+      "sha256": "55fef36953299cae03cf80cc4cf1e5f950a285221442ff091a9f5b93250d59b5",
+      "uncompressed_bytes": 468121,
+      "uncompressed_sha256": "643c485a04b01cf6da44a972e0fea0fe800b4115796bba74f238c15a157a0cb8"
+    },
+    {
+      "path": "linux/site/baseline/authored.log.gz",
+      "bytes": 153,
+      "sha256": "40761eb7e11eb94f2935f1351768509cd7afaab804e79c37ce4097a0e2682af7",
+      "uncompressed_bytes": 190,
+      "uncompressed_sha256": "a48943b43d94afe53591e3956cedc23f9442fc44ed51d369a1167d2dfe94eaca"
+    },
+    {
+      "path": "linux/site/baseline/build-manifest.json.gz",
+      "bytes": 155626,
+      "sha256": "605e805dad6a3ef9de3f0196c976d6a1a65009802fed61f4f3e12bff74079277",
+      "uncompressed_bytes": 457889,
+      "uncompressed_sha256": "91cd4c7e1abc24c75139c729759ed193151a2e183afbe6c4102ad5e7c03b7896"
+    },
+    {
+      "path": "linux/site/baseline/build.log.gz",
+      "bytes": 11961,
+      "sha256": "eb1d391563c003fea662fcdfe6fb6742ab4ca08a7fd3a810e788101796b47f42",
+      "uncompressed_bytes": 117893,
+      "uncompressed_sha256": "38da0f7af906ba2ae76e92fc874af2f06f8c7cf98bc12a5dbd11e0c83b75ca65"
+    },
+    {
+      "path": "linux/site/baseline/clear.log.gz",
+      "bytes": 20,
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "uncompressed_bytes": 0,
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "linux/site/baseline/observer.config.ts.gz",
+      "bytes": 458,
+      "sha256": "206230ff90635b4cec63b0d03867c00367082cb637da297885f35075d4b0b548",
+      "uncompressed_bytes": 788,
+      "uncompressed_sha256": "c0ef85368b7a7a2406db32822154e64227af7b823c51ce53acae7202d12ea6d6"
+    },
+    {
+      "path": "linux/site/baseline/report.json.gz",
+      "bytes": 325714,
+      "sha256": "46bb13b65ed473d61693638152450eff51dd2401d0804d1f45818b7c2fc4e76b",
+      "uncompressed_bytes": 2047034,
+      "uncompressed_sha256": "2067caae9803a12856e0cea7dc14b3cbb2095d0f56081a028a1d67326c2c07bf"
+    },
+    {
+      "path": "linux/site/baseline/source-manifest.json.gz",
+      "bytes": 132426,
+      "sha256": "52751ff8f339de89895a58f3d15d5993f0af22ca1191242e64f3b23aa38eb032",
+      "uncompressed_bytes": 411865,
+      "uncompressed_sha256": "b747c5338251d25dc979c75d85047a0dc61f320ea0504b4f4c4e6077a10da47a"
+    },
+    {
+      "path": "linux/site/baseline-install.log.gz",
+      "bytes": 47,
+      "sha256": "fae3f2e7102c7c11e155581a54ed6861eabe9a0162f2a679ea47d49bc0fdec48",
+      "uncompressed_bytes": 27,
+      "uncompressed_sha256": "3ea4f451459adbfed41b0e21a420fc73675904e93b5b48252314cf13f882dc33"
+    },
+    {
+      "path": "linux/site/candidate/authored.json.gz",
+      "bytes": 76856,
+      "sha256": "9e94d3e632b5567fb4b1528a1df904aaec906fd5f1ea43cb566e227ad9a28493",
+      "uncompressed_bytes": 468101,
+      "uncompressed_sha256": "5042ffe3d12f4625c2c974086e34f7a5e1816e7188d7001f0ce051d9a0c71272"
+    },
+    {
+      "path": "linux/site/candidate/authored.log.gz",
+      "bytes": 153,
+      "sha256": "40761eb7e11eb94f2935f1351768509cd7afaab804e79c37ce4097a0e2682af7",
+      "uncompressed_bytes": 190,
+      "uncompressed_sha256": "a48943b43d94afe53591e3956cedc23f9442fc44ed51d369a1167d2dfe94eaca"
+    },
+    {
+      "path": "linux/site/candidate/build-manifest.json.gz",
+      "bytes": 155593,
+      "sha256": "a664043d813186ab4c09e1ac15b40ec56fcbe4b1044c5f58840ea47a71a8e1e7",
+      "uncompressed_bytes": 457889,
+      "uncompressed_sha256": "d24c14f4ad886063e0d0239266faa11ea6d04a6862a010fd7136d85444940f21"
+    },
+    {
+      "path": "linux/site/candidate/build.log.gz",
+      "bytes": 11969,
+      "sha256": "5b29d50ea7c6483c538425633b7f7dbb25a75fdf4503ba0d15efc9285b209377",
+      "uncompressed_bytes": 117893,
+      "uncompressed_sha256": "7a0c1da1b99ec305e986c79d5cdcad20ee0b1abe0f8d9a04e35cd52298328f3e"
+    },
+    {
+      "path": "linux/site/candidate/clear.log.gz",
+      "bytes": 20,
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "uncompressed_bytes": 0,
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "linux/site/candidate/observer.config.ts.gz",
+      "bytes": 445,
+      "sha256": "3837ef3fd348a7e0dd24b18bc93a13e52cff0ef674236dc1f60e1702d98f8c2b",
+      "uncompressed_bytes": 768,
+      "uncompressed_sha256": "66778b5dcb6ef30638dce6e10adecb8a3b6b67c4181930739c51658a6dbea73e"
+    },
+    {
+      "path": "linux/site/candidate/report.json.gz",
+      "bytes": 325645,
+      "sha256": "e112af319208e4be462136d91dbeb59ad4a4b63c54f276edd67d04203084cbf4",
+      "uncompressed_bytes": 2047014,
+      "uncompressed_sha256": "aa8d66fdfa7265bd7992ed277f6058d7437e4a3116522d133f3ad78eede21ee3"
+    },
+    {
+      "path": "linux/site/candidate/source-manifest.json.gz",
+      "bytes": 133103,
+      "sha256": "f0990262d2b95bb09456c427bf355bddbc2842a6d6d6e1f1aba4cc7892c899b8",
+      "uncompressed_bytes": 413765,
+      "uncompressed_sha256": "25b004e06a65d24d261113434e6529088a4cc4101746426d6b5b9a1364831f45"
+    },
+    {
+      "path": "linux/site/comparison.json.gz",
+      "bytes": 496,
+      "sha256": "6c0b4a06f489a684f743066fd46b5b1e23a36b585561077e519883a493ad9391",
+      "uncompressed_bytes": 1220,
+      "uncompressed_sha256": "5ce52c455c954e82014e64f3966427fff86893ab3083d96d1a33bb17dff12ed6"
+    },
+    {
+      "path": "linux/site/execution.json.gz",
+      "bytes": 599,
+      "sha256": "fcbb795934e06a869aafc663f1a4559f2a6e463d20450ec28a0c7d1ba674ac03",
+      "uncompressed_bytes": 1029,
+      "uncompressed_sha256": "2759a74856b12ba810032f58b5af8d18159df5706173589f2b557b2ca2850e5a"
+    },
+    {
+      "path": "linux/site/receipt-manifest.json.gz",
+      "bytes": 892,
+      "sha256": "b1e412f3c2df9ee39531ec44c415dbdba58c8ba8757f46c146b5c938b60b9390",
+      "uncompressed_bytes": 2440,
+      "uncompressed_sha256": "88c3dcce795ac0b2925087ffb0c8bc2c0b3523efa06d4739c9a38610c2a6628e"
+    },
+    {
+      "path": "macos/baseline/authored.json.gz",
+      "bytes": 76996,
+      "sha256": "c13b175c1c46e7ee4790744c239259334b3a1e115b0622a10b4298fc12c2a2a9",
+      "uncompressed_bytes": 468290,
+      "uncompressed_sha256": "6d14ba6f18d81265c0ba4fa52b71b3cba9a174e8b309059a4982350c743831c3"
+    },
+    {
+      "path": "macos/baseline/authored.log.gz",
+      "bytes": 153,
+      "sha256": "40761eb7e11eb94f2935f1351768509cd7afaab804e79c37ce4097a0e2682af7",
+      "uncompressed_bytes": 190,
+      "uncompressed_sha256": "a48943b43d94afe53591e3956cedc23f9442fc44ed51d369a1167d2dfe94eaca"
+    },
+    {
+      "path": "macos/baseline/build-manifest.json.gz",
+      "bytes": 155557,
+      "sha256": "775b193e7a988ea1437fcfbfceaab8813dd7e6f2119c3ff7b6fa69080ee0ca64",
+      "uncompressed_bytes": 457889,
+      "uncompressed_sha256": "baf930c745513210329ff6aacc0d1fb8e0bcc7c4e2b91c37f15b3b9dd69ab9e6"
+    },
+    {
+      "path": "macos/baseline/build.log.gz",
+      "bytes": 11963,
+      "sha256": "d3c8de6c9c24f2737588b62f85d47451fe1b75443df37f7344743ff1dbb16a06",
+      "uncompressed_bytes": 117893,
+      "uncompressed_sha256": "40f09989e11f822eea77e90d44f4d350f26679beca84d42a82d3d6240a812bac"
+    },
+    {
+      "path": "macos/baseline/clear.log.gz",
+      "bytes": 20,
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "uncompressed_bytes": 0,
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "macos/baseline/observer.config.ts.gz",
+      "bytes": 499,
+      "sha256": "1e6fe93d957d8ac486176fccb7558b6dd0b979e833b7b82967a7fc9b328f0341",
+      "uncompressed_bytes": 840,
+      "uncompressed_sha256": "10636459053c23066cef42122a4558b097aabc88eb98d9de911a9d3c676960be"
+    },
+    {
+      "path": "macos/baseline/report.json.gz",
+      "bytes": 325789,
+      "sha256": "aee367a3ed4600ba7be03d1a0b82cb0f199685ec028d8032a1af0fd0ea3f19d0",
+      "uncompressed_bytes": 2047204,
+      "uncompressed_sha256": "df99dcf92e2a91b4a027e4d4694cb1e74f6a002125d6f9356ee1896dac089131"
+    },
+    {
+      "path": "macos/baseline/source-manifest.json.gz",
+      "bytes": 132426,
+      "sha256": "52751ff8f339de89895a58f3d15d5993f0af22ca1191242e64f3b23aa38eb032",
+      "uncompressed_bytes": 411865,
+      "uncompressed_sha256": "b747c5338251d25dc979c75d85047a0dc61f320ea0504b4f4c4e6077a10da47a"
+    },
+    {
+      "path": "macos/baseline-install.log.gz",
+      "bytes": 48,
+      "sha256": "47691a3dad7af2df42cd249017a1691feefba975fd6aee5d03f40ac0d27671ed",
+      "uncompressed_bytes": 28,
+      "uncompressed_sha256": "8262126aa2edd12ed88ac6ed75dce0a62c05b5bf974b37fef594fc31d0d3c7ac"
+    },
+    {
+      "path": "macos/candidate/authored.json.gz",
+      "bytes": 76894,
+      "sha256": "a4413b38865d82b7c624fcb938b474c4029d20f7ace4b29d8a4897620132b5c2",
+      "uncompressed_bytes": 468257,
+      "uncompressed_sha256": "617c3993a89221334cb4cda73e2217e73b22718e3cf5f630c464393a4c29636e"
+    },
+    {
+      "path": "macos/candidate/authored.log.gz",
+      "bytes": 153,
+      "sha256": "40761eb7e11eb94f2935f1351768509cd7afaab804e79c37ce4097a0e2682af7",
+      "uncompressed_bytes": 190,
+      "uncompressed_sha256": "a48943b43d94afe53591e3956cedc23f9442fc44ed51d369a1167d2dfe94eaca"
+    },
+    {
+      "path": "macos/candidate/build-manifest.json.gz",
+      "bytes": 155544,
+      "sha256": "4be3e53a7947958a0d532cec85032d66d95f0ed88a8e7507d43365b5e02a0c6b",
+      "uncompressed_bytes": 457889,
+      "uncompressed_sha256": "2e67646cc058e403bff561b07c455c632c6c44a590c99e51a514f2fd04811e50"
+    },
+    {
+      "path": "macos/candidate/build.log.gz",
+      "bytes": 12029,
+      "sha256": "02fb8d7bff33a9d56fbe4da960928262fcd5d2c441c1c1b40637b8e1cf43dc31",
+      "uncompressed_bytes": 118121,
+      "uncompressed_sha256": "1160a41b733144ac7c363781849d448b99b16c042974ce9c69cfad87a551cbbb"
+    },
+    {
+      "path": "macos/candidate/clear.log.gz",
+      "bytes": 97,
+      "sha256": "f1498918a39557a255bbd18a0bc0f3f3b18ac3e142a7ff977d50ff7daab8f242",
+      "uncompressed_bytes": 111,
+      "uncompressed_sha256": "2e0cd1139c68b4bcaad45c23c084ce7e155e038b5e7eade8ee86b83355e1b747"
+    },
+    {
+      "path": "macos/candidate/observer.config.ts.gz",
+      "bytes": 474,
+      "sha256": "64662ef8e326ab7fea47dd2e6427757335643d6f5ceb9a230e7c23c18474a035",
+      "uncompressed_bytes": 807,
+      "uncompressed_sha256": "4e7a4f3f7ea036b6e6989047eb0d0b3ac4cb06a998d92f28cf9ffcb671f1a14f"
+    },
+    {
+      "path": "macos/candidate/report.json.gz",
+      "bytes": 325674,
+      "sha256": "1e5fa31b08addfaab547179acb0afccd061eb92560508596052020cdfe4f37aa",
+      "uncompressed_bytes": 2047171,
+      "uncompressed_sha256": "2283c878bc504cf6925fe6122582591efd1d1a0ac785f6175f3bb95a6d9d74d9"
+    },
+    {
+      "path": "macos/candidate/source-manifest.json.gz",
+      "bytes": 133103,
+      "sha256": "f0990262d2b95bb09456c427bf355bddbc2842a6d6d6e1f1aba4cc7892c899b8",
+      "uncompressed_bytes": 413765,
+      "uncompressed_sha256": "25b004e06a65d24d261113434e6529088a4cc4101746426d6b5b9a1364831f45"
+    },
+    {
+      "path": "macos/comparison.json.gz",
+      "bytes": 496,
+      "sha256": "6c0b4a06f489a684f743066fd46b5b1e23a36b585561077e519883a493ad9391",
+      "uncompressed_bytes": 1220,
+      "uncompressed_sha256": "5ce52c455c954e82014e64f3966427fff86893ab3083d96d1a33bb17dff12ed6"
+    },
+    {
+      "path": "macos/execution.json.gz",
+      "bytes": 666,
+      "sha256": "1fa6bbf2ddf8869c2c3ea6b9e226dff7a9d6d010e52228196cebaaae04668bb0",
+      "uncompressed_bytes": 1130,
+      "uncompressed_sha256": "de54e088da2ce935b9a94f352ab57f24ba0c439872e1d29edb163aaea2d23c6a"
+    },
+    {
+      "path": "macos/receipt-manifest.json.gz",
+      "bytes": 930,
+      "sha256": "5c16e51b0dfb32fdd1ff25bca42686dc204bfcb96c5929d38cf0bbf37c81bc0f",
+      "uncompressed_bytes": 2440,
+      "uncompressed_sha256": "f212445844372427bb2bcd3763803ad0912b5e39194b68aaca315d34154c6bb8"
+    },
+    {
+      "path": "run.sh",
+      "bytes": 1776,
+      "sha256": "86bcf76dee786cbdb0db3596fc4041632d671e8ad936fd42010b023d395e8636"
+    }
+  ]
+}

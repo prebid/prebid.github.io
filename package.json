@@ -26,7 +26,13 @@
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
-    "write-heading-ids": "docusaurus write-heading-ids"
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "typecheck": "tsc --noEmit",
+    "verify:toolchain": "node scripts/validate-toolchain.mjs",
+    "test:migration": "node --test scripts/migration-*.test.mjs scripts/validate-*.test.mjs",
+    "validate:content": "node scripts/validate-authored-content.mjs",
+    "validate:site": "node scripts/validate-site.mjs",
+    "validate": "npm run verify:toolchain && npm run typecheck && npm run test:migration && npm run validate:site"
   },
   "dependencies": {
     "@docusaurus/core": "3.10.2",
@@ -41,7 +47,16 @@
     "@docusaurus/module-type-aliases": "3.10.2",
     "@docusaurus/tsconfig": "3.10.2",
     "@docusaurus/types": "3.10.2",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "@docusaurus/mdx-loader": "3.10.2",
+    "@docusaurus/utils": "3.10.2",
+    "cheerio": "1.0.0-rc.12",
+    "js-yaml": "4.3.2",
+    "remark-lint-fenced-code-flag": "4.2.0",
+    "@docusaurus/utils-validation": "3.10.2",
+    "@docusaurus/plugin-content-docs": "3.10.2",
+    "@docusaurus/plugin-content-pages": "3.10.2",
+    "@11ty/gray-matter": "1.0.0"
   },
   "browserslist": {
     "production": [
@@ -56,6 +71,8 @@
     ]
   },
   "engines": {
-    "node": ">=20.0"
-  }
+    "node": ">=24.21.0 <25",
+    "npm": "11.19.0"
+  },
+  "packageManager": "npm@11.19.0"
 }

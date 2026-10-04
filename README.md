@@ -148,11 +148,14 @@ open decisions, acceptance criteria, and production cutover requirements.
 
 ### Installation
 
-Use a supported Node.js LTS release (the upgrade was tested with Node.js 24).
-Docusaurus requires Node.js 20 or later.
+Use Node.js **24.21.0** and its bundled npm **11.19.0**. `.nvmrc`,
+`packageManager`, CI, and the pinned devcontainer declare this toolchain.
+With nvm installed, run `nvm install` and `nvm use` in this directory.
+Verify the runtime before installing; dependency lifecycle scripts are disabled.
 
 ```bash
-npm ci
+node scripts/validate-toolchain.mjs
+npm ci --include=dev --ignore-scripts
 ```
 
 ### Local Development
@@ -170,6 +173,20 @@ npm run build
 ```
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
+
+Before submitting migration changes, run `npm run typecheck` and
+`npm run test:migration`. The PR workflow also recompiles authored Markdown/MDX
+and compares fresh base/candidate builds. For the same local comparison, select
+the reviewed PR base's full commit SHA and a new receipt directory:
+
+```bash
+npm run validate:site -- --baseline-ref "$REVIEWED_BASE_SHA" --out .validation-results/my-check
+```
+
+This requires a clean full-history checkout and network access for the base's
+locked dependency installation. `--allow-dirty` is available for development
+probes; it does not produce clean-checkout acceptance evidence. See the
+[M1 validation guide](migration/M1_VALIDATION.md) for coverage and limits.
 
 ### Deployment
 

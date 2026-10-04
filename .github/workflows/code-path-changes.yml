@@ -6,32 +6,40 @@ on:
     paths:
       - '**'
 
-env:
-  OAUTH2_CLIENT_ID: ${{ secrets.OAUTH2_CLIENT_ID }}
-  OAUTH2_CLIENT_SECRET: ${{ secrets.OAUTH2_CLIENT_SECRET }}
-  OAUTH2_REFRESH_TOKEN: ${{ secrets.OAUTH2_REFRESH_TOKEN }}
-  GITHUB_REPOSITORY: ${{ github.repository }}
-  GITHUB_PR_NUMBER: ${{ github.event.pull_request.number }}
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 permissions:
   contents: read
+  pull-requests: read
 
 jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
+      - name: Check out the trusted pull request base
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          persist-credentials: false
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
-          node-version: '18'
+          node-version: '24.21.0'
+          package-manager-cache: false
 
-      - name: Install dependencies
-        run: npm install axios nodemailer
+      - name: Verify bundled toolchain
+        run: |
+          test "$(node --version)" = "v24.21.0"
+          test "$(npm --version)" = "11.19.0"
+
+      - name: Install locked notifier dependencies
+        run: npm ci --prefix .github/workflows/scripts --ignore-scripts --no-audit --no-fund
 
       - name: Run Notification Script
-        run: |
-          node .github/workflows/scripts/send-notification-on-change.js
+        env:
+          OAUTH2_CLIENT_ID: ${{ secrets.OAUTH2_CLIENT_ID }}
+          OAUTH2_CLIENT_SECRET: ${{ secrets.OAUTH2_CLIENT_SECRET }}
+          OAUTH2_REFRESH_TOKEN: ${{ secrets.OAUTH2_REFRESH_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_PR_NUMBER: ${{ github.event.pull_request.number }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node .github/workflows/scripts/send-notification-on-change.js

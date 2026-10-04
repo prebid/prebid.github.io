@@ -44,6 +44,62 @@ the decisions that should survive a fresh session.
   reducing the number of captures checked. Preserve historical receipt/tool
   identities when correcting a validator.
 
+## Lessons demonstrated by M1 validation
+
+* A failed frontmatter parse can poison the parser cache: a second identical
+  malformed file may appear valid. Clear the exact default parser's cache before
+  each parse and retain the repeated-input negative control.
+* Warm MDX caches can skip diagnostic hooks. Clear caches for both sides, record
+  observer execution, and compare identities/multiplicity rather than totals or
+  line-number allowlists.
+* Docusaurus resolves preset/plugin packages relative to its config directory.
+  A diagnostic override must preserve that directory and URL behavior. Custom
+  function hooks need semantic review before instrumentation.
+* Source selection and emitted output retention are separate checks. A page or
+  CSV disappearing must not count as a repaired warning. Intentional transitions
+  need a reviewed policy rather than silently regenerated baselines.
+* Rebuild the pinned PR base with the current detector. An old inventory lets
+  fixed defects return; a current base comparison ratchets resolved findings.
+* Snapshot candidate HEAD, index, tracked/nonignored input bytes, and tool bytes
+  before the long baseline build. Recheck against that same snapshot before
+  candidate capture and before the verdict, so intervening edits cannot acquire
+  a false clean-checkout label. This is drift detection, not filesystem locking.
+* A whole `node_modules` symlink makes cache clearing write into shared state.
+  Build fixtures need private dependency/cache directories, with package-entry
+  symlinks only. Type-only fixtures do not emit or clear caches.
+* CI checks and receipts are distinct from branch protection and human review.
+  Keep unprivileged PR builds separate from trusted-base notification execution;
+  PR artifacts are not release artifacts.
+* GitHub's implicit Linux shell does not enable pipeline failure propagation.
+  Steps using `tee` need explicit `shell: bash` (or `pipefail`) and a control that
+  makes the upstream command fail while the logger succeeds.
+* Durations collected during overlapping local work are operational timings.
+  Isolate performance comparisons and pin resource limits before attributing a
+  speedup to Faster or another build change.
+
+## Lessons from the pre-M2 review
+
+* A clean Git status does not exclude ignored local build inputs. Acceptance
+  builds use separate pinned checkouts; working-tree probes are explicitly weaker.
+  Bind selected Markdown and selector inputs to the captured manifest as well.
+* Inspect the framework's complete cleanup target set, including parent paths.
+  Docusaurus can log a removal failure yet exit successfully, so require the
+  targets to be absent before claiming a cold build.
+* Treat NUL-delimited Git output as raw bytes/text. Trimming can collapse a leading
+  whitespace filename into a different existing path and silently lose coverage.
+* Resolve effective framework configuration rather than assuming that one locale
+  means untranslated source, or that content plugins are always strings. Keep
+  unsupported forms explicit instead of treating every unknown plugin as non-content.
+* Partial compilation follows the imported file's loader, not its importer's
+  options. Cross-root imports require a deliberate ownership/fallback adapter.
+  Literal imports can also appear in nested expressions and JSX attributes.
+* Validation identity is a head/base pair. Retargeting can change the base without
+  changing the head, so subscribe to PR edits and recheck the recorded base before
+  relying on a green result. A metadata-edit job skip is not a replacement check.
+* Diagnostic instrumentation must preserve acceptance policy separately. Reporting
+  everything as warnings is useful for inventory, but an original `throw` setting
+  must still fail on existing defects even when no new identities were added.
+
 ## Source and consumer rules needing care
 
 * The converter's unchanged-input repeatability is different from applying newer

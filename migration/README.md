@@ -5,22 +5,24 @@ The [pre-M1 review](PRE_M1_REVIEW.md) records the subsequent delivery checks and
 collector/reference-verifier corrections.
 [REFERENCE_CONTRACT.md](REFERENCE_CONTRACT.md) explains the independent legacy
 source cases. [CONTEXT_NOTES.md](CONTEXT_NOTES.md) carries durable lessons.
+[M1_VALIDATION.md](M1_VALIDATION.md) documents the current runtime, CI, and
+authored-content/regression runner, including its acceptance boundaries.
 The [execution plan](../DOCUSAURUS_EXECUTION_PLAN.md) controls sequencing and open
 decisions; these tools do not authorize deployment or resolve domain policies.
 
 ## Tooling checks
 
 Use the Node/npm versions named in the selected receipt. The M0 control uses
-Node 24.18.0 and npm 11.16.0; the repository's global runtime pin is M1 work.
+Node 24.18.0 and npm 11.16.0. M1 uses `.nvmrc` and `packageManager`; run
+`node scripts/validate-toolchain.mjs` before installing current dependencies.
 
 ```bash
 node --test scripts/migration-*.test.mjs
 ```
 
 The collector uses installed `cheerio`; the inventory uses installed `js-yaml`.
-Both are currently supplied transitively by the pinned Docusaurus lockfile. Their
-absence is an error, not a reason to silently weaken parsing. Making evidence-tool
-dependencies explicit belongs with M1 toolchain/CI setup. The reference and Git
+Both are explicitly declared in the M1 dependency manifest. Their absence is an
+error, not a reason to silently weaken parsing. The reference and Git
 provenance verifiers use Node built-ins.
 
 ## Capture a control build
@@ -101,5 +103,5 @@ them with those revisions, not automatically with corrected current scripts.
 
 After a meaningful source/lock/tool change, generate a new receipt directory and
 compare the relevant observations. Preserve historical receipts rather than
-overwriting them. Hosted artifact upload, fresh Linux installation, and blocking
-CI comparisons are separate M1 work.
+overwriting them. Hosted artifacts, fresh Linux installation, and blocking CI
+comparisons have separate M1 receipts; historical M0 packages do not imply them.
