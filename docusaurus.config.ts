@@ -32,10 +32,12 @@ const config: Config = {
   // src/theme/MDXComponents.tsx dropped Docusaurus's a -> Link mapping, so nothing
   // was validated at all and the build reported zero broken links.
   onBrokenLinks: "warn",
-  onBrokenMarkdownLinks: "ignore", // FIXME change this later in the migration process
 
   markdown: {
     format: 'detect', // .md files use CommonMark, .mdx files use MDX
+    hooks: {
+      onBrokenMarkdownLinks: "ignore", // FIXME change this later in the migration process
+    },
   },
 
   // Even if you don't use internalization, you can use this field to set useful
