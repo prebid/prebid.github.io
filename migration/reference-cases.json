@@ -1,0 +1,1133 @@
+{
+  "schema_version": 1,
+  "kind": "independent-legacy-source-reference",
+  "reference": {
+    "repository": "https://github.com/prebid/prebid.github.io",
+    "ref_name": "master",
+    "commit": "b16d95ac1ee95238c070bc9f137d52718287d1cc",
+    "pinned_on": "2026-10-04",
+    "migration_control_commit": "7a164dbc02f481c2dbca01e0d000bf10bed6903d"
+  },
+  "authority": "Pinned legacy source describes observed content and consumer behavior. SOURCE_BACKED is not runtime verification or a domain-policy approval; DISPUTED must not be silently promoted to passing parity.",
+  "authorship": "Expectations and fixtures were manually selected from directly inspected pinned source/templates. No converter, metadata normalizer, generated bidders.json, or Docusaurus output produced expected values. Hashes and raw capture payloads were calculated from exact source bytes only.",
+  "review_status": "PENDING_INDEPENDENT_REVIEW",
+  "rendering_verified": false,
+  "service_verified": false,
+  "comparison_rules": [
+    "Resolve every source_ref against its source_artifact and verify the full-file SHA-256 before comparison.",
+    "Require unique nonempty case selection and report every selected case as pass, fail, disputed, or unexecuted. This case file itself is not a runner.",
+    "An implementation adapter may locate Docusaurus output, but must not calculate expected values with production converter/normalizer code.",
+    "Bind comparisons to source/target/build identities. Leave disputed expectations unresolved until an identified maintainer records a decision.",
+    "D2/D3 remain open: legacy paths and explicit IDs are reference facts, not approval of a final route/version policy.",
+    "Do not equate known source quirks with requirements to reproduce defects; record intentional corrections with their authority and replacement expectations."
+  ],
+  "source_artifacts": {
+    "appnexus": {
+      "path": "dev-docs/bidders/appnexus.md",
+      "sha256": "267fac789a0a520b3e7a04761377925653ac1ac58e02f26a7cf0115d7c6896c3",
+      "bytes": 19477,
+      "line_count": 284,
+      "url": "https://github.com/prebid/prebid.github.io/blob/b16d95ac1ee95238c070bc9f137d52718287d1cc/dev-docs/bidders/appnexus.md"
+    },
+    "bidsxchange": {
+      "path": "dev-docs/bidders/bidsxchange.md",
+      "sha256": "32709a001d1df0aa9d8b8f628f7a00ce604907ab7bc71d07466daf535dbfb070",
+      "bytes": 2927,
+      "line_count": 128,
+      "url": "https://github.com/prebid/prebid.github.io/blob/b16d95ac1ee95238c070bc9f137d52718287d1cc/dev-docs/bidders/bidsxchange.md"
+    },
+    "addefend": {
+      "path": "dev-docs/bidders/addefend.md",
+      "sha256": "bd59402defa7747db908f9b6126cc816a66cb0403f76a8b4268e7c482b7fd858",
+      "bytes": 811,
+      "line_count": 24,
+      "url": "https://github.com/prebid/prebid.github.io/blob/b16d95ac1ee95238c070bc9f137d52718287d1cc/dev-docs/bidders/addefend.md"
+    },
+    "lemma": {
+      "path": "dev-docs/bidders/lemmadigital.md",
+      "sha256": "392e7b2ad5610f15f0fb966aee111d4f4e5ddd5d9f1eba0a905e3eb80b1b3c5c",
+      "bytes": 5855,
+      "line_count": 151,
+      "url": "https://github.com/prebid/prebid.github.io/blob/b16d95ac1ee95238c070bc9f137d52718287d1cc/dev-docs/bidders/lemmadigital.md"
+    },
+    "rtbdemand": {
+      "path": "dev-docs/bidders/rtbdemand_com.md",
+      "sha256": "7492fcbca84723c3c4fc5be7bdd6122ca5bc586cc818a31f028a381f75f7d9e3",
+      "bytes": 1177,
+      "line_count": 41,
+      "url": "https://github.com/prebid/prebid.github.io/blob/b16d95ac1ee95238c070bc9f137d52718287d1cc/dev-docs/bidders/rtbdemand_com.md"
+    },
+    "browsi": {
+      "path": "dev-docs/bidders/browsi.md",
+      "sha256": "aa4f3418fe24f285abc5abdd9dfcda91acee7ec1b6e0a33a017f0d789eb8c49d",
+      "bytes": 1301,
+      "line_count": 49,
+      "url": "https://github.com/prebid/prebid.github.io/blob/b16d95ac1ee95238c070bc9f137d52718287d1cc/dev-docs/bidders/browsi.md"
+    },
+    "bidder_csv": {
+      "path": "dev-docs/bidder-data.csv",
+      "sha256": "9a9ac142c2422fa08665e6af8a059840e9601df70bb24fbd5d3904baa133d1ce",
+      "bytes": 2865,
+      "line_count": 8,
+      "url": "https://github.com/prebid/prebid.github.io/blob/b16d95ac1ee95238c070bc9f137d52718287d1cc/dev-docs/bidder-data.csv"
+    },
+    "download_page": {
+      "path": "download.md",
+      "sha256": "33882ecfe281dcb7b85462d3263035803237db69f262d6ddfaf1f56a7b3122fc",
+      "bytes": 6577,
+      "line_count": 139,
+      "url": "https://github.com/prebid/prebid.github.io/blob/b16d95ac1ee95238c070bc9f137d52718287d1cc/download.md"
+    },
+    "download_client": {
+      "path": "assets/js/download.js",
+      "sha256": "1932c15d96c47f6fd81de574e2039edbc3ec054b90a9d48fddbec2433288bf10",
+      "bytes": 10777,
+      "line_count": 284,
+      "url": "https://github.com/prebid/prebid.github.io/blob/b16d95ac1ee95238c070bc9f137d52718287d1cc/assets/js/download.js"
+    },
+    "bidder_layout": {
+      "path": "_layouts/bidder.html",
+      "sha256": "919eb87c478266b0a6725693bebd9c18d537bd20aebd933b72b6d5c26a46103f",
+      "bytes": 4073,
+      "line_count": 110,
+      "url": "https://github.com/prebid/prebid.github.io/blob/b16d95ac1ee95238c070bc9f137d52718287d1cc/_layouts/bidder.html"
+    },
+    "example_layout": {
+      "path": "_layouts/example.html",
+      "sha256": "ce62edf6656ae9ad0948b200028fc68095f8fb6ef82fdcf250e6081c8a70343e",
+      "bytes": 2307,
+      "line_count": 94,
+      "url": "https://github.com/prebid/prebid.github.io/blob/b16d95ac1ee95238c070bc9f137d52718287d1cc/_layouts/example.html"
+    },
+    "bidder_meta": {
+      "path": "_includes/dev-docs/bidder-meta-data.html",
+      "sha256": "9743a382eb9d11ff9c16f57cd9f2b654adacb2879b82c95d930d3ee8bda57403",
+      "bytes": 4924,
+      "line_count": 80,
+      "url": "https://github.com/prebid/prebid.github.io/blob/b16d95ac1ee95238c070bc9f137d52718287d1cc/_includes/dev-docs/bidder-meta-data.html"
+    },
+    "example_warning": {
+      "path": "_includes/dev-docs/not-for-production-warning.md",
+      "sha256": "59574da451358ed92dc776f1a672851c2f158bf235d398da623af67de529563b",
+      "bytes": 224,
+      "line_count": 1,
+      "url": "https://github.com/prebid/prebid.github.io/blob/b16d95ac1ee95238c070bc9f137d52718287d1cc/_includes/dev-docs/not-for-production-warning.md"
+    },
+    "build_warning": {
+      "path": "_includes/dev-docs/build-from-source-warning.md",
+      "sha256": "422713ece163e39282b377d6300f58b78396458acb79b61e43d627aafa4f3632",
+      "bytes": 313,
+      "line_count": 1,
+      "url": "https://github.com/prebid/prebid.github.io/blob/b16d95ac1ee95238c070bc9f137d52718287d1cc/_includes/dev-docs/build-from-source-warning.md"
+    },
+    "basic_example": {
+      "path": "dev-docs/examples/basic-example.md",
+      "sha256": "8bd4fa56d5343bfbc05e3c2ee76da348fd9b4481296ef36d557c05e5bd693964",
+      "bytes": 2191,
+      "line_count": 99,
+      "url": "https://github.com/prebid/prebid.github.io/blob/b16d95ac1ee95238c070bc9f137d52718287d1cc/dev-docs/examples/basic-example.md"
+    },
+    "web_example": {
+      "path": "_includes/code/web-example.html",
+      "sha256": "5f25b467ddc7d95aa8a423d2272418daecd4faf75a5b0b570ea3b9615c2a34ab",
+      "bytes": 4416,
+      "line_count": 82,
+      "url": "https://github.com/prebid/prebid.github.io/blob/b16d95ac1ee95238c070bc9f137d52718287d1cc/_includes/code/web-example.html"
+    },
+    "mobile_gam": {
+      "path": "prebid-mobile/modules/rendering/ios-sdk-integration-gam.md",
+      "sha256": "f26bc3b5ffefce574235f2b8f7d4e0a86b91e5099e707d4b2e4ca0fb63b74ba9",
+      "bytes": 9988,
+      "line_count": 331,
+      "url": "https://github.com/prebid/prebid.github.io/blob/b16d95ac1ee95238c070bc9f137d52718287d1cc/prebid-mobile/modules/rendering/ios-sdk-integration-gam.md"
+    },
+    "gma_tabs": {
+      "path": "_includes/code/gma-versions-tabs.html",
+      "sha256": "5eb02e6c35a0726a820bb8cf9349a812ea0d47ccbdf188980ca07aeae0f32084",
+      "bytes": 1542,
+      "line_count": 61,
+      "url": "https://github.com/prebid/prebid.github.io/blob/b16d95ac1ee95238c070bc9f137d52718287d1cc/_includes/code/gma-versions-tabs.html"
+    },
+    "gpp_states": {
+      "path": "dev-docs/modules/gppControl_usstates.md",
+      "sha256": "7865d31227761888d4e789991220e94e2e5c81fa796333aa2c2dcc7b21fdb92b",
+      "bytes": 6979,
+      "line_count": 142,
+      "url": "https://github.com/prebid/prebid.github.io/blob/b16d95ac1ee95238c070bc9f137d52718287d1cc/dev-docs/modules/gppControl_usstates.md"
+    },
+    "storage_control": {
+      "path": "dev-docs/modules/storageControl.md",
+      "sha256": "4a3a4e4868bb7c1cb8692e39b54e313cda65e738d6ee067fcd3ec00b543c2571",
+      "bytes": 5452,
+      "line_count": 124,
+      "url": "https://github.com/prebid/prebid.github.io/blob/b16d95ac1ee95238c070bc9f137d52718287d1cc/dev-docs/modules/storageControl.md"
+    },
+    "contributor_guide": {
+      "path": "dev-docs/bidder-adaptor.md",
+      "sha256": "812b9fe1d0e594cbb883f1fa4a7277995858664a988bfc11bd37f79d6d58186f",
+      "bytes": 72239,
+      "line_count": 1424,
+      "url": "https://github.com/prebid/prebid.github.io/blob/b16d95ac1ee95238c070bc9f137d52718287d1cc/dev-docs/bidder-adaptor.md"
+    },
+    "readme": {
+      "path": "README.md",
+      "sha256": "c9e9f4b8a3ddecf69ce2ef29dc2f616519374bd3a902306fabe5c1865db5ebde",
+      "bytes": 5134,
+      "line_count": 137,
+      "url": "https://github.com/prebid/prebid.github.io/blob/b16d95ac1ee95238c070bc9f137d52718287d1cc/README.md"
+    }
+  },
+  "cases": [
+    {
+      "id": "appnexus-current-deprecation",
+      "status": "SOURCE_BACKED",
+      "scope": "Bidder body, frontmatter notice, explicit anchor, and download-page note.",
+      "source_refs": [
+        {
+          "artifact": "appnexus",
+          "line_start": 1,
+          "line_end": 21
+        },
+        {
+          "artifact": "appnexus",
+          "line_start": 41,
+          "line_end": 53
+        },
+        {
+          "artifact": "download_page",
+          "line_start": 73,
+          "line_end": 78
+        }
+      ],
+      "expected": {
+        "legacy_public_url": "/dev-docs/bidders/appnexus.html",
+        "explicit_anchor": "appnexus-bid-params",
+        "body_text_contains": [
+          "Support for the AppNexus adapter will be reduced beginning July 1, 2026, with full deprecation planned for early 2027.",
+          "To maintain uninterrupted support and access to the latest features, please migrate to the"
+        ],
+        "body_link": {
+          "text": "Microsoft adapter",
+          "source_href": "msft.html",
+          "resolved_legacy_path": "/dev-docs/bidders/msft.html"
+        },
+        "raw_frontmatter": {
+          "biddercode": "appnexus",
+          "pbjs": true,
+          "pbs": true,
+          "gpp_supported": true,
+          "gvl_id": 32
+        },
+        "download_note": "Support for the AppNexus adapter will be reduced beginning July 1, 2026, with full deprecation planned for early 2027. To maintain uninterrupted support and access to the latest features, please migrate to the Microsoft adapter. More information can be seen on the msft.md page.",
+        "download_entry_present": true,
+        "interpretation": "Deprecation prose does not imply enable_download:false; the source still selects AppNexus in the download template. D2/D3 determine final URLs."
+      },
+      "negative_controls": [
+        "Replace the new deprecation text with the stale v7.15/v7.16 note while leaving a valid route; content comparison must fail.",
+        "Delete the explicit appnexus-bid-params anchor or point Microsoft adapter at AppNexus itself; reference comparison must fail."
+      ],
+      "unchecked": [
+        "Jekyll rendering, Docusaurus comparison, and browser behavior have not been exercised for this case."
+      ]
+    },
+    {
+      "id": "bidsxchange-removal-and-alias",
+      "status": "SOURCE_BACKED",
+      "scope": "Unavailable bidder notice and distinct CSV/download membership.",
+      "source_refs": [
+        {
+          "artifact": "bidsxchange",
+          "line_start": 1,
+          "line_end": 21
+        },
+        {
+          "artifact": "bidder_layout",
+          "line_start": 38,
+          "line_end": 42
+        },
+        {
+          "artifact": "download_page",
+          "line_start": 73,
+          "line_end": 82
+        },
+        {
+          "artifact": "bidder_csv",
+          "line_start": 5,
+          "line_end": 8
+        }
+      ],
+      "expected": {
+        "legacy_public_url": "/dev-docs/bidders/bidsxchange.html",
+        "raw_frontmatter": {
+          "biddercode": "bidsxchange",
+          "aliasCode": "adtelligent",
+          "pbjs": true,
+          "enable_download": false,
+          "pbjs_version_notes": "removed in 8.13.0"
+        },
+        "visible_notice": "This adapter is not available in current versions of Prebid.js. Reason: removed in 8.13.0",
+        "download_entry_present": false,
+        "csv_row_present": true,
+        "csv_cells": {
+          "aliasOf": "adtelligent",
+          "adapterFilename": "adtelligentBidAdapter"
+        },
+        "interpretation": "The CSV selects layout:bidder pages without the download exclusion; do not reuse one eligibility predicate for every consumer."
+      },
+      "negative_controls": [
+        "Drop the removal notice while retaining Bid Params and the route.",
+        "Include Bidsxchange in the download selector or remove it from the CSV solely because enable_download is false."
+      ],
+      "unchecked": [
+        "Jekyll rendering, Docusaurus comparison, and browser behavior have not been exercised for this case."
+      ]
+    },
+    {
+      "id": "addefend-omitted-support-authority",
+      "status": "DISPUTED",
+      "scope": "Omitted support flags: retain conflicting authority; do not invent a canonical truth.",
+      "source_refs": [
+        {
+          "artifact": "addefend",
+          "line_start": 1,
+          "line_end": 11
+        },
+        {
+          "artifact": "bidder_meta",
+          "line_start": 33,
+          "line_end": 42
+        },
+        {
+          "artifact": "contributor_guide",
+          "line_start": 1347,
+          "line_end": 1354
+        }
+      ],
+      "expected": {
+        "legacy_public_url": "/dev-docs/bidders/addefend.html",
+        "absent_raw_fields": [
+          "usp_supported",
+          "coppa_supported",
+          "schain_supported",
+          "dchain_supported"
+        ],
+        "source_template_projection": {
+          "USP/CCPA Support": "check with bidder",
+          "COPPA Support": "check with bidder",
+          "Supply Chain Support": "check with bidder",
+          "Demand Chain Support": "check with bidder"
+        },
+        "contributor_prose_projection": {
+          "usp_supported": "Default is false.",
+          "coppa_supported": "Default is false.",
+          "schain_supported": "Default is false.",
+          "dchain_supported": "Default is false."
+        },
+        "canonical_decision": null,
+        "resolution_required": "Documentation maintainer chooses field policies; preserve the absent raw state and distinguish intentional correction from legacy parity."
+      },
+      "negative_controls": [
+        "A validator that silently replaces every absent support field with false must not mark this disputed case verified.",
+        "An all-unknown default must not be called approved domain policy merely because it matches the legacy template."
+      ],
+      "unchecked": [
+        "Jekyll rendering, Docusaurus comparison, and browser behavior have not been exercised for this case."
+      ]
+    },
+    {
+      "id": "basic-example-layout-content",
+      "status": "SOURCE_BACKED",
+      "scope": "Layout-generated about bullets, warnings, and supporting link.",
+      "source_refs": [
+        {
+          "artifact": "basic_example",
+          "line_start": 1,
+          "line_end": 15
+        },
+        {
+          "artifact": "example_layout",
+          "line_start": 27,
+          "line_end": 64
+        },
+        {
+          "artifact": "example_warning",
+          "line_start": 1,
+          "line_end": 1
+        },
+        {
+          "artifact": "build_warning",
+          "line_start": 1,
+          "line_end": 1
+        }
+      ],
+      "expected": {
+        "legacy_public_url": "/dev-docs/examples/basic-example.html",
+        "heading": "About this example:",
+        "about_text": [
+          "This example demonstrates asynchronous Prebid.js integration with a single Google Ad Manager ad slot",
+          "Default keyword targeting setup",
+          "Default price granularity"
+        ],
+        "about_link": {
+          "text": "reference",
+          "source_href": "/dev-docs/publisher-api-reference/bidderSettings.html"
+        },
+        "required_notices": [
+          "This example uses a test version of Prebid.js hosted on our CDN that is not recommended for production use.",
+          "This example includes all available adapters and modules.  Production implementations should build from source or customize the build using the"
+        ],
+        "warning_link": {
+          "text": "Download",
+          "source_href": "/download.html"
+        },
+        "text_comparison": "Collapse HTML layout whitespace for prose comparison only; match meaningful words and link identity, not theme classes."
+      },
+      "negative_controls": [
+        "Remove either production-use warning while preserving example code and the route.",
+        "Retain about frontmatter but omit its rendered list; source-only checks must not pass the rendered comparison."
+      ],
+      "unchecked": [
+        "Jekyll rendering, Docusaurus comparison, and browser behavior have not been exercised for this case."
+      ]
+    },
+    {
+      "id": "basic-example-code-payloads",
+      "status": "SOURCE_BACKED",
+      "scope": "Preserve source capture payloads independently of the converter.",
+      "source_refs": [
+        {
+          "artifact": "basic_example",
+          "line_start": 19,
+          "line_end": 99
+        },
+        {
+          "artifact": "web_example",
+          "line_start": 9,
+          "line_end": 54
+        },
+        {
+          "artifact": "web_example",
+          "line_start": 56,
+          "line_end": 79
+        }
+      ],
+      "expected": {
+        "legacy_public_url": "/dev-docs/examples/basic-example.html",
+        "captures": {
+          "htmlCodePrebid": {
+            "source_artifact": "basic_example",
+            "start_after": "{% capture htmlCodePrebid %}",
+            "end_before": "{% endcapture %}",
+            "source_byte_start": 445,
+            "source_byte_end_exclusive": 747,
+            "sha256": "1eb00a523286553668bf4aabb3f7cbd8520a7c709cae741ab196f2cc6be1a87e",
+            "bytes": 302,
+            "text": "\n<!-- DO NOT add this script in prod -->\n<script src=\"intercept-banner-not-for-prod.js\" ></script>\n<!-- END -->\n\n<h5>Div-1</h5>\n<div id='div-1' style=\"min-height:250px;\">\n  <script type='text/javascript'>\n    googletag.cmd.push(function() {\n      googletag.display('div-1');\n    });\n  </script>\n</div>\n",
+            "comparison": "Preserve UTF-8 payload text after decoding HTML entities; only removal of one framing newline at each edge is allowed in a rendered code block. Do not trim internal lines or rewrite URLs, identifiers, or literals."
+          },
+          "jsCode": {
+            "source_artifact": "basic_example",
+            "start_after": "{% capture jsCode %}",
+            "end_before": "{% endcapture %}",
+            "source_byte_start": 785,
+            "source_byte_end_exclusive": 2062,
+            "sha256": "fd44cd550835f91dab366eeb37f499bc8eab768d4377c5242e94368e495afb38",
+            "bytes": 1277,
+            "text": "\nvar sizes = [\n  [300, 250]\n];\nvar PREBID_TIMEOUT = 700;\n\nvar adUnits = [{\n  code: '/19968336/header-bid-tag-1',\n  mediaTypes: {\n    banner: {\n      sizes: sizes\n    }\n  },\n  bids: [{\n    bidder: 'msft',\n    params: {\n      placement_id: 'XXXXXXX' //not used in prod\n    }\n  }]\n}];\n\n// ======== DO NOT EDIT BELOW THIS LINE =========== //\nvar googletag = googletag || {};\ngoogletag.cmd = googletag.cmd || [];\ngoogletag.cmd.push(function() {\n  googletag.pubads().disableInitialLoad();\n});\n\nvar pbjs = pbjs || {};\npbjs.que = pbjs.que || [];\n\npbjs.que.push(function() {\n  pbjs.addAdUnits(adUnits);\n  pbjs.requestBids({\n    bidsBackHandler: initAdserver\n  });\n});\n\nfunction initAdserver() {\n  if (pbjs.initAdserverSet) return;\n  pbjs.initAdserverSet = true;\n  googletag.cmd.push(function() {\n    if (pbjs.libLoaded) {\n      pbjs.que.push(function() {\n        pbjs.setTargetingForGPTAsync();\n        googletag.pubads().refresh();\n      });\n    } else {\n      googletag.pubads().refresh();\n    }\n  });\n}\n\nsetTimeout(function() {\n  initAdserver();\n}, PREBID_TIMEOUT);\n\ngoogletag.cmd.push(function() {\n  googletag.defineSlot('/19968336/header-bid-tag-1', sizes, 'div-1')\n    .addService(googletag.pubads());\n  googletag.pubads().enableSingleRequest();\n  googletag.enableServices();\n});\n",
+            "comparison": "Preserve UTF-8 payload text after decoding HTML entities; only removal of one framing newline at each edge is allowed in a rendered code block. Do not trim internal lines or rewrite URLs, identifiers, or literals."
+          }
+        },
+        "manual_js_sentinels": [
+          "bidder: 'msft'",
+          "placement_id: 'XXXXXXX'",
+          "var PREBID_TIMEOUT = 700;",
+          "code: '/19968336/header-bid-tag-1'"
+        ],
+        "legacy_tabs": [
+          "result",
+          "html",
+          "js",
+          "source"
+        ],
+        "include_arguments": {
+          "id": "basic-prebid-example",
+          "scripts": "pbjs,gpt"
+        },
+        "interaction_status": "UNVERIFIED: legacy result executes the captured script and HTML; this reference does not execute it or choose the replacement runner."
+      },
+      "negative_controls": [
+        "Replace msft/placement_id with stale appnexus/placementId but keep JavaScript syntactically valid.",
+        "Alter a URL, literal, internal blank line, or comment in a captured code payload; byte-preservation check must fail."
+      ],
+      "unchecked": [
+        "Jekyll rendering, Docusaurus comparison, and browser behavior have not been exercised for this case."
+      ]
+    },
+    {
+      "id": "mobile-ios-gam-reward-tabs",
+      "status": "SOURCE_BACKED",
+      "scope": "A bounded Mobile include/capture relationship with distinct SDK snippets.",
+      "source_refs": [
+        {
+          "artifact": "mobile_gam",
+          "line_start": 249,
+          "line_end": 260
+        },
+        {
+          "artifact": "gma_tabs",
+          "line_start": 1,
+          "line_end": 61
+        }
+      ],
+      "expected": {
+        "legacy_public_url": "/prebid-mobile/modules/rendering/ios-sdk-integration-gam.html",
+        "include_id": "gam-reward",
+        "tabs": [
+          {
+            "label": "GMA SDK v12",
+            "initially_selected": true,
+            "legacy_panel_id": "gam-reward-gma12",
+            "payload": {
+              "source_artifact": "mobile_gam",
+              "start_after": "{% capture gma12 %}",
+              "end_before": "{% endcapture %}",
+              "source_byte_start": 7647,
+              "source_byte_end_exclusive": 7725,
+              "sha256": "a73fa07e94830fff6b8aefff69acc0a03b8ff1a4df9fbb3a034ea52931e3969a",
+              "bytes": 78,
+              "text": "if let reward = rewardedAd.reward as? GoogleMobileAds.AdReward {\n    // ...\n}\n",
+              "comparison": "Preserve UTF-8 payload text after decoding HTML entities; only removal of one framing newline at each edge is allowed in a rendered code block. Do not trim internal lines or rewrite URLs, identifiers, or literals."
+            }
+          },
+          {
+            "label": "GMA SDK v11",
+            "initially_selected": false,
+            "legacy_panel_id": "gam-reward-gma11",
+            "payload": {
+              "source_artifact": "mobile_gam",
+              "start_after": "{% capture gma11 %}",
+              "end_before": "{% endcapture %}",
+              "source_byte_start": 7761,
+              "source_byte_end_exclusive": 7826,
+              "sha256": "d1a337115dbfaf1c966da2c00e03e45ce6d0135ed13ebf0999948e8d73061cb9",
+              "bytes": 65,
+              "text": "if let reward = rewardedAd.reward as? GADAdReward {\n    // ...\n}\n",
+              "comparison": "Preserve UTF-8 payload text after decoding HTML entities; only removal of one framing newline at each edge is allowed in a rendered code block. Do not trim internal lines or rewrite URLs, identifiers, or literals."
+            }
+          }
+        ],
+        "manual_sentinels": {
+          "GMA SDK v12": "GoogleMobileAds.AdReward",
+          "GMA SDK v11": "GADAdReward"
+        },
+        "interaction_status": "UNVERIFIED: labels, active markup and content pairing are source facts; keyboard operation, focus, hydration and final fragment compatibility require runtime checks."
+      },
+      "negative_controls": [
+        "Swap v11 and v12 snippets while retaining both tab labels.",
+        "Remove the inactive v11 panel while leaving the initial v12 view unchanged."
+      ],
+      "unchecked": [
+        "Jekyll rendering, Docusaurus comparison, and browser behavior have not been exercised for this case."
+      ]
+    },
+    {
+      "id": "bidder-csv-record-contract",
+      "status": "SOURCE_BACKED",
+      "scope": "CSV is generated data; validate selected records, not copied template bytes.",
+      "source_refs": [
+        {
+          "artifact": "bidder_csv",
+          "line_start": 1,
+          "line_end": 8
+        },
+        {
+          "artifact": "appnexus",
+          "line_start": 1,
+          "line_end": 21
+        },
+        {
+          "artifact": "bidsxchange",
+          "line_start": 1,
+          "line_end": 21
+        },
+        {
+          "artifact": "browsi",
+          "line_start": 1,
+          "line_end": 14
+        },
+        {
+          "artifact": "rtbdemand",
+          "line_start": 1,
+          "line_end": 28
+        },
+        {
+          "artifact": "lemma",
+          "line_start": 1,
+          "line_end": 18
+        }
+      ],
+      "expected": {
+        "legacy_public_url": "/dev-docs/bidder-data.csv",
+        "headers": [
+          "bidder-code",
+          "bidder-name",
+          "banner",
+          "video",
+          "native",
+          "schain",
+          "dchain",
+          "tcfeu",
+          "coppa",
+          "gpp",
+          "usp",
+          "safeframes",
+          "deals",
+          "client-adapter",
+          "server-adapter",
+          "user-ids",
+          "mobile-apps",
+          "floors",
+          "fpd",
+          "prebid-member",
+          "ortb-blocking",
+          "multiformat",
+          "aliasOf",
+          "adapterFilename"
+        ],
+        "column_count": 24,
+        "row_key": "bidder-code",
+        "must_contain_nonempty_records": true,
+        "selected_cells": {
+          "appnexus": {
+            "bidder-name": "AppNexus",
+            "banner": "yes",
+            "video": "yes",
+            "native": "yes",
+            "gpp": "some (check with bidder)",
+            "adapterFilename": "appnexusBidAdapter"
+          },
+          "bidsxchange": {
+            "aliasOf": "adtelligent",
+            "adapterFilename": "adtelligentBidAdapter"
+          },
+          "browsi": {
+            "banner": "no",
+            "video": "yes",
+            "native": "no"
+          },
+          "rtbdemand_com": {
+            "gpp": "tcfeu  usp",
+            "aliasOf": "adkernel",
+            "adapterFilename": "adkernelBidAdapter"
+          },
+          "lemmadigital": {
+            "adapterFilename": "lemmaDigitalBidAdapter"
+          }
+        },
+        "cell_semantics": [
+          "banner defaults to yes unless media_types contains no-display.",
+          "video/native use their respective contains checks.",
+          "Nonempty gpp_sids is split on comma and joined with a space; existing leading whitespace can produce double spaces.",
+          "gpp_supported:true with absent page.gpp_sids selects some (check with bidder).",
+          "filename overrides aliasCode + BidAdapter, which overrides biddercode + BidAdapter."
+        ],
+        "forbidden_template_markers": [
+          "{%",
+          "{{",
+          "layout: none",
+          "search: exclude"
+        ],
+        "open_boundary": "Full CSV escaping/duplicate-key/row-order behavior and all fields remain unverified; a future comparator must parse CSV rather than split on commas. Preserve exact legacy GPP spacing as observation, not a required new formatting policy."
+      },
+      "negative_controls": [
+        "Copy the raw Liquid file to the correct URL; file existence must not pass record validation.",
+        "Advertise Browsi banner support, change Bidsxchange alias filename, or drop its row because download is disabled."
+      ],
+      "unchecked": [
+        "Jekyll rendering, Docusaurus comparison, and browser behavior have not been exercised for this case."
+      ]
+    },
+    {
+      "id": "bidder-csv-gpp-false-scope",
+      "status": "DISPUTED",
+      "scope": "False GPP fallback references a different variable scope.",
+      "source_refs": [
+        {
+          "artifact": "bidder_csv",
+          "line_start": 7,
+          "line_end": 7
+        },
+        {
+          "artifact": "bidder_meta",
+          "line_start": 28,
+          "line_end": 28
+        }
+      ],
+      "expected": {
+        "observed_condition": "page.gpp_supported == false and gpp_sids == nil",
+        "other_branches_use": "page.gpp_sids",
+        "canonical_decision": null,
+        "resolution_required": "Confirm intended scope and observed Liquid context before normalizing false/missing GPP; do not silently repair or endorse the bare gpp_sids lookup."
+      },
+      "negative_controls": [
+        "Use a synthetic context with page.gpp_supported:false, absent page.gpp_sids and a non-nil top-level gpp_sids; a comparator should expose the scope difference."
+      ],
+      "unchecked": [
+        "Jekyll rendering, Docusaurus comparison, and browser behavior have not been exercised for this case."
+      ]
+    },
+    {
+      "id": "download-bidder-module-identities",
+      "status": "SOURCE_BACKED",
+      "scope": "Keep visible bidder identity separate from request module code.",
+      "source_refs": [
+        {
+          "artifact": "download_page",
+          "line_start": 58,
+          "line_end": 112
+        },
+        {
+          "artifact": "rtbdemand",
+          "line_start": 1,
+          "line_end": 28
+        },
+        {
+          "artifact": "lemma",
+          "line_start": 1,
+          "line_end": 18
+        },
+        {
+          "artifact": "bidsxchange",
+          "line_start": 1,
+          "line_end": 21
+        },
+        {
+          "artifact": "gpp_states",
+          "line_start": 1,
+          "line_end": 12
+        },
+        {
+          "artifact": "storage_control",
+          "line_start": 1,
+          "line_end": 12
+        }
+      ],
+      "expected": {
+        "legacy_public_url": "/download.html",
+        "bidder_entries": [
+          {
+            "biddercode": "rtbdemand_com",
+            "checkbox_id": "rtbdemand_comBidAdapter",
+            "moduleCode": "adkernelBidAdapter",
+            "present": true
+          },
+          {
+            "biddercode": "lemmadigital",
+            "checkbox_id": "lemmaDigitalBidAdapter",
+            "moduleCode": "lemmaDigitalBidAdapter",
+            "present": true
+          },
+          {
+            "biddercode": "bidsxchange",
+            "present": false
+          }
+        ],
+        "bidder_selection_rule": "layout:bidder AND pbjs == true AND enable_download != false",
+        "consumer_rules": {
+          "analytics": "layout:analytics, excluding enable_download:false; modulecode + AnalyticsAdapter",
+          "userid": "layout:userid, excluding enable_download:false; useridmodule",
+          "recommended": "page_type:module AND recommended == true; initially checked; this branch does not test enable_download",
+          "general": "page_type:module, excluding enable_download:false, recommended:true, vendor_specific:true",
+          "vendor_specific": "page_type:module AND vendor_specific == true, excluding enable_download:false and recommended:true"
+        },
+        "selected_modules": [
+          {
+            "moduleCode": "gppControl_usstates",
+            "minVersion": "8.10.0",
+            "initially_checked": true
+          },
+          {
+            "moduleCode": "storageControl",
+            "minVersion": "10.0.0",
+            "initially_checked": true
+          }
+        ],
+        "open_boundary": "These selectors describe existing source branches; inconsistent flags and required dependency closure need separate domain decisions."
+      },
+      "negative_controls": [
+        "Use biddercode rather than filename for LemmaDigital, or use the alias checkbox ID as the backend module code.",
+        "Treat a CSV row as sufficient proof of download eligibility."
+      ],
+      "unchecked": [
+        "Jekyll rendering, Docusaurus comparison, and browser behavior have not been exercised for this case."
+      ]
+    },
+    {
+      "id": "download-minimum-version-filter",
+      "status": "SOURCE_BACKED",
+      "scope": "Observe the current major/minor minimum filter using a real module.",
+      "source_refs": [
+        {
+          "artifact": "download_client",
+          "line_start": 158,
+          "line_end": 187
+        },
+        {
+          "artifact": "gpp_states",
+          "line_start": 1,
+          "line_end": 12
+        },
+        {
+          "artifact": "storage_control",
+          "line_start": 1,
+          "line_end": 12
+        }
+      ],
+      "expected": {
+        "fixtures": [
+          {
+            "selected_version": "8.9.0",
+            "checked": [
+              {
+                "moduleCode": "gppControl_usstates",
+                "minVersion": "8.10.0"
+              }
+            ],
+            "request_modules": [],
+            "removedModules": [
+              "gppControl_usstates"
+            ]
+          },
+          {
+            "selected_version": "8.10.0",
+            "checked": [
+              {
+                "moduleCode": "gppControl_usstates",
+                "minVersion": "8.10.0"
+              }
+            ],
+            "request_modules": [
+              "gppControl_usstates"
+            ],
+            "removedModules": []
+          },
+          {
+            "selected_version": "9.99.0",
+            "checked": [
+              {
+                "moduleCode": "storageControl",
+                "minVersion": "10.0.0"
+              }
+            ],
+            "request_modules": [],
+            "removedModules": [
+              "storageControl"
+            ]
+          }
+        ],
+        "observed_limit": "Patch versions and prerelease precedence are not compared. Module presence in the service release is not independently queried here.",
+        "counterexample_not_policy": {
+          "synthetic": true,
+          "selected_version": "8.10.0",
+          "minVersion": "8.10.9",
+          "source_behavior": "included because only major/minor are compared",
+          "desired_behavior": null
+        }
+      },
+      "negative_controls": [
+        "Use lexicographic comparison so 8.9 incorrectly passes an 8.10 minimum.",
+        "Remove unsupported modules silently without recording removedModules for the existing user notice."
+      ],
+      "unchecked": [
+        "Jekyll rendering, Docusaurus comparison, and browser behavior have not been exercised for this case."
+      ]
+    },
+    {
+      "id": "download-v8-renames-and-filter-order",
+      "status": "DISPUTED",
+      "scope": "Record known renames and a filtering-order counterexample without selecting a repair.",
+      "source_refs": [
+        {
+          "artifact": "download_client",
+          "line_start": 141,
+          "line_end": 187
+        }
+      ],
+      "expected": {
+        "undisputed_fixtures": [
+          {
+            "version": "8.10.0",
+            "modules": [
+              "tcfControl",
+              "consentManagementTcf",
+              "paapiForGpt",
+              "appnexusBidAdapter"
+            ],
+            "expected": [
+              "gdprEnforcement",
+              "consentManagement",
+              "fledgeForGpt",
+              "appnexusBidAdapter"
+            ]
+          },
+          {
+            "version": "9.0.0",
+            "modules": [
+              "tcfControl",
+              "consentManagementTcf",
+              "paapiForGpt"
+            ],
+            "expected": [
+              "tcfControl",
+              "consentManagementTcf",
+              "paapiForGpt"
+            ]
+          }
+        ],
+        "synthetic_counterexample": {
+          "version": "8.0.0",
+          "checked": [
+            {
+              "moduleCode": "tcfControl",
+              "minVersion": "9.0.0"
+            }
+          ],
+          "source_removedModules": [
+            "tcfControl"
+          ],
+          "source_request_modules": [
+            "gdprEnforcement"
+          ],
+          "reason": "Renaming happens before filtering, while removedModules retains original names."
+        },
+        "canonical_decision": null,
+        "resolution_required": "Keep the existing rename mappings, then decide the minimum/rename interaction explicitly; do not claim the contradictory counterexample is approved policy."
+      },
+      "negative_controls": [
+        "Fail to rename only v8 modules, or accidentally apply v8 names to v9.",
+        "Exercise minimum rejection and renaming in the same synthetic input instead of testing them only independently."
+      ],
+      "unchecked": [
+        "Jekyll rendering, Docusaurus comparison, and browser behavior have not been exercised for this case."
+      ]
+    },
+    {
+      "id": "download-transport-and-errors",
+      "status": "SOURCE_BACKED",
+      "scope": "Read-only contract of the consuming JavaScript; no backend response was obtained.",
+      "source_refs": [
+        {
+          "artifact": "download_client",
+          "line_start": 36,
+          "line_end": 83
+        },
+        {
+          "artifact": "download_client",
+          "line_start": 85,
+          "line_end": 129
+        }
+      ],
+      "expected": {
+        "version_request": {
+          "method": "GET",
+          "url": "https://js-download.prebid.org/versions",
+          "consumer_parses": "JSON.parse(data)",
+          "expected_payload_shape": {
+            "versions": [
+              "10.0.0",
+              "9.0.0"
+            ]
+          },
+          "first_entry_label_suffix": " - latest",
+          "empty_or_invalid_or_failed_result": "Error generating version list. Please try again later"
+        },
+        "download_request": {
+          "method": "POST",
+          "url": "https://js-download.prebid.org/download",
+          "jquery_dataType": "text",
+          "data_fields": [
+            "modules",
+            "version"
+          ],
+          "removedModules_sent": false,
+          "wire_encoding": "UNVERIFIED; source passes a data object to jQuery without an explicit contentType."
+        },
+        "success": {
+          "body_used_as": "JavaScript Blob, type text/javascript",
+          "default_filename_pattern": "prebid{version}.js",
+          "response_filename_override": "Content-Disposition containing attachment, using the filename regex in the pinned consumer"
+        },
+        "failure_message": "Ran into an issue.",
+        "removed_notice_prefix": "The following modules were removed from your download because they aren't present in Prebid.js version ",
+        "source_limit": "The failure branch does not restore the disabled button in the shown code; retry behavior needs explicit review rather than silent parity approval."
+      },
+      "negative_controls": [
+        "Send removedModules to the backend as if it were a supported field.",
+        "Treat a successful HTTP response as proof the downloaded JavaScript contains the requested adapters.",
+        "Present empty or malformed version data as a usable selector."
+      ],
+      "unchecked": [
+        "Backend schema, encoding, CORS, service responses, release availability, browser downloads and retry behavior are unverified."
+      ]
+    },
+    {
+      "id": "download-saved-configuration-outputs",
+      "status": "SOURCE_BACKED",
+      "scope": "Two artifacts are produced on success; configuration uses the filtered, renamed request list.",
+      "source_refs": [
+        {
+          "artifact": "download_client",
+          "line_start": 102,
+          "line_end": 123
+        },
+        {
+          "artifact": "download_client",
+          "line_start": 235,
+          "line_end": 258
+        },
+        {
+          "artifact": "download_client",
+          "line_start": 15,
+          "line_end": 24
+        }
+      ],
+      "expected": {
+        "fixture": {
+          "version": "8.10.0",
+          "request_modules": [
+            "gdprEnforcement",
+            "appnexusBidAdapter"
+          ],
+          "response_content_disposition": null,
+          "javascript_filename": "prebid8.10.0.js",
+          "configuration_filename": "prebid-config.json",
+          "configuration_json": {
+            "version": "8.10.0",
+            "modules": [
+              "gdprEnforcement",
+              "appnexusBidAdapter"
+            ]
+          }
+        },
+        "configuration_encoding": "JSON.stringify({ version: form_data.version, modules: form_data.modules }, null, 2)",
+        "import_behavior": {
+          "invalid_json_message": "Invalid configuration file",
+          "known_version": "select matching option and set version query parameter",
+          "modules_array": "uncheck all module checkboxes, select known element IDs, retain provided module names in query parameters",
+          "empty_modules_array": "uncheck all and remove modules query parameter"
+        },
+        "open_boundary": "This records existing artifact contents and importer behavior, not proof that every exported configuration round-trips."
+      },
+      "negative_controls": [
+        "Save the pre-filtered or pre-rename list even though the download request uses a different list.",
+        "Return only JavaScript and silently omit prebid-config.json.",
+        "Test malformed JSON and an empty modules array rather than only a valid populated file."
+      ],
+      "unchecked": [
+        "Jekyll rendering, Docusaurus comparison, and browser behavior have not been exercised for this case."
+      ]
+    },
+    {
+      "id": "download-alias-configuration-roundtrip",
+      "status": "DISPUTED",
+      "scope": "Export/import identity mismatch for aliases and renamed modules.",
+      "source_refs": [
+        {
+          "artifact": "rtbdemand",
+          "line_start": 1,
+          "line_end": 28
+        },
+        {
+          "artifact": "download_page",
+          "line_start": 73,
+          "line_end": 78
+        },
+        {
+          "artifact": "download_client",
+          "line_start": 111,
+          "line_end": 115
+        },
+        {
+          "artifact": "download_client",
+          "line_start": 245,
+          "line_end": 257
+        }
+      ],
+      "expected": {
+        "fixture": {
+          "selected_checkbox_id": "rtbdemand_comBidAdapter",
+          "request_moduleCode": "adkernelBidAdapter",
+          "saved_configuration_modules": [
+            "adkernelBidAdapter"
+          ],
+          "import_lookup_id": "adkernelBidAdapter"
+        },
+        "source_observation": "Import does not invert the alias mapping; it checks getElementById(module). An alias checkbox whose ID differs from its moduleCode is not selected by that moduleCode lookup. Any separate base-adapter checkbox is a different element.",
+        "canonical_decision": null,
+        "resolution_required": "Define saved-configuration identity and backward compatibility with maintainers/service owners; preserve both visible adapter identity and request module identity until resolved."
+      },
+      "negative_controls": [
+        "Export an alias selection and reload the saved configuration; compare which checkbox is selected, not just whether JSON parses.",
+        "Repeat with a v8-renamed module whose exported name differs from the current checkbox ID."
+      ],
+      "unchecked": [
+        "Jekyll rendering, Docusaurus comparison, and browser behavior have not been exercised for this case."
+      ]
+    },
+    {
+      "id": "download-release-eligibility-boundary",
+      "status": "SOURCE_BACKED",
+      "scope": "Distinguish documented release workflow from fields the download template actually enforces.",
+      "source_refs": [
+        {
+          "artifact": "readme",
+          "line_start": 96,
+          "line_end": 107
+        },
+        {
+          "artifact": "contributor_guide",
+          "line_start": 1410,
+          "line_end": 1413
+        },
+        {
+          "artifact": "download_page",
+          "line_start": 73,
+          "line_end": 112
+        },
+        {
+          "artifact": "download_client",
+          "line_start": 158,
+          "line_end": 187
+        }
+      ],
+      "expected": {
+        "documented_order": [
+          "Adapter code is merged into Prebid.js.",
+          "Adapter code is included in a release.",
+          "The documentation pull request is merged after release.",
+          "The download page gains the adapter from merged documentation."
+        ],
+        "source_enforcement": "The template uses published documentation flags and module metadata; it does not prove adapter release membership. The client minimum filter covers only module minVersion values present in DOM.",
+        "required_separation": [
+          "source documentation membership",
+          "download selector eligibility",
+          "selected-version service availability"
+        ],
+        "policy_status": "No authority has been granted here to change release gating, publish unreleased adapters, or replace the backend."
+      },
+      "negative_controls": [
+        "Add an unreleased synthetic adapter to a staging manifest and verify that the future eligibility check does not infer release solely from documentation presence.",
+        "Keep this synthetic policy control separate from an unperformed live service availability test."
+      ],
+      "unchecked": [
+        "Actual release coordination, all adapter-version memberships and live backend availability remain unverified."
+      ]
+    }
+  ],
+  "unchecked_scope": [
+    "No Jekyll rendering, Docusaurus rebuilding, browser/network exercise, or live download-service call.",
+    "Not an exhaustive metadata schema, CSV specification, migration inventory, backend specification, or final URL policy.",
+    "Full include dependency closure, full-page text/DOM parity, CSV escaping/order/all rows, accessibility, hydration, responsive behavior and all consumer edge cases are not covered.",
+    "Capture byte hashes protect selected source payloads; clipboard text and executing examples still need bounded runtime checks."
+  ]
+}

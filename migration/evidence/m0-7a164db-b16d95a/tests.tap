@@ -1,0 +1,142 @@
+TAP version 13
+# Subtest: warning inventory preserves reference identities and repeated references
+ok 1 - warning inventory preserves reference identities and repeated references
+  ---
+  duration_ms: 20.758917
+  type: 'test'
+  ...
+# Subtest: unrecognized warning body fails instead of reporting zero defects
+ok 2 - unrecognized warning body fails instead of reporting zero defects
+  ---
+  duration_ms: 0.330333
+  type: 'test'
+  ...
+# Subtest: capture boundary rejects inherited skip flags before any filesystem effect
+ok 3 - capture boundary rejects inherited skip flags before any filesystem effect
+  ---
+  duration_ms: 1.229833
+  type: 'test'
+  ...
+# Subtest: CSV parsing covers escaped quotes, multiline fields and malformed input
+ok 4 - CSV parsing covers escaped quotes, multiline fields and malformed input
+  ---
+  duration_ms: 0.398166
+  type: 'test'
+  ...
+# Subtest: static inspection notices missing assets and bad CSV without losing coverage
+ok 5 - static inspection notices missing assets and bad CSV without losing coverage
+  ---
+  duration_ms: 10.940083
+  type: 'test'
+  ...
+# Subtest: empty and symlinked output cannot produce a clean baseline
+ok 6 - empty and symlinked output cannot produce a clean baseline
+  ---
+  duration_ms: 0.821
+  type: 'test'
+  ...
+# Subtest: HTML fallbacks cannot satisfy asset or download references
+ok 7 - HTML fallbacks cannot satisfy asset or download references
+  ---
+  duration_ms: 2.924833
+  type: 'test'
+  ...
+# Subtest: dotted API page names are navigation, not inferred binary extensions
+ok 8 - dotted API page names are navigation, not inferred binary extensions
+  ---
+  duration_ms: 2.339792
+  type: 'test'
+  ...
+# Subtest: real-corpus bidder shape maps by path and extension, with hashes but no fidelity claim
+ok 9 - real-corpus bidder shape maps by path and extension, with hashes but no fidelity claim
+  ---
+  duration_ms: 26.741542
+  type: 'test'
+  ...
+# Subtest: missing, retained legacy, and basename-only counterparts remain unresolved
+ok 10 - missing, retained legacy, and basename-only counterparts remain unresolved
+  ---
+  duration_ms: 5.591208
+  type: 'test'
+  ...
+# Subtest: ambiguous extensions and duplicate source claims cannot become moved_unverified
+ok 11 - ambiguous extensions and duplicate source claims cannot become moved_unverified
+  ---
+  duration_ms: 4.075208
+  type: 'test'
+  ...
+# Subtest: template graph includes inherited layouts, nested includes, dynamics, missing targets, and unused files
+ok 12 - template graph includes inherited layouts, nested includes, dynamics, missing targets, and unused files
+  ---
+  duration_ms: 5.694084
+  type: 'test'
+  ...
+# Subtest: full YAML parsing handles multiline fields and exposes malformed YAML without partial metadata
+ok 13 - full YAML parsing handles multiline fields and exposes malformed YAML without partial metadata
+  ---
+  duration_ms: 3.839417
+  type: 'test'
+  ...
+# Subtest: no-frontmatter markdown is inventoried, raw HTML/data retained separately, generated data included
+ok 14 - no-frontmatter markdown is inventoried, raw HTML/data retained separately, generated data included
+  ---
+  duration_ms: 4.21725
+  type: 'test'
+  ...
+# Subtest: empty source selection fails for either root even when raw or excluded files exist
+ok 15 - empty source selection fails for either root even when raw or excluded files exist
+  ---
+  duration_ms: 5.095292
+  type: 'test'
+  ...
+# Subtest: raw or binary HTML at a mapped path does not count as a document destination
+ok 16 - raw or binary HTML at a mapped path does not count as a document destination
+  ---
+  duration_ms: 3.376666
+  type: 'test'
+  ...
+# Subtest: CLI writes outside input roots, refuses overwrite, and preserves all input bytes
+ok 17 - CLI writes outside input roots, refuses overwrite, and preserves all input bytes
+  ---
+  duration_ms: 125.348917
+  type: 'test'
+  ...
+# Subtest: symlinks are explicit exclusions and dependency cycles remain bounded
+ok 18 - symlinks are explicit exclusions and dependency cycles remain bounded
+  ---
+  duration_ms: 4.0545
+  type: 'test'
+  ...
+# Subtest: Git binding rejects empty, missing, duplicate and altered source entries
+ok 19 - Git binding rejects empty, missing, duplicate and altered source entries
+  ---
+  duration_ms: 1.720541
+  type: 'test'
+  ...
+# Subtest: reference hashes bind exact source and capture bytes
+ok 20 - reference hashes bind exact source and capture bytes
+  ---
+  duration_ms: 3.04325
+  type: 'test'
+  ...
+# Subtest: empty, duplicate and disputed references cannot pass as verified parity
+ok 21 - empty, duplicate and disputed references cannot pass as verified parity
+  ---
+  duration_ms: 0.304666
+  type: 'test'
+  ...
+# Subtest: anchors and source paths are constrained
+ok 22 - anchors and source paths are constrained
+  ---
+  duration_ms: 0.145834
+  type: 'test'
+  ...
+1..22
+# tests 22
+# suites 0
+# pass 22
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 262.231333

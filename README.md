@@ -136,29 +136,37 @@ markdownlint --config .markdownlint.json "**/*.md"
 
 Many thanks to the following people who have submitted content to Prebid.org.  We really appreciate the help!
 
+## Docusaurus
 
-# Docusaurus
+The migration branch uses [Docusaurus 3.10.2](https://docusaurus.io/).
+The Jekyll instructions above describe the legacy site. See the
+[Docusaurus upgrade assessment](DOCUSAURUS_UPGRADE.md) for verification results
+and remaining migration work.
 
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+The [execution plan](DOCUSAURUS_EXECUTION_PLAN.md) defines the proposed milestones,
+open decisions, acceptance criteria, and production cutover requirements.
 
 ### Installation
 
-```
-$ yarn
+Use a supported Node.js LTS release (the upgrade was tested with Node.js 24).
+Docusaurus requires Node.js 20 or later.
+
+```bash
+npm ci
 ```
 
 ### Local Development
 
-```
-$ yarn start
+```bash
+npm start
 ```
 
 This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
 
 ### Build
 
-```
-$ yarn build
+```bash
+npm run build
 ```
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
@@ -167,21 +175,20 @@ This command generates static content into the `build` directory and can be serv
 
 Using SSH:
 
-```
-$ USE_SSH=true yarn deploy
+```bash
+USE_SSH=true npm run deploy
 ```
 
 Not using SSH:
 
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
+```bash
+GIT_USER="your-github-username" npm run deploy
 ```
 
 If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
 
-
 ## Docusaurus Links
 
-- SEO: https://docusaurus.io/docs/seo
-- Algolia Search: https://docusaurus.io/docs/search
-- Versioning: https://docusaurus.io/docs/versioning
+* [SEO](https://docusaurus.io/docs/seo)
+* [Algolia Search](https://docusaurus.io/docs/search)
+* [Versioning](https://docusaurus.io/docs/versioning)

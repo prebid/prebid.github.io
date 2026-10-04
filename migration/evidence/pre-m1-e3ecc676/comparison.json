@@ -1,0 +1,35 @@
+{
+  "control_commit": "7a164dbc02f481c2dbca01e0d000bf10bed6903d",
+  "baseline_package": "migration/evidence/m0-7a164db-b16d95a/package-manifest.json",
+  "comparisons": {
+    "source-manifest.json": {
+      "equal": true
+    },
+    "routes.json": {
+      "equal": true
+    },
+    "warnings.json": {
+      "equal": true
+    },
+    "rendered.json": {
+      "equal": true
+    },
+    "global-data.json": {
+      "equal": true
+    },
+    "site-metadata.json": {
+      "equal": true
+    },
+    "summary.json": {
+      "equal": true
+    }
+  },
+  "build_files": {
+    "old_count": 3066,
+    "new_count": 3066,
+    "added": [],
+    "removed": [],
+    "changed_hashes": []
+  },
+  "test_scope": "Local control reproduction and collector correction; not semantic parity or hosted CI"
+}

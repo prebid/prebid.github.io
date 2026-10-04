@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "control_commit": "7a164dbc02f481c2dbca01e0d000bf10bed6903d",
+  "reference_commit": "b16d95ac1ee95238c070bc9f137d52718287d1cc",
+  "accepted_build_receipt": "execution.json",
+  "tests": {
+    "command": "node --test --test-reporter=tap scripts/migration-*.test.mjs",
+    "passed": 22,
+    "failed": 0,
+    "skipped": 0,
+    "script_sha256": {
+      "scripts/migration-baseline.mjs": "c81a9ef18ccc901097ebb1372f3e2e963b9f44dc6b99bac9eb8f874aecab7c9e",
+      "scripts/migration-baseline.test.mjs": "d0d17a109f6824526ccfc397867bad3f4f904733431b2096421bf633e5227952",
+      "scripts/migration-inventory.mjs": "d8c3c2505600191f72a0585f1431035538920b642a24474244318293ae773819",
+      "scripts/migration-inventory.test.mjs": "a1f87de6d281b074b46eff6c184d113835975e753b758f0dadb9b0c343d9463e",
+      "scripts/migration-provenance.mjs": "75d5ab8b2eb7a00d9ad5b90a08794492c9d5b7b5e772565e66c33252946f62dd",
+      "scripts/migration-provenance.test.mjs": "17a1dc6b03bea8338f1fbedff4a59e2a2ad519d7b806ce9be38d30ca52344f4a",
+      "scripts/migration-reference.mjs": "078d7f49463f01081568486faca85d8b68dc0013d152583024980f5bf1a29bba",
+      "scripts/migration-reference.test.mjs": "dd302d1c54842e429e27c8f90e380c112bf0a24e205c5ca66a9fe938150df953"
+    }
+  },
+  "files": [
+    {
+      "path": "build-manifest.json.gz",
+      "encoding": "gzip",
+      "bytes": 168761,
+      "sha256": "ef784de7fb3576406a1b72be5334c3ee1241050d28110b171eb6635baef0213b",
+      "original_path": "build-manifest.json",
+      "decoded_bytes": 518999,
+      "decoded_sha256": "ebee774030a280a9d6eede405ea03170e0c4cd3d55439da678c3a68a3bbca42a"
+    },
+    {
+      "path": "build.log.gz",
+      "encoding": "gzip",
+      "bytes": 10750,
+      "sha256": "a9323d5a53c7ea779d31f85b822c7ea27900841608b12d19b523e1da342c5a0b",
+      "original_path": "build.log",
+      "decoded_bytes": 92907,
+      "decoded_sha256": "fd5f5945cfe2a0d7aa87f91782a24d841a5d506b87fd092bc473994748c3fa77"
+    },
+    {
+      "path": "capture-tool.mjs",
+      "encoding": "identity",
+      "bytes": 18132,
+      "sha256": "c81a9ef18ccc901097ebb1372f3e2e963b9f44dc6b99bac9eb8f874aecab7c9e",
+      "original_path": "capture-tool.mjs",
+      "decoded_bytes": 18132,
+      "decoded_sha256": "c81a9ef18ccc901097ebb1372f3e2e963b9f44dc6b99bac9eb8f874aecab7c9e"
+    },
+    {
+      "path": "dependency-tree.json.gz",
+      "encoding": "gzip",
+      "bytes": 37502,
+      "sha256": "e441110954702cec12f42de7b6e2d824c63d3c75a0f9344f2b0a0b8879df83de",
+      "original_path": "dependency-tree.json",
+      "decoded_bytes": 568809,
+      "decoded_sha256": "3b4a16358a0d858b46ad176465f48eb908024d4ae9cb240ca9f23aba1818b34e"
+    },
+    {
+      "path": "execution.json",
+      "encoding": "identity",
+      "bytes": 1359,
+      "sha256": "02f39ebbc9521dcb5552e5a03d88c1d7c5badf29f8f2af451db73d8f4be63984",
+      "original_path": "execution.json",
+      "decoded_bytes": 1359,
+      "decoded_sha256": "02f39ebbc9521dcb5552e5a03d88c1d7c5badf29f8f2af451db73d8f4be63984"
+    },
+    {
+      "path": "global-data.json.gz",
+      "encoding": "gzip",
+      "bytes": 13363,
+      "sha256": "93b0111da373176ca6a6583fa2d9942f67e9bcd97296577726a5fd52bf898915",
+      "original_path": "global-data.json",
+      "decoded_bytes": 223212,
+      "decoded_sha256": "72b6f61fa0f9a2c2a78a3b1fe06e6ef6134bc003e760cf24f5fc2319316e47c8"
+    },
+    {
+      "path": "install.json",
+      "encoding": "identity",
+      "bytes": 391,
+      "sha256": "506da14876ff1908e8951375fcde83be3ab35181cc487d1dd68964c8b060931e",
+      "original_path": "install.json",
+      "decoded_bytes": 391,
+      "decoded_sha256": "506da14876ff1908e8951375fcde83be3ab35181cc487d1dd68964c8b060931e"
+    },
+    {
+      "path": "install.log",
+      "encoding": "identity",
+      "bytes": 28,
+      "sha256": "132f7a23ac5330f4ddbf2dcf58bba9b701829ef8b07c8752fbfce53ff6895088",
+      "original_path": "install.log",
+      "decoded_bytes": 28,
+      "decoded_sha256": "132f7a23ac5330f4ddbf2dcf58bba9b701829ef8b07c8752fbfce53ff6895088"
+    },
+    {
+      "path": "inventory.json.gz",
+      "encoding": "gzip",
+      "bytes": 660440,
+      "sha256": "c6b047798ed23fd572d73f22874555f45fe7928a434aedc6507e89908a347b7e",
+      "original_path": "inventory.json",
+      "decoded_bytes": 10470930,
+      "decoded_sha256": "e1217b9692a68632551f5b927bb7a4b37c4629485ee2760f52807e69e4019117"
+    },
+    {
+      "path": "negative-probes.json",
+      "encoding": "identity",
+      "bytes": 364,
+      "sha256": "e9931bad0da6aa6e99805d581522423e2d2881d34318c7a61f5c0799ea691377",
+      "original_path": "negative-probes.json",
+      "decoded_bytes": 364,
+      "decoded_sha256": "e9931bad0da6aa6e99805d581522423e2d2881d34318c7a61f5c0799ea691377"
+    },
+    {
+      "path": "provenance.json.gz",
+      "encoding": "gzip",
+      "bytes": 5810,
+      "sha256": "9001c3977751c86a15fd44fafbd9b531140efaea853452ff63556facdf791817",
+      "original_path": "provenance.json",
+      "decoded_bytes": 54799,
+      "decoded_sha256": "c9848c7580ebcc6f400412518223244027c978fdcbe77d706d9a39ceba8120a1"
+    },
+    {
+      "path": "receipt-manifest.json",
+      "encoding": "identity",
+      "bytes": 1968,
+      "sha256": "674dea37502504c0fd95eedb09266cf84f345a1aa0450ccbcaf9867de76c4b08",
+      "original_path": "receipt-manifest.json",
+      "decoded_bytes": 1968,
+      "decoded_sha256": "674dea37502504c0fd95eedb09266cf84f345a1aa0450ccbcaf9867de76c4b08"
+    },
+    {
+      "path": "reference-verification.json",
+      "encoding": "identity",
+      "bytes": 556,
+      "sha256": "5028c79d04a98f6aa8d880a32d44deacb9b9cb4519211d395854a7870b96a67a",
+      "original_path": "reference-verification.json",
+      "decoded_bytes": 556,
+      "decoded_sha256": "5028c79d04a98f6aa8d880a32d44deacb9b9cb4519211d395854a7870b96a67a"
+    },
+    {
+      "path": "rendered.json.gz",
+      "encoding": "gzip",
+      "bytes": 223924,
+      "sha256": "59185ab3f1df61c79bd827389b460411b2b00792029af3e33a53d613cfd2c6fd",
+      "original_path": "rendered.json",
+      "decoded_bytes": 1281522,
+      "decoded_sha256": "684ca927ccbde85317da57eb119281ea60d31b51fa322b011d9a2acf302a9879"
+    },
+    {
+      "path": "routes.json.gz",
+      "encoding": "gzip",
+      "bytes": 11624,
+      "sha256": "53fcb8d26fda66a6dc9aa687e92122d3a5e1adf70da689c9e5684d20105c00e9",
+      "original_path": "routes.json",
+      "decoded_bytes": 68425,
+      "decoded_sha256": "7506f081ec98e560d239b61265854d8f31495d6ee093af72582f6be1132ee549"
+    },
+    {
+      "path": "site-metadata.json",
+      "encoding": "identity",
+      "bytes": 835,
+      "sha256": "8191ec3e8a4dcb8eafff5b1974d34ae324ebf5e5cc77fb761b8a258863956277",
+      "original_path": "site-metadata.json",
+      "decoded_bytes": 835,
+      "decoded_sha256": "8191ec3e8a4dcb8eafff5b1974d34ae324ebf5e5cc77fb761b8a258863956277"
+    },
+    {
+      "path": "source-binding-input.json.gz",
+      "encoding": "gzip",
+      "bytes": 598095,
+      "sha256": "99d28654bfca5474b906ca3bbe84b4e616395bb66f2f09ba434dfb332d6fda07",
+      "original_path": "source-binding-input.json",
+      "decoded_bytes": 6167315,
+      "decoded_sha256": "e6a1ae701bdc3eeee844cc9e63009cb32cafab2436a988c0d5d829999e6da76f"
+    },
+    {
+      "path": "source-binding.json.gz",
+      "encoding": "gzip",
+      "bytes": 5810,
+      "sha256": "235951e24876422a32962358ca2b9b29d03bd2d9b630f67b9b28b2f6a0f0dc98",
+      "original_path": "source-binding.json",
+      "decoded_bytes": 54799,
+      "decoded_sha256": "d53da14fbf3674e4c847e729eb184a2ac3408a369db19f6673452503c4e1d2e8"
+    },
+    {
+      "path": "source-manifest.json.gz",
+      "encoding": "gzip",
+      "bytes": 140860,
+      "sha256": "49ac322c92a7e55d9ee362b998dfa09a3c4caa4bdec852aff984406b08e91432",
+      "original_path": "source-manifest.json",
+      "decoded_bytes": 453867,
+      "decoded_sha256": "2d016bdd9b3fc3fafa8bf6ad6d19ed25648b4946dbc265c414a5700c6c8a98ad"
+    },
+    {
+      "path": "summary.json",
+      "encoding": "identity",
+      "bytes": 538,
+      "sha256": "c42d277a40cefa69545daab3513bf4b0cbc7e16c11e7164ee441ac4c631c56a1",
+      "original_path": "summary.json",
+      "decoded_bytes": 538,
+      "decoded_sha256": "c42d277a40cefa69545daab3513bf4b0cbc7e16c11e7164ee441ac4c631c56a1"
+    },
+    {
+      "path": "tests.tap",
+      "encoding": "identity",
+      "bytes": 4931,
+      "sha256": "66cb5a0d625a16650cd58a95a1fdfaa28e575a9f52aee39bf5aceb957853fe66",
+      "original_path": "tests.tap",
+      "decoded_bytes": 4931,
+      "decoded_sha256": "66cb5a0d625a16650cd58a95a1fdfaa28e575a9f52aee39bf5aceb957853fe66"
+    },
+    {
+      "path": "warnings.json.gz",
+      "encoding": "gzip",
+      "bytes": 10410,
+      "sha256": "1744e9d4d36b80e80c16480cb4983b4b999a4a4d4d76aea390573d2d1acb3d85",
+      "original_path": "warnings.json",
+      "decoded_bytes": 109172,
+      "decoded_sha256": "683d0bdef339fb0f1c9ab7781393d3f0c3d54d6e50ea462acfa1ad28c9aeb394"
+    }
+  ],
+  "custody": "Local repository receipt; checksums establish identity, not independent immutability. Hosted CI not run."
+}
