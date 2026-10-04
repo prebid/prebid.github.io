@@ -100,6 +100,22 @@ empty cache, without promoting arbitrary PR artifacts.
 
 ## Initial observations and limits
 
+The retained [local evidence package](evidence/m1-3d8cfd6b/package-manifest.json)
+binds clean macOS ARM64 and fresh Linux ARM64 runs at
+`3d8cfd6b7f6635bc5dbcdb40a543eeec6f4a592e`, compared with the M0 checkpoint. Both
+full comparisons passed with no new findings or lost routes/inputs/HTML/CSVs.
+The Linux run used empty installation caches, disabled lifecycle scripts, and
+the pinned image with 4 CPUs and 6 GiB memory; its 58 tests passed without skips.
+The notifier's locked packages installed and resolved without sending mail.
+
+The later source-state guard adds six controls; the expanded local suite passed
+all 64 tests. Use the final published head's hosted CI receipt to verify that
+guard's full orchestration. The archived local builds deliberately retain their
+original commit identity rather than being relabeled as a later revision.
+Local timing includes overlapping work and is not a controlled performance
+benchmark. Legacy Jekyll verification was attempted but its executable/gems were
+unavailable; this does not stand in for a Jekyll build.
+
 The macOS development comparison against `0791a5b7a9c84f7ff4be1433a4bcb34f17f00c0d`
 compiled 1,221 files (469 Markdown, 752 MDX), including four explicit partial
 imports, with zero syntax failures. Both builds produced 1,254 route keys and
@@ -112,6 +128,7 @@ imports, with zero syntax failures. Both builds produced 1,254 route keys and
 | Broken Markdown-link occurrences | 97 |
 | Missing local-target groups | 499 |
 | Code fences without a language | 216 |
+| CSV files with unrendered templates | 1 |
 
 These overlapping inventories are unresolved and must not be added into a defect
 total. They do not establish deployed-host failures or content fidelity.

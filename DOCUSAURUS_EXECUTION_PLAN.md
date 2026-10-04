@@ -3,8 +3,9 @@
 Status: execution underway, October 4, 2026. The Docusaurus 3.10.2 package upgrade
 is published in [PR #6785](https://github.com/prebid/prebid.github.io/pull/6785),
 and [M0 local evidence](migration/M0_BASELINE.md) is captured. The
-[M1 runtime/validation foundation](migration/M1_VALIDATION.md) is implemented;
-platform acceptance and hosted checks are recorded separately from implementation.
+[M1 runtime/validation foundation](migration/M1_VALIDATION.md) is implemented,
+with retained clean macOS and fresh Linux controls. Hosted acceptance is checked
+against the final published PR head, separately from these local receipts.
 M2 and later milestones have not been implemented or accepted by documenting them.
 
 The [pre-implementation audit](DOCUSAURUS_PLAN_AUDIT.md) records the October 4

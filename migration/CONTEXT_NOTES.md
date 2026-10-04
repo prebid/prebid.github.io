@@ -73,6 +73,9 @@ the decisions that should survive a fresh session.
 * GitHub's implicit Linux shell does not enable pipeline failure propagation.
   Steps using `tee` need explicit `shell: bash` (or `pipefail`) and a control that
   makes the upstream command fail while the logger succeeds.
+* Durations collected during overlapping local work are operational timings.
+  Isolate performance comparisons and pin resource limits before attributing a
+  speedup to Faster or another build change.
 
 ## Source and consumer rules needing care
 
