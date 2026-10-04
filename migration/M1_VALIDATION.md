@@ -26,6 +26,9 @@ the base's locked installation into an empty temporary cache. Existing outputs
 are refused; cache/output symlinks are refused. The runner clears compiler caches
 and rewrites ignored build directories. Tracked source must remain byte-identical.
 `--allow-dirty` records a development probe, never clean-checkout acceptance.
+The initial HEAD/index/input/tool snapshot is checked again before candidate
+capture and before the verdict. These checkpoints detect drift; they cannot
+detect edits restored between checkpoints or changes to ignored dependencies.
 
 `npm run validate` combines runtime, types, tests, and the site comparison; pass
 the base using `MIGRATION_BASE_SHA`. `npm run validate:content` alone reports
@@ -81,6 +84,8 @@ explicit base SHA. It checks out the exact candidate with full history, pins
 actions to commits, and does not persist credentials. Its token is read-only;
 notification/deployment secrets and shared dependency caches are absent. Logs,
 reports, manifests, and controls upload on success or failure for 30 days.
+The job has a 45-minute operational ceiling for the cold comparison and controls.
+This is a provisional timeout, not the performance budget reserved for M4.
 
 The privileged notification event checks out only its trusted base SHA, installs
 separate locked dependencies without lifecycle scripts, and supplies credentials

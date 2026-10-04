@@ -10,6 +10,7 @@ import {fileURLToPath} from 'node:url';
 import {parseArgs} from 'node:util';
 import {parseBuildWarnings, inspectBuild, controlledEnvironment, walkFiles} from './migration-baseline.mjs';
 import {compareFormatting} from './validate-authored-content.mjs';
+import {sourceState, assertSourceUnchanged} from './validate-source-state.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const hash = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
@@ -190,16 +191,20 @@ export function main(argv = process.argv.slice(2)) {
   const env = controlledEnvironment();
   const git = (...args) => run(siteDir, 'git', args, env);
   if (git('rev-parse', '--is-shallow-repository') !== 'false') throw new Error('Full Git history required');
-  const status = git('status', '--porcelain', '--untracked-files=all');
+  const toolNames = ['validate-site.mjs', 'validate-source-state.mjs', 'validate-authored-content.mjs', 'migration-baseline.mjs'];
+  const sourceOptions = {siteDir, env, toolPaths: toolNames.map(name => path.join(here, name))};
+  const initialState = sourceState(sourceOptions);
+  const status = initialState.status;
   if (status && !values['allow-dirty']) throw new Error('Clean candidate required; --allow-dirty is development evidence only');
   const base = git('rev-parse', `${values['baseline-ref']}^{commit}`);
   const out = outputDirectory(path.resolve(siteDir, values.out), siteDir);
   const temp = fs.mkdtempSync(path.join(fs.realpathSync(os.tmpdir()), 'prebid-base-'));
   const baseDir = path.join(temp, 'source');
-  json(path.join(out, 'execution.json'), {schema_version: 1, head: git('rev-parse', 'HEAD'), baseline: base,
+  json(path.join(out, 'initial-source-state.json'), initialState);
+  json(path.join(out, 'execution.json'), {schema_version: 1, head: initialState.head, baseline: base,
     initial_status: status, development_dirty_run: Boolean(status), node: process.version,
     platform: process.platform, architecture: process.arch, environment: env,
-    tool_hashes: manifest(here, ['validate-site.mjs', 'validate-authored-content.mjs', 'migration-baseline.mjs'])});
+    tool_hashes: manifest(here, toolNames)});
   try {
     console.log(`Preparing baseline ${base}`);
     run(siteDir, 'git', ['clone', '--shared', '--no-checkout', '--quiet', siteDir, baseDir], env);
@@ -207,9 +212,11 @@ export function main(argv = process.argv.slice(2)) {
     run(baseDir, 'npm', ['ci', '--include=dev', '--ignore-scripts', '--no-audit', '--no-fund', '--cache', path.join(temp, 'npm-cache')], env, path.join(out, 'baseline-install.log'));
     console.log('Validating and building baseline');
     const baseline = captureSite({siteDir: baseDir, outDir: path.join(out, 'baseline'), env});
+    json(path.join(out, 'source-before-candidate.json'), assertSourceUnchanged(initialState, sourceState(sourceOptions), 'before candidate'));
     console.log('Validating and building candidate');
     const candidate = captureSite({siteDir, outDir: path.join(out, 'candidate'), env});
     const comparison = compareSite(candidate, baseline);
+    json(path.join(out, 'source-before-verdict.json'), assertSourceUnchanged(initialState, sourceState(sourceOptions), 'before verdict'));
     json(path.join(out, 'comparison.json'), comparison);
     json(path.join(out, 'receipt-manifest.json'), manifest(out, walkFiles(out).map(file => path.relative(out, file))));
     console.log(JSON.stringify({status: comparison.status, baseline: base, candidate: candidate.source_commit,

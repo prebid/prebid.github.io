@@ -26,7 +26,7 @@ concurrency:
 jobs:
   validate:
     runs-on: ubuntu-24.04
-    timeout-minutes: 35
+    timeout-minutes: 45
     env:
       MIGRATION_BASE_SHA: ${{ github.event.pull_request.base.sha || inputs.baseline_sha || github.event.before }}
     steps:

@@ -60,6 +60,10 @@ the decisions that should survive a fresh session.
   need a reviewed policy rather than silently regenerated baselines.
 * Rebuild the pinned PR base with the current detector. An old inventory lets
   fixed defects return; a current base comparison ratchets resolved findings.
+* Snapshot candidate HEAD, index, tracked/nonignored input bytes, and tool bytes
+  before the long baseline build. Recheck against that same snapshot before
+  candidate capture and before the verdict, so intervening edits cannot acquire
+  a false clean-checkout label. This is drift detection, not filesystem locking.
 * A whole `node_modules` symlink makes cache clearing write into shared state.
   Build fixtures need private dependency/cache directories, with package-entry
   symlinks only. Type-only fixtures do not emit or clear caches.
