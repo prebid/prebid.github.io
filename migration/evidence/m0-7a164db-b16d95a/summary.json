@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "source_commit": "7a164dbc02f481c2dbca01e0d000bf10bed6903d",
+  "source_files": 2635,
+  "docusaurus": "3.10.2",
+  "routes": 1254,
+  "files": 3066,
+  "html": 1239,
+  "references": 604445,
+  "checked_local_references": 581673,
+  "external_references_not_checked": 6211,
+  "broken_link_references": 581,
+  "broken_anchor_references": 100,
+  "missing_local_target_groups": 499,
+  "csv_files_with_findings": 1,
+  "capture_status": "complete",
+  "site_readiness": "not_assessed_by_capture",
+  "hosted_ci": "not_run"
+}

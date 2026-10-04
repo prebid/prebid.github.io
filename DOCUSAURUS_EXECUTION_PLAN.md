@@ -1,8 +1,9 @@
 # Docusaurus adoption and migration execution plan
 
-Status: proposed working plan, October 4, 2026. The Docusaurus 3.10.2 package
-upgrade is already implemented locally; the milestones below have not been
-implemented or accepted merely by documenting them.
+Status: execution underway, October 4, 2026. The Docusaurus 3.10.2 package upgrade
+is checkpointed locally, and [M0 local evidence](migration/M0_BASELINE.md) is
+captured. Hosted archival/fresh Linux verification remain pending M1. Other
+milestones have not been implemented or accepted merely by documenting them.
 
 The [pre-implementation audit](DOCUSAURUS_PLAN_AUDIT.md) records the October 4
 discovery pass, its evidence, the corrections incorporated here, and its limits.
@@ -35,9 +36,10 @@ checks, artifacts, remaining exceptions, and next dependency.
 ## Starting evidence and limits
 
 The upstream migration base is `ca35845fab8072d48c7a8ef39a125dca97b79366`.
-The local branch is `codex/docusaurus-3.10.2`; its package/configuration upgrade
-and documentation are currently uncommitted. A base SHA alone does not identify
-that modified tree: M0 must record the diff and dependency-lock digest as well.
+The local branch is `codex/docusaurus-3.10.2`. At the initial planning snapshot its
+package/configuration upgrade and documentation were uncommitted. They were then
+checkpointed at `7a164dbc02f481c2dbca01e0d000bf10bed6903d`; M0 binds that control
+tree and lockfile to its retained build and source inventories.
 
 | Observation | Verified state at this snapshot |
 | --- | --- |
@@ -53,9 +55,10 @@ that modified tree: M0 must record the diff and dependency-lock digest as well.
 | Production-content divergence | 517 commits behind the inspected `master` snapshot, `b16d95ac1ee95238c070bc9f137d52718287d1cc`; refresh before reconciliation |
 | Runtime proof limits | No fresh Linux CI install, Faster trial, full-history timestamp comparison, exhaustive content/browser audit, or production cutover |
 
-The checkout is shallow. Local receipts from the assessment are temporary and
-are not durable project evidence. The original 3.9.2 build used a different Node
-version, so its timing is not a valid performance control for the next trial.
+The initial audit checkout was shallow and its receipts were temporary. M0 now
+uses full history and retained repository evidence; see its report for updated
+scope. The original 3.9.2 build used a different Node version, so its timing is
+not a valid performance control for the next trial.
 
 Specific evidence changes the work priorities:
 
@@ -112,6 +115,10 @@ can continue alongside that trial and must finish for its relevant M5/M6 content
 scope. M7 is a separate release milestone.
 
 ### M0 — Establish a reproducible baseline and coverage inventory
+
+Local results and remaining hosted-evidence requirements are recorded in
+[M0_BASELINE.md](migration/M0_BASELINE.md). The following criteria remain the
+contract; local capture does not imply hosted CI or semantic fidelity passed.
 
 * Record source SHA, local diff, lock digest, toolchain, full-history strategy,
   environment, selected inputs, commands, results, and artifact checksums.

@@ -1,0 +1,17 @@
+{
+  "controls": [
+    {
+      "control": "altered-hash",
+      "exit_code": 1,
+      "error": "Git source binding mismatch: .devcontainer/devcontainer.json",
+      "output_created": false
+    },
+    {
+      "control": "empty-scan",
+      "exit_code": 1,
+      "error": "Empty blob selection",
+      "output_created": false
+    }
+  ],
+  "source_mutations": false
+}
