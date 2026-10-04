@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "reference_commit": "b16d95ac1ee95238c070bc9f137d52718287d1cc",
+  "source_artifacts_verified": 22,
+  "cases_selected": 15,
+  "exact_code_captures_verified": 4,
+  "disputed_cases": 4,
+  "verification": "source_provenance_and_structure_only",
+  "semantic_policy_approval": false,
+  "rendered_parity_executed": false,
+  "service_executed": false,
+  "reference_file_sha256": "891b7e9194a9ab82a985be29a8d20876f0155fa7a55d728250d9d58eccfdb180",
+  "verifier_sha256": "34080a4fe730eb85d3802c3dc9b5d71e322a3327973a2866e07054d541d5064d"
+}

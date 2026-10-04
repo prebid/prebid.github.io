@@ -36,6 +36,13 @@ the decisions that should survive a fresh session.
 * Keep control sources immutable during inventory. The bidder plugin writes JSON
   into its source tree during a build; capture from separate immutable source
   archives and bind the scanned file hashes to their Git commits.
+* Apply output confinement at every writing entrypoint using resolved filesystem
+  ancestors. A lexical outside path can point into an input tree through a symlink;
+  a guard in the inventory does not protect the separate collector.
+* Identify typed records independently of one required field, then require the
+  complete record. Removing a capture's offset must cause failure rather than
+  reducing the number of captures checked. Preserve historical receipt/tool
+  identities when correcting a validator.
 
 ## Source and consumer rules needing care
 

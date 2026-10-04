@@ -30,9 +30,19 @@ export function verifyReference(reference, readPinnedBlob) {
     bytesById.set(id, bytes);
   }
   const selected = new Set(); let captures = 0; let disputed = 0;
-  function inspectCaptures(value) {
+  function inspectCaptures(value, required = false) {
+    if (required) check(value && typeof value === 'object' && !Array.isArray(value), 'Invalid capture record');
     if (!value || typeof value !== 'object') return;
-    if (Object.hasOwn(value, 'source_byte_start')) {
+    // Schema v1 declares byte captures in `captures` maps and `payload` fields.
+    // Also recognize partial records by any source-boundary marker: removing one
+    // required field must not quietly turn a capture into ordinary unchecked data.
+    const captureRecord = required || ['source_artifact', 'source_byte_start', 'source_byte_end_exclusive']
+      .some(key => Object.hasOwn(value, key));
+    if (captureRecord) {
+      const fields = ['source_artifact', 'source_byte_start', 'source_byte_end_exclusive', 'bytes', 'sha256', 'text'];
+      check(fields.every(key => Object.hasOwn(value, key)), 'Incomplete capture record');
+      check(typeof value.source_artifact === 'string' && typeof value.text === 'string'
+        && /^[a-f0-9]{64}$/.test(value.sha256 ?? '') && Number.isInteger(value.bytes), 'Invalid capture record');
       const bytes = bytesById.get(value.source_artifact);
       check(bytes, 'Unknown capture source');
       const start = value.source_byte_start; const end = value.source_byte_end_exclusive;
@@ -41,8 +51,15 @@ export function verifyReference(reference, readPinnedBlob) {
       check(capture.length === value.bytes && hash(capture) === value.sha256
         && capture.equals(Buffer.from(value.text, 'utf8')), 'Capture payload/digest mismatch');
       captures++;
+      return;
     }
-    for (const item of Object.values(value)) inspectCaptures(item);
+    for (const [key, item] of Object.entries(value)) {
+      if (key === 'captures') {
+        check(item && typeof item === 'object' && !Array.isArray(item)
+          && Object.keys(item).length > 0, 'Empty or invalid capture map');
+        for (const capture of Object.values(item)) inspectCaptures(capture, true);
+      } else inspectCaptures(item, key === 'payload');
+    }
   }
   for (const item of reference.cases) {
     check(typeof item.id === 'string' && item.id && !selected.has(item.id), 'Duplicate or missing case ID');

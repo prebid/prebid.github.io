@@ -38,3 +38,20 @@ test('anchors and source paths are constrained', () => {
   const outside = make(); outside.source_artifacts.one.path = '../secret';
   assert.throws(() => verifyReference(outside, () => source), /Unsafe/);
 });
+
+test('removing any required capture field fails rather than shrinking coverage', () => {
+  for (const field of ['source_artifact', 'source_byte_start', 'source_byte_end_exclusive', 'bytes', 'sha256', 'text']) {
+    const reference = make();
+    if (field !== 'text') reference.cases[0].expected.payload.text = 'CORRUPTED CODE';
+    delete reference.cases[0].expected.payload[field];
+    assert.throws(() => verifyReference(reference, () => source), /Incomplete/, field);
+  }
+  const noMarkers = make();
+  noMarkers.cases[0].expected.payload = {text: 'CORRUPTED CODE'};
+  assert.throws(() => verifyReference(noMarkers, () => source), /Incomplete/);
+  const captureMap = make();
+  captureMap.cases[0].expected = {captures: {code: {text: 'CORRUPTED CODE'}}};
+  assert.throws(() => verifyReference(captureMap, () => source), /Incomplete/);
+  captureMap.cases[0].expected.captures = {};
+  assert.throws(() => verifyReference(captureMap, () => source), /Empty/);
+});

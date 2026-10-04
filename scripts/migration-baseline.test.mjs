@@ -41,6 +41,32 @@ test('capture boundary rejects inherited skip flags before any filesystem effect
   finally { delete process.env.DOCUSAURUS_SKIP_BUNDLING; }
 });
 
+test('capture rejects symlinked output ancestors before Git, installation or writes', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'prebid-capture-output-'));
+  try {
+    const control = path.join(root, 'control'); fs.mkdirSync(control);
+    const alias = path.join(root, 'outside-alias'); fs.symlinkSync(control, alias);
+    assert.throws(() => capture({siteDir: control, outDir: path.join(alias, 'nested', 'receipt')}), /outside/);
+    assert.deepEqual(fs.readdirSync(control), []);
+    const dangling = path.join(root, 'dangling'); fs.symlinkSync(path.join(root, 'absent'), dangling);
+    assert.throws(() => capture({siteDir: control, outDir: path.join(dangling, 'receipt')}), /dangling/);
+    assert.equal(fs.existsSync(path.join(root, 'absent')), false);
+  } finally { fs.rmSync(root, {recursive: true, force: true}); }
+});
+
+test('capture refuses an existing or dangling output endpoint without touching it', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'prebid-capture-existing-'));
+  try {
+    const control = path.join(root, 'control'); fs.mkdirSync(control);
+    const existing = path.join(root, 'receipt'); fs.mkdirSync(existing);
+    fs.writeFileSync(path.join(existing, 'sentinel'), 'preserve');
+    assert.throws(() => capture({siteDir: control, outDir: existing}), /already exists/);
+    assert.equal(fs.readFileSync(path.join(existing, 'sentinel'), 'utf8'), 'preserve');
+    const dangling = path.join(root, 'receipt-link'); fs.symlinkSync(path.join(root, 'absent'), dangling);
+    assert.throws(() => capture({siteDir: control, outDir: dangling}), /already exists/);
+  } finally { fs.rmSync(root, {recursive: true, force: true}); }
+});
+
 test('CSV parsing covers escaped quotes, multiline fields and malformed input', () => {
   assert.deepEqual(parseCsv('id,name\r\na,"a, b"\r\nb,"two\nlines and ""quotes"""\r\n'),
     [['id', 'name'], ['a', 'a, b'], ['b', 'two\nlines and "quotes"']]);

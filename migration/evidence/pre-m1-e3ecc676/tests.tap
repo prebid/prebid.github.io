@@ -1,0 +1,160 @@
+TAP version 13
+# Subtest: warning inventory preserves reference identities and repeated references
+ok 1 - warning inventory preserves reference identities and repeated references
+  ---
+  duration_ms: 16.684291
+  type: 'test'
+  ...
+# Subtest: unrecognized warning body fails instead of reporting zero defects
+ok 2 - unrecognized warning body fails instead of reporting zero defects
+  ---
+  duration_ms: 0.37825
+  type: 'test'
+  ...
+# Subtest: capture boundary rejects inherited skip flags before any filesystem effect
+ok 3 - capture boundary rejects inherited skip flags before any filesystem effect
+  ---
+  duration_ms: 0.78875
+  type: 'test'
+  ...
+# Subtest: capture rejects symlinked output ancestors before Git, installation or writes
+ok 4 - capture rejects symlinked output ancestors before Git, installation or writes
+  ---
+  duration_ms: 1.336584
+  type: 'test'
+  ...
+# Subtest: capture refuses an existing or dangling output endpoint without touching it
+ok 5 - capture refuses an existing or dangling output endpoint without touching it
+  ---
+  duration_ms: 1.2255
+  type: 'test'
+  ...
+# Subtest: CSV parsing covers escaped quotes, multiline fields and malformed input
+ok 6 - CSV parsing covers escaped quotes, multiline fields and malformed input
+  ---
+  duration_ms: 0.386875
+  type: 'test'
+  ...
+# Subtest: static inspection notices missing assets and bad CSV without losing coverage
+ok 7 - static inspection notices missing assets and bad CSV without losing coverage
+  ---
+  duration_ms: 11.627625
+  type: 'test'
+  ...
+# Subtest: empty and symlinked output cannot produce a clean baseline
+ok 8 - empty and symlinked output cannot produce a clean baseline
+  ---
+  duration_ms: 0.674167
+  type: 'test'
+  ...
+# Subtest: HTML fallbacks cannot satisfy asset or download references
+ok 9 - HTML fallbacks cannot satisfy asset or download references
+  ---
+  duration_ms: 2.566833
+  type: 'test'
+  ...
+# Subtest: dotted API page names are navigation, not inferred binary extensions
+ok 10 - dotted API page names are navigation, not inferred binary extensions
+  ---
+  duration_ms: 1.671083
+  type: 'test'
+  ...
+# Subtest: real-corpus bidder shape maps by path and extension, with hashes but no fidelity claim
+ok 11 - real-corpus bidder shape maps by path and extension, with hashes but no fidelity claim
+  ---
+  duration_ms: 24.148541
+  type: 'test'
+  ...
+# Subtest: missing, retained legacy, and basename-only counterparts remain unresolved
+ok 12 - missing, retained legacy, and basename-only counterparts remain unresolved
+  ---
+  duration_ms: 4.020667
+  type: 'test'
+  ...
+# Subtest: ambiguous extensions and duplicate source claims cannot become moved_unverified
+ok 13 - ambiguous extensions and duplicate source claims cannot become moved_unverified
+  ---
+  duration_ms: 4.050667
+  type: 'test'
+  ...
+# Subtest: template graph includes inherited layouts, nested includes, dynamics, missing targets, and unused files
+ok 14 - template graph includes inherited layouts, nested includes, dynamics, missing targets, and unused files
+  ---
+  duration_ms: 6.936167
+  type: 'test'
+  ...
+# Subtest: full YAML parsing handles multiline fields and exposes malformed YAML without partial metadata
+ok 15 - full YAML parsing handles multiline fields and exposes malformed YAML without partial metadata
+  ---
+  duration_ms: 4.570792
+  type: 'test'
+  ...
+# Subtest: no-frontmatter markdown is inventoried, raw HTML/data retained separately, generated data included
+ok 16 - no-frontmatter markdown is inventoried, raw HTML/data retained separately, generated data included
+  ---
+  duration_ms: 4.334
+  type: 'test'
+  ...
+# Subtest: empty source selection fails for either root even when raw or excluded files exist
+ok 17 - empty source selection fails for either root even when raw or excluded files exist
+  ---
+  duration_ms: 5.768209
+  type: 'test'
+  ...
+# Subtest: raw or binary HTML at a mapped path does not count as a document destination
+ok 18 - raw or binary HTML at a mapped path does not count as a document destination
+  ---
+  duration_ms: 4.701875
+  type: 'test'
+  ...
+# Subtest: CLI writes outside input roots, refuses overwrite, and preserves all input bytes
+ok 19 - CLI writes outside input roots, refuses overwrite, and preserves all input bytes
+  ---
+  duration_ms: 132.598708
+  type: 'test'
+  ...
+# Subtest: symlinks are explicit exclusions and dependency cycles remain bounded
+ok 20 - symlinks are explicit exclusions and dependency cycles remain bounded
+  ---
+  duration_ms: 3.545708
+  type: 'test'
+  ...
+# Subtest: Git binding rejects empty, missing, duplicate and altered source entries
+ok 21 - Git binding rejects empty, missing, duplicate and altered source entries
+  ---
+  duration_ms: 1.297
+  type: 'test'
+  ...
+# Subtest: reference hashes bind exact source and capture bytes
+ok 22 - reference hashes bind exact source and capture bytes
+  ---
+  duration_ms: 2.040375
+  type: 'test'
+  ...
+# Subtest: empty, duplicate and disputed references cannot pass as verified parity
+ok 23 - empty, duplicate and disputed references cannot pass as verified parity
+  ---
+  duration_ms: 0.284625
+  type: 'test'
+  ...
+# Subtest: anchors and source paths are constrained
+ok 24 - anchors and source paths are constrained
+  ---
+  duration_ms: 0.135583
+  type: 'test'
+  ...
+# Subtest: removing any required capture field fails rather than shrinking coverage
+ok 25 - removing any required capture field fails rather than shrinking coverage
+  ---
+  duration_ms: 1.439125
+  type: 'test'
+  ...
+1..25
+# tests 25
+# suites 0
+# pass 25
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 262.651959

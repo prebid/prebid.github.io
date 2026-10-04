@@ -1,5 +1,9 @@
 # M0 local baseline and discovery results
 
+The subsequent [pre-M1 review](PRE_M1_REVIEW.md) records two tool corrections and
+their separate validation. The measurements and receipts below remain the
+original M0 snapshot.
+
 Date: October 4, 2026. Status: **local baseline captured and checked; hosted
 archival/fresh Linux evidence pending M1**. This report does not declare the
 documentation migrated, the independent reference cases passing, or the site ready

@@ -1,0 +1,72 @@
+[
+  {
+    "path": "build-manifest.json",
+    "bytes": 518999,
+    "sha256": "ebee774030a280a9d6eede405ea03170e0c4cd3d55439da678c3a68a3bbca42a"
+  },
+  {
+    "path": "build.log",
+    "bytes": 92907,
+    "sha256": "c7910bf48421945782a3d392e2770be77017ce99883c29ff0894ed4c13eba8ca"
+  },
+  {
+    "path": "capture-tool.mjs",
+    "bytes": 18880,
+    "sha256": "32f605a36c54dd89f2768e80930d7db59ce97b074eca6e355791e2ad541041f2"
+  },
+  {
+    "path": "dependency-tree.json",
+    "bytes": 568809,
+    "sha256": "3b4a16358a0d858b46ad176465f48eb908024d4ae9cb240ca9f23aba1818b34e"
+  },
+  {
+    "path": "execution.json",
+    "bytes": 1359,
+    "sha256": "cbae7a75eebd94920556955f9d2216272a0ce3e44d2d5b1fe5a5be82127e6929"
+  },
+  {
+    "path": "global-data.json",
+    "bytes": 223212,
+    "sha256": "72b6f61fa0f9a2c2a78a3b1fe06e6ef6134bc003e760cf24f5fc2319316e47c8"
+  },
+  {
+    "path": "install.json",
+    "bytes": 391,
+    "sha256": "506da14876ff1908e8951375fcde83be3ab35181cc487d1dd68964c8b060931e"
+  },
+  {
+    "path": "install.log",
+    "bytes": 27,
+    "sha256": "162814784ff43ff37e0129d400fb2ac16c7ec033d0566560c4aaa5a221d0edb2"
+  },
+  {
+    "path": "rendered.json",
+    "bytes": 1281522,
+    "sha256": "684ca927ccbde85317da57eb119281ea60d31b51fa322b011d9a2acf302a9879"
+  },
+  {
+    "path": "routes.json",
+    "bytes": 68425,
+    "sha256": "7506f081ec98e560d239b61265854d8f31495d6ee093af72582f6be1132ee549"
+  },
+  {
+    "path": "site-metadata.json",
+    "bytes": 835,
+    "sha256": "8191ec3e8a4dcb8eafff5b1974d34ae324ebf5e5cc77fb761b8a258863956277"
+  },
+  {
+    "path": "source-manifest.json",
+    "bytes": 453867,
+    "sha256": "2d016bdd9b3fc3fafa8bf6ad6d19ed25648b4946dbc265c414a5700c6c8a98ad"
+  },
+  {
+    "path": "summary.json",
+    "bytes": 538,
+    "sha256": "c42d277a40cefa69545daab3513bf4b0cbc7e16c11e7164ee441ac4c631c56a1"
+  },
+  {
+    "path": "warnings.json",
+    "bytes": 109172,
+    "sha256": "683d0bdef339fb0f1c9ab7781393d3f0c3d54d6e50ea462acfa1ad28c9aeb394"
+  }
+]

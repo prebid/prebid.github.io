@@ -1,0 +1,17 @@
+{
+  "command": [
+    "npm",
+    "ci",
+    "--offline",
+    "--include=dev",
+    "--ignore-scripts",
+    "--no-audit",
+    "--no-fund",
+    "--cache",
+    "/tmp/prebid-docusaurus-audit/npm-cache"
+  ],
+  "exit_code": 0,
+  "policy": "offline locked reinstall including dev dependencies; lifecycle scripts disabled; populated cache required",
+  "fresh_network_install": false,
+  "error": null
+}

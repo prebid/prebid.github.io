@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "source_commit": "7a164dbc02f481c2dbca01e0d000bf10bed6903d",
+  "source_tree": "e98bfb1ac693d3f6eb650d8211260413999ef8c2",
+  "source_manifest_sha256": "2d016bdd9b3fc3fafa8bf6ad6d19ed25648b4946dbc265c414a5700c6c8a98ad",
+  "lock_sha256": "b37b530b9f747880b2cbeb650c5570b4f726b20948968a9896fd8ad535ef7830",
+  "tool_sha256": "32f605a36c54dd89f2768e80930d7db59ce97b074eca6e355791e2ad541041f2",
+  "tool_unchanged": true,
+  "node": "v24.18.0",
+  "npm": "11.16.0",
+  "platform": "darwin",
+  "architecture": "arm64",
+  "os_release": "24.6.0",
+  "full_history": true,
+  "command": [
+    "node",
+    "node_modules/@docusaurus/core/bin/docusaurus.mjs",
+    "build"
+  ],
+  "environment": {
+    "PATH": "/Users/quantum/.nvm/versions/node/v24.18.0/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+    "HOME": "/Users/quantum",
+    "TMPDIR": "/var/folders/fm/g81kw2wx5t516g2f6my51hs00000gn/T",
+    "CI": "true",
+    "NODE_ENV": "production",
+    "TZ": "UTC",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "NO_UPDATE_NOTIFIER": "1",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "GIT_CONFIG_GLOBAL": "/dev/null"
+  },
+  "started_at": "2026-10-04T19:09:42.375Z",
+  "finished_at": "2026-10-04T19:11:00.020Z",
+  "exit_code": 0,
+  "signal": null,
+  "error": null,
+  "source_unchanged": true,
+  "status_after": "",
+  "success_banner": true,
+  "evidence_scope": "local_control_build"
+}

@@ -1,6 +1,8 @@
 # Migration evidence and commands
 
 Start with [M0_BASELINE.md](M0_BASELINE.md) for measured state and explicit limits.
+The [pre-M1 review](PRE_M1_REVIEW.md) records the subsequent delivery checks and
+collector/reference-verifier corrections.
 [REFERENCE_CONTRACT.md](REFERENCE_CONTRACT.md) explains the independent legacy
 source cases. [CONTEXT_NOTES.md](CONTEXT_NOTES.md) carries durable lessons.
 The [execution plan](../DOCUSAURUS_EXECUTION_PLAN.md) controls sequencing and open
@@ -93,6 +95,9 @@ Compressed JSON is retained with its uncompressed hash. For inspection, decompre
 into a new temporary file and verify that hash before giving it to the verifiers.
 The human report identifies the accepted run. Earlier development probes are not
 substitutes for that accepted run or a passing production gate.
+
+Historical package hashes identify their archived tool/test revisions. Compare
+them with those revisions, not automatically with corrected current scripts.
 
 After a meaningful source/lock/tool change, generate a new receipt directory and
 compare the relevant observations. Preserve historical receipts rather than
