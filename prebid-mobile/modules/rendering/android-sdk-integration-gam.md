@@ -41,6 +41,21 @@ App module build.gradle:
 implementation('org.prebid:prebid-mobile-sdk-gam-event-handlers:x.x.x')
 ```
 
+### Custom Targeting for GAM Requests
+
+(requires SDK v3.4.0)
+
+The event handlers build the GAM ad request themselves. To add your own targeting or other request settings, set an `AdManagerRequestConfiguration` on the banner, interstitial, or rewarded event handler:
+
+```kotlin
+val eventHandler = GamBannerEventHandler(requireContext(), GAM_AD_UNIT, GAM_AD_SIZE)
+eventHandler.setAdManagerRequestConfiguration { builder ->
+    builder.addCustomTargeting("section", "sports")
+}
+```
+
+`GamInterstitialEventHandler` and `GamRewardedEventHandler` provide the same `setAdManagerRequestConfiguration()` method. The SDK calls the configuration before every GAM ad request. When there is a Prebid bid, the SDK adds its own targeting keys, such as `hb_pb`, afterwards, so they override values you set under the same keys.
+
 ## AdUnit-Specific instructions
 
 This section covers integration details for different ad formats. In each scenario, you'll be asked for a `configId` - this is a key worked out with your Prebid Server provider. It's used at runtime to pull in the bidders and parameters specific to this adunit. Depending on your Prebid Server partner, it may be a UUID or constructed out of parts like an account number and adunit name.
@@ -104,8 +119,18 @@ Call the `loadAd()` method to make a bid request.
 For **Non-Instream Video** you also need to specify video placement type of the expected ad:
 
 ```kotlin
-bannerView.videoPlacementType = PlacementType.IN_BANNER // or any other available type
+bannerView.videoPlacementType = VideoPlacementType.IN_BANNER // or any other available type
 ```
+
+Setting the placement type switches the ad unit to a video-only request. To let display and video demand compete for the same banner, set the ad unit formats (requires SDK v3.4.0):
+
+```kotlin
+bannerView.setAdUnitFormats(EnumSet.of(AdUnitFormat.BANNER, AdUnitFormat.VIDEO))
+// Optional: the placement type of the video ad
+bannerView.videoPlacementType = VideoPlacementType.IN_BANNER
+```
+
+Once the formats are set with `setAdUnitFormats()`, `setVideoPlacementType()` keeps them and only sets the placement type. A null or empty set is ignored, and the current value is kept. Auto-refresh waits while a video creative is playing.
 
 #### Migrating banners from a Bidding-Only integration
 
@@ -313,6 +338,10 @@ Integration:
 2. Implement the interface for `RewardedAdUnitListener`.
 3. Remove the original `RewardedVideoAdUnit`.
 4. Follow the instructions to integrate [Rewarded API](#rewarded).
+
+## Ad Expiration
+
+{% include mobile/rendering-ad-expiration-android.md %}
 
 ## Additional Ad Unit Configuration
 

@@ -52,7 +52,7 @@ Prebid.shared.customStatusEndpoint="https://pbs.example.com/v2/status"
 | shareGeoLocation | optional | boolean | ORTB | If this flag is true AND the app collects the user’s geographical location data, Prebid Mobile will send the user’s lat/long geographical location data to the Prebid Server. The default is false. | `true` |
 | locationUpdatesEnabled | optional | boolean | ORTB | If true, the SDK will periodically try to listen for location updates. Default is `false`. | `true` |
 | logLevel | optional | enum | SDK control | This property controls the level of logging output to the console. The value can be .error, .info, .debug, .verbose, .warn, .severe, and .info. The default is `.debug`. | `.error` |
-| debugLogFileEnabled | optional | boolean | SDK control | If set to true, the output of PrebidMobile's internal logger is written to a text file. Default is `false`. | `true` |
+| debugLogFileEnabled | optional | boolean | SDK control | If set to true, the output of PrebidMobile's internal logger is written to a text file. Starting from PrebidMobile `3.4.0`, the file is also written in Release builds and when the SDK is integrated as a prebuilt XCFramework. Default is `false`. | `true` |
 | timeoutMillis | optional | integer | init | (SDK v1.2+) The Prebid SDK timeout. When this number of milliseconds passes, the Prebid SDK returns control to the ad server SDK to fetch an ad without Prebid bids. | 1000 |
 | creativeFactoryTimeout | optional | integer | SDK control | Controls how long a banner creative has to load before it is considered a failure. This value is in seconds. The default is 6 seconds. | 10 |
 | creativeFactory<wbr>TimeoutPreRenderContent | optional | integer | SDK control | Controls how much time video and interstitial creatives have to load before it is considered a failure. This value is in seconds. The default is 30 seconds. | 60 |
@@ -60,10 +60,12 @@ Prebid.shared.customStatusEndpoint="https://pbs.example.com/v2/status"
 | pbsDebug | optional | boolean | ORTB | Adds the debug flag (`test`:1) on the outbound http call to the Prebid Server. The `test` flag signals to the Prebid Server to emit the full resolved request and the full Bid Request and Bid Response to and from each bidder. | true |
 | shouldAssign<wbr>NativeAssetID | optional | boolean | ORTB | Whether to automatically assign an assetID for a Native ad. Default is `false`. | true |
 | useCacheForReporting<wbr>WithRenderingAPI | optional | boolean | ORTB | Indicates whether PBS should cache the bid on the server side. If the value is `true` the Prebid SDK will make the cache request to retrieve the cached asset. Default is `false`. | true |
+| filterOutUncachedBids | optional | boolean | SDK control | (requires SDK v3.4.0) Applies to the Original API only. If `true`, the SDK drops bids that have no successful Prebid Cache entry (`bid.ext.prebid.cache`) before passing targeting to the ad server. See [Filtering uncached bids](#filtering-uncached-bids). Replaces `requireServerSideBidCache`, which shipped in SDK 3.3.2 to 3.3.4. Default is `false`. | `true` |
 | useExternal<wbr>ClickthroughBrowser | optional | boolean | SDK control | Starting from PrebidMobile `3.0.0` the property is removed<wbr>Controls whether to use PrebidMobile's in-app browser or the Safari App for displaying ad clickthrough content. Default is false. | true |
 | impClickbrowserType | optional | enum | ORTB | Starting from PrebidMobile `3.0.0` the property is removed<wbr>Indicates the type of browser opened upon clicking the creative in an app. This corresponds to the OpenRTB imp.clickbrowser field. Values are "embedded" and "native". Default is "native". | "native". |
 | includeWinners | optional | boolean | ORTB | If `true`, Prebid sdk will add `includewinners` flag inside the targeting object described in [PBS Documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . Default is `false`. | `true` |
 | includeBidderKeys | optional | boolean | ORTB | If `true`, Prebid sdk will add `includebidderkeys` flag inside the targeting object described in [PBS Documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . Default is `false`. | `true` |
+| eidsPlacement | optional | enum | ORTB | (requires SDK v3.4.0) Where the SDK places Extended IDs in the bid request: `.openRTB26` (`user.eids`), `.openRTB25` (`user.ext.eids`), or `.compatible` (both). See [EID placement](#eid-placement). Default is `.compatible`. | `.openRTB26` |
 | eventDelegate | optional | PrebidEventDelegate | init | Sets an event delegate to handle all auction requests and responses. It allows to collect some statistical data. Note that the SDK stores this callback as a weak reference so you need to store a reference to it. | `class PrebidEventDelegateTestsMockDelegate: PrebidEventDelegate { func prebidBidRequestDidFinish(requestData: Data?, responseData: Data?) { ... } }` |
 | shouldDisableStatusCheck | optional | boolean | init | If `true`, the SDK will not check the PBS status during initialization. This will save initialization time if the PBS endpoint is always live and handled client side. Default is `false`. | `true` |
 
@@ -136,6 +138,38 @@ func clearCustomHeaders()
 
 Parameters: none
 
+### Filtering uncached bids
+
+(requires SDK v3.4.0)
+
+With the Original API, the ad server renders a Prebid bid through the Prebid Universal Creative, which loads the creative from Prebid Cache. A bid without a successful cache entry wins in the ad server but can't render. Set `filterOutUncachedBids` to drop these bids before their targeting reaches the ad server:
+
+```swift
+Prebid.shared.filterOutUncachedBids = true
+
+prebidAdUnit.fetchDemand(adObject: gamRequest, request: prebidRequest) { bidInfo in
+    switch bidInfo.resultCode {
+    case .prebidDemandFetchSuccess:
+        if bidInfo.topBidFiltered {
+            // The top bid had no cache entry, and a lower-priced cached bid was used instead
+        }
+    case .prebidDemandNoCachedBids:
+        // None of the returned bids had a cache entry, so no Prebid targeting was added
+        break
+    default:
+        break
+    }
+
+    gamBanner.load(gamRequest)
+}
+```
+
+- If the bid Prebid Server chose as the winner is dropped, the highest-priced cached bid takes its place, the result code stays `.prebidDemandFetchSuccess`, and `BidInfo.topBidFiltered` is `true`.
+- The promoted bid carries only the targeting keys Prebid Server returned for it, usually bidder-specific keys such as `hb_pb_bidderA`. Line items that target only `hb_pb` don't match it.
+- If every bid is dropped, the result code is `.prebidDemandNoCachedBids`.
+
+The setting doesn't apply to the Rendering API, which renders the creative from the bid markup and never loads it from Prebid Cache.
+
 ---
 
 ## SDK Console Logging
@@ -144,10 +178,10 @@ The `Log` class is designed to handle logging functionality for the SDK. It allo
 
 ### `Log` Class Properties
 
-| Property     | Type      | Description                                                                                               |
-|--------------|-----------|-----------------------------------------------------------------------------------------------------------|
-| `logLevel`   | `LogLevel`| The current logging level. Only messages at this level or higher will be logged. Default: `.debug`         |
-| `logToFile`  | `Bool`    | Indicates whether logs should also be saved to a file. Default: `false`                                   |
+| Property    | Type       | Description                                                                                                                                                                                |
+|-------------|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `logLevel`  | `LogLevel` | The current logging level. Only messages at this level or higher will be logged. Default: `.debug`                                                                                         |
+| `logToFile` | `Bool`     | Indicates whether logs should also be saved to a file. Starting from PrebidMobile `3.4.0`, the file is also written in Release builds and with the prebuilt XCFrameworks. Default: `false` |
 
 ### `Log` Class Methods
 
@@ -264,7 +298,7 @@ Related functions: getSubjectToGDPR(), getDeviceAccessConsent(), getDeviceAccess
 
 Prebid SDK reads the values for the following keys from the `UserDefaults` object:
 
-- **IABTCF_gdprApplies** - indicates whether the user is subject to GDPR
+- **IABTCF_gdprApplies** - indicates whether the user is subject to GDPR. Starting from PrebidMobile `3.4.0`, only the TCF values `0` and `1` are accepted. Any other stored value is ignored with a warning, and the SDK behaves as if the key were not set.
 - **IABTCF_TCString** - full encoded TC string
 - **IABTCF_PurposeConsents** - indicates the consent status for the purpose.
 
@@ -482,11 +516,46 @@ let fullUserId = ExternalUserId(source: "adserver.org", uids: [uniqueId1, unique
 Targeting.shared.setExternalUserIds([fullUserId])
 ```
 
+Starting from PrebidMobile `3.4.0`, `ExternalUserId` also supports the OpenRTB 2.6 provenance fields:
+
+{: .table .table-bordered .table-striped }
+| Property | Type | Description |
+| --- | --- | --- |
+| inserter | String | Canonical domain of the entity that added the ID to the request. Maps to `user.eids[].inserter`. |
+| matcher | String | Technology that provided the match method in `mm`. Maps to `user.eids[].matcher`. |
+| mm | NSNumber | Match method used by the matcher, from the AdCOM 1.0 "ID Match Methods" list. Maps to `user.eids[].mm`. |
+
+```swift
+let fullUserId = ExternalUserId(source: "adserver.org", uids: [uniqueId1, uniqueId2])
+fullUserId.inserter = "example.com"
+fullUserId.matcher = "example.com"
+fullUserId.mm = 3
+```
+
+### EID placement
+
+(requires SDK v3.4.0)
+
+OpenRTB 2.6 moved EIDs from `user.ext.eids` to `user.eids`. Prebid Server reads `user.eids` and ignores `user.ext.eids` whenever `user.eids` is present. The `Prebid.shared.eidsPlacement` property controls where the SDK sends them:
+
+{: .table .table-bordered .table-striped }
+| Value | EIDs are sent in |
+| --- | --- |
+| `.compatible` (default) | Both `user.eids` and `user.ext.eids` |
+| `.openRTB26` | `user.eids` only |
+| `.openRTB25` | `user.ext.eids` only |
+
+```swift
+Prebid.shared.eidsPlacement = .openRTB26
+```
+
+The placement applies to all EIDs in the request: those set with `setExternalUserIds()`, the Shared ID, and any EIDs added to `user.eids` or `user.ext.eids` through the [global OpenRTB config](#arbitrary-openrtb). The SDK combines both locations into one list, where entries already in `user.eids` aren't added twice, and writes that list to each location the placement enables.
+
 ### Shared ID
 
 The Shared ID is a randomly generated first-party identifier managed by Prebid. It remains the same throughout the current app session unless reset. If local storage access is permitted, the same ID may persist across multiple app sessions indefinitely. However, Shared ID values do not remain consistent across different apps on the same device.
 
-The SDK will include it in the `user.ext.eids` array during auction request if the publisher explicitly permits it:
+The SDK will include it in the EIDs of the bid request (see [EID placement](#eid-placement)) if the publisher explicitly permits it:
 
 ```swift
 Targeting.shared.sendSharedId = true
@@ -527,7 +596,7 @@ Note that several of the properties noted here are also mentioned above for othe
 | Parameter | Scope | Type | Platform | Description | Example |
 | --- | --- | --- | --- | --- | --- |
 | storeURL | recommended | string | both | App store URL for an installed app; for Inventory Quality Guidelines 2.1 compliance. Translates to OpenRTB app.storeurl | `https://apps.apple.com/app/id111111111` |
-| contentUrl | recommended | string | both | This is the deep-link URL for the app screen that is displaying the ad. This can be an iOS universal link. | |
+| contentUrl | deprecated | string | both | Deprecated, will be removed in PrebidMobile 4.0. The SDK does not send this value in the bid request. Set `app.content.url` with [`setGlobalORTBConfig()`](/prebid-mobile/pbm-api/ios/pbm-targeting-ios#arbitrary-openrtb) instead. | |
 | publisherName | recommended | string | both | OpenRTB app.publisher.name | "Example, Co." |
 | itunesID | recommended | string | both | Translates to OpenRTB app.bundle | "11111111" |
 | coppa | optional | integer | objC | Defines whether this content is meant for children. 0=false, 1=true. Defaults to false. | 1 |
@@ -537,7 +606,7 @@ Note that several of the properties noted here are also mentioned above for othe
 | omidPartnerName | optional | string | both | The [IAB OMSDK compliant partner name](https://complianceomsdkapi.iabtechlab.com/compliance/latest) responsible for integrating with the OMSDK spec. | "Google" |
 | omidPartnerVersion | optional | string | both | The OMSDK version number for the integration partner. | "1.0" |
 | userGender | optional | enum | both | "M" = male, "F" = female, "O" = known to be other (i.e., omitted is unknown) | "F" |
-| userExt | optional | array of key-value pairs | both | This is a dictionary of key-value pairs that forms the user.ext object. Prebid requires user-first party data in user.ext.data, so this should be a dictionary that contains a 'data' key whose value is another dictionary. | { data: { key1: val1, key2: val2 }}|
+| userExt | optional | array of key-value pairs | both | This is a dictionary of key-value pairs that forms the user.ext object. Prebid requires user-first party data in user.ext.data, so this should be a dictionary that contains a 'data' key whose value is another dictionary. | { data: { key1: val1, key2: val2 }} |
 | subjectToGDPR | discouraged | boolean | ? | Defines whether this request is in-scope for European privacy regulations. See [above](/prebid-mobile/pbm-api/ios/pbm-targeting-ios#gdpr--tcf-eu) for more information. | `true` |
 | gdprConsentString | discouraged | string | both | See the [GDPR settings](/prebid-mobile/pbm-api/ios/pbm-targeting-ios#gdpr--tcf-eu) section above. | |
 | purposeConsents | discouraged | string | both | See the [GDPR settings](/prebid-mobile/pbm-api/ios/pbm-targeting-ios#gdpr--tcf-eu) section above. | |
@@ -581,10 +650,38 @@ Targeting.shared.setGlobalORTBConfig("")
 
 The `Targeting.shared.setGlobalORTBConfig()` also allows to **add** impression objects to the request. All objects in the `$.imp[]` array will be added to the request. Note that Ad Unit's `imp` object won't be changed using Global Config. To change the `imp` config, use the `setImpORTBConfig()` method of a particular Ad Unit. See the Ad Unit documentation for the details. 
 
+The global config is also the way to set OpenRTB fields that have no dedicated `Targeting` property. For instance, to pass the URL of the content displayed alongside the ad in `$.app.content.url`:
+
+``` swift
+Targeting.shared.setGlobalORTBConfig("{\"app\":{\"content\":{\"url\":\"https://example.com/articles/123\"}}}")
+```
+
+Each call replaces the previously set global config, so put all global-level fields in a single JSON object.
+
 Pay attention that there are certain protected fields such as `regs`, `device`, `geo`, `ext.gdpr`, `ext.us_privacy`, and `ext.consent` which cannot be changed using the `setGlobalORTBConfig()` method.
 
 - App and User first party data should use the [functions defined for those purposes](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#first-party-data)
 - See the [Prebid Server auction endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#prebid-server-ortb2-extension-summary) reference for more information about how it will process incoming fields.
+
+## ORTB Response Customization
+
+Prebid SDK allows customizing the parsing of the types used to represent the ORTB response. Use `CustomModelObjects.registerCustomType(_:)` to specify the custom types to use and override the `init(jsonDictionary:)` with custom parsing logic.
+
+```swift
+class MyCustomORTBBidResponse: ORTBBidResponse {
+    
+    var myCustomField: String?
+    
+    required init(jsonDictionary: [String : Any]) {
+        myCustomField = jsonDictionary["customString"] as? String
+        super.init(jsonDictionary: jsonDictionary)
+    }
+}
+
+CustomModelObjects.registerCustomType(MyCustomORTBBidResponse.self)
+```
+
+You can use this to access custom or unsupported fields from the prebid response, or to modify the response at your own risk.
 
 ## Further Reading
 
