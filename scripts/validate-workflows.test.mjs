@@ -41,7 +41,14 @@ test('PR validation uses an unprivileged full-history candidate with retained ev
   assert.equal(upload.if, 'always()');
   assert.equal(upload.with['include-hidden-files'], true);
   assert.equal(upload.with['if-no-files-found'], 'error');
-  for (const step of steps.filter(step => step.uses)) assert.match(step.uses, /^actions\/(checkout|setup-node|upload-artifact)@[a-f0-9]{40}$/);
+  for (const step of steps.filter(step => step.uses)) assert.match(step.uses, /^(?:actions\/(checkout|setup-node|upload-artifact)|ruby\/setup-ruby)@[a-f0-9]{40}$/);
+  const ruby = steps.find(step => step.uses?.startsWith('ruby/setup-ruby@'));
+  assert.equal(ruby.with['ruby-version'], '3.3.4');
+  assert.equal(ruby.with['bundler-cache'], false);
+  const legacy = steps.find(step => step.name === 'Install pinned legacy template probes');
+  assert.ok(legacy.run.includes('node scripts/migration-legacy-consumers.mjs'));
+  assert.ok(legacy.run.includes('liquid --version 4.0.4'));
+  assert.ok(legacy.run.includes('safe_yaml --version 1.0.5'));
 });
 
 test('a base retarget remains subscribed even when the candidate SHA does not change', () => {

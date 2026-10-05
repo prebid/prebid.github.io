@@ -8,6 +8,7 @@ import {createRequire} from 'node:module';
 import {fileURLToPath} from 'node:url';
 import {parseArgs} from 'node:util';
 import {isUtf8} from 'node:buffer';
+import {validateBidderComponentUses} from './validate-bidder-component.mjs';
 
 const require = createRequire(import.meta.url);
 const {loadSiteConfig} = require('@docusaurus/core/lib/server/config.js');
@@ -214,6 +215,10 @@ export async function compileAuthoredFile({filePath, fileContent, siteDir, siteC
   const messages = [];
   let imports = [];
   let format = null;
+  let bidderComponentCalls = 0;
+  function validateComponents() {
+    return tree => { bidderComponentCalls = validateBidderComponentUses(tree, {siteDir, filePath}); };
+  }
   function captureDiagnostics() {
     return (tree, file) => {
       imports = collectMdxImports(tree);
@@ -234,9 +239,9 @@ export async function compileAuthoredFile({filePath, fileContent, siteDir, siteC
       ...options, siteDir, staticDirs: siteConfig.staticDirectories.map(directory => path.resolve(siteDir, directory)),
       markdownConfig: siteConfig.markdown,
       // Apply the established lint rule to the parser's actual tree in either format.
-      remarkPlugins: [...options.remarkPlugins, formattingPlugin, captureDiagnostics],
+      remarkPlugins: [...options.remarkPlugins, formattingPlugin, validateComponents, captureDiagnostics],
     }});
-    return {format, imports, diagnostics: messages, compiled: true};
+    return {format, imports, diagnostics: messages, compiled: true, bidderComponentCalls};
   } catch (error) {
     const cause = error.cause ?? error;
     return {format, imports, compiled: false, diagnostics: [...messages, {kind: 'compilation', rule_id: 'docusaurus:source-compilation',
@@ -322,7 +327,8 @@ export async function validateAuthoredContent({siteDir, siteConfig, siteConfigPa
           message: 'Markdown/MDX source is not valid UTF-8.', line: null, column: null}]};
       const sourcePath = relative(siteDir, file);
       documents.push({path: sourcePath, instance: instance.id, role, format: result.format,
-        sha256: digest(bytes), bytes: bytes.length, compiled: result.compiled});
+        sha256: digest(bytes), bytes: bytes.length, compiled: result.compiled,
+        bidder_component_calls: result.bidderComponentCalls ?? 0});
       diagnostics.push(...result.diagnostics.map(row => ({path: sourcePath, instance: instance.id, ...row})));
       for (const specifier of result.imports) {
         if (!markdownFile(specifier)) continue;
@@ -346,6 +352,9 @@ export async function validateAuthoredContent({siteDir, siteConfig, siteConfigPa
     }
   }
   const scope = {compiler: COMPILER_VERSION, formatter: formatterVersion, rule: RULE, runtime_lock_sha256: runtimeLockSha,
+    bidder_component_contract: {mode: 'literal-default-imports-and-runtime-guard',
+      validator_sha256: digest(fs.readFileSync(new URL('./validate-bidder-component.mjs', import.meta.url))),
+      contract_sha256: digest(fs.readFileSync(new URL('../src/components/BidderFeatures/contract.ts', import.meta.url)))},
     selector: 'classic-docs-pages-and-explicit-markdown-imports-v2',
     markdown: markdownSemantics(siteConfig.markdown),
     instances: discovery.instances.map(instance => ({id: instance.id, root: relative(siteDir, instance.root),

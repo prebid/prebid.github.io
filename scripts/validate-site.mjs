@@ -278,7 +278,8 @@ export function main(argv = process.argv.slice(2)) {
   const env = controlledEnvironment();
   const git = (...args) => run(siteDir, 'git', args, env);
   if (git('rev-parse', '--is-shallow-repository') !== 'false') throw new Error('Full Git history required');
-  const toolNames = ['validate-site.mjs', 'validate-source-state.mjs', 'validate-authored-content.mjs', 'migration-baseline.mjs'];
+  const toolNames = ['validate-site.mjs', 'validate-source-state.mjs', 'validate-authored-content.mjs', 'migration-baseline.mjs',
+    'validate-bidder-component.mjs', '../src/components/BidderFeatures/contract.ts'];
   const sourceOptions = {siteDir, env, toolPaths: toolNames.map(name => path.join(here, name))};
   const initialState = sourceState(sourceOptions);
   const status = initialState.status;

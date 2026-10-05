@@ -6,9 +6,11 @@ M0/M1 foundation are merged into `docusaurus` through
 [PR #6786](https://github.com/prebid/prebid.github.io/pull/6786), at `6a64af8`.
 The [M0 evidence](migration/M0_BASELINE.md) and
 [M1 validation](migration/M1_VALIDATION.md) retain their historical identities.
-The [bounded M2 pilot](migration/M2_PILOT.md) is implemented and locally verified;
-full M2 acceptance remains open on metadata authority, consumer validation, and
-the explicitly listed integration checks. M3 and later remain unimplemented.
+The [bounded M2 pilot](migration/M2_PILOT.md) and
+[consumer follow-up](migration/M2_CONSUMERS.md) provide implemented checks and
+explicit evidence boundaries. Full M2 acceptance remains open on metadata
+authority, remaining consumer integration, and the listed browser/route checks.
+M3 and later remain unimplemented.
 
 The [pre-implementation audit](DOCUSAURUS_PLAN_AUDIT.md) records the October 4
 discovery pass, its evidence, the corrections incorporated here, and its limits.
@@ -205,6 +207,11 @@ checkpoint. It selects staged regeneration for reviewed source-owned outputs
 with explicit repairs and manual reconciliation of existing migration work.
 Both controlled replay methods passed; this is not authority for a wholesale
 restart or full M2 acceptance. The field-policy decisions remain unresolved.
+The consumer follow-up now exercises pinned legacy templates and download
+handlers, audits the source corpus, and validates real React/MDX call sites.
+Nine duplicate-key bidder files remain an explicit normalization worklist.
+Proposed field rules await a recorded maintainer decision; raw source and current
+omitted-value defaults are preserved until then.
 
 * Specify preserved behavior for frontmatter, headings/IDs, tables, warnings,
   includes, code examples, raw HTML, links, images, and format-specific syntax.

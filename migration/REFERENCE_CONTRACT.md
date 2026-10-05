@@ -26,6 +26,12 @@ supplied the expected values. Hashes and selected code payloads were calculated
 from the exact legacy source bytes. Those mechanical extractions do not decide
 content meaning or render the legacy site.
 
+This document preserves the original source-reference boundary. Subsequent
+[M2 consumer evidence](M2_CONSUMERS.md) executes selected legacy template and
+download behavior and tests actual migration consumers. Those newer receipts
+do not retroactively turn every original case into verified rendered parity or
+approve its disputed policies.
+
 Two case statuses preserve the evidence boundary:
 
 * **SOURCE_BACKED:** directly supported source facts or a stated projection of

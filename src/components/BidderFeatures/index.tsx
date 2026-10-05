@@ -1,45 +1,12 @@
 import React from "react";
 import styles from "./styles.module.css";
 
-type CheckWithBidder = "check with bidder";
-type OptionalFlag = boolean | CheckWithBidder;
+import {assertBidderFeaturesProps} from "./contract";
+import type {BidderFeaturesProps, OptionalFlag, MultiFormatSupport, OrtbBlockingSupport} from "./contract";
 
-type GppSids = "tcfeu" | "tcfca" | "usnat" | "usstate_all" | "usp";
-
-type MediaType = "banner" | "video" | "native";
-
-type MultiFormatSupport =
-  | "will-bid-on-any"
-  | "will-bid-on-one"
-  | "will-not-bid"
-  | CheckWithBidder;
-
-type OrtbBlockingSupport = boolean | "partial" | CheckWithBidder;
-
-type BidderFeaturesProps = {
-  biddercode: string;
-  media_types: MediaType[];
-  aliasCode?: string;
-  tcfeu_supported?: boolean;
-  gvl_id?: number;
-  usp_supported?: boolean;
-  coppa_supported?: boolean;
-  gpp_sids?: GppSids[];
-  schain_supported?: OptionalFlag;
-  dchain_supported?: OptionalFlag;
-  userIds: string[];
-  safeframes_ok?: OptionalFlag;
-  deals_supported?: OptionalFlag;
-  floors_supported?: OptionalFlag;
-  fpd_supported?: OptionalFlag;
-  pbjs?: boolean;
-  pbs?: boolean;
-  prebid_member?: boolean;
-  multiformat_supported: MultiFormatSupport;
-  ortb_blocking_supported: OrtbBlockingSupport;
-};
-
-const BidderFeatures: React.FC<BidderFeaturesProps> = ({
+const BidderFeatures: React.FC<BidderFeaturesProps> = (props) => {
+  assertBidderFeaturesProps(props);
+  const {
   biddercode,
   media_types,
   aliasCode,
@@ -60,7 +27,7 @@ const BidderFeatures: React.FC<BidderFeaturesProps> = ({
   ortb_blocking_supported = "check with bidder",
   schain_supported = "check with bidder",
   dchain_supported = "check with bidder",
-}) => {
+} = props;
   const OptionalFlagComponent: React.FC<{
     title?: string;
     flag: OptionalFlag;
@@ -161,19 +128,19 @@ const BidderFeatures: React.FC<BidderFeaturesProps> = ({
   const consentFeatures: [OptionalFlag, React.JSX.Element][] = [
     [
       tcfeu_supported,
-      <OptionalFlagComponent title={`🇪🇺 TCF EU`} flag={tcfeu_supported} />,
+      <OptionalFlagComponent key="tcfeu" title={`🇪🇺 TCF EU`} flag={tcfeu_supported} />,
     ],
     [
       usp_supported,
-      <OptionalFlagComponent title="🇺🇸 USP CCPA" flag={usp_supported} />,
+      <OptionalFlagComponent key="usp" title="🇺🇸 USP CCPA" flag={usp_supported} />,
     ],
     [
       coppa_supported,
-      <OptionalFlagComponent title="🇺🇸 US COPPA" flag={coppa_supported} />,
+      <OptionalFlagComponent key="coppa" title="🇺🇸 US COPPA" flag={coppa_supported} />,
     ],
   ];
-  const consentSupportedFeatures = consentFeatures.filter(([flag]) => flag);
-  const consentUnsupportedFeatures = consentFeatures.filter(([flag]) => !flag);
+  const consentSupportedFeatures = consentFeatures.filter(([flag]) => flag === true);
+  const consentUnsupportedFeatures = consentFeatures.filter(([flag]) => flag === false);
   const consentCheckWithBidderFeatures = consentFeatures.filter(
     ([flag]) => flag === "check with bidder"
   );
@@ -189,7 +156,7 @@ const BidderFeatures: React.FC<BidderFeaturesProps> = ({
         <div className="col">
           <span className={styles.metaName}>Media Types</span>
           {media_types.map((media_type) => (
-            <span className="badge badge--primary margin-right--sm">
+            <span key={media_type} className="badge badge--primary margin-right--sm">
               {media_type}
             </span>
           ))}
@@ -219,7 +186,7 @@ const BidderFeatures: React.FC<BidderFeaturesProps> = ({
       </div>
       <h3>🤝 Consent</h3>
 
-      {gvl_id && (
+      {gvl_id !== undefined && (
         <div className={styles.meta}>
           <div className={styles.metaName}>GVL ID</div>
           <div className="badge badge--primary">{gvl_id}</div>
@@ -250,9 +217,9 @@ const BidderFeatures: React.FC<BidderFeaturesProps> = ({
 
       {consentCheckWithBidderFeatures.length > 0 && (
         <div className={styles.meta}>
-          <div className={styles.metaName}>Unsupported</div>
+          <div className={styles.metaName}>Check with bidder</div>
           <div className={styles.metaMultipleValues}>
-            {consentUnsupportedFeatures.map(([, component]) => component)}
+            {consentCheckWithBidderFeatures.map(([, component]) => component)}
           </div>
         </div>
       )}
@@ -262,7 +229,7 @@ const BidderFeatures: React.FC<BidderFeaturesProps> = ({
         <div className={styles.metaMultipleValues}>
           {gpp_sids ? (
             gpp_sids.map((sid) => (
-              <span className="badge badge--primary">{sid}</span>
+              <span key={sid} className="badge badge--primary">{sid}</span>
             ))
           ) : (
             <span className="badge badge--secondary">check with bidder</span>
@@ -279,7 +246,7 @@ const BidderFeatures: React.FC<BidderFeaturesProps> = ({
             <span className="badge badge--danger">none</span>
           ) : (
             userIds.map((userId) => (
-              <span className="badge badge--primary margin-right--sm">
+              <span key={userId} className="badge badge--primary margin-right--sm">
                 {userId}
               </span>
             ))

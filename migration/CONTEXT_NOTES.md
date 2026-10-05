@@ -48,6 +48,33 @@ the decisions that should survive a fresh session.
   verifies both Tabs payloads/default in SSR, while hydration, keyboard use, and
   accessibility remain distinct follow-up evidence.
 
+## Lessons demonstrated by M2 consumer checks
+
+* Measure parser differences before normalizing fields. Bare YAML scalar spellings
+  and duplicate keys have different handling in the strict migration parser and
+  the documented legacy parser. Preserve raw bytes, input hashes, and separate
+  counts; a partially parsed census is not a complete source population.
+* Run the actual template expressions and browser handlers with controlled effects.
+  Reimplementing their algorithms would miss ambient Liquid scope, minimum-version
+  and rename interactions, alias identity, and stale closure state after imports.
+  Offline DOM tests do not establish browser layout, transport encoding, or backend
+  behavior; retain that distinction in every receipt.
+* Validate component uses inside embedded ESTree as well as visible MDX nodes.
+  JSX nested in expressions or attributes can otherwise bypass a source gate.
+  Record checked call counts; recognize imported aliases and handle React's
+  intrinsic key separately from component props.
+* Check array density before treating nonempty length as nonempty content.
+  JavaScript `every` skips sparse holes, so an apparently valid array can render
+  zero items. Preserve a dense valid restoration control.
+* A UI correction should leave producer metadata intact. The bidder-index fix
+  changes its strict support predicate; it does not rewrite raw strings into
+  guessed booleans or silently change CSV/download membership.
+* Reproduce the original findings after repairs through actual rendered components
+  and the authored-content runner. Shared contract code must be included in tool
+  hashes/source-drift guards as well as unit tests.
+* Keep recommendations, user/maintainer decisions, and executed behavior separate.
+  The concrete open choices and corpus impact are in [M2_CONSUMERS.md](M2_CONSUMERS.md).
+
 ## Lessons demonstrated by M0 tooling review
 
 * Control build environment and installation policy explicitly. Inherited

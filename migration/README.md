@@ -9,6 +9,8 @@ source cases. [CONTEXT_NOTES.md](CONTEXT_NOTES.md) carries durable lessons.
 authored-content/regression runner, including its acceptance boundaries.
 [M2_PILOT.md](M2_PILOT.md) records the bounded two-snapshot converter pilot,
 lossless metadata contract, independent checks, and remaining acceptance gates.
+[M2_CONSUMERS.md](M2_CONSUMERS.md) records the subsequent corpus census, legacy
+runtime/download observations, actual React/MDX checks, and proposed policy choices.
 The [execution plan](../DOCUSAURUS_EXECUTION_PLAN.md) controls sequencing and open
 decisions; these tools do not authorize deployment or resolve domain policies.
 

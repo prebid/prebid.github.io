@@ -1,0 +1,10 @@
+{
+  "authority": "https://pages.github.com/versions/",
+  "checked_on": "2026-10-04",
+  "documented_ruby": "3.3.4",
+  "limit": "Documented GitHub Pages dependencies, not attestation of a particular deployed build. Local Ruby version is reported separately.",
+  "gems": {
+    "liquid": {"version": "4.0.4", "sha256": "4fcfebb1a045e47918388dbb7a0925e7c3893e58d2bd6c3b3c73ec17a2d8fdb3"},
+    "safe_yaml": {"version": "1.0.5", "sha256": "a6ac2d64b7eb027bdeeca1851fe7e7af0d668e133e8a88066a0c6f7087d9f848"}
+  }
+}

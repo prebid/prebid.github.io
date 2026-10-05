@@ -1,0 +1,834 @@
+{
+  "schema_version": 1,
+  "kind": "independent-bidder-consumer-expectations",
+  "reference_commit": "b16d95ac1ee95238c070bc9f137d52718287d1cc",
+  "observed_consumer_commit": "f7104eb7c56006ec6f58172168fc1aca3e42dbca",
+  "authority": "Pinned source/templates/guide and independent real React static-render probes. Unambiguous display/data invariants are separate from source projections and maintainer policy decisions. No parent implementation or tests supplied expected values.",
+  "artifacts": {
+    "features": {
+      "commit": "f7104eb7c56006ec6f58172168fc1aca3e42dbca",
+      "path": "src/components/BidderFeatures/index.tsx",
+      "sha256": "93e322fd946f5a485a9dfc4cbb95d2bf472e8481547e259d2201d4d0372f7b5b",
+      "bytes": 9921,
+      "relevant_lines": [
+        [
+          4,
+          40
+        ],
+        [
+          42,
+          91
+        ],
+        [
+          161,
+          179
+        ],
+        [
+          220,
+          287
+        ]
+      ]
+    },
+    "index": {
+      "commit": "f7104eb7c56006ec6f58172168fc1aca3e42dbca",
+      "path": "docs/dev-docs/prebidjs/index.mdx",
+      "sha256": "7e1862d5849f93f201af10643253eb4df7c747484bcdabccf65a76b44c628892",
+      "bytes": 570,
+      "relevant_lines": [
+        [
+          7,
+          30
+        ]
+      ]
+    },
+    "toc": {
+      "commit": "f7104eb7c56006ec6f58172168fc1aca3e42dbca",
+      "path": "_plugins/toc-plugin.ts",
+      "sha256": "07a57ddffa9208b6df0976f785c964aa22b5f12a04e235b4b771e0c33980f3ea",
+      "bytes": 1906,
+      "relevant_lines": [
+        [
+          30,
+          48
+        ]
+      ]
+    },
+    "registration": {
+      "commit": "f7104eb7c56006ec6f58172168fc1aca3e42dbca",
+      "path": "docusaurus.config.ts",
+      "sha256": "dbabe14b8b885821501bb0e4df0021e707c23306492e833f0988d2c25afa1daf",
+      "bytes": 7300,
+      "relevant_lines": [
+        [
+          249,
+          253
+        ]
+      ]
+    },
+    "addefend_caller": {
+      "commit": "f7104eb7c56006ec6f58172168fc1aca3e42dbca",
+      "path": "docs/dev-docs/prebidjs/bidders/addefend.mdx",
+      "sha256": "66757e671a6d7a24e500c42db8234ca5be561b7058e3f236f9504b592d1a1b3d",
+      "bytes": 995,
+      "relevant_lines": [
+        [
+          1,
+          21
+        ]
+      ]
+    },
+    "current_adgeneration": {
+      "commit": "f7104eb7c56006ec6f58172168fc1aca3e42dbca",
+      "path": "docs/dev-docs/prebidjs/bidders/adgeneration.mdx",
+      "sha256": "df8bb0a270d98297ed371037ed914c2c18facd9dadcf41375fc77cc1fc04f204",
+      "bytes": 1598,
+      "relevant_lines": [
+        [
+          1,
+          14
+        ]
+      ]
+    },
+    "current_manifest": {
+      "commit": "f7104eb7c56006ec6f58172168fc1aca3e42dbca",
+      "path": "docs/dev-docs/prebidjs/bidders.json",
+      "sha256": "f98bd196df7322fa09911a625121e905f418a2495617f8e952937a8f8f694026",
+      "bytes": 459482,
+      "relevant_lines": []
+    },
+    "legacy_metadata": {
+      "commit": "b16d95ac1ee95238c070bc9f137d52718287d1cc",
+      "path": "_includes/dev-docs/bidder-meta-data.html",
+      "sha256": "9743a382eb9d11ff9c16f57cd9f2b654adacb2879b82c95d930d3ee8bda57403",
+      "bytes": 4924,
+      "relevant_lines": [
+        [
+          5,
+          24
+        ],
+        [
+          27,
+          42
+        ],
+        [
+          45,
+          71
+        ]
+      ]
+    },
+    "legacy_guide": {
+      "commit": "b16d95ac1ee95238c070bc9f137d52718287d1cc",
+      "path": "dev-docs/bidder-adaptor.md",
+      "sha256": "812b9fe1d0e594cbb883f1fa4a7277995858664a988bfc11bd37f79d6d58186f",
+      "bytes": 72239,
+      "relevant_lines": [
+        [
+          1343,
+          1362
+        ],
+        [
+          1373,
+          1394
+        ]
+      ]
+    },
+    "legacy_listing": {
+      "commit": "b16d95ac1ee95238c070bc9f137d52718287d1cc",
+      "path": "dev-docs/bidders.md",
+      "sha256": "0cd7e006e262a1a08860e414e52c1dfbd8385341c7ae5bb76e5129ba6ad558c1",
+      "bytes": 4713,
+      "relevant_lines": [
+        [
+          23,
+          23
+        ]
+      ]
+    },
+    "legacy_adgeneration": {
+      "commit": "b16d95ac1ee95238c070bc9f137d52718287d1cc",
+      "path": "dev-docs/bidders/adgeneration.md",
+      "sha256": "fb7bc0723458aa3e310dd2ae245cb09e9fc7a36dbc8c770c3f27558e7ee1c004",
+      "bytes": 1684,
+      "relevant_lines": [
+        [
+          1,
+          14
+        ]
+      ]
+    },
+    "legacy_addefend": {
+      "commit": "b16d95ac1ee95238c070bc9f137d52718287d1cc",
+      "path": "dev-docs/bidders/addefend.md",
+      "sha256": "bd59402defa7747db908f9b6126cc816a66cb0403f76a8b4268e7c482b7fd858",
+      "bytes": 811,
+      "relevant_lines": [
+        [
+          1,
+          11
+        ]
+      ]
+    },
+    "legacy_rtbdemand": {
+      "commit": "b16d95ac1ee95238c070bc9f137d52718287d1cc",
+      "path": "dev-docs/bidders/rtbdemand_com.md",
+      "sha256": "7492fcbca84723c3c4fc5be7bdd6122ca5bc586cc818a31f028a381f75f7d9e3",
+      "bytes": 1177,
+      "relevant_lines": [
+        [
+          5,
+          16
+        ]
+      ]
+    },
+    "legacy_bidsxchange": {
+      "commit": "b16d95ac1ee95238c070bc9f137d52718287d1cc",
+      "path": "dev-docs/bidders/bidsxchange.md",
+      "sha256": "32709a001d1df0aa9d8b8f628f7a00ce604907ab7bc71d07466daf535dbfb070",
+      "bytes": 2927,
+      "relevant_lines": [
+        [
+          5,
+          21
+        ]
+      ]
+    },
+    "legacy_appnexus": {
+      "commit": "b16d95ac1ee95238c070bc9f137d52718287d1cc",
+      "path": "dev-docs/bidders/appnexus.md",
+      "sha256": "267fac789a0a520b3e7a04761377925653ac1ac58e02f26a7cf0115d7c6896c3",
+      "bytes": 19477,
+      "relevant_lines": [
+        [
+          5,
+          20
+        ]
+      ]
+    },
+    "legacy_browsi": {
+      "commit": "b16d95ac1ee95238c070bc9f137d52718287d1cc",
+      "path": "dev-docs/bidders/browsi.md",
+      "sha256": "aa4f3418fe24f285abc5abdd9dfcda91acee7ec1b6e0a33a017f0d789eb8c49d",
+      "bytes": 1301,
+      "relevant_lines": [
+        [
+          5,
+          13
+        ]
+      ]
+    }
+  },
+  "cases": [
+    {
+      "id": "consent-explicit-three-way-partition",
+      "status": "UNAMBIGUOUS_DISPLAY",
+      "consumer": "BidderFeatures",
+      "input": {
+        "biddercode": "fixture",
+        "media_types": [
+          "banner"
+        ],
+        "userIds": [],
+        "tcfeu_supported": true,
+        "usp_supported": false,
+        "coppa_supported": "check with bidder"
+      },
+      "expected": {
+        "groups": {
+          "Supported": [
+            "tcfeu_supported"
+          ],
+          "Unsupported": [
+            "usp_supported"
+          ],
+          "Check with bidder": [
+            "coppa_supported"
+          ]
+        },
+        "badge_aria": {
+          "tcfeu_supported": "yes",
+          "usp_supported": "no",
+          "coppa_supported": "check with bidder"
+        },
+        "each_feature_occurrences": 1,
+        "duplicate_group_labels": false
+      },
+      "evidence": [
+        "features",
+        "legacy_metadata"
+      ],
+      "boundary": "Explicit tri-state values only. This does not choose a meaning for omitted fields."
+    },
+    {
+      "id": "consent-all-explicit-false",
+      "status": "UNAMBIGUOUS_DISPLAY",
+      "consumer": "BidderFeatures",
+      "input": {
+        "biddercode": "fixture",
+        "media_types": [
+          "banner"
+        ],
+        "userIds": [],
+        "tcfeu_supported": false,
+        "usp_supported": false,
+        "coppa_supported": false
+      },
+      "expected": {
+        "groups": {
+          "Supported": [],
+          "Unsupported": [
+            "tcfeu_supported",
+            "usp_supported",
+            "coppa_supported"
+          ],
+          "Check with bidder": []
+        },
+        "each_feature_occurrences": 1,
+        "badge_aria": "no"
+      },
+      "evidence": [
+        "legacy_metadata",
+        "features"
+      ]
+    },
+    {
+      "id": "consent-all-explicit-true",
+      "status": "UNAMBIGUOUS_DISPLAY",
+      "consumer": "BidderFeatures",
+      "input": {
+        "biddercode": "fixture",
+        "media_types": [
+          "banner"
+        ],
+        "userIds": [],
+        "tcfeu_supported": true,
+        "usp_supported": true,
+        "coppa_supported": true
+      },
+      "expected": {
+        "groups": {
+          "Supported": [
+            "tcfeu_supported",
+            "usp_supported",
+            "coppa_supported"
+          ],
+          "Unsupported": [],
+          "Check with bidder": []
+        },
+        "each_feature_occurrences": 1,
+        "badge_aria": "yes"
+      },
+      "evidence": [
+        "legacy_metadata",
+        "features"
+      ]
+    },
+    {
+      "id": "consent-malformed-explicit-values",
+      "status": "BOUNDARY_INVARIANTS_WITH_PENDING_DISPLAY",
+      "consumer": "BidderFeatures",
+      "base_input": {
+        "biddercode": "fixture",
+        "media_types": [
+          "banner"
+        ],
+        "userIds": []
+      },
+      "fields": [
+        "tcfeu_supported",
+        "usp_supported",
+        "coppa_supported"
+      ],
+      "variants": [
+        {
+          "value": null
+        },
+        {
+          "value": "false"
+        },
+        {
+          "value": "true"
+        },
+        {
+          "value": "no"
+        }
+      ],
+      "required_invariants": [
+        "Do not classify string values as supported by JavaScript truthiness.",
+        "Do not silently omit the affected feature through a switch with no matching arm.",
+        "Preserve raw value and type in producer data."
+      ],
+      "pending_decision": "Reject at the component/metadata boundary or display an explicit neutral/invalid state; this fixture does not approve a coercion rule.",
+      "legacy_projection": {
+        "tcfeu_supported": "no unless boolean true",
+        "usp_supported": "check with bidder unless boolean true or boolean false",
+        "coppa_supported": "check with bidder unless boolean true or boolean false"
+      },
+      "evidence": [
+        "legacy_metadata",
+        "features"
+      ]
+    },
+    {
+      "id": "index-strict-client-server-predicate",
+      "status": "UNAMBIGUOUS_PREDICATE",
+      "consumer": "prebidjs-index",
+      "fields": [
+        "pbjs",
+        "pbs"
+      ],
+      "variants": [
+        {
+          "input": true,
+          "expected_text": "true"
+        },
+        {
+          "input": false,
+          "expected_text": "false"
+        },
+        {
+          "input": "true",
+          "expected_text": "false"
+        },
+        {
+          "input": "false",
+          "expected_text": "false"
+        },
+        {
+          "input": "no",
+          "expected_text": "false"
+        },
+        {
+          "input": null,
+          "expected_text": "false"
+        },
+        {
+          "omit_field": true,
+          "expected_text": "false"
+        }
+      ],
+      "evidence": [
+        "legacy_metadata",
+        "legacy_guide",
+        "index"
+      ],
+      "boundary": "These columns report whether the value is explicitly boolean true. Raw metadata stays unchanged; this is not general boolean normalization or a bidder-list membership policy."
+    },
+    {
+      "id": "existing-adgeneration-server-cell",
+      "status": "UNAMBIGUOUS_DISPLAY",
+      "consumer": "prebidjs-index",
+      "input": {
+        "title": "Ad Generation",
+        "meta": {
+          "pbjs": true,
+          "pbs": "no"
+        }
+      },
+      "expected": {
+        "client_text": "true",
+        "server_text": "false",
+        "raw_pbs_preserved": "no"
+      },
+      "evidence": [
+        "current_adgeneration",
+        "current_manifest",
+        "legacy_adgeneration",
+        "legacy_metadata"
+      ],
+      "current_observation": "Independent static render of the existing index and actual manifest entry showed true/true."
+    },
+    {
+      "id": "annotated-gvl-preserves-information",
+      "status": "UNAMBIGUOUS_PRESERVATION",
+      "consumer": "BidderFeatures",
+      "variants": [
+        {
+          "input": "14 (adkernel)",
+          "visible_text": "14 (adkernel)"
+        },
+        {
+          "input": "410 (adtelligent)",
+          "visible_text": "410 (adtelligent)"
+        },
+        {
+          "input": 539,
+          "visible_text": "539"
+        },
+        {
+          "input": "539",
+          "visible_text": "539"
+        }
+      ],
+      "required_invariants": [
+        "Do not parseInt or drop the parenthetical adapter identity.",
+        "Do not require raw GVL values to be numeric before preserving/displaying their content."
+      ],
+      "evidence": [
+        "legacy_metadata",
+        "legacy_rtbdemand",
+        "legacy_bidsxchange",
+        "addefend_caller"
+      ],
+      "boundary": "The current component already displays annotated strings at runtime; its declared number-only type is narrower. This does not validate membership in a live GVL."
+    },
+    {
+      "id": "gvl-zero-must-not-leak-unlabelled-text",
+      "status": "UNAMBIGUOUS_RENDER_INVARIANT",
+      "consumer": "BidderFeatures",
+      "input": {
+        "biddercode": "fixture",
+        "media_types": [
+          "banner"
+        ],
+        "userIds": [],
+        "gvl_id": 0
+      },
+      "expected": {
+        "bare_unlabelled_zero_after_consent_heading": false
+      },
+      "pending_decision": "Whether zero is invalid, absent, or displayable is not decided; no canonical GVL value is assigned.",
+      "evidence": [
+        "features"
+      ],
+      "current_observation": "The numeric result of gvl_id && (...) renders a bare 0."
+    },
+    {
+      "id": "explicit-user-id-array",
+      "status": "UNAMBIGUOUS_DISPLAY",
+      "consumer": "BidderFeatures",
+      "input": {
+        "biddercode": "fixture",
+        "media_types": [
+          "banner"
+        ],
+        "userIds": [
+          "id5Id",
+          "sharedId",
+          "unifiedId"
+        ]
+      },
+      "expected": {
+        "visible_entries": [
+          "id5Id",
+          "sharedId",
+          "unifiedId"
+        ],
+        "empty_placeholder": false
+      },
+      "evidence": [
+        "features"
+      ]
+    },
+    {
+      "id": "legacy-user-id-text-preservation",
+      "status": "SOURCE_BACKED_DISPLAY_ADAPTER",
+      "consumer": "BidderFeatures-or-explicit-adapter",
+      "variants": [
+        {
+          "input": "all (with commercial activation)",
+          "required_visible_text": "all (with commercial activation)"
+        },
+        {
+          "input": "id5Id, sharedId, unifiedId",
+          "required_visible_entries": [
+            "id5Id",
+            "sharedId",
+            "unifiedId"
+          ]
+        }
+      ],
+      "required_invariants": [
+        "Do not call .map on a scalar value.",
+        "Retain qualifiers and exact raw source text in metadata."
+      ],
+      "evidence": [
+        "legacy_metadata",
+        "legacy_appnexus",
+        "legacy_bidsxchange"
+      ],
+      "boundary": "A scalar display adapter is required before wiring raw frontmatter into this component; only the existing AdDefend caller is currently observed. Badge count/CSV-string splitting is not prescribed."
+    },
+    {
+      "id": "empty-user-id-display",
+      "status": "SOURCE_PROJECTION_ONLY",
+      "consumer": "legacy-bidder-metadata",
+      "variants": [
+        {
+          "omit_field": true,
+          "projection": "none"
+        },
+        {
+          "input": null,
+          "projection": "none"
+        },
+        {
+          "input": "",
+          "projection": "none"
+        },
+        {
+          "input": false,
+          "projection": "none"
+        }
+      ],
+      "component_required_invariant": "Raw null/string/boolean values must be validated or adapted before array methods; not a current all-page crash claim.",
+      "explicit_component_empty_array": {
+        "input": [],
+        "visible_text": "none"
+      },
+      "evidence": [
+        "legacy_metadata",
+        "features"
+      ]
+    },
+    {
+      "id": "media-canonical-array",
+      "status": "UNAMBIGUOUS_DISPLAY",
+      "consumer": "BidderFeatures",
+      "input": {
+        "biddercode": "fixture",
+        "media_types": [
+          "banner",
+          "video",
+          "native"
+        ],
+        "userIds": []
+      },
+      "expected": {
+        "visible_entries": [
+          "banner",
+          "video",
+          "native"
+        ]
+      },
+      "evidence": [
+        "features"
+      ],
+      "boundary": "Explicit component array; no implicit banner is inferred for arbitrary canonical arrays."
+    },
+    {
+      "id": "legacy-media-projection",
+      "status": "SOURCE_BACKED_DISPLAY_ADAPTER",
+      "consumer": "legacy-bidder-metadata-or-explicit-adapter",
+      "variants": [
+        {
+          "input": "banner, video, native",
+          "logical_media": [
+            "display",
+            "video",
+            "native"
+          ]
+        },
+        {
+          "input": "video",
+          "logical_media": [
+            "display",
+            "video"
+          ]
+        },
+        {
+          "input": "no-display, video",
+          "logical_media": [
+            "video"
+          ],
+          "forbidden_supported_media": [
+            "display",
+            "banner",
+            "no-display"
+          ]
+        },
+        {
+          "input": "no-display, native",
+          "logical_media": [
+            "native"
+          ],
+          "forbidden_supported_media": [
+            "display",
+            "banner",
+            "no-display"
+          ]
+        },
+        {
+          "omit_field": true,
+          "logical_media": [
+            "display"
+          ]
+        }
+      ],
+      "required_invariants": [
+        "No-display is a suppression marker, not an additional supported media type.",
+        "Legacy raw strings must not be passed to array-only methods.",
+        "Keep original raw string or array in producer data."
+      ],
+      "evidence": [
+        "legacy_metadata",
+        "legacy_guide",
+        "legacy_browsi",
+        "legacy_adgeneration"
+      ],
+      "boundary": "The guide and template agree on implicit display and no-display. A component array already normalized by an explicit adapter need not reapply those raw-source defaults."
+    },
+    {
+      "id": "producer-lossless-frontmatter",
+      "status": "UNAMBIGUOUS_PRESERVATION",
+      "consumer": "tocPlugin",
+      "input_frontmatter": {
+        "layout": "bidder",
+        "biddercode": "fixture",
+        "pbjs": false,
+        "pbs": "no",
+        "usp_supported": null,
+        "gvl_id": "14 (adkernel)",
+        "userIds": "all (with commercial activation)",
+        "media_types": "no-display, video",
+        "additional_unknown": {
+          "preserve": [
+            "raw",
+            false,
+            null
+          ]
+        }
+      },
+      "expected": {
+        "meta_deep_equal_to_input": true,
+        "omitted_coppa_supported_key_stays_absent": true,
+        "no_added_defaults": true
+      },
+      "evidence": [
+        "toc",
+        "registration"
+      ],
+      "boundary": "Preserve raw information at the producer. Consumer display predicates may differ; do not mutate the manifest to fix one UI projection."
+    }
+  ],
+  "pending_decisions": [
+    {
+      "id": "omitted-usp-coppa-schain-dchain",
+      "status": "DISPUTED",
+      "fields": [
+        "usp_supported",
+        "coppa_supported",
+        "schain_supported",
+        "dchain_supported"
+      ],
+      "legacy_projection": "check with bidder",
+      "guide_projection": "default false",
+      "current_component_projection": {
+        "usp_supported": "false",
+        "coppa_supported": "false",
+        "schain_supported": "check with bidder",
+        "dchain_supported": "check with bidder"
+      },
+      "example": "AdDefend omits all four.",
+      "decision": null,
+      "owner": "documentation maintainers",
+      "evidence": [
+        "legacy_metadata",
+        "legacy_guide",
+        "legacy_addefend",
+        "addefend_caller",
+        "features"
+      ],
+      "must_not_do": "Do not globally change omission defaults while fixing explicit tri-state grouping."
+    },
+    {
+      "id": "userid-versus-userIds",
+      "status": "DISPUTED",
+      "legacy_consumer_key": "userIds",
+      "guide_key": "userId",
+      "example_raw": {
+        "source": "dev-docs/bidders/rtbdemand_com.md",
+        "userId": "all",
+        "userIds_omitted": true
+      },
+      "legacy_projection": "none",
+      "decision": null,
+      "owner": "documentation maintainers",
+      "must_not_do": "Do not silently merge or overwrite singular/plural values; preserve both and decide precedence explicitly.",
+      "evidence": [
+        "legacy_metadata",
+        "legacy_guide",
+        "legacy_rtbdemand"
+      ]
+    },
+    {
+      "id": "invalid-and-null-state-display",
+      "status": "PENDING",
+      "decision": null,
+      "owner": "documentation maintainers and component contract owner",
+      "scope": "Accept/reject contract and visible fallback for null, string booleans, unsupported types, and GVL sentinels such as none.",
+      "must_not_do": "Do not canonicalize an invalid/raw state into a boolean and lose provenance merely to avoid a blank UI."
+    },
+    {
+      "id": "gpp-fallback-scope",
+      "status": "DISPUTED",
+      "decision": null,
+      "owner": "documentation maintainers",
+      "source_expression": "page.gpp_supported == false and gpp_sids == nil",
+      "unambiguous_neighbor": "gpp_supported true with missing page.gpp_sids projects some (check with bidder)",
+      "must_not_do": "Do not assign a universal absent/false GPP default; current component only displays gpp_sids and does not model all legacy fallback branches.",
+      "evidence": [
+        "legacy_metadata",
+        "legacy_appnexus"
+      ]
+    },
+    {
+      "id": "media-values-beyond-documented-taxonomy",
+      "status": "PENDING",
+      "decision": null,
+      "owner": "documentation maintainers",
+      "scope": "Nonstandard tokens, null versus omitted, and raw arrays; retain information and report unsupported values rather than deleting them.",
+      "evidence": [
+        "legacy_guide",
+        "features"
+      ]
+    },
+    {
+      "id": "listing-and-version-scope",
+      "status": "PENDING",
+      "decision": null,
+      "owner": "documentation maintainers",
+      "scope": "Legacy bidder listing requires pbjs true, current overview intentionally has separate client/server columns, and TOC currently chooses current only. These are distinct consumer projections; this fixture does not change membership or version selection.",
+      "evidence": [
+        "legacy_listing",
+        "index",
+        "toc"
+      ]
+    }
+  ],
+  "current_scope_observations": {
+    "BidderFeatures_callers": [
+      "docs/dev-docs/prebidjs/bidders/addefend.mdx"
+    ],
+    "manifest_entries": 676,
+    "raw_pbs_string_entries": [
+      {
+        "biddercode": "adgeneration",
+        "value": "no"
+      }
+    ],
+    "raw_userIds_shapes": {
+      "omitted": 421,
+      "string": 247,
+      "null": 7,
+      "boolean": 1
+    },
+    "raw_media_types_shapes": {
+      "string": 602,
+      "omitted": 74
+    },
+    "boundary": "Counts belong to the observed commit/manifest, not a promise about production or future regenerations."
+  },
+  "safe_fix_recommendations": [
+    "Use exact tri-state comparisons and render the matching group once, with a Check with bidder label for explicit unknowns.",
+    "Use boolean-true predicates in the current client/server index columns; preserve raw manifest values.",
+    "Allow lossless annotated GVL text; avoid parseInt and avoid bare numeric short-circuit output.",
+    "Validate/adapt raw collection shapes at a named boundary before array-only methods; do not infer a site-wide raw-prop integration that does not exist.",
+    "Keep omission-default changes, singular/plural user ID precedence, and disputed GPP behavior pending."
+  ],
+  "limits": [
+    "React probes used static rendering and CSS class-name stubs, not a browser, deployed page, hydration, live GVL or accessibility validation.",
+    "Only the one identified MDX caller was observed; synthetic raw-shape crash controls demonstrate a contract gap, not that all bidder pages currently crash.",
+    "Source projections are not blanket approval to normalize every consumer identically.",
+    "No full site build, upstream service request, or parent implementation/test inspection was performed."
+  ]
+}

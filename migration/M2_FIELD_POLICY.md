@@ -141,3 +141,13 @@ Jekyll parser/runtime equivalence, Liquid string/array serialization, request
 encoding, minimum-version filtering, saved-configuration round trips, and backend
 availability. The existing `BidderFeatures` defaults and TOC consumers are not
 changed by this API.
+
+## Subsequent consumer evidence
+
+The [consumer follow-up](M2_CONSUMERS.md) separately executes the pinned Liquid
+templates and YAML parser, measures corpus impact, and tests real React/MDX and
+download call paths. It does not alter this API's raw records or automatically
+approve its disputed projections. Explicit component-prop validation and corrected
+consent grouping are distinct from deciding omitted-field meaning. The TOC producer
+continues retaining raw frontmatter; the bidder index now tests explicit boolean
+true when displaying client/server support.

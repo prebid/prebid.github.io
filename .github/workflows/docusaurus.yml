@@ -52,6 +52,18 @@ jobs:
           npm ci --include=dev --ignore-scripts 2>&1 | tee .validation-results/setup/install.log
           npm ls --all --json > .validation-results/setup/dependencies.json
 
+      - name: Set up documented legacy Ruby runtime
+        uses: ruby/setup-ruby@14594264cd68ce8a2345dd349bc3d138a4ef85c8 # v1
+        with:
+          ruby-version: '3.3.4'
+          bundler-cache: false
+
+      - name: Install pinned legacy template probes
+        run: |
+          gem install liquid --version 4.0.4 --install-dir .validation-results/legacy-gems --no-document --ignore-dependencies
+          gem install safe_yaml --version 1.0.5 --install-dir .validation-results/legacy-gems --no-document --ignore-dependencies
+          node scripts/migration-legacy-consumers.mjs > .validation-results/setup/legacy-runtime.json
+
       - name: Check strict types and validator controls
         run: |
           npm run typecheck 2>&1 | tee .validation-results/setup/typecheck.log
