@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "kind": "route-inventory-correction-controls",
+  "failed_comparison_head": "f3e60bf9e776e20efb7422d7b1082e8f4ca8b7bf",
+  "comparison_baseline": "f7104eb7c56006ec6f58172168fc1aca3e42dbca",
+  "full_site_schema": 3,
+  "full_m2_acceptance": false,
+  "files": {
+    "tests.log.gz": {
+      "sha256": "d977b04d805794583aa24cded23e3b1274894fa341307fd8bb79872bbc7a9ba6",
+      "uncompressed_sha256": "4161f86ec538611808724a8999ab067d17931d90accbf43ba9085648af9a94d5"
+    },
+    "previous-comparison.json.gz": {
+      "sha256": "318127e7d5963ee481901e270699a53ca3c1ef1a3dc11b9b926862d05179a48a",
+      "uncompressed_sha256": "3fa36215d9e3518f194663f7854f66993b54ce32e94b5bc480b8f2cc49fed270"
+    },
+    "mutant-receipt.json.gz": {
+      "sha256": "edc456d7398949ec31ef2b1432c3f14908a6312eb556cf7123501862cb98eb73",
+      "uncompressed_sha256": "ceb6cef1febc11d4e4cac5e4ffac7a2ef79ecd92427130d737a618fc9348a360"
+    },
+    "mutant.tap.gz": {
+      "sha256": "827a4e85b76a101be861bf502d7c1f15cb98df43239c196548fe4001824535e6",
+      "uncompressed_sha256": "58974b18ae21dae5b36682f8982955d3c782f8cbafd493a5f49fe885dc7d1a52"
+    },
+    "independent-codegen-controls.json.gz": {
+      "sha256": "c5c6f57a296fbdcf16f54611d6595083a99799a1ff210a49df08337d98bd2ba9",
+      "uncompressed_sha256": "ba34564c0d2c00f6ae3594d5a6fef6e1cd5947b655ba0adad172dc7810e13acc"
+    }
+  },
+  "source_hashes": {
+    "scripts/migration-routes.mjs": "b4fa056fb91dc54a936fe97b509e7b21fd0e635150e213d0c7b10a42f86fd592",
+    "scripts/migration-routes.test.mjs": "245875d6200316e3ed800a3b7329074061b8eae700b080160f20caead64b6016",
+    "scripts/validate-site.mjs": "dca8eaf2b3722e7b15a7bcfbd57f7f4e99e18c95f48638eb4ebee434df6d9caf",
+    "scripts/validate-site.test.mjs": "218e9ca6616e9628ca7cb3bb05f96f166276a21e5d7489cc5b82569596344b39",
+    "scripts/migration-baseline.mjs": "a15d3083a936751cd8fdfe45dcfc7a9180f385a89e70492c8157e25ad2cf54e9",
+    "package-lock.json": "526581db081d3d32907c503ce125a47a064f23e2e206bbc19905d60ac88ecda6"
+  }
+}

@@ -138,6 +138,17 @@ dependency-tree validation, and 167 tests including the new failure-propagation
 control. Its [separate receipt](evidence/m2-consumer-dependencies/manifest.json)
 preserves the earlier failed attempt and original evidence identities.
 
+The full comparison also exposed an inherited detector error: it treated
+Docusaurus route chunk keys as URLs. Four keys changed with the consumer code
+while HTML was retained. [Schema-3 route validation](M1_VALIDATION.md#route-inventory-correction-during-m2)
+now separates declared paths, leaves, routing contexts, and internal chunk IDs.
+Its controls still reject genuine route/leaf/context removal, including a root
+leaf hidden beneath surviving root wrappers. Old receipts are not reinterpreted.
+The route-corrected suite passes 179 tests. A temporary-copy regression restoring
+chunk keys at the actual capture call site fails the unchanged real-site path
+assertion. [Route-check receipts](evidence/m2-route-inventory/manifest.json)
+retain the original false-positive comparison and the positive/negative controls.
+
 ## Remaining acceptance
 
 Close the decisions above, then implement approved metadata projections and D5

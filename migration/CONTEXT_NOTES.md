@@ -50,6 +50,12 @@ the decisions that should survive a fresh session.
 
 ## Lessons demonstrated by M2 consumer checks
 
+* Route chunk keys are not public URLs. Parse actual generated route declarations
+  and bind them to chunk keys; never strip a hash-looking suffix from a URL.
+  Deduplicating paths alone can hide deletion of a leaf beneath same-path wrappers.
+  Retain leaf paths and stable routing contexts as separate guards, version the
+  report schema, and regenerate comparisons without relabeling old receipts.
+
 * A successful `npm install` or `npm ci` can still leave an incompatible optional
   peer. Verify the complete dependency tree with `npm ls --all` after lock changes
   and use a fresh installation. Satisfy the test tool's peer explicitly without

@@ -327,7 +327,7 @@ export function capture({siteDir, outDir, siteUrl, npmCache}) {
   fs.copyFileSync(path.join(siteDir, '.docusaurus/globalData.json'), path.join(outDir, 'global-data.json'));
   const summary = {schema_version: 1, source_commit: sha, source_files: source.length,
     docusaurus: JSON.parse(fs.readFileSync(metadataPath, 'utf8')).docusaurusVersion,
-    routes: routes.length, ...inspection.coverage,
+    routes: routes.length, route_inventory_kind: 'internal-chunk-keys-not-public-paths', ...inspection.coverage,
     broken_link_references: warnings.links.length, broken_anchor_references: warnings.anchors.length,
     missing_local_target_groups: inspection.missing_local_targets.length,
     csv_files_with_findings: inspection.csv.filter(row => row.findings.length).length,

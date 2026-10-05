@@ -11,6 +11,7 @@ import {parseArgs} from 'node:util';
 import {parseBuildWarnings, inspectBuild, controlledEnvironment, walkFiles} from './migration-baseline.mjs';
 import {compareFormatting} from './validate-authored-content.mjs';
 import {sourceState, assertSourceUnchanged} from './validate-source-state.mjs';
+import {parseGeneratedRoutes} from './migration-routes.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const hash = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
@@ -71,11 +72,20 @@ function staticRows(report) {
 }
 
 export function compareSite(candidate, baseline) {
+  const paths = values => Array.isArray(values) && values.length > 0
+    && values.every(value => typeof value === 'string' && value.length > 0)
+    && new Set(values).size === values.length;
   for (const report of [candidate, baseline]) {
-    if (report.schema_version !== 2 || !report.routes?.length || !report.inspection?.documents?.length
+    if (report.schema_version !== 3 || !paths(report.routes) || !report.inspection?.documents?.length
+        || report.route_inventory?.kind !== 'generated-route-paths-and-bindings'
+        || !Array.isArray(report.route_inventory.bindings) || !report.route_inventory.bindings.length
+        || !report.route_inventory.bindings.every(row => typeof row.path === 'string' && row.path.length > 0
+          && typeof row.exact === 'boolean' && typeof row.leaf === 'boolean'
+          && Array.isArray(row.ancestors) && row.ancestors.every(parent => typeof parent === 'string' && parent.length > 0))
+        || !paths(report.route_inventory.leafPaths) || report.route_inventory.fallback?.path !== '*'
         || !report.inspection.coverage.checked_local_references || !Array.isArray(report.markdown)
         || !Array.isArray(report.warnings?.links) || !Array.isArray(report.warnings?.anchors)) {
-      throw new Error('Empty or malformed site coverage');
+      throw new Error('Empty or malformed site coverage; schema 3 requires regenerated route declarations and bindings');
     }
     for (const setting of ['onBrokenLinks', 'onBrokenAnchors', 'onBrokenMarkdownLinks']) {
       if (!['ignore', 'log', 'warn', 'throw'].includes(report.reporting_policy?.[setting])) {
@@ -95,6 +105,9 @@ export function compareSite(candidate, baseline) {
   // Route removal must be an explicit reviewed policy change, never a way to
   // make a warning disappear. M2/M3 will define approved URL transitions.
   const removedRoutes = baseline.routes.filter(route => !candidate.routes.includes(route));
+  const removedLeafRoutes = baseline.route_inventory.leafPaths.filter(route => !candidate.route_inventory.leafPaths.includes(route));
+  const routeContext = row => JSON.stringify([row.path, row.exact, row.ancestors, row.leaf]);
+  const removedRouteBindings = compareRows(baseline.route_inventory.bindings, candidate.route_inventory.bindings, routeContext).added;
   const removedHtml = baseline.inspection.documents.map(row => row.file)
     .filter(file => !candidate.inspection.documents.some(row => row.file === file));
   const removedCsv = baseline.inspection.csv.map(row => row.file)
@@ -111,9 +124,10 @@ export function compareSite(candidate, baseline) {
   ].filter(([setting, count]) => candidate.reporting_policy[setting] === 'throw' && count > 0)
     .map(([setting, count]) => ({setting, severity: 'throw', observations: count}));
   return {status: Object.values(results).some(row => row.added.length) || formatting.status === 'failed'
-      || removedRoutes.length || removedHtml.length || removedCsv.length || lostInputs.length
+      || removedRoutes.length || removedLeafRoutes.length || removedRouteBindings.length || removedHtml.length || removedCsv.length || lostInputs.length
       || strictReportingFailures.length ? 'failed' : 'passed',
     diagnostics: results, formatting, removed_routes: removedRoutes,
+    removed_leaf_routes: removedLeafRoutes, removed_route_bindings: removedRouteBindings,
     strict_reporting_failures: strictReportingFailures,
     removed_html: removedHtml, removed_csv: removedCsv, lost_authored_inputs: lostInputs,
     candidate_source_mode: candidate.source_mode ?? 'unspecified',
@@ -251,7 +265,17 @@ export function captureSite({siteDir, outDir, env = controlledEnvironment(), con
   const generatedConfig = fs.readFileSync(path.join(siteDir, '.docusaurus/docusaurus.config.mjs'), 'utf8');
   const siteUrl = generatedConfig.match(/"url":\s*"([^"]+)"/)?.[1];
   if (!siteUrl) throw new Error('Cannot identify built site origin');
-  const report = {schema_version: 2, source_commit: git('rev-parse', 'HEAD'), source_tree: git('rev-parse', 'HEAD^{tree}'),
+  const routeInputs = {};
+  for (const name of ['routes.js', 'routesChunkNames.json']) {
+    const file = path.join(siteDir, '.docusaurus', name);
+    if (!fs.lstatSync(file).isFile() || fs.realpathSync(file) !== file) throw new Error(`Unsafe generated route input: ${name}`);
+    routeInputs[name] = fs.readFileSync(file, 'utf8');
+    fs.writeFileSync(path.join(outDir, name), routeInputs[name], {flag: 'wx'});
+  }
+  const routeInventory = {...parseGeneratedRoutes({routesSource: routeInputs['routes.js'], chunkMap: routeInputs['routesChunkNames.json']}),
+    kind: 'generated-route-paths-and-bindings',
+    source_sha256: hash(routeInputs['routes.js']), chunk_map_sha256: hash(routeInputs['routesChunkNames.json'])};
+  const report = {schema_version: 3, source_commit: git('rev-parse', 'HEAD'), source_tree: git('rev-parse', 'HEAD^{tree}'),
     source_manifest_sha256: hash(JSON.stringify(before)), lock_sha256: hash(fs.readFileSync(path.join(siteDir, 'package-lock.json'))),
     source_mode: sourceMode, clean_acceptance_eligible: sourceMode === 'isolated_commit',
     reporting_policy: authored.site_reporting_policy,
@@ -260,7 +284,7 @@ export function captureSite({siteDir, outDir, env = controlledEnvironment(), con
     started_at: start, finished_at: new Date().toISOString(),
     observer: 'v1: warn severities and reporting-only Markdown hook; original URLs preserved; compiler caches cleared',
     warnings: parseBuildWarnings(log), markdown: parseMarkdownDiagnostics(log),
-    routes: Object.keys(JSON.parse(fs.readFileSync(path.join(siteDir, '.docusaurus/routesChunkNames.json'), 'utf8'))).sort(),
+    routes: routeInventory.paths, route_inventory: routeInventory,
     authored,
     inspection: inspectBuild(path.join(siteDir, 'build'), siteUrl)};
   json(path.join(outDir, 'report.json'), report);
@@ -279,7 +303,7 @@ export function main(argv = process.argv.slice(2)) {
   const git = (...args) => run(siteDir, 'git', args, env);
   if (git('rev-parse', '--is-shallow-repository') !== 'false') throw new Error('Full Git history required');
   const toolNames = ['validate-site.mjs', 'validate-source-state.mjs', 'validate-authored-content.mjs', 'migration-baseline.mjs',
-    'validate-bidder-component.mjs', '../src/components/BidderFeatures/contract.ts'];
+    'validate-bidder-component.mjs', '../src/components/BidderFeatures/contract.ts', 'migration-routes.mjs'];
   const sourceOptions = {siteDir, env, toolPaths: toolNames.map(name => path.join(here, name))};
   const initialState = sourceState(sourceOptions);
   const status = initialState.status;

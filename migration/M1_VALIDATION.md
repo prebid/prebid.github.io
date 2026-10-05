@@ -177,6 +177,34 @@ isolation, complete cache cleanup, and byte-preserving Git filename handling.
 Historical receipts above keep their original source and detector identities;
 the corrected runner produces new receipts and requires current-head CI.
 
+## Route inventory correction during M2
+
+Schema 3 replaces the route-removal guard's use of internal chunk keys with
+statically parsed declarations from generated `routes.js`. Docusaurus 3.10.2
+constructs `routesChunkNames.json` keys from a path plus a hash of its route
+configuration; content changes can alter these keys without removing a URL.
+Historical 1,254-key observations remain valid as internal-key counts and must
+not be relabeled as distinct public paths.
+
+The current collector retains both raw generated files, verifies every
+`ComponentCreator(path, hash)` join, and separately records distinct paths, leaf
+paths, and routing contexts. It compares removal of paths, leaves, and contexts
+(`path`, `exact`, ancestry, and leaf status), with multiplicity. Internal hashes
+and chunk IDs remain provenance, not route identities. Removing a `/` leaf while
+retaining `/` wrappers must still fail. Legitimate hash-looking URL suffixes are
+preserved literally; no suffix-stripping heuristic is used.
+
+Schema-2 reports require regeneration for comparison. Generator-backed controls
+cover hash-only churn, real path and leaf deletion, malformed joins, and empty
+coverage. Existing HTML/CSV/authored-input retention guards remain active.
+This is route-declaration retention, not browser navigation, routing-order,
+fragment compatibility, or legacy-URL parity. The historical M0 collector still
+labels its older inventory explicitly as internal chunk keys.
+
+The [M2 consumer follow-up](M2_CONSUMERS.md) also adds bounded literal component
+call validation and runtime prop guards; older receipts above retain their
+original, narrower source-validation scope.
+
 ## Next dependency
 
 M2 starts with the bounded two-snapshot reconciliation/converter pilot and the
