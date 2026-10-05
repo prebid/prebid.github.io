@@ -126,6 +126,18 @@ status because strict parsing rejects the nine duplicate-key files. Successful
 tests demonstrate the detector and bounded consumers, not a clean whole corpus.
 Fresh full-site comparison and hosted CI have separate receipts.
 
+The first hosted attempt at `5f8e9de3` failed dependency-tree validation after
+`npm ci` itself succeeded. jsdom's optional `@noble/hashes` peer requires 1.8 or
+2.x; npm had reused pkijs's exact 1.4 dependency. The correction explicitly pins
+the compatible 1.8 development peer and retains pkijs's separate 1.4 copy.
+The local `validate` command now runs `verify:dependencies` too. Earlier local
+receipts remain historical; successful installation or unit tests alone must not
+be presented as dependency-tree acceptance.
+The corrected dependency checkpoint passes a fresh locked install, complete
+dependency-tree validation, and 167 tests including the new failure-propagation
+control. Its [separate receipt](evidence/m2-consumer-dependencies/manifest.json)
+preserves the earlier failed attempt and original evidence identities.
+
 ## Remaining acceptance
 
 Close the decisions above, then implement approved metadata projections and D5

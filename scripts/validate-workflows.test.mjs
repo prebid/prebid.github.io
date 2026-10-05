@@ -92,6 +92,24 @@ test('actual CI validation pipelines propagate both typecheck and test failures 
   }
 });
 
+test('local validation stops on dependency-tree failure and resumes only after restoration', t => {
+  const manifest = JSON.parse(read('package.json'));
+  assert.equal(manifest.scripts['verify:dependencies'], 'npm ls --all');
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'prebid-dependency-pipeline-'));
+  t.after(() => fs.rmSync(directory, {recursive: true, force: true}));
+  fs.mkdirSync(path.join(directory, 'bin'));
+  fs.writeFileSync(path.join(directory, 'bin/npm'), '#!/bin/sh\necho "$*" >> calls\nif [ "$2" = "verify:dependencies" ] && [ "$MIGRATION_BAD_TREE" = "1" ]; then exit 19; fi\n', {mode: 0o755});
+  for (const bad of ['0', '1', '0']) {
+    fs.writeFileSync(path.join(directory, 'calls'), '');
+    const result = spawnSync('sh', ['-c', manifest.scripts.validate], {cwd: directory, encoding: 'utf8',
+      env: {...process.env, PATH: `${directory}/bin:${process.env.PATH}`, MIGRATION_BAD_TREE: bad}});
+    assert.ifError(result.error); assert.equal(result.status, bad === '1' ? 19 : 0);
+    assert.deepEqual(fs.readFileSync(path.join(directory, 'calls'), 'utf8').trim().split('\n'),
+      bad === '1' ? ['run verify:toolchain', 'run verify:dependencies']
+        : ['run verify:toolchain', 'run verify:dependencies', 'run typecheck', 'run test:migration', 'run validate:site']);
+  }
+});
+
 test('notification executes only base source and installs isolated locked dependencies without secrets', () => {
   const config = workflow('code-path-changes');
   assert.ok(config.on.pull_request_target);

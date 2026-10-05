@@ -50,6 +50,11 @@ the decisions that should survive a fresh session.
 
 ## Lessons demonstrated by M2 consumer checks
 
+* A successful `npm install` or `npm ci` can still leave an incompatible optional
+  peer. Verify the complete dependency tree with `npm ls --all` after lock changes
+  and use a fresh installation. Satisfy the test tool's peer explicitly without
+  overriding a framework dependency that requires a different exact version.
+
 * Measure parser differences before normalizing fields. Bare YAML scalar spellings
   and duplicate keys have different handling in the strict migration parser and
   the documented legacy parser. Preserve raw bytes, input hashes, and separate

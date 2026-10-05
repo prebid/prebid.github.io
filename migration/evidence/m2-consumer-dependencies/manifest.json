@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "kind": "m2-optional-peer-correction",
+  "failed_commit": "5f8e9de3bb2908f9aa2b0a00d062fe4d92366a7d",
+  "failed_hosted_run": "https://github.com/prebid/prebid.github.io/actions/runs/37248901205",
+  "comparison_baseline": "f7104eb7c56006ec6f58172168fc1aca3e42dbca",
+  "node": "24.21.0",
+  "npm": "11.19.0",
+  "full_m2_acceptance": false,
+  "files": {
+    "fresh-install.log.gz": {
+      "sha256": "676cd1babf18dd761481ff7ebf1b78d8fc746d02f0d0ae64be97e7b75b727b60",
+      "uncompressed_sha256": "8956d8401928e99c4a41ffe6e1403a658b9b80de74f84f1ba516a40b6a858dd3"
+    },
+    "fresh-dependencies.json.gz": {
+      "sha256": "7c8685c759382b860a3124691ecdafce042c1d8694ba5b1371b1fcaf6a08317d",
+      "uncompressed_sha256": "3a6ee60537c0554c958bcad1839d31c0e85786edba02dab0bd76c74073ebd517"
+    },
+    "tests.log.gz": {
+      "sha256": "a5706a8e351d7d2172cc2bbd8531b357691e248b9ccd7e68cab6f655a697b3f0",
+      "uncompressed_sha256": "efd7e56c1791c251672fedd59b09f28f90e7b85d78c3036fc9870436485cf7c3"
+    }
+  },
+  "source_hashes": {
+    "package.json": "3c7505bf19dccd654767c936226d954aadfa0bd88e24e3a3385a739939cd2e0b",
+    "package-lock.json": "526581db081d3d32907c503ce125a47a064f23e2e206bbc19905d60ac88ecda6",
+    "scripts/validate-workflows.test.mjs": "82f8f61a898f331f4e44b417cc6d73876bae9754b929cd83ec10ab10cc817117"
+  }
+}
