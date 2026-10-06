@@ -3,7 +3,7 @@ layout: bidder
 title: PMC Xchange
 description: Prebid PMC Xchange Bidder Adapter
 pbjs: true
-pbs: true
+pbs: false
 biddercode: pmcxchange
 gvl_id: none
 tcfeu_supported: false
@@ -49,7 +49,7 @@ pbjs.bidderSettings = {
 
 ## First Party Data
 
-Publishers should use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html).
+Publishers should use the `ortb2` method of setting [First Party Data](/features/firstPartyData).
 
 ## Test Parameters
 
