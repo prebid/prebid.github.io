@@ -9,15 +9,15 @@ userIds:
 media_types: banner, video, native
 schain_supported: true
 dchain_supported: false
-ortb_blocking_supported: partial
+ortb_blocking_supported: true
 floors_supported: true
 multiformat_supported: will-bid-on-any
 tcfeu_supported: false
-dsa_supported: false
+dsa_supported: true
 gvl_id: none
 usp_supported: true
 coppa_supported: true
-gpp_sids: none
+gpp_sids: usnat, usstate_all, usp
 userId: no
 safeframes_ok: true
 deals_supported: true
@@ -165,6 +165,34 @@ pbjs.addAdUnits([
 
 ## Consent & Privacy
 
-The adapter relies on Prebid.js's standard consent plumbing via `ortbConverter`: GDPR (`regs.ext.gdpr`, `user.ext.consent`), US Privacy (`regs.ext.us_privacy`), GPP (`regs.gpp` + `regs.gpp_sid`), and COPPA (`regs.coppa`). No bidder-specific consent handling is required on the publisher side.
+The adapter relies on Prebid.js's standard consent plumbing via `ortbConverter`. No bidder-specific consent handling is required on the publisher side. GoAdserver reads each signal from both its OpenRTB 2.6 location and the 2.5 `ext` location, and forwards it to every demand partner it calls:
 
-**GVL ID:** the GoAdserver adapter is not yet registered with the IAB Global Vendor List. EU publishers using CMPs that enforce GVL may see bid requests dropped pre-auction. A registration is in progress at [iabeurope.eu/tcf](https://iabeurope.eu/tcf/); this page will be updated with the assigned GVL ID once it lands.
+- **US Privacy** (`regs.ext.us_privacy`) and **GPP** (`regs.gpp` + `regs.gpp_sid`)
+- **GDPR** (`regs.ext.gdpr`, `user.ext.consent`). The values are forwarded only; see the GVL note below.
+- **COPPA** (`regs.coppa`). When set, user identifiers (user id, buyer uid, EIDs, user data segments) are removed from downstream requests, IP addresses are truncated, and no user sync is offered.
+
+User sync pixels carry the auction's consent values. GoAdserver does not set its cookie when GDPR applies and no consent string is present.
+
+**GVL ID:** GoAdserver is not registered with the IAB Global Vendor List, so `tcfeu_supported` is `false`. EU publishers whose CMP enforces the GVL may see bid requests dropped before the auction.
+
+## DSA Transparency
+
+When the request carries `regs.ext.dsa`, it is forwarded to demand partners and every returned bid includes `ext.dsa`, which Prebid.js surfaces as `bid.meta.dsa`. Bids that would fail the [DSA Control module](/dev-docs/modules/dsaControl.html) are filtered server-side, so the next-best bid can win the slot. These are bids with no DSA object when `dsarequired` is 2 or 3, and bids whose `adrender` conflicts with the request's `pubrender`.
+
+## Blocking
+
+Request-level `bcat` and `badv` and per-impression `battr` (banner and video) are forwarded to demand partners and enforced on their bids:
+
+- A blocked tier-1 category such as `IAB25` also blocks its subcategories.
+- A blocked advertiser domain also blocks its subdomains.
+
+Set them through first-party data:
+
+```js
+pbjs.setConfig({
+  ortb2: {
+    bcat: ['IAB25', 'IAB26'],
+    badv: ['competitor.example']
+  }
+});
+```

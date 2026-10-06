@@ -14,3 +14,5 @@ pbjs.yield = false;
 
 pbjs.que.push(/* ... */)
 ```
+
+Setting `pbjs.yield` to `false` also impacts the default value of (`auctionOptions.viewabilityMeasurement`)[/dev-docs/publisher-api-reference/setConfig.html#auction-options].

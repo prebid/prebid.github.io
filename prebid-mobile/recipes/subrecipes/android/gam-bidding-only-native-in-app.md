@@ -20,7 +20,7 @@ At a high level, the in-app workflow is happening the following way:
 5. If there are Prebid ads, the cached assets are then rendered.
 
 {% capture importantNote %}
-The cached assets might expire. If this occurs the publisher will receive a notification and they will have to fetch the assets again.
+The cached assets might expire. If this occurs the publisher will receive a notification and they will have to fetch the assets again. Starting from Prebid SDK `3.4.0`, the assets expire after the bid's `exp` seconds, or after 5 minutes if the bid has no `exp`. Earlier versions always used 5 minutes.
 {% endcapture %}
 
 Integration Example
@@ -210,7 +210,7 @@ In order to make a bid request for the native ads you should provide a descripti
 
 {: .table .table-bordered .table-striped }
 | Type | Scope | Description |
-|-------|--------|---------|
+| --- | --- | --- |
 | Main | Optional | The image that will be displayed in the native ad. Include a value for `minimumWidth` and `minimumHeight`. Ensure that the `NativeAssetImage.type` is set to ImageAsset.Main |
 | Icon | Optional | The icon that will be displayed with the native ad. Include a value for `minimumWidth` and `minimumHeight`. Ensure that the `NativeAssetImage.type` is set to ImageAsset.Icon. |
 
@@ -219,7 +219,7 @@ In order to make a bid request for the native ads you should provide a descripti
 
 {: .table .table-bordered .table-striped }
 | Type | Scope | Description |
-|-------|--------|---------|
+| --- | --- | --- |
 | Description | Optional | The content to appear with the ad. Ensure that the type is set to `DataAsset.description`. |
 | ctatext | Optional | The text for the call to action button of the native ad. Ensure that the type is set to `DataAsset.ctatext`. |
 | Sponsored | Optional | The sponsor (brand) of the native ad. Ensure that the type is set to `DataAsset.sponsored`. |
@@ -229,7 +229,7 @@ In order to make a bid request for the native ads you should provide a descripti
 
 {: .table .table-bordered .table-striped }
 | Type | Scope | Description |
-|-------|--------|---------|
+| --- | --- | --- |
 | Title | Optional | The title of the native ad. |
 
 ### Other Native parameters
