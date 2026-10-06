@@ -22,7 +22,7 @@ gvl_id: 28
 sidebarType: 1
 ---
 
-### Table of Contents
+## Table of Contents
 
 - [Table of Contents](#table-of-contents)
 - [Overview](#overview)
@@ -44,23 +44,17 @@ sidebarType: 1
 ### Overview
 
 Publishers may integrate with Triplelift through our Prebid.js and/or Prebid Server adapters. See below for more information.
-
-
 {: .alert.alert-info :}
 The Triplelift Prebid Server bidding adapter and user sync endpoint require setup before beginning. Please contact us at <prebid@triplelift.com>.
 
-
 {: .alert.alert-info :}
 Starting with Prebid.js v11.36.0, the Triplelift Prebid.js adapter uses the oRTB Conversion Library to build requests/responses. Please reach out to your Triplelift representative to discuss specifics of the integration.
-
-
 {: .alert.alert-info :}
 If you would like to flag an issue for Triplelift to investigate or a question about the Triplelift Prebid.js adapter, please fill out the following Salesforce form: 
 <https://triplelift.my.site.com/publishersupport/s/contactsupport>. 
 Please include the following information in your request: 
 **Case Type**: Integration assistance 
 **Case Subtype**: Prebid Adapter Update Questions 
-
 
 <a name="triplelift-bid-params"></a>
 
@@ -70,10 +64,8 @@ Please include the following information in your request:
 Starting with Prebid.js v11.36.0, the `parentId` parameter is **required** for all Triplelift bid requests. **Bid requests that do not contain `parentId` from v11.34.0 forward will be dropped.** 
 Please contact your Triplelift representative to obtain your `parentId` value.
 
-
 {: .alert.alert-info :}
 Starting with Prebid.js v11.36.0, the `publisherId` parameter is *recommended* for all Triplelift bid requests. Please contact your Triplelift representative to obtain your `publisherId` value(s).
-
 
 {: .table .table-bordered .table-striped }
 
@@ -84,11 +76,9 @@ Starting with Prebid.js v11.36.0, the `publisherId` parameter is *recommended* f
 | `publisherId`   | recommended | TripleLift publisher ID associated with internal publisher. (provided to you by your partner manager)   | `'5678'`               | `string` |
 | `floor`         | required    | Bid floor                                                                                               | `1.00`                 | `float`  |
 
-
 <a name="triplelift-media-types"></a>
 
 ### Media Types
-
 
 <a name="triplelift-banner"></a>
 
@@ -145,14 +135,12 @@ The following fields begin with `adUnit.mediaTypes.video` and are supported by T
 | `maxbitrate`   | optional    | Maximum bit rate in Kbps                                                                | `9600`          | `integer`       |
 | `startdelay`   | optional    | Indicates the start delay in seconds for pre-roll, mid-roll, or post-roll ad placements | `0`             | `integer`       |
 
-
 <a name="triplelift-native"></a>
 
 #### Native
 
 {: .alert.alert-info :}
 As of version 11.36.0, Triplelift supports native ads. Please reach out to your Triplelift representative to discuss specifics of the integration.
-
 
 We **highly** recommend using the OpenRTB Native 1.2 Specification. If you cannot support OpenRTB Native 1.2, please reach out to us.
 
@@ -181,7 +169,7 @@ The following fields begin with `adUnit.mediaTypes.native.ortb` and are supporte
 
 <a name="triplelift-instream-example"></a>
 
-##### Instream Video Example
+#### Instream Video Example
 
 ```javascript
 var videoAdUnit = {
@@ -212,7 +200,7 @@ var videoAdUnit = {
 
 <a name="triplelift-outstream-example"></a>
 
-##### Outstream Video Example
+#### Outstream Video Example
 
 ```javascript
 var videoAdUnit = {
@@ -241,10 +229,9 @@ var videoAdUnit = {
 {: .alert.alert-info :}
 Triplelift does not have a default outstream renderer. Publishers must provide their own outstream renderer for the Triplelift bidder to work with outstream video.
 
-
 <a name="triplelift-native-example"></a>
 
-##### Native Example
+#### Native Example
 
 ```javascript
 var nativeAdUnit = {
@@ -311,6 +298,7 @@ var nativeAdUnit = {
 ### Previous Auction Info
 
 Triplelift is able to use information from previous auctions to improve the performance of future auctions. In order to facilitate this, you will need to do the following:
+
 1. Include the Previous Auction Info module in your Prebid.js build. See the [Prebid.js Modules](https://docs.prebid.org/dev-docs/modules.html) page for more information.
 2. Configure Prebid.js to enable the Previous Auction Info module and add Triplelift to the bidder list:
 
@@ -324,7 +312,6 @@ pbjs.setConfig({
 });
 ```
 
-
 <a name="triplelift-first-party"></a>
 
 ### First Party Data
@@ -335,7 +322,6 @@ Publishers should use the `ortb2` method of setting [First Party Data](https://d
 - `ortb2.user.*`: Standard IAB OpenRTB 2.5 user fields
 
 AdUnit-specific data is supported using `AdUnit.ortb2Imp.ext.*`
-
 
 <a name="triplelift-programmatic-dmp"></a>
 
