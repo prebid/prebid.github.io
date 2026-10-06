@@ -93,11 +93,22 @@ Call the method `loadAd()` which will:
 
 #### Banner Video (non-instream)
 
-For non-instream **Banner Video** you also need to specify the ad format:
+For non-instream **Banner Video** you also need to specify the ad formats (requires SDK v3.4.0):
 
-```swift
-banner.adFormat = .video
+``` swift
+banner.adFormats = [.video]
 ```
+
+To let display and video demand compete for the same banner, request both formats:
+
+``` swift
+banner.adFormats = [.banner, .video]
+```
+
+`BannerView` renders `.banner` and `.video` only. An empty set, or a set with any other format such as `.native`, is ignored with a warning, and the current value is kept. Auto-refresh waits while a video creative is playing.
+
+{: .alert.alert-warning :}
+Starting from PrebidMobile `3.4.0`, the `adFormat` property is deprecated and will be removed in a future major release. Use `adFormats` instead.
 
 The rest of the code will be the same as for integration of Display Banner.
 
@@ -319,6 +330,10 @@ Integration:
 3. Remove usage of `AdManagerRequest`.
 4. Remove original `RewardedVideoAdUnit`.
 5. Follow the instructions to integrate [Rewarded API](#rewarded).
+
+## Ad Expiration
+
+{% include mobile/rendering-ad-expiration-ios.md %}
 
 ## Additional Ad Unit Configuration
 
