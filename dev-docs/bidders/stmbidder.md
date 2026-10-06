@@ -1,9 +1,10 @@
 ---
 layout: bidder
-title: stailamedia Bidder
-description: Prebid bidstailamedia Bidder Adapter
+title: stailamedia (stmbidder)
+description: Prebid stmbidder Bidder Adapter
 pbjs: true
-biddercode: bidstailamedia
+pbs: true
+biddercode: stmbidder
 aliasCode: nexx360
 gvl_id: 965 (nexx360)
 tcfeu_supported: true
@@ -24,8 +25,9 @@ multiformat_supported: will-bid-on-any
 
 ## Note
 
-For Prebid Server, use the [`stmbidder`](/dev-docs/bidders/stmbidder.html) bidder code:
-`bidstailamedia` is a Prebid.js-only code. `stmbidder` works in both Prebid.js and Prebid Server.
+`stmbidder` is stailamedia's bidder code for both Prebid.js and Prebid Server. The older
+[`bidstailamedia`](/dev-docs/bidders/bidstailamedia.html) code keeps working in Prebid.js, but is not
+available in Prebid Server, because its first six characters collide with another bidder.
 
 ## Bid Params
 
@@ -56,7 +58,7 @@ var adUnits = [
         }
       },
       bids: [{
-         bidder: 'bidstailamedia',
+         bidder: 'stmbidder',
          params: {
             tagId: 'hk15z9sy'
          }
@@ -72,7 +74,7 @@ var adUnits = [
             }
         },
         bids: [{
-            bidder: 'bidstailamedia',
+            bidder: 'stmbidder',
             params: {
                tagId: 'hk15z9sy'
             }
@@ -81,7 +83,7 @@ var adUnits = [
      // Native adUnit
    {
         code: 'native1',
-        mediaTypes:
+        mediaTypes: {
             native: {
                 title: {
                     required: true
@@ -95,7 +97,7 @@ var adUnits = [
             }
         },
         bids: [{
-            bidder: 'bidstailamedia',
+            bidder: 'stmbidder',
             params: {
                tagId: 'hk15z9sy'
             }
@@ -114,12 +116,12 @@ var adUnits = [
             }
         },
         bids: [{
-            bidder: 'bidstailamedia',
+            bidder: 'stmbidder',
             params: {
                tagId: 'hk15z9sy',
                videoTagId: 'hk15z9sy'
             }
         }]
-    };
+    }
 ];
 ```
