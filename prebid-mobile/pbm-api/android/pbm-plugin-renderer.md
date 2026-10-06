@@ -118,6 +118,25 @@ The field `data` can be used as below or with a more complex data structure:
     }
 ```
 
+## Win Notice
+
+Prebid SDK sends the win notice for banner, interstitial and rewarded ads that your Plugin Renderer creates, so your renderer does not need to send it. The win notice is the bid's `nurl`, the Prebid Cache URLs built from the `hb_cache_host`, `hb_cache_path`, `hb_cache_id` and `hb_uuid` targeting keys, and `ext.prebid.events.win`. Prebid SDK sends it once: for a banner, before it calls `createBannerAdView`, and for an interstitial or rewarded ad, right after `createInterstitialController` returns your controller.
+
+If your Plugin Renderer, or the ad SDK it wraps, already sends the win notice itself, override `sendsWinNotice` and return `true`. Prebid SDK then skips its own win notice for ads that your renderer creates, so the notice is not sent twice.
+
+```kotlin
+class SampleCustomRenderer : PrebidMobilePluginRenderer {
+
+    // The renderer sends the win notice itself.
+    override fun sendsWinNotice(): Boolean = true
+
+    // ...
+}
+```
+
+{: .alert.alert-info :}
+If your renderer returns `null` and Prebid SDK falls back to its own renderer, Prebid SDK sends the win notice for that ad, whatever `sendsWinNotice` returns.
+
 ## Limitations
 
 ### Supported Ad Formats
