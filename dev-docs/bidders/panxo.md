@@ -8,6 +8,7 @@ gvl_id: 1527
 usp_supported: true
 coppa_supported: true
 gpp_supported: true
+gpp_sids: tcfeu, usp
 schain_supported: true
 floors_supported: true
 fpd_supported: true
@@ -15,7 +16,8 @@ media_types: banner
 safeframes_ok: true
 bidder_supports_deals: true
 pbjs: true
-pbs: false
+pbs: true
+pbs_app_supported: false
 prebid_member: true
 multiformat_supported: will-not-bid
 ortb_blocking_supported: false
@@ -33,8 +35,9 @@ Please register at [app.panxo.com](https://app.panxo.com) to obtain your `siteId
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name | Scope | Description | Example | Type |
-|---------------|----------|--------------------------------------------------|----------------------|----------|
+| --- | --- | --- | --- | --- |
 | `propertyKey` | required | Property identifier from Panxo dashboard | `'abc123def456'` | `string` |
 | `floor` | optional | Minimum CPM floor price in USD | `0.50` | `number` |
 
@@ -105,6 +108,22 @@ pbjs.setConfig({
     }
 });
 ```
+
+### Prebid Server
+
+Panxo supports server-side bidding through Prebid Server. The Panxo RTD module must still be configured in Prebid.js on the client side, as it detects AI-referred traffic and injects the user identifier that Prebid Server forwards to the Panxo endpoint.
+
+#### Prebid Server Configuration
+
+```yaml
+adapters:
+  panxo:
+    endpoint: "https://panxo-sys.com/openrtb/2.5/bid"
+```
+
+#### Client-Side Requirements for PBS
+
+When using Prebid Server, the Panxo RTD module runs on the client and enriches the OpenRTB request with `device.ext.panxo`, which PBS forwards to the Panxo adapter. No additional client-side configuration is required beyond the standard RTD module setup shown above.
 
 ### Additional Notes
 
