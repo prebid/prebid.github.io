@@ -44,11 +44,13 @@ sidebarType: 1
 ### Overview
 
 Publishers may integrate with Triplelift through our Prebid.js and/or Prebid Server adapters. See below for more information.
+
 {: .alert.alert-info :}
 The Triplelift Prebid Server bidding adapter and user sync endpoint require setup before beginning. Please contact us at <prebid@triplelift.com>.
 
 {: .alert.alert-info :}
 Starting with Prebid.js v11.36.0, the Triplelift Prebid.js adapter uses the oRTB Conversion Library to build requests/responses. Please reach out to your Triplelift representative to discuss specifics of the integration.
+
 {: .alert.alert-info :}
 If you would like to flag an issue for Triplelift to investigate or a question about the Triplelift Prebid.js adapter, please fill out the following Salesforce form: 
 <https://triplelift.my.site.com/publishersupport/s/contactsupport>. 
