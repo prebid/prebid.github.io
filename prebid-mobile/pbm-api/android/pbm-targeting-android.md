@@ -365,6 +365,73 @@ Parameters:
 | --- | --- | --- | --- | --- |
 | disableStatusCheck | required | boolean | Indicates whether the SDK should opt out of the PBS status checking during initialization. Default is `false`. | `true` |
 
+#### setFilterOutUncachedBids()
+
+(requires SDK v3.4.0)
+
+Applies to the Original API only. With the Original API, the ad server renders a Prebid bid through the Prebid Universal Creative, which loads the creative from Prebid Cache. A bid without a successful cache entry (`bid.ext.prebid.cache`) wins in the ad server but can't render. If this flag is `true`, the SDK drops these bids before their targeting reaches the ad server.
+
+Signature:
+
+```java
+public static void setFilterOutUncachedBids(boolean filterOutUncachedBids)
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| filterOutUncachedBids | required | boolean | Whether the SDK drops bids without a successful Prebid Cache entry. Default is `false`. | `true` |
+
+Example:
+
+```kotlin
+PrebidMobile.setFilterOutUncachedBids(true)
+
+prebidAdUnit.fetchDemand(gamRequest, prebidRequest) { bidInfo ->
+    when (bidInfo.resultCode) {
+        ResultCode.SUCCESS -> {
+            if (bidInfo.isTopBidFiltered) {
+                // The top bid had no cache entry, and a lower-priced cached bid was used instead
+            }
+        }
+        ResultCode.NO_CACHED_BIDS -> {
+            // None of the returned bids had a cache entry, so no Prebid targeting was added
+        }
+        else -> {}
+    }
+
+    adView.loadAd(gamRequest)
+}
+```
+
+- If the bid Prebid Server chose as the winner is dropped, the highest-priced cached bid takes its place, the result code stays `SUCCESS`, and `BidInfo.isTopBidFiltered()` returns `true`.
+- The promoted bid carries only the targeting keys Prebid Server returned for it, usually bidder-specific keys such as `hb_pb_bidderA`. Line items that target only `hb_pb` don't match it.
+- If every bid is dropped, the result code is `NO_CACHED_BIDS`.
+- `BannerAdUnit.fetchDemand(adObject, listener)` reports only a `ResultCode`. Use `PrebidAdUnit` to read `BidInfo.isTopBidFiltered()`.
+
+The setting doesn't apply to the Rendering API, which renders the creative from the bid markup and never loads it from Prebid Cache.
+
+#### setEidsPlacement()
+
+(requires SDK v3.4.0)
+
+Controls where the SDK places Extended IDs in the bid request. See [EID placement](#eid-placement).
+
+Signature:
+
+```java
+public static void setEidsPlacement(@NonNull EidsPlacement placement)
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| placement | required | EidsPlacement | `OPEN_RTB_2_6` (`user.eids`), `OPEN_RTB_2_5` (`user.ext.eids`), or `COMPATIBLE` (both). Default is `COMPATIBLE`. | `EidsPlacement.OPEN_RTB_2_6` |
+
 ---
 
 ## Consent Management Parameters
@@ -620,11 +687,46 @@ userIds.add(fullUserId);
 TargetingParams.setExternalUserIds(userIds);
 ```
 
+Starting from PrebidMobile `3.4.0`, `ExternalUserId` also supports the OpenRTB 2.6 provenance fields:
+
+{: .table .table-bordered .table-striped }
+| Setter | Type | Description |
+| --- | --- | --- |
+| setInserter() | String | Canonical domain of the entity that added the ID to the request. Maps to `user.eids[].inserter`. |
+| setMatcher() | String | Technology that provided the match method in `mm`. Maps to `user.eids[].matcher`. |
+| setMm() | Integer | Match method used by the matcher, from the AdCOM 1.0 "ID Match Methods" list. Maps to `user.eids[].mm`. |
+
+```java
+ExternalUserId fullUserId = new ExternalUserId("adserver.org", List.of(uniqueId1, uniqueId2));
+fullUserId.setInserter("example.com");
+fullUserId.setMatcher("example.com");
+fullUserId.setMm(3);
+```
+
+### EID placement
+
+(requires SDK v3.4.0)
+
+OpenRTB 2.6 moved EIDs from `user.ext.eids` to `user.eids`. Prebid Server reads `user.eids` and ignores `user.ext.eids` whenever `user.eids` is present. `PrebidMobile.setEidsPlacement()` controls where the SDK sends them:
+
+{: .table .table-bordered .table-striped }
+| Value | EIDs are sent in |
+| --- | --- |
+| `COMPATIBLE` (default) | Both `user.eids` and `user.ext.eids` |
+| `OPEN_RTB_2_6` | `user.eids` only |
+| `OPEN_RTB_2_5` | `user.ext.eids` only |
+
+```kotlin
+PrebidMobile.setEidsPlacement(EidsPlacement.OPEN_RTB_2_6)
+```
+
+The placement applies to all EIDs in the request: those set with `setExternalUserIds()`, the Shared ID, and any EIDs added to `user.eids` or `user.ext.eids` through the [global OpenRTB config](#arbitrary-openrtb). The SDK combines both locations into one list, where entries already in `user.eids` aren't added twice, and writes that list to each location the placement enables.
+
 ### Shared ID
 
 The Shared ID is a randomly generated first-party identifier managed by Prebid. It remains the same throughout the current app session unless reset. If local storage access is permitted, the same ID may persist across multiple app sessions indefinitely. However, Shared ID values do not remain consistent across different apps on the same device.
 
-The SDK will include it in the `user.ext.eids` array during auction request if the publisher explicitly permits it:
+The SDK will include it in the EIDs of the bid request (see [EID placement](#eid-placement)) if the publisher explicitly permits it:
 
 ```kotlin
 TargetingParams.setSendSharedId(true);
@@ -810,7 +912,7 @@ Parameters:
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| precision | optional | integer | Number of decimal places to keep, or null for no limit. Values outside the 0-6 range will be clamped to valid range. Default is `null`| 2 |
+| precision | optional | integer | Number of decimal places to keep, or null for no limit. Values outside the 0-6 range will be clamped to valid range. Default is `null` | 2 |
 
 Related function: getLocationDecimalPrecision().
 
@@ -845,6 +947,14 @@ TargetingParams.setGlobalOrtbConfig("")
 ```
 
 The `TargetingParams.setGlobalOrtbConfig()` also allows to **add** impression objects to the request. All objects in the `$.imp[]` array will be added to the request. Note that Ad Unit's `imp` object won't be changed using Global Config. To change the `imp` config, use the `setImpORTBConfig()` method of a particular Ad Unit. See the Ad Unit documentation for the details. 
+
+The global config is also the way to set OpenRTB fields that have no dedicated `TargetingParams` method. For instance, to pass the URL of the content displayed alongside the ad in `$.app.content.url`:
+
+``` kotlin
+TargetingParams.setGlobalOrtbConfig("{\"app\":{\"content\":{\"url\":\"https://example.com/articles/123\"}}}")
+```
+
+Each call replaces the previously set global config, so put all global-level fields in a single JSON object.
 
 Pay attention that there are certain protected fields such as `regs`, `device`, `geo`, `ext.gdpr`, `ext.us_privacy`, and `ext.consent` which cannot be changed using the `setGlobalOrtbConfig()` method.
 
