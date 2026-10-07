@@ -54,7 +54,7 @@ There's a reason bidders recommend different set of line items for different cre
 
 Prebid.js can dynamically resize the returned creative to the right size. Here's the setup:
 
-* Submit a few creatives of size 1x1 and make them override the line items' sizes when you [attach creatives to the line item](/adops/step-by-step.html#step-3-attach-the-creative-to-the-line-item).
+* Submit a few creatives of size 1x1 and make them override the line items' sizes when you [attach creatives to the line item](/adops/step-by-step.html#attach-creatives-to-line-item).
 * Your ad unit can accept both 300x250 and 300x600. A bidder bid $6.00 for the 300x600 size and has the highest price. Prebid.js passed the bid in, as well as a generated bid ID.
 * The $6.00 line item got picked by the line item.
 * Your ad server randomly choose a 1x1 creative. However, because all creatives have the same content, it does not make a difference.

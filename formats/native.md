@@ -21,7 +21,7 @@ bid adapters. See [Prebid Server Native](/prebid-server/features/pbs-native.html
 See the separate pages for
 
 - [iOS](/prebid-mobile/pbm-api/ios/pbm-nativeadunit-ios.html)
-- [Android](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#native-api)
+- [Android](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#format-native-in-app)
 
 ## Prebid.js
 

@@ -27,7 +27,7 @@ Prebid.js provides access to video demand for both instream and outstream video 
 - [Overview](/prebid-video/video-overview.html)
 - [Getting Started](/prebid-video/video-getting-started.html)
 - [Examples](/examples/video)
-- [Bidders with Video Demand](/dev-docs/bidders.html#bidders-with-video-and-native-demand)
+- [Bidders with Video Demand](/dev-docs/bidders.html)
 
 ## Native
 
@@ -36,7 +36,7 @@ Many of the Prebid.js bidder adaptors support delivery of native ads.
 - [Overview](/dev-docs/show-native-ads.html#how-native-ads-work)
 - [Developer Walkthrough](/dev-docs/show-native-ads.html)
 - [GAM Step by Step - Native Creatives](/adops/gam-native.html)
-- [Bidders with Native Demand](/dev-docs/bidders.html#bidders-with-video-and-native-demand)
+- [Bidders with Native Demand](/dev-docs/bidders.html)
 
 ## AMP
 

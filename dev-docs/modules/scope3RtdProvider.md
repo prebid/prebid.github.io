@@ -211,5 +211,5 @@ For questions about the Scope3 RTD Provider:
 
 ## Related Modules
 
-* [Real-Time Data Module]({{site.baseurl}}/dev-docs/modules/realTimeData.html)
+* [Real-Time Data Module]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html#setConfig-realTimeData)
 * [RTD Sub-Module Development]({{site.baseurl}}/dev-docs/add-rtd-submodule.html)

@@ -21,7 +21,7 @@ Module-specific configuration:
 
 * [Currency module](/dev-docs/modules/currency.html)
 * [Consent Management](/dev-docs/modules/consentManagementTcf.html#page-integration)
-* [User ID module](/dev-docs/modules/userId.html#configuration)
+* [User ID module](/dev-docs/modules/userId.html#basic-configuration)
 * [Adpod](/dev-docs/modules/adpod.html)
 * [IAB Category Translation](/dev-docs/modules/categoryTranslation.html)
 
@@ -58,7 +58,7 @@ pbjs.setConfig({ deviceAccess: false });
 
 This can be useful in GDPR, CCPA, COPPA or other privacy scenarios where a publisher has determined that header bidding should not read from or write the user's device.
 
-Note that bid adapters are normally denied access to device storage even when `deviceAccess` is `true`; see the [`storageAllowed` bidder setting](/dev-docs/publisher-api-reference/bidderSettings.html#deviceAccess).
+Note that bid adapters are normally denied access to device storage even when `deviceAccess` is `true`; see the [`storageAllowed` bidder setting](/dev-docs/publisher-api-reference/bidderSettings.html#storageAllowed).
 
 <a id="setConfig-disableFingerprintingApis"></a>
 
@@ -1508,7 +1508,7 @@ pbjs.setConfig({
 
 ### Real-Time Data Modules
 
-All of the modules that fall under the [Real-Time Data (RTD) category](/dev-docs/modules/index.html#real-time-data-providers) conform to
+All of the modules that fall under the [Real-Time Data (RTD) category](/dev-docs/modules/index.html#vendor-specific-modules) conform to
 a consistent set of publisher controls. The pub can choose to run multiple
 RTD modules, define an overall amount of time they're willing to wait for
 results, and even flag some of the modules as being more "important"
