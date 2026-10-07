@@ -141,11 +141,15 @@ var adUnits = [
 
 ### Configuration
 
-To maximize revenue efficiency, please enable `iframe` user syncing.
+#### User syncing
 
-Connatix strongly recommends enabling user syncing through iFrames. This functionality improves DSP user match rates and increases the bid rate and bid price. Make sure to call `pbjs.setConfig()` only once. This configuration is optional in Prebid, but required by Connatix.
+Connatix strongly recommends enabling `iframe` user syncing. The iframe sync returns identity data to the adapter, which improves DSP user match rates and increases the bid rate and bid price.
 
-#### Example configuration
+When iframe syncs are not allowed by the publisher, the adapter falls back to an `image` (pixel) user sync. Only one sync is registered per auction: the iframe sync when `iframe` is enabled for `connatix`, otherwise the image sync when `image` is enabled.
+
+Make sure to call `pbjs.setConfig()` only once.
+
+**Example configuration**
 
 ```js
 pbjs.setConfig({
@@ -153,6 +157,10 @@ pbjs.setConfig({
     filterSettings: {
       iframe: {
         bidders: ["connatix"],
+        filter: "include",
+      },
+      image: {
+        bidders: ["*"],
         filter: "include",
       },
     },
