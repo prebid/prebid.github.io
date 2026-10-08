@@ -33,7 +33,7 @@ The **Epom Ad Server** bid adapter lets a publisher put their own direct-sold ca
 
 This is a different product from the [Epom DSP](/dev-docs/bidders/epomDspBidAdapter.html) adapter. The DSP **buys** impressions on the open market; this adapter **sells** a publisher's own inventory.
 
-Epom Ad Server is white-label: each network runs its own deployment on its own domain, so the serving host is supplied per ad unit through `params.host`. Only the host is configurable — the request path is fixed by the adapter — and a page may mix several deployments, in which case the adapter groups impressions by host and sends one request to each.
+Epom Ad Server is white-label: each network runs its own deployment. A bid names its network with `params.networkId` (for example `n2494`) and is sent to that network's address on Epom's header-bidding domain, `https://n2494.eashb.com/hb/bid`. In Prebid.js, `params.host` optionally sends it to the network's own serving domain instead, where the network's identity cookie lives. Only a hostname varies — the request path is fixed by the adapter — and a page may mix several networks, in which case the adapter sends one request to each.
 
 All ad units on the page are auctioned in a **single request**, one `imp` per ad unit. Epom Ad Server resolves a page as a unit, so its roadblock and one-campaign-per-page rules require every slot to be decided in the same auction.
 
@@ -42,7 +42,8 @@ All ad units on the page are auctioned in a **single request**, one `imp` per ad
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Description                                                                                                                                                                             | Example              | Type     |
 |----------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|----------|
-| `host`         | required | Serving host of the publisher's Epom Ad Server deployment, as a bare hostname with an optional port — no scheme, path or query. The adapter POSTs to `https://{host}/hb/bid`.           | `'ads.example.com'`  | `string` |
+| `networkId`    | required | The Epom network, as `n` followed by the network number, as printed on the network's header-bidding Code tab. The adapter POSTs to `https://{networkId}.eashb.com/hb/bid`. | `'n2494'`            | `string` |
+| `host`         | optional | The network's own serving domain, as a bare hostname with an optional port — no scheme, path or query. Prebid.js only: when given, the bid goes to `https://{host}/hb/bid` so the network's identity cookie comes along. Prebid Server accepts it and does not use it. | `'ads.example.com'`  | `string` |
 | `placementKey` | required | Placement identifier, copied from the placement's invocation-code tab in the Epom UI. Must not be empty. Sent as `imp.tagid`.                                                           | `'a4f21c9e7b'`       | `string` |
 | `channel`      | optional | Epom channel — a publisher traffic-slice label used for channel targeting and reporting. Sent as `imp.ext.epom_as.channel`. An empty value is ignored.                                  | `'sports-uk'`        | `string` |
 | `customParams` | optional | Epom custom parameters, for custom targeting and creative macros. Values must be strings, numbers or booleans; they are stringified and merged into `imp.ext.data`.                     | `{section: 'sport'}` | `object` |
@@ -51,6 +52,7 @@ All ad units on the page are auctioned in a **single request**, one `imp` per ad
 
 Two details the table cannot hold comfortably:
 
+- `networkId` must be `n` followed by digits, since it becomes a hostname label. Prebid.js also accepts a bid that carries only `host`, for configurations that predate `networkId`; Prebid Server requires `networkId`.
 - `host` accepts a single-label hostname such as `'ads-eu'` as well as a dotted one, because an Epom deployment may be reached over an internal name. It never accepts a scheme, a path, a query, a fragment or userinfo, on either transport.
 - `customParams` carries no key-count or length limit at the adapter. Epom Ad Server applies its own ingest limits on top — at most 32 keys, keys to 128 and values to 512 characters — and ignores anything beyond them. When a key in `customParams` collides with one already on the impression, the impression's value wins; see [First Party Data](#first-party-data).
 
@@ -60,7 +62,7 @@ The parameters above are the same on both transports, and the OpenRTB payload Ep
 
 The server-side adapter is written for **Prebid Server Go**; there is no Prebid Server Java implementation. It is not in a released build yet — it is open as [prebid-server PR #4916](https://github.com/prebid/prebid-server/pull/4916), so a host that wants it today builds from that branch. A build without it refuses the impression by name rather than ignoring it: `request.imp[0].ext.prebid.bidder contains unknown bidder: epom_as`.
 
-The endpoint is reached differently. In Prebid.js the adapter builds the URL itself from `params.host`. In Prebid Server it is host-templated as `https://{% raw %}{{.Host}}{% endraw %}/hb/bid`, resolved per impression from the same `host` parameter — a Prebid Server host operator does not configure a per-publisher endpoint.
+The endpoint is the same on both transports: `https://{networkId}.eashb.com/hb/bid`, templated in Prebid Server as `https://{% raw %}{{.Host}}{% endraw %}.eashb.com/hb/bid` and resolved per impression from `networkId`, so a Prebid Server host operator does not configure a per-publisher endpoint. The one difference is `host`: Prebid.js sends a bid there when it is given, so the network's identity cookie comes along, while Prebid Server ignores it — a server-side request carries no browser cookie to bring.
 
 One difference is worth knowing rather than discovering. A browser request carries the reader's cookies, and Epom's per-user frequency capping counts against the identity in one of them; a server-side request carries none, and Epom Ad Server reads no `user.buyeruid` on this path, so per-user capping has no identity to count against there. The reader's address does reach Epom: the adapter forwards it from `device.ip`, since on a server-to-server call the connection itself comes from the Prebid Server host rather than from the reader.
 
@@ -75,7 +77,7 @@ var adUnits = [{
   bids: [{
     bidder: 'epom_as',
     params: {
-      host: 'ads.example.com',
+      networkId: 'n3057',
       placementKey: 'a4f21c9e7b'
     }
   }]
@@ -84,7 +86,7 @@ var adUnits = [{
 
 ### Prebid Server
 
-Through a Prebid Server the same two parameters travel in the impression, under `ext.prebid.bidder`:
+Through a Prebid Server the same parameters travel in the impression, under `ext.prebid.bidder`:
 
 ```json
 {
@@ -96,7 +98,7 @@ Through a Prebid Server the same two parameters travel in the impression, under 
       "prebid": {
         "bidder": {
           "epom_as": {
-            "host": "ads.example.com",
+            "networkId": "n3057",
             "placementKey": "a4f21c9e7b"
           }
         }
@@ -106,7 +108,7 @@ Through a Prebid Server the same two parameters travel in the impression, under 
 }
 ```
 
-`host` and `placementKey` are both required and there is no server-side default for either: the endpoint is resolved per impression from `host`, so an entry without one is not bid.
+`networkId` and `placementKey` are both required and there is no server-side default for either: the endpoint is resolved per impression from `networkId`, so an entry without one is not bid.
 
 A page already running Prebid.js can route the bidder server-side instead, leaving its ad units and the `bids` entry above unchanged:
 
@@ -129,7 +131,7 @@ A publisher needs two values from Epom, and the inventory has to be sold by a he
 
 1. Epom creates or confirms the placements and their placement keys.
 2. Epom creates an **active header-bidding tag listing those placements**. This is the step that is easy to skip and impossible to diagnose from outside: Epom Ad Server answers a bid only for a placement an active tag sells, and the placement key alone does not authorise anything — it is public by design, since it travels in every invocation code on the page.
-3. Epom hands over the serving `host` and one `placementKey` per ad unit.
+3. Epom hands over the `networkId`, one `placementKey` per ad unit and, for Prebid.js, the network's serving `host` if it wants browser bids sent there.
 4. For a server-side integration, the publisher gets the `accountId` from their own Prebid Server host — Epom does not issue it.
 5. For a server-side integration, the host must run a Prebid Server Go build carrying `epom_as` (see above).
 
@@ -148,7 +150,7 @@ var adUnits = [{
   bids: [{
     bidder: 'epom_as',
     params: {
-      host: 'aj2494.online',
+      networkId: 'n2494',
       placementKey: '63bad7a99f270394e7b4b370952cbff2'
     }
   }]
@@ -165,7 +167,7 @@ var adUnits = [{
   bids: [{
     bidder: 'epom_as',
     params: {
-      host: 'aj2494.online',
+      networkId: 'n2494',
       placementKey: '7659fd47e17263ba6ae1de3c9e137c74'
     }
   }]
@@ -186,7 +188,7 @@ var adUnits = [{
   bids: [{
     bidder: 'epom_as',
     params: {
-      host: 'aj2494.online',
+      networkId: 'n2494',
       placementKey: 'f4dd0f413d5c4f8d8c515f8a999e038f'
     }
   }]
@@ -197,7 +199,7 @@ Instream video needs a cache setting, or Prebid discards the bid before `bidsBac
 
 ## Multiple Deployments
 
-Inventory sold by two Epom networks can run in the same auction. Each host receives its own request, containing only the impressions addressed to it.
+Inventory sold by two Epom networks can run in the same auction. Each network receives its own request, containing only the impressions addressed to it.
 
 ```javascript
 pbjs.addAdUnits([
@@ -206,7 +208,7 @@ pbjs.addAdUnits([
     mediaTypes: { banner: { sizes: [[300, 250]] } },
     bids: [{
       bidder: 'epom_as',
-      params: { host: 'ads.network-one.com', placementKey: 'a4f21c9e7b' }
+      params: { networkId: 'n3057', placementKey: 'a4f21c9e7b' }
     }]
   },
   {
@@ -214,7 +216,7 @@ pbjs.addAdUnits([
     mediaTypes: { banner: { sizes: [[728, 90]] } },
     bids: [{
       bidder: 'epom_as',
-      params: { host: 'ads.network-two.com', placementKey: '6d0e83b415' }
+      params: { networkId: 'n4120', placementKey: '6d0e83b415' }
     }]
   }
 ]);
@@ -232,11 +234,11 @@ User IDs are forwarded the same way. Any ID module enabled on the page writes it
 
 ## Deals
 
-Every bid from Epom Ad Server carries a deal id, surfaced by Prebid as `bid.dealId` and as the `hb_deal_epom_as` targeting key. Publishers who want their own direct campaigns to take precedence over programmatic demand rather than compete with it on price can target an ad server line item on that key.
+A bid for a campaign the network sold directly carries the deal id `epom-direct`, surfaced by Prebid as `bid.dealId` and as the `hb_deal_epom_as` targeting key; house campaigns and programmatic demand bought through Epom never carry it. Publishers who want those direct campaigns to take precedence over programmatic demand rather than compete with it on price can target an ad server line item on that key.
 
 ## Notes
 
-Epom Ad Server does not currently populate `seatbid.bid[].adomain` on its bid responses, so `bid.meta.advertiserDomains` arrives empty. Brand-safety or blocking line items keyed on advertiser domain will not match a bid from this adapter.
+Epom Ad Server sends `seatbid.bid[].adomain` when the advertiser behind the bid has a domain set, and it reaches Prebid as `bid.meta.advertiserDomains`. A bid whose advertiser has none arrives without it, so brand-safety or blocking line items keyed on advertiser domain will not match that bid.
 
 ## Privacy
 
