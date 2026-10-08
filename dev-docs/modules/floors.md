@@ -350,12 +350,12 @@ Note: if you're a dynamic floor provider service, your response must be
 a subset that will be merged under the 'data' object.
 
 {: .alert.alert-warning :}
-You **cannot** set the `floorMin` parameter without specifying a `data` object. See the [simple static floor](/dev-docs/modules/floors.html#simple-static-floors) section above for more info.
+You **cannot** set the `floorMin` parameter without specifying a `data` object. See the [simple static floor](/dev-docs/modules/floors.html#simple-static-floor-signaling) section above for more info.
 
 {: .table .table-bordered .table-striped }
 | Param | Type | Description | Default |
 |---+---+---+---+---|
-| floorMin | float | The mimimum CPM floor used by the Price Floors Module (as of 4.13). The Price Floors Module will take the greater of floorMin and the matched rule CPM when evaluating getFloor() and enforcing floors. **Note**: this is not a method of setting a [static floor](/dev-docs/modules/floors.html#simple-static-floors). | - |
+| floorMin | float | The mimimum CPM floor used by the Price Floors Module (as of 4.13). The Price Floors Module will take the greater of floorMin and the matched rule CPM when evaluating getFloor() and enforcing floors. **Note**: this is not a method of setting a [static floor](/dev-docs/modules/floors.html#simple-static-floor-signaling). | - |
 | floorProvider | string | Optional atribute (as of prebid version 4.1) used to signal to the Floor Provider's Analytics adapter their floors are being applied. They can opt to log only floors that are applied when they are the provider. If floorProvider is supplied in both the top level of the floors object and within the data object, the data object's configuration shall prevail.| - |
 | enforcement | object | Controls the enforcement behavior within the Price Floors Module.| - |
 | skipRate | integer | skipRate is a random function whose input value is any integer 0 through 100 to determine when to skip all floor logic, where 0 is always use floor data and 100 is always skip floor data. The use case is for publishers or floor providers to learn bid behavior when floors are applied or skipped. Analytics adapters will  have access to model version (if defined) when skipped is true to signal the Price Floors Module is in floors mode. If skipRate is supplied in both the root level of the floors object and within the data object, the skipRate configuration within the data object shall prevail. | 0 |
@@ -410,12 +410,12 @@ Note: if you're a dynamic floor provider service, your response must be
 a subset that will be merged under the 'data' object.
 
 {: .alert.alert-warning :}
-You **cannot** set the `floorMin` parameter without specifying a `data` object. See the [simple static floor](/dev-docs/modules/floors.html#simple-static-floors) section above for more info.
+You **cannot** set the `floorMin` parameter without specifying a `data` object. See the [simple static floor](/dev-docs/modules/floors.html#simple-static-floor-signaling) section above for more info.
 
 {: .table .table-bordered .table-striped }
 | Param | Type | Description | Default |
 |---+---+---+---+---|
-| floorMin | float | The mimimum CPM floor used by the module (as of 4.13). The module will take the greater of floorMin and the matched rule CPM when evaluating getFloor() and enforcing floors. **Note**: this is not a method of setting a [static floor](/dev-docs/modules/floors.html#simple-static-floors). | - |
+| floorMin | float | The mimimum CPM floor used by the module (as of 4.13). The module will take the greater of floorMin and the matched rule CPM when evaluating getFloor() and enforcing floors. **Note**: this is not a method of setting a [static floor](/dev-docs/modules/floors.html#simple-static-floor-signaling). | - |
 | floorMinCur | float | Prebid Server only: the currency used for the floorMin value. | - |
 | floorProvider | string | Optional atribute (as of prebid version 4.1) used to signal to the Floor Provider's Analytics adapter their floors are being applied. They can opt to log only floors that are applied when they are the provider. If floorProvider is supplied in both the top level of the floors object and within the data object, the data object's configuration shall prevail.| - |
 | skipRate | integer | skipRate is a random function whose input value is any integer 0 through 100 to determine when to skip all floor logic, where 0 is always use floor data and 100 is always skip floor data. The use case is for publishers or floor providers to learn bid behavior when floors are applied or skipped. Analytics adapters will  have access to model version (if defined) when skipped is true to signal the module is in floors mode. If skipRate is supplied in both the root level of the floors object and within the data object, the skipRate configuration within the data object shall prevail. | 0 |

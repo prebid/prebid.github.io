@@ -217,7 +217,7 @@ Now that you've defined your native template you can create your native creative
 
 ## Create Mobile In-App Template
 
-Use these instructions if you integrate In-App native ads on [iOS](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#in-app-native) or [Android](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#in-app-native). The difference is in choosing the GAM option for supporting Android & iOS app code.
+Use these instructions if you integrate In-App native ads on [iOS](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#format-native-in-app) or [Android](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#format-native-in-app). The difference is in choosing the GAM option for supporting Android & iOS app code.
 
 1. Sign in to Google Ad Manager.
 2. Create an ad unit with fluid ad size.
@@ -251,7 +251,7 @@ Make sure to indicate that the variables are required.
 
 ## Attach the Creative to Your Line Item
 
-Follow the instructions in [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html#duplicate-creative) to duplicate your creative and attach it to your line item.
+Follow the instructions in [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html#duplicate-the-creative) to duplicate your creative and attach it to your line item.
 
 ## Further Reading
 

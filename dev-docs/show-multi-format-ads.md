@@ -50,7 +50,7 @@ The ad ops team will reference this key in the ad server to set targeting.  For 
 
 Keep the following prerequisites in mind during the implementation:
 
-* Make sure to work with bidders that support demand for the media types you want, particularly native and video.  To see which bidders have native and/or video demand, see [Bidders with Video and Native Demand]({{site.baseurl}}/dev-docs/bidders.html#bidders-with-video-and-native-demand).
+* Make sure to work with bidders that support demand for the media types you want, particularly native and video.  To see which bidders have native and/or video demand, see [Bidders with Video and Native Demand]({{site.baseurl}}/dev-docs/bidders.html).
 
 ## Implementation
 

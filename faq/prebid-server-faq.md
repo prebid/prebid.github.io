@@ -138,7 +138,7 @@ are multiple bids from a given bidder for a given imp[], here how it chooses:
 - highest CPM
 - random tiebreaker
 
-Note: if the request allows [multibid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#multibid-pbs-java-only), then several bid responses from the same bidder may
+Note: if the request allows [multibid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#multibid), then several bid responses from the same bidder may
 be returned to the client.
 
 **Decision 2**: which bidder for each imp[] object gets the hb_pb, hb_size, and hb_bidder targeting values
