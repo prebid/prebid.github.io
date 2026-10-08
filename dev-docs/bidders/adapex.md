@@ -4,9 +4,8 @@ title: Adapex
 description: Prebid Adapex Bidder Adapter
 biddercode: adapex
 pbjs: true
-pbs: true
-pbs_app_supported: true
-media_types: banner, video, native, audio
+pbs: false
+media_types: banner, video, native
 safeframes_ok: true
 sidebarType: 1
 tcfeu_supported: true
@@ -28,9 +27,9 @@ privacy_sandbox: no
 
 ## Note
 
-The Adapex bidder adapter connects publishers to the Adapex programmatic exchange over OpenRTB 2.x. Prebid.js supports banner, video and native; Prebid Server also supports audio. Contact <prebid@floxis.tech> to set up an account and obtain a seat.
+The Adapex bidder adapter connects publishers to the Adapex programmatic exchange over OpenRTB 2.x and supports banner, video and native. Contact <prebid@floxis.tech> to set up an account and obtain a seat.
 
-## Prebid.js Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 
@@ -42,25 +41,13 @@ The Adapex bidder adapter connects publishers to the Adapex programmatic exchang
 
 Bid requests are sent to `https://hb.adapex.io/pbjs?seat={seat}`, one request per distinct seat.
 
-## Prebid Server
-
-The Prebid Server adapter (Go and Java) sends requests to `https://hb.adapex.io/pbs`. User sync uses the standard Prebid Server cookie-sync mechanism via `https://sync.adapex.io/sync`.
-
-## Prebid Server Bid Params
-
-{: .table .table-bordered .table-striped }
-
-| Name | Scope | Description | Example | Type |
-| ---- | ----- | ----------- | ------- | ---- |
-| `seat` | required | Seat identifier provided by Adapex | `"testSeat"` | `string` |
-
 ## Floors Support
 
 The adapter supports the Prebid.js [Floors Module](https://docs.prebid.org/dev-docs/modules/floors.html). Floor values are sent in the OpenRTB request as `imp.bidfloor` and `imp.bidfloorcur`.
 
 ## Privacy Support
 
-Privacy signals (GDPR/TCF EU, US Privacy, GPP, COPPA) are provided by Prebid.js core / Prebid Server and forwarded on the OpenRTB request, and consent strings are appended to user-sync calls. The adapter declares IAB TCF EU vendor ID 1609.
+Privacy signals (GDPR/TCF EU, US Privacy, GPP, COPPA) are provided by Prebid.js core and forwarded on the OpenRTB request, and consent strings are appended to user-sync calls. The adapter declares IAB TCF EU vendor ID 1609.
 
 ## User Sync
 
@@ -83,7 +70,7 @@ If `filterSettings.all` is already configured, iframe syncs are already enabled 
 
 ## First-Party Fallback Id (Storage Use)
 
-In browsers that block third-party cookies, the Prebid.js adapter maintains a first-party fallback identifier: a random v4 UUID stored under the key `adpx_uid` in `localStorage` (preferred) and a cookie (~30-day lifetime), both scoped to the publisher's own origin. The id is per-publisher, never shared across sites, and is sent as `user.ext.wlid`. It is used only when the exchange's own cookie is unavailable.
+In browsers that block third-party cookies, the adapter maintains a first-party fallback identifier: a random v4 UUID stored under the key `adpx_uid` in `localStorage` (preferred) and a cookie (~30-day lifetime), both scoped to the publisher's own origin. The id is per-publisher, never shared across sites, and is sent as `user.ext.wlid`. It is used only when the exchange's own cookie is unavailable.
 
 All storage access goes through the Prebid.js `storageManager`, so it is gated by the standard `deviceAccess` configuration and GDPR purpose-1 consent under GVL ID 1609. Bidder-level storage access is denied by default and requires an explicit publisher opt-in; without it no id is generated or sent:
 
