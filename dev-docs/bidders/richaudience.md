@@ -17,11 +17,12 @@ floors_supported: true
 sidebarType: 1
 ---
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name        | Scope           | Description                                                                                              | Example                                                                                                 | Type       |
-|-------------|-----------------|----------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|------------|
-| `pid`       | required        | The placement ID from Rich Audience.                                                                     | `'ADb1f40rmi'`                                                                                          | `string`   |
-| `ifa`       | optional        | Identifier For Advertisers                                                                               | `'AAAAAAAAA-BBBB-CCCC-1111-222222220000234234234234234'`                                                | `string`   |
-| `keywords`  | optional        | A key-value applied only to the configured bid. This value is optional. Strings separated by semicolon.  | `car=mercedes;car=audi;`                                                                                | `string`   |
+| Name         | Scope                          | Description                                                                                             | Example                                                  | Type     |
+|--------------|--------------------------------|---------------------------------------------------------------------------------------------------------|----------------------------------------------------------|----------|
+| `pid`        | required                       | The placement ID from Rich Audience.                                                                    | `'ADb1f40rmi'`                                           | `string` |
+| `supplyType` | required for Prebid <= 11.29.x | Define if site or app. Ignored by Prebid 11.30.0 and later.                                             | `'site / app'`                                           | `string` |
+| `ifa`        | optional                       | Identifier For Advertisers                                                                              | `'AAAAAAAAA-BBBB-CCCC-1111-222222220000234234234234234'` | `string` |
+| `keywords`   | optional                       | A key-value applied only to the configured bid. This value is optional. Strings separated by semicolon. | `car=mercedes;car=audi;`                                 | `string` |
