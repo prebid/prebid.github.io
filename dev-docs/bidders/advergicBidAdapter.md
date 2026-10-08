@@ -19,7 +19,7 @@ pbjs: true
 pbs: false
 prebid_member: false
 sidebarType: 1
-userIds: criteo, id5Id, sharedId, pubProvidedId
+userId: criteo, id5Id, sharedId, pubProvidedId
 ---
 
 ## Note
@@ -153,16 +153,16 @@ pbjs.setConfig({
 
 ## Privacy
 
-The adapter passes supported privacy signals to the Advergic endpoint:
+The adapter forwards supported privacy signals to the Advergic endpoint:
 
-* GDPR consent
+* GDPR consent signals
 * US Privacy / CCPA consent
 * GPP consent
 * COPPA
 
 The adapter forwards the supplied GPP string and applicable section IDs.
 
-The adapter does not currently declare an IAB Global Vendor List ID. `tcfeu_supported` is therefore not enabled in this documentation.
+Advergic does not currently have an IAB Global Vendor List ID and does not declare TCF-EU support (`tcfeu_supported: false`).
 
 ## Supply Chain
 
