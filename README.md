@@ -85,6 +85,16 @@ Configuration file: /Users/me/git/prebid.github.io/_config.yml
 
 Open the `Server address` URL in your browser, and you should see a locally running copy of the site.
 
+<a name="checking-links"></a>
+
+## Checking Links
+
+CI checks internal links and anchors in the built site with [lychee](https://lychee.cli.rs/), configured in [lychee.toml](lychee.toml). To run the same check locally, [install lychee](https://lychee.cli.rs/installation/) and run:
+
+```bash
+npm run linkcheck
+```
+
 <a name="building-assets"></a>
 
 ## Building Assets
