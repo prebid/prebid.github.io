@@ -42,8 +42,13 @@ is downloaded unless an Adswag outstream bid wins, and a publisher-supplied
 Audio requires the `FEATURES.AUDIO` build flag and `mimes`; Prebid has no
 built-in audio renderer, so hand the returned VAST to your audio player.
 
-From `ortb2.user` only extended identifiers (`user.eids` / `user.ext.eids`)
-are forwarded, gated on consent; other `user` first-party data is not sent.
+From `ortb2.user`, extended identifiers (`user.eids` / `user.ext.eids`) and
+publisher key/values (`user.data` / `user.ext.data`) are forwarded only when
+identity consent permits; otherwise those surfaces are omitted. Contextual
+first-party data on `ortb2.site` / `ortb2.app` / `ortb2Imp.ext.data` always
+flows. Impression key/values may also be set via `params.kv` (merged into
+`imp.ext.data`); every key must be declared in the publisher's key-space
+registry, or the edge drops it as `kv.undeclared`.
 
 ## Bid Params
 
@@ -54,6 +59,7 @@ are forwarded, gated on consent; other `user` first-party data is not sent.
 | `placementId` | optional | Explicit placement override. Omit to let Adswag discover the placement from GPID/adUnitCode. | `"plc-homepage-mrec"` | `string` |
 | `bidFloor`    | optional | Static floor (EUR) used only when the Prebid Price Floors module is not configured.          | `0.50`                | `number` |
 | `video`       | optional | Overrides for `mediaTypes.video` ad-unit params (Prebid video-params convention).            | `{ maxduration: 15 }` | `object` |
+| `kv`          | optional | Impression-scoped publisher key/values (string, number, or array of those). Mapped into `imp.ext.data`. Keys must be declared; undeclared keys are dropped as `kv.undeclared`. | `{ section: "sport" }` | `object` |
 
 ## Video params
 
