@@ -36,7 +36,7 @@ The Adapex bidder adapter connects publishers to the Adapex programmatic exchang
 | Name | Scope | Description | Example | Type |
 | ---- | ----- | ----------- | ------- | ---- |
 | `seat` | required | Seat identifier provided by Adapex | `"testSeat"` | `string` |
-| `bidFloor` | optional | Static floor (CPM), used only when the Floors Module is not in the build | `0.5` | `number` |
+| `bidFloor` | optional | Static floor (CPM) when no Floors API applies and floor signaling is not suppressed | `0.5` | `number` |
 | `bidFloorCur` | optional | Currency of `bidFloor` (default: `USD`) | `"USD"` | `string` |
 
 Bid requests are sent to `https://hb.adapex.io/pbjs?seat={seat}`, one request per distinct seat.
@@ -44,6 +44,8 @@ Bid requests are sent to `https://hb.adapex.io/pbjs?seat={seat}`, one request pe
 ## Floors Support
 
 The adapter supports the Prebid.js [Floors Module](https://docs.prebid.org/dev-docs/modules/floors.html). Floor values are sent in the OpenRTB request as `imp.bidfloor` and `imp.bidfloorcur`.
+
+Static `params.bidFloor` applies only when no Floors API applies and `ortb2Imp` supplies no floor, including when floor data is unavailable. It is not sent for an intentionally skipped Floors auction or a bidder in `noFloorSignalBidders`.
 
 ## First-Party Data and Deals
 
@@ -62,6 +64,8 @@ pbjs.setConfig({ adapex: { enableTelemetry: true } });
 When enabled, the adapter sends cookieless `keepalive` beacons to `https://sync.adapex.io/event` for auction timeouts and bidder transport errors. They contain the seat, event type and available operational fields (HTTP status, timeout flag, duration, auction ID and publisher domain), plus consent signals when available. They contain no user or device identifier and are deduplicated per seat per event.
 
 Set `enableTelemetry` to `false` to disable these beacons. Bidding and user sync continue to operate independently.
+
+For split requests, errors are reported only for the seat identified by the failed response URL. If a network failure provides no URL and multiple seats were requested, the error beacon is omitted.
 
 Parameter and configuration types are exported from `prebid.js/modules/adapexBidAdapter` for publishers using TypeScript.
 
