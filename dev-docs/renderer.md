@@ -57,6 +57,7 @@ The Safe Renderer works similarly to the default Prebid renderer in that it is i
 | `url` | Required | String | URL to the external renderer script that will be loaded and executed within Safe renderer |
 | `config` | Optional | Object | Object that will be passed to external renderer script as a `config` field. For bid adapters use |
 | `getConfig` | Optional | Function | Function that will evaluate `config` object accessible in external renderer script. For publisher's use. Accepts `bidResponse` as a parameter |
+| `requiresVastUrl` | Optional | Boolean | For outstream video, cache XML-only bids so the renderer receives `vastUrl`. Requires `cache.url` or `cache.useLocal`. Has no effect when the bid already has `vastUrl`. |
 
 ```javascript
 const adUnits = [
@@ -185,6 +186,9 @@ window.pbRenderInFrame = function ({ config, ...renderingData }) {
 | `url` | Required | String | URL to the renderer script that will be loaded. This script should create a renderer object in the global scope. |
 | `render` | Required | Function | Function that tells Prebid.js how to invoke the renderer script to render a bid. The function receives the bid object as a parameter. |
 | `backupOnly` | Optional | Boolean | if set to true, buyer or adapter renderer will be preferred |
+| `requiresVastUrl` | Optional | Boolean | For outstream video, cache XML-only bids so the renderer receives `vastUrl`. Requires `cache.url` or `cache.useLocal`. Has no effect when the bid already has `vastUrl`. |
+
+Set `requiresVastUrl: true` on the renderer that needs a URL. Prebid uses the selected renderer's value, including a Safe Renderer when present. If caching is unavailable, an XML-only bid cannot be used by a renderer requiring `vastUrl`. `mediaTypes.video.useCacheKey` still forces caching for outstream bids independently of the renderer.
 
 ### Special Cases
 
