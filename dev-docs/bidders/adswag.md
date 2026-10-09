@@ -31,43 +31,38 @@ sidebarType: 1
 
 Maintainer contact: [prebid@adswag.ai](mailto:prebid@adswag.ai)
 
-Adswag bids in **EUR** on every bid. Publishers whose ad-server currency is
-not EUR should include the Prebid
-[currency module](https://docs.prebid.org/dev-docs/modules/currency.html).
+Adswag bids in **EUR**. If your ad-server currency is not EUR, include the
+Prebid [currency module](https://docs.prebid.org/dev-docs/modules/currency.html).
 
-Outstream video units get an Adswag renderer attached automatically: nothing
-is downloaded unless an Adswag outstream bid wins, and a publisher-supplied
-`renderer` overrides it per Prebid convention.
+Outstream video units get the Adswag renderer attached to the winning bid.
+A `renderer` you set on the ad unit takes precedence.
 
-Audio requires the `FEATURES.AUDIO` build flag and `mimes`; Prebid has no
-built-in audio renderer, so hand the returned VAST to your audio player.
+Audio requires the `FEATURES.AUDIO` build flag and `mimes`. Hand the
+returned VAST to your audio player.
 
-From `ortb2.user`, extended identifiers (`user.eids` / `user.ext.eids`) and
-publisher key/values (`user.data` / `user.ext.data`) are forwarded only when
-identity consent permits; otherwise those surfaces are omitted. Contextual
-first-party data on `ortb2.site` / `ortb2.app` / `ortb2Imp.ext.data` always
-flows. Impression key/values may also be set via `params.kv` (merged into
-`imp.ext.data`); every key must be declared in the publisher's key-space
-registry, or the edge drops it as `kv.undeclared`.
+First-party data is forwarded the standard Prebid way: `ortb2.site` (page
+and content keys), `ortb2Imp.ext.data` or the `kv` bid param (ad unit keys,
+sent as `imp.ext.data`), and `ortb2.user.data` / `ortb2.user.ext.data` (user
+keys, forwarded with identity consent, like eids). Declare each key in your
+Adswag account before you send it.
 
 ## Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                                                                                  | Example               | Type     |
 |---------------|----------|----------------------------------------------------------------------------------------------|-----------------------|----------|
-| `publisherId` | required | Adswag publisher id (issued at onboarding). Resolves the canonical publisher at the edge.    | `"pub-nl-news-1"`     | `string` |
-| `placementId` | optional | Explicit placement override. Omit to let Adswag discover the placement from GPID/adUnitCode. | `"plc-homepage-mrec"` | `string` |
-| `bidFloor`    | optional | Static floor (EUR) used only when the Prebid Price Floors module is not configured.          | `0.50`                | `number` |
-| `video`       | optional | Overrides for `mediaTypes.video` ad-unit params (Prebid video-params convention).            | `{ maxduration: 15 }` | `object` |
-| `kv`          | optional | Impression-scoped publisher key/values (string, number, or array of those). Mapped into `imp.ext.data`. Keys must be declared; undeclared keys are dropped as `kv.undeclared`. | `{ section: "sport" }` | `object` |
+| `publisherId` | required | Your Adswag publisher id.                                                                    | `"pub-nl-news-1"`     | `string` |
+| `placementId` | optional | Names the placement. Omit it and the placement is discovered from GPID or the ad unit code.  | `"plc-homepage-mrec"` | `string` |
+| `bidFloor`    | optional | Floor in EUR, used when the Prebid Price Floors module is not configured.                    | `0.50`                | `number` |
+| `video`       | optional | Overrides for `mediaTypes.video` params.                                                     | `{ maxduration: 15 }` | `object` |
+| `kv`          | optional | Key/values for this ad unit, sent as `imp.ext.data`. Values are strings, numbers, or arrays of those. | `{ section: "sport" }` | `object` |
 
 ## Video params
 
-Standard Prebid video params are read from `mediaTypes.video` (with
-`params.video` overrides); `mimes` is required. The endpoint consumes
-`mimes`, `minduration`, `maxduration`, `protocols`, `playerSize` (as
-`w`/`h`), `plcmt` (derived from `context` when not set explicitly),
-`linearity`, `skip` and `skipafter`.
+Video params are read from `mediaTypes.video`, with `params.video`
+overrides; `mimes` is required. Supported: `mimes`, `minduration`,
+`maxduration`, `protocols`, `playerSize`, `plcmt` (derived from `context`
+when not set), `linearity`, `skip` and `skipafter`.
 
 ## Example ad units
 
@@ -140,7 +135,9 @@ var adUnits = [
 
 ## Privacy / consent / identity
 
-Consentless traffic is served contextually: no identifiers are read,
-written, or forwarded. Enabling user syncs is recommended (registered via
-`getUserSyncs`, one iframe or image sync per auction on `ev.adswag.ai`,
-honoring your `userSync` configuration and GDPR/GPP/USP consent).
+Adswag is TCF vendor 1417; add it to your CMP. With consent, the adapter
+forwards eids and keeps an Adswag first-party id through Prebid's
+StorageManager. Without consent, traffic is served contextually. The adapter
+registers one iframe or image sync per auction on `ev.adswag.ai`, following
+your `userSync` configuration and consent; enabling iframe syncing improves
+match rates.
