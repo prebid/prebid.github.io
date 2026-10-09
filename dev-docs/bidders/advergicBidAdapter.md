@@ -155,14 +155,39 @@ pbjs.setConfig({
 
 The adapter forwards supported privacy signals to the Advergic endpoint:
 
-* GDPR consent signals
-* US Privacy / CCPA consent
-* GPP consent
-* COPPA
+- GDPR consent signals
+- US Privacy / CCPA consent
+- GPP consent
+- COPPA
 
 The adapter forwards the supplied GPP string and applicable section IDs.
 
-Advergic does not currently have an IAB Global Vendor List ID and does not declare TCF-EU support (`tcfeu_supported: false`).
+Advergic does not currently have an IAB Global Vendor List (GVL) ID and does not declare TCF-EU support (`tcfeu_supported: false`).
+
+### Prebid TCF Enforcement
+
+If a publisher enables Prebid TCF enforcement and configures `enforceVendor: true` for an applicable rule, the publisher can add `advergic` to that rule's `vendorExceptions` to exempt Advergic from vendor-level enforcement for that rule.
+
+If `enforceVendor: false`, no exception is needed because vendor-level enforcement is already disabled for that rule.
+
+Example:
+
+```javascript
+pbjs.setConfig({
+  consentManagement: {
+    gdpr: {
+      rules: [{
+        purpose: 'basicAds',
+        enforcePurpose: true,
+        enforceVendor: true,
+        vendorExceptions: ['advergic']
+      }]
+    }
+  }
+});
+```
+
+This example exempts Advergic from vendor-level enforcement for the specified rule while leaving purpose enforcement enabled. Exceptions apply only to the rules where they are configured and do not override purpose enforcement or other applicable privacy controls. Publishers should ensure their configuration complies with applicable privacy requirements.
 
 ## Supply Chain
 
