@@ -16,9 +16,9 @@ coppa_supported: true
 gpp_sids: tcfeu, usnat, usstate_all, usp
 schain_supported: true
 dchain_supported: false
-deals_supported: false
+deals_supported: true
 floors_supported: true
-fpd_supported: false
+fpd_supported: true
 prebid_member: false
 multiformat_supported: will-bid-on-any
 ortb_blocking_supported: true
@@ -45,9 +45,29 @@ Bid requests are sent to `https://hb.adapex.io/pbjs?seat={seat}`, one request pe
 
 The adapter supports the Prebid.js [Floors Module](https://docs.prebid.org/dev-docs/modules/floors.html). Floor values are sent in the OpenRTB request as `imp.bidfloor` and `imp.bidfloorcur`.
 
+## First-Party Data and Deals
+
+Publisher first-party data is forwarded from the standard `ortb2` configuration and ad-unit `ortb2Imp`. Supply chain and User ID module EIDs are also forwarded. Do not put these fields in bidder params.
+
+Publisher deal definitions can be supplied through `ortb2Imp.pmp`. Returned deal IDs are exposed as `dealId` for Prebid's standard deal targeting.
+
+## Error and Timeout Telemetry
+
+Telemetry is disabled by default. Publishers can opt in:
+
+```javascript
+pbjs.setConfig({ adapex: { enableTelemetry: true } });
+```
+
+When enabled, the adapter sends cookieless `keepalive` beacons to `https://sync.adapex.io/event` for auction timeouts and bidder transport errors. They contain the seat, event type and available operational fields (HTTP status, timeout flag, duration, auction ID and publisher domain), plus consent signals when available. They contain no user or device identifier and are deduplicated per seat per event.
+
+Set `enableTelemetry` to `false` to disable these beacons. Bidding and user sync continue to operate independently.
+
+Parameter and configuration types are exported from `prebid.js/modules/adapexBidAdapter` for publishers using TypeScript.
+
 ## Privacy Support
 
-Privacy signals (GDPR/TCF EU, US Privacy, GPP, COPPA) are provided by Prebid.js core and forwarded on the OpenRTB request, and consent strings are appended to user-sync calls. The adapter declares IAB TCF EU vendor ID 1609.
+Privacy signals (GDPR/TCF EU, US Privacy, GPP, COPPA) are provided by Prebid.js core and forwarded on the OpenRTB request, and server-provided user-sync URLs carry the applicable consent signals. The adapter declares IAB TCF EU vendor ID 1609.
 
 ## User Sync
 
@@ -124,6 +144,8 @@ var adUnits = [{
     }]
 }];
 ```
+
+For outstream video, the publisher must provide a renderer through `mediaTypes.video.renderer`.
 
 ## AdUnit Configuration for Native
 
