@@ -21,12 +21,12 @@ multiformat_supported: will-not-bid
 ortb_blocking_supported: false
 ---
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description  | Example   | Type     |
-|---------------|----------|--------------|-----------|----------|
-| `publisherNameIdentifier`      | required | Publisher name identifier | `test-publisher-name` | `string` |
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| `publisherNameIdentifier` | required | Publisher name identifier | `test-publisher-name` | `string` |
 | `creativeType` | required | Type of the creative | `NativeX` | `NativeX\|DTX` |
 | `siteId` | required | ID associated with the site | `123456` | `integer` |
 | `zoneIds` | optional | Zones to request from bidder | `[789, 123]` | `array[integer]` |
@@ -36,8 +36,9 @@ ortb_blocking_supported: false
 Current available integration options are as follows:
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description  | Example   | Type     |
-|---------------|----------|--------------|-----------|----------|
-| `startCompact`      | optional | Height of the experience will be reduced | `true` | `boolean` |
-| `dwellExpand`      | optional | Auto expand the experience after a certain time passes | `true` | `boolean` |
-| `contentCode`      | optional | Force show a certain experience. Generally used for testing and debugging purposes. | `publisher-test` | `string` |
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| `startCompact` | optional | Height of the experience will be reduced | `true` | `boolean` |
+| `dwellExpand` | optional | Auto expand the experience after a certain time passes | `true` | `boolean` |
+| `contentCode` | optional | Force show a certain experience. Generally used for testing and debugging purposes. | `publisher-test` | `string` |
+| `mobileSwipe` | optional | Request the Mobile Swipe experience for this placement. Omit to leave the choice to the campaign being served. The unit renders in a fixed 320x600 iframe, so size the slot to at least those dimensions. | `true` | `boolean` |
