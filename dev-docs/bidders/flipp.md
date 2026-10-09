@@ -41,3 +41,4 @@ Current available integration options are as follows:
 | `startCompact`      | optional | Height of the experience will be reduced | `true` | `boolean` |
 | `dwellExpand`      | optional | Auto expand the experience after a certain time passes | `true` | `boolean` |
 | `contentCode`      | optional | Force show a certain experience. Generally used for testing and debugging purposes. | `publisher-test` | `string` |
+| `mobileSwipe`      | optional | Request the Mobile Swipe experience for this placement. Omit to leave the choice to the campaign being served. The unit renders in a fixed 320x600 iframe, so size the slot to at least those dimensions. | `true` | `boolean` |
