@@ -61,7 +61,7 @@ Telemetry is disabled by default. Publishers can opt in:
 pbjs.setConfig({ adapex: { enableTelemetry: true } });
 ```
 
-When enabled, the adapter sends cookieless `keepalive` beacons to `https://sync.adapex.io/event` for auction timeouts and bidder transport errors. They contain the seat, event type and available operational fields (HTTP status, timeout flag, duration, auction ID and publisher domain), plus consent signals when available. They contain no user or device identifier and are deduplicated per seat per event.
+When enabled, the adapter sends cookieless `keepalive` beacons to `https://sync.adapex.io/event` for auction timeouts and bidder transport errors. They contain the seat, event type and available operational fields (HTTP status, timeout flag, duration and publisher domain), plus consent signals when available. They contain no user, device or auction identifier and are deduplicated per seat per event.
 
 Set `enableTelemetry` to `false` to disable these beacons. Bidding and user sync continue to operate independently.
 
@@ -96,7 +96,7 @@ If `filterSettings.all` is already configured, iframe syncs are already enabled 
 
 In browsers that block third-party cookies, the adapter maintains a first-party fallback identifier: a random v4 UUID stored under the key `adpx_uid` in `localStorage` (preferred) and a cookie (~30-day lifetime), both scoped to the publisher's own origin. The id is per-publisher, never shared across sites, and is sent as `user.ext.wlid`. It is used only when the exchange's own cookie is unavailable.
 
-All storage access goes through the Prebid.js `storageManager`, so it is gated by the standard `deviceAccess` configuration and GDPR purpose-1 consent under GVL ID 1609. Bidder-level storage access is denied by default and requires an explicit publisher opt-in; without it no id is generated or sent:
+All storage access goes through the Prebid.js `storageManager`, so it is gated by the standard `deviceAccess` configuration and GDPR purpose-1 consent under GVL ID 1609. Bidder-level storage access is denied by default and requires an explicit publisher opt-in; without it no stored fallback id is read or generated:
 
 ```javascript
 pbjs.bidderSettings = {
@@ -105,6 +105,8 @@ pbjs.bidderSettings = {
     }
 };
 ```
+
+Sending the fallback identifier also requires both `transmitEids` and `transmitUfpd` activity controls to allow it. If either is denied, the adapter omits both custom identifiers (`user.ext.wlid` and `user.ext.floxisId`), including publisher-supplied values, and does not access fallback storage or generate an identifier. Storage permission alone does not enable transmission.
 
 ## AdUnit Configuration for Banner
 
