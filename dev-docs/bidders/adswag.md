@@ -42,7 +42,7 @@ returned VAST to your audio player.
 
 First-party data is forwarded the standard Prebid way: `ortb2.site` (page
 and content keys), `ortb2Imp.ext.data` or the `kv` bid param (ad unit keys,
-sent as `imp.ext.data`), and `ortb2.user.data` / `ortb2.user.ext.data` (user
+sent as `imp.ext.data`; `kv` wins when a key is in both), and `ortb2.user.data` / `ortb2.user.ext.data` (user
 keys, forwarded with identity consent, like eids). Declare each key in your
 Adswag account before you send it.
 
@@ -55,7 +55,7 @@ Adswag account before you send it.
 | `placementId` | optional | Names the placement. Omit it and the placement is discovered from GPID or the ad unit code.  | `"plc-homepage-mrec"` | `string` |
 | `bidFloor`    | optional | Floor in EUR, used when the Prebid Price Floors module is not configured.                    | `0.50`                | `number` |
 | `video`       | optional | Overrides for `mediaTypes.video` params.                                                     | `{ maxduration: 15 }` | `object` |
-| `kv`          | optional | Key/values for this ad unit, sent as `imp.ext.data`. Values are strings, numbers, or arrays of those. | `{ section: "sport" }` | `object` |
+| `kv`          | optional | Key/values for this ad unit, sent as `imp.ext.data`. Strings, numbers, or arrays of those.   | `{ section: "news" }` | `object` |
 
 ## Video params
 
