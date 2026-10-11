@@ -132,7 +132,7 @@ See [Prebid Native Implementation](/prebid/native-implementation.html) for detai
 
 For mixed video setups, keep the global cache configured for ad units that need a cached VAST URL. Set `mediaTypes.video.cache: false` only on ad units whose player consumes the bid directly. This choice stays with the ad unit when auctions overlap; changing the global cache configuration between auctions does not provide that isolation.
 
-When caching is disabled, Prebid does not turn VAST XML into a VAST URL. If the active renderer declares `requiresVastUrl: true`, the bid must already supply a VAST URL. An XML-only bid is discarded in that case, including with local caching configured.
+When caching is disabled, Prebid does not turn VAST XML into a VAST URL. For outstream video, if the active renderer declares `requiresVastUrl: true`, the bid must already supply a VAST URL. An XML-only bid is discarded in that case, including with local caching configured.
 
 <a name="adUnit-examples"></a>
 
