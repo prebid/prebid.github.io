@@ -55,15 +55,13 @@ Publisher deal definitions can be supplied through `ortb2Imp.pmp`. Returned deal
 
 ## Error and Timeout Telemetry
 
-Telemetry is disabled by default. Publishers can opt in:
+By default, the adapter sends cookieless `keepalive` beacons to `https://sync.adapex.io/event` for auction timeouts and bidder transport errors. They contain the seat, event type and available operational fields (HTTP status, timeout flag, duration and publisher domain), plus consent signals when available. They contain no user, device or auction identifier and are deduplicated per seat per event.
+
+Publishers can disable these beacons. Bidding and user sync continue to operate independently:
 
 ```javascript
-pbjs.setConfig({ adapex: { enableTelemetry: true } });
+pbjs.setConfig({ adapex: { enableTelemetry: false } });
 ```
-
-When enabled, the adapter sends cookieless `keepalive` beacons to `https://sync.adapex.io/event` for auction timeouts and bidder transport errors. They contain the seat, event type and available operational fields (HTTP status, timeout flag, duration and publisher domain), plus consent signals when available. They contain no user, device or auction identifier and are deduplicated per seat per event.
-
-Set `enableTelemetry` to `false` to disable these beacons. Bidding and user sync continue to operate independently.
 
 For split requests, errors are reported only for the seat identified by the failed response URL. If a network failure provides no URL and multiple seats were requested, the error beacon is omitted.
 
