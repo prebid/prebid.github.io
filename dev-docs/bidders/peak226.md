@@ -22,13 +22,12 @@ fpd_supported: true
 deals_supported: true
 dchain_supported: false
 ortb_blocking_supported: true
+userIds: all
 ---
 
 ## Overview
 
 ```text
-Module Name: Peak226 Bidder Adapter
-Module Type: Bidder Adapter
 Maintainer: support@edge226.com
 ```
 
@@ -118,11 +117,8 @@ var adUnits = [
 - **Video** bids are returned as VAST XML. Instream requires a Prebid Cache configuration
   (`pbjs.setConfig({ cache: { url: '...' } })`). Outstream requires a publisher-supplied renderer
   on the ad unit (`mediaTypes.video.renderer` or `renderer`); Peak226 does not host a renderer.
-- **Multiformat ad units** are supported: all declared formats are sent on a single impression
-  and Peak226 may bid on any of them.
 - **Requests are split per region and publisher.** Bids that differ in `region` or
-  `publisherId` are sent as separate requests, each to its own data center with its own
-  `site.publisher.id` / `app.publisher.id`.
+  `publisherId` are sent as separate requests.
 - **`${AUCTION_PRICE}`** in creative markup, `nurl` and `burl` is expanded by the adapter with
   the bid price.
 - **Native** bids may carry their markup in a non-standard `adm_native` field instead of `adm`.
@@ -132,15 +128,8 @@ var adUnits = [
 
 ## Prebid Server notes
 
-- **Requests are split per region and publisher.** `region` selects a data center and
-  `publisherId` is request-level, so when the impressions in a single request mix either, the
-  adapter emits one outgoing request per distinct (region, `publisherId`) pair — each carrying
-  only its own impressions — rather than routing everything to the first impression's values.
-  Groups are requested in first-seen order. `publisherId` is written to `app.publisher.id` for
-  app requests and `site.publisher.id` otherwise.
-- **Multiformat impressions are supported.** Banner, video and native may be declared on the
-  same impression; all declared formats are forwarded and Peak226 may bid on any of them. No
-  format is dropped and there is no preferred-format selection.
+- **Requests are split per region and publisher.** Impressions that differ in `region` or
+  `publisherId` are sent as separate requests.
 - **`${AUCTION_PRICE}` is expanded by the adapter.** Peak226 returns the OpenRTB
   `${AUCTION_PRICE}` macro in `adm` (and `nurl`, `burl`) as its counting mechanism and relies on
   the demand-side adapter to substitute the clearing price. The adapter resolves it before the
