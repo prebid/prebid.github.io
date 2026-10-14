@@ -52,9 +52,13 @@ Requests are routed to a per-data-center endpoint (US, EU or JP). Bids are net r
 | `region`      | optional  | Data center to send the request to: `'us'`, `'eu'` or `'jp'`. Defaults to `'us'`. | `'eu'`      | `string` |
 
 \* In Prebid.js both IDs may instead come from standard ORTB first party data —
-`ortb2.{site|app|dooh}.publisher.id` and `ortb2Imp.tagid` — in which case the bid params are
-not needed; when both are present the bid params win, so they act as per-ad-unit overrides. On
-Prebid Server both params are required.
+`ortb2.{site|app|dooh}.publisher.id` and `ortb2Imp.tagid` or `ortb2Imp.ext.gpid` — in which
+case the bid params are not needed; when both are present the bid params win, so they act as
+per-ad-unit overrides. `ortb2Imp.ext.gpid` is forwarded either way and counts as a valid
+placement ID. A bid is rejected only if neither the params nor ortb2/ortb2Imp supply a publisher
+ID or a placement ID. On Prebid Server both params are required.
+
+An unknown `region` value falls back to `'us'` in Prebid.js, while Prebid Server rejects it.
 
 ## Prebid.js
 
@@ -121,15 +125,19 @@ var adUnits = [
   `site.publisher.id` / `app.publisher.id`.
 - **`${AUCTION_PRICE}`** in creative markup, `nurl` and `burl` is expanded by the adapter with
   the bid price.
+- **Native** bids may carry their markup in a non-standard `adm_native` field instead of `adm`.
+  When `adm` is empty the adapter uses `adm_native` as the markup, and `${AUCTION_PRICE}` is
+  expanded everywhere inside it, including nested tracker URLs.
 - **No user sync.** The adapter does not implement `getUserSyncs`; see the note below.
 
 ## Prebid Server notes
 
-- **Requests are split per region.** `region` selects a data center, so when the impressions in
-  a single request mix regions the adapter emits one outgoing request per distinct region — each
-  carrying only its own impressions — rather than routing everything to the first impression's
-  region. Regions are requested in first-seen order, and each region group resolves its own
-  effective `publisherId`.
+- **Requests are split per region and publisher.** `region` selects a data center and
+  `publisherId` is request-level, so when the impressions in a single request mix either, the
+  adapter emits one outgoing request per distinct (region, `publisherId`) pair — each carrying
+  only its own impressions — rather than routing everything to the first impression's values.
+  Groups are requested in first-seen order. `publisherId` is written to `app.publisher.id` for
+  app requests and `site.publisher.id` otherwise.
 - **Multiformat impressions are supported.** Banner, video and native may be declared on the
   same impression; all declared formats are forwarded and Peak226 may bid on any of them. No
   format is dropped and there is no preferred-format selection.
@@ -142,6 +150,11 @@ var adUnits = [
 - **Zero-value `device.ifa` is cleared.** When the OS reports the all-zero sentinel IFA
   (`00000000-0000-0000-0000-000000000000`, e.g. after an iOS ATT opt-out) the adapter clears it
   rather than forwarding it as though it were a real device ID.
+- **Native `adm_native` is supported.** When a native bid has an empty `adm` and the markup is in
+  the non-standard `adm_native` field, the adapter uses it as `adm` (with `${AUCTION_PRICE}`
+  expanded).
+- **GPP is passed through, not decoded.** The adapter does not declare `gpp-supported`, so Prebid
+  Server forwards `regs.gpp` / `regs.gpp_sid` as received without decoding or enforcing them.
 - Bid floors in a currency other than USD are converted before the request is sent.
 
 ## Privacy
