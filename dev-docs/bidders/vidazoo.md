@@ -27,7 +27,6 @@ sidebarType: 1
 
 ## Native
 
-
 ### Prebid.js
 
 ```javascript
