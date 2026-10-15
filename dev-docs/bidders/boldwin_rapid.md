@@ -11,7 +11,7 @@ usp_supported: true
 coppa_supported: true
 floors_supported: true
 pbs_app_supported: true
-gpp_supported: true
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 media_types: banner, video, native
 multiformat_supported: will-bid-on-one
 safeframes_ok: true
