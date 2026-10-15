@@ -18,15 +18,14 @@ safeframes_ok: true
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 The Boldwin Rapid Bidding adapter requires setup before beginning. Please contact us at <support@bold-win.com>
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description   | Example                      | Type      |
 |---------------|----------|---------------|------------------------------|-----------|
 | `pid`         | required | Publisher Id  | `'1234'`                     | `string`  |
 | `tid`         | required | Placement Id  | `'123e45a6789b9ced876cc543'` | `string`  |
-
