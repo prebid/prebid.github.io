@@ -39,19 +39,7 @@ The Adapex bidder adapter connects publishers to the Adapex programmatic exchang
 | `bidFloor` | optional | Static floor (CPM) when no Floors API applies and floor signaling is not suppressed | `0.5` | `number` |
 | `bidFloorCur` | optional | Currency of `bidFloor` (default: `USD`) | `"USD"` | `string` |
 
-Bid requests are sent to `https://hb.adapex.io/pbjs?seat={seat}`, one request per distinct seat.
-
-## Floors Support
-
-The adapter supports the Prebid.js [Floors Module](https://docs.prebid.org/dev-docs/modules/floors.html). Floor values are sent in the OpenRTB request as `imp.bidfloor` and `imp.bidfloorcur`.
-
-Static `params.bidFloor` applies only when no Floors API applies and `ortb2Imp` supplies no floor, including when floor data is unavailable. It is not sent for an intentionally skipped Floors auction or a bidder in `noFloorSignalBidders`.
-
-## First-Party Data and Deals
-
-Publisher first-party data is forwarded from the standard `ortb2` configuration and ad-unit `ortb2Imp`. Supply chain and User ID module EIDs are also forwarded. Do not put these fields in bidder params.
-
-Publisher deal definitions can be supplied through `ortb2Imp.pmp`. Returned deal IDs are exposed as `dealId` for Prebid's standard deal targeting.
+Bid requests are sent to `https://hb.adapex.io/pbjs?seat={seat}`, one request per distinct seat. Parameter and configuration types are exported from `prebid.js/modules/adapexBidAdapter` for publishers using TypeScript.
 
 ## Error and Timeout Telemetry
 
@@ -64,12 +52,6 @@ pbjs.setConfig({ adapex: { enableTelemetry: false } });
 ```
 
 For split requests, errors are reported only for the seat identified by the failed response URL. If a network failure provides no URL and multiple seats were requested, the error beacon is omitted.
-
-Parameter and configuration types are exported from `prebid.js/modules/adapexBidAdapter` for publishers using TypeScript.
-
-## Privacy Support
-
-Privacy signals (GDPR/TCF EU, US Privacy, GPP, COPPA) are provided by Prebid.js core and forwarded on the OpenRTB request, and server-provided user-sync URLs carry the applicable consent signals. The adapter declares IAB TCF EU vendor ID 1609.
 
 ## User Sync
 
