@@ -1,8 +1,8 @@
 ---
 layout: bidder
 title: Pragma Adx
-description: Prebid pragmaAdx Bidder Adapter
-biddercode: pragmaAdx
+description: Prebid pragmaadx Bidder Adapter
+biddercode: pragmaadx
 pbjs: true
 pbs: false
 media_types: video, banner
@@ -23,7 +23,7 @@ sidebarType: 1
 
 ## Note
 
-`pragmaAdx` serves **video or banner**: it rejects any bid request that has
+`pragmaadx` serves **video or banner**: it rejects any bid request that has
 neither `mediaTypes.video` nor `mediaTypes.banner`. Which format an ad
 unit actually gets is decided server-side by Pragma's own ad unit
 configuration (`adUnitId`), not by the publisher's requested media type —
@@ -37,7 +37,7 @@ both serve fine on Pragma's other, non-header-bidding integration paths —
 neither has a real market price to enter into a header auction against
 bidders who priced honestly.
 
-`pragmaAdx` does not yet have a Prebid Server (`pbs`) adapter, an IAB
+`pragmaadx` does not yet have a Prebid Server (`pbs`) adapter, an IAB
 Global Vendor List ID, and does not implement `getUserSyncs` (Pragma runs
 no cookie/pixel-sync endpoint) or `onBidWon`/`onTimeout` (win/impression
 accounting already happens server-side, off the VAST tracking beacons
@@ -68,7 +68,7 @@ var adUnits = [{
         }
     },
     bids: [{
-        bidder: 'pragmaAdx',
+        bidder: 'pragmaadx',
         params: {
             apiKey: 'adx_pub_test_key',
             adUnitId: 1,
@@ -83,7 +83,7 @@ var adUnits = [{
         }
     },
     bids: [{
-        bidder: 'pragmaAdx',
+        bidder: 'pragmaadx',
         params: {
             apiKey: 'adx_pub_test_key',
             adUnitId: 2,
