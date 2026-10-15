@@ -44,7 +44,7 @@ The regional endpoint is detected automatically from the caller's location; ther
 | `accountId` | required for exchange integration | Hash | `'0800fc577294'` | `string` |
 | `supplyPlacementId` | required for SSP integration | Supply-side placement id | `'0800fc577294'` | `string` |
 
-# Bid Params for Prebid.js
+## Bid Params for Prebid.js
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
