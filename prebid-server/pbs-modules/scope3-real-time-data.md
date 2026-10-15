@@ -259,4 +259,4 @@ For technical support:
 
 * [Prebid Server Modules]({{site.baseurl}}/prebid-server/pbs-modules/)
 * [Module Development]({{site.baseurl}}/prebid-server/developers/add-a-module.html)
-* [Real-Time Data Overview]({{site.baseurl}}/prebid-server/features/pbs-rtd.html)
+* [Prebid Server Modules]({{site.baseurl}}/prebid-server/pbs-modules/index.html)

@@ -154,7 +154,7 @@ completely backwards-compatible -- PBS will accept and process any Prebid.js flo
 ### Defining Floor data
 
 {: .alert.alert-warning :}
-You **cannot** set the `floorMin` parameter without specifying a `data` object. See the [simple static floor](/dev-docs/modules/floors.html#simple-static-floors) section for more info.
+You **cannot** set the `floorMin` parameter without specifying a `data` object. See the [simple static floor](/dev-docs/modules/floors.html#simple-static-floor-signaling) section for more info.
 
 As described in the [Signaling](#floor-signaling) section above, floor data may be defined in several ways. Here's the order of priority:
 
