@@ -26,7 +26,7 @@ userIds: all
 
 The Escalax Bidding adapter requires setup before beginning. Please contact us at <connect@escalax.io>
 
-# Integration Types
+## Integration Types
 
 Escalax supports two integration types. Use one or the other per ad unit, not both:
 
