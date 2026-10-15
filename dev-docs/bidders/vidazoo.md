@@ -27,6 +27,9 @@ sidebarType: 1
 
 ## Native
 
+
+### Prebid.js
+
 ```javascript
 var adUnits = [{
     code: 'div-native-1',
@@ -79,3 +82,26 @@ var adUnits = [{
 }];
 ```
 
+### Prebid Server
+
+```json
+{
+    "id": "some-request-id",
+    "site": {
+        "page": "https://example.com"
+    },
+    "imp": [{
+        "id": "some-impression-id",
+        "native": {
+            "request": "{\"ver\":\"1.2\",\"assets\":[{\"id\":1,\"required\":1,\"title\":{\"len\":80}},{\"id\":2,\"required\":1,\"img\":{\"type\":3,\"w\":1200,\"h\":627}},{\"id\":3,\"required\":1,\"data\":{\"type\":1}}]}",
+            "ver": "1.2"
+        },
+        "ext": {
+            "bidder": {
+                "cId": "562524b21b1c1f08117fc7f9"
+            }
+        }
+    }],
+    "tmax": 5000
+}
+```
