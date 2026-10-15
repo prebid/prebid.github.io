@@ -104,7 +104,7 @@ pbjs.bidderSettings = {
 };
 ```
 
-Sending the fallback identifier also requires both `transmitEids` and `transmitUfpd` activity controls to allow it. If either is denied, the adapter omits both custom identifiers (`user.ext.wlid` and `user.ext.floxisId`), including publisher-supplied values, and does not access fallback storage or generate an identifier. Storage permission alone does not enable transmission.
+Sending the fallback identifier also requires both `transmitEids` and `transmitUfpd` activity controls to allow it. If either is denied, the adapter omits both custom identifiers (`user.ext.wlid` and `user.ext.floxisId`), including publisher-supplied values, and does not access fallback storage or generate an identifier. Storage permission alone does not enable transmission. A CMP data-deletion request (`registerDeletion`, forwarded by Prebid.js core) removes both stored copies of `adpx_uid`.
 
 ## AdUnit Configuration for Banner
 
