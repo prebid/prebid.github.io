@@ -22,7 +22,7 @@ ortb_blocking_supported: true
 userIds: all
 ---
 
-# Note
+## Note
 
 The Escalax Bidding adapter requires setup before beginning. Please contact us at <connect@escalax.io>
 
