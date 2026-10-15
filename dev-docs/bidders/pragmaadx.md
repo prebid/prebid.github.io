@@ -10,7 +10,7 @@ tcfeu_supported: true
 usp_supported: true
 gpp_supported: true
 coppa_supported: false
-schain_supported: false
+schain_supported: true
 dchain_supported: false
 floors_supported: false
 fpd_supported: false
@@ -37,12 +37,13 @@ both serve fine on Pragma's other, non-header-bidding integration paths —
 neither has a real market price to enter into a header auction against
 bidders who priced honestly.
 
-`pragmaadx` does not yet have a Prebid Server (`pbs`) adapter, an IAB
-Global Vendor List ID, and does not implement `getUserSyncs` (Pragma runs
-no cookie/pixel-sync endpoint) or `onBidWon`/`onTimeout` (win/impression
-accounting already happens server-side, off the VAST tracking beacons
-baked into the returned creative, which fire from the actual player on
-actual playback).
+`pragmaadx` does not yet have a Prebid Server (`pbs`) adapter or an IAB
+Global Vendor List ID. `getUserSyncs` returns a pixel sync to
+`https://apps.pragma-crm.com/api/adx/sync` when `pixelEnabled` is true;
+Pragma does not operate a user-ID graph, so the pixel signals DSP partners
+that the browser has been on a Pragma-monetised page. `onBidWon` and
+`onTimeout` are not implemented — win/impression accounting happens
+server-side off the VAST tracking beacons baked into the returned creative.
 
 ## Bid Params
 
