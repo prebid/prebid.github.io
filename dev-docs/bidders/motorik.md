@@ -16,7 +16,7 @@ sidebarType: 1
 floors_supported: true
 prebid_member: false
 fpd_supported: false
-gvl_id: none
+gvl_id: 1409
 multiformat_supported: will-bid-on-one
 ortb_blocking_supported: true
 userIds: all
