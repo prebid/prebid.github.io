@@ -16,7 +16,8 @@ media_types: display, video
 floors_supported: true
 fpd_supported: false
 pbjs: true
-pbs: false
+pbs: true
+pbs_app_supported: true
 prebid_member: false
 multiformat_supported: will-bid-on-one
 ortb_blocking_supported: true
