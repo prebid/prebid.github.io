@@ -12,7 +12,7 @@ privacy_sandbox: no
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 The Roockmobile bidder adapter requires an assigned channel identifier, token, and placement identifier. Contact <qun.ma@roockmobile.com> for setup.
 
@@ -20,7 +20,7 @@ Bid requests use OpenRTB 2.5. The optional `domain` parameter may select an HTTP
 
 For integration testing or Prebid review, set numeric `test: 1`. This sends OpenRTB root field `test: 1`. Omit the bidder parameter in production, where normal requests carry `test: 0`.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 
@@ -32,7 +32,7 @@ For integration testing or Prebid review, set numeric `test: 1`. This sends Open
 | `test` | optional | Set to numeric `1` only for test and review traffic. | `1` | `number` |
 | `domain` | optional | HTTPS origin under `rmcdnnode.com` or `roockmobile.com`; paths remain fixed. | `'https://test.rmcdnnode.com'` | `string` |
 
-### Test Parameters
+## Test Parameters
 
 The following credentials are reserved for integration testing and Prebid review. Numeric `test: 1` requests test creatives.
 
@@ -48,7 +48,7 @@ The following credentials are reserved for integration testing and Prebid review
 }
 ```
 
-### Banner Example
+## Banner Example
 
 ```javascript
 {
@@ -61,7 +61,7 @@ The following credentials are reserved for integration testing and Prebid review
 }
 ```
 
-### Video Example
+## Video Example
 
 Declare video properties under `mediaTypes.video`. The adapter forwards the standard OpenRTB video fields and accepts VAST XML in `bid.adm`.
 
@@ -90,7 +90,7 @@ Declare video properties under `mediaTypes.video`. The adapter forwards the stan
 }
 ```
 
-### Native Example
+## Native Example
 
 ```javascript
 {
@@ -113,6 +113,6 @@ Declare video properties under `mediaTypes.video`. The adapter forwards the stan
 }
 ```
 
-### User Sync
+## User Sync
 
 Roockmobile uses Prebid's standard user-sync registration. The adapter prefers iframe sync when the publisher permits it and otherwise uses image sync when enabled.
