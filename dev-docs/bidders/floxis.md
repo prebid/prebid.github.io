@@ -10,16 +10,17 @@ media_types: banner, video, native, audio
 safeframes_ok: true
 sidebarType: 1
 tcfeu_supported: true
-dsa_supported: false
+dsa_supported: true
 gvl_id: 1609
 usp_supported: true
 coppa_supported: true
 gpp_sids: tcfeu, usnat, usstate_all, usp
 schain_supported: true
 dchain_supported: false
-deals_supported: false
+deals_supported: true
 floors_supported: true
-fpd_supported: false
+userIds: all
+fpd_supported: true
 prebid_member: false
 multiformat_supported: will-bid-on-any
 ortb_blocking_supported: true
@@ -53,6 +54,10 @@ The Floxis Prebid Server adapter is available in both Go (`prebid-server`) and J
 | `seat` | required | Seat identifier provided by Floxis | `"testSeat"` | `string` |
 | `region` | optional | Routing region: `us-e`, `eu`, or `apac` (default: `us-e`) | `"us-e"` | `string` |
 | `partner` | optional | Partner identifier (default: `floxis`) | `"floxis"` | `string` |
+
+## First Party Data
+
+The adapter builds its request with the Prebid.js ORTB converter, so publisher first-party data set via `setConfig({ortb2: {...}})` (`site`, `user`, `device`, `bcat`, `badv`, `regs`) and ad-unit level `ortb2Imp` (including `ortb2Imp.ext` and `ortb2Imp.pmp` deals) is forwarded on the OpenRTB request as-is. User IDs from the Prebid.js User ID module are sent in `user.ext.eids`.
 
 ## Floors Support
 
