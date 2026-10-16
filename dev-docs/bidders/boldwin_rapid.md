@@ -1,5 +1,5 @@
 ---
-layout: boldwin_rapid
+layout: bidder
 title: Boldwin Rapid
 description: Prebid Boldwin Rapid Bidder Adapter
 pbjs: true
