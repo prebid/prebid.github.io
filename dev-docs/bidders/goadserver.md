@@ -33,6 +33,8 @@ GoAdserver is a self-hosted, multi-tenant ad serving platform with a built-in Op
 
 Requests are POSTed to `https://{params.host}/openrtb2/auction`. The token lands in the outgoing BidRequest as `site.publisher.id`, which the GoAdserver auction handler uses to resolve the publisher account.
 
+More about GoAdserver is at [goadserver.com](https://www.goadserver.com). The auction endpoint is documented in the [GoAdserver Prebid Server integration docs](https://www.goadserver.com/docs/rtb/prebid-server/).
+
 For setup or to obtain a token, contact <support@goadserver.com>.
 
 ## Bid Parameters

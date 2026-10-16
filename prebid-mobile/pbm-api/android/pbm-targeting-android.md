@@ -577,8 +577,7 @@ First Party Data (FPD) is information about the app or user known by the develop
 
 ### User FPD
 
-Prebid SDK provides a number of properties in the [Targeting class](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#targeting-class-properties-and-
-methods) for setting user-oriented First Party Data.
+Prebid SDK provides a number of properties in the [Targeting class](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#targeting-class-properties-and-methods) for setting user-oriented First Party Data.
 
 ```kotlin
 void addUserKeyword(String keyword)
