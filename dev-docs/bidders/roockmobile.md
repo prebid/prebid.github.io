@@ -18,6 +18,8 @@ The Roockmobile bidder adapter requires an assigned channel identifier, token, a
 
 Bid requests use OpenRTB 2.5. The optional `domain` parameter may select an HTTPS Roockmobile-controlled origin; request paths remain fixed as `/pbjs` for bids and `/usersync` for user sync.
 
+Each impression requires a `tagid`. Publishers may provide it through the standard `ortb2Imp.tagid` field; bidder parameter `tagid` overrides that value when present.
+
 For integration testing or Prebid review, set numeric `test: 1`. This sends OpenRTB root field `test: 1`. Omit the bidder parameter in production, where normal requests carry `test: 0`.
 
 ## Bid Params
@@ -28,7 +30,7 @@ For integration testing or Prebid review, set numeric `test: 1`. This sends Open
 | --- | --- | --- | --- | --- |
 | `mid` | required | Roockmobile channel identifier. | `'YOUR_MID'` | `string` |
 | `token` | required | Roockmobile authentication token. | `'YOUR_TOKEN'` | `string` |
-| `tagid` | required | Placement identifier sent as `imp[].tagid`. | `'YOUR_TAGID'` | `string` |
+| `tagid` | optional | Overrides the standard `ortb2Imp.tagid` placement identifier; sent as `imp[].tagid`. | `'YOUR_TAGID'` | `string` |
 | `test` | optional | Set to numeric `1` only for test and review traffic. | `1` | `number` |
 | `domain` | optional | HTTPS origin under `rmcdnnode.com` or `roockmobile.com`; paths remain fixed. | `'https://test.rmcdnnode.com'` | `string` |
 
