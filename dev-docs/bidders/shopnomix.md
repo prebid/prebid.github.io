@@ -22,10 +22,10 @@ sidebarType: 1
 
 ## Registration
 
-Contact <prebid@shopnomix.com> for a publisher ID and native placement IDs. The
-bidding endpoint only answers requests from origins registered against the
-publisher, so the origins a site serves from have to be registered before it can
-bid.
+Contact <prebid@shopnomix.com> for a publisher ID, and for native placement IDs
+unless your account is set up to detect placements. The bidding endpoint only
+answers requests from origins registered against the publisher, so the origins a
+site serves from have to be registered before it can bid.
 
 ## Note
 
@@ -42,7 +42,11 @@ the publisher's own check or the `bidViewability` module.
 
 {: .table .table-bordered .table-striped }
 
-| Name          | Scope    | Description                   | Example                            | Type     |
-|---------------|----------|-------------------------------|------------------------------------|----------|
-| `publisherId` | required | Shopnomix publisher ID        | `'pub_01h2xcejqtf2nbrexx3vqjhp41'` | `string` |
-| `placementId` | required | Shopnomix native placement ID | `'plc_01h2xcejqtf2nbrexx3vqjhp41'` | `string` |
+| Name          | Scope     | Description                   | Example                            | Type     |
+|---------------|-----------|-------------------------------|------------------------------------|----------|
+| `publisherId` | required  | Shopnomix publisher ID        | `'pub_01h2xcejqtf2nbrexx3vqjhp41'` | `string` |
+| `placementId` | optional* | Shopnomix native placement ID | `'plc_01h2xcejqtf2nbrexx3vqjhp41'` | `string` |
+
+*`placementId` is required unless your Shopnomix account is set up to detect
+placements, in which case the slot is matched on the site and the ad unit code.
+Ask your Shopnomix contact which applies to you before leaving it out.
