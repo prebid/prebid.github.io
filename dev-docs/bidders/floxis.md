@@ -28,7 +28,7 @@ privacy_sandbox: no
 
 ## Note
 
-The Floxis bidder adapter enables integration with the Floxis programmatic advertising platform. It supports banner, video, and native formats with OpenRTB 2.x compliance via Prebid.js, and banner, video, native, and audio via Prebid Server. Please contact Floxis at <prebid@floxis.tech> to set up your account and obtain the required parameters.
+The Floxis bidder adapter enables integration with the Floxis programmatic advertising platform. It supports banner, video, and native formats with OpenRTB 2.x compliance via Prebid.js, and banner, video, native, and audio via Prebid Server Java. Please contact Floxis at <prebid@floxis.tech> to set up your account and obtain the required parameters.
 
 ## Prebid.js Bid Params
 
@@ -39,10 +39,12 @@ The Floxis bidder adapter enables integration with the Floxis programmatic adver
 | `seat` | required | Seat identifier provided by Floxis | `"testSeat"` | `string` |
 | `region` | optional | Routing region: `us-e`, `eu`, or `apac` (default: `us-e`) | `"us-e"` | `string` |
 | `partner` | optional | Partner identifier (default: `floxis`) | `"floxis"` | `string` |
+| `bidFloor` | optional | Fallback CPM floor when the request has no floor and `getFloor()` supplies no positive floor | `0.5` | `number` |
+| `bidFloorCur` | optional | Currency for `bidFloor` (default: `USD`) | `"USD"` | `string` |
 
 ## Prebid Server
 
-The Floxis Prebid Server adapter is available in both Go (`prebid-server`) and Java (`prebid-server-java`). The server-side endpoint follows the pattern `https://{region}.floxis.tech/pbs`, where `{region}` is one of `us-e`, `eu`, or `apac` (default: `us-e`). When a non-default `partner` is configured, the region host is prefixed accordingly (`https://{partner}-{region}.floxis.tech/pbs`). User-sync is handled via the standard Prebid Server cookie-sync mechanism. For setup assistance contact <prebid@floxis.tech>.
+The Floxis adapter is available in Prebid Server Java (`prebid-server-java`). The server-side endpoint follows the pattern `https://{region}.floxis.tech/pbs?seat={seat}`, where `{region}` is one of `us-e`, `eu`, or `apac` (default: `us-e`). When a non-default `partner` is configured, the region host is prefixed accordingly (`https://{partner}-{region}.floxis.tech/pbs?seat={seat}`). User-sync is handled via the standard Prebid Server cookie-sync mechanism. For setup assistance contact <prebid@floxis.tech>.
 
 ## Prebid Server Bid Params
 
@@ -64,9 +66,9 @@ Privacy signals (GDPR/TCF EU, US Privacy, GPP, COPPA) are provided by Prebid.js 
 
 ## First-Party Fallback Id (Storage Use)
 
-In browsers that block third-party cookies, the Prebid.js adapter maintains a first-party fallback identifier: a random v4 UUID stored under the key `flx_uid` in `localStorage` (preferred) and a cookie (~30-day lifetime), both scoped to the publisher's own origin. The id is per-publisher — it is never shared across sites — and is sent as `user.ext.floxisId`. It is used only as an identity of last resort when the Floxis `__fxId` cookie is unavailable. Storage details are disclosed at [floxis.tech/vendor-storage.json](https://floxis.tech/vendor-storage.json).
+The Prebid.js adapter can maintain a first-party fallback identifier: a random v4 UUID stored under the key `flx_uid` in `localStorage` (preferred) and a cookie (~30-day lifetime), both scoped to the publisher's own origin. The id is per-publisher — it is never shared across sites — and is sent as `user.ext.floxisId`. Storage details are disclosed at [floxis.tech/vendor-storage.json](https://floxis.tech/vendor-storage.json).
 
-All storage access goes through the Prebid.js `storageManager`, so it is gated by the standard `deviceAccess` configuration and GDPR purpose-1 consent under GVL ID 1609. Bidder-level storage access is denied by default and requires an explicit publisher opt-in — without it, no id is generated or sent (a safe no-op):
+All storage access goes through the Prebid.js `storageManager`, so it is gated by the standard `deviceAccess` configuration and GDPR purpose-1 consent under GVL ID 1609. Bidder-level storage access is denied by default and requires an explicit publisher opt-in. Without it, the adapter does not read storage or generate its fallback ID. A publisher-supplied `ortb2.user.ext.floxisId` can still be forwarded. To enable fallback storage:
 
 ```javascript
 pbjs.bidderSettings = {
