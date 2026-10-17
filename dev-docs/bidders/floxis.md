@@ -28,7 +28,7 @@ privacy_sandbox: no
 
 ## Note
 
-The Floxis bidder adapter enables integration with the Floxis programmatic advertising platform. It supports banner, video, and native formats with OpenRTB 2.x compliance via Prebid.js, and banner, video, native, and audio via Prebid Server. Please contact Floxis at <prebid@floxis.tech> to set up your account and obtain the required parameters.
+The Floxis bidder adapter enables integration with the Floxis programmatic advertising platform. It supports banner, video, and native formats with OpenRTB 2.x compliance via Prebid.js, and banner, video, native, and audio via Prebid Server Java. Please contact Floxis at <prebid@floxis.tech> to set up your account and obtain the required parameters.
 
 ## Prebid.js Bid Params
 
@@ -42,7 +42,7 @@ The Floxis bidder adapter enables integration with the Floxis programmatic adver
 
 ## Prebid Server
 
-The Floxis Prebid Server adapter is available in both Go (`prebid-server`) and Java (`prebid-server-java`). The server-side endpoint follows the pattern `https://{region}.floxis.tech/pbs`, where `{region}` is one of `us-e`, `eu`, or `apac` (default: `us-e`). When a non-default `partner` is configured, the region host is prefixed accordingly (`https://{partner}-{region}.floxis.tech/pbs`). User-sync is handled via the standard Prebid Server cookie-sync mechanism. For setup assistance contact <prebid@floxis.tech>.
+The Floxis adapter is available in Prebid Server Java (`prebid-server-java`). The server-side endpoint follows the pattern `https://{region}.floxis.tech/pbs`, where `{region}` is one of `us-e`, `eu`, or `apac` (default: `us-e`). When a non-default `partner` is configured, the region host is prefixed accordingly (`https://{partner}-{region}.floxis.tech/pbs`). User-sync is handled via the standard Prebid Server cookie-sync mechanism. For setup assistance contact <prebid@floxis.tech>.
 
 ## Prebid Server Bid Params
 
