@@ -9,7 +9,7 @@ media_types: banner, video, native
 safeframes_ok: true
 sidebarType: 1
 tcfeu_supported: true
-dsa_supported: false
+dsa_supported: true
 gvl_id: 1609
 usp_supported: true
 coppa_supported: true
@@ -19,6 +19,7 @@ dchain_supported: false
 deals_supported: true
 floors_supported: true
 fpd_supported: true
+userIds: all
 prebid_member: false
 multiformat_supported: will-bid-on-any
 ortb_blocking_supported: true
@@ -36,14 +37,14 @@ The Adapex bidder adapter connects publishers to the Adapex programmatic exchang
 | Name | Scope | Description | Example | Type |
 | ---- | ----- | ----------- | ------- | ---- |
 | `seat` | required | Seat identifier provided by Adapex | `"testSeat"` | `string` |
-| `bidFloor` | optional | Static floor (CPM) when no Floors API applies and floor signaling is not suppressed | `0.5` | `number` |
+| `bidFloor` | optional | Static floor (CPM) when `ortb2Imp` sets no floor, no Floors API applies and floor signaling is not suppressed | `0.5` | `number` |
 | `bidFloorCur` | optional | Currency of `bidFloor` (default: `USD`) | `"USD"` | `string` |
 
 Bid requests are sent to `https://hb.adapex.io/pbjs?seat={seat}`, one request per distinct seat. Parameter and configuration types are exported from `prebid.js/modules/adapexBidAdapter` for publishers using TypeScript.
 
 ## Error and Timeout Telemetry
 
-By default, the adapter sends cookieless `keepalive` beacons to `https://sync.adapex.io/event` for auction timeouts and bidder transport errors. They contain the seat, event type and available operational fields (HTTP status, timeout flag, duration and publisher domain), plus consent signals when available. They contain no user, device or auction identifier and are deduplicated per seat per event.
+By default, the adapter sends cookieless `keepalive` beacons to `https://sync.adapex.io/event` for auction timeouts and bidder transport errors. They contain the seat, region label, event type and available operational fields (HTTP status, timeout flag, duration and publisher domain). Error beacons also carry consent signals when available; timeout beacons carry none. They contain no user, device or auction identifier and are deduplicated per seat per event.
 
 Publishers can disable these beacons. Bidding and user sync continue to operate independently:
 
