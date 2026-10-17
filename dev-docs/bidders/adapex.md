@@ -70,11 +70,11 @@ pbjs.setConfig({
 });
 ```
 
-If `filterSettings.all` is already configured, iframe syncs are already enabled and the block above should not be added.
+When `filterSettings.all` is configured, that rule must allow `adapex`; `all` cannot be combined with `iframe` or `image` filters.
 
 ## First-Party Fallback Id (Storage Use)
 
-In browsers that block third-party cookies, the adapter maintains a first-party fallback identifier: a random v4 UUID stored under the key `adpx_uid` in `localStorage` (preferred) and a cookie (~30-day lifetime), both scoped to the publisher's own origin. The id is per-publisher, never shared across sites, and is sent as `user.ext.wlid`. It is used only when the exchange's own cookie is unavailable.
+The adapter can maintain a first-party fallback identifier: a random v4 UUID stored under the key `adpx_uid` in `localStorage` (preferred) and a cookie (~30-day lifetime), both scoped to the publisher's own origin. The id is per-publisher, never shared across sites, and is sent as `user.ext.wlid`.
 
 All storage access goes through the Prebid.js `storageManager`, so it is gated by the standard `deviceAccess` configuration and GDPR purpose-1 consent under GVL ID 1609. Bidder-level storage access is denied by default and requires an explicit publisher opt-in; without it no stored fallback id is read or generated:
 
@@ -86,7 +86,7 @@ pbjs.bidderSettings = {
 };
 ```
 
-Sending the fallback identifier also requires both `transmitEids` and `transmitUfpd` activity controls to allow it. If either is denied, the adapter omits both custom identifiers (`user.ext.wlid` and `user.ext.floxisId`), including publisher-supplied values, and does not access fallback storage or generate an identifier. Storage permission alone does not enable transmission. A CMP data-deletion request (`registerDeletion`, forwarded by Prebid.js core) removes both stored copies of `adpx_uid`.
+Sending the fallback identifier also requires both `transmitEids` and `transmitUfpd` activity controls to allow it. If either is denied, the adapter omits both custom identifiers (`user.ext.wlid` and `user.ext.floxisId`), including publisher-supplied values, and does not access fallback storage or generate an identifier. Storage permission alone does not enable transmission. On a CMP data-deletion request (`registerDeletion`, forwarded by Prebid.js core), the adapter attempts to remove both stored copies of `adpx_uid`. Deletion uses Prebid's ordinary storage controls and can be blocked if storage access has already been withdrawn.
 
 ## AdUnit Configuration for Banner
 
