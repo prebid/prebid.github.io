@@ -17,9 +17,9 @@ coppa_supported: true
 gpp_sids: tcfeu, usnat, usstate_all, usp
 schain_supported: true
 dchain_supported: false
-deals_supported: true
+deals_supported: false
 floors_supported: true
-fpd_supported: true
+fpd_supported: false
 prebid_member: false
 multiformat_supported: will-bid-on-any
 ortb_blocking_supported: true
@@ -39,7 +39,7 @@ The Floxis bidder adapter enables integration with the Floxis programmatic adver
 | `seat` | required | Seat identifier provided by Floxis | `"testSeat"` | `string` |
 | `region` | optional | Routing region: `us-e`, `eu`, or `apac` (default: `us-e`) | `"us-e"` | `string` |
 | `partner` | optional | Partner identifier (default: `floxis`) | `"floxis"` | `string` |
-| `bidFloor` | optional | Static CPM floor when the Floors Module does not provide a floor and floor signaling is allowed | `0.5` | `number` |
+| `bidFloor` | optional | Fallback CPM floor when the request has no floor and `getFloor()` supplies no positive floor | `0.5` | `number` |
 | `bidFloorCur` | optional | Currency for `bidFloor` (default: `USD`) | `"USD"` | `string` |
 
 ## Prebid Server
@@ -66,7 +66,7 @@ Privacy signals (GDPR/TCF EU, US Privacy, GPP, COPPA) are provided by Prebid.js 
 
 ## First-Party Fallback Id (Storage Use)
 
-In browsers that block third-party cookies, the Prebid.js adapter maintains a first-party fallback identifier: a random v4 UUID stored under the key `flx_uid` in `localStorage` (preferred) and a cookie (~30-day lifetime), both scoped to the publisher's own origin. The id is per-publisher — it is never shared across sites — and is sent as `user.ext.floxisId`. Storage details are disclosed at [floxis.tech/vendor-storage.json](https://floxis.tech/vendor-storage.json).
+The Prebid.js adapter can maintain a first-party fallback identifier: a random v4 UUID stored under the key `flx_uid` in `localStorage` (preferred) and a cookie (~30-day lifetime), both scoped to the publisher's own origin. The id is per-publisher — it is never shared across sites — and is sent as `user.ext.floxisId`. Storage details are disclosed at [floxis.tech/vendor-storage.json](https://floxis.tech/vendor-storage.json).
 
 All storage access goes through the Prebid.js `storageManager`, so it is gated by the standard `deviceAccess` configuration and GDPR purpose-1 consent under GVL ID 1609. Bidder-level storage access is denied by default and requires an explicit publisher opt-in. Without it, the adapter does not read storage or generate its fallback ID. A publisher-supplied `ortb2.user.ext.floxisId` can still be forwarded. To enable fallback storage:
 
