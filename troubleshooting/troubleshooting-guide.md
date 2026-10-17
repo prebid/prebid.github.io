@@ -108,7 +108,7 @@ You can review what ad units have been configured for Prebid by opening your bro
 To see all of the winning bids, open your browser console and type `pbjs.getAllWinningBids();`.
 
 {: .pb-alert .pb-alert-warning :}
-Keep in mind that any bid responses that come back after the [timeout you configured](/dev-docs/getting-started.html#set-the-ad-server-timeout) during setup will not be sent to the ad server.
+Keep in mind that any bid responses that come back after the [timeout you configured](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Bidder-Timeouts) during setup will not be sent to the ad server.
 
 {: .pb-alert .pb-alert-tip :}
 You can also print this data to the console in [table format](#see-all-bids-in-the-console) for easier reading.
@@ -169,7 +169,7 @@ Open your browser console and type `pbjs.getBidResponses();` to see a list of th
 To see all of the winning bids, open your browser console and type [`pbjs.getAllWinningBids();`](/dev-docs/publisher-api-reference/getAllWinningBids.html).
 
 {: .alert.alert-danger :}
-Keep in mind that any bid responses that come back after [the timeout you configured during setup](/dev-docs/getting-started.html#set-the-ad-server-timeout) will not be sent to the ad server.
+Keep in mind that any bid responses that come back after [the timeout you configured during setup](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Bidder-Timeouts) will not be sent to the ad server.
 
 {: .alert.alert-success :}
 You can also [print this data to the console in table format](#see-all-bids-in-the-console) for easier reading.
