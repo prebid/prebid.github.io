@@ -20,9 +20,9 @@ Return the latest available PAAPI auction configuration for each ad unit, option
 {: .table .table-bordered .table-striped }
 | Param | Scope | Type | Description |
 | --- | --- | --- | --- |
-| options | Optional | `Object` |  |
+| options | Optional | `Object` | |
 | options.adUnitCode | Optional | `String` | Ad unit filter; if provided, only return configuration for this ad unit |
-| options.auctionId | Optional | `String` | Auction filter; if provided, only return configuration from this auction  |
+| options.auctionId | Optional | `String` | Auction filter; if provided, only return configuration from this auction |
 
 **Example**:
 

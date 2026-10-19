@@ -25,12 +25,12 @@ pbjs.adServers.freewheel.getTargeting({
 });
 ```
 
-#### Argument Reference
+## Argument Reference
 
-##### The `options` object
+### The `options` object
 
 {: .table .table-bordered .table-striped }
 | Param | Scope | Type | Description |
 | --- | --- | --- | --- |
-| codes | Optional | `Array` |  [`adUnitCode1`] |
-| callback | Required | `Function` |  Callback function to execute when targeting data is back. |
+| codes | Optional | `Array` | [`adUnitCode1`] |
+| callback | Required | `Function` | Callback function to execute when targeting data is back. |

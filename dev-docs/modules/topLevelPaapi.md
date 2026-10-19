@@ -44,12 +44,12 @@ To use topLevelPaapi:
 This module exposes the following settings:
 
 {: .table .table-bordered .table-striped }
-|Name |Type |Description |Notes |
-| ------------ | ------------ | ------------ |------------ |
-|paapi.topLevelSeller | Object | | |
-|paapi.topLevelSeller.auctionConfig | Object | Base [AuctionConfig](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#2-sellers-run-on-device-auctions) to use in `runAdAuction` | Only `seller` and `decisionLogicURL` are required |
-|paapi.topLevelSeller.autorun | Boolean | If `true` (the default) , automatically start PAAPI auctions as soon as possible | |
-|paapi.topLevelSeller.overrideWinner | Boolean | If `true`, replace contextual winners with PAAPI winners as they are rendered. Default is `false`. | see [example](#overrideWinner) |  
+| Name | Type | Description | Notes |
+| --- | --- | --- | --- |
+| paapi.topLevelSeller | Object | | |
+| paapi.topLevelSeller.auctionConfig | Object | Base [AuctionConfig](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#2-sellers-run-on-device-auctions) to use in `runAdAuction` | Only `seller` and `decisionLogicURL` are required |
+| paapi.topLevelSeller.autorun | Boolean | If `true` (the default) , automatically start PAAPI auctions as soon as possible | |
+| paapi.topLevelSeller.overrideWinner | Boolean | If `true`, replace contextual winners with PAAPI winners as they are rendered. Default is `false`. | see [example](#overrideWinner) |
 
 <a id="examples"></a>
 ## Examples
