@@ -142,6 +142,8 @@ function sendInterstitialAdServerRequest() {
                 googletag.pubads().refresh([interstitialSlot]);
             });
         } else {
+            // Prebid.js never loaded (e.g. it was blocked), so pbjs.que would never
+            // run. Request the slot from GPT directly so it isn't left empty.
             googletag.pubads().refresh([interstitialSlot]);
         }
     });
@@ -203,6 +205,16 @@ In this example:
 - The `impressionViewable` listener is one example billing trigger. Use the GPT
   or application event that best represents when the interstitial should be
   billed for your integration.
+
+#### Ad server setup
+
+For Prebid bids to serve in the GPT web interstitial, Google Ad Manager needs Prebid line items that can fill it:
+
+- Create Prebid line items and creatives as described in [GAM Step by Step - Line Items](/adops/step-by-step.html) and [GAM Step by Step - Banner Creatives](/adops/gam-creative-banner-sbs.html), targeting the `hb_pb` (or bidder-specific) key-values.
+- Target those line items to the ad unit used for the interstitial slot (`/1234567/homepage/mobile-web-interstitial` in the example), and give them creative sizes that match the sizes requested in the Prebid.js ad unit, such as 320x480 and 480x320.
+- Follow Google's guide to [trafficking web interstitials](https://support.google.com/admanager/answer/9840201) for any interstitial-specific line item settings.
+
+The Prebid Universal Creative renders the winning bid using `hb_adid`, as for any other banner ad.
 
 ## How Bid Adapters Should Read Interstitial Flag
 
