@@ -1417,7 +1417,7 @@ less accurate than the observer, so opting out used to mean accepting bad viewab
 
 * `'boundingBox'`: nothing is waited for, so the auction never queues behind the rest of the page. In exchange each measurement forces a layout, and inside a cross-origin iframe it can only measure against the frame's own viewport.
 
-It also follows (`pbjs.yield`)[/dev-docs/publisher-api-reference/yield.html]: with no explicit setting, `pbjs.yield = false` selects `'boundingBox'`, since that flag already asks Prebid not to yield the main thread. An explicit `viewabilityMeasurement` wins over `pbjs.yield` in both directions.
+It also follows [`pbjs.yield`](/dev-docs/publisher-api-reference/yield.html): with no explicit setting, `pbjs.yield = false` selects `'boundingBox'`, since that flag already asks Prebid not to yield the main thread. An explicit `viewabilityMeasurement` wins over `pbjs.yield` in both directions.
 
 #### Examples
 {: .no_toc}
