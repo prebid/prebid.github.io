@@ -46,6 +46,8 @@ If the timeout period expires or an error from the CMP is thrown, one of these a
 - The auction is canceled outright.
 - The auction proceeds without the user's consent information.  
 
+Since Prebid.js 11.14, if the CMP lookup fails (for example, because no CMP is found or the CMP returns an error), the [User ID module](/dev-docs/modules/userId.html#user-id-gdpr-permissions-and-opt-out) does not run. Timeouts do not have this effect.
+
 ## Page Integration
 
 Please start by understanding the IAB's [TCF Implementation Guide](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/TCF-Implementation-Guidelines.md).

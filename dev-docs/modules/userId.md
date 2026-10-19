@@ -46,6 +46,11 @@ When paired with the [Consent Management](/dev-docs/modules/consentManagementTcf
   * Calls to an external user ID vendor are not made.
   * Nothing is stored to cookies or HTML5 local storage.
 
+Since Prebid.js 11.14:
+
+* If a TCF or GPP consent management module is configured and its CMP lookup fails (for example, because no CMP is found or the CMP returns an error), user ID submodules do not run: no IDs are retrieved and none are added to bid requests. A CMP timeout is not treated as a failure; in that case user ID submodules run with the consent data available at the time, as before.
+* Once the User ID module has initialized, any change in consent data (TCF, GPP, USP or COPPA) triggers a refresh of all user ID submodules, as if [`pbjs.refreshUserIds()`](/dev-docs/publisher-api-reference/refreshUserIds.html) had been called.
+
 In addition, individual users may opt-out of receiving cookies and HTML5 local storage by setting these values:
 
 * `_pbjs_id_optout` cookie or HTML5 local storage. The value can be anything -- if it exists, the user is considered opted out and no userId modules will fire.
@@ -93,7 +98,7 @@ The table below has the options that are common across ID systems. See the secti
 | name | Required | String | May be any of the following values: {% for page in userid_pages -%}`"{{ page.useridmodule -}}"`{% if forloop.last == false -%}, {% endif -%}{% endfor -%} | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
 | bidders | Optional | Array of Strings | An array of bidder codes to which this user ID may be sent. | `['bidderA', 'bidderB']` |
-| storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be a cookie, HTML5 storage or both.| |
+| storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be a cookie, HTML5 storage or both. | |
 | storage.type | Required | String | Must be `"cookie"`, `"html5"` or `"cookie&html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
 | storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"_unifiedId"` |
 | storage.expires | Strongly Recommended | Integer | How long (in days) the user ID information will be stored. If this parameter isn't specified, session cookies are used in cookie-mode, and local storage mode will create new IDs on every page. | `365` |
@@ -336,11 +341,11 @@ Alternatively, GAM can now pull IDs from Prebid for UserId submodules that [regi
 
 | Param under userSync | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| encryptedSignalSources | Optional | Object | Publisher can specify the ESP config by adding encryptedSignal Object under userSync Object |  |
-| encryptedSignalSources.sources | Required | Object |  An array of Object consisting of a sources list and encryption flag | Check below config as an example  |
-| encryptedSignalSources.sources.source | Required | Array | An array of sources for which signals needs to be registered  | `['sharedid.org','criteo.com']` |
+| encryptedSignalSources | Optional | Object | Publisher can specify the ESP config by adding encryptedSignal Object under userSync Object | |
+| encryptedSignalSources.sources | Required | Object | An array of Object consisting of a sources list and encryption flag | Check below config as an example |
+| encryptedSignalSources.sources.source | Required | Array | An array of sources for which signals needs to be registered | `['sharedid.org','criteo.com']` |
 | encryptedSignalSources.sources.encrypt | Required | Boolean | Should be set to false by default. Please find below note | `true` or `false` |
-| encryptedSignalSources.sources.customFunc | Required | function | This function will be defined for custom sources only and called which will return the custom data set from the page  | Check below config as an example  |
+| encryptedSignalSources.sources.customFunc | Required | function | This function will be defined for custom sources only and called which will return the custom data set from the page | Check below config as an example |
 | encryptedSignalSources.registerDelay | Optional | Integer | The amount of time (in milliseconds) after which registering of signals will happen. Default value 0 is considered if 'registerDelay' is not provided. | `3000` |
 
 {: .alert.alert-info :}

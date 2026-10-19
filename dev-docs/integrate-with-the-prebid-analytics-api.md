@@ -110,6 +110,8 @@ the base class function to set up the events.
 
 5. Doing analytics may require user permissions under [GDPR](/dev-docs/modules/consentManagementTcf.html), which means your adapter will need to be linked to your [IAB Global Vendor List](https://iabeurope.eu/vendor-list-tcf/) ID. If no GVL ID is found, and Purpose 7 (Measurement) is enforced, your analytics adapter will be blocked unless it is specifically listed under vendorExceptions. Your GVL ID can be added to the `registerAnalyticsAdapter()` call.
 
+6. Since Prebid.js 11.18, Prebid.js may disable and re-enable an analytics adapter while the page is open, as consent data changes (see the [`reportAnalytics` activity](/dev-docs/activity-controls.html#activities)). Adapters must support `disableAnalytics()`: inherit it from the base adapter, or, if you override it, call the base class function. If an adapter does not provide `disableAnalytics()`, Prebid.js logs a warning and the adapter stays enabled. After being disabled, an adapter's `enableAnalytics()` may be called again; the base adapter then replays past events it has not already tracked, including those emitted while it was disabled.
+
 #### Basic prototype analytics adapter
 
 The best way to get started is to look at some of the existing AnalyticsAdapter.js files in [the repository](https://github.com/prebid/Prebid.js/tree/master/modules).
