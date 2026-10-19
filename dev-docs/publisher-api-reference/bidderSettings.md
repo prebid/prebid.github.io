@@ -211,7 +211,7 @@ In the above example, the AOL bidder will inherit from "standard" adserverTarget
 
 ### 2.3. bidDesirabilityAdjustment
 
-By default, Prebid.js ranks accepted bids using their CPM after `bidCpmAdjustment` has been applied. Publishers who want to rank bids with additional business logic can provide `bidDesirabilityAdjustment`. This function returns a numeric score used to compare bids: higher scores are preferred. The score is used when building ad server targeting (for example, by `pbjs.setTargetingForGPTAsync()` and `pbjs.getAllTargeting()`): it decides which of a bidder's bids represents that bidder on an ad unit, and the order of bidders when a bid limit such as `sendBidsControl.bidLimit` applies. The ad unit's top-level winner among those bids is still chosen by CPM, and `pbjs.getHighestCpmBids()` is not affected.
+By default, Prebid.js ranks accepted bids using their CPM after `bidCpmAdjustment` has been applied. Publishers who want to rank bids with additional business logic can provide `bidDesirabilityAdjustment`. This function returns a numeric score used to compare bids: higher scores are preferred.
 
 This is useful when the publisher wants auction ordering to account for signals that should not change the bid's adjusted CPM, price bucket, or ad server reporting value. For example, a publisher could prefer bids from a demand source that has better historical fill, lower discrepancy, or other business-priority signals while keeping the CPM available for targeting and reporting unchanged.
 
