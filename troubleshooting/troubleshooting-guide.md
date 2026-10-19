@@ -42,9 +42,9 @@ This will add two types of messages to your browser’s developer console:
 
  {: .table .table-bordered .table-striped }
 
-| Message |  Description   |
-| :----  |:--------|
-| Calling bidder |  When Prebid.js sends out bid requests, this message is logged |
+| Message | Description |
+| :--- | :--- |
+| Calling bidder | When Prebid.js sends out bid requests, this message is logged |
 | Set key value for placement | After all the bids came back, or when timeout is reached, prebid.js will set keyword targeting for the defined ad units. |
 | Calling renderAd | If a header bidding bid wins the ad server's auction, prebid.js will render the winning bid's creative. |
 
