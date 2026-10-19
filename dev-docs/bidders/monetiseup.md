@@ -15,22 +15,21 @@ multiformat_supported: will-bid-on-one
 sidebarType: 1
 ---
 
-### Note
+## Note
 
-The MonetiseUp adapter connects publishers directly to MonetiseUp programmatic demand and integrated RTB exchanges, aggregating demand from top partners including Adagio, PubMatic, OpenX, 152Media, Nobid, OnlineMediaSolutions, Scalibur, TripleLift, Eskimi, and Equativ. 
+The MonetiseUp adapter connects publishers directly to MonetiseUp programmatic demand and integrated RTB exchanges, aggregating demand from top partners including Adagio, PubMatic, OpenX, 152Media, Nobid, OnlineMediaSolutions, Scalibur, TripleLift, Eskimi, and Equativ.
 
 To begin monetizing your inventory, contact [business@responsiq.com](mailto:business@responsiq.com).
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
+| Name          | Scope    | Description                                   | Example            | Type     |
+|---------------|----------|-----------------------------------------------|--------------------|----------|
+| `placementId` | required | Your MonetiseUp placement or inventory tag ID | `'placement-123'`  | `string` |
+| `zoneId`      | optional | Alternative zone identifier                   | `'zone-456'`       | `string` |
 
-| Name | Scope | Description | Example | Type |
-|---|---|---|---|---|
-| `placementId` | required | Your MonetiseUp placement or inventory tag ID. | `'placement-123'` | `string` |
-| `zoneId` | optional | Alternative zone identifier. | `'zone-456'` | `string` |
-
-### Test Parameters
+## Test Parameters
 
 ```javascript
 var adUnits = [
