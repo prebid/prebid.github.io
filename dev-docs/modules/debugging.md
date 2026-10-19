@@ -248,3 +248,7 @@ pbjs.setConfig({
   }
 });
 ```
+
+## Further Reading
+
+- [DevTools MCP module](/dev-docs/modules/devtoolsMcp.html): inspect live Prebid.js auctions, bids and events from an AI agent through Chrome DevTools.
