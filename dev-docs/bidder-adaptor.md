@@ -396,12 +396,12 @@ There are a number of important values that a publisher expects to be handled in
 
 {: .table .table-bordered .table-striped }
 
-| Parameter | Description                                   | Example               |
-| ----- | ------------ | ---------- |
+| Parameter | Description | Example |
+| --- | --- | --- |
 | Ad Server Currency | If your endpoint supports responding in different currencies, read this value. | config.getConfig('currency.adServerCurrency') |
 | Bidder Timeout | Use if your endpoint needs to know how long the page is allowing the auction to run. | bidderRequest.timeout; |
 | COPPA | If your endpoint supports the Child Online Privacy Protection Act, you should read this value. | bidderRequest.ortb2.regs.coppa; |
-| First Party Data | The publisher, as well as a number of modules, may provide [first party data](/features/firstPartyData.html) (e.g. page type). | bidderRequest.ortb2; validBidRequests[].ortb2Imp|
+| First Party Data | The publisher, as well as a number of modules, may provide [first party data](/features/firstPartyData.html) (e.g. page type). | bidderRequest.ortb2; validBidRequests[].ortb2Imp |
 | Floors | Adapters that accept a floor parameter must also support the [floors module](https://docs.prebid.org/dev-docs/modules/floors.html) | [`bidRequest.getFloor()`](/dev-docs/modules/floors.html#bid-adapter-interface) |
 | Page URL and referrer | Instead of building your own function to find the page location, domain, or referrer, look in the standard bidRequest location. | bidderRequest.refererInfo.page |
 | [Supply Chain](/dev-docs/modules/schain.html) | Adapters cannot accept an schain parameter. Rather, they must look for the schain parameter at bidRequest.schain. | bidRequest.schain |
@@ -788,8 +788,8 @@ If the alias entry is an object, the following attributes are supported:
 
 {: .table .table-bordered .table-striped }
 
-| Name  | Scope | Description   | Type      |
-|-------|-------|---------------|-----------|
+| Name | Scope | Description | Type |
+| --- | --- | --- | --- |
 | `code` | required | shortcode/partner name | `string` |
 | `gvlid` | optional | global vendor list id of company scoped to alias | `integer` |
 | `skipPbsAliasing` | optional | ability to skip passing spec.code to prebid server in request extension. In case you have a prebid server adapter with the name same as the alias/shortcode. Default value: `false` | `boolean` |
@@ -865,7 +865,7 @@ For examples of video parameters accepted by different adapters, see [the list o
 
 #### Ingesting the Video Context
 
-Video ad units have a publisher-defined video context, which can be either `'instream'` or `'outstream'` or `'adpod'`.  Video demand partners can choose to ingest this signal for targeting purposes.  For example, the ad unit shown below has the outstream video context:
+Video ad units have a publisher-defined video context, which can be either `'instream'` or `'outstream'`.  Video demand partners can choose to ingest this signal for targeting purposes.  For example, the ad unit shown below has the outstream video context:
 
 ```javascript
 ...
@@ -897,152 +897,8 @@ if (bid.mediaType === 'video' || (videoMediaType && context !== 'outstream')) {
 
 #### Long-Form Video Content
 
-{: .alert.alert-info :}
-The following is Prebid's way to setup bid request for long-form, adapters are free to choose their own approach.
-
-Prebid now accepts multiple bid responses for a single `bidRequest.bids` object. For each Ad pod Prebid expects you to send back n bid responses. It is up to you how bid responses are returned. Prebid's recommendation is that you expand an Ad pod placement into a set of request objects according to the total adpod duration and the range of duration seconds. It also depends on your endpoint as well how you may want to create your request for long-form. Microsoft adapter follows below algorithm to expand its placement.
-
-#### Use case 1: I want to request my endpoint to return bids with varying ranges of durations
-
-```text
-AdUnit config
-{
-  ...
-  adPodDuration: 300,
-  durationRangeSec: [15, 30]
-  ...
-}
-
-Algorithm
-# of placements = adPodDuration / MIN_VALUE(durationRangeSec)
-
-Each placement set max duration:
-placement.video.maxduration = MAX_VALUE(durationRangeSec)
-
-Example:
-# of placements : 300 / 15 = 20.
-placement.video.maxduration = 30 (all placements the same)
-
-Your endpoint responds with:
-10 bids with 30 seconds duration
-10 bids with 15 seconds duration
-```
-
-In Use case 1, you are asking endpoint to respond with 20 bids between min duration 0 and max duration 30 seconds. If you get bids with duration which does not match duration in `durationRangeSec` array, Prebid will evaluate the bid's duration and will match into the appropriate duration bucket by using a rounding-type logic. This new duration will be used in sending bids to Ad server.
-
-Prebid creates virtual duration buckets based on `durationRangeSec` value. Prebid will
-
-* round the duration to the next highest specified duration value based on adunit. If the duration is above a range within a set buffer (hardcoded to 2s in prebid-core), that bid falls down into that bucket. (eg if `durationRangeSec` was [5, 15, 30] -> 2s is rounded to 5s; 17s is rounded back to 15s; 18s is rounded up to 30s)
-* reject bid if the bid is above the range of the listed durations (and outside the buffer)
-
-Prebid will set the rounded duration value in the `bid.video.durationBucket` field for accepted bids
-
-#### Use case 2: I want to request my endpoint to return bids that exactly match the durations I want
-
-```text
-AdUnit config
-{
-  ...
-  adPodDuration: 300,
-  durationRangeSec: [15, 30],
-  requireExactDuration: true
-  ...
-}
-
-Algorithm
-# of placements = MAX_VALUE(adPodDuration/MIN_VALUE(allowedDurationsSec), durationRangeSec.length)
-
-Each placement:
-placement.video.minduration = durationRangeSec[i]
-placement.video.maxduration = durationRangeSec[i]
-
-Example:
-# of placements : MAX_VALUE( (300 / 15 = 20), 2) == 20
-
-20 / 2 = 10 placements:
-placement.video.minduration = 15
-placement.video.maxduration = 15
-
-20 / 2 = 10 placements:
-placement.video.minduration = 30
-placement.video.maxduration = 30
-
-Your endpoint responds with:
-10 bids with 30 seconds duration
-10 bids with 15 seconds duration
-```
-
-In Use case 2 `requireExactDuration` is set to true and hence Prebid will only select bids that exactly match duration in `durationRangeSec` (don't round at all).
-
-In both use cases, adapter is requesting bid responses for 20 placements in one single http request. You can split these into chunks depending on your endpoint's capacity.
-
-Adapter must add following new properties to bid response
-
-```javascript
-{
-  meta: {
-    primaryCatId: '<iab sub category>', // only needed if you want to ensure competitive separation
-  },
-  video: {
-    context: 'adpod',
-    durationSeconds: 30
-  }
-}
-```
-
-Microsoft Adapter uses the approach explained above. You can see an example in the [Microsoft adapter](https://github.com/prebid/Prebid.js/blob/master/modules/msftBidAdapter.js)
-
-Adapter must return one [IAB accepted subcategories](https://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file) if they want to support competitive separation. These IAB sub categories will be converted to Ad server industry/group. If adapter is returning their own proprietary categroy, it is the responsibility of the adapter to convert their categories into [IAB accepted subcategories](https://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file).
-
-If the demand partner is going to use Prebid API for this process, their adapter will need to include the `getMappingFileInfo` function in their spec file. Prebid core will use the information returned from the function to preload the mapping file in local storage and update on the specified refresh cycle.
-
-**Params**  
-
-{: .table .table-bordered .table-striped }
-
-| Key             | Scope    | Description                                                                                        | Example                    |
-|-----------------|----------|----------------------------------------------------------------------------------------------------|----------------------------|
-| `url`             | Required | The URL to the mapping file.                                                                       | `"//example.com/mapping.json"` |
-| `refreshInDays`   | Optional | A number representing the number of days before the mapping values are updated. Default value is 1 | `7`                        |
-| `localStorageKey` | Optional | A unique key to store the mapping file in local storage. Default value is bidder code.             | `"uniqueKey"`                  |
-
-**Example**
-
-```javascript
-getMappingFileInfo: function() {
-  return {
-    url: '<mappingFileURL>',
-    refreshInDays: 7
-    localStorageKey: '<uniqueCode>'
-  }
-}
-```
-
-The mapping file is stored locally to expedite category conversion. Depending on the size of the adpod each adapter could have 20-30 bids. Storing the mapping file locally will prevent HTTP calls being made for each category conversion.
-
-To get the subcategory to use, call this function, which needs to be imported from the `bidderFactory`.  
-
-```javascript
-getIabSubCategory(bidderCode, pCategory)
-```
-
-**Params**
-
-{: .table .table-bordered .table-striped }
-
-| Key          | Scope    | Description                                   | Example               |
-|--------------|----------|-----------------------------------------------|-----------------------|
-| `bidderCode` | Required | BIDDER_CODE defined in spec.                  | `"sample-biddercode"` |
-| `pCategory`  | Required | Proprietary category returned in bid response | `"sample-category"`   |
-
-**Example**
-
-```javascript
-
-import { getIabSubCategory } from '../src/adapters/bidderFactory';
-let primaryCatId = getIabSubCategory(bidderCode, pCategory)
-
-```
+{: .alert.alert-warning :}
+Ad pod (long-form) video support, including the `adpod` video context, category translation (`getMappingFileInfo`, `getIabSubCategory`), and duration buckets, was removed in Prebid.js 11.0.
 
 #### Outstream Video Renderers
 
@@ -1074,10 +930,6 @@ function createBid(status, reqBid, response) {
 }
 
 ```
-
-### Deals in Ad Pods
-
-To do deals for long-form video (`adpod` ad unit) just add the `dielTier` integer value to `bid.video.dealTier`. For more details on conducting deals in ad pods see our [ad pod module documentation](/dev-docs/modules/adpod.html).
 
 ## Supporting Native
 

@@ -71,6 +71,9 @@ Prebid Server supports reading the Topics headers and inserting them into the Op
 
 #### Protected Audience API
 
+{: .alert.alert-warning :}
+The Prebid.js PAAPI modules (`paapi`, `paapiForGpt`, `topLevelPaapi`) and the `paapi` setConfig option were removed in Prebid.js 11.0. The Prebid.js guidance in this section applies to Prebid.js 10.x and earlier only.
+
 PAAPI (also called PAA) is Chrome's solution for ad targeting done in a privacy-friendly way. In short, GAM will kick off an in-browser auction after
 the contextual auction. If the in-browser auction wins, it can override the ad chosen by GAM. 
 
@@ -125,26 +128,26 @@ This table may be useful to publishers trying to decide which version of Prebid.
 {: .table .table-bordered .table-striped }
 
 | Prebid.js Version | Notes |
-|-------------------|-------|
-| 8.22| Makes Prebid FPD available to the PAAPI generateBid, scoreAds, and reportResult functions |
-| 8.15| Added floor signal to the paapiForGpt module |
-| 8.9| Initial release of the paapiForGpt module, Sec-Browsing-Topics header enabled |
-| 8.8| The topicsFpd module is released, allowing bidders to share topics |
+| --- | --- |
+| 8.22 | Makes Prebid FPD available to the PAAPI generateBid, scoreAds, and reportResult functions |
+| 8.15 | Added floor signal to the paapiForGpt module |
+| 8.9 | Initial release of the paapiForGpt module, Sec-Browsing-Topics header enabled |
+| 8.8 | The topicsFpd module is released, allowing bidders to share topics |
 
 #### Prebid Server Versions Supporting Privacy Sandbox
 
 {: .table .table-bordered .table-striped }
 
 | PBS-Go Version | Notes |
-|-------------------|-------|
+| --- | --- |
 | 0.239.0 | Basic passthrough support |
 
 {: .table .table-bordered .table-striped }
 
 | PBS-Java Version | Notes |
-|-------------------|-------|
-| 2.11| Topics and Test Labels |
-| 1.111| Basic passthrough support |
+| --- | --- |
+| 2.11 | Topics and Test Labels |
+| 1.111 | Basic passthrough support |
 
 ## Further Reading
 
