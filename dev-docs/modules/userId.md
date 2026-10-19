@@ -98,7 +98,7 @@ The table below has the options that are common across ID systems. See the secti
 | name | Required | String | May be any of the following values: {% for page in userid_pages -%}`"{{ page.useridmodule -}}"`{% if forloop.last == false -%}, {% endif -%}{% endfor -%} | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
 | bidders | Optional | Array of Strings | An array of bidder codes to which this user ID may be sent. | `['bidderA', 'bidderB']` |
-| storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be a cookie, HTML5 storage or both.| |
+| storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be a cookie, HTML5 storage or both. | |
 | storage.type | Required | String | Must be `"cookie"`, `"html5"` or `"cookie&html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
 | storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"_unifiedId"` |
 | storage.expires | Strongly Recommended | Integer | How long (in days) the user ID information will be stored. If this parameter isn't specified, session cookies are used in cookie-mode, and local storage mode will create new IDs on every page. | `365` |
@@ -341,11 +341,11 @@ Alternatively, GAM can now pull IDs from Prebid for UserId submodules that [regi
 
 | Param under userSync | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| encryptedSignalSources | Optional | Object | Publisher can specify the ESP config by adding encryptedSignal Object under userSync Object |  |
-| encryptedSignalSources.sources | Required | Object |  An array of Object consisting of a sources list and encryption flag | Check below config as an example  |
-| encryptedSignalSources.sources.source | Required | Array | An array of sources for which signals needs to be registered  | `['sharedid.org','criteo.com']` |
+| encryptedSignalSources | Optional | Object | Publisher can specify the ESP config by adding encryptedSignal Object under userSync Object | |
+| encryptedSignalSources.sources | Required | Object | An array of Object consisting of a sources list and encryption flag | Check below config as an example |
+| encryptedSignalSources.sources.source | Required | Array | An array of sources for which signals needs to be registered | `['sharedid.org','criteo.com']` |
 | encryptedSignalSources.sources.encrypt | Required | Boolean | Should be set to false by default. Please find below note | `true` or `false` |
-| encryptedSignalSources.sources.customFunc | Required | function | This function will be defined for custom sources only and called which will return the custom data set from the page  | Check below config as an example  |
+| encryptedSignalSources.sources.customFunc | Required | function | This function will be defined for custom sources only and called which will return the custom data set from the page | Check below config as an example |
 | encryptedSignalSources.registerDelay | Optional | Integer | The amount of time (in milliseconds) after which registering of signals will happen. Default value 0 is considered if 'registerDelay' is not provided. | `3000` |
 
 {: .alert.alert-info :}
