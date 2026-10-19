@@ -200,8 +200,6 @@ No additional params.
 | adPlacementType | number | The video placements per IAB guidelines. Enum list: In-Stream: 1, In-Banner: 2, In-Article: 3, In-Feed: 4, Interstitial/Slider/Floating: 5 |
 | waterfallIndex | number | Index of the current item in the ad waterfall |
 | waterfallCount | number |  The count of items in a given ad waterfall |
-| adPodCount | number | the total number of ads in the pod |
-| adPodIndex | number | The index of the currently playing ad within an ad pod |
 | wrapperAdIds | array[string] | Ad IDs of the VAST Wrappers that were loaded while loading the Ad tag. The list returned starts at the inline ad (innermost) and traverses to the outermost wrapper ad. An empty array is returned if there are no wrapper ads. |
 
 ###### AD_STARTED
@@ -229,8 +227,6 @@ No additional params.
 | adPlacementType | number | The video placements per IAB guidelines. Enum list: In-Stream: 1, In-Banner: 2, In-Article: 3, In-Feed: 4, Interstitial/Slider/Floating: 5 |
 | waterfallIndex | number | Index of the current item in the ad waterfall |
 | waterfallCount | number |  The count of items in a given ad waterfall |
-| adPodCount | number | the total number of ads in the pod |
-| adPodIndex | number | The index of the currently playing ad within an ad pod |
 | wrapperAdIds | array[string] | Ad IDs of the VAST Wrappers that were loaded while loading the Ad tag. The list returned starts at the inline ad (innermost) and traverses to the outermost wrapper ad. An empty array is returned if there are no wrapper ads. |
 
 <a name="ad-impression-params"></a>
@@ -260,8 +256,6 @@ No additional params.
 | adPlacementType | number | The video placements per IAB guidelines. Enum list: In-Stream: 1, In-Banner: 2, In-Article: 3, In-Feed: 4, Interstitial/Slider/Floating: 5 |
 | waterfallIndex | number | Index of the current item in the ad waterfall |
 | waterfallCount | number |  The count of items in a given ad waterfall |
-| adPodCount | number | the total number of ads in the pod |
-| adPodIndex | number | The index of the currently playing ad within an ad pod |
 | wrapperAdIds | array[string] | Ad IDs of the VAST Wrappers that were loaded while loading the Ad tag. The list returned starts at the inline ad (innermost) and traverses to the outermost wrapper ad. An empty array is returned if there are no wrapper ads. |
 | time | number | The playback time in the ad when the event occurs, in seconds. |
 | duration | number | Total duration of an ad in seconds |
@@ -311,8 +305,6 @@ No additional params.
 | adPlacementType | number | The video placements per IAB guidelines. Enum list: In-Stream: 1, In-Banner: 2, In-Article: 3, In-Feed: 4, Interstitial/Slider/Floating: 5 |
 | waterfallIndex | number | Index of the current item in the ad waterfall |
 | waterfallCount | number |  The count of items in a given ad waterfall |
-| adPodCount | number | the total number of ads in the pod |
-| adPodIndex | number | The index of the currently playing ad within an ad pod |
 | wrapperAdIds | array[string] | Ad IDs of the VAST Wrappers that were loaded while loading the Ad tag. The list returned starts at the inline ad (innermost) and traverses to the outermost wrapper ad. An empty array is returned if there are no wrapper ads. |
 | time | number | The playback time in the ad when the event occurs, in seconds. |
 | duration | number | Total duration of an ad in seconds |
@@ -355,8 +347,6 @@ No additional params.
 | adPlacementType | number | The video placements per IAB guidelines. Enum list: In-Stream: 1, In-Banner: 2, In-Article: 3, In-Feed: 4, Interstitial/Slider/Floating: 5 |
 | waterfallIndex | number | Index of the current item in the ad waterfall |
 | waterfallCount | number |  The count of items in a given ad waterfall |
-| adPodCount | number | the total number of ads in the pod |
-| adPodIndex | number | The index of the currently playing ad within an ad pod |
 | wrapperAdIds | array[string] | Ad IDs of the VAST Wrappers that were loaded while loading the Ad tag. The list returned starts at the inline ad (innermost) and traverses to the outermost wrapper ad. An empty array is returned if there are no wrapper ads. |
 | time | number | The playback time in the ad when the event occurs, in seconds. |
 | duration | number | Total duration of an ad in seconds |
