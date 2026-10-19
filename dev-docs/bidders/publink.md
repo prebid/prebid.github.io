@@ -19,6 +19,11 @@ pbs: true
 sidebarType: 1
 ---
 
+## About Publink
+
+Publink is an independent ad-server company and platform. It is not affiliated
+with Epsilon or Epsilon's Publisher Link product.
+
 ## Registration
 
 Contact <hello@publink.io> to obtain a Publink placement ID.
