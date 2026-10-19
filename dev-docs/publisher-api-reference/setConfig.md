@@ -1664,6 +1664,23 @@ pbjs.setConfig({
 })
 ```
 
+<a id="setConfig-acpMapping"></a>
+
+### Map modules to Additional Consent provider IDs
+
+Since version 11.41, modules that are not on the GVL but are on Google's [Additional Consent](https://support.google.com/admanager/answer/9681920) (AC) provider list can declare their AC provider ID as `acpId`. The optional `acpMapping` object lets publishers specify these IDs or override the ones declared by the module itself.
+
+```javascript
+pbjs.setConfig({
+  acpMapping: {
+    bidderA: 1234,
+    someModule: 5678
+  }
+});
+```
+
+The [TCF Control Module](/dev-docs/modules/tcfControl.html#additional-consent) uses this ID to check vendor consent against the AC string, only for modules that have no GVL ID. A module with a GVL ID, whether declared or set through `gvlMapping`, is never checked against the AC string.
+
 ### Set Max Bid
 
 <a id="setConfig-maxBid"></a>
