@@ -28,10 +28,10 @@ Fields that can be configured:
 ### Field configuration object
 
 {: .table .table-bordered .table-striped }
-| Field          | Scope    | Type    | Description                                                                                             | Default |
-| -------------- | -------- | ------- | ------------------------------------------------------------------------------------------------------- | ------- |
-| `enforce`      | optional | boolean | Specifies whether to enforce validation for the field                                                   | `true`  |
-| `blockUnknown` | optional | boolean | Specifies whether it should reject the bid if the corresponding value in the bid metadata is undefined  | `true` for `cat`, `adv` and `mediaTypes`; `false` for `attr` |
+| Field | Scope | Type | Description | Default |
+| --- | --- | --- | --- | --- |
+| `enforce` | optional | boolean | Specifies whether to enforce validation for the field | `true` |
+| `blockUnknown` | optional | boolean | Specifies whether it should reject the bid if the corresponding value in the bid metadata is undefined | `true` for `cat`, `adv` and `mediaTypes`; `false` for `attr` |
 
 {: .alert.alert-info :}
 Since Prebid.js 11.21, `attr.blockUnknown` defaults to `false`. In earlier versions it defaulted to `true`.
@@ -39,13 +39,13 @@ Since Prebid.js 11.21, `attr.blockUnknown` defaults to `false`. In earlier versi
 Some fields accept additional options:
 
 {: .table .table-bordered .table-striped }
-| Field                                     | Scope    | Type             | Description                                                                                                       | Default |
-| ----------------------------------------- | -------- | ---------------- | ----------------------------------------------------------------------------------------------------------------- | ------- |
-| `cat.bcat`                                | optional | array of strings | Blocked category IDs, checked in addition to `ortb2.bcat`. See [Module-level blocklists](#module-level-blocklists) | none    |
-| `cat.cattax`                              | optional | number           | Category taxonomy of `cat.bcat`                                                                                   | `1`     |
-| `adv.badv`                                | optional | array of strings | Blocked advertiser domains, checked in addition to `ortb2.badv`                                                   | none    |
-| `attr.battr`                              | optional | array of numbers | Blocked creative attribute IDs, checked in addition to the ad unit's `battr`                                      | none    |
-| `mediaTypes.rejectIbvBannerOnMultiFormat` | optional | boolean          | Reject banner bids on multi-format in-banner video ad units. See [Disabling In-Banner video](#disabling-in-banner-video) | `false` |
+| Field | Scope | Type | Description | Default |
+| --- | --- | --- | --- | --- |
+| `cat.bcat` | optional | array of strings | Blocked category IDs, checked in addition to `ortb2.bcat`. See [Module-level blocklists](#module-level-blocklists) | none |
+| `cat.cattax` | optional | number | Category taxonomy of `cat.bcat` | `1` |
+| `adv.badv` | optional | array of strings | Blocked advertiser domains, checked in addition to `ortb2.badv` | none |
+| `attr.battr` | optional | array of numbers | Blocked creative attribute IDs, checked in addition to the ad unit's `battr` | none |
+| `mediaTypes.rejectIbvBannerOnMultiFormat` | optional | boolean | Reject banner bids on multi-format in-banner video ad units. See [Disabling In-Banner video](#disabling-in-banner-video) | `false` |
 
 ### How bids are validated
 
