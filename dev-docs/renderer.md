@@ -34,20 +34,18 @@ Renderers can be specified at multiple levels by specifying either `safeRenderer
 1. MediaType Level `adUnit.mediaTypes.video|banner|native|audio`: If a renderer is associated with a specific mediaType (video, banner, audio or native), it will be used to display any demand associated with that mediaType. This is the preferred method for all ad types.
 2. AdUnit Level `adUnit`: Applied to all bids for this ad unit that don't override it. This is a legacy approach; using the mediaType-level renderer is preferred.
 3. Bidder Level `adUnit.bids[]`: Applied only to this bidder, overriding adUnit renderer if both exist.
-4. Bid: Bid adapters (and Prebid Server) can attach a renderer to the bid itself. It is used only if the publisher didn't specify one at any of the levels above, unless the mediaType-level `renderer` has `backupOnly: true`.
+4. Bid: Bid adapters (and Prebid Server) can attach a renderer or a Safe Renderer to the bid itself. See [Priority Order](#priority-order) for when it is used.
 5. Default: If no renderer is specified at any level, Prebid will use the default renderer for the media type, if one exists. For banner and native ads, Prebid.js has built-in default rendering capabilities.
 
 ### Priority Order
 
-When multiple renderers are defined, the following priority is used:
+Prebid.js picks a Safe Renderer and a top window renderer separately, then uses at most one of them.
 
-1. MediaType Level renderer
-2. Bidder Level renderer
-3. AdUnit Level renderer
-4. Renderer provided with the bid by the bid adapter or Prebid Server
-5. Default renderer
+**Safe Renderer:** the publisher's `safeRenderer` at the MediaType level, otherwise at the Bidder level, otherwise at the AdUnit level. A Safe Renderer provided with the bid is used instead when the publisher didn't define one, or when the MediaType-level top window `renderer` has `backupOnly: true`.
 
-A publisher-defined renderer takes precedence over one provided with the bid, unless the mediaType-level top window `renderer` has `backupOnly: true`. That flag also applies to Safe Renderers: when it is set, a Safe Renderer provided with the bid is preferred over the publisher's.
+**Top window renderer:** the publisher's `renderer` at the MediaType level, otherwise at the Bidder level, otherwise at the AdUnit level. A publisher `renderer` with `backupOnly: true` is skipped when the bid comes with its own renderer, at any of these levels. A renderer provided with the bid is used when no publisher renderer applies.
+
+**Which one runs:** if the bid ends up with a Safe Renderer, from the publisher or from the bid, it is used and any top window renderer is ignored. Otherwise the top window renderer is used, if there is one (and `allowTopWindowRenderers` is not `false`). Otherwise Prebid.js falls back to the default rendering for the media type.
 
 ### Safe Renderers provided with bids
 
