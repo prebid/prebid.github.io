@@ -1,6 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.adServers.freewheel.getTargeting(options) <span style="color:red" markdown="1">[Removed in 11.0]</span>
+head_title: "pbjs.adServers.freewheel.getTargeting(options) [Removed in 11.0] for Header Bidding"
 description: adServers.freewheel.getTargeting API
 sidebarType: 1
 ---

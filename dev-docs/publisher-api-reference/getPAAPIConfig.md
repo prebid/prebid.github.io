@@ -1,6 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.getPAAPIConfig(options) <span style="color:red" markdown="1">[Removed in 11.0]</span>
+head_title: "pbjs.getPAAPIConfig(options) [Removed in 11.0] for Header Bidding"
 description: getPAAPIConfig API
 sidebarType: 1
 ---

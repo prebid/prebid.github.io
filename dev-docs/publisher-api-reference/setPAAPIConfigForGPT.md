@@ -1,6 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.setPAAPIConfigForGPT(options) <span style="color:red" markdown="1">[Removed in 11.0]</span>
+head_title: "pbjs.setPAAPIConfigForGPT(options) [Removed in 11.0] for Header Bidding"
 description: setPAAPIConfigForGPT API
 sidebarType: 1
 ---
