@@ -5,11 +5,14 @@ title: Module - topicsFpdModule
 description: how to get topics data using Topics API
 module_code : topicsFpdModule
 display_name : Topics FPD Module
-enable_download : true
+enable_download : false
 sidebarType : 1
 ---
 
 # Topics First Party Data (FPD) Module
+
+{: .alert.alert-warning :}
+Chrome has removed the Topics API. Since Prebid.js 11.26, this module is a no-op: it logs a warning, adds no topics to `user.data`, and loads no topics iframes. The `userSync.topics` configuration described below is ignored. The rest of this page describes the module as it worked before 11.26.
 
 This module is use to call the Topics API (document.browsingTopics()) which will fetch the first party domain as well third party domain(Iframe) topics data which will be sent onto user.data in bid stream.
 
