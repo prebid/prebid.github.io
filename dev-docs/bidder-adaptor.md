@@ -396,12 +396,12 @@ There are a number of important values that a publisher expects to be handled in
 
 {: .table .table-bordered .table-striped }
 
-| Parameter | Description                                   | Example               |
-| ----- | ------------ | ---------- |
+| Parameter | Description | Example |
+| --- | --- | --- |
 | Ad Server Currency | If your endpoint supports responding in different currencies, read this value. | config.getConfig('currency.adServerCurrency') |
 | Bidder Timeout | Use if your endpoint needs to know how long the page is allowing the auction to run. | bidderRequest.timeout; |
 | COPPA | If your endpoint supports the Child Online Privacy Protection Act, you should read this value. | bidderRequest.ortb2.regs.coppa; |
-| First Party Data | The publisher, as well as a number of modules, may provide [first party data](/features/firstPartyData.html) (e.g. page type). | bidderRequest.ortb2; validBidRequests[].ortb2Imp|
+| First Party Data | The publisher, as well as a number of modules, may provide [first party data](/features/firstPartyData.html) (e.g. page type). | bidderRequest.ortb2; validBidRequests[].ortb2Imp |
 | Floors | Adapters that accept a floor parameter must also support the [floors module](https://docs.prebid.org/dev-docs/modules/floors.html) | [`bidRequest.getFloor()`](/dev-docs/modules/floors.html#bid-adapter-interface) |
 | Page URL and referrer | Instead of building your own function to find the page location, domain, or referrer, look in the standard bidRequest location. | bidderRequest.refererInfo.page |
 | [Supply Chain](/dev-docs/modules/schain.html) | Adapters cannot accept an schain parameter. Rather, they must look for the schain parameter at bidRequest.schain. | bidRequest.schain |
@@ -788,10 +788,11 @@ If the alias entry is an object, the following attributes are supported:
 
 {: .table .table-bordered .table-striped }
 
-| Name  | Scope | Description   | Type      |
-|-------|-------|---------------|-----------|
+| Name | Scope | Description | Type |
+| --- | --- | --- | --- |
 | `code` | required | shortcode/partner name | `string` |
 | `gvlid` | optional | global vendor list id of company scoped to alias | `integer` |
+| `acpId` | optional | Google Additional Consent provider id of company scoped to alias, used only if the alias has no GVL ID (PBJS 11.41+) | `integer` |
 | `skipPbsAliasing` | optional | ability to skip passing spec.code to prebid server in request extension. In case you have a prebid server adapter with the name same as the alias/shortcode. Default value: `false` | `boolean` |
 
 {: .alert.alert-info :}
@@ -805,6 +806,7 @@ If your bid adapter is going to be used in Europe, you should support GDPR:
 
 * Get a [Global Vendor ID](https://iabeurope.eu/tcf-for-vendors/) from the IAB-Europe
 * Add your GVLID into the spec block as 'gvlid'. If you don't do this, Prebid.js may block requests to your adapter.
+* If you are not on the GVL but are on Google's [Additional Consent provider list](https://support.google.com/admanager/answer/9681920), add your provider ID into the spec block as 'acpId' instead (Prebid.js 11.41+). See [Additional Consent](/dev-docs/modules/tcfControl.html#additional-consent).
 * Read the gdprConsent string from the bid request object and pass it through to your endpoint
 
 If your bid adapter is going to be used in Canada, you should support GPP:
@@ -1000,11 +1002,11 @@ If the demand partner is going to use Prebid API for this process, their adapter
 
 {: .table .table-bordered .table-striped }
 
-| Key             | Scope    | Description                                                                                        | Example                    |
-|-----------------|----------|----------------------------------------------------------------------------------------------------|----------------------------|
-| `url`             | Required | The URL to the mapping file.                                                                       | `"//example.com/mapping.json"` |
-| `refreshInDays`   | Optional | A number representing the number of days before the mapping values are updated. Default value is 1 | `7`                        |
-| `localStorageKey` | Optional | A unique key to store the mapping file in local storage. Default value is bidder code.             | `"uniqueKey"`                  |
+| Key | Scope | Description | Example |
+| --- | --- | --- | --- |
+| `url` | Required | The URL to the mapping file. | `"//example.com/mapping.json"` |
+| `refreshInDays` | Optional | A number representing the number of days before the mapping values are updated. Default value is 1 | `7` |
+| `localStorageKey` | Optional | A unique key to store the mapping file in local storage. Default value is bidder code. | `"uniqueKey"` |
 
 **Example**
 

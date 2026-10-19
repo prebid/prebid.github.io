@@ -108,7 +108,7 @@ Analytics adapter for Example.com. Contact prebid@example.com for information.
 adapter needs to specify an enableAnalytics() function, but it should also call
 the base class function to set up the events.
 
-5. Doing analytics may require user permissions under [GDPR](/dev-docs/modules/consentManagementTcf.html), which means your adapter will need to be linked to your [IAB Global Vendor List](https://iabeurope.eu/vendor-list-tcf/) ID. If no GVL ID is found, and Purpose 7 (Measurement) is enforced, your analytics adapter will be blocked unless it is specifically listed under vendorExceptions. Your GVL ID can be added to the `registerAnalyticsAdapter()` call.
+5. Doing analytics may require user permissions under [GDPR](/dev-docs/modules/consentManagementTcf.html), which means your adapter will need to be linked to your [IAB Global Vendor List](https://iabeurope.eu/vendor-list-tcf/) ID. If no GVL ID is found, and Purpose 7 (Measurement) is enforced, your analytics adapter will be blocked unless it is specifically listed under vendorExceptions. Your GVL ID can be added to the `registerAnalyticsAdapter()` call. Since Prebid.js 11.41, if you are not on the GVL but are on Google's Additional Consent provider list, you can instead pass your provider ID as `acpId` (see [Additional Consent](/dev-docs/modules/tcfControl.html#additional-consent)).
 
 #### Basic prototype analytics adapter
 
