@@ -236,7 +236,7 @@ If all this wasn't enough to warn you away from trying, it should work if you na
 
 - For builds made with `gulp build`, update the value of `globalVarName` in [package.json](https://github.com/prebid/Prebid.js/blob/master/package.json).
 - When bundling Prebid.js from npm with your own webpack or Rollup-compatible build, set the `globalVarName` build option through the webpack loader or Rollup plugin. See [Customize build options](https://github.com/prebid/Prebid.js/blob/master/README.md#customize-options).
-- When loading from the CDN with `bundle.js` (Prebid.js 11.40 and later), add a `globalVarName` query parameter. See the [download page](/download.html).
+- When loading from the CDN with `bundle.js` (Prebid.js 11.40 and later), add a `globalVarName` query parameter, for example `https://cdn.jsdelivr.net/npm/prebid.js@11.40.0/dist/bundle.js?modules=rubiconBidAdapter&globalVarName=pbjs2`.
 
 ### Can I filter bid responses that don't meet my criteria?
 
