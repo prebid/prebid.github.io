@@ -103,7 +103,7 @@ pbjs.setConfig({
 * <a id="additional-consent"></a> Since version 11.41, modules that have no GVL ID but are on Google's [Additional Consent](https://support.google.com/admanager/answer/9681920) (AC) provider list can declare an `acpId`, which publishers can set or override with [`acpMapping`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-acpMapping). For these modules, vendor consent is read from the AC string (`gdprConsent.addtlConsent`) instead of the TCF string:
   * Only the vendor check uses the AC string. Purpose signals still come from the TCF string, evaluated against `defaultLegalBasis`.
   * Modules with a GVL ID are never checked against the AC string.
-  * Both AC v1 (`1~1.2.3`) and v2 (`2~1.2.3~dv.4.5`) strings are accepted. Providers listed after `dv.` were disclosed to the user but did not get consent. A malformed AC string means no AC vendor consent.
+  * Both AC v1 (`1~1.2.3`) and v2 (`2~1.2.3~dv.1.2.3.4.5`) strings are accepted. Only the providers in the consented list (before `~dv.`) have consent; the `dv.` list of disclosed providers is ignored, so a provider that appears only there has no consent. A malformed AC string means no AC vendor consent.
   * This applies to the `storage`, `basicAds`, `personalizedAds`, `measurement` and `transmitPreciseGeo` rules, and to the default [`transmitEids`](#note-transmitEids) check. `vendorExceptions`, `softVendorExceptions` and `enforceVendor: false` work as before.
 
 ### Examples
