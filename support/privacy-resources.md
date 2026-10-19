@@ -124,28 +124,28 @@ This table may be useful to publishers trying to decide which version of Prebid.
 {: .table .table-bordered .table-striped }
 
 | Prebid.js Version | Notes |
-|-------------------|-------|
-| 11.26| Topics support removed: the Sec-Browsing-Topics header is no longer requested and the topicsFpd module is a no-op |
-| 11.3| The Chrome cookie deprecation label (`device.ext.cdep`) is no longer collected |
-| 8.22| Makes Prebid FPD available to the PAAPI generateBid, scoreAds, and reportResult functions |
-| 8.15| Added floor signal to the paapiForGpt module |
-| 8.9| Initial release of the paapiForGpt module, Sec-Browsing-Topics header enabled |
-| 8.8| The topicsFpd module is released, allowing bidders to share topics |
+| --- | --- |
+| 11.26 | Topics support removed: the Sec-Browsing-Topics header is no longer requested and the topicsFpd module is a no-op |
+| 11.3 | The Chrome cookie deprecation label (`device.ext.cdep`) is no longer collected |
+| 8.22 | Makes Prebid FPD available to the PAAPI generateBid, scoreAds, and reportResult functions |
+| 8.15 | Added floor signal to the paapiForGpt module |
+| 8.9 | Initial release of the paapiForGpt module, Sec-Browsing-Topics header enabled |
+| 8.8 | The topicsFpd module is released, allowing bidders to share topics |
 
 #### Prebid Server Versions Supporting Privacy Sandbox
 
 {: .table .table-bordered .table-striped }
 
 | PBS-Go Version | Notes |
-|-------------------|-------|
+| --- | --- |
 | 0.239.0 | Basic passthrough support |
 
 {: .table .table-bordered .table-striped }
 
 | PBS-Java Version | Notes |
-|-------------------|-------|
-| 2.11| Topics and Test Labels |
-| 1.111| Basic passthrough support |
+| --- | --- |
+| 2.11 | Topics and Test Labels |
+| 1.111 | Basic passthrough support |
 
 ## Further Reading
 
