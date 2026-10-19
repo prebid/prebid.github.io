@@ -9,7 +9,7 @@ safeframes_ok: false
 floors_supported: true
 gvl_id: 783
 pbjs: true
-pbs: false
+pbs: true
 sidebarType: 1
 ---
 
