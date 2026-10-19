@@ -232,7 +232,7 @@ export const spec = {
     isBidRequestValid: function(bid) {},
     buildRequests: function(validBidRequests[], bidderRequest) {},
     interpretResponse: function(serverResponse, request) {},
-    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent) {},
+    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent, gppConsent, coppa) {},
     onTimeout: function(timeoutData) {},
     onBidWon: function(bid) {},
     onSetTargeting: function(bid) {},
@@ -286,10 +286,12 @@ Prebid will pass compressed payloads if the following criteria are met:
 If the above criteria is met, Prebid.js core will do the following:
 
 * Gzip compress the request payload
-* Set the `Content-Type` header to `plain/text` (to avoid a preflight request)
+* Set the `Content-Type` header to `text/plain` (to avoid a preflight request)
 * Append the `gzip=1` query param to the bidder request (to signal to a bidder's server-side endpoint that the request is compressed)
 
 Note: If the Prebid.js debugging query param `?pbjs_debug=true` is present in the URL or `debug: true` has been configured in `pbjs.setConfig()`, the gzip compression feature will be disabled and all bidder requests will be sent uncompressed.
+
+Note: Since Prebid.js 11.41, `isGzipCompressionSupported()` returns a Promise that resolves to a boolean. Adapters that call it directly must wait for the Promise to resolve (for example, with `await`) instead of using its return value as a boolean.
 
 #### Ad Unit Params in the validBidRequests Array
 
@@ -396,12 +398,12 @@ There are a number of important values that a publisher expects to be handled in
 
 {: .table .table-bordered .table-striped }
 
-| Parameter | Description                                   | Example               |
-| ----- | ------------ | ---------- |
+| Parameter | Description | Example |
+| --- | --- | --- |
 | Ad Server Currency | If your endpoint supports responding in different currencies, read this value. | config.getConfig('currency.adServerCurrency') |
 | Bidder Timeout | Use if your endpoint needs to know how long the page is allowing the auction to run. | bidderRequest.timeout; |
 | COPPA | If your endpoint supports the Child Online Privacy Protection Act, you should read this value. | bidderRequest.ortb2.regs.coppa; |
-| First Party Data | The publisher, as well as a number of modules, may provide [first party data](/features/firstPartyData.html) (e.g. page type). | bidderRequest.ortb2; validBidRequests[].ortb2Imp|
+| First Party Data | The publisher, as well as a number of modules, may provide [first party data](/features/firstPartyData.html) (e.g. page type). | bidderRequest.ortb2; validBidRequests[].ortb2Imp |
 | Floors | Adapters that accept a floor parameter must also support the [floors module](https://docs.prebid.org/dev-docs/modules/floors.html) | [`bidRequest.getFloor()`](/dev-docs/modules/floors.html#bid-adapter-interface) |
 | Page URL and referrer | Instead of building your own function to find the page location, domain, or referrer, look in the standard bidRequest location. | bidderRequest.refererInfo.page |
 | [Supply Chain](/dev-docs/modules/schain.html) | Adapters cannot accept an schain parameter. Rather, they must look for the schain parameter at bidRequest.schain. | bidRequest.schain |
@@ -576,12 +578,26 @@ All user ID sync activity should be done using the `getUserSyncs` callback of th
 
 Given an array of all the responses from the server, `getUserSyncs` is used to determine which user syncs should occur. The order of syncs in the `serverResponses` array matters. The most important ones should come first, since publishers may limit how many are dropped on their page.
 
+`getUserSyncs` is called with these arguments:
+
+{: .table .table-bordered .table-striped }
+| Argument | Description |
+|----------+-------------|
+| `syncOptions` | Object with `iframeEnabled` and `pixelEnabled` booleans indicating which sync types the publisher allows. |
+| `serverResponses` | Array of server responses for this bidder. |
+| `gdprConsent` | GDPR consent data, if available. |
+| `uspConsent` | US Privacy consent string, if available. |
+| `gppConsent` | GPP consent data, or `null` if not available. |
+| `coppa` | Boolean, the value of the publisher's `coppa` setting in [`setConfig`]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html). Since Prebid.js 11.28. |
+
+Note that registered syncs are not fired in Safari (and, since Prebid.js 11.9, Firefox and Chrome on iOS) or when cookies are unavailable, even though `getUserSyncs` is still called. See [How User Syncing Works]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html#setConfig-ConfigureUserSyncing-HowUserSyncingWorks).
+
 See below for an example implementation.  For more examples, search for `getUserSyncs` in the [modules directory in the repo](https://github.com/prebid/Prebid.js/tree/master/modules).
 
 ```javascript
 
 {
-    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent) {
+    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent, gppConsent, coppa) {
        const syncs = []
 
        var gdpr_params;
@@ -788,8 +804,8 @@ If the alias entry is an object, the following attributes are supported:
 
 {: .table .table-bordered .table-striped }
 
-| Name  | Scope | Description   | Type      |
-|-------|-------|---------------|-----------|
+| Name | Scope | Description | Type |
+| --- | --- | --- | --- |
 | `code` | required | shortcode/partner name | `string` |
 | `gvlid` | optional | global vendor list id of company scoped to alias | `integer` |
 | `skipPbsAliasing` | optional | ability to skip passing spec.code to prebid server in request extension. In case you have a prebid server adapter with the name same as the alias/shortcode. Default value: `false` | `boolean` |
@@ -1000,11 +1016,11 @@ If the demand partner is going to use Prebid API for this process, their adapter
 
 {: .table .table-bordered .table-striped }
 
-| Key             | Scope    | Description                                                                                        | Example                    |
-|-----------------|----------|----------------------------------------------------------------------------------------------------|----------------------------|
-| `url`             | Required | The URL to the mapping file.                                                                       | `"//example.com/mapping.json"` |
-| `refreshInDays`   | Optional | A number representing the number of days before the mapping values are updated. Default value is 1 | `7`                        |
-| `localStorageKey` | Optional | A unique key to store the mapping file in local storage. Default value is bidder code.             | `"uniqueKey"`                  |
+| Key | Scope | Description | Example |
+| --- | --- | --- | --- |
+| `url` | Required | The URL to the mapping file. | `"//example.com/mapping.json"` |
+| `refreshInDays` | Optional | A number representing the number of days before the mapping values are updated. Default value is 1 | `7` |
+| `localStorageKey` | Optional | A unique key to store the mapping file in local storage. Default value is bidder code. | `"uniqueKey"` |
 
 **Example**
 
@@ -1264,7 +1280,7 @@ export const spec = {
      * @param {ServerResponse[]} serverResponses List of server's responses.
      * @return {UserSync[]} The user syncs which should be dropped.
      */
-    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent) {
+    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent, gppConsent, coppa) {
        const syncs = []
 
        var gdpr_params;
