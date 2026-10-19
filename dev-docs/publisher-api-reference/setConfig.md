@@ -1025,8 +1025,6 @@ If using standard targeting `hb_adid` is unique for each bid, so this would have
 
 Since version 11.36, the lock on a GPT slot is also released as soon as the bid targeted on it wins (the `bidWon` event).
 
-<a name="setConfig-Configure-Responsive-Ads"></a>
-
 #### Details on the version setting
 {: .no_toc }
 
@@ -1070,6 +1068,8 @@ pbjs.setConfig({
   }
 })
 ```
+
+<a name="setConfig-Configure-Responsive-Ads"></a>
 
 ### Configure Responsive Ads
 
