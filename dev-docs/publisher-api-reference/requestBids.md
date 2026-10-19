@@ -38,6 +38,23 @@ Request bids. When `adUnits` or `adUnitCodes` are not specified, request bids fo
 | timedOut  | Boolean | true if any bidder timed out                                                   |
 | auctionId | String  | the auction's ID                                                               |
 
+<a id="rejection"></a>
+
+**Rejection**:
+
+Since Prebid.js 11.41, the returned promise rejects if the auction is aborted before it starts - for example, when the [consent management](/dev-docs/modules/consentManagementTcf.html) module cancels the auction, or when first party data enrichment or another pre-auction step throws an error. In that case `bidsBackHandler` is still called, but with no arguments. In earlier versions the promise never settled in these situations.
+
+If you `await` the result of `requestBids`, wrap it in `try`/`catch`:
+
+```javascript
+try {
+    const {bids, timedOut, auctionId} = await pbjs.requestBids({timeout: 1000});
+    // ...
+} catch (e) {
+    // the auction did not run
+}
+```
+
 Example call:
 
 ```javascript

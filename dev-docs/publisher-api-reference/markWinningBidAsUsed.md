@@ -10,6 +10,8 @@ This function can be used to mark the winning bid as used, removing it from the 
 
 If you know the adId, then be specific, otherwise Prebid will retrieve the winning bid for the adUnitCode and mark it accordingly.
 
+To look up a bid by its adId and mark it as used in the same call, see [getBidResponseByAdId](/dev-docs/publisher-api-reference/getBidResponseByAdId.html) (since Prebid.js 11.6).
+
 #### Argument Reference
 
 ##### The `markBidRequest` object (use one or both)
