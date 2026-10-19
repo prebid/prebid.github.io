@@ -2,7 +2,7 @@
 layout: bidder
 title: Adspiro
 description: Adspiro Prebid Bidder Adapter
-biddercode: adspiro
+biddercode: ad_spiro
 gvl_id: none
 tcfeu_supported: false
 dsa_supported: false
@@ -54,7 +54,7 @@ var adUnits = [{
     banner: { sizes: [[300, 250]] }
   },
   bids: [{
-    bidder: 'adspiro',
+    bidder: 'ad_spiro',
     params: { publisherId: 'test' }
   }]
 }];
@@ -66,7 +66,7 @@ Bids are VAST XML, so video and audio need [Prebid Cache](/dev-docs/show-video-w
 
 ## User Sync
 
-We recommend [allowing iframe syncs](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing) for `adspiro`: the iframe syncs all our buyers at once, while the image sync does one buyer per page view.
+We recommend [allowing iframe syncs](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing) for `ad_spiro`: the iframe syncs all our buyers at once, while the image sync does one buyer per page view.
 
 ## Privacy
 
