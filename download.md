@@ -156,7 +156,7 @@ Replace `11.40.0` with the Prebid.js version you want to use (11.40.0 or later).
 1. Fetches the manifest for that release, which lists every module, its dependencies, and its checksum. The manifest itself is verified against a checksum built into `bundle.js`.
 1. Works out which files are needed: `prebid-core`, the requested modules and their dependencies, plus the `.metadata.js` disclosure files if `storageControl` is one of the requested modules.
 1. Adds a `<script>` tag for each file, with an `integrity` attribute set to the file's checksum.
-1. Once all files have loaded, processes the `pbjs.que` command queue.
+1. Once all files have loaded, processes the command queue of the Prebid.js global (`pbjs.que` by default; see `globalVarName` below).
 
 The following query parameters are supported:
 
