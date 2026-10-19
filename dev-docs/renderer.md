@@ -19,7 +19,7 @@ In simple terms, a renderer offers publishers:
 
 ## Types of renderers
 
-From Prebid 11.15 onward, publishers and adapters can specify their custom renderers in two ways: top window renderers (the old-fashioned way) and the new Safe Renderer approach. The latter has the significant advantage of executing renderer code inside the ad frame, where the ad markup and other important data are accessible within the frame context, whereas the old approach executed renderers in the top window. We strongly recommend using the new Safe Renderer approach whenever possible.
+From Prebid 11.14 onward, publishers and adapters can specify their custom renderers in two ways: top window renderers (the old-fashioned way) and the new Safe Renderer approach. The latter has the significant advantage of executing renderer code inside the ad frame, where the ad markup and other important data are accessible within the frame context, whereas the old approach executed renderers in the top window. We strongly recommend using the new Safe Renderer approach whenever possible.
 
 If both Safe Renderer and top window renderers are specified, the Safe Renderer takes precedence. You can also disable top window renderers through the top level configuration flag:
 
@@ -34,16 +34,26 @@ Renderers can be specified at multiple levels by specifying either `safeRenderer
 1. MediaType Level `adUnit.mediaTypes.video|banner|native|audio`: If a renderer is associated with a specific mediaType (video, banner, audio or native), it will be used to display any demand associated with that mediaType. This is the preferred method for all ad types.
 2. AdUnit Level `adUnit`: Applied to all bids for this ad unit that don't override it. This is a legacy approach; using the mediaType-level renderer is preferred.
 3. Bidder Level `adUnit.bids[]`: Applied only to this bidder, overriding adUnit renderer if both exist.
-4. Default: If no renderer is specified at any level, Prebid will use the default renderer for the media type, if one exists. For banner and native ads, Prebid.js has built-in default rendering capabilities.
+4. Bid: Bid adapters (and Prebid Server) can attach a renderer to the bid itself. It is used only if the publisher didn't specify one at any of the levels above, unless the mediaType-level `renderer` has `backupOnly: true`.
+5. Default: If no renderer is specified at any level, Prebid will use the default renderer for the media type, if one exists. For banner and native ads, Prebid.js has built-in default rendering capabilities.
 
 ### Priority Order
 
 When multiple renderers are defined, the following priority is used:
 
 1. MediaType Level renderer
-2. AdUnit Level renderer
-3. Bidder Level renderer
-4. Default renderer
+2. Bidder Level renderer
+3. AdUnit Level renderer
+4. Renderer provided with the bid by the bid adapter or Prebid Server
+5. Default renderer
+
+A publisher-defined renderer takes precedence over one provided with the bid, unless the mediaType-level top window `renderer` has `backupOnly: true`. That flag also applies to Safe Renderers: when it is set, a Safe Renderer provided with the bid is preferred over the publisher's.
+
+### Safe Renderers provided with bids
+
+Bid adapters can attach a Safe Renderer to a bid response by setting `bid.safeRenderer = { url, config }`.
+
+Since Prebid 11.19, Prebid.js also accepts Safe Renderers from Prebid Server. Requests to Prebid Server include `ext.prebid.safeRenderer: true` to signal support, and when a Prebid Server bid has `ext.prebid.meta.rendererUrl`, Prebid.js sets `bid.safeRenderer = { url: rendererUrl }`.
 
 ## Safe renderer
 
