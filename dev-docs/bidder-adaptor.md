@@ -590,7 +590,7 @@ Given an array of all the responses from the server, `getUserSyncs` is used to d
 | `gppConsent` | GPP consent data, or `null` if not available. |
 | `coppa` | Boolean, the value of the publisher's `coppa` setting in [`setConfig`]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html). Since Prebid.js 11.28. |
 
-Note that since Prebid.js 11.9, registered syncs are not fired in Safari, Firefox, Chrome on iOS, or when cookies are unavailable, even though `getUserSyncs` is still called. See [How User Syncing Works]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html#setConfig-ConfigureUserSyncing-HowUserSyncingWorks).
+Note that registered syncs are not fired in Safari (and, since Prebid.js 11.9, Firefox and Chrome on iOS) or when cookies are unavailable, even though `getUserSyncs` is still called. See [How User Syncing Works]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html#setConfig-ConfigureUserSyncing-HowUserSyncingWorks).
 
 See below for an example implementation.  For more examples, search for `getUserSyncs` in the [modules directory in the repo](https://github.com/prebid/Prebid.js/tree/master/modules).
 
