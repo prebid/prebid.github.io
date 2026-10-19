@@ -10,7 +10,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npm run development",
-    "watch": "bundle exec jekyll serve"
+    "watch": "bundle exec jekyll serve",
+    "linkcheck": "bundle exec jekyll build && lychee --config lychee.toml --root-dir \"$PWD/_site\" '_site/**/*.html'"
   },
   "repository": {
     "type": "git",

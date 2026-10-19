@@ -42,16 +42,16 @@ If set on a given Prebid Mobile ad unit, the `fetchDemand` function will be call
 #### setAutoRefreshInterval
 {:.no_toc}
 
-If set on a given Prebid Mobile ad unit, the `fetchDemand` function will be called every `periodMillis` until `stopAutoRefresh` is called. Each call to `fetchDemand` will invoke the `onComplete` function. This refresh only pertains to Prebid Mobile and not to any ad server refresh processes. It is suggested that the adServers refresh be turned off.
+If set on a given Prebid Mobile ad unit, the `fetchDemand` function will be called every `seconds` seconds until `stopAutoRefresh` is called. Each call to `fetchDemand` will invoke the `onComplete` function. This refresh only pertains to Prebid Mobile and not to any ad server refresh processes. It is suggested that the adServers refresh be turned off.
 
 **Parameters**
 
-- `seconds`: Integer defining the refresh time in seconds.
+- `seconds`: Integer defining the refresh time in seconds. Values outside the range of 30 to 120 seconds are clamped to it, and `0` turns auto-refresh off.
 
-#### startAutoRefresh
+#### resumeAutoRefresh
 {:.no_toc}
 
-Starts the auto-refresh behavior for a given Prebid Mobile ad unit.
+Resumes a stopped auto-refresh for the ad unit with the previously set interval.
 
 #### stopAutoRefresh
 {:.no_toc}

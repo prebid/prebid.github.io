@@ -11,7 +11,8 @@ coppa_supported: true
 gdpr_supported: true
 schain_supported: true
 floors_supported: true
-media_types: banner, video
+fpd_supported: true
+media_types: banner, video, audio, native
 multiformat_supported: will-bid-on-any
 pbjs: true
 pbs: true
@@ -20,27 +21,29 @@ sidebarType: 1
 userIds: all
 ---
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name                        | Scope    | Description                                                                             | Example                            | Type     |
-|-----------------------------|----------|-----------------------------------------------------------------------------------------|------------------------------------|----------|
-| `adUnitId`                  | Required | The ad unit ID provided by Insticator                                                   | `'test'`                           | `string` |
-| `publisherId`               | optional | The publisher ID provided by Insticator                                                 | `'test'`                           | `string` |
-| `yob`                       | optional | Year of Birth                                                                           | `'1982'`                           | `string` |
-| `gender`                    | optional | Gender                                                                                  | `'M'`                              | `string` |
-| `instl`                     | optional | 1 = the ad is interstitial or full screen, 0 = not interstitial.                        | `1`                                | `number` |
-| `pos`                       | optional | ad position as per IAB standards                                                        | `1`                                | `number` |
-| `bid_endpoint_request_url`  | optional | Url string representing the endpoint Insticator adaptor should make the request bids to.| `https://ex.ingage.com/v1/openrtb` | `string` |
-| `floor`                     | optional | Sets a floor for bidder.                                                                | `0.50`                             | `float`  |
-| `bidfloorcur`               | optional | Currency of the floor. (Insticator only supports USD floors)                            | `USD`                              | `string` |
+| Name                       | Scope    | Description                                                                              | Example                            | Type      |
+|----------------------------|----------|------------------------------------------------------------------------------------------|------------------------------------|-----------|
+| `adUnitId`                 | Required | The ad unit ID provided by Insticator                                                    | `'test'`                           | `string`  |
+| `publisherId`              | optional | The publisher ID provided by Insticator                                                  | `'test'`                           | `string`  |
+| `user.yob`                 | optional | Year of birth                                                                            | `1982`                             | `integer` |
+| `user.gender`              | optional | Gender: `M`, `F` or `O`                                                                  | `'M'`                              | `string`  |
+| `user.keywords`            | optional | Comma separated keywords                                                                 | `'kw1,kw2'`                        | `string`  |
+| `user.data`                | optional | OpenRTB user.data segments, concatenated after `ortb2.user.data`                         | `[{ name: 'p' }]`                  | `array`   |
+| `user.ext`                 | optional | Merged under `user.ext`, taking precedence over `ortb2.user.ext`                         | `{ custom: 'value' }`              | `object`  |
+| `bid_endpoint_request_url` | optional | Url string representing the endpoint Insticator adaptor should make the request bids to. | `https://ex.ingage.com/v1/openrtb` | `string`  |
+| `floor`                    | optional | Sets a floor for bidder.                                                                 | `0.50`                             | `float`   |
+| `bidfloorcur`              | optional | Currency of the floor. (Insticator only supports USD floors)                             | `USD`                              | `string`  |
 
 ### Banner Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description               | Example              | Type     |
-|---------------|----------|---------------------------|----------------------|----------|
-| `pos`         | optional | ad position as per IAB standards       | `1`                | `number` |
+| Name  | Scope    | Description                      | Example               | Type     |
+|-------|----------|----------------------------------|-----------------------|----------|
+| `pos` | optional | ad position as per IAB standards | `1`                   | `number` |
+| `ext` | optional | Exchange-specific extensions     | `{ custom: 'value' }` | `object` |
 
 ### Example
 
@@ -72,16 +75,32 @@ var adUnitsBannerOnly = [
 
 #### First Party Data
 
-In release 8.45 and later, Insticator has added support for first party data which are optional and partners can send us. The following fields are supported:
+Insticator supports the following optional first party data fields:
 
+* ortb2.ext
+* ortb2.source.ext
 * ortb2.site.keywords
 * ortb2.site.content.*
 * ortb2.site.search
 * ortb2.site.cat
 * ortb2.site.pagecat
 * ortb2.site.sectioncat
+* ortb2.site.mobile
+* ortb2.site.ext
+* ortb2.site.publisher.ext
+* ortb2.device.ext
 * ortb2.user.ext.*
 * ortb2.user.data.*
+* ortb2.regs.ext
+* ortb2Imp.instl
+* ortb2Imp.rwdd
+* ortb2Imp.ext
+* mediaTypes.banner.ext
+* mediaTypes.video.ext
+* mediaTypes.audio.ext
+* ortb2Imp.banner.ext
+* ortb2Imp.video.ext
+* ortb2Imp.audio.ext
 
 Here is an example first party data that insticator support.
 
@@ -118,32 +137,40 @@ pbjs.setConfig({
 #### Video parameters
 
 {: .table .table-bordered .table-striped }
-| Name                   | Scope       | Description                                                     | Example                       |
-|------------------------|-------------|-----------------------------------------------------------------|-------------------------------|
-| `video.mimes`          | required    | Video MIME types                                                | `['application/javascript',`<br/>`'video/mp4',`<br/>`'video/ogg',`<br/>`'video/webm',`<br/>`'video/mpeg']` |
-| `video.w`              | recommended | Width of the video player in device independent pixels (DIPS).  | `640`                         |
-| `video.h`              | recommended | Height of the video player in device independent pixels (DIPS). | `480`                         |
-| `video.placement`      | recommended | Video placement type. (see OpenRTB v2.5 section 5.9 for options)  | `3` |
-| `video.plcmt`          | recommended | Placement type for the impression. (See [OpenRTB v2.6](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/develop/AdCOM%20v1.0%20FINAL.md) Plcmt Subtypes - Video)          | `5`                           |
-| `video.playerSize`     | optional    | Array of supported sizes of the player.                         | `[[300, 250], [300, 600]]`    |
-| `video.playbackmethod` | optional    | Playback methods that may be in use.(see OpenRTB v2.5 section 5.10 for options)  | `[1, 2, 3, 4]`                           |
-| `video.protocols`      | optional    | Supported video bid response protocol values are 2, 3, 5, 6, 7, 8. (see OpenRTB v2.5 section 5.8 for options) | `[2, 3, 5, 6, 7, 8]`                       |
-| `video.maxduration`    | optional    | Maximum video ad duration in seconds                            | `30`                          |
-| `video.minduration`    | optional    | Minimum video ad duration in seconds                            | `1`                          |
-| `video.skip`           | optional    | Indicates if the player will allow the video to be skipped, where 0 = no, 1 = yes | `0` |
-| `video.skipafter`      | optional    | Number of seconds a video must play before skipping is enabled  | `5`                           |
-| `video.startdelay`     | optional    | Indicates the start delay in seconds for pre-roll, mid-roll, or post-roll ad placements. (see OpenRTB v2.5 section 5.12 for options)    | `0` |
-| `video.linearity`      | optional    | Indicates if the impression must be linear, nonlinear, etc. (see OpenRTB v2.5 section 5.7 for options)   | `1` |
-| `video.skipmin`        | optional    | Only if the ad is skippable. Videos of total duration greater than this number of seconds can be skippable | `5` |
-| `video.sequence`       | optional    | For multiple ad in the same bid request. This value allow will for the coordinated delivery of multiple ad | `1` |
-| `video.battr`          | optional    | Blocked creative attributes. (see OpenRTB v2.5 section 5.3 for options)                                 | `[1]`                         |
-| `video.maxextended`    | optional    | Max extended ad duration beyond the maxduration if extension is allowed. Blank or 0 - blocked. -1 - allowed without time limit | `30` |
-| `video.minbitrate`     | optional    | Minimum bit rate in Kbps                                        | `5`                           |
-| `video.maxbitrate`     | optional    | Maximum bit rate in Kbps                                        | `10000`                           |
-| `video.playbackend`    | optional    | The event that causes playback to end. (see OpenRTB v2.5 section 5.11 for options)  | `1` |
-| `video.delivery`       | optional    | Supported delivery methods (1 = streaming, 2 = progressive, 3 = download). If none specified, assume all are supported. | `[1, 2]`                      |
-| `video.pos`            | optional    | Ad position on screen. (see OpenRTB v2.5 section 5.4 for options)     | `1`                           |
-| `video.api`            | optional    | List of supported API frameworks for this impression. Supported API frameworks are between 1-7 (See [OpenRTB v2.6](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/develop/AdCOM%20v1.0%20FINAL.md) List API Frameworks) | `[2, 7]`                   |
+| Name                   | Scope       | Description                                                                                                                                                                                                                         | Example                                                                                                    |
+|------------------------|-------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
+| `video.mimes`          | required    | Video MIME types                                                                                                                                                                                                                    | `['application/javascript',`<br/>`'video/mp4',`<br/>`'video/ogg',`<br/>`'video/webm',`<br/>`'video/mpeg']` |
+| `video.w`              | recommended | Width of the video player in device independent pixels (DIPS).                                                                                                                                                                      | `640`                                                                                                      |
+| `video.h`              | recommended | Height of the video player in device independent pixels (DIPS).                                                                                                                                                                     | `480`                                                                                                      |
+| `video.placement`      | recommended | Video placement type. (see OpenRTB v2.5 section 5.9 for options)                                                                                                                                                                    | `3`                                                                                                        |
+| `video.plcmt`          | recommended | Placement type for the impression. (See [OpenRTB v2.6](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/develop/AdCOM%20v1.0%20FINAL.md) Plcmt Subtypes - Video)                                                          | `5`                                                                                                        |
+| `video.playerSize`     | optional    | Array of supported sizes of the player.                                                                                                                                                                                             | `[[300, 250], [300, 600]]`                                                                                 |
+| `video.playbackmethod` | optional    | Playback methods that may be in use.(see OpenRTB v2.5 section 5.10 for options)                                                                                                                                                     | `[1, 2, 3, 4]`                                                                                             |
+| `video.protocols`      | optional    | Supported video bid response protocol values are 2, 3, 5, 6, 7, 8. (see OpenRTB v2.5 section 5.8 for options)                                                                                                                       | `[2, 3, 5, 6, 7, 8]`                                                                                       |
+| `video.maxduration`    | optional    | Maximum video ad duration in seconds                                                                                                                                                                                                | `30`                                                                                                       |
+| `video.minduration`    | optional    | Minimum video ad duration in seconds                                                                                                                                                                                                | `1`                                                                                                        |
+| `video.skip`           | optional    | Indicates if the player will allow the video to be skipped, where 0 = no, 1 = yes                                                                                                                                                   | `0`                                                                                                        |
+| `video.skipafter`      | optional    | Number of seconds a video must play before skipping is enabled                                                                                                                                                                      | `5`                                                                                                        |
+| `video.startdelay`     | optional    | Indicates the start delay in seconds for pre-roll, mid-roll, or post-roll ad placements. (see OpenRTB v2.5 section 5.12 for options)                                                                                                | `0`                                                                                                        |
+| `video.linearity`      | optional    | Indicates if the impression must be linear, nonlinear, etc. (see OpenRTB v2.5 section 5.7 for options)                                                                                                                              | `1`                                                                                                        |
+| `video.skipmin`        | optional    | Only if the ad is skippable. Videos of total duration greater than this number of seconds can be skippable                                                                                                                          | `5`                                                                                                        |
+| `video.sequence`       | optional    | For multiple ad in the same bid request. This value allow will for the coordinated delivery of multiple ad                                                                                                                          | `1`                                                                                                        |
+| `video.battr`          | optional    | Blocked creative attributes. (see OpenRTB v2.5 section 5.3 for options)                                                                                                                                                             | `[1]`                                                                                                      |
+| `video.maxextended`    | optional    | Max extended ad duration beyond the maxduration if extension is allowed. Blank or 0 - blocked. -1 - allowed without time limit                                                                                                      | `30`                                                                                                       |
+| `video.minbitrate`     | optional    | Minimum bit rate in Kbps                                                                                                                                                                                                            | `5`                                                                                                        |
+| `video.maxbitrate`     | optional    | Maximum bit rate in Kbps                                                                                                                                                                                                            | `10000`                                                                                                    |
+| `video.playbackend`    | optional    | The event that causes playback to end. (see OpenRTB v2.5 section 5.11 for options)                                                                                                                                                  | `1`                                                                                                        |
+| `video.delivery`       | optional    | Supported delivery methods (1 = streaming, 2 = progressive, 3 = download). If none specified, assume all are supported.                                                                                                             | `[1, 2]`                                                                                                   |
+| `video.pos`            | optional    | Ad position on screen. (see OpenRTB v2.5 section 5.4 for options)                                                                                                                                                                   | `1`                                                                                                        |
+| `video.api`            | optional    | List of supported API frameworks for this impression. Supported API frameworks are between 1-7 (See [OpenRTB v2.6](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/develop/AdCOM%20v1.0%20FINAL.md) List API Frameworks) | `[2, 7]`                                                                                                   |
+| `video.ext`            | optional    | Exchange-specific extensions                                                                                                                                                                                                        | `{ custom: 'value' }`                                                                                      |
+| `video.podid`          | optional    | Identifier of the ad pod this impression belongs to                                                                                                                                                                                 | `'pod-1'`                                                                                                  |
+| `video.podseq`         | optional    | Ad pod position in the content stream. -1 last, 0 any, 1 first                                                                                                                                                                      | `0`                                                                                                        |
+| `video.poddur`         | optional    | Total duration of the ad pod in seconds                                                                                                                                                                                             | `60`                                                                                                       |
+| `video.slotinpod`      | optional    | Ad position in the pod. -1 last, 0 any, 1 first, 2 first/last                                                                                                                                                                       | `0`                                                                                                        |
+| `video.mincpmpersec`   | optional    | Minimum CPM per second the publisher will accept                                                                                                                                                                                    | `0.5`                                                                                                      |
+| `video.maxseq`         | optional    | Maximum number of ads allowed in the pod                                                                                                                                                                                            | `4`                                                                                                        |
+| `video.rqddurs`        | optional    | Exact durations in seconds that the publisher will accept                                                                                                                                                                           | `[15, 30]`                                                                                                 |
 
 ### Example
 
@@ -179,5 +206,130 @@ var adUnits = [
             }
         }],
         ...
+    }];
+```
+
+#### Audio parameters
+
+{: .table .table-bordered .table-striped }
+| Name                  | Scope       | Description                                                                                                                                                                    | Example                                                                   |
+|-----------------------|-------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|
+| `audio.mimes`         | recommended | Audio MIME types                                                                                                                                                               | `['audio/mp4',`<br/>`'audio/mpeg',`<br/>`'audio/aac',`<br/>`'audio/ogg']` |
+| `audio.minduration`   | optional    | Minimum audio ad duration in seconds                                                                                                                                           | `5`                                                                       |
+| `audio.maxduration`   | optional    | Maximum audio ad duration in seconds                                                                                                                                           | `30`                                                                      |
+| `audio.poddur`        | optional    | Total time in seconds advertisers may fill for a dynamic audio ad pod                                                                                                          | `120`                                                                     |
+| `audio.protocols`     | optional    | Supported audio bid response protocol values. (see OpenRTB v2.5 section 5.8 for options)                                                                                       | `[2, 3, 5, 6, 7, 8]`                                                      |
+| `audio.startdelay`    | optional    | Start delay in seconds for pre-roll, mid-roll or post-roll placements. (see OpenRTB v2.5 section 5.12 for options)                                                             | `0`                                                                       |
+| `audio.rqddurs`       | optional    | Exact acceptable creative durations in seconds                                                                                                                                 | `[15, 30]`                                                                |
+| `audio.podid`         | optional    | Identifier marking the impressions that belong to the same audio ad pod                                                                                                        | `'pod-1'`                                                                 |
+| `audio.podseq`        | optional    | Sequence of the audio ad pod within the content stream, where -1 = last pod, 0 = any pod, 1 = first pod                                                                        | `0`                                                                       |
+| `audio.sequence`      | optional    | For multiple ads in the same bid request, to allow coordinated delivery                                                                                                        | `1`                                                                       |
+| `audio.slotinpod`     | optional    | Slot position in the pod the seller can guarantee delivery against, where -1 = last ad, 0 = any ad, 1 = first ad, 2 = first or last ad                                         | `1`                                                                       |
+| `audio.mincpmpersec`  | optional    | Minimum CPM per second, a price floor for the dynamic portion of an audio ad pod                                                                                               | `0.05`                                                                    |
+| `audio.battr`         | optional    | Blocked creative attributes. (see OpenRTB v2.5 section 5.3 for options)                                                                                                        | `[13, 14]`                                                                |
+| `audio.maxextended`   | optional    | Max extended ad duration beyond `maxduration` if extension is allowed. Blank or 0 = blocked, -1 = no time limit.                                                               | `30`                                                                      |
+| `audio.minbitrate`    | optional    | Minimum bit rate in Kbps                                                                                                                                                       | `32`                                                                      |
+| `audio.maxbitrate`    | optional    | Maximum bit rate in Kbps                                                                                                                                                       | `320`                                                                     |
+| `audio.delivery`      | optional    | Supported delivery methods (1 = streaming, 2 = progressive, 3 = download). If none specified, assume all are supported.                                                        | `[1, 2]`                                                                  |
+| `audio.companionad`   | optional    | Array of Banner objects for the available companion ads                                                                                                                        | `[{ w: 300, h: 250 }]`                                                    |
+| `audio.api`           | optional    | List of supported API frameworks for this impression. (see OpenRTB v2.5 section 5.6 for options)                                                                               | `[2, 7]`                                                                  |
+| `audio.companiontype` | optional    | Supported companion ad types. (see OpenRTB v2.5 section 5.14 for options)                                                                                                      | `[1, 2]`                                                                  |
+| `audio.maxseq`        | optional    | Maximum number of ads that can be played in an ad pod                                                                                                                          | `4`                                                                       |
+| `audio.feed`          | optional    | Type of audio feed. 1 = Music Streaming Service, 2 = FM/AM Broadcast, 3 = Podcast, 4 = Catch-up Radio, 5 = Web Radio, 6 = Video Game, 7 = Text to Speech.                      | `3`                                                                       |
+| `audio.stitched`      | optional    | Indicates if the ad is stitched into the audio content, where 0 = no, 1 = yes                                                                                                  | `0`                                                                       |
+| `audio.nvol`          | optional    | Volume normalization mode. 0 = None, 1 = Ad Volume Average Normalized to Content, 2 = Ad Volume Peak Normalized to Content, 3 = Ad Loudness Normalized to Content, 4 = Custom. | `1`                                                                       |
+| `audio.durfloors`     | optional    | Floor prices for audio creatives of various durations                                                                                                                          | `[{ maxdur: 15,`<br/>`bidfloor: 5 }]`                                     |
+| `audio.ext`           | optional    | Exchange-specific extensions                                                                                                                                                   | `{ custom: 'value' }`                                                     |
+
+### Example
+
+```javascript
+var adUnitsAudioOnly = [
+    {
+        code: 'insticator-audio-ad-1',
+        mediaTypes: {
+            audio: {
+                mimes: ['audio/mp4', 'audio/mpeg', 'audio/aac', 'audio/ogg'],
+                minduration: 5,
+                maxduration: 30,
+                protocols: [2, 3, 5, 6, 7, 8],
+                startdelay: 0,
+                minbitrate: 32,
+                maxbitrate: 320,
+                delivery: [1, 2],
+                api: [2, 7],
+                battr: [13, 14],
+                feed: 3,
+                stitched: 0,
+                nvol: 1
+            }
+        },
+        bids: [{
+            bidder: 'insticator',
+            params: {
+                adUnitId: 'example_adunit_id',
+                publisherId: 'example_publisher_id',
+            }
+        }]
+    }];
+```
+
+#### Native parameters
+
+Native ad units are declared with the ORTB-style config on `mediaTypes.native.ortb`, following the
+[OpenRTB Dynamic Native Ads 1.2 specification](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf).
+Prebid validates and normalizes that config, and the adapter sends it as the native request; a
+config Prebid rejects is not sent. The winning bid returns the native response object on
+`bid.native.ortb`.
+
+{: .table .table-bordered .table-striped }
+| Name                         | Scope    | Description                                                                                                                | Example                                 |
+|------------------------------|----------|----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------|
+| `native.ortb.assets`         | required | The assets requested. Each needs a unique integer `id`; mark the ones the creative must include with `required: 1`         | see the example below                   |
+| `native.ortb.ver`            | optional | Native specification version. Defaults to `1.2`                                                                            | `'1.2'`                                 |
+| `native.ortb.plcmttype`      | optional | Placement type. (see the Native 1.2 spec for options)                                                                      | `1`                                     |
+| `native.ortb.plcmtcnt`       | optional | Number of identical placements in this layout                                                                              | `1`                                     |
+| `native.ortb.context`        | optional | Context in which the ad appears. (see the Native 1.2 spec for options)                                                     | `1`                                     |
+| `native.ortb.contextsubtype` | optional | A more detailed context. (see the Native 1.2 spec for options)                                                             | `10`                                    |
+| `native.ortb.eventtrackers`  | optional | Event trackers the creative should support. Defaults to an impression tracker supporting both image and JavaScript methods | `[{ event: 1,`<br/>`methods: [1, 2] }]` |
+| `native.ortb.privacy`        | optional | Set to `1` to indicate the buyer's privacy notice is supported                                                             | `1`                                     |
+| `native.api`                 | optional | Supported API frameworks for this impression. (see OpenRTB v2.5 section 5.6 for options)                                   | `[7]`                                   |
+| `native.battr`               | optional | Blocked creative attributes. (see OpenRTB v2.5 section 5.3 for options)                                                    | `[1, 8]`                                |
+| `native.ext`                 | optional | Exchange-specific extensions                                                                                               | `{ custom: 'value' }`                   |
+
+### Example
+
+```javascript
+    var adUnits = [{
+        code: 'native-div',
+        mediaTypes: {
+            native: {
+                ortb: {
+                    ver: '1.2',
+                    plcmttype: 1,
+                    plcmtcnt: 1,
+                    context: 1,
+                    assets: [
+                        { id: 1, required: 1, title: { len: 90 } },
+                        { id: 2, required: 1, img: { type: 3, wmin: 300, hmin: 250 } },
+                        { id: 3, required: 0, data: { type: 1, len: 25 } },
+                        { id: 4, required: 0, data: { type: 2, len: 140 } },
+                        { id: 5, required: 0, data: { type: 12, len: 15 } }
+                    ],
+                    eventtrackers: [
+                        { event: 1, methods: [1, 2] }
+                    ]
+                },
+                api: [7],
+                battr: [1, 8]
+            }
+        },
+        bids: [{
+            bidder: 'insticator',
+            params: {
+                adUnitId: 'example_adunit_id',
+                publisherId: 'example_publisher_id',
+            }
+        }]
     }];
 ```
