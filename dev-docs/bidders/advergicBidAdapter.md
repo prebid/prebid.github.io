@@ -71,8 +71,6 @@ The Advergic adapter supports the `banner` media type. Banner sizes are read fro
 
 The adapter supports Prebid First Party Data through `ortb2` and `ortb2Imp`.
 
-Global site, user, device, regulations, and source data are preserved when available. Impression-level OpenRTB data from `ortb2Imp` is also preserved and sent with the corresponding impression.
-
 Publishers should use the standard Prebid First Party Data configuration:
 
 ```javascript
@@ -112,7 +110,9 @@ The adapter supports Prebid Floors. When a floor is available, the adapter sends
 
 The adapter forwards Prebid user IDs supplied through `userIdAsEids` in the OpenRTB `user.ext.eids` object.
 
-The adapter also maintains an Advergic user ID in browser local storage when storage access is available.
+When user synchronization is enabled and no usable sync URL is supplied by the bidder response, the adapter can call Advergic's default setuid endpoint. This endpoint sets the `_advid` cookie on `.avads.live`. The cookie is configured with a one-year maximum age and is used by Advergic to recognize browsers and manage advertising frequency caps.
+
+The adapter does not generate a separate persistent user ID in browser local storage. User synchronization is suppressed when COPPA is enabled.
 
 ## Event Tracking
 
@@ -128,13 +128,13 @@ pbjs.setConfig({
 });
 ```
 
-The normal bid request and bid response processing continue when event tracking is disabled.
+The normal bid request and bid response processing continue when event tracking is disabled. Billing notifications supplied in the bid response are handled separately from this optional event tracking.
 
 ## User Sync
 
 Advergic supports both image and iframe user synchronization when the publisher enables the corresponding Prebid user-sync type.
 
-If the bidder response does not provide sync URLs, the adapter uses the Advergic default sync endpoint.
+If the bidder response does not provide a usable sync URL, the adapter uses the Advergic default setuid endpoint. The fallback may set the `_advid` cookie described in the [User IDs](#user-ids) section.
 
 Example:
 
@@ -151,6 +151,8 @@ pbjs.setConfig({
 });
 ```
 
+User syncs are not performed when COPPA is enabled through Prebid configuration or the supported `getUserSyncs` COPPA argument.
+
 ## Privacy
 
 The adapter forwards supported privacy signals to the Advergic endpoint:
@@ -162,7 +164,7 @@ The adapter forwards supported privacy signals to the Advergic endpoint:
 
 The adapter forwards the supplied GPP string and applicable section IDs.
 
-Advergic does not currently have an IAB Global Vendor List (GVL) ID and does not declare TCF-EU support (`tcfeu_supported: false`).
+Advergic does not currently have an IAB Global Vendor List (GVL) ID and does not declare TCF-EU support (`tcfeu_supported: false`). Publishers remain responsible for ensuring that their use of the adapter, user synchronization, and any identifier storage complies with applicable privacy requirements and their consent-management configuration.
 
 ### Prebid TCF Enforcement
 
