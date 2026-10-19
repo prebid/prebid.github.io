@@ -38,10 +38,10 @@ The following Video Players are currently supported:
 
 {: .table .table-bordered .table-striped }
 | Video Player | Submodule Name | Vendor Code |
-|--------------|----------------|-------------|
-| [JW Player](https://info.jwplayer.com/sign-up/?utm_source=developer&utm_medium=CTA)  | jwplayerVideoProvider | 1 |
-| [video.js](https://videojs.com/)   | videojsVideoProvider | 2 |
-| [AdPlayer.Pro](https://adplayer.pro/)   | adplayerproVideoProvider | 3 |
+| --- | --- | --- |
+| [JW Player](https://info.jwplayer.com/sign-up/?utm_source=developer&utm_medium=CTA) | jwplayerVideoProvider | 1 |
+| [video.js](https://videojs.com/) | videojsVideoProvider | 2 |
+| [AdPlayer.Pro](https://adplayer.pro/) | adplayerproVideoProvider | 3 |
 
 Not seeing your desired video player ? Learn how to add support by reading our [contribution guide](#Video-Module-Contributing)
 
@@ -49,8 +49,8 @@ Optionally, if you are using an Ad Server, you can configure the Video Module to
 
 {: .table .table-bordered .table-striped }
 | Ad Server | Module Name | Vendor Code |
-|--------------|----------------|-------------|
-| [Google Ad Manager](https://admanager.google.com/)  | dfpAdServerVideo | 'gam' |
+| --- | --- | --- |
+| [Google Ad Manager](https://admanager.google.com/) | dfpAdServerVideo | 'gam' |
 
 {: .alert.alert-warning :}
 **Note:** You must include the Ad Server's module in your build.
@@ -90,7 +90,7 @@ The event payload includes metadata which can be used for analytics, error handl
 
 {: .table .table-bordered .table-striped }
 | Event Constant | Event String | Description |
-|----------------|--------------|-------------|
+| --- | --- | --- |
 | SETUP_COMPLETE | 'videoSetupComplete' | Fired when the player is instantiated and the integration is complete. At this point the API is ready to be used. |
 | SETUP_FAILED | 'videoSetupFailed' | Fired when the integration was unsuccessful. |
 | DESTROYED | 'videoDestroyed' | Fired when the player instance has been destroyed. |
