@@ -25,7 +25,7 @@ privacy_sandbox: no
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 The AdX adapter requires setup before beginning. Contact [tech@optima.tech](mailto:tech@optima.tech) to obtain a `supply_id`.
 
@@ -33,7 +33,7 @@ AdX serves in-app inventory only: requests with `site`, or with `app` missing `a
 
 OpenRTB blocking: `bcat`, `badv` and `battr` are honoured; `bapp` is not.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 
