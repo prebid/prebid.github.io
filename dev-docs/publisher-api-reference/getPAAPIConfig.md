@@ -1,9 +1,12 @@
 ---
 layout: api_prebidjs
-title: pbjs.getPAAPIConfig(options)
+title: pbjs.getPAAPIConfig(options) <span style="color:red" markdown="1">[Removed in 11.0]</span>
 description: getPAAPIConfig API
 sidebarType: 1
 ---
+
+{: .alert.alert-warning :}
+This function was removed in Prebid.js 11.0 along with the PAAPI module.
 
 Return the latest available PAAPI auction configuration for each ad unit, optionally filtered by auction or ad unit.
 

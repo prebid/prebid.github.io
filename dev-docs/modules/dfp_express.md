@@ -5,7 +5,8 @@ title: Module - Google Ad Manager Express
 description: A simplified installation mechanism for publishers that have Google Publisher Tag (GPT) ad calls in their pages.
 module_code : express
 display_name : Google Ad Manager Express
-enable_download : true
+enable_download : false
+pbjs_version_notes: removed in 11.0
 vendor_specific: true
 sidebarType : 1
 ---
@@ -15,6 +16,9 @@ sidebarType : 1
 # GAM/Google Ad Manager Express Module
 
 {:.no_toc}
+
+{: .alert.alert-warning :}
+The Google Ad Manager Express module was removed in Prebid.js 11.0.
 
 This module is a simplified alternate installation mechanism for publishers that have Google Publisher Tag (GPT) ad calls in their pages. Here's how it works:
 

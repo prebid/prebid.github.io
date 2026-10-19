@@ -1,10 +1,12 @@
 ---
 layout: api_prebidjs
-title: pbjs.adServers.freewheel.getTargeting(options)
+title: pbjs.adServers.freewheel.getTargeting(options) <span style="color:red" markdown="1">[Removed in 11.0]</span>
 description: adServers.freewheel.getTargeting API
 sidebarType: 1
 ---
 
+{: .alert.alert-warning :}
+This function was removed in Prebid.js 11.0 along with the `freeWheelAdserverVideo` module and ad pod (long-form) video support.
 
 {: .alert.alert-info :}
 The FreeWheel implementation of this function requires including the `freeWheelAdserverVideo` module in your Prebid.js build.

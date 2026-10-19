@@ -1,9 +1,12 @@
 ---
 layout: api_prebidjs
-title: pbjs.setPAAPIConfigForGPT(options)
+title: pbjs.setPAAPIConfigForGPT(options) <span style="color:red" markdown="1">[Removed in 11.0]</span>
 description: setPAAPIConfigForGPT API
 sidebarType: 1
 ---
+
+{: .alert.alert-warning :}
+This function was removed in Prebid.js 11.0 along with the paapiForGpt module.
 
 Configure GPT slots to use PAAPI. 
 

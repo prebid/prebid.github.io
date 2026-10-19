@@ -7,13 +7,11 @@ bidRequestUserId: dmdId
 eidsource: hcn.health
 example: '"1111"'
 enable_download: false
+pbjs_version_notes: removed in 11.0
 ---
 
-# NOTE: DMD HAS BEEN DEPRECATED
-
-# THIS MODULE NO LONGER FUNCTIONS AND WILL BE REMOVED FROM A
-
-# FUTURE VERSION OF PREBID
+{: .alert.alert-warning :}
+The DMD ID module was deprecated and has been removed in Prebid.js 11.0.
 
 DMD is the preeminent supplier of US-based healthcare professional (HCP) identity data to the pharmaceutical, health system and medical publishing industries. DMD is the only data provider that has acquired its deterministic identity data through a fully consented, first-party, opt-in process. DMD’s privacy policy that can be found at [Privacy Policy](https://hcn.health/privacy-policy).
 

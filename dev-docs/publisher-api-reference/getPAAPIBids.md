@@ -1,9 +1,12 @@
 ---
 layout: api_prebidjs
-title: pbjs.getPAAPIBids(options)
+title: pbjs.getPAAPIBids(options) <span style="color:red" markdown="1">[Removed in 11.0]</span>
 description: getPAAPIBids API
 sidebarType: 1
 ---
+
+{: .alert.alert-warning :}
+This function was removed in Prebid.js 11.0 along with the topLevelPaapi module.
 
 Returns a promise of the latest PAAPI bid for each ad unit, optionally filtered by auction or ad unit.
 

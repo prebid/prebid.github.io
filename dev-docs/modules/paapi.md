@@ -5,11 +5,15 @@ title: Module - PAAPI
 description: Protected Audience API
 module_code : paapi
 display_name : PAAPI
-enable_download : true
+enable_download : false
+pbjs_version_notes: removed in 11.0
 sidebarType : 1
 ---
 
 # PAAPI module
+
+{: .alert.alert-warning :}
+The PAAPI module was removed in Prebid.js 11.0. Prebid.js no longer supports the Protected Audience API.
 
 This module allows Prebid.js to support PAAPI, formerly known as [FLEDGE](https://github.com/WICG/turtledove/blob/main/FLEDGE.md).
 

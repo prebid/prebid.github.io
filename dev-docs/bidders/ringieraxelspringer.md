@@ -6,6 +6,8 @@ biddercode: ringieraxelspringer
 aliasCode: das
 media_types: banner, native
 pbjs: true
+enable_download: false
+pbjs_version_notes: removed in 11.0
 pbs: false
 prebid_member: false
 gvl_id: 1021
