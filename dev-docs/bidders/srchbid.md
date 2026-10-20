@@ -6,6 +6,17 @@ biddercode: srchbid
 media_types: banner
 pbjs: true
 pbs: false
+tcfeu_supported: false
+usp_supported: true
+gpp_sids: usnat, usstate_all, usp
+schain_supported: true
+dchain_supported: false
+coppa_supported: false
+floors_supported: true
+fpd_supported: true
+deals_supported: false
+ortb_blocking_supported: false
+prebid_member: false
 multiformat_supported: will-bid-on-one
 sidebarType: 1
 ---
@@ -39,7 +50,9 @@ var adUnits = [{
 The adapter sends one HTTPS POST per banner opportunity to
 `https://prebid.searchplan.co/prebid/bid`. It uses Prebid's OpenRTB request and
 impression context and preserves supplied transaction IDs, supply chain and
-privacy fields. It requests USD floors from the floors module when available.
+privacy fields. First-party data set via `ortb2` (site and user objects) is
+forwarded to the endpoint unmodified. It requests USD floors from the floors
+module when available.
 It does not read browser storage, add user syncs or load external adapter code.
 
 The adapter forwards supplied TCF, USP and GPP signals. No GVL ID is declared;
