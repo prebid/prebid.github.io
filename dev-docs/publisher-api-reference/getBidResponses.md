@@ -45,6 +45,7 @@ This function returns the bid responses at the given moment.
 | `meta.agencyName` | String | (Optional) The name of the agency | |
 | `meta.brandId` | String | (Optional) The id of the brand | |
 | `meta.brandName` | String | (Optional) The name of the brand | |
+| `meta.deal` | Object | (Optional) Deal metadata on an OpenRTB bid with a `dealId`. See [Deal metadata](#deal-metadata). | `{ "type": 2, "cpm": 5 }` |
 | `meta.dchain` | String | (Optional)  | |
 | `meta.demandSource` | String | (Optional)  | |
 | `meta.mediaType` | String | (Optional)  | |
@@ -52,6 +53,21 @@ This function returns the bid responses at the given moment.
 | `meta.networkName` | String | (Optional) The name of the network | |
 | `meta.primaryCatId` | String | (Optional)  | |
 | `meta.secondaryCatIds` | String[] | (Optional)  | |
+
+## Deal metadata
+
+For bids processed by the ORTB converter, including Prebid Server bids, `meta.deal` is populated when the OpenRTB bid has a `dealid` and an object at `seatbid[].bid[].ext.prebid.deal`. The converter copies the supported fields below. It omits invalid optional values and ignores unrecognized fields.
+
+{: .table .table-bordered .table-striped }
+| OpenRTB `ext.prebid.deal` field | Bid response `meta.deal` field | Accepted value |
+|-------------------------------+--------------------------------+----------------|
+| `type` | `type` | Integer. Defaults to `0` if missing or invalid. Defined values: `0` unknown, `1` sponsorship, `2` reservation, `3` non-reservation, `4` house. Other integers pass through. |
+| `cpm` | `cpm` | Finite number greater than or equal to `0`; unadjusted contractual or nominal deal CPM. |
+| `pacing_adjusted_cpm` | `pacingAdjustedCpm` | Finite number greater than or equal to `0`; CPM after the current pacing or delivery adjustment. |
+| `on_schedule` | `onSchedule` | Finite number greater than or equal to `0`; delivery relative to schedule (for example, `0.5` means half the expected impressions have been served). |
+| `priority` | `priority` | Integer; negative values are allowed. |
+
+`cpm` and `pacingAdjustedCpm` use the bid's currency. If the currency module converts `bid.cpm`, it converts both deal CPM values at the same rate. `priority` is exposed as metadata; it does not change how Prebid.js ranks bids.
 
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
