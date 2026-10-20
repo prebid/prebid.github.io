@@ -26,6 +26,10 @@ This adapter is not on the IAB Global Vendor List, so `tcfeu_supported` is false
 
 Video responses are VAST. A hosted MP4 is an InLine document; a third-party VAST tag is wrapped so Adhouse can record the impression. Native is not supported. There is no user sync.
 
+Only instream video is supported. A video-only ad unit with `context: 'outstream'` is skipped; a mixed banner and outstream unit still receives banner bids.
+
+Bid requests are sent without credentials. The adapter neither reads nor sets cookies or other device storage.
+
 ## Bid Params
 
 {: .table .table-bordered .table-striped }
