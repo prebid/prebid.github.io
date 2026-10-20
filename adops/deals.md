@@ -59,3 +59,4 @@ Bids from header bidding typically have a priority lower than directly sold ads 
 * [Planning Guide](/adops/adops-planning-guide.html)
 * [Key Values for Ad Ops](/adops/key-values.html)
 * [Prebid Universal Creative](/overview/prebid-universal-creative.html)
+* [Bid response deal metadata](/dev-docs/publisher-api-reference/getBidResponses.html#deal-metadata)
