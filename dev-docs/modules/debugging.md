@@ -165,6 +165,10 @@ To illustrate, the following definitions are equivalent:
 |---------+------------------+--------------+------------------------------------------------------------------------------------------------------------------------|
 |`delay`  |Number            |0             |Delay (in milliseconds) before intercepted bids are injected into the auction. Can be used to simulate network latency. |
 
+## First party data validation
+
+Since Prebid.js 11.26, when the debugging module is installed it also validates first party data at the start of each auction, covering both global and bidder-specific `ortb2`. It uses the same rules as the [First Party Data Validation module](/dev-docs/modules/validationFpdModule.html) and logs each invalid field as a warning, but does not modify or remove any data.
+
 ## Examples
 
 ### Force a video bid

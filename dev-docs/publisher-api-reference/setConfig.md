@@ -1383,7 +1383,7 @@ pbjs.setConfig({
 })
 ```
 
-`customGptSlotMatching` should be a function accepting a single GPT [Slot](https://developers.google.com/publisher-tag/reference#googletag.Slot). It should return another function accepting a single string representing an ad unit code. The inner function should return true if the givne slot matches the given ad unit code. 
+`customGptSlotMatching` should be a function accepting a single GPT [Slot](https://developers.google.com/publisher-tag/reference#googletag.Slot). It should return another function accepting a single string representing an ad unit code. The inner function should return true if the given slot matches the given ad unit code. 
 
 <a name="setConfig-auctionOptions"></a>
 
