@@ -47,7 +47,7 @@ The available events are:
 | bidderDone | A bidder has signaled they are done responding | Bid request object |
 | bidderError | A bidder responded with an error | Object with the XMLHttpRequest error and the bid request object `{ error, bidderRequest }` |
 | tcf2Enforcement | There was a TCF2 enforcement action taken | `{ storageBlocked: ['moduleA', 'moduleB'], biddersBlocked: ['moduleB'], analyticsBlocked: ['moduleC'] }` |
-| bidAccepted | Removed in 11.0 - use `bidResponse` instead. A bid was accepted and is about to be added to auction | Bid response object |
+| bidAccepted | A bid was accepted and is about to be added to the auction. Fired once per accepted bid, after bid adjustment and before `bidResponse`; for video and audio bids, before VAST caching. Removed in 11.0 and restored in 11.7. | Bid response object |
 | browserIntervention | The browser reported an intervention affecting a rendered creative (e.g., heavy-ad unload). | `{ bid, adId, intervention }` |
 
 The example below shows how these events can be used.

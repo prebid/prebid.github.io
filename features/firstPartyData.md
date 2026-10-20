@@ -34,7 +34,7 @@ configuration or on a Prebid.js AdUnit:
 
 - Global site or user data that applies to all AdUnits, bidders, and auctions. Use [`setConfig()`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd)
 - Auction-specific site or user data that applies to all AdUnits and bidders in that auction. Use the `ortb2` parameter of [`requestBids()`](/dev-docs/publisher-api-reference/requestBids.html)
-- AdUnit-specific data that applies to all bidders and auctions. Define [AdUnit.ortb2Imp](/dev-docs/adunit-reference.html#first-party-data)
+- AdUnit-specific data that applies to all bidders and auctions. Define [AdUnit.ortb2Imp](/dev-docs/adunit-reference.html#first-party-data-and-floors)
 - Bidder-specific site or user data that applies to all AdUnits and auctions. Use [`setBidderConfig()`](/dev-docs/publisher-api-reference/setBidderConfig.html)
 
 ## In-Page Examples
