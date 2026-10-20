@@ -6,13 +6,16 @@ description: Client-side, cookieless and privacy-first audiences.
 page_type: module
 module_type: rtd
 module_code : airgridRtdProvider
-enable_download : true
+enable_download : false
 vendor_specific: true
 sidebarType : 1
 ---
 
 # AirGrid RTD Provider
 {:.no_toc}
+
+{: .alert.alert-warning :}
+The AirGrid RTD module is deprecated and will be removed in a future release of Prebid.js.
 
 AirGrid is a privacy-first, cookie-less audience platform. Designed to help publishers increase inventory yield,
 whilst providing audience signal to buyers in the bid request, without exposing raw user level data to any party.

@@ -61,7 +61,15 @@ The `MAXMediationBannerUtils` is a helper class, which performs certain utility 
 #### Step 3: Create MediationBannerAdUnit
 {:.no_toc}
 
-The `MediationBannerAdUnit` is a part of the Prebid Mediation API. This class is responsible for making bid request and providing the winning bid and targeting keywords to mediating SDKs.  
+The `MediationBannerAdUnit` is a part of the Prebid Mediation API. This class is responsible for making bid request and providing the winning bid and targeting keywords to mediating SDKs.
+
+By default, the ad unit requests a display banner. To request an outstream video banner, or to let display and video demand compete for the same banner, set `adFormats` before making the bid request (requires SDK v3.4.0):
+
+```swift
+adUnit.adFormats = [.banner, .video]
+```
+
+Only `.banner` and `.video` are supported. An empty set, or a set with any other format, is ignored with a warning. Auto-refresh waits while a Prebid video creative is playing. The `adFormat` property is deprecated; use `adFormats` instead.
 
 #### Step 4: Make bid request
 {:.no_toc}

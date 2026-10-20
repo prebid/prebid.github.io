@@ -13,6 +13,7 @@ sidebarType: 1
 `setConfig()` is the main way to tell Prebid.js how you want to run the header bidding auction. Every
 call to `setConfig()` overwrites supplied values at the top level. e.g. if `ortb2` is provided as a value, any previously-supplied `ortb2` values will disappear.
 If this is not the desired behavior, there is a [`mergeConfig()`](mergeConfig.html) function that will preserve previous values to do not conflict with the newly supplied values.
+Consult the [`mergeConfig()`](mergeConfig.html) documentation for more details about the differences in behavior between these two methods.
 
 This page covers the setConfig() values supported by the core of Prebid.js. There are other options available if certain modules are included in the Prebid.js build:
 
@@ -20,7 +21,7 @@ Module-specific configuration:
 
 * [Currency module](/dev-docs/modules/currency.html)
 * [Consent Management](/dev-docs/modules/consentManagementTcf.html#page-integration)
-* [User ID module](/dev-docs/modules/userId.html#configuration)
+* [User ID module](/dev-docs/modules/userId.html#basic-configuration)
 * [Adpod](/dev-docs/modules/adpod.html)
 * [IAB Category Translation](/dev-docs/modules/categoryTranslation.html)
 
@@ -57,7 +58,7 @@ pbjs.setConfig({ deviceAccess: false });
 
 This can be useful in GDPR, CCPA, COPPA or other privacy scenarios where a publisher has determined that header bidding should not read from or write the user's device.
 
-Note that bid adapters are normally denied access to device storage even when `deviceAccess` is `true`; see the [`storageAllowed` bidder setting](/dev-docs/publisher-api-reference/bidderSettings.html#deviceAccess).
+Note that bid adapters are normally denied access to device storage even when `deviceAccess` is `true`; see the [`storageAllowed` bidder setting](/dev-docs/publisher-api-reference/bidderSettings.html#storageAllowed).
 
 <a id="setConfig-disableFingerprintingApis"></a>
 
@@ -1399,6 +1400,25 @@ The `auctionOptions` object controls aspects related to auctions.
 | `legacyRender`     | Optional  | Boolean | When true, uses "legacy" rendering logic  (see [note](#legacyRender))                               |
 | `rejectUnknownMediaTypes` | Optional | Boolean | Since Pbjs 11, When true, reject bids when the adapter response omits `mediaType` for an ad unit that has explicit `mediaTypes` configured. Default is false. |
 | `rejectInvalidMediaTypes` | Optional | Boolean | Since Pbjs 11, When true, reject bids when response `mediaType` does not match one of the ad unit's configured `mediaTypes`. Default is true. |
+| `viewabilityMeasurement` | Optional | `'observer'`, `'boundingBox'` | Determines how the viewability of each ad unit is measured. `'observer'` (the default) uses an `IntersectionObserver` which comes with a pre-auction delay. The `'boundingBox'` approach is faster, but less accurate resulting in bad viewability. | 
+| `yield` | Optional | Boolean | Since Prebid.js 11.41. When true, and the browser supports [`scheduler.yield`](https://developer.mozilla.org/en-US/docs/Web/API/Scheduler/yield), the auction yields the main thread before each adapter call (once per `s2sConfig` entry and once per client-side bidder). Has no effect in browsers without `scheduler.yield`. This is separate from [`pbjs.yield`](/dev-docs/publisher-api-reference/yield.html). Default is false. See [note](#auctionOptions-yield). |
+
+#### Viewability measurement
+
+Prebid 11 added a `startAuction` hook that waits for `IntersectionObserver` entries for
+every ad unit element before the auction may begin, so that `percentInView()` can report
+observer-derived viewability. That wait is a pre-auction delay that did not exist in Prebid 10, and it could cause slowdowns in the auction.
+
+The `auctionOptions.viewabilityMeasurement` lets a publisher choose not to wait at all, 
+but rather use a bounding-rect path.
+This path is substantially
+less accurate than the observer, so opting out used to mean accepting bad viewability.
+
+* `'observer'` (default): reading the measurement costs no layout at all and correctly accounts for everything that clips the ad, including the bounds of a cross-origin iframe. But the auction cannot start until the observer reports, which requires yielding the main thread; on a page busy with long tasks, that yield is only taken once the longest of them finishes.
+
+* `'boundingBox'`: nothing is waited for, so the auction never queues behind the rest of the page. In exchange each measurement forces a layout, and inside a cross-origin iframe it can only measure against the frame's own viewport.
+
+It also follows (`pbjs.yield`)[/dev-docs/publisher-api-reference/yield.html]: with no explicit setting, `pbjs.yield = false` selects `'boundingBox'`, since that flag already asks Prebid not to yield the main thread. An explicit `viewabilityMeasurement` wins over `pbjs.yield` in both directions.
 
 #### Examples
 {: .no_toc}
@@ -1473,6 +1493,26 @@ pbjs.setConfig({
 });
 ```
 
+<a id="auctionOptions-yield"></a>
+
+#### Yielding between adapter calls
+
+Since Prebid.js 11.41, setting `auctionOptions.yield` to `true` makes the auction yield the main thread before calling each adapter, so that a long list of bidders does not run as a single long task:
+
+```javascript
+pbjs.setConfig({
+  auctionOptions: {
+    yield: true
+  }
+});
+```
+
+Yielding only happens in browsers that implement [`scheduler.yield`](https://developer.mozilla.org/en-US/docs/Web/API/Scheduler/yield); elsewhere adapters are called back to back as before.
+`auctionOptions.yield` is independent of [`pbjs.yield`](/dev-docs/publisher-api-reference/yield.html), which controls yielding while processing the command queue.
+
+{: .alert.alert-warning :}
+Do not set `yield` on versions before 11.41. Older versions reject the entire `auctionOptions` object when it contains an unknown key, so any other options set in the same call would be ignored as well.
+
 <a name="setConfig-maxNestedIframes"></a>
 
 ### maxNestedIframes
@@ -1489,7 +1529,7 @@ pbjs.setConfig({
 
 ### Real-Time Data Modules
 
-All of the modules that fall under the [Real-Time Data (RTD) category](/dev-docs/modules/index.html#real-time-data-providers) conform to
+All of the modules that fall under the [Real-Time Data (RTD) category](/dev-docs/modules/index.html#vendor-specific-modules) conform to
 a consistent set of publisher controls. The pub can choose to run multiple
 RTD modules, define an overall amount of time they're willing to wait for
 results, and even flag some of the modules as being more "important"
@@ -1541,6 +1581,7 @@ Notes:
 
 * The only time `waitForIt` means anything is if some modules are flagged as true and others as false. If all modules are the same (true or false), it has no effect.
 * Likewise, `waitForIt` doesn't mean anything without an auctionDelay specified.
+* Since Prebid.js 11.26, RTD providers may be loaded after Prebid.js has started (for example, from a separate script). A provider that registers after `realTimeData` has been configured is initialized as soon as it registers, as long as it is listed in `realTimeData.dataProviders`; it takes part in auctions that start after that point.
 
 <a name="setConfig-topicsIframeConfig"></a>
 
