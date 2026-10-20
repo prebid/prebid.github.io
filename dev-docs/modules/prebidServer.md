@@ -97,7 +97,7 @@ There are many configuration options for s2sConfig:
 | `endpointCompression` | Optional | Boolean | Gzip compress the auction request payload when supported and debug mode is off. Adds `gzip=1` to the request URL. |
 | `filterBidderlessCalls` | Optional | Boolean | When `true`, ad units that have no bidders defined are excluded from Prebid Server requests. Defaults to `false`. | `true` |
 | `alwaysHasCapacity` | Optional | Boolean | When `true`, this prebid server instance will be omitted in checking if origin has http capacity, defaults to `false` |
-| `allowPriorityBids` | Optional | Boolean | Since Prebid.js 11.44. When `true`, deal bids from this Prebid Server instance are ranked on their `meta.deal.pacingAdjustedCpm` instead of `cpm`, without changing the bid's price. Defaults to `false`. See [bidderSettings allowPriorityBids](/dev-docs/publisher-api-reference/bidderSettings.html#212-allowprioritybids). | `true` |
+| `allowPriorityBids` | Optional | Boolean or Array of Strings | Since Prebid.js 11.44. Bidders routed through this instance whose deal bids are ranked on their `meta.deal.pacingAdjustedCpm` instead of `cpm`, without changing the bid's price: `true` for every bidder, or a list of bidder codes. The trusted bidders in each request are sent to Prebid Server as `ext.prebid.allowprioritybids`. Defaults to `false`. See [bidderSettings allowPriorityBids](/dev-docs/publisher-api-reference/bidderSettings.html#212-allowprioritybids). | `["exampleAdServer"]` |
 
 If `endpoint` and `syncEndpoint` are objects, these are the supported properties:
 
