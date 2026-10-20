@@ -375,7 +375,7 @@ In the above example, if PubMatic were to return the "groupm" bidder code then t
 
 ### 2.12. allowPriorityBids
 
-Since Prebid.js 11.44, bids can carry deal metadata in [`meta.deal`](/dev-docs/bidder-adaptor.html) (see "Deal metadata" in the bid adapter guide), including a `pacingAdjustedCpm`: a CPM-equivalent value that reflects how far a deal is ahead of or behind its delivery schedule. Setting `allowPriorityBids: true` for an adapter tells Prebid.js to trust that value when ranking the adapter's bids:
+Since Prebid.js 11.43, bids can carry deal metadata in [`meta.deal`](/dev-docs/bidder-adaptor.html) (see "Deal metadata" in the bid adapter guide), including a `pacingAdjustedCpm`: a CPM-equivalent value that reflects how far a deal is ahead of or behind its delivery schedule. Since Prebid.js 11.44, setting `allowPriorityBids: true` for an adapter tells Prebid.js to trust that value when ranking the adapter's bids:
 
 * The bid's desirability starts from `meta.deal.pacingAdjustedCpm` instead of `cpm`. That value goes through the same [`bidCpmAdjustment`](#22-bidcpmadjustment) as the bid's `cpm` (for example a gross-to-net adjustment), then through [`bidDesirabilityAdjustment`](#23-biddesirabilityadjustment) as usual. Bids without a valid `pacingAdjustedCpm` are ranked on `cpm`.
 * The bid's `cpm`, price bucket targeting and the price reported to the ad server are not changed.
