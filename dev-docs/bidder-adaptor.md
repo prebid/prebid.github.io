@@ -571,7 +571,7 @@ Since Prebid.js 11.43, a bid with a `dealId` can describe its deal in `meta.deal
 | `cpm` | `cpm` | Number, 0 or more | Unadjusted contractual or nominal deal CPM, in the bid's currency. |
 | `pacingAdjustedCpm` | `pacing_adjusted_cpm` | Number, 0 or more | CPM-equivalent value after the current pacing or delivery adjustment, in the bid's currency. |
 | `onSchedule` | `on_schedule` | Number, 0 or more | Delivery relative to schedule. For example, `0.5` means half of the expected impressions have been served. |
-| `priority` | `priority` | Integer | Relative precedence among deals. May be negative, for example for house campaigns. |
+| `priority` | `priority` | Integer | Relative precedence among deals. Lower integers have higher priority. |
 
 For example, this OpenRTB bid:
 
