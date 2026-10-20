@@ -547,6 +547,7 @@ The parameters of the `bidResponse` object are:
 | `meta.primaryCatId`      | Optional     | Primary [IAB category ID](https://www.iab.com/guidelines/iab-quality-assurance-guidelines-qag-taxonomy/)               |  `"IAB-111"`                         |
 | `meta.secondaryCatIds`   | Optional     | Array of secondary IAB category IDs      | `["IAB-222","IAB-333"]`       |
 | `meta.mediaType`         | Optional     | "banner", "native", or "video" - this should be set in scenarios where a bidder responds to a "banner" mediaType with a creative that's actually a video (e.g. outstream) or native. | `"native"`  |
+| `meta.deal`              | Optional     | Deal metadata for bids with a `dealId`, such as the deal type and priority. See [Deal metadata](#bidder-adaptor-deal-metadata). | `{ type: 1, priority: 10 }` |
 | `eventtrackers`          | Optional     | Array of objects in the same format as [ORTB native section 5.8, "Event Tracker Response Object"](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf) |  `[{event: 500, method: 1, url: "https://www.example.com/track"]}]` |
 | `eventtrackers[].event`   | Required     | Event type. Prebid.js will fire tracking pixels for `500` (bid won) and `1` (bid was rendered). |    `500`      |
 | `eventtrackers[].method` | Required     | Tracking method. Prebid.js only fires image pixels (`1`)                                        |    `1`        |
@@ -556,6 +557,38 @@ The parameters of the `bidResponse` object are:
 **Note:** bid adapters must be coded to accept the 'advertiserDomains' parameter from their endpoint even if that endpoint doesn't currently respond with that value.
 Prebid.org publishers have required that all bidders must eventually supply this value, so every bidder should be planning for it.
 There's often a long lag time between making a PBJS adapter update and when most pubs upgrade to it, so we minimally require adapters to be ready for the day when the endpoint responds with adomain.
+
+<a name="bidder-adaptor-deal-metadata"></a>
+
+#### Deal metadata
+
+Since Prebid.js 11.43, a bid with a `dealId` can describe its deal in `meta.deal`. Adapters that use the [ORTB conversion library](https://github.com/prebid/Prebid.js/blob/master/libraries/ortbConverter/README.md), and bids from Prebid Server, get this automatically: the converter copies `seatbid[].bid[].ext.prebid.deal` from the OpenRTB response when the bid has a `dealid`, keeping only the fields below and only when they have the expected type. Other adapters can set `meta.deal` directly.
+
+{: .table .table-bordered .table-striped }
+| `meta.deal` field | ORTB `ext.prebid.deal` field | Type | Description |
+| --- | --- | --- | --- |
+| `type` | `type` | Integer | Deal type: `0` unknown, `1` sponsorship, `2` reservation, `3` non-reservation, `4` house. Always set; `0` when the ORTB value is missing or not an integer. |
+| `cpm` | `cpm` | Number, 0 or more | Unadjusted contractual or nominal deal CPM, in the bid's currency. |
+| `pacingAdjustedCpm` | `pacing_adjusted_cpm` | Number, 0 or more | CPM-equivalent value after the current pacing or delivery adjustment, in the bid's currency. |
+| `onSchedule` | `on_schedule` | Number, 0 or more | Delivery relative to schedule. For example, `0.5` means half of the expected impressions have been served. |
+| `priority` | `priority` | Integer | Relative precedence among deals. May be negative, for example for house campaigns. |
+
+For example, this OpenRTB bid:
+
+```json
+{
+  "dealid": "deal-1",
+  "ext": {
+    "prebid": {
+      "deal": { "type": 2, "cpm": 5, "pacing_adjusted_cpm": 6.5, "on_schedule": 0.8, "priority": 10 }
+    }
+  }
+}
+```
+
+results in `bid.meta.deal` of `{ type: 2, cpm: 5, pacingAdjustedCpm: 6.5, onSchedule: 0.8, priority: 10 }`.
+
+When the [Currency module](/dev-docs/modules/currency.html) converts a bid, it converts `meta.deal.cpm` and `meta.deal.pacingAdjustedCpm` at the same rate as the bid's `cpm`. Prebid.js only exposes this metadata for now: it doesn't change how bids are ranked.
 
 #### Resolve OpenRTB Macros in the Creatives
 
