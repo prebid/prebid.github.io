@@ -380,7 +380,7 @@ Since Prebid.js 11.44, bids can carry deal metadata in [`meta.deal`](/dev-docs/b
 * The bid's desirability starts from `meta.deal.pacingAdjustedCpm` instead of `cpm`. That value goes through the same [`bidCpmAdjustment`](#22-bidcpmadjustment) as the bid's `cpm` (for example a gross-to-net adjustment), then through [`bidDesirabilityAdjustment`](#23-biddesirabilityadjustment) as usual. Bids without a valid `pacingAdjustedCpm` are ranked on `cpm`.
 * The bid's `cpm`, price bucket targeting and the price reported to the ad server are not changed.
 * The setting must be on the adapter that made the request, and `standard` is ignored. When an adapter bids with an [alternate bidder code](#29-allowalternatebiddercodes), the setting is read from the adapter, not the alternate code.
-* Bids from Prebid Server use [`s2sConfig.allowPriorityBids`](/dev-docs/modules/prebidServer.html) instead, which can trust every bidder routed through the instance or only a list of bidder codes.
+* Bids from Prebid Server use [`s2sConfig.allowPriorityBids`](/dev-docs/modules/prebidServer.html) instead, which lists the trusted bidder codes for each Prebid Server instance.
 
 ```javascript
 pbjs.bidderSettings = {
