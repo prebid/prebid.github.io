@@ -1,8 +1,8 @@
 ---
 layout: bidder
-title: MonetiseUp
-description: Prebid MonetiseUp Bidder Adapter
-biddercode: monetiseup
+title: MonetiseUp (Mul)
+description: Prebid MonetiseUp (Mul) Bidder Adapter
+biddercode: mul
 pbjs: true
 pbs: false
 media_types: banner
@@ -17,7 +17,7 @@ sidebarType: 1
 
 ## Note
 
-The MonetiseUp adapter connects publishers directly to MonetiseUp programmatic demand and integrated RTB exchanges, aggregating demand from top partners including Adagio, PubMatic, OpenX, 152Media, Nobid, OnlineMediaSolutions, Scalibur, TripleLift, Eskimi, and Equativ.
+The MonetiseUp (`mul`) adapter connects publishers directly to MonetiseUp programmatic demand and integrated RTB exchanges, aggregating demand from top partners including Adagio, PubMatic, OpenX, 152Media, Nobid, OnlineMediaSolutions, Scalibur, TripleLift, Eskimi, and Equativ.
 
 To begin monetizing your inventory, contact [business@responsiq.com](mailto:business@responsiq.com).
 
@@ -42,7 +42,7 @@ var adUnits = [
     },
     bids: [
       {
-        bidder: 'monetiseup',
+        bidder: 'mul',
         params: {
           placementId: 'test-placement-123'
         }
