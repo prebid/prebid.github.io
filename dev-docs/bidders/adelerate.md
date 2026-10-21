@@ -16,7 +16,7 @@ fpd_supported: true
 multiformat_supported: will-bid-on-any
 userId: all
 pbjs: true
-pbs: false
+pbs: true
 pbs_app_supported: true
 safeframes_ok: true
 sidebarType: 1
