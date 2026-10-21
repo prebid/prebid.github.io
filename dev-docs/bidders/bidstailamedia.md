@@ -3,7 +3,6 @@ layout: bidder
 title: stailamedia Bidder
 description: Prebid bidstailamedia Bidder Adapter
 pbjs: true
-pbs: true
 biddercode: bidstailamedia
 aliasCode: nexx360
 gvl_id: 965 (nexx360)
@@ -22,6 +21,11 @@ fpd_supported: true
 multiformat_supported: will-bid-on-any
 
 ---
+
+## Note
+
+For Prebid Server, use the [`stmbidder`](/dev-docs/bidders/stmbidder.html) bidder code:
+`bidstailamedia` is a Prebid.js-only code. `stmbidder` works in both Prebid.js and Prebid Server.
 
 ## Bid Params
 
