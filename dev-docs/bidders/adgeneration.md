@@ -4,24 +4,25 @@ title: Ad Generation
 description: Prebid Ad Generation Bidder Adaptor
 schain_supported: true
 pbjs: true
-pbs: no
-pbs_app_supported: no
+pbs: true
+pbs_app_supported: true
 fpd_supported: true
 biddercode: adgeneration
 userIds: all
-media_types: native
+media_types: banner, native
 sidebarType: 1
 ---
 
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope    | Description | Example  | Type     |
-|------|----------|-------------|----------|----------|
-| `id` | required | adId        | `'1234'` | `string` |
+| Name        | Scope    | Description                                                             | Example  | Type     |
+|-------------|----------|-------------------------------------------------------------------------|----------|----------|
+| `id`        | required | adId                                                                    | `'1234'` | `string` |
+| `marginTop` | optional | Top margin passed to the player for upper billboard ads (default `'0'`) | `'10'`   | `string` |
 
-#### First Party Data
+### First Party Data
 
 In release 1.6.4 and later, publishers should use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html). The following fields are supported:
 
