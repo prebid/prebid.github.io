@@ -14,14 +14,15 @@ sidebarType: 1
 ---
 
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope    | Description | Example  | Type     |
-|------|----------|-------------|----------|----------|
-| `id` | required | adId        | `'1234'` | `string` |
+| Name        | Scope    | Description                                                             | Example  | Type     |
+|-------------|----------|-------------------------------------------------------------------------|----------|----------|
+| `id`        | required | adId                                                                    | `'1234'` | `string` |
+| `marginTop` | optional | Top margin passed to the player for upper billboard ads (default `'0'`) | `'10'`   | `string` |
 
-#### First Party Data
+### First Party Data
 
 In release 1.6.4 and later, publishers should use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html). The following fields are supported:
 
