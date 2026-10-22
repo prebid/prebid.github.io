@@ -1,14 +1,14 @@
 ---
 layout: bidder
-title: AdyoulikeOW
-description: Prebid Adyoulike OW Bidder Adaptor
+title: Onebidtech
+description: Prebid Onebidtech Bidder Adaptor
 pbjs: true
 pbs: false
 media_types: banner, video
-biddercode: adyoulikeow
+biddercode: onebidtech
 userIds: criteo, sharedId
 tcfeu_supported: true
-gvl_id: 259
+gvl_id: 149
 usp_supported: true
 floors_supported: true
 schain_supported: true
@@ -19,13 +19,13 @@ multiformat_supported: will-bid-on-one
 
 ## Note
 
-The Adyoulike OW Header Bidding adaptor requires setup and approval from the Adyoulike team. Please reach out to your account manager or <prebid-owayl@adyoulike.com> for more information.
+The Onebidtech Header Bidding adaptor requires setup and approval from the Onebidtech team. Please reach out to your account manager or <support@onebidtech.com> for more information.
 
 ## Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
 |-------------|----------|----------------------------------|--------------------------------------|----------|
-| `placement` | required | The placement ID from Adyoulike. | `'354f787b85c829fb83g2cdaf1ae64435'` | `string` |
+| `placement` | required | The placement ID from Onebidtech. | `'354f787b85c829fb83g2cdaf1ae64435'` | `string` |
 
 Same 'placement' parameter can be used from either prebid JS or prebid server.
