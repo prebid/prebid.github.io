@@ -43,7 +43,7 @@ A user ID module is a javascript file in the [modules](https://github.com/prebid
 | `decode`  | Required                           | Function | Decode result from `getId` or `extendId`, see [`decode`](#decode)                                             |
 | `eids`    | Optional, but strongly recommended | Object   | One or more [EID configurations](#eidConfig) used to translate the result from `decode` into ORTB EID Objects |
 
-See [SharedIdSystem](https://github.com/prebid/Prebid.js/blob/master/modules/sharedIdSystem.js) for an example.
+See [SharedIdSystem](https://github.com/prebid/Prebid.js/blob/master/modules/sharedIdSystem.ts) for an example.
 
 <a id="getId"></a>
 

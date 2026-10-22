@@ -14,7 +14,7 @@ sidebarType : 5
 
 ## Overview
 
-The WURFL Device Detection Module for Prebid Server enriches an incoming OpenRTB request with comprehensive device detection data powered by [ScientiaMobile's WURFL device detection framework](https://www.scientiamobile.com/wurfl-overview/). The module provides accurate and comprehensive device-related information, enabling bidders to make better-informed targeting and optimization decisions.
+The WURFL Device Detection Module for Prebid Server enriches an incoming OpenRTB request with comprehensive device detection data powered by [ScientiaMobile's WURFL device detection framework](https://scientiamobile.com/what-is-wurfl/). The module provides accurate and comprehensive device-related information, enabling bidders to make better-informed targeting and optimization decisions.
 
 The module operates using WURFL's on-premise device detection. For PBS-Java, it uses the WURFL OnSite Java API, while PBS-Go uses the WURFL Infuze API. The module operates fully autonomously and does not make any requests to any cloud services in real time to do device detection.
 
@@ -114,7 +114,7 @@ The WURFL module requires a WURFL data file. Commercial licensees of WURFL are g
 
 For evaluation purposes, you can use the sample `wurfl.zip` file included with the WURFL Infuze package (for PBS-Go) or the WURFL OnSite Java API package (for PBS-Java).
 
-For more details, visit: [ScientiaMobile WURFL](https://docs.scientiamobile.com/documentation/).
+For more details, visit: [ScientiaMobile WURFL](https://docs.scientiamobile.com/).
 
 ## Configuration
 

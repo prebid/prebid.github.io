@@ -26,7 +26,7 @@ To get access to the full feature set of the adapter you'll need to allow locals
     }
 ```
 
-MediaConsortium uses the [1plusX](https://www.1plusx.com/) user id (fpid) and profile API to retrieve audience and site specific segments. You can manage 1plusX usage with the settings outlined below.
+MediaConsortium uses the 1plusX user id (fpid) and profile API to retrieve audience and site specific segments. You can manage 1plusX usage with the settings outlined below.
 
 #### Managing 1plusX profile API usage and fpid retrieval
 

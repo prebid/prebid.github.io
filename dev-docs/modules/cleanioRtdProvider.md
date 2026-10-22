@@ -27,7 +27,7 @@ Please use **humansecurityMalvDefenseRtdProvider** instead of **cleanioRtdProvid
 The clean.io Realtime module provides effective anti-malvertising solution for publishers, including, but not limited to,
 blocking unwanted 0- and 1-click redirects, deceptive ads or those with malicious landing pages, and various types of affiliate fraud.
 
-Using this module requires prior agreement with [clean.io](https://clean.io) to obtain the necessary distribution key.
+Using this module requires prior agreement with clean.io to obtain the necessary distribution key.
 
 ## Integration
 
