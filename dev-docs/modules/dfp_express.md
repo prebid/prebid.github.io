@@ -14,6 +14,9 @@ sidebarType : 1
 
 # GAM/Google Ad Manager Express Module
 
+{: .alert.alert-warning :}
+This module was removed in Prebid.js 11.0. See the [Prebid.js 11 release notes](/dev-docs/pb11-notes.html#removed-modules).
+
 {:.no_toc}
 
 This module is a simplified alternate installation mechanism for publishers that have Google Publisher Tag (GPT) ad calls in their pages. Here's how it works:

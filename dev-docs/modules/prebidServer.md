@@ -37,12 +37,14 @@ Video notes:
 
 ## Configuration
 
-Here's an example config enabling the appnexuspsp Prebid Server:
+Here's a minimal example config:
 
 ```javascript
 pbjs.setConfig({
     s2sConfig: {
         accountId : '12345',
+        endpoint: 'https://prebid-server.example.com/openrtb2/auction',
+        syncEndpoint: 'https://prebid-server.example.com/cookie_sync',
         bidders : ['msft','pubmatic', 'rubicon'],
         timeout: 300
     }
@@ -125,7 +127,7 @@ Additional options for `s2sConfig` may be enabled by including the [Server-to-Se
 
 **Emitting SeatNonBid Data**
 
-- Prebid Server can be instructed to return additional [SeatNonBid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#seat-non-bid) information about why bidders might not have bid on certain adunits. You can get this extra information by setting `extPrebid.returnallbidstatus` equal to `true`. Note that client-side analytics adapters can receive this data by listening to the `seatNonBid` event.
+- Prebid Server can be instructed to return additional [SeatNonBid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#seat-non-bid) information about why bidders might not have bid on certain adunits. You can get this extra information by setting `extPrebid.returnallbidstatus` equal to `true`. Note that client-side analytics adapters can receive this data by listening to the `pbsAnalytics` event (its `seatnonbid` field). The `seatNonBid` event was removed in Prebid.js 11.
 
 ## Bid Params
 
