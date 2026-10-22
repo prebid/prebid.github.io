@@ -36,7 +36,7 @@ This page has instructions for writing your own bidder adapter.  The instruction
 
 In order to provide a fast and safe header bidding environment for publishers, the Prebid.org team reviews all adapters for the required bid adapter conventions laid out in the [Module Rules](/dev-docs/module-rules.html). Here are additional details specific to Prebid.js:
 
-* **No loading of external code**: All code must be present in the adapter, not loaded at runtime. Exceptions are possible -- see [the full policy](https://github.com/prebid/prebid-js-external-js-template#policy).
+* **No loading of external code**: All code must be present in the adapter, not loaded at runtime. Exceptions are possible -- see [the full policy](/dev-docs/module-rules.html#global-module-rules).
 * **All user-sync activity must be registered via the provided functions**: The platform will place all registered syncs in the page after the auction is complete, subject to publisher configuration.
 * **Adapters may not create or trigger any network requests or pixels** outside of the requests the wrapper creates on behalf of the adapter (from the return values of `buildRequests()` and `getUserSyncs()`) or that are included in a winning and rendered creative.
 * **Adapters may not modify ad slots directly**: For example, accessing `googletag.pubads().getSlots()` to modify or set targeting directly on slots is not permitted.
@@ -396,12 +396,12 @@ There are a number of important values that a publisher expects to be handled in
 
 {: .table .table-bordered .table-striped }
 
-| Parameter | Description                                   | Example               |
-| ----- | ------------ | ---------- |
+| Parameter | Description | Example |
+| --- | --- | --- |
 | Ad Server Currency | If your endpoint supports responding in different currencies, read this value. | config.getConfig('currency.adServerCurrency') |
 | Bidder Timeout | Use if your endpoint needs to know how long the page is allowing the auction to run. | bidderRequest.timeout; |
 | COPPA | If your endpoint supports the Child Online Privacy Protection Act, you should read this value. | bidderRequest.ortb2.regs.coppa; |
-| First Party Data | The publisher, as well as a number of modules, may provide [first party data](/features/firstPartyData.html) (e.g. page type). | bidderRequest.ortb2; validBidRequests[].ortb2Imp|
+| First Party Data | The publisher, as well as a number of modules, may provide [first party data](/features/firstPartyData.html) (e.g. page type). | bidderRequest.ortb2; validBidRequests[].ortb2Imp |
 | Floors | Adapters that accept a floor parameter must also support the [floors module](https://docs.prebid.org/dev-docs/modules/floors.html) | [`bidRequest.getFloor()`](/dev-docs/modules/floors.html#bid-adapter-interface) |
 | Page URL and referrer | Instead of building your own function to find the page location, domain, or referrer, look in the standard bidRequest location. | bidderRequest.refererInfo.page |
 | [Supply Chain](/dev-docs/modules/schain.html) | Adapters cannot accept an schain parameter. Rather, they must look for the schain parameter at bidRequest.schain. | bidRequest.schain |
@@ -788,8 +788,8 @@ If the alias entry is an object, the following attributes are supported:
 
 {: .table .table-bordered .table-striped }
 
-| Name  | Scope | Description   | Type      |
-|-------|-------|---------------|-----------|
+| Name | Scope | Description | Type |
+| --- | --- | --- | --- |
 | `code` | required | shortcode/partner name | `string` |
 | `gvlid` | optional | global vendor list id of company scoped to alias | `integer` |
 | `skipPbsAliasing` | optional | ability to skip passing spec.code to prebid server in request extension. In case you have a prebid server adapter with the name same as the alias/shortcode. Default value: `false` | `boolean` |
@@ -1000,11 +1000,11 @@ If the demand partner is going to use Prebid API for this process, their adapter
 
 {: .table .table-bordered .table-striped }
 
-| Key             | Scope    | Description                                                                                        | Example                    |
-|-----------------|----------|----------------------------------------------------------------------------------------------------|----------------------------|
-| `url`             | Required | The URL to the mapping file.                                                                       | `"//example.com/mapping.json"` |
-| `refreshInDays`   | Optional | A number representing the number of days before the mapping values are updated. Default value is 1 | `7`                        |
-| `localStorageKey` | Optional | A unique key to store the mapping file in local storage. Default value is bidder code.             | `"uniqueKey"`                  |
+| Key | Scope | Description | Example |
+| --- | --- | --- | --- |
+| `url` | Required | The URL to the mapping file. | `"//example.com/mapping.json"` |
+| `refreshInDays` | Optional | A number representing the number of days before the mapping values are updated. Default value is 1 | `7` |
+| `localStorageKey` | Optional | A unique key to store the mapping file in local storage. Default value is bidder code. | `"uniqueKey"` |
 
 **Example**
 
