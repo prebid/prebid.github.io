@@ -38,7 +38,7 @@ Prebid can also choose the winning ad itself. Your ad server, if you use one, ta
 Ad ops then works mostly in the ad server's own campaign setup, making sure each campaign is represented correctly in the auction:
 
 - **Reservation campaigns** compete on a priority-adjusted CPM: the value the ad server ranks them at, for example raised when a campaign is behind on delivery.
-- **Sponsorships** get a higher priority, so they win over all other demand. **House campaigns** get a lower priority, so they only fill when nothing else bids.
+- **Sponsorships** get a priority number below the default of 12 (lower numbers win), so they win over all other demand. **House campaigns** get a number above 12, so they only fill when nothing else bids.
 - The publisher's engineers enable this with [`allowPriorityBids`](/dev-docs/publisher-api-reference/bidderSettings.html#212-allowprioritybids) for the ad server's adapter. Check with your ad server which of these signals its adapter supports.
 
 See [The ad server bids into Prebid](/adops/ad-server-integration.html#the-ad-server-bids-into-prebid) for details.
