@@ -146,9 +146,9 @@ After you’ve entered all the values on the **Setup** screen, tap **Run Tests**
 
 Three validation tests are performed: Ad Server Setup, Real-Time Demand, and End-to-End SDK Configuration. Each test will be displayed with either a green check mark (passed) or a red X (failed).
 
-| Passed        |     | Failed      |
-|:-----------:| --- |:-----------:|
-| ![Dr. Prebid Validation Test Passed]({{site.baseurl}}/assets/images/prebid-mobile/dr-prebid-pass.png) |     | ![Dr. Prebid Validation Test Failed]({{site.baseurl}}/assets/images/prebid-mobile/dr-prebid-fail.png) |
+| Passed | | Failed |
+| :---: | --- | :---: |
+| ![Dr. Prebid Validation Test Passed]({{site.baseurl}}/assets/images/prebid-mobile/dr-prebid-pass.png) | | ![Dr. Prebid Validation Test Failed]({{site.baseurl}}/assets/images/prebid-mobile/dr-prebid-fail.png) |
 
 <br />
 

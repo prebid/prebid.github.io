@@ -56,12 +56,12 @@ pbjs.setConfig({
 
 The parameters below describe the configuration object used to configure Zeus Prime.
 
-| Name         | Type    | Description                                                             | Notes   |
-| ------------ | ------- | ----------------------------------------------------------------------- | --------- |
-| name         | String  | This will always be `zeusPrime`                                         | -         |
-| waitForIt    | Boolean | Should the auction delay until Zeus Prime completes. (optional) | Defaults to `false`. |
-| params       | Object  |                                                                         | -         |
-| params.gamId | String  | The gamId or Google Ad Manager Network Code.                            | -         |
+| Name | Type | Description | Notes |
+| --- | --- | --- | --- |
+| name | String | This will always be `zeusPrime` | - |
+| waitForIt | Boolean | Should the auction delay until Zeus Prime completes. (optional) | Defaults to `false`. |
+| params | Object | | - |
+| params.gamId | String | The gamId or Google Ad Manager Network Code. | - |
 
 ### `gamId` Parameter
 

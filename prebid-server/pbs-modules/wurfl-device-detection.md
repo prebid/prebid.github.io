@@ -220,7 +220,7 @@ hooks:
 {: .table .table-bordered .table-striped }
 
 | Parameter | Required | Type | Default | Description |
-|-----------|----------|------|---------|-------------|
+| --- | --- | --- | --- | --- |
 | `file-dir-path` | Yes | string | - | Path to the directory where the WURFL file is downloaded. Directory must exist and be writable. |
 | `file-snapshot-url` | Yes | string | - | URL of the licensed WURFL snapshot file to be downloaded when PBS starts. |
 | `cache-size` | No | integer | WURFL default | Maximum number of devices stored in the WURFL cache. |
@@ -233,7 +233,7 @@ hooks:
 {: .table .table-bordered .table-striped }
 
 | Parameter | Required | Type | Default | Description |
-|-----------|----------|------|---------|-------------|
+| --- | --- | --- | --- | --- |
 | `wurfl_file_path` | Yes | string | - | Path to the WURFL file (e.g. /path/to/wurfl.zip). |
 | `wurfl_snapshot_url` | No | string | - | URL of the licensed WURFL snapshot. If set, periodically updates the WURFL file. |
 | `wurfl_cache_size` | No | integer | WURFL default | Maximum number of devices stored in the WURFL cache. |
