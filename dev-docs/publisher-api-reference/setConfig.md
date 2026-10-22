@@ -22,8 +22,6 @@ Module-specific configuration:
 * [Currency module](/dev-docs/modules/currency.html)
 * [Consent Management](/dev-docs/modules/consentManagementTcf.html#page-integration)
 * [User ID module](/dev-docs/modules/userId.html#basic-configuration)
-* [Adpod](/dev-docs/modules/adpod.html)
-* [IAB Category Translation](/dev-docs/modules/categoryTranslation.html)
 
 <a name="setConfig-Debugging"></a>
 

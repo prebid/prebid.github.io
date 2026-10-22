@@ -3,13 +3,13 @@ layout: bidder
 title: Optable
 description: Prebid Optable Bidder Adapter
 biddercode: optable
-pbjs: true
+pbjs: false
 privacy_sandbox: paapi
 prebid_member: true
 sidebarType: 1
 ---
 
-### Registration
+## Registration
 
 If you have any questions regarding set up, please reach out to your account manager or <support@optable.co>.
 

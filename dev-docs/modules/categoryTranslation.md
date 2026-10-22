@@ -12,6 +12,9 @@ sidebarType : 1
 # IAB Category Translation
 {:.no_toc}
 
+{: .alert.alert-warning :}
+This module was removed in Prebid.js 11.0. See the [Prebid.js 11 release notes](/dev-docs/pb11-notes.html#removed-modules).
+
 This module converts the IAB sub category to Ad server industry group identifiers. The identifiers ensure competitive separation of industries and products.
 
 Each bidder must return one [IAB subcategory](https://support.aerserv.com/hc/en-us/articles/207148516-List-of-IAB-Categories) if they want to do competitive separation.
