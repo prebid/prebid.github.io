@@ -114,7 +114,6 @@ If `endpoint` and `syncEndpoint` are objects, these are the supported properties
 - When `endpointCompression` is enabled, Prebid.js compresses the request body sent to Prebid Server and appends `gzip=1` to the endpoint URL. This feature is skipped when debug mode is active or the browser lacks GZIP support. Do not use if your PBS Host does not yet support gzip request compression.
 - <a name="allowUnknownBidderCodes" ></a> When `allowUnknownBidderCodes` is `true`, bidders that have not been explicitly requested in [`adUnit.bids`](../adunit-reference.html#adunitbids) may take part in the auction. This can break custom logic that relies on the availability of a bid request object for any given bid. Known scenarios where custom code won't get the request when there's an "unknown bidder":
   - There will not be a [`bidRequested`](/dev-docs/publisher-api-reference/getEvents.html) event.
-  - In the [MASS custom renderers](/dev-docs/modules/mass.html#configuration-parameters) module, `payload.bidRequest` will be undefined.
   - In the [Price Floors module](/dev-docs/modules/floors.html), custom schema functions will see the bidRequest object as undefined.
 
 Additional options for `s2sConfig` may be enabled by including the [Server-to-Server testing module]({{site.baseurl}}/dev-docs/modules/s2sTesting.html).
