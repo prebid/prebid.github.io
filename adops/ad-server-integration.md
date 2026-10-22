@@ -30,7 +30,7 @@ If you want to include information about a particular ad server not documented h
 
 ## The ad server decides
 
-In this setup, Prebid runs its auction before the ad server is called and sends some or all of the bids to the ad server as key-value targeting. Line items set up for Prebid's price buckets let those bids compete with the ad server's own campaigns, and the ad server chooses the winner.
+This is Prebid used as a header bidding library. Prebid runs its auction before the ad server is called and sends some or all of the bids to the ad server as key-value targeting. Line items set up for Prebid's price buckets let those bids compete with the ad server's own campaigns, and the ad server chooses the winner.
 
 ### Google Ad Manager
 
@@ -67,7 +67,7 @@ For step-by-step instructions on using some of the other ad servers, see the fol
 
 ## The ad server bids into Prebid
 
-In this setup, the ad server takes part in the Prebid auction as a demand source, through its Prebid.js bid adapter or Prebid Server bidder. It returns its eligible campaigns as bids, Prebid chooses the winner across all demand, and the page renders it, for example with `pbjs.getBestBids()` and [`pbjs.renderAd`](/dev-docs/publisher-api-reference/renderAd.html). No price-bucket line items are needed. See the [ad server first example page](https://github.com/prebid/Prebid.js/blob/master/integrationExamples/adserver_first/basic_adserver_first.html) in the Prebid.js repository.
+This is Prebid used as a complete bidding library: the decision layer on the page. The ad server takes part in the Prebid auction as a demand source, through its Prebid.js bid adapter or Prebid Server bidder. It returns its eligible campaigns as bids, Prebid chooses the winner across all demand, and the page renders it, for example with `pbjs.getBestBids()` and [`pbjs.renderAd`](/dev-docs/publisher-api-reference/renderAd.html). No price-bucket line items are needed. See the [ad server first example page](https://github.com/prebid/Prebid.js/blob/master/integrationExamples/adserver_first/basic_adserver_first.html) in the Prebid.js repository.
 
 For Prebid to rank the ad server's campaigns correctly against other demand, the ad server should send deal metadata with its bids (`seatbid[].bid[].ext.prebid.deal` in OpenRTB responses, which Prebid.js exposes as `bid.meta.deal`), and the publisher should trust it. Since Prebid.js 11.44:
 

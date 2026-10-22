@@ -15,10 +15,10 @@ Ad Operations (Ad Ops) are the people who work directly with the ad server softw
 
 Your role in implementing Prebid depends on how Prebid is used on your pages. You can get a general overview in our [Introduction to Header Bidding](/overview/intro-to-header-bidding.html) and [Introduction to Prebid](/overview/intro.html). Prebid is used in two main ways, described in more detail in [Ad Server Integration](/adops/ad-server-integration.html):
 
-- **Prebid for header bidding:** Prebid collects bids before the ad server is called, and the ad server makes the final decision.
-- **Prebid as the decision layer on the page:** demand sources, including your ad server if you have one, bid into Prebid, and Prebid makes the final decision.
+- **Prebid as a header bidding library:** Prebid collects bids before the ad server is called, and the ad server makes the final decision.
+- **Prebid as a complete bidding library:** Prebid is the decision layer on the page. Demand sources, including your ad server if you have one, bid into Prebid, and Prebid makes the final decision.
 
-### Prebid for header bidding
+### Prebid as a header bidding library
 
 Header bidding is a process for collecting bids for an ad slot before the ad server is called. Those bids and their related targeting information are consolidated and sent along with the ad request to the ad server.
 
@@ -31,7 +31,7 @@ After you’ve completed your planning, move on to the appropriate setup documen
 - [Smart Ad Server](/adops/setting-up-prebidjs-with-Smart-Ad-Server.html)
 - [FreeWheel](/adops/setting-up-prebid-video-in-freewheel.html)
 
-### Prebid as the decision layer on the page
+### Prebid as a complete bidding library
 
 Prebid can also choose the winning ad itself. Your ad server, if you use one, takes part in the Prebid auction like any other demand source: it returns its eligible campaigns as bids through its Prebid bid adapter, and Prebid picks the winner across all demand. No price-bucket line items are needed for Prebid bids.
 
