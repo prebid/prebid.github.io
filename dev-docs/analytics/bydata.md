@@ -2,24 +2,24 @@
 layout: analytics
 title: byData
 description: byData Analytics Adapter
-modulecode: bydata 
+modulecode: byData
 prebid_member: false
 --- 
 
-#### Registration
+## Registration
 
 The byData Analytics adapter requires setup and approval from the
 byData team. Please visit [bydata.com](https://bydata.com/) for more information.
 
-#### Analytics Options
+## Analytics Options
 
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| clientId | Required  | String | The byData Client ID  | `asc10001` |
-| logFrequency | Optional  | Int | Sample rate  | 100 |
+| clientId | Required | String | The byData Client ID | `asc10001` |
+| logFrequency | Optional | Int | Sample rate | 100 |
   
-### Example Configuration
+## Example Configuration
 
 ```js
     pbjs.enableAnalytics({

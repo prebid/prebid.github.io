@@ -5,7 +5,7 @@ display_name: HUMAN Security Malvertising Defense RTD Submodule
 description: The HUMAN Malvertising Defense RTD blocks 0-/1-click redirects and deceptive creatives in real time, lets safe ads render, and can optionally include HUMAN Ad Quality for broader protection.
 page_type: module
 module_type: rtd
-module_code : humansecurityMalvDefense
+module_code : humansecurityMalvDefenseRtdProvider
 enable_download : true
 vendor_specific: true
 sidebarType : 1
@@ -59,7 +59,7 @@ pbjs.setConfig({
 {: .table .table-bordered .table-striped }
 
 | Name | Type | Scope | Description |
-| :------------ | :------------ | :------------ |:------------ |
+| :--- | :--- | :--- | :--- |
 | ``cdnUrl`` | ``string`` | Required | CDN URL of the script, which is to be used for protection. |
 | ``protectionMode`` | ``'full'`` or ``'bids'`` or ``'bids-nowait'`` | Required | Integration mode. Please refer to the "Integration modes" section for details. |
 
@@ -67,8 +67,8 @@ pbjs.setConfig({
 
 {: .table .table-bordered .table-striped }
 
-| Integration Mode | Parameter Value | Description  |
-| :------------ | :------------ | :------------ |
+| Integration Mode | Parameter Value | Description |
+| :--- | :--- | :--- |
 | Full page protection | ``'full'`` | Preferred mode. The module will add the protector agent script directly to the page, and it will protect all placements. This mode will make the most out of various behavioral detection mechanisms, and will also prevent typical malicious behaviors. |
 | Bids-only protection | ``'bids'`` | The module will protect specific bid responses - specifically, the HTML that represents the ad payload - by wrapping them with the agent script. Ads served outside of Prebid will not be protected in this mode, as the module can only access ads delivered through Prebid. |
-| Bids-only protection with no delay on bid rendering | ``'bids-nowait'`` | Same as above, but in this mode, the script will also *not* wrap those bid responses, which arrived prior to successful preloading of agent script.   |
+| Bids-only protection with no delay on bid rendering | ``'bids-nowait'`` | Same as above, but in this mode, the script will also *not* wrap those bid responses, which arrived prior to successful preloading of agent script. |
