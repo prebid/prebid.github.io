@@ -71,9 +71,14 @@
                 showError();
             });
         function showError() {
-            $(".selectpicker").append(
-                '<option value="error">Error generating version list. Please try again later</option>'
-            );
+            // the request can fail before the rest of the page has been parsed
+            $(function () {
+                $(".selectpicker").append(
+                    '<option value="error">Error generating version list. Please try again later</option>'
+                );
+                $("#version-error").show();
+                $("#download-button").addClass("disabled").prop("disabled", true);
+            });
         }
     }
 
@@ -120,23 +125,6 @@
         document.body.removeChild(link);
     }
 
-    const renameModules = (function() {
-        const RENAMES = [
-            [
-                /^8\./,
-                {
-                    tcfControl: 'gdprEnforcement',
-                    consentManagementTcf: 'consentManagement',
-                    paapiForGpt: 'fledgeForGpt'
-                }
-            ]
-        ];
-        return function(version, modules) {
-            const renames = RENAMES.find(([pat]) => pat.test(version))?.[1] || {};
-            return modules.map(mod => renames.hasOwnProperty(mod) ? renames[mod] : mod)
-        }
-    })();
-
     function get_form_data() {
         var modules = [];
         var version = $(".selectpicker").val();
@@ -163,7 +151,7 @@
             });
 
         return {
-            modules: renameModules(version, modules).filter(mod => !removedModules.includes(mod)),
+            modules: modules.filter(mod => !removedModules.includes(mod)),
             version,
             removedModules,
         };
