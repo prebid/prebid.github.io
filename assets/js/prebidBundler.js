@@ -23,6 +23,11 @@
     var METADATA_SUFFIX = '.metadata.js';
     // mirrors MODULES_REQUIRING_METADATA in Prebid.js' web-bundler/dependencies.mjs
     var MODULES_REQUIRING_METADATA = ['storageControl'];
+    // Both become part of a URL path. Neither pattern admits '/', '\', '.' segments or '%', so a request cannot
+    // reach files outside the release's own directory on the CDN, which also serves every other npm package and
+    // GitHub repository.
+    var VERSION_PATTERN = /^\d+\.\d+\.\d+$/;
+    var MODULE_PATTERN = /^[A-Za-z0-9_][A-Za-z0-9_-]*$/;
 
     function parseVersion(version) {
         return version.split('.').map(Number);
@@ -66,7 +71,12 @@
      * `integrity`, when given, is checked by the browser and a mismatch rejects.
      */
     function fetchFile(version, path, integrity) {
-        return fetch(CDN_BASE + version + '/' + path, integrity ? {integrity: integrity} : undefined)
+        var base = CDN_BASE + version + '/';
+        var url = new URL(base + path).href;
+        if (url.indexOf(base) !== 0) {
+            return Promise.reject(new Error('Refusing to fetch ' + url + ', which is outside ' + base));
+        }
+        return fetch(url, integrity ? {integrity: integrity} : undefined)
             .then(function (response) {
                 if (!response.ok) {
                     var error = new Error('Could not retrieve ' + path + ' for Prebid.js ' + version + ' (HTTP ' + response.status + ')');
@@ -160,6 +170,18 @@
 
     function download(request) {
         var version = request.version;
+        if (typeof version !== 'string' || !VERSION_PATTERN.test(version)) {
+            return Promise.reject(new Error('Not a valid Prebid.js version: ' + version));
+        }
+        if (!Array.isArray(request.modules) || request.modules.length === 0) {
+            return Promise.reject(new Error('No modules selected'));
+        }
+        var invalid = request.modules.filter(function (module) {
+            return typeof module !== 'string' || !MODULE_PATTERN.test(module);
+        });
+        if (invalid.length > 0) {
+            return Promise.reject(new Error('Not valid module names: ' + invalid.join(', ')));
+        }
         var modules = Array.from(new Set(request.modules));
         return Promise.all([
             fetchJSON(version, 'package.json'),
