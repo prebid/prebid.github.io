@@ -81,7 +81,7 @@ Renderers can be attached to adUnits in three ways; Prebid will pick the first t
 A renderer is an object containing these properties:
 
 1. `render` -- A function that tells Prebid.js how to render a given bid. 
-2. `url` -- Optional, URL to a javascript file. If provided, Prebid.js will load it before invoking `render`.
+2. `url` -- Optional, URL to a javascript file. If provided, Prebid.js will load it before invoking `render`. If omitted, Prebid.js calls `render` immediately when the bid is rendered (the renderer's `renderNow` mode).
 3. `backupOnly` -- Optional, if set to true, buyer or adapter renderer will be preferred
 
 In a multiFormat adUnit, you might want the renderer to only apply to only one of the mediaTypes.  You can do this by defining the renderer on the media type itself.
