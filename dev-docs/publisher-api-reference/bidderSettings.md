@@ -48,7 +48,7 @@ Some sample scenarios where publishers may wish to alter the default settings:
 | storageAllowed | standard or adapter-specific | 6.13.0 | true in 6.x, false after 7.0 | Allow use of cookies and/or local storage. |  
 | allowAlternateBidderCodes | standard or adapter-specific | 6.23.0 | true in v6.x <br /> false from v7.0 | Allow adapters to bid with alternate bidder codes. |  
 | allowedAlternateBidderCodes | standard or adapter-specific | 6.23.0 | n/a | Array of bidder codes for which an adapter can bid. <br />`undefined` or `['*']` will allow adapter to bid with any bidder code. |
-| allowPriorityBids | adapter-specific | 11.44.0 | false | Trust this adapter's deal metadata (priority and pacing-adjusted CPM) when ranking its bids. See [below](#212-allowprioritybids). |
+| allowPriorityBids | adapter-specific | 11.44.0 | false | Trust this adapter's deal metadata (priority and priority-adjusted CPM) when ranking its bids. See [below](#212-allowprioritybids). |
 | adjustAlternateBids | standard or adapter-specific | 7.48.0 | false | Optionally allow alternate bidder codes to use an adapter's bidCpmAdjustment function by default instead of the standard bidCpmAdjustment function if present (note: if a bidCpmAdjustment function exists for the alternate bidder code within bidderSettings, then this will be used instead of falling back to the adapter's bidCpmAdjustment function). |
 
 ### 2.1. adserverTargeting
@@ -375,10 +375,10 @@ In the above example, if PubMatic were to return the "groupm" bidder code then t
 
 ### 2.12. allowPriorityBids
 
-Since Prebid.js 11.43, bids can carry deal metadata in [`meta.deal`](/dev-docs/bidder-adaptor.html) (see "Deal metadata" in the bid adapter guide). That includes a `priority`, and a `pacingAdjustedCpm`: a CPM-equivalent value that reflects how far a deal is ahead of or behind its delivery schedule. Since Prebid.js 11.44, setting `allowPriorityBids: true` for an adapter tells Prebid.js to trust these values when ranking the adapter's bids:
+Since Prebid.js 11.43, bids can carry deal metadata in [`meta.deal`](/dev-docs/bidder-adaptor.html) (see "Deal metadata" in the bid adapter guide). That includes a `priority`, and a `priorityAdjustedCpm`: the CPM-equivalent value the ad server ranks the deal at, for example adjusted for how far the deal is ahead of or behind its delivery schedule. Since Prebid.js 11.44, setting `allowPriorityBids: true` for an adapter tells Prebid.js to trust these values when ranking the adapter's bids:
 
 * **Priority:** every bid gets a `priority`. Bids from allowed adapters take `meta.deal.priority`; all other bids, and allowed bids without a valid `meta.deal.priority`, get the default priority of `12`. Lower numbers win, and priority is compared before desirability and CPM. So a bid with priority 6 is preferred over any bid at the default priority, whatever their CPMs, and house campaigns can use a priority above 12.
-* **Desirability:** within the same priority, the bid's desirability starts from `meta.deal.pacingAdjustedCpm` instead of `cpm`. That value goes through the same [`bidCpmAdjustment`](#22-bidcpmadjustment) as the bid's `cpm` (for example a gross-to-net adjustment), then through [`bidDesirabilityAdjustment`](#23-biddesirabilityadjustment) as usual. Bids without a valid `pacingAdjustedCpm` are ranked on `cpm`.
+* **Desirability:** within the same priority, the bid's desirability starts from `meta.deal.priorityAdjustedCpm` instead of `cpm`. That value goes through the same [`bidCpmAdjustment`](#22-bidcpmadjustment) as the bid's `cpm` (for example a gross-to-net adjustment), then through [`bidDesirabilityAdjustment`](#23-biddesirabilityadjustment) as usual. Bids without a valid `priorityAdjustedCpm` are ranked on `cpm`.
 * **Deal prioritization:** [`sendBidsControl.dealPrioritization`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-Bids-Control) only applies within a priority tier: bids are ordered by priority first, then deals before non-deals among bids with the same priority, then by CPM. A higher-priority non-deal bid is kept over a lower-priority deal bid.
 * **Price floors:** priority doesn't bypass [price floors](/dev-docs/modules/floors.html). Floors are enforced on the bid's `cpm` when the bid is received, before its priority is considered. Deal bids are exempt from floor enforcement unless `enforcement.floorDeals` is `true`, so in the default configuration a priority deal bid below the floor is still accepted and ranked by its priority, while with `floorDeals: true` it is rejected.
 * The bid's `cpm`, price bucket targeting and the price reported to the ad server are not changed. Priority and desirability only affect which bids are chosen: the ad server targeting winner, the bids kept under a [bid limit](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-Bids-Control), [multibid](/dev-docs/modules/multibid.html) ordering, and `pbjs.getBestBids`.
@@ -396,7 +396,7 @@ pbjs.bidderSettings = {
 #### Choosing priorities
 {: .no_toc }
 
-Most ad servers shouldn't need to set a `priority` on reservation deals. Leaving them at the default priority and sending a `pacingAdjustedCpm` is usually enough: it lets reservation campaigns compete with programmatic, non-reservation demand at a value that reflects how urgently they need to deliver, while the best-paying bid still wins when a campaign is on schedule. Set a `priority` mainly for the two cases that shouldn't compete on price:
+Most ad servers shouldn't need to set a `priority` on reservation deals. Leaving them at the default priority and sending a `priorityAdjustedCpm` is usually enough: it lets reservation campaigns compete with programmatic, non-reservation demand at a value that reflects how urgently they need to deliver, while the best-paying bid still wins when a campaign is on schedule. Set a `priority` mainly for the two cases that shouldn't compete on price:
 
 * **Sponsorships:** a priority below 12 (for example 4), so they win over all price-competitive demand.
 * **House campaigns:** a priority above 12 (for example 16), so they only fill when nothing else bids.
