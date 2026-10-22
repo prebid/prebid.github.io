@@ -377,8 +377,10 @@ In the above example, if PubMatic were to return the "groupm" bidder code then t
 
 Since Prebid.js 11.43, bids can carry deal metadata in [`meta.deal`](/dev-docs/bidder-adaptor.html) (see "Deal metadata" in the bid adapter guide). That includes a `priority`, and a `pacingAdjustedCpm`: a CPM-equivalent value that reflects how far a deal is ahead of or behind its delivery schedule. Since Prebid.js 11.44, setting `allowPriorityBids: true` for an adapter tells Prebid.js to trust these values when ranking the adapter's bids:
 
-* **Priority:** every bid gets a `priority`. Bids from allowed adapters take `meta.deal.priority`; all other bids, and allowed bids without a valid `meta.deal.priority`, get the default priority of `12`. Lower numbers win, and priority is compared before desirability, CPM and [deal prioritization](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-Bids-Control). So a bid with priority 6 is preferred over any bid at the default priority, whatever their CPMs, and house campaigns can use a priority above 12.
+* **Priority:** every bid gets a `priority`. Bids from allowed adapters take `meta.deal.priority`; all other bids, and allowed bids without a valid `meta.deal.priority`, get the default priority of `12`. Lower numbers win, and priority is compared before desirability and CPM. So a bid with priority 6 is preferred over any bid at the default priority, whatever their CPMs, and house campaigns can use a priority above 12.
 * **Desirability:** within the same priority, the bid's desirability starts from `meta.deal.pacingAdjustedCpm` instead of `cpm`. That value goes through the same [`bidCpmAdjustment`](#22-bidcpmadjustment) as the bid's `cpm` (for example a gross-to-net adjustment), then through [`bidDesirabilityAdjustment`](#23-biddesirabilityadjustment) as usual. Bids without a valid `pacingAdjustedCpm` are ranked on `cpm`.
+* **Deal prioritization:** [`sendBidsControl.dealPrioritization`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-Bids-Control) only applies within a priority tier: bids are ordered by priority first, then deals before non-deals among bids with the same priority, then by CPM. A higher-priority non-deal bid is kept over a lower-priority deal bid.
+* **Price floors:** priority doesn't bypass [price floors](/dev-docs/modules/floors.html). Floors are enforced on the bid's `cpm` when the bid is received, before its priority is considered. Deal bids are exempt from floor enforcement unless `enforcement.floorDeals` is `true`, so in the default configuration a priority deal bid below the floor is still accepted and ranked by its priority, while with `floorDeals: true` it is rejected.
 * The bid's `cpm`, price bucket targeting and the price reported to the ad server are not changed. Priority and desirability only affect which bids are chosen: the ad server targeting winner, the bids kept under a [bid limit](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-Bids-Control), [multibid](/dev-docs/modules/multibid.html) ordering, and `pbjs.getBestBids`.
 * The setting must be on the adapter that made the request, and `standard` is ignored. When an adapter bids with an [alternate bidder code](#29-allowalternatebiddercodes), the setting is read from the adapter, not the alternate code.
 * Bids from Prebid Server use [`s2sConfig.allowPriorityBids`](/dev-docs/modules/prebidServer.html) instead, which lists the trusted bidder codes for each Prebid Server instance.
@@ -390,5 +392,13 @@ pbjs.bidderSettings = {
     }
 };
 ```
+
+#### Choosing priorities
+{: .no_toc }
+
+Most ad servers shouldn't need to set a `priority` on reservation deals. Leaving them at the default priority and sending a `pacingAdjustedCpm` is usually enough: it lets reservation campaigns compete with programmatic, non-reservation demand at a value that reflects how urgently they need to deliver, while the best-paying bid still wins when a campaign is on schedule. Set a `priority` mainly for the two cases that shouldn't compete on price:
+
+* **Sponsorships:** a priority below 12 (for example 4), so they win over all price-competitive demand.
+* **House campaigns:** a priority above 12 (for example 16), so they only fill when nothing else bids.
 
 <hr class="full-rule" />
