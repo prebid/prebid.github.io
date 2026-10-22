@@ -28,8 +28,6 @@ We’re not able to provide details on every ad server, but this page gives gene
 {: .alert.alert-success :}
 If you want to include information about a particular ad server not documented here, create a PR in our [Github repo](https://github.com/prebid/prebid.github.io).
 
-<a id="the-ad-server-decides"></a>
-
 ## The ad server decides
 
 In this setup, Prebid runs its auction before the ad server is called and sends some or all of the bids to the ad server as key-value targeting. Line items set up for Prebid's price buckets let those bids compete with the ad server's own campaigns, and the ad server chooses the winner.
@@ -66,8 +64,6 @@ For step-by-step instructions on using some of the other ad servers, see the fol
 - [Xandr Monetize Ad Server](/adops/setting-up-prebid-with-the-appnexus-ad-server.html)
 - [Smart Ad Server](/adops/setting-up-prebidjs-with-Smart-Ad-Server.html)
 - [FreeWheel](/adops/setting-up-prebid-video-in-freewheel.html)
-
-<a id="the-ad-server-bids-into-prebid"></a>
 
 ## The ad server bids into Prebid
 
