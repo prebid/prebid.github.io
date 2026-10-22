@@ -10,7 +10,8 @@
  * Exposes `window.prebidBundler`:
  *  - `getVersions()` resolves to `{versions: [...]}`, newest first: the 20 highest releases plus the 20 most recently
  *    published, which is what the bundler service at js-download.prebid.org keeps built;
- *  - `download({version, modules})` resolves to the bundle's source code.
+ *  - `download({version, modules})` resolves to the bundle's source code;
+ *  - `getBundleModules({version, modules})` resolves to the names of the modules in that bundle that have metadata.
  */
 (function () {
     var CDN_BASE = 'https://cdn.jsdelivr.net/npm/prebid.js@';
@@ -168,7 +169,12 @@
         return '})(),' + pkg.globalVarName + '.processQueue();';
     }
 
-    function download(request) {
+    /**
+     * Validate a `{version, modules}` request and work out what goes in its bundle: resolves to
+     * `{version, pkg, modules, chunks, checksums, hasMetadata}`, where `modules` includes any parent modules that were
+     * added and `chunks` are all the chunk files to concatenate.
+     */
+    function resolveBundle(request) {
         var version = request.version;
         if (typeof version !== 'string' || !VERSION_PATTERN.test(version)) {
             return Promise.reject(new Error('Not a valid Prebid.js version: ' + version));
@@ -203,10 +209,25 @@
                     throw new Error('Modules not available in Prebid.js ' + version + ': ' + missing.join(', '));
                 }
             }
-            var chunks = resolveChunks(modules, dependencies, function (module) {
+            function hasMetadata(module) {
                 return available.hasOwnProperty(module + METADATA_SUFFIX);
-            });
-            return Promise.all(chunks.map(function (chunk) {
+            }
+            return {
+                version: version,
+                pkg: pkg,
+                modules: modules,
+                chunks: resolveChunks(modules, dependencies, hasMetadata),
+                checksums: checksums,
+                hasMetadata: hasMetadata
+            };
+        });
+    }
+
+    function download(request) {
+        return resolveBundle(request).then(function (bundle) {
+            var version = bundle.version;
+            var checksums = bundle.checksums;
+            return Promise.all(bundle.chunks.map(function (chunk) {
                 return fetchFile(version, 'dist/chunks/' + chunk, checksums && checksums[chunk]).catch(function (error) {
                     if (error.status === 404) {
                         throw new Error(chunk.replace(/\.js$/, '') + ' is not available in Prebid.js ' + version);
@@ -214,13 +235,29 @@
                     throw error;
                 });
             })).then(function (sources) {
-                return [header(pkg, modules)].concat(sources, [footer(pkg)]).join('\n');
+                return [header(bundle.pkg, bundle.modules)].concat(sources, [footer(bundle.pkg)]).join('\n');
             });
+        });
+    }
+
+    /**
+     * The modules with published metadata (`metadata/modules/<name>.json`) that end up in the bundle for `request`:
+     * prebid-core, the requested modules, the parent modules added for them and the modules they depend on.
+     * Library chunks have no metadata, so they are left out.
+     */
+    function getBundleModules(request) {
+        return resolveBundle(request).then(function (bundle) {
+            return bundle.chunks.filter(function (chunk) {
+                return !chunk.endsWith(METADATA_SUFFIX);
+            }).map(function (chunk) {
+                return chunk.replace(/\.js$/, '');
+            }).filter(bundle.hasMetadata);
         });
     }
 
     window.prebidBundler = {
         getVersions: getVersions,
-        download: download
+        download: download,
+        getBundleModules: getBundleModules
     };
 })();

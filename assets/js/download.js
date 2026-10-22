@@ -112,8 +112,10 @@
         });
     }
 
-    // Storage disclosure summary for the build: the same file `gulp build` generates as <bundle>_disclosures.json,
-    // computed from the metadata published with the selected Prebid.js version.
+    // Storage disclosure summary for the build, in the format of the <bundle>_disclosures.json file `gulp build`
+    // generates, computed from the metadata published with the selected Prebid.js version. Unlike gulp, which only
+    // looks at the requested modules, it covers every module in the bundle, including parent modules (e.g. userId)
+    // and modules pulled in as dependencies.
     function getStorageDisclosureSummary(moduleNames, getModuleMetadata) {
         // port of libraries/storageDisclosure/summary.mjs in Prebid.js
         var summary = {};
@@ -138,15 +140,18 @@
     }
 
     function downloadDisclosures(version, modules, filename) {
-        var moduleNames = ["prebid-core"].concat(modules);
         var base = "https://cdn.jsdelivr.net/npm/prebid.js@" + encodeURIComponent(version) + "/metadata/modules/";
-        Promise.all(moduleNames.map(function (moduleName) {
-            return fetch(base + encodeURIComponent(moduleName) + ".json").then(function (response) {
-                if (response.status === 404) return null; // module without storage metadata
-                if (!response.ok) throw new Error("HTTP " + response.status + " for " + moduleName);
-                return response.json();
-            });
-        })).then(function (metadata) {
+        var moduleNames;
+        prebidBundler.getBundleModules({ version: version, modules: modules }).then(function (bundleModules) {
+            moduleNames = bundleModules;
+            return Promise.all(moduleNames.map(function (moduleName) {
+                return fetch(base + encodeURIComponent(moduleName) + ".json").then(function (response) {
+                    if (response.status === 404) return null; // module without storage metadata
+                    if (!response.ok) throw new Error("HTTP " + response.status + " for " + moduleName);
+                    return response.json();
+                });
+            }));
+        }).then(function (metadata) {
             var byModule = {};
             moduleNames.forEach(function (moduleName, i) {
                 byModule[moduleName] = metadata[i];
