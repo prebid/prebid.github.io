@@ -396,12 +396,12 @@ There are a number of important values that a publisher expects to be handled in
 
 {: .table .table-bordered .table-striped }
 
-| Parameter | Description                                   | Example               |
+| Parameter | Description | Example |
 | ----- | ------------ | ---------- |
 | Ad Server Currency | If your endpoint supports responding in different currencies, read this value. | config.getConfig('currency.adServerCurrency') |
 | Bidder Timeout | Use if your endpoint needs to know how long the page is allowing the auction to run. | bidderRequest.timeout; |
 | COPPA | If your endpoint supports the Child Online Privacy Protection Act, you should read this value. | bidderRequest.ortb2.regs.coppa; |
-| First Party Data | The publisher, as well as a number of modules, may provide [first party data](/features/firstPartyData.html) (e.g. page type). | bidderRequest.ortb2; validBidRequests[].ortb2Imp|
+| First Party Data | The publisher, as well as a number of modules, may provide [first party data](/features/firstPartyData.html) (e.g. page type). | bidderRequest.ortb2; validBidRequests[].ortb2Imp |
 | Floors | Adapters that accept a floor parameter must also support the [floors module](https://docs.prebid.org/dev-docs/modules/floors.html) | [`bidRequest.getFloor()`](/dev-docs/modules/floors.html#bid-adapter-interface) |
 | Page URL and referrer | Instead of building your own function to find the page location, domain, or referrer, look in the standard bidRequest location. | bidderRequest.refererInfo.page |
 | [Supply Chain](/dev-docs/modules/schain.html) | Adapters cannot accept an schain parameter. Rather, they must look for the schain parameter at bidRequest.schain. | bidRequest.schain |
@@ -788,8 +788,8 @@ If the alias entry is an object, the following attributes are supported:
 
 {: .table .table-bordered .table-striped }
 
-| Name  | Scope | Description   | Type      |
-|-------|-------|---------------|-----------|
+| Name | Scope | Description | Type |
+| --- | --- | --- | --- |
 | `code` | required | shortcode/partner name | `string` |
 | `gvlid` | optional | global vendor list id of company scoped to alias | `integer` |
 | `skipPbsAliasing` | optional | ability to skip passing spec.code to prebid server in request extension. In case you have a prebid server adapter with the name same as the alias/shortcode. Default value: `false` | `boolean` |
@@ -1000,11 +1000,11 @@ If the demand partner is going to use Prebid API for this process, their adapter
 
 {: .table .table-bordered .table-striped }
 
-| Key             | Scope    | Description                                                                                        | Example                    |
-|-----------------|----------|----------------------------------------------------------------------------------------------------|----------------------------|
-| `url`             | Required | The URL to the mapping file.                                                                       | `"//example.com/mapping.json"` |
-| `refreshInDays`   | Optional | A number representing the number of days before the mapping values are updated. Default value is 1 | `7`                        |
-| `localStorageKey` | Optional | A unique key to store the mapping file in local storage. Default value is bidder code.             | `"uniqueKey"`                  |
+| Key | Scope | Description | Example |
+| --- | --- | --- | --- |
+| `url` | Required | The URL to the mapping file. | `"//example.com/mapping.json"` |
+| `refreshInDays` | Optional | A number representing the number of days before the mapping values are updated. Default value is 1 | `7` |
+| `localStorageKey` | Optional | A unique key to store the mapping file in local storage. Default value is bidder code. | `"uniqueKey"` |
 
 **Example**
 
@@ -1051,6 +1051,39 @@ As described in [Show Outstream Video Ads]({{site.baseurl}}/dev-docs/show-outstr
 If possible, we recommend that publishers associate a renderer with their outstream video ad units.  By doing so, all video-enabled demand partners will be able to participate in the auction, regardless of whether a given demand partner provides a renderer on its bid responses.  Prebid.js will always invoke a publisher-defined renderer on a given ad unit.
 
 However, if the publisher does not define a renderer, you will need to return a renderer with your bid response if you want to participate in the auction for outstream ad unit.
+
+To return a renderer, create one with `Renderer.install` from `src/Renderer.js`, give it a render function with `setRender`, and set it as `bid.renderer`:
+
+```javascript
+import { Renderer } from '../src/Renderer.js';
+
+const renderer = Renderer.install({
+    id: bid.requestId,
+    url: 'https://cdn.example.com/outstream-player.js', // script to load before rendering
+    config: { /* passed through as renderer.config */ },
+    adUnitCode: bid.adUnitCode,
+    loaded: false
+});
+renderer.setRender(function (bid, doc) {
+    // runs once the script at `url` has loaded
+    window.examplePlayer.render(bid.adUnitCode, bid.vastXml || bid.vastUrl);
+});
+bid.renderer = renderer;
+```
+
+{: .table .table-bordered .table-striped }
+
+| Option | Type | Description |
+| --- | --- | --- |
+| `url` | `string` | Script to load before `render` is called. |
+| `renderNow` | `boolean` | If `true`, `render` is called immediately, without loading `url`. Use it when the render function is self-contained, for example when the player is already on the page or the creative is written directly into the slot. `url` can then be omitted (Prebid.js 7.45+). |
+| `config` | `object` | Arbitrary configuration, available to the render function as `renderer.config`. A `documentResolver(bid, sourceDocument, renderDocument)` function in it can choose the document passed to `render`. |
+| `id` | `string` | Identifier for the renderer. |
+| `adUnitCode` | `string` | The ad unit the renderer belongs to. If that ad unit (or its `mediaTypes.video`) has a publisher renderer with both `url` and `render`, and it isn't `backupOnly`, `url` is not loaded and `render` is called directly. |
+| `loaded` | `boolean` | Set to `true` if the script at `url` is already loaded; queued commands then run immediately. |
+| `callback` | `function` | Called when the script at `url` has loaded. Defaults to running the renderer's command queue. |
+
+A renderer is used when it has a `url` or `renderNow: true`. Publisher renderers defined on the ad unit or bidder without a `url` are treated as `renderNow` automatically.
 
 ### Step 3: Respond with a VAST URL or raw VAST XML
 
