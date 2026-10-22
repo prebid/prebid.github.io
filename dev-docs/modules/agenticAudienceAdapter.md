@@ -5,7 +5,7 @@ display_name: Agentic Audiences RTD
 description: Injects Agentic Audiences embedding signals from browser storage into OpenRTB bid requests
 page_type: module
 module_type: rtd
-module_code: agenticAudienceAdapter
+module_code: agenticAudienceRtdProvider
 enable_download: true
 sidebarType: 1
 ---

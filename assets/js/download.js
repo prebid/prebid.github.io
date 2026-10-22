@@ -66,6 +66,7 @@
                         }
                     });
                     setPrepickedVersion();
+                    filterModulesForVersion();
                 } catch (e) {
                     console.log(e);
                     showError();
@@ -167,6 +168,11 @@
                 var minVersion = box.getAttribute("minVersion");
                 modules.push(moduleCode);
 
+                if (box.hasAttribute("data-not-in-version")) {
+                    removedModules.push(moduleCode);
+                    return;
+                }
+
                 if (minVersion) {
                     var module_version_array = minVersion.split(".");
                     var pbjs_version_array = version.split(".");
@@ -239,6 +245,7 @@
             if (versionOption) {
                 versionOption.selected = true;
                 searchParams.set("version", cfg.version);
+                filterModulesForVersion();
             }
         }
 
@@ -258,6 +265,74 @@
         }
     }
 
+    // Module names (file names under modules/) in each Prebid.js version, from the package listing on jsDelivr.
+    // Published versions never change, so each listing is fetched at most once per page view (and cached by the browser).
+    var modulesByVersion = {};
+
+    function getModulesInVersion(version) {
+        if (!modulesByVersion[version]) {
+            modulesByVersion[version] = $.ajax({
+                type: "GET",
+                url: "https://data.jsdelivr.com/v1/packages/npm/prebid.js@" + encodeURIComponent(version) + "?structure=flat",
+                dataType: "json",
+                timeout: 20000,
+            }).then(function (data) {
+                var modules = {};
+                (data.files || []).forEach(function (file) {
+                    var match = /^\/modules\/([^/]+?)(?:\/index)?\.(?:js|ts)$/.exec(file.name);
+                    if (match && !/\.d$/.test(match[1])) {
+                        modules[match[1]] = true;
+                    }
+                });
+                if (Object.keys(modules).length === 0) {
+                    return $.Deferred().reject();
+                }
+                return modules;
+            });
+            // don't cache failures, so that the next selection retries
+            modulesByVersion[version].fail(function () {
+                delete modulesByVersion[version];
+            });
+        }
+        return modulesByVersion[version];
+    }
+
+    // Show only the modules that are part of the selected version. If the module list can't be loaded, show everything.
+    function filterModulesForVersion() {
+        var version = $(".selectpicker").val();
+        var status = $("#module-filter-status");
+        if (!version || version === "error") {
+            return;
+        }
+        status.text("Checking which modules are available in Prebid.js " + version + "...");
+        getModulesInVersion(version).then(function (available) {
+            if ($(".selectpicker").val() !== version) {
+                return; // a different version was selected in the meantime
+            }
+            var shown = {};
+            document.querySelectorAll("input[type=checkbox][moduleCode]").forEach(function (box) {
+                var inVersion = available[box.getAttribute("moduleCode")] === true;
+                $(box).closest(".col-md-4, .row").toggle(inVersion);
+                if (inVersion) {
+                    box.removeAttribute("data-not-in-version");
+                    shown[box.getAttribute("moduleCode")] = true;
+                } else {
+                    box.setAttribute("data-not-in-version", "");
+                }
+            });
+            status.text("Showing the " + Object.keys(shown).length + " modules available in Prebid.js " + version + ".");
+        }, function () {
+            if ($(".selectpicker").val() !== version) {
+                return;
+            }
+            document.querySelectorAll("input[type=checkbox][moduleCode]").forEach(function (box) {
+                box.removeAttribute("data-not-in-version");
+                $(box).closest(".col-md-4, .row").show();
+            });
+            status.text("Couldn't check which modules are available in Prebid.js " + version + ", so all modules are shown.");
+        });
+    }
+
     function setPrepickedVersion() {
         var version = searchParams.get("version");
         if (version) {
@@ -272,6 +347,7 @@
         if (versionSelector) {
             versionSelector.addEventListener("change", function (event) {
                 var version = event.target.value;
+                filterModulesForVersion();
                 searchParams.set("version", version);
                 window.history.replaceState(
                     null,

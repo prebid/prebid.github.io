@@ -2,7 +2,7 @@
 layout: analytics
 title: Browsi
 description: Browsi Analytics Adapter
-modulecode: browsiAnalyticsAdapter
+modulecode: browsi
 gvl_id: 329
 prebid_member: true
 ---

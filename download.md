@@ -68,6 +68,7 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <label for="configFileInput"><strong>Upload Configuration</strong></label>
 <input type="file" id="configFileInput" accept="application/json" />
 <br>
+<p id="module-filter-status" class="text-muted" aria-live="polite"></p>
 <h4>Select Bidder Adapters</h4>
 <div class="row adapters">
 {% for page in bidder_pages %}{% if page.pbjs == true %}{% if page.enable_download == false %}{% continue %}{% endif %}

@@ -2,7 +2,7 @@
 layout: analytics
 title: Datawrkz
 description: Datawrkz Analytics Adapter
-modulecode: datawrkzanalytics
+modulecode: datawrkz
 prebid_member: false
 tcfeu_supported: false
 usp_supported: false

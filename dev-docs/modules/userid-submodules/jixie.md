@@ -2,7 +2,7 @@
 layout: userid
 title: Jixie ID
 description: Jixie ID User ID sub-module
-useridmodule: jixieId
+useridmodule: jixieIdSystem
 bidRequestUserId: jixieId
 eidsource: jixie.io
 example: '"1111"'

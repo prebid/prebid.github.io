@@ -2,7 +2,7 @@
 layout: analytics
 title: byData
 description: byData Analytics Adapter
-modulecode: bydata 
+modulecode: byData
 prebid_member: false
 --- 
 
