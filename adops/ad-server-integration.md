@@ -19,7 +19,7 @@ Prebid was designed as an independent header bidding solution that works with an
 | | [The ad server decides](#the-ad-server-decides) | [The ad server bids into Prebid](#the-ad-server-bids-into-prebid) |
 | --- | --- | --- |
 | How it works | Prebid collects bids and passes them to the ad server as key-values. The ad server weighs them against its own campaigns and picks the winner. | The ad server responds to Prebid like any other bidder, returning its campaigns as bids. Prebid picks the winner, and the page renders it. |
-| Ad server requirements | Key-value targeting, and bulk creation of line items and creatives for Prebid's price buckets | A Prebid.js bid adapter or Prebid Server bidder that returns the ad server's campaigns as bids, ideally with [deal metadata](/dev-docs/bidder-adaptor.html) |
+| Ad server requirements | Key-value targeting, and bulk creation of line items and creatives for Prebid's price buckets | A Prebid.js bid adapter or Prebid Server bidder that returns the ad server's campaigns as bids, ideally with deal metadata (`bid.meta.deal`) |
 | Direct-sold and guaranteed campaigns | Prioritized by the ad server | Prioritized by Prebid, using the [priority and priority-adjusted CPM](/dev-docs/publisher-api-reference/bidderSettings.html#212-allowprioritybids) the ad server sends |
 | Typical use | The most common setup, for example with Google Ad Manager | Ad servers with a Prebid adapter; publishers who want one auction across all demand |
 
@@ -69,7 +69,7 @@ For step-by-step instructions on using some of the other ad servers, see the fol
 
 In this setup, the ad server takes part in the Prebid auction as a demand source, through its Prebid.js bid adapter or Prebid Server bidder. It returns its eligible campaigns as bids, Prebid chooses the winner across all demand, and the page renders it, for example with `pbjs.getBestBids()` and [`pbjs.renderAd`](/dev-docs/publisher-api-reference/renderAd.html). No price-bucket line items are needed. See the [ad server first example page](https://github.com/prebid/Prebid.js/blob/master/integrationExamples/adserver_first/basic_adserver_first.html) in the Prebid.js repository.
 
-For Prebid to rank the ad server's campaigns correctly against other demand, the ad server should send [deal metadata](/dev-docs/bidder-adaptor.html) with its bids, and the publisher should trust it. Since Prebid.js 11.44:
+For Prebid to rank the ad server's campaigns correctly against other demand, the ad server should send deal metadata with its bids (`seatbid[].bid[].ext.prebid.deal` in OpenRTB responses, which Prebid.js exposes as `bid.meta.deal`), and the publisher should trust it. Since Prebid.js 11.44:
 
 - **Opt in:** set [`allowPriorityBids`](/dev-docs/publisher-api-reference/bidderSettings.html#212-allowprioritybids) for the ad server's adapter, or list it in `s2sConfig.allowPriorityBids` when it runs through Prebid Server. Deal metadata from other bidders is ignored.
 - **Priority-adjusted CPM:** for most reservation campaigns, the ad server only needs to send a `priorityAdjustedCpm`: the value it would rank the campaign at, for example raised when the campaign is behind on delivery. The campaign then competes with programmatic demand on that value, while the bid's reported price stays the same.
