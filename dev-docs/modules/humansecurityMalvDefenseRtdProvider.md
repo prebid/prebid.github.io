@@ -5,7 +5,7 @@ display_name: HUMAN Security Malvertising Defense RTD Submodule
 description: The HUMAN Malvertising Defense RTD blocks 0-/1-click redirects and deceptive creatives in real time, lets safe ads render, and can optionally include HUMAN Ad Quality for broader protection.
 page_type: module
 module_type: rtd
-module_code : humansecurityMalvDefense
+module_code : humansecurityMalvDefenseRtdProvider
 enable_download : true
 vendor_specific: true
 sidebarType : 1

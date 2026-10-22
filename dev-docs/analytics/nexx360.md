@@ -2,7 +2,7 @@
 layout: analytics
 title: Nexx360
 description: Nexx360 Analytics Adapter
-modulecode: nexx360Analytics
+modulecode: nexx360
 prebid_member: false
 tcfeu_supported: false
 usp_supported: false
