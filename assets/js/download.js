@@ -96,6 +96,7 @@
 
             triggerDownload(jsBlob, filename);
             triggerDownload(new Blob([configData], { type: "application/json" }), "prebid-config.json");
+            downloadDisclosures(form_data.version, form_data.modules, filename.replace(/\.js$/, "") + "_disclosures.json");
 
             if (removedModules.length > 0) {
                 alert(
@@ -108,6 +109,55 @@
         }, function (e) {
             console.log(e);
             alert("Ran into an issue: " + e.message);
+        });
+    }
+
+    // Storage disclosure summary for the build: the same file `gulp build` generates as <bundle>_disclosures.json,
+    // computed from the metadata published with the selected Prebid.js version.
+    function getStorageDisclosureSummary(moduleNames, getModuleMetadata) {
+        // port of libraries/storageDisclosure/summary.mjs in Prebid.js
+        var summary = {};
+        moduleNames.forEach(function (moduleName) {
+            var metadata = getModuleMetadata(moduleName);
+            var disclosure = metadata && metadata.disclosures;
+            if (!disclosure) return;
+            Object.keys(disclosure).forEach(function (url) {
+                var identifiers = disclosure[url].disclosures;
+                if (summary.hasOwnProperty(url)) {
+                    summary[url].forEach(function (entry) {
+                        entry.disclosedBy.push(moduleName);
+                    });
+                } else if (identifiers && identifiers.length > 0) {
+                    summary[url] = identifiers.map(function (identifier) {
+                        return Object.assign({ disclosedIn: url, disclosedBy: [moduleName] }, identifier);
+                    });
+                }
+            });
+        });
+        return [].concat.apply([], Object.keys(summary).map(function (url) { return summary[url]; }));
+    }
+
+    function downloadDisclosures(version, modules, filename) {
+        var moduleNames = ["prebid-core"].concat(modules);
+        var base = "https://cdn.jsdelivr.net/npm/prebid.js@" + encodeURIComponent(version) + "/metadata/modules/";
+        Promise.all(moduleNames.map(function (moduleName) {
+            return fetch(base + encodeURIComponent(moduleName) + ".json").then(function (response) {
+                if (response.status === 404) return null; // module without storage metadata
+                if (!response.ok) throw new Error("HTTP " + response.status + " for " + moduleName);
+                return response.json();
+            });
+        })).then(function (metadata) {
+            var byModule = {};
+            moduleNames.forEach(function (moduleName, i) {
+                byModule[moduleName] = metadata[i];
+            });
+            var summary = getStorageDisclosureSummary(moduleNames, function (moduleName) {
+                return byModule[moduleName];
+            });
+            triggerDownload(new Blob([JSON.stringify(summary, null, 2)], { type: "application/json" }), filename);
+        }).catch(function (e) {
+            console.log(e);
+            alert("Prebid.js was downloaded, but the storage disclosure file couldn't be generated. Please try again later.");
         });
     }
 
