@@ -396,12 +396,12 @@ There are a number of important values that a publisher expects to be handled in
 
 {: .table .table-bordered .table-striped }
 
-| Parameter | Description                                   | Example               |
+| Parameter | Description | Example |
 | ----- | ------------ | ---------- |
 | Ad Server Currency | If your endpoint supports responding in different currencies, read this value. | config.getConfig('currency.adServerCurrency') |
 | Bidder Timeout | Use if your endpoint needs to know how long the page is allowing the auction to run. | bidderRequest.timeout; |
 | COPPA | If your endpoint supports the Child Online Privacy Protection Act, you should read this value. | bidderRequest.ortb2.regs.coppa; |
-| First Party Data | The publisher, as well as a number of modules, may provide [first party data](/features/firstPartyData.html) (e.g. page type). | bidderRequest.ortb2; validBidRequests[].ortb2Imp|
+| First Party Data | The publisher, as well as a number of modules, may provide [first party data](/features/firstPartyData.html) (e.g. page type). | bidderRequest.ortb2; validBidRequests[].ortb2Imp |
 | Floors | Adapters that accept a floor parameter must also support the [floors module](https://docs.prebid.org/dev-docs/modules/floors.html) | [`bidRequest.getFloor()`](/dev-docs/modules/floors.html#bid-adapter-interface) |
 | Page URL and referrer | Instead of building your own function to find the page location, domain, or referrer, look in the standard bidRequest location. | bidderRequest.refererInfo.page |
 | [Supply Chain](/dev-docs/modules/schain.html) | Adapters cannot accept an schain parameter. Rather, they must look for the schain parameter at bidRequest.schain. | bidRequest.schain |
@@ -788,11 +788,24 @@ If the alias entry is an object, the following attributes are supported:
 
 {: .table .table-bordered .table-striped }
 
-| Name  | Scope | Description   | Type      |
-|-------|-------|---------------|-----------|
+| Name | Scope | Description | Type |
+| --- | --- | --- | --- |
 | `code` | required | shortcode/partner name | `string` |
 | `gvlid` | optional | global vendor list id of company scoped to alias | `integer` |
-| `skipPbsAliasing` | optional | ability to skip passing spec.code to prebid server in request extension. In case you have a prebid server adapter with the name same as the alias/shortcode. Default value: `false` | `boolean` |
+| `acpId` | optional | Google Additional Consent provider ID of the company scoped to alias | `integer` |
+| `skipPbsAliasing` | optional | If `true`, don't declare this alias to Prebid Server. See [skipPbsAliasing](#skippbsaliasing) below. Default value: `false` | `boolean` |
+
+#### skipPbsAliasing
+
+When a request for an aliased bidder goes to Prebid Server, Prebid.js tells Prebid Server which adapter the alias stands for. It does this by adding `ext.prebid.aliases.<alias>: "<adapter code>"` to the request, and `ext.prebid.aliasgvlids.<alias>` when the alias has a GVL ID. This happens for bidders in [`s2sConfig`](/dev-docs/modules/prebidServer.html) and for requests from adapters that use the ORTB conversion library's Prebid Server extensions. With `skipPbsAliasing: true`, both entries are left out, so Prebid Server resolves the bidder code on its own.
+
+Only set it when Prebid Server already has its own adapter or hard-coded alias with the alias's name, and that doesn't work the same way as your Prebid.js adapter. For example, it might use a different endpoint or be built on a different adapter. Prebid Server gives an alias declared in the request precedence over a core bidder with the same name (see [Bidder Aliases](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#bidder-aliases)). Without the flag, the request would point the server-side bidder at the wrong adapter.
+
+Don't set it otherwise. If Prebid Server has no adapter or alias with that name, skipping the alias declaration leaves Prebid Server unable to resolve the bidder, and its server-side requests won't get bids.
+
+The flag is planned to become unnecessary once Prebid Server ignores request aliases that collide with its own adapters and hard-coded aliases ([prebid-server#3363](https://github.com/prebid/prebid-server/issues/3363)).
+
+Publishers can set the same option on aliases created at runtime with [`pbjs.aliasBidder`](/dev-docs/publisher-api-reference/aliasBidder.html).
 
 {: .alert.alert-info :}
 Note on aliases and TCF Global Vendor List IDs: if an alias entry does not have its own GVLID but wishes to claim GDPR support,
@@ -1000,11 +1013,11 @@ If the demand partner is going to use Prebid API for this process, their adapter
 
 {: .table .table-bordered .table-striped }
 
-| Key             | Scope    | Description                                                                                        | Example                    |
-|-----------------|----------|----------------------------------------------------------------------------------------------------|----------------------------|
-| `url`             | Required | The URL to the mapping file.                                                                       | `"//example.com/mapping.json"` |
-| `refreshInDays`   | Optional | A number representing the number of days before the mapping values are updated. Default value is 1 | `7`                        |
-| `localStorageKey` | Optional | A unique key to store the mapping file in local storage. Default value is bidder code.             | `"uniqueKey"`                  |
+| Key | Scope | Description | Example |
+| --- | --- | --- | --- |
+| `url` | Required | The URL to the mapping file. | `"//example.com/mapping.json"` |
+| `refreshInDays` | Optional | A number representing the number of days before the mapping values are updated. Default value is 1 | `7` |
+| `localStorageKey` | Optional | A unique key to store the mapping file in local storage. Default value is bidder code. | `"uniqueKey"` |
 
 **Example**
 
