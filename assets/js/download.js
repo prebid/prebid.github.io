@@ -84,6 +84,9 @@
     }
 
     function submit_download() {
+        if (moduleFilterPending) {
+            return;
+        }
         $('#download-button').html('<i class="glyphicon glyphicon-send"></i> Sending Request...').addClass('disabled');
 
         var form_data = get_form_data();
@@ -268,17 +271,30 @@
     }
 
     // Show only the modules that are part of the selected version. If the module list can't be loaded, show everything.
+    // While the selected version's module list is loading, the checklist still reflects the previous version,
+    // so downloads are blocked until the lookup succeeds or falls back.
+    var moduleFilterPending = false;
+
+    function setModuleFilterPending(pending) {
+        moduleFilterPending = pending;
+        $(function () {
+            $("#download-button").toggleClass("disabled", pending).prop("disabled", pending);
+        });
+    }
+
     function filterModulesForVersion() {
         var version = $(".selectpicker").val();
         var status = $("#module-filter-status");
         if (!version || version === "error") {
             return;
         }
+        setModuleFilterPending(true);
         status.text("Checking which modules are available in Prebid.js " + version + "...");
         getModulesInVersion(version).then(function (available) {
             if ($(".selectpicker").val() !== version) {
                 return; // a different version was selected in the meantime
             }
+            setModuleFilterPending(false);
             var shown = {};
             document.querySelectorAll("input[type=checkbox][moduleCode]").forEach(function (box) {
                 var inVersion = available[box.getAttribute("moduleCode")] === true;
@@ -295,6 +311,7 @@
             if ($(".selectpicker").val() !== version) {
                 return;
             }
+            setModuleFilterPending(false);
             document.querySelectorAll("input[type=checkbox][moduleCode]").forEach(function (box) {
                 box.removeAttribute("data-not-in-version");
                 $(box).closest(".col-md-4, .row").show();
