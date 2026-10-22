@@ -24,8 +24,8 @@ The Onebidtech Header Bidding adaptor requires setup and approval from the Onebi
 ## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example | Type |
-|-------------|----------|----------------------------------|--------------------------------------|----------|
-| `placement` | required | The placement ID from Onebidtech. | `'354f787b85c829fb83g2cdaf1ae64435'` | `string` |
-
-Same 'placement' parameter can be used from either prebid JS or prebid server.
+| Name          | Scope    | Description                                                   | Example                              | Type     |
+|---------------|----------|---------------------------------------------------------------|--------------------------------------|----------|
+| `placementId` | required | The placement ID from Onebidtech.                             | `'354f787b85c829fb83g2cdaf1ae64435'` | `string` |
+| `bidFloor`    | optional | Static floor, used when the Price Floors module returns none. | `0.5`                                | `number` |
+| `currency`    | optional | Floor currency. Defaults to `USD`.                            | `'USD'`                              | `string` |
