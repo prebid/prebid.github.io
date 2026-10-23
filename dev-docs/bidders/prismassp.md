@@ -6,7 +6,7 @@ pbjs: true
 pbs: true
 biddercode: prismassp
 aliasCode: nexx360
-gvl_id: 965
+gvl_id: 1185
 tcfeu_supported: true
 usp_supported: true
 gpp_supported: true
