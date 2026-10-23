@@ -53,18 +53,29 @@ Ads are served when all of the following conditions are satisfied:
 ## Video
 
 {: .table .table-bordered .table-striped }
-| `mediaTypes.video` field                  | Scope       | Notes                                                                                                     |
-|-------------------------------------------|-------------|-----------------------------------------------------------------------------------------------------------|
-| `mimes`                                   | required    | Non-empty array of MIME types. May instead be set for this bidder only in `bids[].ortb2Imp.video.mimes`.  |
-| `playerSize`                              | recommended | Sent as `imp.video.w`/`imp.video.h`.                                                                      |
-| `plcmt`                                   | recommended |                                                                                                           |
-| `minduration`, `maxduration`, `protocols` | recommended | Some demand partners require them.                                                                        |
+| `mediaTypes.video` field                  | Scope       | Notes                                |
+|-------------------------------------------|-------------|--------------------------------------|
+| `mimes`                                   | required    | Non-empty array of MIME types.       |
+| `playerSize`                              | recommended | Sent as `imp.video.w`/`imp.video.h`. |
+| `plcmt`                                   | recommended |                                      |
+| `minduration`, `maxduration`, `protocols` | recommended | Some demand partners require them.   |
 
 - If the video part has no `mimes`, a multiformat ad unit is sent as banner only and a video-only ad unit is rejected.
-- Instream: bids are VAST XML, so [Prebid Cache](/dev-docs/show-video-with-a-dfp-video-tag.html) is required.
-- Outstream: Geniee does not provide a renderer. Publishers must set up their own; see [Show Outstream Video Ads](/dev-docs/show-outstream-video-ads.html).
+- Geniee does not provide an outstream renderer. You will need to set up your own. See [Show Outstream Video Ads](/dev-docs/show-outstream-video-ads.html) for more information.
 - A video bid whose response lacks `w` or `h` takes the requested `playerSize` for both.
 - Floors: with the Price Floors module, a multiformat ad unit sends the lower of its banner and video floors as `imp.bidfloor`; if either has no floor, no floor is sent.
+
+### Video Caching
+
+Note that the Geniee Exchange adapter expects a client-side Prebid Cache to be enabled for instream video bidding.
+
+```javascript
+pbjs.setConfig({
+    cache: {
+        url: 'https://prebid.example.com/pbc/v1/cache'
+    }
+});
+```
 
 ## First Party Data
 
