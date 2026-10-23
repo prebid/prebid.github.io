@@ -29,7 +29,7 @@ dependencies {
     ////
     
     // Prebid SDK
-    implementation 'org.prebid:prebid-mobile-sdk:2.0.4'
+    implementation 'org.prebid:prebid-mobile-sdk:3.4.0'
 }
 ```
 
@@ -214,11 +214,20 @@ See the [global parameters page](/prebid-mobile/pbm-api/android/pbm-targeting-an
 
 ## Supported Android versions
 
-Prebid supports the following versions by release:
+Prebid supports the following minimum Android API levels (`minSdkVersion`) by release:
 
-- Prebid SDK version 1.0 or 1.1 supports Android 16+
-- Prebid SDK version 1.1.1+ supports Android 19+
-- Prebid SDK version 2.0.0+ supporst Android 16+
+- Prebid SDK version 1.0 or 1.1 supports API level 16+
+- Prebid SDK version 1.1.1+ supports API level 19+
+- Prebid SDK versions 2.0.0 to 3.3.3 support API level 16+
+- Prebid SDK version 3.3.4+ supports API level 19+
+
+Some modules require a higher API level:
+
+{: .table .table-bordered .table-striped }
+| Module | Minimum API level |
+| --- | --- |
+| `prebid-mobile-sdk-gam-event-handlers`, `prebid-mobile-sdk-admob-adapters` | 24 starting from Prebid SDK 3.4.0, which depends on Google Mobile Ads SDK 25.5.0. Versions 2.5.0 to 3.3.4 require 23. |
+| `prebid-mobile-sdk-next-gen-event-handlers` | 24 |
 
 ## Setup SDK
 
@@ -399,19 +408,19 @@ In the table below, you can find Prebid's test IDs that are used in the Demo App
 
 {: .table .table-bordered .table-striped }
 
-| Config ID            | Ad Format        | Description            |
-| -------------------- | ---------------- | ---------------------- |
-|`https://prebid-server-test-j.prebid.org/openrtb2/auction` | **Custom Prebid Server Host**|A PBS instance that is dedicated to testing purposes.|
-|`0689a263-318d-448b-a3d4-b02e8a709d9d`| **Stored Request ID**|The test account ID on the test server.|
-|`prebid-demo-banner-320-50`|**HTML Banner**|Returns a stored response that contains a Banner 320x50 winning bid.|
-|`prebid-demo-display-interstitial-320-480`|**HTML Interstitial**|Returns a stored response that contains a Interstitial 320x480 winning bid.|
-|`prebid-demo-video-outstream-original-api`|**Outstream Video** (Original API)|Returns a stored response that contains a Video 320x50 winning bid.|
-|`prebid-demo-video-outstream`|**Outstream Video** (Rendering API)|Returns a stored response that contains a Video 320x50 winning bid.|
-|`prebid-demo-video-interstitial-320-480-original-api`|**Video Interstitial** (Original API)|Returns a stored response that contains a Video Interstitial 320x480 winning bid.|
-|`prebid-demo-video-interstitial-320-480`|**Video Interstitial** (Rendering API)|Returns a stored response that contains a Video Interstitial 320x480 winning bid.|
-|`prebid-demo-video-rewarded-320-480-original-api`|**Rewarded Video** (Original API)|Returns a stored response that contains a Rewarded Video 320x480 winning bid.|
-|`prebid-demo-banner-rewarded-time`|**Rewarded HTML** Returns a stored response that contains a Rewarded HTML 320x480 winning bid with rewarded configuration.||
-|`prebid-demo-video-rewarded-endcard-time`|**Rewarded Video** Returns a stored response that contains a Rewarded Video 320x480 winning bid with rewarded configuration.||
-|`sample_video_response`|**Instream Video**|Returns a stored response that contains a Video 320x480 winning bid. Note: on Android we have an [issue](https://github.com/prebid/prebid-mobile-android/issues/517) with Instream Video demo example. When it is fixed the config id will be updated to the new one.|
-|`prebid-demo-banner-native-styles`|**Native Styles**|Returns a stored response that contains a Native winning bid.|
-|`prebid-demo-banner-native-styles`|**In-App Native**|Returns a stored response that contains a Native winning bid.|
+| Config ID | Ad Format | Description |
+| --- | --- | --- |
+| `https://prebid-server-test-j.prebid.org/openrtb2/auction` | **Custom Prebid Server Host** | A PBS instance that is dedicated to testing purposes. |
+| `0689a263-318d-448b-a3d4-b02e8a709d9d` | **Stored Request ID** | The test account ID on the test server. |
+| `prebid-demo-banner-320-50` | **HTML Banner** | Returns a stored response that contains a Banner 320x50 winning bid. |
+| `prebid-demo-display-interstitial-320-480` | **HTML Interstitial** | Returns a stored response that contains a Interstitial 320x480 winning bid. |
+| `prebid-demo-video-outstream-original-api` | **Outstream Video** (Original API) | Returns a stored response that contains a Video 320x50 winning bid. |
+| `prebid-demo-video-outstream` | **Outstream Video** (Rendering API) | Returns a stored response that contains a Video 320x50 winning bid. |
+| `prebid-demo-video-interstitial-320-480-original-api` | **Video Interstitial** (Original API) | Returns a stored response that contains a Video Interstitial 320x480 winning bid. |
+| `prebid-demo-video-interstitial-320-480` | **Video Interstitial** (Rendering API) | Returns a stored response that contains a Video Interstitial 320x480 winning bid. |
+| `prebid-demo-video-rewarded-320-480-original-api` | **Rewarded Video** (Original API) | Returns a stored response that contains a Rewarded Video 320x480 winning bid. |
+| `prebid-demo-banner-rewarded-time` | **Rewarded HTML** | Returns a stored response that contains a Rewarded HTML 320x480 winning bid with rewarded configuration. |
+| `prebid-demo-video-rewarded-endcard-time` | **Rewarded Video** | Returns a stored response that contains a Rewarded Video 320x480 winning bid with rewarded configuration. |
+| `sample_video_response` | **Instream Video** | Returns a stored response that contains a Video 320x480 winning bid. Note: on Android we have an [issue](https://github.com/prebid/prebid-mobile-android/issues/517) with Instream Video demo example. When it is fixed the config id will be updated to the new one. |
+| `prebid-demo-banner-native-styles` | **Native Styles** | Returns a stored response that contains a Native winning bid. |
+| `prebid-demo-banner-native-styles` | **In-App Native** | Returns a stored response that contains a Native winning bid. |
