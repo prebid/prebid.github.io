@@ -17,7 +17,8 @@ floors_supported: true
 fpd_supported: true
 safeframes_ok: true
 pbjs: true
-pbs: false
+pbs: true
+pbs_app_supported: true
 sidebarType: 1
 ---
 
