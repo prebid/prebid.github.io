@@ -25,7 +25,7 @@ sidebarType: 1
 
 ## Prebid Server Note
 
-The Chartboost adapter requires setup before beginning. Please contact us at <in-app-bidding@chartboost.com>.
+Register your app and ad locations in the Chartboost dashboard before bidding. For onboarding questions, contact <in-app-bidding@chartboost.com>.
 
 Bids are rendered by the Chartboost SDK through its Prebid Mobile plugin renderer.
 
