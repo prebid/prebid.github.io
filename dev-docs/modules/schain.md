@@ -29,7 +29,7 @@ Two modes are supported:
 
 {: .alert.alert-warning :}
 Since Prebid 10, schain is treated as first party data: this module just copies `schain.config` into `ortb2.source.ext.schain`. You may provide it (or `ortb2.source.schain`) directly, removing the need for this module.
-Note that bidder-specific first party data is merged with global first party data, while up until Prebid 9 bidder-specific schains override the global schain. The simplest way to upgrade to 10 is to avoid using both.   
+A bidder-specific schain replaces the global schain for that bidder. This is the behavior up to Prebid.js 9, and again from Prebid.js 11.44. In Prebid.js 10.0 through 11.43, bidder-specific schains were merged with the global one like other first party data, so the bidder received the global nodes followed by its own. If you use one of those versions, avoid setting both.
 
 First, build the schain module into your Prebid.js package:
 
@@ -41,44 +41,46 @@ The module performs validations on the schain data provided and makes it availab
 
 ### Global Supply Chains
 
-Call `setConfig` with the `schain` object to be used:
+Call `setConfig` with the supply chain object in `schain.config`:
 
 ```javascript
 pbjs.setConfig({
   "schain": {
-    "validation": "strict",
-      "ver":"1.0",
+    "config": {
+      "ver": "1.0",
       "complete": 1,
       "nodes": [
         {
-          "asi":"indirectseller.com",
-          "sid":"00001",
-          "hp":1
+          "asi": "indirectseller.com",
+          "sid": "00001",
+          "hp": 1
         }
       ]
+    }
   }
 });
 ```
 
 ### Bidder-Specific Supply Chains
 
-This method uses the `pbjs.setBidderConfig` function, with a syntax similar to the global scenario above.
+This method uses the `pbjs.setBidderConfig` function, with a syntax similar to the global scenario above. Note the two levels of `config`: the outer one is part of `setBidderConfig`, the inner one is `schain.config`.
 
 ```javascript
 pbjs.setBidderConfig({
   "bidders": ['bidderA'],   // can list more bidders here if they share the same config
   "config": {
     "schain": {
-      "validation": "relaxed",
-      "ver":"1.0",
-      "complete": 1,
-      "nodes": [
-        {
-            "asi":"bidderA.com",
-            "sid":"00001",
-            "hp":1
-        }
-      ]
+      "config": {
+        "ver": "1.0",
+        "complete": 1,
+        "nodes": [
+          {
+            "asi": "bidderA.com",
+            "sid": "00001",
+            "hp": 1
+          }
+        ]
+      }
     }
   }
 });
@@ -92,6 +94,33 @@ You can find more information about the `pbjs.setBidderConfig` function in the [
 ### Global and Bidder-Specific Together
 
 Yes, you can set both global and bidder-specific SChain configs. When together, the schain config setup via `pbjs.setConfig` acts as a global config that applies to all your bidders, while `pbjs.setBidderConfig` overrides the global config for the noted bidder(s).
+
+{: .alert.alert-warning :}
+In Prebid.js 10.0 through 11.43, the bidder-specific schain was merged with the global one instead of replacing it: the bidder received the global nodes followed by its own. With those versions, set schains only per bidder.
+
+The same applies when you provide the schain as first party data without this module:
+
+```javascript
+pbjs.setConfig({
+  ortb2: {
+    source: {
+      schain: { ver: '1.0', complete: 1, nodes: [{ asi: 'indirectseller.com', sid: '00001', hp: 1 }] }
+    }
+  }
+});
+
+// bidderA receives only this chain; other bidders receive the global one
+pbjs.setBidderConfig({
+  bidders: ['bidderA'],
+  config: {
+    ortb2: {
+      source: {
+        schain: { ver: '1.0', complete: 1, nodes: [{ asi: 'bidderA.com', sid: '00001', hp: 1 }] }
+      }
+    }
+  }
+});
+```
 
 ## SChain Config Syntax
 
