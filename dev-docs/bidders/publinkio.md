@@ -1,8 +1,8 @@
 ---
 layout: bidder
-title: Publink
-description: Publink Bidder Adapter
-biddercode: publink
+title: Publink.io Bid Adapter
+description: Publink.io Bid Adapter
+biddercode: publinkio
 gvl_id: none
 usp_supported: true
 coppa_supported: true
