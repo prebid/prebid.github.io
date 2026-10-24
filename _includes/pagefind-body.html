@@ -1,6 +1,7 @@
 {%- comment -%}
   Pagefind attributes for a layout's .pb-content div: index only the page content, add a "section" filter,
-  and set the result title for pages without an <h1> in their content.
+  and set the result title for pages without an <h1> in their content. A hair space (U+200A) follows each "." in
+  that title, because Pagefind otherwise reads "pbjs.setConfig" as one word and the page loses its title match.
   Pass has_h1=true from layouts that render their own <h1> inside .pb-content.
   Usage: <div class="pb-content" {% include pagefind-body.html %}>
 {%- endcomment -%}
@@ -25,4 +26,4 @@
   {%- assign pf_section = 'General' -%}
 {%- endif -%}
 data-pagefind-body data-pagefind-filter="section:{{ pf_section }}"
-{%- unless include.has_h1 or content contains '<h1' %} data-pagefind-meta="title:{{ page.title | strip | escape }}"{% endunless -%}
+{%- unless include.has_h1 or content contains '<h1' %} data-pagefind-meta="title:{{ page.title | strip | replace: '.', '. ' | escape }}"{% endunless -%}
