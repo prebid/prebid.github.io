@@ -613,7 +613,7 @@ See below for an example implementation.  For more examples, search for `getUser
 
 ### Registering on Timeout
 
-The `onTimeout` function will be called when an adapter has timed out for an auction. The adapter can fire an ajax or pixel call to register the timeout at their end.
+The `onTimeout` function will be called when an adapter has timed out for an auction. The adapter can fire an ajax or pixel call to register the timeout at their end. Adapters that do must disclose it on their bidder page; see [Disclosure](/dev-docs/module-rules.html#disclosure) in the module rules.
 
 Sample data passed to this function:
 

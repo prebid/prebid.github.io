@@ -20,6 +20,7 @@ privacy_sandbox: topics
 multiformat_supported: will-bid-on-any
 ---
 
+{% include dev-docs/reports-timeout-events.md endpoint="onetag-sys.com/ptimeout" data="the timeout data Prebid.js passes to `onTimeout` for its bid requests, such as bid parameters, ad unit code, auction and bid IDs, and the timeout" %}
 
 ### Bid Params
 

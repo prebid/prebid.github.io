@@ -22,6 +22,8 @@ gvl_id: 737
 sidebarType: 1
 ---
 
+{% include dev-docs/reports-timeout-events.md endpoint="1x1.a-mo.net/e" data="the page domain, URL and referrer, a user ID, the Prebid.js version and, for each timed-out bid request, its tag ID, ad unit, bid and transaction IDs, size and timeout" %}
+
 ### Bid Params
 
 {: .table .table-bordered .table-striped }

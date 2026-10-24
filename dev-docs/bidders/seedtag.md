@@ -19,6 +19,8 @@ pbs_app_supported: true
 floors_supported: true
 ---
 
+{% include dev-docs/reports-timeout-events.md endpoint="s.seedtag.com/se/hb/timeout" data="its publisher ID, ad unit ID and the auction timeout" %}
+
 ## Note
 
 Please reach out to your seedtag account team before using this plugin.  

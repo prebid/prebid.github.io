@@ -25,6 +25,8 @@ pbjs_version_notes: if you require schains, avoid versions 7.46 to 7.53
 sidebarType: 1
 ---
 
+{% include dev-docs/reports-timeout-events.md endpoint="krk2.kargo.com/api/v1/event/timeout" data="the auction ID and the auction timeout, once per timed-out bid request" %}
+
 ### Note
 
 Kargo is an invitation-only marketplace.  Please reach out to your Kargo account manager to get setup.  Also, you *must* test on a mobile device, or emulate a mobile device by manipulating the user agent string sent to the server.

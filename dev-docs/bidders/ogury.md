@@ -21,6 +21,9 @@ prebid_member: false
 sidebarType: 1
 gpp_sids: tcfeu, usnat, usstate_all
 ---
+
+{% include dev-docs/reports-timeout-events.md endpoint="ms-ads-monitoring-events.presage.io/bid_timeout" data="the timeout data for the first timed-out bid request and the page URL" %}
+
 ## Registration
 
 Before Ogury's adapter integration, you have to register an account in the Ogury Platform. Please contact <supply-development@ogury.co> if you're interested in a partnership.

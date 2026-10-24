@@ -17,6 +17,8 @@ floors_supported: true
 sidebarType: 1
 ---
 
+{% include dev-docs/reports-timeout-events.md endpoint="s.richaudience.com/err/" data="the timeout, its placement ID and the page domain" %}
+
 ## Bid Params
 
 {: .table .table-bordered .table-striped }

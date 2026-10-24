@@ -27,6 +27,8 @@ privacy_sandbox: paapi, topics
 endpoint_compression: false
 ---
 
+{% include dev-docs/reports-timeout-events.md endpoint="navvy.media.net/log" data="its customer ID, the number of timed-out bid requests, the timeout and details of those bid requests" %}
+
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
