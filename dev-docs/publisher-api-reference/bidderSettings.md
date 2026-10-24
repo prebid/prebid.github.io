@@ -49,6 +49,7 @@ Some sample scenarios where publishers may wish to alter the default settings:
 | allowAlternateBidderCodes | standard or adapter-specific | 6.23.0 | true in v6.x <br /> false from v7.0 | Allow adapters to bid with alternate bidder codes. |  
 | allowedAlternateBidderCodes | standard or adapter-specific | 6.23.0 | n/a | Array of bidder codes for which an adapter can bid. <br />`undefined` or `['*']` will allow adapter to bid with any bidder code. |
 | allowPriorityBids | adapter-specific | 11.44.0 | false | Trust this adapter's deal metadata (priority and priority-adjusted CPM) when ranking its bids. See [below](#212-allowprioritybids). |
+| allowHouseBids | adapter-specific | 11.45.0 | false | Accept this adapter's house bids at a 0 CPM, without accepting its other 0 CPM bids. Requires `allowPriorityBids`. See [below](#213-allowhousebids). |
 | adjustAlternateBids | standard or adapter-specific | 7.48.0 | false | Optionally allow alternate bidder codes to use an adapter's bidCpmAdjustment function by default instead of the standard bidCpmAdjustment function if present (note: if a bidCpmAdjustment function exists for the alternate bidder code within bidderSettings, then this will be used instead of falling back to the adapter's bidCpmAdjustment function). |
 
 ### 2.1. adserverTargeting
@@ -280,6 +281,8 @@ By default, 0 CPM bids are ignored by Prebid.js entirely.  However if there's a 
 either specific bid adapter(s) or all bid adapters the permission for these bids to be processed by Prebid.js and potentially sent to the respective ad server
 (depending on the Prebid.js auction results).
 
+To accept only an ad server's house bids at 0 CPM, use the narrower [`allowHouseBids`](#213-allowhousebids) instead.
+
 <a id="storageAllowed"></a>
 
 ### 2.8. storageAllowed
@@ -399,6 +402,30 @@ pbjs.bidderSettings = {
 Most ad servers shouldn't need to set a `priority` on reservation deals. Leaving them at the default priority and sending a `priorityAdjustedCpm` is usually enough: it lets reservation campaigns compete with programmatic, non-reservation demand at a value that reflects how urgently they need to deliver, while the best-paying bid still wins when a campaign is on schedule. Set a `priority` mainly for the two cases that shouldn't compete on price:
 
 * **Sponsorships:** a priority below 12 (for example 4), so they win over all price-competitive demand.
-* **House campaigns:** a priority above 12 (for example 16), so they only fill when nothing else bids.
+* **House campaigns:** a priority above 12 (for example 16), so they only fill when nothing else bids. To accept house bids at a 0 CPM, see [`allowHouseBids`](#213-allowhousebids).
+
+### 2.13. allowHouseBids
+
+Since Prebid.js 11.45, `allowHouseBids: true` is a narrower form of [`allowZeroCpmBids`](#27-allowzerocpmbids): it lets an adapter's house bids be accepted at a CPM of 0, without accepting its other 0 CPM bids. A 0 CPM bid is accepted as a house bid when:
+
+* the adapter also has [`allowPriorityBids`](#212-allowprioritybids) (for Prebid Server bidders, it's listed in [`s2sConfig.allowPriorityBids`](/dev-docs/modules/prebidServer.html)), and
+* its `meta.deal.type` is `4` (house) or its `meta.deal.priority` is above the default of 12.
+
+Notes:
+
+* If the adapter has `allowZeroCpmBids`, `allowHouseBids` has no effect, since every 0 CPM bid is already accepted.
+* House bids are ranked like any other bid. Prebid.js doesn't assign a priority based on the deal type: a house bid takes its `meta.deal.priority` if it has one, otherwise the default 12. At the default priority, a house bid competes on desirability, so a 0 CPM bid usually loses to any bid with a positive CPM, but a `priorityAdjustedCpm` or [`bidDesirabilityAdjustment`](#23-biddesirabilityadjustment) can raise it. Send a priority above 12 for house campaigns that should only fill when nothing else bids.
+* The setting must be on the adapter that made the request, and `standard` is ignored. When an adapter bids with an [alternate bidder code](#29-allowalternatebiddercodes), the setting is read from the adapter, not the alternate code.
+* Like `allowZeroCpmBids`, and unlike `allowPriorityBids`, the setting is read from `bidderSettings` for Prebid Server bidders too. There is no `s2sConfig` option, and nothing is sent to Prebid Server.
+* If a 0 CPM house bid wins and its targeting is sent to an ad server, its price bucket (`hb_pb`) is the granularity's zero bucket (for example `0.00`), so that ad server needs a matching line item.
+
+```javascript
+pbjs.bidderSettings = {
+    exampleAdServer: {
+        allowPriorityBids: true,
+        allowHouseBids: true
+    }
+};
+```
 
 <hr class="full-rule" />
