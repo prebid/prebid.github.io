@@ -38,9 +38,9 @@ This is the minimal list of params for integrating with Ogury:
 
 {: .table .table-bordered .table-striped }
 
-| Name       | Scope    | Description                           | Example                                  | Type     |
-|------------|----------|---------------------------------------|------------------------------------------|----------|
-| `assetKey` | required | The asset key provided by Ogury       | `'OGY-CA41D116484F'`                     | `string` |
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| `assetKey` | required | The asset key provided by Ogury | `'OGY-CA41D116484F'` | `string` |
 | `adUnitId` | required | Your ad unit id configured with Ogury | `'2c4d61d0-90aa-0139-0cda-0242ac120004'` | `string` |
 
 NOTE: You don't need these params to integrate with Ogury, see [inventory mapping](#inventory-mapping)

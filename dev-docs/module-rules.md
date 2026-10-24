@@ -17,7 +17,7 @@ several kinds of modules built by the community to enhance header bidding:
 
 {: .table .table-bordered .table-striped }
 | Module Type | Description | Scope |
-|-------------|-------------|-------|
+| --- | --- | --- |
 | Bid Adapter | Obtains Open Market or Private Market bids for the current ad request. | Prebid.js, Prebid Server |
 | Analytics Adapter | Listens to auction events and reports to an analytics system. | Prebid.js, Prebid Server |
 | User ID Sub-Module | Obtains an ID for this user and makes that ID available to other types of modules. | Prebid.js |

@@ -30,22 +30,22 @@ The publisher id 0000-0000-01 returns demo responses.
 
 {: .table .table-bordered .table-striped }
 
-| Name              | Scope               | Description                                                                    | Example               | Type     |
-|-------------------|---------------------|--------------------------------------------------------------------------------|-----------------------|----------|
-| `publisherId`     | required            | The publisher id.                                                              | 0000-0000-01          | `string` |
-| `adUnitId`        | optional            | The adunit id.                                                                 | 00000                 | `string` |
-| `placement`       | optional            | Adunit placement, posibles values: inScreen, inArticle                         | inScreen              | `string` |
-| `integrationType` | optional            | IntegrationType. Posibles values: publisherToken, ronId                        | publisherToken        | `string` |
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| `publisherId` | required | The publisher id. | 0000-0000-01 | `string` |
+| `adUnitId` | optional | The adunit id. | 00000 | `string` |
+| `placement` | optional | Adunit placement, posibles values: inScreen, inArticle | inScreen | `string` |
+| `integrationType` | optional | IntegrationType. Posibles values: publisherToken, ronId | publisherToken | `string` |
 
 ## Bid Params (pbs)
 
 {: .table .table-bordered .table-striped }
 
-| Name              | Scope               | Description                                                                    | Example               | Type     |
-|-------------------|---------------------|--------------------------------------------------------------------------------|-----------------------|----------|
-| `adUnitId`        | optional            | The adunit id (required if not RON id integration).                            | 00000                 | `string` |
-| `publisherId`     | optional            | The publisher id (required for RON id integration).                            | 00000                 | `string` |
-| `integrationType` | optional            | IntegrationType. Posibles values: ronId (not set in other case)                | ronId                 | `string` |
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| `adUnitId` | optional | The adunit id (required if not RON id integration). | 00000 | `string` |
+| `publisherId` | optional | The publisher id (required for RON id integration). | 00000 | `string` |
+| `integrationType` | optional | IntegrationType. Posibles values: ronId (not set in other case) | ronId | `string` |
 
 ## InScreen example
 

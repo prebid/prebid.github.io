@@ -396,12 +396,12 @@ There are a number of important values that a publisher expects to be handled in
 
 {: .table .table-bordered .table-striped }
 
-| Parameter | Description                                   | Example               |
-| ----- | ------------ | ---------- |
+| Parameter | Description | Example |
+| --- | --- | --- |
 | Ad Server Currency | If your endpoint supports responding in different currencies, read this value. | config.getConfig('currency.adServerCurrency') |
 | Bidder Timeout | Use if your endpoint needs to know how long the page is allowing the auction to run. | bidderRequest.timeout; |
 | COPPA | If your endpoint supports the Child Online Privacy Protection Act, you should read this value. | bidderRequest.ortb2.regs.coppa; |
-| First Party Data | The publisher, as well as a number of modules, may provide [first party data](/features/firstPartyData.html) (e.g. page type). | bidderRequest.ortb2; validBidRequests[].ortb2Imp|
+| First Party Data | The publisher, as well as a number of modules, may provide [first party data](/features/firstPartyData.html) (e.g. page type). | bidderRequest.ortb2; validBidRequests[].ortb2Imp |
 | Floors | Adapters that accept a floor parameter must also support the [floors module](https://docs.prebid.org/dev-docs/modules/floors.html) | [`bidRequest.getFloor()`](/dev-docs/modules/floors.html#bid-adapter-interface) |
 | Page URL and referrer | Instead of building your own function to find the page location, domain, or referrer, look in the standard bidRequest location. | bidderRequest.refererInfo.page |
 | [Supply Chain](/dev-docs/modules/schain.html) | Adapters cannot accept an schain parameter. Rather, they must look for the schain parameter at bidRequest.schain. | bidRequest.schain |
@@ -431,11 +431,11 @@ ServerRequest objects. These objects have this structure:
 
 {: .table .table-bordered .table-striped }
 
-| Attribute | Type             | Description                                                        | Example Value               |
-|-----------+------------------+--------------------------------------------------------------------+-----------------------------|
-| `method`  | String           | Which HTTP method should be used.                                  | `POST`                      |
-| `url`     | String           | The endpoint for the request.                                      | `"https://bids.example.com"` |
-| `data`    | String or Object | Data to be sent in the POST request. Objects will be sent as JSON. |                             |
+| Attribute | Type | Description | Example Value |
+| -----------+------------------+--------------------------------------------------------------------+----------------------------- |
+| `method` | String | Which HTTP method should be used. | `POST` |
+| `url` | String | The endpoint for the request. | `"https://bids.example.com"` |
+| `data` | String or Object | Data to be sent in the POST request. Objects will be sent as JSON. | |
 
 Here's a sample block of code returning a ServerRequest object:
 
@@ -513,44 +513,44 @@ The parameters of the `bidResponse` object are:
 
 {: .table .table-bordered .table-striped }
 
-| Key          | Scope                                       | Description                                                                                                                                   | Example                              |
-|--------------+---------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------|
-| `requestId`  | Required                                       | The bid ID that was sent to `spec.buildRequests` as `bidRequests[].bidId`. Used to tie this bid back to the request.                          | 12345                                |
-| `cpm`        | Required                                       | The bid price. We recommend the most granular price a bidder can provide                                                                      | 3.5764                               |
-| `currency`   | Required                                       | 3-letter ISO 4217 code defining the currency of the bid.                                                                                      | `"EUR"`                              |
-| `width`      | Required except when using `wratio` / `hratio` | The width of the returned creative. For video, this is the player width.                                                                      | 300                                  |
-| `height`     | Required except when using `wratio` / `hratio` | The height of the returned creative. For video, this is the player height.                                                                    | 250                                  |
-| `wratio`     | Required for flex ads                          | For flexible banner only, the relative width of the creative                                                                                 | 6                                    |
-| `hratio`     | Required for flex ads                          | For flexible banner only, the relative height of the creative                                                                                | 5                                    |
-| `ad`         | Required                                    | The creative payload of the returned bid.                                                                                                     | `"<html><h3>I am an ad</h3></html>"` |
-| `ttl`        | Required                                    | Time-to-Live - how long (in seconds) Prebid can use this bid. See the [FAQ entry](/dev-docs/faq.html#does-prebidjs-cache-bids) for more info.   | 360                                  |
-| `creativeId` | Required                                    | A bidder-specific unique code that supports tracing the ad creative back to the source.                                                       | `"123abc"`                           |
-| `netRevenue` | Required                                    | Boolean defining whether the bid is Net or Gross. The value `true` is Net. Bidders responding with Gross-price bids should set this to false. | `false`                              |
-| `vastUrl`    | Either this or `vastXml` required for video | URL where the VAST document can be retrieved when ready for display.                                                                          | `"https://vid.example.com/9876`       |
-| `vastImpUrl` | Optional; only usable with `vastUrl` and requires prebid cache to be enabled | An impression tracking URL to serve with video Ad                                                                                             | `"https://vid.exmpale.com/imp/134"`   |
-| `vastXml`    | Either this or `vastUrl` required for video | XML for VAST document to be cached for later retrieval.                                                                                       | `<VAST version="3.0">...`            |
-| `bidderCode` | Optional                                    | Bidder code to use for the response - for adapters that wish to reply on behalf of other bidders. Defaults to the code registered with [`registerBidder`](#bidder-adaptor-Overview); note that any other code will need to be [explicitly allowed by the publisher](/dev-docs/publisher-api-reference/bidderSettings.html#allowAlternateBidderCodes). | 'exampleBidder' |  
-| `dealId`     | Optional                                    | Deal ID                                                                                                                                       | `"123abc"`                           |
-| `meta`                   | Optional     | Object containing metadata about the bid                                                                                                                         |                                      |
-| `meta.networkId`         | Optional     | Bidder-specific Network/DSP Id               | `"1111"`             |
-| `meta.networkName`       | Optional     | Network/DSP Name               | `"NetworkN"`                |
-| `meta.agencyId`          | Optional     | Bidder-specific Agency ID               | `"2222"`                          |
-| `meta.agencyName`        | Optional     | Agency Name     | `"Agency, Inc."`           |
-| `meta.advertiserId`      | Optional     | Bidder-specific Advertiser ID     | `"3333"`                         |
-| `meta.advertiserName`    | Optional     | Advertiser Name               | `"AdvertiserA"`                          |
-| `meta.advertiserDomains` | Required(*)  | Array of Advertiser Domains for the landing page(s). This is an array that aligns with the OpenRTB 'adomain' field. See note below this table. | `["advertisera.com"]`     |
-| `meta.brandId`           | Optional     | Bidder-specific Brand ID (some advertisers may have many brands)                                                                                                   | `"4444"`                    |
-| `meta.brandName`         | Optional     | Brand Name                                   | `"BrandB"`                          |
-| `meta.demandSource`      | Optional     | Demand Source (Some adapters may functionally serve multiple SSPs or exchanges, and this would specify which)                                  | `"SourceB"`
-| `meta.dchain`            | Optional     | Demand Chain Object                                   | `{ 'ver': '1.0', 'complete': 0, 'nodes': [ { 'asi': 'magnite.com', 'bsid': '123456789', } ] }`                          |
-| `meta.dsa`               | Optional     | The [IAB DSA response object](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/dsa_transparency.md) for the Digital Services Act (DSA) | `{ 'behalf': 'sample text', 'paid': 'sample value', 'transparency': [{ 'domain': 'sample domain', 'params': [1, 2] }], 'adrender': 1 }` | 
-| `meta.primaryCatId`      | Optional     | Primary [IAB category ID](https://www.iab.com/guidelines/iab-quality-assurance-guidelines-qag-taxonomy/)               |  `"IAB-111"`                         |
-| `meta.secondaryCatIds`   | Optional     | Array of secondary IAB category IDs      | `["IAB-222","IAB-333"]`       |
-| `meta.mediaType`         | Optional     | "banner", "native", or "video" - this should be set in scenarios where a bidder responds to a "banner" mediaType with a creative that's actually a video (e.g. outstream) or native. | `"native"`  |
-| `eventtrackers`          | Optional     | Array of objects in the same format as [ORTB native section 5.8, "Event Tracker Response Object"](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf) |  `[{event: 500, method: 1, url: "https://www.example.com/track"]}]` |
-| `eventtrackers[].event`   | Required     | Event type. Prebid.js will fire tracking pixels for `500` (bid won) and `1` (bid was rendered). |    `500`      |
-| `eventtrackers[].method` | Required     | Tracking method. Prebid.js only fires image pixels (`1`)                                        |    `1`        |
-| `eventtrackers[].url`    | Required     | Tracker URL                                                                                      | `https//www.example.com/track` |
+| Key | Scope | Description | Example |
+| --------------+---------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------- |
+| `requestId` | Required | The bid ID that was sent to `spec.buildRequests` as `bidRequests[].bidId`. Used to tie this bid back to the request. | 12345 |
+| `cpm` | Required | The bid price. We recommend the most granular price a bidder can provide | 3.5764 |
+| `currency` | Required | 3-letter ISO 4217 code defining the currency of the bid. | `"EUR"` |
+| `width` | Required except when using `wratio` / `hratio` | The width of the returned creative. For video, this is the player width. | 300 |
+| `height` | Required except when using `wratio` / `hratio` | The height of the returned creative. For video, this is the player height. | 250 |
+| `wratio` | Required for flex ads | For flexible banner only, the relative width of the creative | 6 |
+| `hratio` | Required for flex ads | For flexible banner only, the relative height of the creative | 5 |
+| `ad` | Required | The creative payload of the returned bid. | `"<html><h3>I am an ad</h3></html>"` |
+| `ttl` | Required | Time-to-Live - how long (in seconds) Prebid can use this bid. See the [FAQ entry](/dev-docs/faq.html#does-prebidjs-cache-bids) for more info. | 360 |
+| `creativeId` | Required | A bidder-specific unique code that supports tracing the ad creative back to the source. | `"123abc"` |
+| `netRevenue` | Required | Boolean defining whether the bid is Net or Gross. The value `true` is Net. Bidders responding with Gross-price bids should set this to false. | `false` |
+| `vastUrl` | Either this or `vastXml` required for video | URL where the VAST document can be retrieved when ready for display. | `"https://vid.example.com/9876` |
+| `vastImpUrl` | Optional; only usable with `vastUrl` and requires prebid cache to be enabled | An impression tracking URL to serve with video Ad | `"https://vid.exmpale.com/imp/134"` |
+| `vastXml` | Either this or `vastUrl` required for video | XML for VAST document to be cached for later retrieval. | `<VAST version="3.0">...` |
+| `bidderCode` | Optional | Bidder code to use for the response - for adapters that wish to reply on behalf of other bidders. Defaults to the code registered with [`registerBidder`](#bidder-adaptor-Overview); note that any other code will need to be [explicitly allowed by the publisher](/dev-docs/publisher-api-reference/bidderSettings.html#allowAlternateBidderCodes). | 'exampleBidder' |
+| `dealId` | Optional | Deal ID | `"123abc"` |
+| `meta` | Optional | Object containing metadata about the bid | |
+| `meta.networkId` | Optional | Bidder-specific Network/DSP Id | `"1111"` |
+| `meta.networkName` | Optional | Network/DSP Name | `"NetworkN"` |
+| `meta.agencyId` | Optional | Bidder-specific Agency ID | `"2222"` |
+| `meta.agencyName` | Optional | Agency Name | `"Agency, Inc."` |
+| `meta.advertiserId` | Optional | Bidder-specific Advertiser ID | `"3333"` |
+| `meta.advertiserName` | Optional | Advertiser Name | `"AdvertiserA"` |
+| `meta.advertiserDomains` | Required(*) | Array of Advertiser Domains for the landing page(s). This is an array that aligns with the OpenRTB 'adomain' field. See note below this table. | `["advertisera.com"]` |
+| `meta.brandId` | Optional | Bidder-specific Brand ID (some advertisers may have many brands) | `"4444"` |
+| `meta.brandName` | Optional | Brand Name | `"BrandB"` |
+| `meta.demandSource` | Optional | Demand Source (Some adapters may functionally serve multiple SSPs or exchanges, and this would specify which) | `"SourceB"` |
+| `meta.dchain` | Optional | Demand Chain Object | `{ 'ver': '1.0', 'complete': 0, 'nodes': [ { 'asi': 'magnite.com', 'bsid': '123456789', } ] }` |
+| `meta.dsa` | Optional | The [IAB DSA response object](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/dsa_transparency.md) for the Digital Services Act (DSA) | `{ 'behalf': 'sample text', 'paid': 'sample value', 'transparency': [{ 'domain': 'sample domain', 'params': [1, 2] }], 'adrender': 1 }` |
+| `meta.primaryCatId` | Optional | Primary [IAB category ID](https://www.iab.com/guidelines/iab-quality-assurance-guidelines-qag-taxonomy/) | `"IAB-111"` |
+| `meta.secondaryCatIds` | Optional | Array of secondary IAB category IDs | `["IAB-222","IAB-333"]` |
+| `meta.mediaType` | Optional | "banner", "native", or "video" - this should be set in scenarios where a bidder responds to a "banner" mediaType with a creative that's actually a video (e.g. outstream) or native. | `"native"` |
+| `eventtrackers` | Optional | Array of objects in the same format as [ORTB native section 5.8, "Event Tracker Response Object"](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf) | `[{event: 500, method: 1, url: "https://www.example.com/track"]}]` |
+| `eventtrackers[].event` | Required | Event type. Prebid.js will fire tracking pixels for `500` (bid won) and `1` (bid was rendered). | `500` |
+| `eventtrackers[].method` | Required | Tracking method. Prebid.js only fires image pixels (`1`) | `1` |
+| `eventtrackers[].url` | Required | Tracker URL | `https//www.example.com/track` |
 
 {: .alert.alert-info :}
 **Note:** bid adapters must be coded to accept the 'advertiserDomains' parameter from their endpoint even if that endpoint doesn't currently respond with that value.
@@ -788,8 +788,8 @@ If the alias entry is an object, the following attributes are supported:
 
 {: .table .table-bordered .table-striped }
 
-| Name  | Scope | Description   | Type      |
-|-------|-------|---------------|-----------|
+| Name | Scope | Description | Type |
+| --- | --- | --- | --- |
 | `code` | required | shortcode/partner name | `string` |
 | `gvlid` | optional | global vendor list id of company scoped to alias | `integer` |
 | `skipPbsAliasing` | optional | ability to skip passing spec.code to prebid server in request extension. In case you have a prebid server adapter with the name same as the alias/shortcode. Default value: `false` | `boolean` |
@@ -1000,11 +1000,11 @@ If the demand partner is going to use Prebid API for this process, their adapter
 
 {: .table .table-bordered .table-striped }
 
-| Key             | Scope    | Description                                                                                        | Example                    |
-|-----------------|----------|----------------------------------------------------------------------------------------------------|----------------------------|
-| `url`             | Required | The URL to the mapping file.                                                                       | `"//example.com/mapping.json"` |
-| `refreshInDays`   | Optional | A number representing the number of days before the mapping values are updated. Default value is 1 | `7`                        |
-| `localStorageKey` | Optional | A unique key to store the mapping file in local storage. Default value is bidder code.             | `"uniqueKey"`                  |
+| Key | Scope | Description | Example |
+| --- | --- | --- | --- |
+| `url` | Required | The URL to the mapping file. | `"//example.com/mapping.json"` |
+| `refreshInDays` | Optional | A number representing the number of days before the mapping values are updated. Default value is 1 | `7` |
+| `localStorageKey` | Optional | A unique key to store the mapping file in local storage. Default value is bidder code. | `"uniqueKey"` |
 
 **Example**
 
@@ -1030,10 +1030,10 @@ getIabSubCategory(bidderCode, pCategory)
 
 {: .table .table-bordered .table-striped }
 
-| Key          | Scope    | Description                                   | Example               |
-|--------------|----------|-----------------------------------------------|-----------------------|
-| `bidderCode` | Required | BIDDER_CODE defined in spec.                  | `"sample-biddercode"` |
-| `pCategory`  | Required | Proprietary category returned in bid response | `"sample-category"`   |
+| Key | Scope | Description | Example |
+| --- | --- | --- | --- |
+| `bidderCode` | Required | BIDDER_CODE defined in spec. | `"sample-biddercode"` |
+| `pCategory` | Required | Proprietary category returned in bid response | `"sample-category"` |
 
 **Example**
 
@@ -1402,9 +1402,9 @@ The Example Bidding adapter requires setup before beginning. Please contact us a
 
 {: .table .table-bordered .table-striped }
 
-| Name          | Scope    | Description           | Example   | Type      |
-|---------------|----------|-----------------------|-----------|-----------|
-| `placement`      | required | Placement id         | `'11111'`    | `string` |
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| `placement` | required | Placement id | `'11111'` | `string` |
 ```
 
 Within a few days, the code pull request will be assigned to a developer for review.
