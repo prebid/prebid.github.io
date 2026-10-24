@@ -37,7 +37,3 @@ The following examples are available:
 
 - [Google Ad Manager](/examples/video/outstream/pb-ve-outstream-dfp.html)
 - [No Server](/examples/video/outstream/pb-ve-outstream-no-server.html)
-
-## Long-Form (Ad Pods)
-
-- [Freewheel](/examples/video/long-form/pb-ve-lf-freewheel.html)
