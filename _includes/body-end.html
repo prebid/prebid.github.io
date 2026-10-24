@@ -1,24 +1,16 @@
-<script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
-<script type="text/javascript"> docsearch({
-  apiKey: '7777b1f98e980527606d00e705ff3d6f',
-  appId: 'FN26QH8JE9',
-  indexName: 'prebid',
-  container: '.pb-header .c-search',
-  algoliaOptions: {
-    // 'facetFilters': ["tags:$TAGS"]
-    hitsPerPage: 30,
-  },
-  transformData: function(hits) {
-    var returned_hits = { };
-    hits.forEach( function(hit) {
-      var url = new URL(hit.url);
-      var key = url.origin + url.pathname;
-      if ( !returned_hits[key] ) {
-        returned_hits[key] = hit;
-      }
-    } );
-    return Object.values(returned_hits);
-  },
-  debug: false // Set debug to true if you want to inspect the dropdown
-});
-</script>
+<!-- Pagefind search modal, added to the page by the script in head--common.html -->
+<template id="pagefind-modal-template">
+  <pagefind-modal reset-on-close>
+    <pagefind-modal-header>
+      <pagefind-input placeholder="Search Prebid docs"></pagefind-input>
+    </pagefind-modal-header>
+    <pagefind-modal-body>
+      <pagefind-filter-dropdown filter="section" label="Section" sort="count-desc"></pagefind-filter-dropdown>
+      <pagefind-summary></pagefind-summary>
+      <pagefind-results max-sub-results="3"></pagefind-results>
+    </pagefind-modal-body>
+    <pagefind-modal-footer>
+      <pagefind-keyboard-hints></pagefind-keyboard-hints>
+    </pagefind-modal-footer>
+  </pagefind-modal>
+</template>
