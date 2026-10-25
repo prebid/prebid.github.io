@@ -1,7 +1,7 @@
 ---
 layout: page_v2
 title: Prebid Video Examples
-description: This section provides examples of instream, outstream and long-form videos with Prebid.js.
+description: This section provides examples of instream and outstream video ads with Prebid.js.
 sidebarType: 4
 ---
 
