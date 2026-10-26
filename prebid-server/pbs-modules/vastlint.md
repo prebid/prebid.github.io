@@ -18,7 +18,7 @@ The VASTlint module validates the VAST, VMAP or DAAST markup of every video bid 
 
 No external service is involved and no network call is made. Only video bids with XML markup within a configured size reach the engine; URL markup, oversized markup and non-XML markup are counted and kept. An engine failure or a hook timeout never removes a bid.
 
-Maintainer contact: dev@vastlint.org. Source and issues: [github.com/aleksUIX/vastlint](https://github.com/aleksUIX/vastlint).
+Maintainer contact: dev@vastlint.org. Source and issues: [aleksUIX vastlint GitHub repo](https://github.com/aleksUIX/vastlint).
 
 ## Prerequisites
 
