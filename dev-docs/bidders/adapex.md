@@ -28,7 +28,7 @@ privacy_sandbox: no
 
 ## Note
 
-The Adapex bidder adapter connects publishers to the Adapex programmatic exchange over OpenRTB 2.x and supports banner, video and native. Contact <prebid@floxis.tech> to set up an account and obtain a seat.
+The Adapex bidder adapter connects publishers to the Adapex programmatic exchange over OpenRTB 2.x and supports banner, video and native. Contact <prebid@adapex.io> to set up an account and obtain a seat.
 
 ## Bid Params
 
