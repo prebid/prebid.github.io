@@ -18,7 +18,7 @@ The VASTlint module validates the VAST, VMAP or DAAST markup of every video bid 
 
 No external service is involved and no network call is made. Only video bids with XML markup within a configured size reach the engine; URL markup, oversized markup and non-XML markup are counted and kept. An engine failure or a hook timeout never removes a bid.
 
-Maintainer contact: dev@vastlint.org. Source and issues: [aleksUIX vastlint GitHub repo](https://github.com/aleksUIX/vastlint).
+Maintainer contact: [dev@vastlint.org](mailto:dev@vastlint.org). Source and issues: [aleksUIX vastlint GitHub repo](https://github.com/aleksUIX/vastlint).
 
 ## Prerequisites
 
@@ -91,7 +91,7 @@ The hook group timeout is the budget for validating all video bids of one bidder
 
 {: .table .table-bordered .table-striped }
 | Field | Type | Default | Description |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `mode` | string | `monitor` | `async`, `monitor` or `reject`. See Modes. |
 | `reject_on` | list of strings | empty | Rule ids that drop a bid in reject mode. Empty drops nothing. |
 | `rules` | object | empty | Rule level overrides: rule id to `error`, `warning`, `info` or `off`. |
@@ -131,9 +131,9 @@ Account `rules` are merged over the host's per rule id; the other fields replace
 
 ## Modes
 
-- **async** (recommended): the hook queues each eligible creative and returns at once; workers validate after the auction has moved on. Nothing on the bid changes and the hook never waits for the engine. With the cache on, the next sighting of the same creative is reported with its verdict in the analytics tags.
-- **monitor**: validate on the bid path, annotate each checked bid with `bid.ext.vastlint`, report through analytics tags. Nothing is removed.
-- **reject**: as monitor, and a bid whose findings include any rule in `reject_on` is removed from the bidder response. Only listed rules drop bids; an invalid document with no listed rule is kept and annotated. The module never rejects a whole response.
+* **async** (recommended): the hook queues each eligible creative and returns at once; workers validate after the auction has moved on. Nothing on the bid changes and the hook never waits for the engine. With the cache on, the next sighting of the same creative is reported with its verdict in the analytics tags.
+* **monitor**: validate on the bid path, annotate each checked bid with `bid.ext.vastlint`, report through analytics tags. Nothing is removed.
+* **reject**: as monitor, and a bid whose findings include any rule in `reject_on` is removed from the bidder response. Only listed rules drop bids; an invalid document with no listed rule is kept and annotated. The module never rejects a whole response.
 
 ## Analytics tags
 
@@ -141,7 +141,7 @@ Each hook result carries one activity named `vast_validation` with one result pe
 
 {: .table .table-bordered .table-striped }
 | Field | Values |
-|---|---|
+| --- | --- |
 | activity `status` | `success`; `error` when no eligible bid could be validated |
 | result `status` | `success-modify` when the bid was annotated, `success-allow` when it was checked, queued or skipped, `success-block` when it was dropped, `error` when the engine failed on it |
 | `values.action` | `checked`, `dropped`, `skipped_url`, `skipped_size`, `skipped_not_xml`, `sampled_out`, `engine_error`, `queued`, `queue_full` |
@@ -188,4 +188,4 @@ The module reads only the creative markup of video bids and the bidder code. It 
 
 ## Maintainer
 
-[vastlint](https://vastlint.org) maintainers, dev@vastlint.org. Module source: [modules/vastlint/validation](https://github.com/prebid/prebid-server/tree/master/modules/vastlint/validation).
+[vastlint](https://vastlint.org) maintainers, [dev@vastlint.org](mailto:dev@vastlint.org). Module source: [modules/vastlint/validation](https://github.com/prebid/prebid-server/tree/master/modules/vastlint/validation).
