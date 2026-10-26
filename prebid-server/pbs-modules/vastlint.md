@@ -16,7 +16,7 @@ sidebarType: 5
 
 The VASTlint module validates the VAST, VMAP or DAAST markup of every video bid at the `raw_bidder_response` stage, inside the Prebid Server process, using the [vastlint](https://vastlint.org) rule set (246 rules covering IAB VAST 2.0 through 4.3 and the 4.4 draft, VMAP 1.0, DAAST 1.0, SIMID, Open Measurement and the CTV Addendum 2024). It can validate off the bid path (async mode, recommended), report findings on the bid path (monitor mode), or drop bids that trip chosen rules (reject mode). Findings are delivered through analytics tags and, in monitor and reject modes, through `bid.ext.vastlint`.
 
-No external service is involved and no network call is made. Only video bids with XML markup within a configured size reach the engine; URL markup, oversized markup and non-XML markup are counted and kept. An engine failure or a hook timeout never removes a bid.
+No external service is involved and no network call is made. Only bids with `BidType` video or `bid.mtype` 2 whose markup is UTF-8 XML within a configured size reach the engine; URL markup, oversized, non-XML and non-UTF-8 markup are counted and kept. An engine failure or a hook timeout never removes a bid.
 
 Maintainer contact: [dev@vastlint.org](mailto:dev@vastlint.org). Source and issues: [aleksUIX vastlint GitHub repo](https://github.com/aleksUIX/vastlint).
 
@@ -42,6 +42,7 @@ hooks:
   modules:
     vastlint:
       validation:
+        enabled: true
         mode: async
         cache_size: 33554432
   host_execution_plan:
@@ -62,7 +63,7 @@ In JSON:
 {
   "hooks": {
     "enabled": true,
-    "modules": {"vastlint": {"validation": {"mode": "async", "cache_size": 33554432}}},
+    "modules": {"vastlint": {"validation": {"enabled": true, "mode": "async", "cache_size": 33554432}}},
     "host_execution_plan": {
       "endpoints": {
         "/openrtb2/auction": {
@@ -85,16 +86,19 @@ In JSON:
 }
 ```
 
-The hook group timeout is the budget for validating all video bids of one bidder response in monitor and reject modes. When it is exceeded the framework leaves that bidder response untouched, so reject mode is best effort under timeout. Async mode returns in microseconds and is not affected.
+The hook group timeout is the budget for validating all video bids of one bidder response in monitor and reject modes. When it is exceeded the framework discards the whole hook result for that bidder response (annotations, drops and analytics tags), so reject mode is best effort under timeout; the cost of one creative grows with its size and element count, about 0.1 ms per KB of dense markup on the default engine, which `max_document_bytes` bounds. Async mode returns in microseconds and is not affected.
+
+Give the module its own group, after any module that also replaces the bid list (`prebid.ortb2blocking` does): hooks in one group run concurrently on the same payload and the later change set replaces the earlier one's bids.
 
 ## Configuration
 
 {: .table .table-bordered .table-striped }
 | Field | Type | Default | Description |
 | --- | --- | --- | --- |
+| `enabled` | boolean | false | Turns the module on. |
 | `mode` | string | `monitor` | `async`, `monitor` or `reject`. See Modes. |
-| `reject_on` | list of strings | empty | Rule ids that drop a bid in reject mode. Empty drops nothing. |
-| `rules` | object | empty | Rule level overrides: rule id to `error`, `warning`, `info` or `off`. |
+| `reject_on` | list of strings | empty | Rule ids that drop a bid in reject mode. Empty drops nothing. Matched case-insensitively. |
+| `rules` | list or object | empty | Rule level overrides to `error`, `warning`, `info` or `off`. In YAML or environment configuration use the list form `["VAST-2.0-adsystem-no-version=off"]`, since those loaders lowercase keys and split them on dots; in JSON and account configuration an object keyed by rule id also works. |
 | `max_document_bytes` | integer | 262144 | Larger creatives are skipped and kept. |
 | `sample_percent` | integer | 100 | Share of eligible bids validated in monitor and async modes. Reject mode checks every bid. |
 | `annotate_bids` | boolean | true | Write the summary to `bid.ext.vastlint` (monitor and reject modes). |
@@ -144,9 +148,10 @@ Each hook result carries one activity named `vast_validation` with one result pe
 | --- | --- |
 | activity `status` | `success`; `error` when no eligible bid could be validated |
 | result `status` | `success-modify` when the bid was annotated, `success-allow` when it was checked, queued or skipped, `success-block` when it was dropped, `error` when the engine failed on it |
-| `values.action` | `checked`, `dropped`, `skipped_url`, `skipped_size`, `skipped_not_xml`, `sampled_out`, `engine_error`, `queued`, `queue_full` |
+| `values.action` | `checked`, `dropped`, `skipped_url`, `skipped_size`, `skipped_not_xml`, `skipped_not_utf8`, `sampled_out`, `engine_error`, `queued`, `queue_full` |
 | `values.valid` | true when the creative has no error-level finding (checked and dropped bids) |
 | `values.input_status` | `supported`, `unsupported` or `malformed` |
+| `values.document_type`, `values.document_version` | `VAST`, `VMAP` or `DAAST` and the declared version |
 | `values.errors`, `values.warnings`, `values.infos` | finding counts by severity |
 | `values.rules` | the distinct rule ids that fired |
 | `values.cache` | `hit` or `miss`, when the cache is on |
@@ -163,16 +168,18 @@ Kept bids in monitor and reject modes carry the same summary on the bid:
   "vastlint": {
     "valid": false,
     "input_status": "supported",
+    "document_type": "VAST",
+    "document_version": "4.2",
     "errors": 1,
     "warnings": 3,
     "infos": 0,
     "rules": ["VAST-2.0-inline-impression", "VAST-2.0-adsystem-no-version"],
-    "version": "0.16.0"
+    "engine_version": "0.16.0"
   }
 }
 ```
 
-`version` is the engine version whose rule catalog produced the verdict.
+`engine_version` is the engine whose rule catalog produced the verdict. A `vastlint` key that a bidder put in `ext` itself is removed in every mode, so a verdict in the response can only come from this module.
 
 ## Metrics and logs
 
