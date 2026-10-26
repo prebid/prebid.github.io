@@ -409,12 +409,14 @@ Most ad servers shouldn't need to set a `priority` on reservation deals. Leaving
 Since Prebid.js 11.45, `allowHouseBids: true` is a narrower form of [`allowZeroCpmBids`](#27-allowzerocpmbids): it lets an adapter's house bids be accepted at a CPM of 0, without accepting its other 0 CPM bids. A 0 CPM bid is accepted as a house bid when:
 
 * the adapter also has [`allowPriorityBids`](#212-allowprioritybids) (for Prebid Server bidders, it's listed in [`s2sConfig.allowPriorityBids`](/dev-docs/modules/prebidServer.html)), and
-* its `meta.deal.type` is `4` (house) or its `meta.deal.priority` is above the default of 12.
+* its `meta.deal.priority` is above the default of 12.
+
+`meta.deal.type` isn't considered, since any bidder could declare a house deal: the ad server must send a priority above 12 for its house campaigns.
 
 Notes:
 
 * If the adapter has `allowZeroCpmBids`, `allowHouseBids` has no effect, since every 0 CPM bid is already accepted.
-* House bids are ranked like any other bid. Prebid.js doesn't assign a priority based on the deal type: a house bid takes its `meta.deal.priority` if it has one, otherwise the default 12. At the default priority, a house bid competes on desirability, so a 0 CPM bid usually loses to any bid with a positive CPM, but a `priorityAdjustedCpm` or [`bidDesirabilityAdjustment`](#23-biddesirabilityadjustment) can raise it. Send a priority above 12 for house campaigns that should only fill when nothing else bids.
+* House bids are ranked like any other priority bid: by their `meta.deal.priority`. Since that's above 12, a house bid only wins when nothing at the default or a higher priority bids.
 * The setting must be on the adapter that made the request, and `standard` is ignored. When an adapter bids with an [alternate bidder code](#29-allowalternatebiddercodes), the setting is read from the adapter, not the alternate code.
 * Like `allowZeroCpmBids`, and unlike `allowPriorityBids`, the setting is read from `bidderSettings` for Prebid Server bidders too. There is no `s2sConfig` option, and nothing is sent to Prebid Server.
 * If a 0 CPM house bid wins and its targeting is sent to an ad server, its price bucket (`hb_pb`) is the granularity's zero bucket (for example `0.00`), so that ad server needs a matching line item.
