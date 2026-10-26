@@ -61,7 +61,7 @@ Ads are served when all of the following conditions are satisfied:
 | `minduration`, `maxduration`, `protocols` | recommended | Some demand partners require them.   |
 
 - If the video part has no `mimes`, a multiformat ad unit is sent as banner only and a video-only ad unit is rejected.
-- Geniee does not provide an outstream renderer. You will need to set up your own. See [Show Outstream Video Ads](/dev-docs/show-outstream-video-ads.html) for more information.
+- Geniee does not provide an outstream renderer. You will need to set up your own. See [Show Outstream Video Ads](https://docs.prebid.org/dev-docs/show-outstream-video-ads.html) for more information.
 - A video bid whose response lacks `w` or `h` takes the requested `playerSize` for both.
 - Floors: with the Price Floors module, a multiformat ad unit sends the lower of its banner and video floors as `imp.bidfloor`; if either has no floor, no floor is sent.
 
