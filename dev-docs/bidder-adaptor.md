@@ -825,8 +825,12 @@ If the alias entry is an object, the following attributes are supported:
 | --- | --- | --- | --- |
 | `code` | required | shortcode/partner name | `string` |
 | `gvlid` | optional | global vendor list id of company scoped to alias | `integer` |
-| `acpId` | optional | Google Additional Consent provider ID of the company scoped to alias | `integer` |
 | `skipPbsAliasing` | optional | If `true`, don't declare this alias to Prebid Server. See [skipPbsAliasing](#skippbsaliasing) below. Default value: `false` | `boolean` |
+
+{: .alert.alert-info :}
+Note on aliases and TCF Global Vendor List IDs: if an alias entry does not have its own GVLID but wishes to claim GDPR support,
+the documentation entry (The file in <https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders>) must list the GVLID of the main adapter with that company's name in parentheses.
+Look for other doc entries containing an `aliasCode` metadata entry.
 
 #### skipPbsAliasing
 
@@ -837,11 +841,6 @@ Only set it when Prebid Server already has its own adapter or hard-coded alias w
 Don't set it otherwise. If Prebid Server has no adapter or alias with that name, it can't resolve the bidder, and depending on the server it either drops the bidder or rejects the whole request.
 
 Publishers can set the same option on aliases created at runtime with [`pbjs.aliasBidder`](/dev-docs/publisher-api-reference/aliasBidder.html).
-
-{: .alert.alert-info :}
-Note on aliases and TCF Global Vendor List IDs: if an alias entry does not have its own GVLID but wishes to claim GDPR support,
-the documentation entry (The file in <https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders>) must list the GVLID of the main adapter with that company's name in parentheses.
-Look for other doc entries containing an `aliasCode` metadata entry.
 
 ### Supporting Privacy Regulations
 
