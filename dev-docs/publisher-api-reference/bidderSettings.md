@@ -417,6 +417,7 @@ Notes:
 
 * If the adapter has `allowZeroCpmBids`, `allowHouseBids` has no effect, since every 0 CPM bid is already accepted.
 * House bids are ranked like any other priority bid: by their `meta.deal.priority`. Since that's above 12, a house bid only wins when nothing at the default or a higher priority bids.
+* Prebid.js marks accepted house bids with `bid.houseBid: true`, which analytics adapters and custom code can read. Adapters can't set it themselves: any value they set is overwritten.
 * The setting must be on the adapter that made the request, and `standard` is ignored. When an adapter bids with an [alternate bidder code](#29-allowalternatebiddercodes), the setting is read from the adapter, not the alternate code.
 * Like `allowZeroCpmBids`, and unlike `allowPriorityBids`, the setting is read from `bidderSettings` for Prebid Server bidders too. There is no `s2sConfig` option, and nothing is sent to Prebid Server.
 * If a 0 CPM house bid wins and its targeting is sent to an ad server, its price bucket (`hb_pb`) is the granularity's zero bucket (for example `0.00`), so that ad server needs a matching line item.
