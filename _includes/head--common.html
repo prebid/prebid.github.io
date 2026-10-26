@@ -41,9 +41,12 @@
         bundlePath: "{{site.baseurl}}/pagefind/",
         ranking: { termFrequency: 0.5 }
       });
-      document.querySelector(".pb-header .c-search")?.append(document.createElement("pagefind-modal-trigger"));
       const modal = document.getElementById("pagefind-modal-template");
-      if (modal) document.body.append(modal.content.cloneNode(true));
+      const search = document.querySelector(".pb-header .c-search");
+      if (modal && search) {
+        search.append(document.createElement("pagefind-modal-trigger"));
+        document.body.append(modal.content.cloneNode(true));
+      }
     </script>
     <style>
       :root {
