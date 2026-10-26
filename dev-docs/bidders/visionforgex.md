@@ -60,6 +60,6 @@ var adUnits = [{
 
 Publishers should use the `ortb2` method of setting first party data. Site, user, device and imp-level data (`ortb2Imp`) are passed to the exchange as they are.
 
-### Floors
+## Floors
 
 The adapter reads floors from the Prebid floors module (`getFloor`). The exchange may apply a higher floor agreed with the publisher.
