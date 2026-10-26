@@ -9,11 +9,8 @@ usp_supported: true
 coppa_supported: true
 gpp_sids: tcfeu, usp
 schain_supported: true
-dchain_supported: false
 media_types: banner, video
-deals_supported: false
 floors_supported: true
-fpd_supported: false
 pbjs: false
 pbs: true
 pbs_app_supported: true
