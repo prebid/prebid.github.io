@@ -282,7 +282,7 @@ The `sendBidsControl` object passed to `pbjs.setConfig` provides the publisher w
 | Attribute        | Type    | Description             |
 |------------+---------+---------------------------------|
 | `bidLimit` | integer | The maximum number of bids the system can add to ad server targeting. |
-| `dealPrioritization` | boolean | When `true`, bids with deals are prioritized before bids without deals. |
+| `dealPrioritization` | boolean | When `true`, bids with deals are prioritized before bids without deals. Since Prebid.js 11.44, this only applies within a priority tier: a bid's priority is compared first (see [allowPriorityBids](/dev-docs/publisher-api-reference/bidderSettings.html#212-allowprioritybids)), so a higher-priority bid is kept over a lower-priority deal bid. |
 
 #### Details on the bidLimit setting
 {: .no_toc}
@@ -1401,6 +1401,7 @@ The `auctionOptions` object controls aspects related to auctions.
 | `rejectUnknownMediaTypes` | Optional | Boolean | Since Pbjs 11, When true, reject bids when the adapter response omits `mediaType` for an ad unit that has explicit `mediaTypes` configured. Default is false. |
 | `rejectInvalidMediaTypes` | Optional | Boolean | Since Pbjs 11, When true, reject bids when response `mediaType` does not match one of the ad unit's configured `mediaTypes`. Default is true. |
 | `viewabilityMeasurement` | Optional | `'observer'`, `'boundingBox'` | Determines how the viewability of each ad unit is measured. `'observer'` (the default) uses an `IntersectionObserver` which comes with a pre-auction delay. The `'boundingBox'` approach is faster, but less accurate resulting in bad viewability. | 
+| `yield` | Optional | Boolean | Since Prebid.js 11.41. When true, and the browser supports [`scheduler.yield`](https://developer.mozilla.org/en-US/docs/Web/API/Scheduler/yield), the auction yields the main thread before each adapter call (once per `s2sConfig` entry and once per client-side bidder). Has no effect in browsers without `scheduler.yield`. This is separate from [`pbjs.yield`](/dev-docs/publisher-api-reference/yield.html). Default is false. See [note](#auctionOptions-yield). |
 
 #### Viewability measurement
 
@@ -1492,6 +1493,26 @@ pbjs.setConfig({
 });
 ```
 
+<a id="auctionOptions-yield"></a>
+
+#### Yielding between adapter calls
+
+Since Prebid.js 11.41, setting `auctionOptions.yield` to `true` makes the auction yield the main thread before calling each adapter, so that a long list of bidders does not run as a single long task:
+
+```javascript
+pbjs.setConfig({
+  auctionOptions: {
+    yield: true
+  }
+});
+```
+
+Yielding only happens in browsers that implement [`scheduler.yield`](https://developer.mozilla.org/en-US/docs/Web/API/Scheduler/yield); elsewhere adapters are called back to back as before.
+`auctionOptions.yield` is independent of [`pbjs.yield`](/dev-docs/publisher-api-reference/yield.html), which controls yielding while processing the command queue.
+
+{: .alert.alert-warning :}
+Do not set `yield` on versions before 11.41. Older versions reject the entire `auctionOptions` object when it contains an unknown key, so any other options set in the same call would be ignored as well.
+
 <a name="setConfig-maxNestedIframes"></a>
 
 ### maxNestedIframes
@@ -1560,6 +1581,7 @@ Notes:
 
 * The only time `waitForIt` means anything is if some modules are flagged as true and others as false. If all modules are the same (true or false), it has no effect.
 * Likewise, `waitForIt` doesn't mean anything without an auctionDelay specified.
+* Since Prebid.js 11.26, RTD providers may be loaded after Prebid.js has started (for example, from a separate script). A provider that registers after `realTimeData` has been configured is initialized as soon as it registers, as long as it is listed in `realTimeData.dataProviders`; it takes part in auctions that start after that point.
 
 <a name="setConfig-topicsIframeConfig"></a>
 

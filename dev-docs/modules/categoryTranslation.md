@@ -14,7 +14,7 @@ sidebarType : 1
 
 This module converts the IAB sub category to Ad server industry group identifiers. The identifiers ensure competitive separation of industries and products.
 
-Each bidder must return one [IAB subcategory](https://support.aerserv.com/hc/en-us/articles/207148516-List-of-IAB-Categories) if they want to do competitive separation.
+Each bidder must return one [IAB subcategory](https://iabtechlab.com/standards/content-taxonomy/) if they want to do competitive separation.
 
 The module provides the following:
 
