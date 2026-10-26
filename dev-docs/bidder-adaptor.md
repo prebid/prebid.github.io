@@ -832,11 +832,9 @@ If the alias entry is an object, the following attributes are supported:
 
 When a request for an aliased bidder goes to Prebid Server, Prebid.js tells Prebid Server which adapter the alias stands for. It does this by adding `ext.prebid.aliases.<alias>: "<adapter code>"` to the request, and `ext.prebid.aliasgvlids.<alias>` when the alias has a GVL ID. This happens for bidders in [`s2sConfig`](/dev-docs/modules/prebidServer.html) and for requests from adapters that use the ORTB conversion library's Prebid Server extensions. With `skipPbsAliasing: true`, both entries are left out, so Prebid Server resolves the bidder code on its own.
 
-Only set it when Prebid Server already has its own adapter or hard-coded alias with the alias's name, and that doesn't work the same way as your Prebid.js adapter. For example, it might use a different endpoint or be built on a different adapter. Prebid Server gives an alias declared in the request precedence over a core bidder with the same name (see [Bidder Aliases](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#bidder-aliases)). Without the flag, the request would point the server-side bidder at the wrong adapter.
+Only set it when Prebid Server already has its own adapter or hard-coded alias with the alias's name, and that doesn't work the same way as your Prebid.js adapter. For example, it might use a different endpoint or be built on a different adapter. Without the flag, Prebid Server can apply the request's alias and send the bidder's requests to the wrong adapter.
 
-Don't set it otherwise. If Prebid Server has no adapter or alias with that name, skipping the alias declaration leaves Prebid Server unable to resolve the bidder, and its server-side requests won't get bids.
-
-The flag is planned to become unnecessary once Prebid Server ignores request aliases that collide with its own adapters and hard-coded aliases ([prebid-server#3363](https://github.com/prebid/prebid-server/issues/3363)).
+Don't set it otherwise. If Prebid Server has no adapter or alias with that name, it can't resolve the bidder, and depending on the server it either drops the bidder or rejects the whole request.
 
 Publishers can set the same option on aliases created at runtime with [`pbjs.aliasBidder`](/dev-docs/publisher-api-reference/aliasBidder.html).
 
