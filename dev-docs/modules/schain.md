@@ -29,7 +29,7 @@ Two modes are supported:
 
 {: .alert.alert-warning :}
 Since Prebid 10, schain is treated as first party data: this module just copies `schain.config` into `ortb2.source.ext.schain`. You may provide it (or `ortb2.source.schain`) directly, removing the need for this module.
-A bidder-specific schain replaces the global schain for that bidder. This is the behavior up to Prebid.js 9, and again from Prebid.js 11.44. In Prebid.js 10.0 through 11.43, bidder-specific schains were merged with the global one like other first party data, so the bidder received the global nodes followed by its own. If you use one of those versions, avoid setting both.
+Like other first party data, a bidder-specific schain is merged with the global one, so the bidder receives the global nodes followed by its own. Up to Prebid.js 9, it replaced the global schain instead; since Prebid.js 11.45 you can restore that with `firstPartyData.replaceGlobalSchain`. See [Global and Bidder-Specific Together](#global-and-bidder-specific-together).
 
 First, build the schain module into your Prebid.js package:
 
@@ -93,12 +93,12 @@ You can find more information about the `pbjs.setBidderConfig` function in the [
 
 ### Global and Bidder-Specific Together
 
-Yes, you can set both global and bidder-specific SChain configs. When together, the schain config setup via `pbjs.setConfig` acts as a global config that applies to all your bidders, while `pbjs.setBidderConfig` overrides the global config for the noted bidder(s).
+Yes, you can set both global and bidder-specific SChain configs. The schain set with `pbjs.setConfig` applies to all your bidders. For the bidders in `pbjs.setBidderConfig`, how the two combine depends on `firstPartyData.replaceGlobalSchain`:
 
-{: .alert.alert-warning :}
-In Prebid.js 10.0 through 11.43, the bidder-specific schain was merged with the global one instead of replacing it: the bidder received the global nodes followed by its own. With those versions, set schains only per bidder.
+* **By default**, the bidder-specific schain is merged with the global one like other first party data: the bidder receives the global nodes followed by its own. This is useful when every chain starts with the same nodes.
+* **With `replaceGlobalSchain: true`** (Prebid.js 11.45 and later), the bidder-specific schain replaces the global one for those bidders. This was the behavior up to Prebid.js 9.
 
-The same applies when you provide the schain as first party data without this module:
+Other bidders receive the global schain either way. This works the same whether you use this module or provide the schain as first party data:
 
 ```javascript
 pbjs.setConfig({
@@ -109,7 +109,9 @@ pbjs.setConfig({
   }
 });
 
-// bidderA receives only this chain; other bidders receive the global one
+// with this setting, bidderA receives only its own chain; other bidders receive the global one
+pbjs.setConfig({ firstPartyData: { replaceGlobalSchain: true } });
+
 pbjs.setBidderConfig({
   bidders: ['bidderA'],
   config: {
