@@ -36,7 +36,7 @@ This page has instructions for writing your own bidder adapter.  The instruction
 
 In order to provide a fast and safe header bidding environment for publishers, the Prebid.org team reviews all adapters for the required bid adapter conventions laid out in the [Module Rules](/dev-docs/module-rules.html). Here are additional details specific to Prebid.js:
 
-* **No loading of external code**: All code must be present in the adapter, not loaded at runtime. Exceptions are possible -- see [the full policy](https://github.com/prebid/prebid-js-external-js-template#policy).
+* **No loading of external code**: All code must be present in the adapter, not loaded at runtime. Exceptions are possible -- see [the full policy](/dev-docs/module-rules.html#global-module-rules).
 * **All user-sync activity must be registered via the provided functions**: The platform will place all registered syncs in the page after the auction is complete, subject to publisher configuration.
 * **Adapters may not create or trigger any network requests or pixels** outside of the requests the wrapper creates on behalf of the adapter (from the return values of `buildRequests()` and `getUserSyncs()`) or that are included in a winning and rendered creative.
 * **Adapters may not modify ad slots directly**: For example, accessing `googletag.pubads().getSlots()` to modify or set targeting directly on slots is not permitted.
@@ -431,11 +431,11 @@ ServerRequest objects. These objects have this structure:
 
 {: .table .table-bordered .table-striped }
 
-| Attribute | Type | Description | Example Value |
-| -----------+------------------+--------------------------------------------------------------------+----------------------------- |
-| `method` | String | Which HTTP method should be used. | `POST` |
-| `url` | String | The endpoint for the request. | `"https://bids.example.com"` |
-| `data` | String or Object | Data to be sent in the POST request. Objects will be sent as JSON. | |
+| Attribute | Type             | Description                                                        | Example Value               |
+|-----------+------------------+--------------------------------------------------------------------+-----------------------------|
+| `method`  | String           | Which HTTP method should be used.                                  | `POST`                      |
+| `url`     | String           | The endpoint for the request.                                      | `"https://bids.example.com"` |
+| `data`    | String or Object | Data to be sent in the POST request. Objects will be sent as JSON. |                             |
 
 Here's a sample block of code returning a ServerRequest object:
 
@@ -513,49 +513,82 @@ The parameters of the `bidResponse` object are:
 
 {: .table .table-bordered .table-striped }
 
-| Key | Scope | Description | Example |
-| --------------+---------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------- |
-| `requestId` | Required | The bid ID that was sent to `spec.buildRequests` as `bidRequests[].bidId`. Used to tie this bid back to the request. | 12345 |
-| `cpm` | Required | The bid price. We recommend the most granular price a bidder can provide | 3.5764 |
-| `currency` | Required | 3-letter ISO 4217 code defining the currency of the bid. | `"EUR"` |
-| `width` | Required except when using `wratio` / `hratio` | The width of the returned creative. For video, this is the player width. | 300 |
-| `height` | Required except when using `wratio` / `hratio` | The height of the returned creative. For video, this is the player height. | 250 |
-| `wratio` | Required for flex ads | For flexible banner only, the relative width of the creative | 6 |
-| `hratio` | Required for flex ads | For flexible banner only, the relative height of the creative | 5 |
-| `ad` | Required | The creative payload of the returned bid. | `"<html><h3>I am an ad</h3></html>"` |
-| `ttl` | Required | Time-to-Live - how long (in seconds) Prebid can use this bid. See the [FAQ entry](/dev-docs/faq.html#does-prebidjs-cache-bids) for more info. | 360 |
-| `creativeId` | Required | A bidder-specific unique code that supports tracing the ad creative back to the source. | `"123abc"` |
-| `netRevenue` | Required | Boolean defining whether the bid is Net or Gross. The value `true` is Net. Bidders responding with Gross-price bids should set this to false. | `false` |
-| `vastUrl` | Either this or `vastXml` required for video | URL where the VAST document can be retrieved when ready for display. | `"https://vid.example.com/9876` |
-| `vastImpUrl` | Optional; only usable with `vastUrl` and requires prebid cache to be enabled | An impression tracking URL to serve with video Ad | `"https://vid.exmpale.com/imp/134"` |
-| `vastXml` | Either this or `vastUrl` required for video | XML for VAST document to be cached for later retrieval. | `<VAST version="3.0">...` |
-| `bidderCode` | Optional | Bidder code to use for the response - for adapters that wish to reply on behalf of other bidders. Defaults to the code registered with [`registerBidder`](#bidder-adaptor-Overview); note that any other code will need to be [explicitly allowed by the publisher](/dev-docs/publisher-api-reference/bidderSettings.html#allowAlternateBidderCodes). | 'exampleBidder' |
-| `dealId` | Optional | Deal ID | `"123abc"` |
-| `meta` | Optional | Object containing metadata about the bid | |
-| `meta.networkId` | Optional | Bidder-specific Network/DSP Id | `"1111"` |
-| `meta.networkName` | Optional | Network/DSP Name | `"NetworkN"` |
-| `meta.agencyId` | Optional | Bidder-specific Agency ID | `"2222"` |
-| `meta.agencyName` | Optional | Agency Name | `"Agency, Inc."` |
-| `meta.advertiserId` | Optional | Bidder-specific Advertiser ID | `"3333"` |
-| `meta.advertiserName` | Optional | Advertiser Name | `"AdvertiserA"` |
-| `meta.advertiserDomains` | Required(*) | Array of Advertiser Domains for the landing page(s). This is an array that aligns with the OpenRTB 'adomain' field. See note below this table. | `["advertisera.com"]` |
-| `meta.brandId` | Optional | Bidder-specific Brand ID (some advertisers may have many brands) | `"4444"` |
-| `meta.brandName` | Optional | Brand Name | `"BrandB"` |
-| `meta.demandSource` | Optional | Demand Source (Some adapters may functionally serve multiple SSPs or exchanges, and this would specify which) | `"SourceB"` |
-| `meta.dchain` | Optional | Demand Chain Object | `{ 'ver': '1.0', 'complete': 0, 'nodes': [ { 'asi': 'magnite.com', 'bsid': '123456789', } ] }` |
-| `meta.dsa` | Optional | The [IAB DSA response object](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/dsa_transparency.md) for the Digital Services Act (DSA) | `{ 'behalf': 'sample text', 'paid': 'sample value', 'transparency': [{ 'domain': 'sample domain', 'params': [1, 2] }], 'adrender': 1 }` |
-| `meta.primaryCatId` | Optional | Primary [IAB category ID](https://www.iab.com/guidelines/iab-quality-assurance-guidelines-qag-taxonomy/) | `"IAB-111"` |
-| `meta.secondaryCatIds` | Optional | Array of secondary IAB category IDs | `["IAB-222","IAB-333"]` |
-| `meta.mediaType` | Optional | "banner", "native", or "video" - this should be set in scenarios where a bidder responds to a "banner" mediaType with a creative that's actually a video (e.g. outstream) or native. | `"native"` |
-| `eventtrackers` | Optional | Array of objects in the same format as [ORTB native section 5.8, "Event Tracker Response Object"](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf) | `[{event: 500, method: 1, url: "https://www.example.com/track"]}]` |
-| `eventtrackers[].event` | Required | Event type. Prebid.js will fire tracking pixels for `500` (bid won) and `1` (bid was rendered). | `500` |
-| `eventtrackers[].method` | Required | Tracking method. Prebid.js only fires image pixels (`1`) | `1` |
-| `eventtrackers[].url` | Required | Tracker URL | `https//www.example.com/track` |
+| Key          | Scope                                       | Description                                                                                                                                   | Example                              |
+|--------------+---------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------|
+| `requestId`  | Required                                       | The bid ID that was sent to `spec.buildRequests` as `bidRequests[].bidId`. Used to tie this bid back to the request.                          | 12345                                |
+| `cpm`        | Required                                       | The bid price. We recommend the most granular price a bidder can provide                                                                      | 3.5764                               |
+| `currency`   | Required                                       | 3-letter ISO 4217 code defining the currency of the bid.                                                                                      | `"EUR"`                              |
+| `width`      | Required except when using `wratio` / `hratio` | The width of the returned creative. For video, this is the player width.                                                                      | 300                                  |
+| `height`     | Required except when using `wratio` / `hratio` | The height of the returned creative. For video, this is the player height.                                                                    | 250                                  |
+| `wratio`     | Required for flex ads                          | For flexible banner only, the relative width of the creative                                                                                 | 6                                    |
+| `hratio`     | Required for flex ads                          | For flexible banner only, the relative height of the creative                                                                                | 5                                    |
+| `ad`         | Required                                    | The creative payload of the returned bid.                                                                                                     | `"<html><h3>I am an ad</h3></html>"` |
+| `ttl`        | Required                                    | Time-to-Live - how long (in seconds) Prebid can use this bid. See the [FAQ entry](/dev-docs/faq.html#does-prebidjs-cache-bids) for more info.   | 360                                  |
+| `creativeId` | Required                                    | A bidder-specific unique code that supports tracing the ad creative back to the source.                                                       | `"123abc"`                           |
+| `netRevenue` | Required                                    | Boolean defining whether the bid is Net or Gross. The value `true` is Net. Bidders responding with Gross-price bids should set this to false. | `false`                              |
+| `vastUrl`    | Either this or `vastXml` required for video | URL where the VAST document can be retrieved when ready for display.                                                                          | `"https://vid.example.com/9876`       |
+| `vastImpUrl` | Optional; only usable with `vastUrl` and requires prebid cache to be enabled | An impression tracking URL to serve with video Ad                                                                                             | `"https://vid.exmpale.com/imp/134"`   |
+| `vastXml`    | Either this or `vastUrl` required for video | XML for VAST document to be cached for later retrieval.                                                                                       | `<VAST version="3.0">...`            |
+| `bidderCode` | Optional                                    | Bidder code to use for the response - for adapters that wish to reply on behalf of other bidders. Defaults to the code registered with [`registerBidder`](#bidder-adaptor-Overview); note that any other code will need to be [explicitly allowed by the publisher](/dev-docs/publisher-api-reference/bidderSettings.html#allowAlternateBidderCodes). | 'exampleBidder' |  
+| `dealId`     | Optional                                    | Deal ID                                                                                                                                       | `"123abc"`                           |
+| `meta`                   | Optional     | Object containing metadata about the bid                                                                                                                         |                                      |
+| `meta.networkId`         | Optional     | Bidder-specific Network/DSP Id               | `"1111"`             |
+| `meta.networkName`       | Optional     | Network/DSP Name               | `"NetworkN"`                |
+| `meta.agencyId`          | Optional     | Bidder-specific Agency ID               | `"2222"`                          |
+| `meta.agencyName`        | Optional     | Agency Name     | `"Agency, Inc."`           |
+| `meta.advertiserId`      | Optional     | Bidder-specific Advertiser ID     | `"3333"`                         |
+| `meta.advertiserName`    | Optional     | Advertiser Name               | `"AdvertiserA"`                          |
+| `meta.advertiserDomains` | Required(*)  | Array of Advertiser Domains for the landing page(s). This is an array that aligns with the OpenRTB 'adomain' field. See note below this table. | `["advertisera.com"]`     |
+| `meta.brandId`           | Optional     | Bidder-specific Brand ID (some advertisers may have many brands)                                                                                                   | `"4444"`                    |
+| `meta.brandName`         | Optional     | Brand Name                                   | `"BrandB"`                          |
+| `meta.demandSource`      | Optional     | Demand Source (Some adapters may functionally serve multiple SSPs or exchanges, and this would specify which)                                  | `"SourceB"`
+| `meta.dchain`            | Optional     | Demand Chain Object                                   | `{ 'ver': '1.0', 'complete': 0, 'nodes': [ { 'asi': 'magnite.com', 'bsid': '123456789', } ] }`                          |
+| `meta.dsa`               | Optional     | The [IAB DSA response object](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/dsa_transparency.md) for the Digital Services Act (DSA) | `{ 'behalf': 'sample text', 'paid': 'sample value', 'transparency': [{ 'domain': 'sample domain', 'params': [1, 2] }], 'adrender': 1 }` | 
+| `meta.primaryCatId`      | Optional     | Primary [IAB category ID](https://www.iab.com/guidelines/iab-quality-assurance-guidelines-qag-taxonomy/)               |  `"IAB-111"`                         |
+| `meta.secondaryCatIds`   | Optional     | Array of secondary IAB category IDs      | `["IAB-222","IAB-333"]`       |
+| `meta.mediaType`         | Optional     | "banner", "native", or "video" - this should be set in scenarios where a bidder responds to a "banner" mediaType with a creative that's actually a video (e.g. outstream) or native. | `"native"`  |
+| `meta.deal`              | Optional     | Deal metadata for bids with a `dealId`, such as the deal type and priority. See [Deal metadata](#bidder-adaptor-deal-metadata). | `{ type: 1, priority: 10 }` |
+| `eventtrackers`          | Optional     | Array of objects in the same format as [ORTB native section 5.8, "Event Tracker Response Object"](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf) |  `[{event: 500, method: 1, url: "https://www.example.com/track"]}]` |
+| `eventtrackers[].event`   | Required     | Event type. Prebid.js will fire tracking pixels for `500` (bid won) and `1` (bid was rendered). |    `500`      |
+| `eventtrackers[].method` | Required     | Tracking method. Prebid.js only fires image pixels (`1`)                                        |    `1`        |
+| `eventtrackers[].url`    | Required     | Tracker URL                                                                                      | `https//www.example.com/track` |
 
 {: .alert.alert-info :}
 **Note:** bid adapters must be coded to accept the 'advertiserDomains' parameter from their endpoint even if that endpoint doesn't currently respond with that value.
 Prebid.org publishers have required that all bidders must eventually supply this value, so every bidder should be planning for it.
 There's often a long lag time between making a PBJS adapter update and when most pubs upgrade to it, so we minimally require adapters to be ready for the day when the endpoint responds with adomain.
+
+<a name="bidder-adaptor-deal-metadata"></a>
+
+#### Deal metadata
+
+Since Prebid.js 11.43, a bid with a `dealId` can describe its deal in `meta.deal`. Adapters that use the [ORTB conversion library](https://github.com/prebid/Prebid.js/blob/master/libraries/ortbConverter/README.md), and bids from Prebid Server, get this automatically: the converter copies `seatbid[].bid[].ext.prebid.deal` from the OpenRTB response when the bid has a `dealid`, keeping only the fields below and only when they have the expected type. Other adapters can set `meta.deal` directly.
+
+{: .table .table-bordered .table-striped }
+| `meta.deal` field | ORTB `ext.prebid.deal` field | Type | Description |
+| --- | --- | --- | --- |
+| `type` | `type` | Integer | Deal type: `0` unknown, `1` sponsorship, `2` reservation, `3` non-reservation, `4` house. Always set; `0` when the ORTB value is missing or not an integer. |
+| `cpm` | `cpm` | Number, 0 or more | Unadjusted contractual or nominal deal CPM, in the bid's currency. |
+| `priorityAdjustedCpm` | `priority_adjusted_cpm` | Number, 0 or more | CPM-equivalent value the ad server ranks the deal at, after any adjustment to its price (for example for pacing or delivery), in the bid's currency. Named `pacingAdjustedCpm` / `pacing_adjusted_cpm` in Prebid.js 11.43. |
+| `onSchedule` | `on_schedule` | Number, 0 or more | Delivery relative to schedule. For example, `0.5` means half of the expected impressions have been served. |
+| `priority` | `priority` | Integer | Relative precedence among deals. Lower integers have higher priority. |
+
+For example, this OpenRTB bid:
+
+```json
+{
+  "dealid": "deal-1",
+  "ext": {
+    "prebid": {
+      "deal": { "type": 2, "cpm": 5, "priority_adjusted_cpm": 6.5, "on_schedule": 0.8, "priority": 10 }
+    }
+  }
+}
+```
+
+results in `bid.meta.deal` of `{ type: 2, cpm: 5, priorityAdjustedCpm: 6.5, onSchedule: 0.8, priority: 10 }`.
+
+When the [Currency module](/dev-docs/modules/currency.html) converts a bid, it converts `meta.deal.cpm` and `meta.deal.priorityAdjustedCpm` at the same rate as the bid's `cpm`. Prebid.js only exposes this metadata for now: it doesn't change how bids are ranked.
 
 #### Resolve OpenRTB Macros in the Creatives
 
@@ -792,12 +825,22 @@ If the alias entry is an object, the following attributes are supported:
 | --- | --- | --- | --- |
 | `code` | required | shortcode/partner name | `string` |
 | `gvlid` | optional | global vendor list id of company scoped to alias | `integer` |
-| `skipPbsAliasing` | optional | ability to skip passing spec.code to prebid server in request extension. In case you have a prebid server adapter with the name same as the alias/shortcode. Default value: `false` | `boolean` |
+| `skipPbsAliasing` | optional | If `true`, don't declare this alias to Prebid Server. See [skipPbsAliasing](#skippbsaliasing) below. Default value: `false` | `boolean` |
 
 {: .alert.alert-info :}
 Note on aliases and TCF Global Vendor List IDs: if an alias entry does not have its own GVLID but wishes to claim GDPR support,
 the documentation entry (The file in <https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders>) must list the GVLID of the main adapter with that company's name in parentheses.
 Look for other doc entries containing an `aliasCode` metadata entry.
+
+#### skipPbsAliasing
+
+When a request for an aliased bidder goes to Prebid Server, Prebid.js tells Prebid Server which adapter the alias stands for. It does this by adding `ext.prebid.aliases.<alias>: "<adapter code>"` to the request, and `ext.prebid.aliasgvlids.<alias>` when the alias has a GVL ID. This happens for bidders in [`s2sConfig`](/dev-docs/modules/prebidServer.html) and for requests from adapters that use the ORTB conversion library's Prebid Server extensions. With `skipPbsAliasing: true`, both entries are left out, so Prebid Server resolves the bidder code on its own.
+
+Only set it when Prebid Server already has its own adapter or hard-coded alias with the alias's name, and that doesn't work the same way as your Prebid.js adapter. For example, it might use a different endpoint or be built on a different adapter. Without the flag, Prebid Server can apply the request's alias and send the bidder's requests to the wrong adapter.
+
+Don't set it otherwise. If Prebid Server has no adapter or alias with that name, it can't resolve the bidder, and depending on the server it either drops the bidder or rejects the whole request.
+
+Publishers can set the same option on aliases created at runtime with [`pbjs.aliasBidder`](/dev-docs/publisher-api-reference/aliasBidder.html).
 
 ### Supporting Privacy Regulations
 
@@ -1030,10 +1073,10 @@ getIabSubCategory(bidderCode, pCategory)
 
 {: .table .table-bordered .table-striped }
 
-| Key | Scope | Description | Example |
-| --- | --- | --- | --- |
-| `bidderCode` | Required | BIDDER_CODE defined in spec. | `"sample-biddercode"` |
-| `pCategory` | Required | Proprietary category returned in bid response | `"sample-category"` |
+| Key          | Scope    | Description                                   | Example               |
+|--------------|----------|-----------------------------------------------|-----------------------|
+| `bidderCode` | Required | BIDDER_CODE defined in spec.                  | `"sample-biddercode"` |
+| `pCategory`  | Required | Proprietary category returned in bid response | `"sample-category"`   |
 
 **Example**
 
@@ -1402,9 +1445,9 @@ The Example Bidding adapter requires setup before beginning. Please contact us a
 
 {: .table .table-bordered .table-striped }
 
-| Name | Scope | Description | Example | Type |
-| --- | --- | --- | --- | --- |
-| `placement` | required | Placement id | `'11111'` | `string` |
+| Name          | Scope    | Description           | Example   | Type      |
+|---------------|----------|-----------------------|-----------|-----------|
+| `placement`      | required | Placement id         | `'11111'`    | `string` |
 ```
 
 Within a few days, the code pull request will be assigned to a developer for review.
