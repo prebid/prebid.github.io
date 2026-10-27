@@ -53,12 +53,12 @@ Ads are served when all of the following conditions are satisfied:
 ## Video
 
 {: .table .table-bordered .table-striped }
-| `mediaTypes.video` field                  | Scope       | Notes                                |
-|-------------------------------------------|-------------|--------------------------------------|
-| `mimes`                                   | required    | Non-empty array of MIME types.       |
-| `playerSize`                              | recommended | Sent as `imp.video.w`/`imp.video.h`. |
-| `plcmt`                                   | recommended |                                      |
-| `minduration`, `maxduration`, `protocols` | recommended | Some demand partners require them.   |
+| `mediaTypes.video` field                  | Scope       | Notes                                                                                                                                       |
+|-------------------------------------------|-------------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| `mimes`                                   | required    | Non-empty array of MIME types.                                                                                                              |
+| `playerSize`                              | recommended | Sent as `imp.video.w`/`imp.video.h`. The Exchange returns no `w`/`h` on video bids, so without `playerSize` the bid has width and height 0. |
+| `plcmt`                                   | recommended | Passed to demand partners as is; the Exchange does not fill it in. When omitted, Prebid sets `4` for outstream; set it for instream (`1`).  |
+| `minduration`, `maxduration`, `protocols` | recommended | Some demand partners require them.                                                                                                          |
 
 - If the video part has no `mimes`, a multiformat ad unit is sent as banner only and a video-only ad unit is rejected.
 - Geniee does not provide an outstream renderer. You will need to set up your own. See [Show Outstream Video Ads](https://docs.prebid.org/dev-docs/show-outstream-video-ads.html) for more information.
