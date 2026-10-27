@@ -27,15 +27,28 @@ pbjs.que.push(function () {
     pbjs.onEvent('bidResponse', function (bid) {
         // choose the bids to handle: by deal ID pattern, bidder, a meta flag, etc.
         if (bid.dealId && /^MYDEAL/i.test(bid.dealId)) {
+            // a safe renderer, if the bid has one, takes precedence over bid.renderer
+            delete bid.safeRenderer;
             bid.renderer = {
                 renderNow: true,
-                render: function (bid, doc) {
-                    // bid.ad holds the original markup; this example writes it into the ad slot
-                    // (assuming the slot's div id is the ad unit code)
+                render: function (bid) {
+                    // bid.ad holds the original markup. Render it in a sandboxed iframe in the ad slot
+                    // (assuming the slot's div id is the ad unit code), never in the page's own DOM.
                     var slot = document.getElementById(bid.adUnitCode);
-                    if (slot) {
-                        slot.innerHTML = bid.ad;
+                    if (!slot) {
+                        return;
                     }
+                    var iframe = document.createElement('iframe');
+                    iframe.width = bid.width;
+                    iframe.height = bid.height;
+                    iframe.scrolling = 'no';
+                    iframe.style.border = '0';
+                    iframe.title = '3rd party ad content';
+                    // no allow-same-origin: the creative runs in an opaque origin, isolated from the page
+                    iframe.sandbox.add('allow-forms', 'allow-popups', 'allow-popups-to-escape-sandbox',
+                        'allow-scripts', 'allow-top-navigation-by-user-activation');
+                    iframe.srcdoc = bid.ad;
+                    slot.replaceChildren(iframe);
                 }
             };
         }
@@ -46,7 +59,7 @@ pbjs.que.push(function () {
 To hand rendering to a vendor script, as the MASS module did with its `renderUrl`, load the script from `render` and pass it the bid:
 
 ```javascript
-render: function (bid, doc) {
+render: function (bid) {
     var script = document.createElement('script');
     script.src = 'https://vendor.example/render.js';
     script.onload = function () {
@@ -60,9 +73,8 @@ render: function (bid, doc) {
 
 * The renderer has to be set before the bid wins. The `bidResponse` event fires for each bid as it's added to the auction, and Prebid.js uses the renderer when the bid is rendered.
 * `renderNow: true` tells Prebid.js the renderer is ready to call. A renderer with a `url` instead loads that script first.
-* `render(bid, doc)` runs in the page that loaded Prebid.js, not inside the creative frame. `doc` is the document Prebid.js was asked to render into:
-  * When the creative calls `pbjs.renderAd(document, adId)` from a same-origin iframe, `doc` is that iframe's document.
-  * When rendering goes through cross-origin messaging, for example the Universal Creative in a GAM SafeFrame, `doc` is the page's own document. Don't write into `doc.body` without checking which case you're in.
+* `render(bid, doc)` runs in the page that loaded Prebid.js, not inside the creative frame, so don't insert bidder markup into the page's DOM. `doc` is the page's own document unless the renderer's `config.documentResolver` returns another one; the example ignores it and creates its own iframe.
+* If a bid also has a [safe renderer](/dev-docs/renderer.html) (from the adapter or ad unit config), Prebid.js uses that instead of `bid.renderer`. The example deletes `bid.safeRenderer` so its own renderer is used.
 * Rendering through a renderer is reported as `adRenderSucceeded`, like other renders.
 * To use the same renderer for every bid of an ad unit or bidder, rather than for selected bids, configure `renderer` on the [ad unit or bidder](/dev-docs/adunit-reference.html) instead.
 
