@@ -46,6 +46,7 @@ This function returns the bid responses at the given moment.
 | `meta.brandId` | String | (Optional) The id of the brand | |
 | `meta.brandName` | String | (Optional) The name of the brand | |
 | `meta.dchain` | String | (Optional)  | |
+| `meta.deal` | Object | (Optional) Deal metadata for bids with a `dealId`, since Prebid.js 11.43. See [Deal metadata](/dev-docs/bidder-adaptor.html#bidder-adaptor-deal-metadata). | |
 | `meta.demandSource` | String | (Optional)  | |
 | `meta.mediaType` | String | (Optional)  | |
 | `meta.networkId` | String | (Optional) The id of the network | |
