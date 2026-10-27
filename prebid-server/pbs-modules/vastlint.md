@@ -174,7 +174,7 @@ Kept bids in monitor and reject modes carry the same summary on the bid:
     "warnings": 3,
     "infos": 0,
     "rules": ["VAST-2.0-inline-impression", "VAST-2.0-adsystem-no-version"],
-    "engine_version": "0.16.0"
+    "engine_version": "0.16.2"
   }
 }
 ```
