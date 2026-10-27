@@ -4,6 +4,7 @@ title: TheMediaGridNM
 description: Prebid TheMediaGridNM Bidder Adapter
 pbjs: true
 biddercode: gridNM
+aliasCode: grid
 media_types: video
 tcfeu_supported: false
 usp_supported: true

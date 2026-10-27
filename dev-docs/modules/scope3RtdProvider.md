@@ -62,7 +62,7 @@ pbjs.setConfig({
                 orgId: "your-org-id",
                 endpoint: "<https://prebid.scope3.com/prebid>",
                 timeout: 1500,
-                bidders: ["appnexus", "rubicon", "pubmatic"],
+                bidders: ["msft", "rubicon", "pubmatic"],
                 includeKey: "axei",
                 excludeKey: "axex",
                 macroKey: "axem",
@@ -105,7 +105,7 @@ The Scope3 AEE returns signals in this format:
     "exclude": ["competitor_exposed"],
     "macro": "eyJjb250ZXh0IjogImhpZ2hfdmFsdWUifQ==",
     "bidders": {
-      "appnexus": {
+      "msft": {
         "segments": ["seg1", "seg2"],
         "deals": ["DEAL123"]
       },
@@ -211,5 +211,5 @@ For questions about the Scope3 RTD Provider:
 
 ## Related Modules
 
-* [Real-Time Data Module]({{site.baseurl}}/dev-docs/modules/realTimeData.html)
+* [Real-Time Data Module]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html#setConfig-realTimeData)
 * [RTD Sub-Module Development]({{site.baseurl}}/dev-docs/add-rtd-submodule.html)

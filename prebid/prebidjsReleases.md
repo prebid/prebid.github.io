@@ -26,7 +26,7 @@ The table below is a summary of feature changes and important bug fixes in core 
 | 5.0 | See [Prebid.js 5.0 blog](https://prebid.org/blog/prebid-5-0-release/) |
 | 4.43 | Support [allowSendAllBidsTargetingKeys](/dev-docs/publisher-api-reference/setConfig.html#setConfig-targetingControls) option for control over which keys are sent to the ad server |
 | 4.41 | Support [suppressStaleRender](/dev-docs/publisher-api-reference/setConfig.html#auction-options) option |
-| 4.40 | First Party Data [enrichment](/dev-docs/modules/enrichmentFpdModule.html) and [validation](/dev-docs/modules/validationFpdModule.html) modules are introduced |
+| 4.40 | First Party Data enrichment and [validation](/dev-docs/modules/validationFpdModule.html) modules are introduced |
 | 4.39 | Prebid Core: removed size check on native icons and image assets |
 | 4.38 | PBS Bid Adapter allows stored impression configuration |
 | 4.37 | PBS bid adapter adds support for non-purpose1 consent domains |
@@ -76,7 +76,7 @@ The table below is a summary of feature changes and important bug fixes in core 
 | 3.3 | [Prebid Ad Slot](/features/pbAdSlot.html) support |
 | 3.2 | [Bidder-specific Supply Chain](/dev-docs/modules/schain.html#bidder-specific-supply-chains) support, added [static API option](/dev-docs/modules/consentManagementUsp.html) to the CCPA/USP module |
 | 3.1 | pbsBidAdapter: fix for handling response currency |
-| 3.0 | [Prebid.js 3.0](https://prebid.org/blog/pbjs-3) |
+| 3.0 | [Prebid.js 3.0](https://github.com/prebid/Prebid.js/releases/tag/3.0.0) |
 | 2.44 | Stopped duplicate alias user syncs |
 | 2.43 | [US Privacy/CCPA Consent Module](/dev-docs/modules/consentManagementUsp.html) |
 | 2.39 | Made originalCpm and originalCurrency fields in bid object always available |

@@ -6,7 +6,7 @@ pbjs: true
 pbs: false
 gvl_id: none
 biddercode: mediaeyes
-media_types: banner
+media_types: video,banner
 gdpr_supported: false
 usp_supported: false
 coppa_supported: false
@@ -38,18 +38,38 @@ MediaEyes adapter prebid connect to MediaEyes Bidding System.
 300x250 banner test
 
 ```javascript
-var adUnits = [{
-  code: 'zone-ads',
-  mediaTypes: {
-    banner: {
-      sizes: [[300, 250]]
-    }
+var adUnits = [
+  // Banner
+  {
+    code: 'zone-ads',
+    mediaTypes: {
+      banner: {
+        sizes: [[300, 250]]
+      }
+    },
+    bids: [{
+      bidder: 'mediaeyes',
+      params : {
+        itemId : "4d27f3cc8bbd5bd153045e"
+      }
+    }]
   },
-  bids: [{
-    bidder: 'mediaeyes',
-    params : {
-      itemId : "4d27f3cc8bbd5bd153045e"
-    }
-  }]
-}];
+  // Video
+  {
+      code: 'video-instream',
+      sizes: [[640, 480]],
+      mediaTypes: {
+        video: {
+          playerSize: [[640, 480]],
+          context: 'instream'
+        },
+      },
+      bids: [{
+        bidder: 'mediaeyes',
+        params : {
+          itemId : "4d27f3cc8bbd5bd153045e"
+        }
+      }]
+   },
+];
 ```

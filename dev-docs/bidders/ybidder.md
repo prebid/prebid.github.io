@@ -5,6 +5,7 @@ description: Prebid Ybidder Bidder Adapter
 pbjs: true
 pbs: true
 biddercode: ybidder
+aliasCode: nexx360
 gvl_id: 1253
 usp_supported: true
 gpp_sids: tcfeu

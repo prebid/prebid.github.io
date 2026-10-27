@@ -22,10 +22,10 @@ The code example below was built with Prebid.js and the following:
 * The [`dfpAdServerVideo` module](/dev-docs/modules/dfp_video.html), which will provide the video ad support.  
 * The [`categoryTranslation` module](/dev-docs/modules/categoryTranslation.html), to enable competitive separation.
 
-For example, to build with the AppNexus bidder adapter and GAM use the following command:
+For example, to build with the Microsoft bidder adapter and GAM use the following command:
 
 ```bash
-gulp build --modules=appnexusBidAdapter,dfpAdServerVideo
+gulp build --modules=msftBidAdapter,dfpAdServerVideo
 ```
 
 For more information about how to build with modules, see the [Prebid module documentation](/dev-docs/modules/).
@@ -63,9 +63,9 @@ var videoAdUnit = [{
     },
     bids: [
         {
-            bidder: 'appnexus',
+            bidder: 'msft',
             params: {
-                placementId: 14542875
+                placement_id: 14542875
             }
         }
     ]

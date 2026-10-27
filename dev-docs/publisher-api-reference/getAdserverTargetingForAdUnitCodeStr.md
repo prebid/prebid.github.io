@@ -23,5 +23,5 @@ Returns the query string targeting parameters available at the moment for the sp
 
 ```javascript
 const targetingStrings = pbjs.getAdserverTargetingForAdUnitCodeStr('div-1');
-// ["hb_bidder=appnexus", "hb_adid=233bcbee889d46d", ...]
+// ["hb_bidder=msft", "hb_adid=233bcbee889d46d", ...]
 ```

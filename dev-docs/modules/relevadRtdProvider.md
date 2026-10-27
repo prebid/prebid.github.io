@@ -46,7 +46,7 @@ pbjs.setConfig({
  
             // The list of bidders to target with Relevad categories and segments. If absent or empty, target all bidders.
             bidders: [
-              { bidder: "appnexus",                   // Bidder name
+              { bidder: "msft",                   // Bidder name
                 adUnitCodes: ['adUnit-1','adUnit-2'], // List of adUnit codes to target. If absent or empty, target all ad units.
                 minscore: 70, // Minimum relevancy score for this bidder (0-100). If absent, defaults to the global minscore.
               },
@@ -81,7 +81,7 @@ pbjs.setConfig({
 
 | Name        | Type             | Description                                                  | Notes                                                    |
 | :---------- | :--------------- | :----------------------------------------------------------- | :------------------------------------------------------- |
-| bidder      | String           | Bidder name                                                  | Mandatory. Example: “appnexus”                           |
+| bidder      | String           | Bidder name                                                  | Mandatory. Example: "msft"                           |
 | adUnitCodes | Array of Strings | List of specific AdUnit codes you with to target             | Optional. If empty or absent, all ad units are targeted. |
 | minscore    | Integer          | Bidder-specific minimum categorization relevancy score (0, 100) | Optional, defaults to global minscore above.             |
 

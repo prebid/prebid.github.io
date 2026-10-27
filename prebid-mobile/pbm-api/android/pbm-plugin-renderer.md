@@ -129,6 +129,10 @@ It is important to notice that the compliant formats you set on `isSupportRender
 
 The Plugin Renderer feature does not work with [GAM Original API](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html) since the ad rendering does not happen in the Prebid SDK but externally. Despite that if you are using the regular GAM integration it will work fine.
 
+### Mediation Adapters
+
+Starting from Prebid SDK `3.4.0`, the [AdMob](/prebid-mobile/modules/rendering/android-sdk-integration-admob.html) and [AppLovin MAX](/prebid-mobile/modules/rendering/android-sdk-integration-max.html) adapters render banner, interstitial, and rewarded bids through the Plugin Renderer that the bid names as its preferred renderer, the same way the Rendering API does. If the Plugin Renderer doesn't return an ad view or interstitial controller, the adapter falls back to the default Prebid renderer. Earlier versions always used the default Prebid renderer in the adapters.
+
 ## Ad Event Listeners
 An optional dedicated generic ad event listener is offered in case of the existing event listeners are insufficient to keep your ad consumer fully aware of your ad lifecycle.
 
@@ -264,7 +268,7 @@ The following list contains documentation for known supported Plugin Renderer pr
 
 {: .table .table-bordered .table-striped }
 
-| Company | Documentation                                                                                 |
-|-------|-----------------------------------------------------------------------------------------------|
+| Company | Documentation |
+| --- | --- |
 | Teads | [Teads Plugin Renderer Docs](https://support.teads.tv/support/solutions/articles/36000459747) |
 | InMobi | [InMobi Plugin Renderer Docs](https://support.inmobi.com/monetize/integrating-inmobi-with-mediation/prebid-plugin-renderer) |

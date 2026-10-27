@@ -10,7 +10,7 @@ sidebarType: 6
 
 {:.no_toc}
 
-Display (banner) ads are supported by Prebid.js and Prebid Mobile. The [IAB](https://www.iab.com/) has created a set of [standards](https://www.iab.com/newadportfolio/) for the different types of display ads.
+Display (banner) ads are supported by Prebid.js and Prebid Mobile. The [IAB](https://www.iab.com/) has created a set of [standards](https://iabtechlab.com/standards/iab-new-ad-portfolio-guidelines/) for the different types of display ads.
 
 Here are some resources to help you work with the display ad format in Prebid.
 
