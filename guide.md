@@ -62,7 +62,7 @@ Learn more about [Markdown](https://www.markdownguide.org/)
 
 **Bootstrap**: A CSS template for responsive site design. Bootstrap provides the base formatting for the site.
 
-Learn more about [Bootstrap](https://getbootstrap.com/docs/4.1/getting-started/introduction/_)
+Learn more about [Bootstrap](https://getbootstrap.com/docs/4.1/getting-started/introduction/)
 
 **Liquid**: A language created by Shopify to enable dynamic HTML creation.
 
@@ -98,7 +98,7 @@ For the Prebid.org site the following directories are used:
 **_data**  
 Jekyll was originally designed specifically for creation of blogging websites and not for dynamic, data-driven sites. However, by including the _data directory we can mimic a database structure to create a more robust site. Files in this directory can be saved in either _json_, _yml_ or _csv_ format. For Prebid.org they have been saved in _yml_.
 
-Learn more about YML at [yaml.org](https://yaml.org/start.html).
+Learn more about [YAML](https://yaml.org/)
 
 There are several YML files in the Prebid _data directory
 
@@ -350,8 +350,8 @@ TBD
 
 There are 200+ bidder files in the /dev-docs/bidders directory describing the parameters for each Prebid.js bidder. There are two unfortunately identical pieces of code that process them:
 
-- /\_layouts/bidder.html - this is used to generate the single-bidder version of the page like <https://prebid.org/dev-docs/bidders/rubicon.html>
-- /dev-docs/bidders.md - this is used to generate the (large) combined page at <https://prebid.org/dev-docs/bidders.html>
+- /\_layouts/bidder.html - this is used to generate the single-bidder version of the page like <https://docs.prebid.org/dev-docs/bidders/rubicon.html>
+- /dev-docs/bidders.md - this is used to generate the (large) combined page at <https://docs.prebid.org/dev-docs/bidders.html>
 
 The attributes in the Jekyll 'front matter' drive various behaviors and dynamic tables elsewhere on the site.
 

@@ -95,7 +95,7 @@ Open the `Server address` URL in your browser, and you should see a locally runn
 
 ## Checking Links
 
-CI checks internal links and anchors in the built site with [lychee](https://lychee.cli.rs/), configured in [lychee.toml](lychee.toml). To run the same check locally, [install lychee](https://lychee.cli.rs/installation/) and run:
+CI checks internal links and anchors in the built site with [lychee](https://lychee.cli.rs/), configured in [lychee.toml](lychee.toml). To run the same check locally, [install lychee](https://lychee.cli.rs/guides/getting-started/) and run:
 
 ```bash
 npm run linkcheck

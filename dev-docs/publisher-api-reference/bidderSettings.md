@@ -237,6 +237,8 @@ pbjs.bidderSettings = {
 
 In the above example, deal bids from `exampleBidder` receive a higher desirability score than their adjusted CPM. The bid's CPM is not changed by this function.
 
+To render the most desirable bids directly instead of sending targeting to an ad server, use [`pbjs.getBestBids`](/dev-docs/publisher-api-reference/getBestBids.html).
+
 ### 2.4. inverseBidAdjustment
 
 When using [price floors](/dev-docs/modules/floors.html), Prebid attempts to calculate the inverse of `bidCpmAdjustment`, so that the floor values it requests from SSPs take into account how the bid will be adjusted.
