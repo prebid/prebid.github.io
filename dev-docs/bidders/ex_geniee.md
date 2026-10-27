@@ -20,7 +20,7 @@ fpd_supported: true
 pbjs: true
 pbs: false
 prebid_member: false
-multiformat_supported: will-bid-on-one
+multiformat_supported: will-bid-on-any
 ortb_blocking_supported: partial
 privacy_sandbox: no
 sidebarType: 1
