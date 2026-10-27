@@ -101,7 +101,7 @@ function renderInCrossOriginFrame(winningBid) {
     // A data: URL document has its own opaque origin, so the creative can't reach this page.
     // allow-same-origin keeps that opaque origin (it doesn't grant this page's origin); it's needed
     // because the creative script renders the ad in a nested frame it has to script.
-    iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation';
+    iframe.sandbox = 'allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation';
     iframe.src = 'data:text/html;charset=utf-8,' + encodeURIComponent(creativeDocument(winningBid));
     div.appendChild(iframe);
 }
