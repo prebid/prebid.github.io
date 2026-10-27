@@ -3,7 +3,8 @@ layout: bidder
 title: Eskimi
 description: Prebid Eskimi Bidder Adapter
 pbjs: true
-pbs: false
+pbs: true
+pbs_app_supported: true
 biddercode: eskimi
 media_types: banner, video
 schain_supported: true
@@ -13,6 +14,7 @@ coppa_supported: true
 gpp_supported: true
 deals_supported: false
 floors_supported: true
+userIds: all
 safeframes_ok: false
 multiformat_supported: will-bid-on-any
 ortb_blocking_supported: true
@@ -21,7 +23,7 @@ gvl_id: 814
 sidebarType: 1
 ---
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 
@@ -31,10 +33,10 @@ sidebarType: 1
 | `bcat`            | optional | ORTB blocked categories         | `['IAB-1-1']`          | `string[]`|
 | `badv`            | optional | ORTB blocked advertiser domains | `['example.com']`      | `string[]`|
 | `bapp`            | optional | ORTB blocked applications       | `['com.example.game']` | `string[]`|
-| `bidFloor`        | optional | Minimum CPM                   | `0.3`                | `number` |
-| `bidFloorCur`     | optional | Currency of bid floor         | `'USD'`              | `string` |
-| `coppa`           | optional | Set to `true` to enable COPPA  | `true`               | `boolean` |
-| `test`            | optional | Set to `1` to enable test mode | `1`                  | `integer` |
+| `bidFloor`        | optional | Minimum CPM                     | `0.3`                  | `number`  |
+| `bidFloorCur`     | optional | Currency of bid floor           | `'USD'`                | `string`  |
+| `coppa`           | optional | Set to `true` to enable COPPA   | `true`                 | `boolean` |
+| `test`            | optional | Set to `1` to enable test mode  | `1`                    | `integer` |
 
 Additionally `battr` ORTB blocking param may be set on `BANNER` and `VIDEO` media types to specify blocked creative
 attributes.

@@ -56,7 +56,7 @@ pbjs.setConfig({
         params: {
           publisherId: "0653b3fc-a645-4bcc-bfee-b8982974dd53", // Required: Get this ID from 152media
           keywords: ["red", "blue", "white"], // Optional: Contextual keywords
-          bidderCode: "appnexus", // Required: Targeted bidder
+          bidderCode: "msft", // Required: Targeted bidder
           enrichRequest: true // Optional: Adds additional targeting fields
         }
       }

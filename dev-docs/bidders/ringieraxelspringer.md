@@ -3,6 +3,7 @@ layout: bidder
 title: RingierAxelSpringer
 description: Prebid RingierAxelSpringer Bidder Adapter
 biddercode: ringieraxelspringer
+aliasCode: das
 media_types: banner, native
 pbjs: true
 pbs: false

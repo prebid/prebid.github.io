@@ -24,15 +24,16 @@ multiformat_supported: will-bid-on-any
 sidebarType: 1
 ---
 
-### Registration
+## Registration
 
-The Magnite adapter requires setup and approval from the Magnite team, even for existing accounts. Please reach out to your account manager or <header-bidding@magnite.com> for more information.
+For existing DV+ Accounts transitioning from the Rubicon adapter to the Magnite adapter, you can use your existing Account, Site, Zone ids, with new line items and orders. Please reach out to your account manager if you have additional questions
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name | Scope | Description | Example | Type |
-|------|-------|-------------|---------|------|
+| --- | --- | --- | --- | --- |
 | `accountId` | required | The publisher account ID | `14062` | `integer` |
 | `siteId` | required | A unique ID for your site | `70608` | `integer` |
 | `zoneId` | required | A unique ID for your site's ad placements | `498816` | `integer` |
@@ -161,8 +162,9 @@ Outstream video is also supported. We recommend discussing video demand with you
 The Magnite adapter supports native ads using the ORTB Native spec. We recommend version 1.2, but versions 1.0 and 1.1 are also supported.
 
 {: .table .table-bordered .table-striped }
+
 | Native Version | Required Fields |
-|---|---|
+| --- | --- |
 | 1.0 and 1.1 | layout, adunit, assets |
 | 1.2 | context, plcmttype, assets, eventtrackers. privacy is a recommended field. |
 

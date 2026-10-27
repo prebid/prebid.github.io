@@ -74,12 +74,13 @@ The `BidInfo` provides the following properties:
 - `events` - the map of some publically available event URLs attached to the bid. These can be used to enable Prebid Server-based analytics when the Prebid Universal Creative (PUC) is not involved in the rendering process. If the PUC is used for rendering, it will take care of hitting these events. These are the available event URLs:
   - **EVENT_WIN** - this bid was chosen by the ad server as the one to display. This is the main metric for banner and native. This returns the OpenRTB `seatbid.bid.ext.prebid.events.win` field. (requires SDK v2.1.6)
   - **EVENT_IMP** - the ad creative for this bid was actually displayed. This is often the main metric for video ads. This returns the OpenRTB `seatbid.bid.ext.prebid.events.imp` field. (requires SDK v2.1.6)
+- `isTopBidFiltered()` - `true` when [`setFilterOutUncachedBids()`](/prebid-mobile/pbm-api/android/pbm-targeting-android.html#setfilteroutuncachedbids) dropped the bid Prebid Server chose as the winner and a lower-priced cached bid took its place. The result code stays `SUCCESS`. (requires SDK v3.4.0)
 
 Code sample to extract the events:
 
 ``` kotlin
 val win = bidInfo.events.get(BidInfo.EVENT_WIN)
-val imp = bidInfo.get(BidInfo.EVENT_IMP)
+val imp = bidInfo.events.get(BidInfo.EVENT_IMP)
 ```
 
 ### Prebid Rendered
@@ -130,8 +131,18 @@ Call `loadAd()` and SDK will:
 **Banner Video** is the same as HTML banner, but you will also need to specify the `bannerView.videoPlacementType`:
 
 ``` kotlin
-bannerView.videoPlacementType = PlacementType.IN_BANNER // or any other available type
+bannerView.videoPlacementType = VideoPlacementType.IN_BANNER // or any other available type
 ```
+
+Setting the placement type switches the ad unit to a video-only request. To let display and video demand compete for the same banner, set the ad unit formats (requires SDK v3.4.0):
+
+```kotlin
+bannerView.setAdUnitFormats(EnumSet.of(AdUnitFormat.BANNER, AdUnitFormat.VIDEO))
+// Optional: the placement type of the video ad
+bannerView.videoPlacementType = VideoPlacementType.IN_BANNER
+```
+
+Once the formats are set with `setAdUnitFormats()`, `setVideoPlacementType()` keeps them and only sets the placement type. A null or empty set is ignored, and the current value is kept. Auto-refresh waits while a video creative is playing.
 
 #### Interstitials
 
@@ -255,6 +266,10 @@ override fun onUserEarnedReward(rewardedAdUnit: RewardedAdUnit?, reward: Reward?
     }
 }
 ```
+
+## Ad Expiration
+
+{% include mobile/rendering-ad-expiration-android.md %}
 
 ## Additional Ad Unit Configuration
 

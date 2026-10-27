@@ -47,7 +47,6 @@ Call `setConfig` with the `schain` object to be used:
 pbjs.setConfig({
   "schain": {
     "validation": "strict",
-    "config": {
       "ver":"1.0",
       "complete": 1,
       "nodes": [
@@ -57,7 +56,6 @@ pbjs.setConfig({
           "hp":1
         }
       ]
-    }
   }
 });
 ```
@@ -72,17 +70,15 @@ pbjs.setBidderConfig({
   "config": {
     "schain": {
       "validation": "relaxed",
-      "config": {
-        "ver":"1.0",
-        "complete": 1,
-        "nodes": [
-          {
+      "ver":"1.0",
+      "complete": 1,
+      "nodes": [
+        {
             "asi":"bidderA.com",
             "sid":"00001",
             "hp":1
-          }
-        ]
-      }
+        }
+      ]
     }
   }
 });
@@ -106,7 +102,6 @@ Yes, you can set both global and bidder-specific SChain configs. When together, 
 | SChain Param | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | validation (deprecated from Prebid 10) | optional | string | `'strict'`: In this mode, schain object will not be passed to adapters if it is invalid. Errors are thrown for invalid schain object. `'relaxed'`: Errors are thrown for an invalid schain object but the invalid schain object is still passed to adapters. `'off'`: No validations are performed and schain object is passed as-is to adapters. The default value is `'strict'`. | 'strict' |
-| config | required | object | This is the full Supply Chain object sent to bidders conforming to the [IAB OpenRTB SupplyChain Object Specification](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/supplychainobject.md). | (See examples above) |
 
 ## Adapter Information
 

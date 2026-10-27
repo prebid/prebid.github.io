@@ -181,7 +181,7 @@ Publishers that decide to build a first-party opt-out workflow might follow a pr
 
 ## Alternative Implementations
 
-For those not using Prebid's header bidding solution, SharedId can deployed via in inline script reference or from a web server.
+For those not using Prebid's header bidding solution, SharedId can be deployed via in inline script reference or from a web server.
 
 ### SharedId Script
 

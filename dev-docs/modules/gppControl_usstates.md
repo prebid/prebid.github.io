@@ -36,12 +36,27 @@ Optional configuration options are:
 | Param | Type | Description | Example |
 | --- | --- | --- | --- |
 | gpp.mspa | `Object` | | |
+| gpp.mspa.restrictActivities | `Array` | A list of [activities](/dev-docs/activity-controls.html#activities) to be restricted in addition to the [default restrictions](/features/mspa-usnat.html#usnat-activity-restrictions). If specified, and if not already restricted, they will be treated similarly to `syncUser`. | `['accessDevice']` |
 | gpp.mspa.sids | `Array` | GPP SIDs that should be covered by activity restrictions. Defaults to all US state SIDs (`[8, 9, 10, 11, 12]`). This is the only value needed for normal operation. Other options are for special cases and future-proofing. | `[8, 9]` |
 | gpp.mspa.sections | `Object` | Map from section ID to per-section configuration options | `{8: {name: 'usca'}}` |
 | gpp.mspa.sections.name | `String` | GPP API name to use for the section. Defaults to the names given listed under [section information -> section IDs](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/Section%20Information.md#section-ids). This option would only be used if your CMP has named their sections in a non-standard way. | `uscav3` |
 | gpp.mspa.sections.normalizeAs | `integer` | Normalize the flags for this section as if it were the number provided. See [example](#normalize-example). Each section defaults to its own ID. | `8` |
 
 ### Examples
+
+#### Disable device access on user opt-out
+
+```javascript
+pbjs.setConfig({
+  consentManagement: {
+    gpp: {
+      mspa: {
+        restrictActivities: ['accessDevice', 'accessRequestCredentials']
+      }
+    }
+  }
+})
+```
 
 #### Enable activity controls for certain sections only
 
@@ -117,7 +132,7 @@ You can also use the [Prebid.js Download](/download.html) page.
 
 - [IAB Global Privacy Platform Full Specification Repository](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform)
 - [IAB Global Privacy Platform CMP API Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Core/CMP%20API%20Specification.md)
-- [IAB Global Privacy Platform USNat string Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20Multi-State%20Privacy%20Agreement%20(MSPA)%20US%20National%20Technical%20Specification.md
+- [IAB Global Privacy Platform USNat string Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20Multi-State%20Privacy%20Agreement%20(MSPA)%20US%20National%20Technical%20Specification.md)
 - [Prebid US Compliance Support](/features/mspa-usnat.html)
 - [Prebid Activity Controls](/dev-docs/activity-controls.html)
 - [Prebid Consent Management - US Privacy Module](/dev-docs/modules/consentManagementUsp.html)
