@@ -3,7 +3,8 @@ layout: bidder
 title: Optable
 description: Prebid Optable Bidder Adapter
 biddercode: optable
-pbjs: false
+pbjs: true
+pbjs_version_notes: removed in 11.0
 privacy_sandbox: paapi
 prebid_member: true
 sidebarType: 1
