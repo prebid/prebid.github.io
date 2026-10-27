@@ -109,7 +109,9 @@ pbjs.setConfig({
   }
 });
 
-// with this setting, bidderA receives only its own chain; other bidders receive the global one
+// Prebid.js 11.45+: bidderA receives only its own chain; other bidders receive the global one.
+// setConfig replaces the whole firstPartyData object: set this together with any other
+// firstPartyData options (such as uaHints) in one call.
 pbjs.setConfig({ firstPartyData: { replaceGlobalSchain: true } });
 
 pbjs.setBidderConfig({
