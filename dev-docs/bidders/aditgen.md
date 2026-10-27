@@ -14,7 +14,7 @@ multiformat_supported: will-bid-on-any
 safeframes_ok: true
 ---
 
-### Bidder Configuration
+## Bidder Configuration
 
 Set `bidderURL` with `setBidderConfig` before the auction starts. Without it, no `aditgen` bids are requested.
 
@@ -27,7 +27,7 @@ pbjs.setBidderConfig({
 });
 ```
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                                         | Example                            | Type      |
@@ -35,7 +35,7 @@ pbjs.setBidderConfig({
 | `tagId`       | required | Ad placement ID. Used for comparison of statistics. | `12345`                            | `integer` |
 | `kvTargeting` | optional | Key/value pairs used for custom targeting.          | `{key1: 'value1', key2: 'value2'}` | `object`  |
 
-### Bid Example
+## Bid Example
 
 ```js
 {
