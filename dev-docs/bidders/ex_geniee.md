@@ -36,7 +36,7 @@ Please contact us at <aladdin-back@geniee.co.jp> before using the adapter. `part
 
 Ads are served when all of the following conditions are satisfied:
 
-- The ad unit declares `mediaTypes.banner` with valid sizes, or `mediaTypes.video` with `mimes` (see [Video](#video)). Native-only ad units are rejected. A multiformat ad unit (banner + video) is sent as one impression carrying both.
+- The ad unit declares `mediaTypes.banner` with valid sizes, or `mediaTypes.video` with `mimes` (see [Video](#video)). Native-only ad units are rejected. Native and audio parts of a multiformat ad unit are dropped. A multiformat ad unit (banner + video) is sent as one impression carrying both.
 - Payment is possible in Japanese yen or US dollars.
 - The request contains either `site` (with `site.page`) or `app` (with `app.bundle`).
 - GDPR does not apply to the request. The Exchange does not serve GDPR territories, so no request is sent when `gdprApplies` is true. The adapter does not add consent signals itself; values written to `ortb2` by the TCF consent module (`regs.ext.gdpr`, `user.ext.consent`) are passed through with the rest of the first party data.
@@ -82,6 +82,8 @@ pbjs.setConfig({
 `ortb2` and `ortb2Imp` first party data are included in the OpenRTB request. Note the following:
 
 - `imp.tagid` set through `ortb2Imp` is overridden when `params.placementId` is set.
+- `ortb2Imp.video` is sent only when the ad unit declares `mediaTypes.video` with `mimes`; otherwise it is dropped.
+- `ortb2Imp.native` and `ortb2Imp.audio` are never sent.
 - User IDs are read from `user.ext.eids` and mirrored to `user.eids`.
 - The Exchange runs a first price auction only. If `at` is set to any value other than `1` through `ortb2`, no request is sent.
 
