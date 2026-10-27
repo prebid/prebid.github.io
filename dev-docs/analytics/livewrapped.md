@@ -33,4 +33,4 @@ pbjs.enableAnalytics({
 
 The adapter listens to `auctionInit`, `bidRequested`, `bidResponse`, `bidderDone`, `bidTimeout`, `auctionEnd`, `bidWon`, and `adRenderFailed`. It records requests, responses (highest bid per bid request), timeouts, wins, and render failures, including CPM, size, media type, floors, deal ID, bid `meta`, and the GDPR applies flag and consent string. If the ad unit's element has a `data-adunitid` attribute, its value is included.
 
-Data is sent as a JSON `POST` (ajax) to `lwadm.com` 500 ms after `auctionEnd`. Wins and render failures that occur after that are sent in a separate request as they happen.
+Data is sent as a JSON `POST` (ajax) to `endpoint` (default `https://lwadm.com/analytics/10`) 500 ms after `auctionEnd`. Wins and render failures that occur after that are sent in a separate request as they happen.

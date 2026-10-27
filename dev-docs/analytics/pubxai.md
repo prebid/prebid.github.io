@@ -36,7 +36,7 @@ The `options` object is required. It is also included in every payload.
 
 The adapter listens to `bidResponse`, `bidRejected`, `bidTimeout`, `auctionEnd` and `bidWon`. Each auction record includes bids, floor data, page URL, device and browser, the names of available user ID and consent types, and the local storage keys `pubx:pmac` and `pubx:extraData`. Winning bids also include the GPT slot's `pubx-*` and `hb_*` targeting.
 
-An auction is queued on `bidWon`, or on `auctionEnd` if it received no valid bids. Queued data is sent with `navigator.sendBeacon` when the page becomes hidden, in batches of up to 64 KB, to:
+An auction is queued on `bidWon`, or on `auctionEnd` if it received no valid bids. Queued data is sent with `navigator.sendBeacon` when the page becomes hidden, in batches of up to 64 KB, to these URLs (`<hostName>` defaults to `api.pbxai.com`):
 
-- `https://api.pbxai.com/analytics/auction`
-- `https://api.pbxai.com/analytics/bidwon`
+- `https://<hostName>/analytics/auction`
+- `https://<hostName>/analytics/bidwon`
