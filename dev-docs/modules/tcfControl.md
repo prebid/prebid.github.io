@@ -84,7 +84,7 @@ The following fields related to anonymizing aspects of the auction are supported
 
 Notes:
 
-* <a id="strictStorageEnforcement"></a> By default, Prebid allows some limited use of storage even when purpose 1 consent was not given: this is limited to non-PII, such as [category translation mappings](/dev-docs/modules/categoryTranslation.html), or temporary test data used to probe the browser's storage features. If `strictStorageEnforcement` is true, Purpose 1 consent will always be enforced for any access to storage.
+* <a id="strictStorageEnforcement"></a> By default, Prebid allows some limited use of storage even when purpose 1 consent was not given: this is limited to non-PII, such as temporary test data used to probe the browser's storage features. If `strictStorageEnforcement` is true, Purpose 1 consent will always be enforced for any access to storage.
 * To accommodate Prebid.js modules and adapters that don't have GVL IDs, the vendorExceptions list is based on Prebid.js biddercodes instead of Global Vendor List (GVL) IDs (i.e. "bidderA" instead of "12345").
 * An alternate way of establishing a GVL mapping is to define a 'gvlMapping' object:
 
@@ -100,6 +100,11 @@ pbjs.setConfig({
 * If you set `gvlMapping` for a module whose legal-basis declarations are not
   already known to Prebid.js (i.e. it maps to a GVL ID not used by any other module), also set [`gvlLegalBasisMapping`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-gvlLegalBasisMapping) for that GVL ID or
   review the `defaultLegalBasis` fallback described below.
+* <a id="additional-consent"></a> Since version 11.41, modules that have no GVL ID but are on Google's [Additional Consent](https://support.google.com/admanager/answer/9681920) (AC) provider list can declare an `acpId`, which publishers can set or override with [`acpMapping`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-acpMapping). For these modules, vendor consent is read from the AC string (`gdprConsent.addtlConsent`) instead of the TCF string:
+  * Only the vendor check uses the AC string. Purpose signals still come from the TCF string, evaluated against `defaultLegalBasis`.
+  * Modules with a GVL ID are never checked against the AC string.
+  * Both AC v1 (`1~1.2.3`) and v2 (`2~1.2.3~dv.1.2.3.4.5`) strings are accepted. Only the providers in the consented list (before `~dv.`) have consent; the `dv.` list of disclosed providers is ignored, so a provider that appears only there has no consent. A malformed AC string means no AC vendor consent.
+  * This applies to the `storage`, `basicAds`, `personalizedAds`, `measurement` and `transmitPreciseGeo` rules, and to the default [`transmitEids`](#note-transmitEids) check. `vendorExceptions`, `softVendorExceptions` and `enforceVendor: false` work as before.
 
 ### Examples
 
@@ -229,6 +234,8 @@ Before allowing an activity tied to a TCF-protected Purpose for a given vendor, 
   * the vendor is excepted through either `softVendorExceptions` or `vendorExceptions`;
 * Configuration rules check neither purpose consent nor vendor signal (`enforcePurpose: false, enforceVendor: false`).
 
+Since version 11.41, for a module that has no GVL ID but has an [Additional Consent provider ID](#additional-consent), the user's consent for that provider in the AC string also satisfies the vendor signal in the scenarios above. Because such a module has no GVL declarations, its purpose signals are evaluated against `defaultLegalBasis`.
+
 ### Basic enforcement (Prebid.js versions prior to 11.15)
 
 Prior to version 11.15, Prebid.js did not have access to the Global Vendor List (GVL), so it implements
@@ -273,10 +280,10 @@ Since Prebid.js 11.12, the TCF Control Module also enforces the publisher restri
 
 The narrowed legal basis is used for both the purpose and the vendor checks. Publisher restrictions are applied only when the vendor check is made using the module's GVL ID. They are not applied:
 
-* to modules listed in `vendorExceptions` or `softVendorExceptions`,
-* to rules with `enforceVendor: false`,
-* to modules without a GVL ID, or
-* to Special Feature 1 (`transmitPreciseGeo`).
+- to modules listed in `vendorExceptions` or `softVendorExceptions`,
+- to rules with `enforceVendor: false`,
+- to modules without a GVL ID, or
+- to Special Feature 1 (`transmitPreciseGeo`).
 
 ### Default Legal Basis
 

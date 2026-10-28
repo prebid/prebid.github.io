@@ -10,16 +10,17 @@ media_types: banner, video, native, audio
 safeframes_ok: true
 sidebarType: 1
 tcfeu_supported: true
-dsa_supported: false
+dsa_supported: true
 gvl_id: 1609
 usp_supported: true
 coppa_supported: true
 gpp_sids: tcfeu, usnat, usstate_all, usp
 schain_supported: true
 dchain_supported: false
-deals_supported: false
+deals_supported: true
 floors_supported: true
-fpd_supported: false
+userIds: all
+fpd_supported: true
 prebid_member: false
 multiformat_supported: will-bid-on-any
 ortb_blocking_supported: true
@@ -39,10 +40,15 @@ The Floxis bidder adapter enables integration with the Floxis programmatic adver
 | `seat` | required | Seat identifier provided by Floxis | `"testSeat"` | `string` |
 | `region` | optional | Routing region: `us-e`, `eu`, or `apac` (default: `us-e`) | `"us-e"` | `string` |
 | `partner` | optional | Partner identifier (default: `floxis`) | `"floxis"` | `string` |
+| `bidFloor` | optional | Static floor (CPM) when `ortb2Imp` sets no floor, no Floors API applies and floor signaling is not suppressed | `0.5` | `number` |
+| `bidFloorCur` | optional | Currency of `bidFloor` (default: `USD`) | `"USD"` | `string` |
 
 ## Prebid Server
 
-The Floxis Prebid Server adapter is available in both Go (`prebid-server`) and Java (`prebid-server-java`). The server-side endpoint follows the pattern `https://{region}.floxis.tech/pbs`, where `{region}` is one of `us-e`, `eu`, or `apac` (default: `us-e`). When a non-default `partner` is configured, the region host is prefixed accordingly (`https://{partner}-{region}.floxis.tech/pbs`). User-sync is handled via the standard Prebid Server cookie-sync mechanism. For setup assistance contact <prebid@floxis.tech>.
+The Floxis adapter is available in Prebid Server Go (`prebid-server`) and Prebid Server Java (`prebid-server-java`). Both send one request per seat, with the seat in the `seat` query parameter. User sync is handled through the standard Prebid Server cookie-sync mechanism. For setup assistance contact <prebid@floxis.tech>.
+
+- **Go:** requests go to the endpoint configured by the host company, `https://us-e.floxis.tech/pbs` by default. Host companies deploy the regional endpoint that matches each datacenter: `us-e.floxis.tech`, `eu.floxis.tech` or `apac.floxis.tech`. The Go adapter accepts only `seat`.
+- **Java:** requests go to `https://{region}.floxis.tech/pbs?seat={seat}`, where `{region}` is one of `us-e`, `eu`, or `apac` (default: `us-e`). When a non-default `partner` is configured, the region host is prefixed accordingly (`https://{partner}-{region}.floxis.tech/pbs?seat={seat}`).
 
 ## Prebid Server Bid Params
 
@@ -51,8 +57,12 @@ The Floxis Prebid Server adapter is available in both Go (`prebid-server`) and J
 | Name | Scope | Description | Example | Type |
 | ---- | ----- | ----------- | ------- | ---- |
 | `seat` | required | Seat identifier provided by Floxis | `"testSeat"` | `string` |
-| `region` | optional | Routing region: `us-e`, `eu`, or `apac` (default: `us-e`) | `"us-e"` | `string` |
-| `partner` | optional | Partner identifier (default: `floxis`) | `"floxis"` | `string` |
+| `region` | optional | Java only. Routing region: `us-e`, `eu`, or `apac` (default: `us-e`) | `"us-e"` | `string` |
+| `partner` | optional | Java only. Partner identifier (default: `floxis`) | `"floxis"` | `string` |
+
+## First Party Data
+
+The adapter builds its request with the Prebid.js ORTB converter, so publisher first-party data set via `setConfig({ortb2: {...}})` (`site`, `user`, `device`, `bcat`, `badv`, `regs`) and ad-unit level `ortb2Imp` (including `ortb2Imp.ext` and `ortb2Imp.pmp` deals) is forwarded on the OpenRTB request as-is. User IDs from the Prebid.js User ID module are sent in `user.ext.eids`.
 
 ## Floors Support
 
@@ -64,9 +74,9 @@ Privacy signals (GDPR/TCF EU, US Privacy, GPP, COPPA) are provided by Prebid.js 
 
 ## First-Party Fallback Id (Storage Use)
 
-In browsers that block third-party cookies, the Prebid.js adapter maintains a first-party fallback identifier: a random v4 UUID stored under the key `flx_uid` in `localStorage` (preferred) and a cookie (~30-day lifetime), both scoped to the publisher's own origin. The id is per-publisher — it is never shared across sites — and is sent as `user.ext.floxisId`. It is used only as an identity of last resort when the Floxis `__fxId` cookie is unavailable. Storage details are disclosed at [floxis.tech/vendor-storage.json](https://floxis.tech/vendor-storage.json).
+The Prebid.js adapter can maintain a first-party fallback identifier: a random v4 UUID stored under the key `flx_uid` in `localStorage` (preferred) and a cookie (~30-day lifetime), both scoped to the publisher's own origin. The id is per-publisher — it is never shared across sites — and is sent as `user.ext.floxisId`. The Floxis exchange uses it only when its own `__fxId` cookie is not present on the request. Storage details are disclosed at [floxis.tech/vendor-storage.json](https://floxis.tech/vendor-storage.json).
 
-All storage access goes through the Prebid.js `storageManager`, so it is gated by the standard `deviceAccess` configuration and GDPR purpose-1 consent under GVL ID 1609. Bidder-level storage access is denied by default and requires an explicit publisher opt-in — without it, no id is generated or sent (a safe no-op):
+All storage access goes through the Prebid.js `storageManager`, so it is gated by the standard `deviceAccess` configuration and GDPR purpose-1 consent under GVL ID 1609. Bidder-level storage access is denied by default and requires an explicit publisher opt-in. Without it, the adapter does not read storage or generate its fallback id; a publisher-supplied `ortb2.user.ext.floxisId` is still forwarded. To enable fallback storage:
 
 ```javascript
 pbjs.bidderSettings = {
@@ -75,6 +85,12 @@ pbjs.bidderSettings = {
     }
 };
 ```
+
+Sending `user.ext.floxisId` also requires both the `transmitEids` and `transmitUfpd` activity controls to allow it. If either is denied, the adapter omits `user.ext.floxisId`, including a publisher-supplied value, and does not access fallback storage.
+
+## Error and Timeout Telemetry
+
+The Prebid.js adapter sends cookieless `keepalive` beacons to `https://px-us-e.floxis.tech/event` for auction timeouts and bidder transport errors. They contain the seat, region, event type and available operational fields (HTTP status, timeout flag, duration and publisher domain). Error beacons also carry consent signals when available; timeout beacons carry none. They contain no user, device or auction identifier and are deduplicated per seat and region per event.
 
 ## AdUnit Configuration for Banner
 

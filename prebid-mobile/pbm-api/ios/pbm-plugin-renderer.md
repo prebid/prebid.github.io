@@ -293,5 +293,5 @@ public class SampleRenderer: NSObject, PrebidMobilePluginRenderer {
 
 In addition to this documentation you have samples on hand which can be get from the Prebid Mobile SDK repository:
 
-* [PrebidMobilePluginRenderer](https://github.com/prebid/prebid-mobile-ios/blob/master/PrebidMobile/PrebidMobileRendering/PluginRenderer/PrebidMobilePluginRenderer.swift)
-* [PluginEventDelegate](https://github.com/prebid/prebid-mobile-ios/blob/master/PrebidMobile/PrebidMobileRendering/PluginRenderer/PluginEventDelegate.swift)
+* [PrebidMobilePluginRenderer](https://github.com/prebid/prebid-mobile-ios/blob/master/PrebidMobile/Swift/PrebidMobileRendering/PluginRenderer/PrebidMobilePluginRenderer.swift)
+* [PluginEventDelegate](https://github.com/prebid/prebid-mobile-ios/blob/master/PrebidMobile/Swift/PrebidMobileRendering/PluginRenderer/PluginEventDelegate.swift)
