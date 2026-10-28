@@ -66,6 +66,12 @@ To get started editing the site and seeing your changes, clone this repo and ent
 JEKYLL_ENV=production bundle exec jekyll serve --watch --incremental
 ```
 
+Site search uses [Pagefind](https://pagefind.app/), which indexes the built site. To try search locally, build the index once (with Node.js installed) while `jekyll serve` is running; Jekyll keeps the `_site/pagefind` folder between rebuilds:
+
+```bash
+npx -y pagefind --site _site
+```
+
 You should see output that looks something like this:
 
 ```bash
@@ -89,7 +95,7 @@ Open the `Server address` URL in your browser, and you should see a locally runn
 
 ## Checking Links
 
-CI checks internal links and anchors in the built site with [lychee](https://lychee.cli.rs/), configured in [lychee.toml](lychee.toml). To run the same check locally, [install lychee](https://lychee.cli.rs/installation/) and run:
+CI checks internal links and anchors in the built site with [lychee](https://lychee.cli.rs/), configured in [lychee.toml](lychee.toml). To run the same check locally, [install lychee](https://lychee.cli.rs/guides/getting-started/) and run:
 
 ```bash
 npm run linkcheck

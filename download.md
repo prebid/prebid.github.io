@@ -33,6 +33,7 @@ a.tip:hover span {
 </style>
 
 <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+<script src="/assets/js/prebidBundler.js"></script>
 <script src="/assets/js/download.js"></script>
 
 <style>
@@ -182,3 +183,28 @@ Module scripts are added with `crossorigin="anonymous"` and `crossoriginstorage=
 - Builds from source also produce `prebid.web.js`, a drop-in replacement for `prebid.js` that contains only the names and checksums of the selected modules and loads them from `distUrlBase` in the same way. In the npm package it can be found under `dist/not-for-prod/`. It only works when built from a tagged release: when the version ends in `-pre` (for example, a build of the `master` branch), the default `distUrlBase` points to `latest`, whose files will not match the checksums.
 
 </div>
+
+## Option 4: Use Prebid.js as an npm Dependency
+
+{: .lead :}
+If your project is already built with a JavaScript bundler, you can install Prebid.js from npm and bundle it with the rest of your code.
+
+```bash
+npm install prebid.js
+```
+
+Instead of choosing modules with `--modules` or the checkboxes above, you choose them by importing them, using their names from Prebid's [modules directory](https://github.com/prebid/Prebid.js/tree/master/modules):
+
+```javascript
+import pbjs from 'prebid.js';
+
+import 'prebid.js/modules/rubiconBidAdapter';
+import 'prebid.js/modules/userId';         // parent module of sharedIdSystem
+import 'prebid.js/modules/sharedIdSystem';
+
+pbjs.processQueue();
+```
+
+* Since Prebid.js 10, the npm package contains precompiled code, so it works with any bundler or compiler (webpack, SWC, Bun, Rollup, Vite, ...) without Babel or any Prebid-specific configuration. Earlier versions required Prebid's Babel settings.
+
+For complete webpack + SWC and Bun examples, see [Usage (as a npm dependency)](https://github.com/prebid/Prebid.js/blob/master/README.md#Usage) in the Prebid.js README.

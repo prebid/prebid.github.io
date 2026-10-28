@@ -62,7 +62,7 @@ Learn more about [Markdown](https://www.markdownguide.org/)
 
 **Bootstrap**: A CSS template for responsive site design. Bootstrap provides the base formatting for the site.
 
-Learn more about [Bootstrap](https://getbootstrap.com/docs/4.1/getting-started/introduction/_)
+Learn more about [Bootstrap](https://getbootstrap.com/docs/4.1/getting-started/introduction/)
 
 **Liquid**: A language created by Shopify to enable dynamic HTML creation.
 
@@ -98,7 +98,7 @@ For the Prebid.org site the following directories are used:
 **_data**  
 Jekyll was originally designed specifically for creation of blogging websites and not for dynamic, data-driven sites. However, by including the _data directory we can mimic a database structure to create a more robust site. Files in this directory can be saved in either _json_, _yml_ or _csv_ format. For Prebid.org they have been saved in _yml_.
 
-Learn more about YML [here](https://yaml.org/start.html)
+Learn more about [YAML](https://yaml.org/)
 
 There are several YML files in the Prebid _data directory
 
@@ -190,16 +190,16 @@ The collection with the title property "What Is Prebid?" is a child of the colle
 _Note: A collection does not have to contain all properties. For Bools 1 = true, 0 = false_
 
 | Key | Type | Example | Use |
-| ------ | ------ | ------ | ------ |
-| sectionId| Int | 3 | Indicates the menu section of an item. |
-| sectionName |  string | Overview  | The display name of the section. |
-| link |  string | /overview/intro.html  | The relative link that the menu item should open. |
+| --- | --- | --- | --- |
+| sectionId | Int | 3 | Indicates the menu section of an item. |
+| sectionName | string | Overview | The display name of the section. |
+| link | string | /overview/intro.html | The relative link that the menu item should open. |
 | isHeader | bool | 1 | Indicates if this item is a section header. |
 | hasSubMenus | bool | 1 | Indicates if this item has submenus. |
 | submenus | collection | | If the item has submenus they will be contained in a collection of collections. |
 | subsectionId | int | 3 | Indicates the subsection of an item. |
 | needsDivider | bool | 0 | Indicates if the subsection item is the last item in the section and requires a divider. **Deprecated** |
-| isSubsectionStart  | bool | 0 | Indicates if the item is the start of a subsection. **Deprecated** |
+| isSubsectionStart | bool | 0 | Indicates if the item is the start of a subsection. **Deprecated** |
 
 **Code Use**  
 This data file is read in the nav.html file using Liquid. (_`_includes/nav.html`).
@@ -248,18 +248,18 @@ Each menu item is represented in the YML map as a collection of key value pairs 
 _Note: A collection does not have to contain all properties. For bools 1 = true, 0 = false_*
 
 | Key | Type | Example | Use |
-| ----- | ----- | ----- | ----- |
-| sbSecId |  int | 3  | Indicates the menu section of an item. |
-| title  |  string | General  | The text displayed for the menu section. |
-| link |  string | /overview/intro.html  | The relative link that the menu item opens. |
-| isLastSubSectionItem  |  bool | 0  | Indicates if the menu item is the last item in a subsection. |
-| isHeader |  bool | 0  | Indicates if the menu item is a sub section header. |
-| headerId |  string | general  | Required if isHeader = 1. Used to identify which div object is being toggled. |
-| isSectionHeader |  bool | 0  | Indicates if the menu item is a section header. |
-| sectionTitle |  string | Overview  | Text displayed for the section. |
-| sectionId |  string | overview  | Required if isHeader = 1. Used to identify which div object is being toggled. |
-| subgroup |  int | 3  | Indicates the subgroup that contains this item. |
-| sbCollapseId |  string | overview  | Required if isSectionHeader = 1. Used to identify which div object is being toggled. |
+| --- | --- | --- | --- |
+| sbSecId | int | 3 | Indicates the menu section of an item. |
+| title | string | General | The text displayed for the menu section. |
+| link | string | /overview/intro.html | The relative link that the menu item opens. |
+| isLastSubSectionItem | bool | 0 | Indicates if the menu item is the last item in a subsection. |
+| isHeader | bool | 0 | Indicates if the menu item is a sub section header. |
+| headerId | string | general | Required if isHeader = 1. Used to identify which div object is being toggled. |
+| isSectionHeader | bool | 0 | Indicates if the menu item is a section header. |
+| sectionTitle | string | Overview | Text displayed for the section. |
+| sectionId | string | overview | Required if isHeader = 1. Used to identify which div object is being toggled. |
+| subgroup | int | 3 | Indicates the subgroup that contains this item. |
+| sbCollapseId | string | overview | Required if isSectionHeader = 1. Used to identify which div object is being toggled. |
 
 **Code Use**  
 This data file is read in the left_nav.html file using Liquid. (__includes/left_nav.html)
@@ -350,15 +350,15 @@ TBD
 
 There are 200+ bidder files in the /dev-docs/bidders directory describing the parameters for each Prebid.js bidder. There are two unfortunately identical pieces of code that process them:
 
-- /\_layouts/bidder.html - this is used to generate the single-bidder version of the page like <https://prebid.org/dev-docs/bidders/rubicon.html>
-- /dev-docs/bidders.md - this is used to generate the (large) combined page at <https://prebid.org/dev-docs/bidders.html>
+- /\_layouts/bidder.html - this is used to generate the single-bidder version of the page like <https://docs.prebid.org/dev-docs/bidders/rubicon.html>
+- /dev-docs/bidders.md - this is used to generate the (large) combined page at <https://docs.prebid.org/dev-docs/bidders.html>
 
 The attributes in the Jekyll 'front matter' drive various behaviors and dynamic tables elsewhere on the site.
 
 {: .table .table-bordered .table-striped }
 
 | Key | Required? | Values | Use |
-| ----- | ------ | ------ | ------ |
+| --- | --- | --- | --- |
 | layout | yes | bidder | Links this file to the bidder.html layout |
 | title | yes | company name | For display |
 | pbjs | sorta | true or false | defines whether this is a Prebid.js bidder |
@@ -384,13 +384,14 @@ with a prefix like `hb_cache_host`. So they wanted to have shorter bidderCode fo
 4. optionally add prevBiddercode to add a note to the page about the legacy value
 5. optionally add filename if the bid adapter was created using a filename that's different than their bidder code. e.g. if the biddercode is "biddera" but they named the file "bidderABidAdapter", set the biddercode to "biddera" and the filename to "bidderABidAdapter".
 
-## Algolia Search
+## Site Search
 
-We use Algolia for site search.
+We use [Pagefind](https://pagefind.app/) for site search. It indexes the built site after `jekyll build`, in the deploy workflow (`.github/workflows/pages-deploy.yml`).
 
-- The configuration defining the search parameters is at <https://github.com/algolia/docsearch-configs/blob/master/configs/prebid.json>
-- Only elements p, th, td, li, code, and h1-h3 are indexed
-- Code implementation in _includes/body-end.html and a the 'site-search' div in the header.
+- Only the `.pb-content` area of each layout is indexed (`data-pagefind-body`, from `_includes/pagefind-body.html`), which also sets the `section` filter shown in the search modal.
+- Pages without an `<h1>` in their content get their title as a weighted, hidden heading and as the result title (`_includes/pagefind-title.html`).
+- The search trigger and modal are added by the script in `_includes/head--common.html`, from the template in `_includes/nav.html`.
+- To try search locally, see [Running Jekyll Locally](https://github.com/prebid/prebid.github.io#running-jekyll-locally) in the README.
 
 ## Cookie Privacy
 

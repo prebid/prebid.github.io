@@ -12,6 +12,9 @@ sidebarType : 1
 
 # Google Ad Manager Adpod Support
 
+{: .alert.alert-warning :}
+This module was removed in Prebid.js 11.0. See the [Prebid.js 11 release notes](/dev-docs/pb11-notes.html#removed-modules).
+
 {:.no_toc}
 
 This module exposes the [`pbjs.adServers.dfp.buildAdpodVideoUrl](/dev-docs/publisher-api-reference/adServers.gam.buildAdpodVideoUrl.html) method, required to use [adpod](/dev-docs/modules/adpod.html) with Google Ad Manager.
