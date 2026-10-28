@@ -205,6 +205,6 @@ import 'prebid.js/modules/sharedIdSystem';
 pbjs.processQueue();
 ```
 
-* Since Prebid.js 10, the npm package contains precompiled code, so it works with any bundler or compiler (webpack, SWC, Bun, Rollup, Vite, ...) without Babel or any Prebid-specific configuration. Earlier versions required Prebid's Babel settings.
+- Since Prebid.js 10, the npm package contains precompiled code, so it works with any bundler or compiler (webpack, SWC, Bun, Rollup, Vite, ...) without Babel or any Prebid-specific configuration. Earlier versions required Prebid's Babel settings.
 
 For complete webpack + SWC and Bun examples, see [Usage (as a npm dependency)](https://github.com/prebid/Prebid.js/blob/master/README.md#Usage) in the Prebid.js README.
