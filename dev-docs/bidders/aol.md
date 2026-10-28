@@ -56,4 +56,4 @@ This adapter allows use of both ONE by AOL: Display and ONE by AOL: Mobile platf
 | --- | --- | --- | --- | --- |
 | `dcn` | required | Site ID provided by ONE. | `'2c9d2b50015a5aa95b70a9b0b5b10012'` | `string` |
 | `pos` | required | Position on a page where an ad will appear. | `'header'` | `string` |
-| `ext` | optional | Object that allows the client to send any extra parameters. |  | `object` |
+| `ext` | optional | Object that allows the client to send any extra parameters. | Not specified | `object` |

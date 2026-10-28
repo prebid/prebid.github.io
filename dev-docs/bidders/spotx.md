@@ -35,12 +35,12 @@ The SpotX adapter requires setup and approval from your Magnite account manager.
 | `mimes` | optional | List of MIME types to allow in ad. | `['application/javascript', 'video/mp4', 'video/webm']` | `array` |
 | `ad_volume` | optional | Value between 0 and 1 to denote the volume the ad should start at | `0.7` | `float` |
 | `price_floor` | optional | Set the current channel price floor in real time. | `10` | `float` |
-| `hide_skin` | optional | Set to true to hide the SpotX skin |  | `boolean` |
-| `custom` | optional | An object containing key-value pairs for reporting. See SpotX documentation. |  | `object` |
-| `min_duration` | optional | Minimum video ad duration in seconds |  | `integer` |
-| `max_duration` | optional | Maximum video ad duration in seconds |  | `integer` |
-| `placement_type` | optional | Number corresponding to the type of ad placement. See SpotX documentation. |  | `integer` |
-| `position` | optional | Number corresponding to the position of the ad. See SpotX documentation. |  | `integer` |
+| `hide_skin` | optional | Set to true to hide the SpotX skin | Not specified | `boolean` |
+| `custom` | optional | An object containing key-value pairs for reporting. See SpotX documentation. | Not specified | `object` |
+| `min_duration` | optional | Minimum video ad duration in seconds | Not specified | `integer` |
+| `max_duration` | optional | Maximum video ad duration in seconds | Not specified | `integer` |
+| `placement_type` | optional | Number corresponding to the type of ad placement. See SpotX documentation. | Not specified | `integer` |
+| `position` | optional | Number corresponding to the position of the ad. See SpotX documentation. | Not specified | `integer` |
 | `page` | optional | The URL of the page the ad is being displayed on. Used to override the detected referrer if necessary | `'https://www.spotx.tv'` | `string` |
 
 <a name="spotx-outstream-options-object"></a>

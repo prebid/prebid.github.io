@@ -28,7 +28,7 @@ sidebarType: 1
 | `floor` | optional | This is a formatted string of values. The format is a comma separated list of "currency pairs". Each pair consists of a currency code and the floor for that currency, separated by a colon. | `'USD:5.00,AUD:7.25'` | String |
 | `efloor` | optional | Same as floor, except the entire string is encrypted using HMAC encryption and the encryption keys set on the supply's seat from the SSP UI. | `'IFHR00cxR5ul_t20sMQ0OsvMVP7fOS-mnVsxu78%3d'` | String |
 | `custom` | optional | Any custom value that will be later be available for reporting. | `'myCustomValue'` | String |
-| `categories` | optional | Validated against RTB table 6.1 (Send comma delimited list if more than one category applies. | `'IAB20,IAB20-1'` |  |
+| `categories` | optional | Validated against RTB table 6.1 (Send comma delimited list if more than one category applies. | `'IAB20,IAB20-1'` | Not specified |
 | `keywords` | optional | Comma separated list of keywords describing the supply. | `'funny,television'` | String |
 | `srcRelationship` | optional | Describes the relationship between the content owner and the requestor of the ad opportunity. 1 for "direct", 0 for "indirect" | `1` | Integer |
 | `blockDomains` | optional | A comma separated list of advertiser domains that should be added to the existing list of blocked advertiser domains that is set in the SSP console. | `'blockthis.com, blockthat.com'` | String |

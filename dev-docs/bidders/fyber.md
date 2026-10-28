@@ -20,4 +20,4 @@ Fyber is probably a defunct bidder, as the domain previously registered, inner-a
 | --- | --- | --- | --- | --- |
 | `appId` | required | The app. ID provided by Inneractive | `'Company_App_OS'` | `string` |
 | `adSpotType` | required | The ad spot type (`'BANNER'`/`RECTANGLE`) | `'BANNER'` | `string` |
-| `customParams` | optional | Allows passing custom parameters in the bid request. |  | `object` |
+| `customParams` | optional | Allows passing custom parameters in the bid request. | Not specified | `object` |

@@ -14,7 +14,7 @@ sidebarType: 1
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
 | --- | --- | --- | --- | --- |
-| `accountID` | required | `accountID of the ad unit` |  | `string` |
-| `slotID` | required | `slotID of the ad unit` |  | `string` |
-| `width` | required | `width of ad slot` |  | `string` |
-| `height` | required | `height of ad slot` |  | `string` |
+| `accountID` | required | `accountID of the ad unit` | Not specified | `string` |
+| `slotID` | required | `slotID of the ad unit` | Not specified | `string` |
+| `width` | required | `width of ad slot` | Not specified | `string` |
+| `height` | required | `height of ad slot` | Not specified | `string` |

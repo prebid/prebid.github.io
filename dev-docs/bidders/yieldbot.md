@@ -15,5 +15,5 @@ sidebarType: 1
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
 | --- | --- | --- | --- | --- |
-| `psn` | required | The publisher ID |  | `string` |
-| `slot` | required | The slot |  | `string` |
+| `psn` | required | The publisher ID | Not specified | `string` |
+| `slot` | required | The slot | Not specified | `string` |

@@ -21,4 +21,4 @@ Polymorph adapter requires setup and approval from the Polymorph team. Please re
 | --- | --- | --- | --- | --- |
 | `placementId` | required | The placement id/key provided by Polymorph | `'ENvsYZ6m5DPDk6r7ogYV63DO2sBQoJ5EpckcXSlw'` | String |
 | `defaultWidth` | optional | In case multiple ad sizes are supported, it's recommended to specify default height and width for native ad (in case native ad is chose as a winner). In case of banner or outstream ad any one of the above sizes can be chosen depending on the highest bid. | `300` | Integer |
-| `defaultHeight` | optional |  | `250` | Integer |
+| `defaultHeight` | optional | Not specified | `250` | Integer |
