@@ -15,6 +15,6 @@ sidebarType: 1
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
 | --- | --- | --- | --- | --- |
-| `placementId` | required |  |  | `string` |
+| `placementId` | required | Not specified | Not specified | `string` |
 
 Defy Media is an aliased bidder for AppNexus
