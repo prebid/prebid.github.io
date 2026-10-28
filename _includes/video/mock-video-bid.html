@@ -1,7 +1,7 @@
 <script>
     window.pbjs = window.pbjs || {};
     pbjs.que = pbjs.que || [];
-    pbjs.que.push(() => {
+    const enableMockVideoBid = () => pbjs.que.push(() => {
       pbjs.setConfig({
         debugging: {
           enabled: true,
@@ -16,6 +16,20 @@
             },
           ]
         }
-      })
-    })
+      });
+    });
+
+    enableMockVideoBid();
+
+    // A debug override persists in sessionStorage unless explicitly disabled.
+    window.addEventListener('pagehide', () => {
+      if (typeof pbjs.setConfig === 'function') {
+        pbjs.setConfig({ debugging: { enabled: false } });
+      }
+    });
+
+    // A bfcache restore does not rerun scripts, so reapply the mock on return.
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) enableMockVideoBid();
+    });
 </script>
