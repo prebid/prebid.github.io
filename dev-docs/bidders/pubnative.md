@@ -4,11 +4,13 @@ title: PubNative
 pbs: true
 media_types: banner, video, native
 biddercode: pubnative
-tcfeu_supported: false
+tcfeu_supported: true
+gvl_id: 512
 prebid_member: true
 schain_supported: true
 coppa_supported: true
 usp_supported: true
+gpp_sids: tcfeu
 sidebarType: 1
 ---
 
