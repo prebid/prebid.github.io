@@ -4,6 +4,7 @@ title: Zentotem
 description: Prebid Zentotem Bidder Adapter
 pbjs: true
 enable_download: false
+pbjs_version_notes: "Not available in current Prebid.js builds; specific reason unknown."
 pbs: true
 biddercode: zentotem
 tcfeu_supported: false
@@ -23,12 +24,12 @@ media_types: banner, video, native
 sidebarType: 1
 ---
 
-### Registration
+## Registration
 For assistance or setup instructions, please contact us at <support@zentotem.net>.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name       | Scope    | Description            | Example | Type     |
-|------------|----------|------------------------|---------|----------|
-| (none)     | optional | no params required     | `''`    | n/a      |
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| (none) | optional | no params required | `''` | n/a |
