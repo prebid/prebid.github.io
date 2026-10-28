@@ -43,4 +43,4 @@ The following examples are available:
 {: .alert.alert-warning :}
 Ad pod (long-form) video support was removed in Prebid.js 11.0. These examples apply to Prebid.js 10.x and earlier only.
 
-- [Freewheel](/examples/video/long-form/pb-ve-lf-freewheel.html)
+- [FreeWheel setup guide](/adops/setting-up-prebid-video-in-freewheel.html) (the original live example is no longer available).

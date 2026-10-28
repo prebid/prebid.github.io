@@ -115,7 +115,7 @@ Here's the list of the 'potentially restricted activities' that Prebid.js core c
 | `enrichEids` | A user ID or RTD submodule wants to add user IDs to outgoing requests | User IDs are discarded | None |
 | `enrichUfpd` | A Real-Time Data (RTD) submodule wants to add user first-party data to outgoing requests (`user.data` in ORTB) | User FPD is discarded | None |
 | `fetchBids` | A bid adapter wants to participate in an auction | Bidder is removed from the auction | [`configName`](#params-fetchBids) |
-| `reportAnalytics` | An analytics adapter is being enabled through `pbjs.enableAnalytics` | Adapter remains disabled | None |
+| `reportAnalytics` | An analytics adapter is being enabled through `pbjs.enableAnalytics`. Since Prebid.js 11.18, this is checked again whenever consent data changes. | Adapter remains disabled. Since Prebid.js 11.18, a blocked adapter is enabled if the check later passes, and an enabled adapter that no longer passes the check is disabled through its `disableAnalytics()` method. Adapters that don't implement `disableAnalytics()` stay enabled, and Prebid.js logs a warning. | None |
 | `syncUser` | A bid adapter wants to fetch a [user sync](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing) | User sync is skipped | [`syncType`, `syncUrl`](#params-syncUser) |
 | `transmitEids` | A bid adapter or RTD submodule wants to access and/or transmit user IDs to their endpoint | User IDs are hidden from the component | [`configName`](#params-fetchBids) |
 | `transmitPreciseGeo` | A bid adapter or RTD submodule wants to access and/or transmit precise geolocation data to their endpoint | Component is allowed only 2-digit precision for latitude and longitude | [`configName`](#params-fetchBids) |

@@ -266,6 +266,25 @@ See the [IAB TCF Consent String Format](https://github.com/InteractiveAdvertisin
 
 Before allowing an activity tied to a TCF-protected Purpose for a publisher module, such as Generic Analytics, SharedId, Pub-provided-id, configuration rules check for the relevant publisher purpose consent instead of vendor consent. IAB Europe officials have written to Prebid that "When one is seeking a signal indicating whether the Publisher has had their consent (or legitimate interest) legal basis established to the data subject by the CMP, one should examine the Publisher Purposes Transparency and Consent string segment signals, if present. The core string PurposesConsent bit sequence is intended solely to represent disclosures made by the CMP in the context of Vendors."
 
+<a id="publisher-restrictions"></a>
+
+### Publisher restrictions
+
+Since Prebid.js 11.12, the TCF Control Module also enforces the publisher restrictions signaled by the CMP in the TC string (`vendorData.publisher.restrictions`). A restriction applies to a specific purpose and vendor, and narrows which legal bases Prebid.js accepts for that vendor and purpose:
+
+| Restriction type | Effect |
+| --- | --- |
+| 0 - Not allowed | Neither consent nor LI is accepted, so the activity is blocked. |
+| 1 - Require consent | Only consent is accepted; LI is not. |
+| 2 - Require legitimate interest | Only LI is accepted; consent is not. If LI is not otherwise an acceptable legal basis for the vendor and purpose (for example, the vendor's GVL declarations don't allow LI for that purpose), nothing is accepted. |
+
+The narrowed legal basis is used for both the purpose and the vendor checks. Publisher restrictions are applied only when the vendor check is made using the module's GVL ID. They are not applied:
+
+* to modules listed in `vendorExceptions` or `softVendorExceptions`,
+* to rules with `enforceVendor: false`,
+* to modules without a GVL ID, or
+* to Special Feature 1 (`transmitPreciseGeo`).
+
 ### Default Legal Basis
 
 `consentManagement.gdpr.defaultLegalBasis` defines the fallback legal basis
