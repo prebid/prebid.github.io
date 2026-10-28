@@ -4,12 +4,13 @@ title: Optable
 description: Prebid Optable Bidder Adapter
 biddercode: optable
 pbjs: true
+pbjs_version_notes: removed in 11.0
 privacy_sandbox: paapi
 prebid_member: true
 sidebarType: 1
 ---
 
-### Registration
+## Registration
 
 If you have any questions regarding set up, please reach out to your account manager or <support@optable.co>.
 

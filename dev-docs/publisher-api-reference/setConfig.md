@@ -22,8 +22,6 @@ Module-specific configuration:
 * [Currency module](/dev-docs/modules/currency.html)
 * [Consent Management](/dev-docs/modules/consentManagementTcf.html#page-integration)
 * [User ID module](/dev-docs/modules/userId.html#basic-configuration)
-* [Adpod](/dev-docs/modules/adpod.html)
-* [IAB Category Translation](/dev-docs/modules/categoryTranslation.html)
 
 <a name="setConfig-Debugging"></a>
 
@@ -282,7 +280,7 @@ The `sendBidsControl` object passed to `pbjs.setConfig` provides the publisher w
 | Attribute        | Type    | Description             |
 |------------+---------+---------------------------------|
 | `bidLimit` | integer | The maximum number of bids the system can add to ad server targeting. |
-| `dealPrioritization` | boolean | When `true`, bids with deals are prioritized before bids without deals. |
+| `dealPrioritization` | boolean | When `true`, bids with deals are prioritized before bids without deals. Since Prebid.js 11.44, this only applies within a priority tier: a bid's priority is compared first (see [allowPriorityBids](/dev-docs/publisher-api-reference/bidderSettings.html#212-allowprioritybids)), so a higher-priority bid is kept over a lower-priority deal bid. |
 
 #### Details on the bidLimit setting
 {: .no_toc}

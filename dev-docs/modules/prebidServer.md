@@ -37,12 +37,14 @@ Video notes:
 
 ## Configuration
 
-Here's an example config enabling the appnexuspsp Prebid Server:
+Here's a minimal example config:
 
 ```javascript
 pbjs.setConfig({
     s2sConfig: {
         accountId : '12345',
+        endpoint: 'https://prebid-server.example.com/openrtb2/auction',
+        syncEndpoint: 'https://prebid-server.example.com/cookie_sync',
         bidders : ['msft','pubmatic', 'rubicon'],
         timeout: 300
     }
@@ -95,8 +97,9 @@ There are many configuration options for s2sConfig:
 | `extPrebid` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server in request.ext.prebid. See the examples below. |
 | `customHeaders` | Optional | Object | These custom headers will be included in the XHR call to the bidder's endpoint. This will allow you to send data specific to your use case. The format consists of an object where the keys represent the header names and the values correspond to the respective header values. Here is an example how a customHeader object might look like - `{"Header1": "Value1", "Header2": "Value2"}`|
 | `endpointCompression` | Optional | Boolean | Gzip compress the auction request payload when supported and debug mode is off. Adds `gzip=1` to the request URL. |
-| `filterBidderlessCalls` | Optional | Boolean | When `true`, ad units that have no bidders defined are excluded from Prebid Server requests. Defaults to `false`. | `true` |
+| `filterBidderlessCalls` | Optional | Boolean | When `true`, ad units that have no bidders defined are excluded from Prebid Server requests. Defaults to `false`. |
 | `alwaysHasCapacity` | Optional | Boolean | When `true`, this prebid server instance will be omitted in checking if origin has http capacity, defaults to `false` |
+| `allowPriorityBids` | Optional | Array of Strings | Since Prebid.js 11.44. Bidder codes routed through this instance whose deal metadata is trusted when ranking: their bids take `meta.deal.priority` (lower wins) and are ranked on `meta.deal.priorityAdjustedCpm` instead of `cpm`, without changing the bid's price. Trusted bidders must be listed; there is no option to trust every bidder on the instance. The listed bidders in each request are sent to Prebid Server as `ext.prebid.as.apb`, along with `ext.prebid.as.ap: true` (priority bids allowed); `ext.prebid.as` is omitted when none of the requested bidders is listed. Prebid.js enforces this itself and doesn't rely on Prebid Server honoring those fields: it only trusts bids whose seat is one of those bidders, so bids under alternate or unknown seats are not trusted. Defaults to none. See [bidderSettings allowPriorityBids](/dev-docs/publisher-api-reference/bidderSettings.html#212-allowprioritybids). |
 
 If `endpoint` and `syncEndpoint` are objects, these are the supported properties:
 
@@ -114,7 +117,6 @@ If `endpoint` and `syncEndpoint` are objects, these are the supported properties
 - When `endpointCompression` is enabled, Prebid.js compresses the request body sent to Prebid Server and appends `gzip=1` to the endpoint URL. This feature is skipped when debug mode is active or the browser lacks GZIP support. Do not use if your PBS Host does not yet support gzip request compression.
 - <a name="allowUnknownBidderCodes" ></a> When `allowUnknownBidderCodes` is `true`, bidders that have not been explicitly requested in [`adUnit.bids`](../adunit-reference.html#adunitbids) may take part in the auction. This can break custom logic that relies on the availability of a bid request object for any given bid. Known scenarios where custom code won't get the request when there's an "unknown bidder":
   - There will not be a [`bidRequested`](/dev-docs/publisher-api-reference/getEvents.html) event.
-  - In the [MASS custom renderers](/dev-docs/modules/mass.html#configuration-parameters) module, `payload.bidRequest` will be undefined.
   - In the [Price Floors module](/dev-docs/modules/floors.html), custom schema functions will see the bidRequest object as undefined.
 
 Additional options for `s2sConfig` may be enabled by including the [Server-to-Server testing module]({{site.baseurl}}/dev-docs/modules/s2sTesting.html).
@@ -125,7 +127,7 @@ Additional options for `s2sConfig` may be enabled by including the [Server-to-Se
 
 **Emitting SeatNonBid Data**
 
-- Prebid Server can be instructed to return additional [SeatNonBid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#seat-non-bid) information about why bidders might not have bid on certain adunits. You can get this extra information by setting `extPrebid.returnallbidstatus` equal to `true`. Note that client-side analytics adapters can receive this data by listening to the `seatNonBid` event.
+- Prebid Server can be instructed to return additional [SeatNonBid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#seat-non-bid) information about why bidders might not have bid on certain adunits. You can get this extra information by setting `extPrebid.returnallbidstatus` equal to `true`. Note that client-side analytics adapters can receive this data by listening to the `pbsAnalytics` event (its `seatnonbid` field). The `seatNonBid` event was removed in Prebid.js 11.
 
 ## Server-Side Bidders Don't Need a Client-Side Adapter
 
