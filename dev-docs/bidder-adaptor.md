@@ -173,7 +173,7 @@ A 'Simple Request' meets **all** of the following conditions:
 
 * No `ReadableStream` object is used in the request
 
-Prebid recommends keeping module HTTP requests 'simple' if at all possible. The default content-type used by Prebid.js is text/plain. Prebid switched to preferring the fetch api and added the Topics header when available in 8.9.
+Prebid recommends keeping module HTTP requests 'simple' if at all possible. The default content-type used by Prebid.js is text/plain. Prebid switched to preferring the fetch api and added the Topics header when available in 8.9. The Topics header was removed in 11.26, after Chrome removed the Topics API.
 
 ## Creating the Adapter
 
@@ -450,10 +450,6 @@ return {
 };
 
 ```
-
-To have the topics in the Sec-Browsing-Topics request header marked by the browser as observed, but also to include the current page visit in the user's next epoch top topic calculation, the server's response has to include Observe-Browsing-Topics: ?1.
-
-Here's a JavaScript example using setHeader(): `res.setHeader('Observe-Browsing-Topics', '?1');`
 
 <a name="bidder-adaptor-Interpreting-the-Response"></a>
 
@@ -1419,7 +1415,7 @@ registerBidder(spec);
     * If you support first party data, you must document what exactly is supported and then you may set `fpd_supported: true`. No default value.
     * If you support any OpenRTB blocking parameters, you must document what exactly is supported and then you may set `ortb_blocking_supported` to 'true','partial', or 'false'. No default value. In order to set 'true', you must support: bcat, badv, battr, and bapp.
     * Let publishers know how you support multiformat requests -- those with more than one mediatype (e.g. both banner and video). Here are the options: will-bid-on-any, will-bid-on-one, will-not-bid
-    * If you support [privacy sandbox features](https://developers.google.com/privacy-sandbox) you can list them in the `privacy_sandbox` meta field. Allowed values are `paapi`, `topics`.
+    * If you support [privacy sandbox features](https://developers.google.com/privacy-sandbox) you can list them in the `privacy_sandbox` meta field. Allowed values are `paapi`, `topics`. Note that Prebid.js no longer supports either: PAAPI was removed in 11.0 and Topics in 11.26, so these values only describe Prebid Server or older Prebid.js versions.
     * If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
     * Always add `sidebarType: 1`. This is required for docs.prebid.org site navigation.
 * Submit both the code and docs pull requests
