@@ -232,7 +232,7 @@ export const spec = {
     isBidRequestValid: function(bid) {},
     buildRequests: function(validBidRequests[], bidderRequest) {},
     interpretResponse: function(serverResponse, request) {},
-    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent) {},
+    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent, gppConsent, coppa) {},
     onTimeout: function(timeoutData) {},
     onBidWon: function(bid) {},
     onSetTargeting: function(bid) {},
@@ -286,10 +286,12 @@ Prebid will pass compressed payloads if the following criteria are met:
 If the above criteria is met, Prebid.js core will do the following:
 
 * Gzip compress the request payload
-* Set the `Content-Type` header to `plain/text` (to avoid a preflight request)
+* Set the `Content-Type` header to `text/plain` (to avoid a preflight request)
 * Append the `gzip=1` query param to the bidder request (to signal to a bidder's server-side endpoint that the request is compressed)
 
 Note: If the Prebid.js debugging query param `?pbjs_debug=true` is present in the URL or `debug: true` has been configured in `pbjs.setConfig()`, the gzip compression feature will be disabled and all bidder requests will be sent uncompressed.
+
+Note: Since Prebid.js 11.41, `isGzipCompressionSupported()` returns a Promise that resolves to a boolean. Adapters that call it directly must wait for the Promise to resolve (for example, with `await`) instead of using its return value as a boolean.
 
 #### Ad Unit Params in the validBidRequests Array
 
@@ -609,12 +611,26 @@ All user ID sync activity should be done using the `getUserSyncs` callback of th
 
 Given an array of all the responses from the server, `getUserSyncs` is used to determine which user syncs should occur. The order of syncs in the `serverResponses` array matters. The most important ones should come first, since publishers may limit how many are dropped on their page.
 
+`getUserSyncs` is called with these arguments:
+
+{: .table .table-bordered .table-striped }
+| Argument | Description |
+|----------+-------------|
+| `syncOptions` | Object with `iframeEnabled` and `pixelEnabled` booleans indicating which sync types the publisher allows. |
+| `serverResponses` | Array of server responses for this bidder. |
+| `gdprConsent` | GDPR consent data, if available. |
+| `uspConsent` | US Privacy consent string, if available. |
+| `gppConsent` | GPP consent data, or `null` if not available. |
+| `coppa` | Boolean, the value of the publisher's `coppa` setting in [`setConfig`]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html). Since Prebid.js 11.28. |
+
+Note that registered syncs are not fired in Safari (and, since Prebid.js 11.9, Firefox and Chrome on iOS) or when cookies are unavailable, even though `getUserSyncs` is still called. See [How User Syncing Works]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html#setConfig-ConfigureUserSyncing-HowUserSyncingWorks).
+
 See below for an example implementation.  For more examples, search for `getUserSyncs` in the [modules directory in the repo](https://github.com/prebid/Prebid.js/tree/master/modules).
 
 ```javascript
 
 {
-    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent) {
+    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent, gppConsent, coppa) {
        const syncs = []
 
        var gdpr_params;
@@ -1307,7 +1323,7 @@ export const spec = {
      * @param {ServerResponse[]} serverResponses List of server's responses.
      * @return {UserSync[]} The user syncs which should be dropped.
      */
-    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent) {
+    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent, gppConsent, coppa) {
        const syncs = []
 
        var gdpr_params;

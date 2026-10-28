@@ -172,7 +172,8 @@ There are two error events analytics modules may wish to listen for: auctionDebu
 
 * listen only to the events required
 * batch up calls to the backend for post-auction logging rather than calling immediately after each event.
-* consider using the keepalive option on the ajax request to keep the priority low and the request queued after the pageview dies
+* consider using the keepalive option on the ajax request to keep the priority low and the request queued after the pageview dies. Since Prebid.js 11.15, keepalive is ignored (with a console warning) when the request body is larger than 64 KiB, the browser limit for keepalive requests.
+* if a request should never carry credentials (cookies), use `noCredsAjax` or `noCredsFetch` from `src/ajax.js` instead of `ajax` or `fetch`. Credentials on `ajax` and `fetch` requests are subject to the [`accessRequestCredentials` activity]({{site.baseurl}}/dev-docs/activity-controls.html).
 
 ### Step 3: Add unit tests
 
