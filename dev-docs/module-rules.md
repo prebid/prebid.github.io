@@ -142,6 +142,8 @@ There are already exceptions to these rules, and we recognize there will likely 
 
 Ideally, the disclosures should be of a limited number of standard types so they can be managed.
 
+For example, a bidder adapter whose `onTimeout` function sends a network request (see [Registering on Timeout](/dev-docs/bidder-adaptor.html#bidder-adaptor-Registering-on-Timout)) gets the "reports timeout events" disclosure. Bidder pages add it with the `dev-docs/reports-timeout-events.md` include, giving the endpoint and the data sent. Adapters that only define an empty `onTimeout` don't need it.
+
 To manage this, we plan to:
 
 1. Document a distinct set of disclosures with guidance for reviewers on how to determine which disclosures are needed.
