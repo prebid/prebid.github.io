@@ -30,8 +30,6 @@ sidebarType: 1
 
 The bid9 adapter sends one OpenRTB 2.6 request per ad unit, routed by the ad unit's channel ID. It supports Banner and Video (instream and outstream), floors, deals, schain, user IDs and first-party data. Contact `amit@kolorowey.com` or `kshitiz@kolorowey.com` to set up an account and channels.
 
-<!-- tcfeu_supported/gvl_id stay false/none until bid9 registers with IAB Europe. -->
-
 ## Bid Params
 
 {: .table .table-bordered .table-striped }
