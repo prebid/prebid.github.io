@@ -12,6 +12,9 @@ sidebarType : 1
 
 # Freewheel Module
 
+{: .alert.alert-warning :}
+This module was removed in Prebid.js 11.0. See the [Prebid.js 11 release notes](/dev-docs/pb11-notes.html#removed-modules).
+
 This module returns the targeting key value pairs for the FreeWheel ad server.
 
 ## How to use the module

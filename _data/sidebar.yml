@@ -1938,6 +1938,14 @@
   subgroup: 0
 
 - sbSecId: 7
+  title: Release Notes
+  link: /dev-docs/release-notes.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 7
   title: Blog
   link: https://prebid.org/blog/
   isHeader: 0
