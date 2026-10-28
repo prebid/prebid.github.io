@@ -813,6 +813,7 @@ The `targetingControls` object passed to `pbjs.setConfig` provides some options 
 | lock               | Array of Strings | Targeting keys to lock |
 | lockTimeout        | Integer          | Lock timeout in milliseconds                                   |
 | version            | String           | Value to set in the `hb_ver` targeting key |
+| presetGPTTargeting | Boolean          | Clear Prebid targeting on GPT slots when an auction starts and after a Prebid bid wins. Defaults to `true`. See [below](#targetingControls-presetGPTTargeting). |
 
 {: .alert.alert-info :}
 Note that this feature overlaps and can be used in conjunction with [sendBidsControl.bidLimit](#setConfig-Send-Bids-Control).
@@ -1034,7 +1035,7 @@ pbjs.setConfig({
 calling `pbjs.setTargetingForGPTAsync()` will "lock" the targeted `hb_adid` until its slot renders or 2 seconds have passed, preventing subsequent calls to `setTargetingForGPTAsync` from using bids with the same `hb_adid` in the meanwhile.
 If using standard targeting `hb_adid` is unique for each bid, so this would have the effect of preventing the same bid from being used for multiple slots at the same time.      
 
-<a name="setConfig-Configure-Responsive-Ads"></a>
+Since version 11.36, the lock on a GPT slot is also released as soon as the bid targeted on it wins (the `bidWon` event).
 
 #### Details on the version setting
 {: .no_toc }
@@ -1060,6 +1061,27 @@ pbjs.setConfig({
   }
 })
 ```
+
+<a name="targetingControls-presetGPTTargeting"></a>
+
+#### Details on the presetGPTTargeting setting
+{: .no_toc }
+
+Since version 11.14, when an auction starts Prebid clears its targeting keys on the GPT slots for that auction's ad units. Normally this has no visible effect, because the full targeting is set after the auction (typically by `pbjs.setTargetingForGPTAsync()`). It prevents a slot that refreshes before then, for example on a failsafe timeout, from sending stale targeting from an earlier auction.
+
+Since version 11.36, Prebid also clears its targeting keys from a GPT slot after the bid targeted on it wins, so refreshing that slot without a new auction doesn't send the bid that was already used.
+
+This only applies when GPT is on the page. To turn it off:
+
+```javascript
+pbjs.setConfig({
+  targetingControls: {
+    presetGPTTargeting: false
+  }
+})
+```
+
+<a name="setConfig-Configure-Responsive-Ads"></a>
 
 ### Configure Responsive Ads
 
