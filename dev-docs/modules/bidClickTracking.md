@@ -49,14 +49,14 @@ pbjs.onEvent('bidClick', ({ adId, adUnitCode, bidder, method }) => {
 | `enabled` | Boolean | `false` | Observe clicks and emit `bidClick` events. |
 | `fireTrackers` | Boolean | `false` | Request the ad server click URL (`clickUrl` from the dynamic creative, or `clickThrough` passed to `pbjs.renderAd`) on an observed banner click. |
 | `desktopFallback` | Boolean | `false` | Requires the `bidClickTracking` module. On desktop, infer clicks on creatives whose clicks can't be observed, and emit `bidClickInferred`. |
-| `dedupeNativeClicks` | Boolean | `true` | Report native clicks, and fire their bidder click trackers, once per bid. Set `false` to report every native click. |
+| `dedupeNativeClicks` | Boolean | `true` | Emit `bidClick` for native clicks once per bid. Set `false` to emit it for every native click. Bidder click trackers fire on every click either way. |
 
 ## How It Works
 
 - **Banner:** for markup (`ad`) rendered by Prebid, Prebid listens inside the creative's iframe for trusted clicks on links (`<a href>`, `<area href>`) and emits `bidClick` with `method: 'creativeClick'`. It doesn't change navigation or add overlays. Clicks inside nested cross-origin iframes, `adUrl` creatives, and clicks that navigate with JavaScript can't be observed.
-- **Native:** clicks reported by the native creative emit `bidClick` with `method: 'nativeClick'` and the clicked `assetId`, if any. The bidder's native click trackers are fired with keepalive requests, so they survive the navigation. Native landing URLs are never fired as trackers.
+- **Native:** clicks reported by the native creative (links with the `pb-click` class) emit `bidClick` with `method: 'nativeClick'` and the clicked `assetId`, if any. The bidder's native click trackers fire on every click, as they do without this setting, with keepalive requests so they survive the navigation. GAM clicks still come from the native template's `%%CLICK_URL_UNESC%%` links, so enabling this doesn't change what bidders or GAM receive. Native landing URLs are never fired as trackers.
 - **Desktop fallback:** with `desktopFallback: true` and the module included, on devices with a fine pointer, focus moving from the page into a creative's iframe (not with the Tab key) is treated as a click and emits `bidClickInferred`. It's a heuristic: some focus changes aren't clicks, and some clicks don't move focus.
-- Each bid reports at most one banner click (observed or inferred), and with `dedupeNativeClicks`, one native click.
+- Each bid emits at most one banner click event (observed or inferred), and with `dedupeNativeClicks`, one native click event.
 
 ## Registering Clicks in GAM
 
