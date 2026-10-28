@@ -50,7 +50,7 @@ Optionally, if you are using an Ad Server, you can configure the Video Module to
 {: .table .table-bordered .table-striped }
 | Ad Server | Module Name | Vendor Code |
 | --- | --- | --- |
-| [Google Ad Manager](https://admanager.google.com/) | dfpAdServerVideo | 'gam' |
+| [Google Ad Manager](https://admanager.google.com/) | gamAdServerVideo | 'gam' |
 
 {: .alert.alert-warning :}
 **Note:** You must include the Ad Server's module in your build.

@@ -36,7 +36,7 @@ This page has instructions for writing your own bidder adapter.  The instruction
 
 In order to provide a fast and safe header bidding environment for publishers, the Prebid.org team reviews all adapters for the required bid adapter conventions laid out in the [Module Rules](/dev-docs/module-rules.html). Here are additional details specific to Prebid.js:
 
-* **No loading of external code**: All code must be present in the adapter, not loaded at runtime. Exceptions are possible -- see [the full policy](https://github.com/prebid/prebid-js-external-js-template#policy).
+* **No loading of external code**: All code must be present in the adapter, not loaded at runtime. Exceptions are possible -- see [the full policy](/dev-docs/module-rules.html#global-module-rules).
 * **All user-sync activity must be registered via the provided functions**: The platform will place all registered syncs in the page after the auction is complete, subject to publisher configuration.
 * **Adapters may not create or trigger any network requests or pixels** outside of the requests the wrapper creates on behalf of the adapter (from the return values of `buildRequests()` and `getUserSyncs()`) or that are included in a winning and rendered creative.
 * **Adapters may not modify ad slots directly**: For example, accessing `googletag.pubads().getSlots()` to modify or set targeting directly on slots is not permitted.
@@ -232,7 +232,7 @@ export const spec = {
     isBidRequestValid: function(bid) {},
     buildRequests: function(validBidRequests[], bidderRequest) {},
     interpretResponse: function(serverResponse, request) {},
-    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent) {},
+    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent, gppConsent, coppa) {},
     onTimeout: function(timeoutData) {},
     onBidWon: function(bid) {},
     onSetTargeting: function(bid) {},
@@ -286,10 +286,12 @@ Prebid will pass compressed payloads if the following criteria are met:
 If the above criteria is met, Prebid.js core will do the following:
 
 * Gzip compress the request payload
-* Set the `Content-Type` header to `plain/text` (to avoid a preflight request)
+* Set the `Content-Type` header to `text/plain` (to avoid a preflight request)
 * Append the `gzip=1` query param to the bidder request (to signal to a bidder's server-side endpoint that the request is compressed)
 
 Note: If the Prebid.js debugging query param `?pbjs_debug=true` is present in the URL or `debug: true` has been configured in `pbjs.setConfig()`, the gzip compression feature will be disabled and all bidder requests will be sent uncompressed.
+
+Note: Since Prebid.js 11.41, `isGzipCompressionSupported()` returns a Promise that resolves to a boolean. Adapters that call it directly must wait for the Promise to resolve (for example, with `await`) instead of using its return value as a boolean.
 
 #### Ad Unit Params in the validBidRequests Array
 
@@ -396,12 +398,12 @@ There are a number of important values that a publisher expects to be handled in
 
 {: .table .table-bordered .table-striped }
 
-| Parameter | Description                                   | Example               |
-| ----- | ------------ | ---------- |
+| Parameter | Description | Example |
+| --- | --- | --- |
 | Ad Server Currency | If your endpoint supports responding in different currencies, read this value. | config.getConfig('currency.adServerCurrency') |
 | Bidder Timeout | Use if your endpoint needs to know how long the page is allowing the auction to run. | bidderRequest.timeout; |
 | COPPA | If your endpoint supports the Child Online Privacy Protection Act, you should read this value. | bidderRequest.ortb2.regs.coppa; |
-| First Party Data | The publisher, as well as a number of modules, may provide [first party data](/features/firstPartyData.html) (e.g. page type). | bidderRequest.ortb2; validBidRequests[].ortb2Imp|
+| First Party Data | The publisher, as well as a number of modules, may provide [first party data](/features/firstPartyData.html) (e.g. page type). | bidderRequest.ortb2; validBidRequests[].ortb2Imp |
 | Floors | Adapters that accept a floor parameter must also support the [floors module](https://docs.prebid.org/dev-docs/modules/floors.html) | [`bidRequest.getFloor()`](/dev-docs/modules/floors.html#bid-adapter-interface) |
 | Page URL and referrer | Instead of building your own function to find the page location, domain, or referrer, look in the standard bidRequest location. | bidderRequest.refererInfo.page |
 | [Supply Chain](/dev-docs/modules/schain.html) | Adapters cannot accept an schain parameter. Rather, they must look for the schain parameter at bidRequest.schain. | bidRequest.schain |
@@ -547,6 +549,7 @@ The parameters of the `bidResponse` object are:
 | `meta.primaryCatId`      | Optional     | Primary [IAB category ID](https://www.iab.com/guidelines/iab-quality-assurance-guidelines-qag-taxonomy/)               |  `"IAB-111"`                         |
 | `meta.secondaryCatIds`   | Optional     | Array of secondary IAB category IDs      | `["IAB-222","IAB-333"]`       |
 | `meta.mediaType`         | Optional     | "banner", "native", or "video" - this should be set in scenarios where a bidder responds to a "banner" mediaType with a creative that's actually a video (e.g. outstream) or native. | `"native"`  |
+| `meta.deal`              | Optional     | Deal metadata for bids with a `dealId`, such as the deal type and priority. See [Deal metadata](#bidder-adaptor-deal-metadata). | `{ type: 1, priority: 10 }` |
 | `eventtrackers`          | Optional     | Array of objects in the same format as [ORTB native section 5.8, "Event Tracker Response Object"](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf) |  `[{event: 500, method: 1, url: "https://www.example.com/track"]}]` |
 | `eventtrackers[].event`   | Required     | Event type. Prebid.js will fire tracking pixels for `500` (bid won) and `1` (bid was rendered). |    `500`      |
 | `eventtrackers[].method` | Required     | Tracking method. Prebid.js only fires image pixels (`1`)                                        |    `1`        |
@@ -556,6 +559,38 @@ The parameters of the `bidResponse` object are:
 **Note:** bid adapters must be coded to accept the 'advertiserDomains' parameter from their endpoint even if that endpoint doesn't currently respond with that value.
 Prebid.org publishers have required that all bidders must eventually supply this value, so every bidder should be planning for it.
 There's often a long lag time between making a PBJS adapter update and when most pubs upgrade to it, so we minimally require adapters to be ready for the day when the endpoint responds with adomain.
+
+<a name="bidder-adaptor-deal-metadata"></a>
+
+#### Deal metadata
+
+Since Prebid.js 11.43, a bid with a `dealId` can describe its deal in `meta.deal`. Adapters that use the [ORTB conversion library](https://github.com/prebid/Prebid.js/blob/master/libraries/ortbConverter/README.md), and bids from Prebid Server, get this automatically: the converter copies `seatbid[].bid[].ext.prebid.deal` from the OpenRTB response when the bid has a `dealid`, keeping only the fields below and only when they have the expected type. Other adapters can set `meta.deal` directly.
+
+{: .table .table-bordered .table-striped }
+| `meta.deal` field | ORTB `ext.prebid.deal` field | Type | Description |
+| --- | --- | --- | --- |
+| `type` | `type` | Integer | Deal type: `0` unknown, `1` sponsorship, `2` reservation, `3` non-reservation, `4` house. Always set; `0` when the ORTB value is missing or not an integer. |
+| `cpm` | `cpm` | Number, 0 or more | Unadjusted contractual or nominal deal CPM, in the bid's currency. |
+| `priorityAdjustedCpm` | `priority_adjusted_cpm` | Number, 0 or more | CPM-equivalent value the ad server ranks the deal at, after any adjustment to its price (for example for pacing or delivery), in the bid's currency. Named `pacingAdjustedCpm` / `pacing_adjusted_cpm` in Prebid.js 11.43. |
+| `onSchedule` | `on_schedule` | Number, 0 or more | Delivery relative to schedule. For example, `0.5` means half of the expected impressions have been served. |
+| `priority` | `priority` | Integer | Relative precedence among deals. Lower integers have higher priority. |
+
+For example, this OpenRTB bid:
+
+```json
+{
+  "dealid": "deal-1",
+  "ext": {
+    "prebid": {
+      "deal": { "type": 2, "cpm": 5, "priority_adjusted_cpm": 6.5, "on_schedule": 0.8, "priority": 10 }
+    }
+  }
+}
+```
+
+results in `bid.meta.deal` of `{ type: 2, cpm: 5, priorityAdjustedCpm: 6.5, onSchedule: 0.8, priority: 10 }`.
+
+When the [Currency module](/dev-docs/modules/currency.html) converts a bid, it converts `meta.deal.cpm` and `meta.deal.priorityAdjustedCpm` at the same rate as the bid's `cpm`. Prebid.js only exposes this metadata for now: it doesn't change how bids are ranked.
 
 #### Resolve OpenRTB Macros in the Creatives
 
@@ -576,12 +611,26 @@ All user ID sync activity should be done using the `getUserSyncs` callback of th
 
 Given an array of all the responses from the server, `getUserSyncs` is used to determine which user syncs should occur. The order of syncs in the `serverResponses` array matters. The most important ones should come first, since publishers may limit how many are dropped on their page.
 
+`getUserSyncs` is called with these arguments:
+
+{: .table .table-bordered .table-striped }
+| Argument | Description |
+|----------+-------------|
+| `syncOptions` | Object with `iframeEnabled` and `pixelEnabled` booleans indicating which sync types the publisher allows. |
+| `serverResponses` | Array of server responses for this bidder. |
+| `gdprConsent` | GDPR consent data, if available. |
+| `uspConsent` | US Privacy consent string, if available. |
+| `gppConsent` | GPP consent data, or `null` if not available. |
+| `coppa` | Boolean, the value of the publisher's `coppa` setting in [`setConfig`]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html). Since Prebid.js 11.28. |
+
+Note that registered syncs are not fired in Safari (and, since Prebid.js 11.9, Firefox and Chrome on iOS) or when cookies are unavailable, even though `getUserSyncs` is still called. See [How User Syncing Works]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html#setConfig-ConfigureUserSyncing-HowUserSyncingWorks).
+
 See below for an example implementation.  For more examples, search for `getUserSyncs` in the [modules directory in the repo](https://github.com/prebid/Prebid.js/tree/master/modules).
 
 ```javascript
 
 {
-    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent) {
+    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent, gppConsent, coppa) {
        const syncs = []
 
        var gdpr_params;
@@ -613,7 +662,7 @@ See below for an example implementation.  For more examples, search for `getUser
 
 ### Registering on Timeout
 
-The `onTimeout` function will be called when an adapter has timed out for an auction. The adapter can fire an ajax or pixel call to register the timeout at their end.
+The `onTimeout` function will be called when an adapter has timed out for an auction. The adapter can fire an ajax or pixel call to register the timeout at their end. Adapters that do must disclose it on their bidder page; see [Disclosure](/dev-docs/module-rules.html#disclosure) in the module rules.
 
 Sample data passed to this function:
 
@@ -788,16 +837,26 @@ If the alias entry is an object, the following attributes are supported:
 
 {: .table .table-bordered .table-striped }
 
-| Name  | Scope | Description   | Type      |
-|-------|-------|---------------|-----------|
+| Name | Scope | Description | Type |
+| --- | --- | --- | --- |
 | `code` | required | shortcode/partner name | `string` |
 | `gvlid` | optional | global vendor list id of company scoped to alias | `integer` |
-| `skipPbsAliasing` | optional | ability to skip passing spec.code to prebid server in request extension. In case you have a prebid server adapter with the name same as the alias/shortcode. Default value: `false` | `boolean` |
+| `skipPbsAliasing` | optional | If `true`, don't declare this alias to Prebid Server. See [skipPbsAliasing](#skippbsaliasing) below. Default value: `false` | `boolean` |
 
 {: .alert.alert-info :}
 Note on aliases and TCF Global Vendor List IDs: if an alias entry does not have its own GVLID but wishes to claim GDPR support,
 the documentation entry (The file in <https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders>) must list the GVLID of the main adapter with that company's name in parentheses.
 Look for other doc entries containing an `aliasCode` metadata entry.
+
+#### skipPbsAliasing
+
+When a request for an aliased bidder goes to Prebid Server, Prebid.js tells Prebid Server which adapter the alias stands for. It does this by adding `ext.prebid.aliases.<alias>: "<adapter code>"` to the request, and `ext.prebid.aliasgvlids.<alias>` when the alias has a GVL ID. This happens for bidders in [`s2sConfig`](/dev-docs/modules/prebidServer.html) and for requests from adapters that use the ORTB conversion library's Prebid Server extensions. With `skipPbsAliasing: true`, both entries are left out, so Prebid Server resolves the bidder code on its own.
+
+Only set it when Prebid Server already has its own adapter or hard-coded alias with the alias's name, and that doesn't work the same way as your Prebid.js adapter. For example, it might use a different endpoint or be built on a different adapter. Without the flag, Prebid Server can apply the request's alias and send the bidder's requests to the wrong adapter.
+
+Don't set it otherwise. If Prebid Server has no adapter or alias with that name, it can't resolve the bidder, and depending on the server it either drops the bidder or rejects the whole request.
+
+Publishers can set the same option on aliases created at runtime with [`pbjs.aliasBidder`](/dev-docs/publisher-api-reference/aliasBidder.html).
 
 ### Supporting Privacy Regulations
 
@@ -1000,11 +1059,11 @@ If the demand partner is going to use Prebid API for this process, their adapter
 
 {: .table .table-bordered .table-striped }
 
-| Key             | Scope    | Description                                                                                        | Example                    |
-|-----------------|----------|----------------------------------------------------------------------------------------------------|----------------------------|
-| `url`             | Required | The URL to the mapping file.                                                                       | `"//example.com/mapping.json"` |
-| `refreshInDays`   | Optional | A number representing the number of days before the mapping values are updated. Default value is 1 | `7`                        |
-| `localStorageKey` | Optional | A unique key to store the mapping file in local storage. Default value is bidder code.             | `"uniqueKey"`                  |
+| Key | Scope | Description | Example |
+| --- | --- | --- | --- |
+| `url` | Required | The URL to the mapping file. | `"//example.com/mapping.json"` |
+| `refreshInDays` | Optional | A number representing the number of days before the mapping values are updated. Default value is 1 | `7` |
+| `localStorageKey` | Optional | A unique key to store the mapping file in local storage. Default value is bidder code. | `"uniqueKey"` |
 
 **Example**
 
@@ -1264,7 +1323,7 @@ export const spec = {
      * @param {ServerResponse[]} serverResponses List of server's responses.
      * @return {UserSync[]} The user syncs which should be dropped.
      */
-    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent) {
+    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent, gppConsent, coppa) {
        const syncs = []
 
        var gdpr_params;
