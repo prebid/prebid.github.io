@@ -3,6 +3,7 @@ layout: bidder
 title: Yieldbot
 description: Prebid Yieldbot Bidder Adaptor
 pbjs: true
+enable_download: false
 biddercode: yieldbot
 sidebarType: 1
 ---

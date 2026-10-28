@@ -3,6 +3,7 @@ layout: bidder
 title: SARA
 description: SARA Bidder Adapter
 pbjs: true
+enable_download: false
 biddercode: sara
 sidebarType: 1
 ---

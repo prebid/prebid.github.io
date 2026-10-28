@@ -3,6 +3,7 @@ layout: bidder
 title: Kumma
 description: Prebid Kumma Bidder Adapter
 pbjs: true
+enable_download: false
 biddercode: kumma
 media_types: banner, native, video
 tcfeu_supported: false

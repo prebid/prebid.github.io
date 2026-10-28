@@ -11,6 +11,7 @@ schain_supported: true
 usp_supported: true
 safeframes_ok: false
 pbjs: true
+enable_download: false
 gvl_id: 165
 floors_supported: true
 pbjs_version_notes: removed in 9.0

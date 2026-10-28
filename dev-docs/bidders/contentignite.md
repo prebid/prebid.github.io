@@ -3,6 +3,7 @@ layout: bidder
 title: Content Ignite
 description: Prebid Contnent Ignite Adaptor
 pbjs: true
+enable_download: false
 biddercode: contentignite
 sidebarType: 1
 ---

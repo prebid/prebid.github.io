@@ -3,6 +3,7 @@ layout: bidder
 title: brainy
 description: Prebid brainy Bidder Adaptor
 pbjs: true
+enable_download: false
 biddercode: brainy
 sidebarType: 1
 ---

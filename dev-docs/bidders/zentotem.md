@@ -3,6 +3,7 @@ layout: bidder
 title: Zentotem
 description: Prebid Zentotem Bidder Adapter
 pbjs: true
+enable_download: false
 pbs: true
 biddercode: zentotem
 tcfeu_supported: false

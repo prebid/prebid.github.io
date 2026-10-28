@@ -3,6 +3,7 @@ layout: bidder
 title: ADman Media
 description: Prebid Adman Bidder Adapter
 pbjs: true
+enable_download: false
 pbs: true
 biddercode: adman
 gvl_id: 149

@@ -4,6 +4,7 @@ title: EngageBDR
 description: Prebid EngageBDR Bidder Adaptor
 biddercode: ebdr
 pbjs: true
+enable_download: false
 media_types: video
 pbjs_version_notes: removed in 9.0
 sidebarType: 1

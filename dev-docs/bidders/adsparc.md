@@ -3,6 +3,7 @@ layout: bidder
 title: AdSparc
 description: Prebid Adsparc Bidder Adaptor
 pbjs: true
+enable_download: false
 biddercode: adsparc
 aliasCode: aardvark
 sidebarType: 1

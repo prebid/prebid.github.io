@@ -3,6 +3,7 @@ layout: bidder
 title: Optimera
 description: Optimera Bidder Adaptor
 pbjs: true
+enable_download: false
 biddercode: optimera
 sidebarType: 1
 ---

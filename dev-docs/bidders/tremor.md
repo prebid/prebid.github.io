@@ -5,6 +5,7 @@ description: Tremor Bidder Adaptor
 top_nav_section: dev_docs
 nav_section: reference
 pbjs: true
+enable_download: false
 biddercode: tremor
 sidebarType: 1
 ---

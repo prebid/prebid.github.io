@@ -3,6 +3,7 @@ layout: bidder
 title: Optimatic
 description: Prebid Optimatic Bidder Adaptor
 pbjs: true
+enable_download: false
 biddercode: optimatic
 media_types: video
 sidebarType: 1

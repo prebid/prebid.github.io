@@ -3,6 +3,7 @@ layout: bidder
 title: Integral Ad Science (IAS)
 description: Prebid Integral Ad Science Bidder Adaptor
 pbjs: true
+enable_download: false
 biddercode: ias
 sidebarType: 1
 ---

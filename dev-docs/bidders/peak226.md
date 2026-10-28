@@ -5,6 +5,7 @@ description: Prebid Peak226 Bidder Adapter
 biddercode: peak226
 sidebarType: 1
 pbjs: true
+enable_download: false
 pbs: true
 pbs_app_supported: true
 prebid_member: false

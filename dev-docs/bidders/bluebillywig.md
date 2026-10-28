@@ -4,6 +4,7 @@ title: Blue Billywig
 description: Prebid Blue Billywig Bidder Adaptor
 biddercode: bluebillywig
 pbjs: true
+enable_download: false
 media_types: video
 gvl_id: 684
 tcfeu_supported: true

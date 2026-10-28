@@ -3,6 +3,7 @@ layout: bidder
 title: DAN Marketplace
 description: Dentsu Aegis Network Marketplace Bidder Adapter
 pbjs: true
+enable_download: false
 biddercode: danmarket
 tcfeu_supported: false
 sidebarType: 1

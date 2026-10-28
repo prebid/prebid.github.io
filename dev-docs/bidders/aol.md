@@ -3,6 +3,7 @@ layout: bidder
 title: AOL
 description: Prebid AOL Bidder Adaptor
 pbjs: true
+enable_download: false
 biddercode: aol
 tcfeu_supported: false
 usp_supported: true

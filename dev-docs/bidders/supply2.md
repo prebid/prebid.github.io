@@ -3,6 +3,7 @@ layout: bidder
 title: Supply2
 description: Prebid Media Donuts Bidder Adaptor
 pbjs: true
+enable_download: false
 biddercode: supply2
 tcfeu_supported: false
 sidebarType: 1

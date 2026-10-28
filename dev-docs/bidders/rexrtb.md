@@ -3,6 +3,7 @@ layout: bidder
 title: REXRTB
 description: Prebid REXRTB Bidder Adaptor
 pbjs: true
+enable_download: false
 biddercode: rexrtb
 sidebarType: 1
 ---

@@ -3,6 +3,7 @@ layout: bidder
 title: DistrictmDMX
 description: Prebid DistrictmDMX Bidder Adaptor
 pbjs: true
+enable_download: false
 biddercode: districtmDMX
 tcfeu_supported: false
 schain_supported: true

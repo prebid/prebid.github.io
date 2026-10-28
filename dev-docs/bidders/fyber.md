@@ -3,6 +3,7 @@ layout: bidder
 title: Fyber
 description: Prebid Fyber Bidder Adaptor
 pbjs: true
+enable_download: false
 biddercode: fyber
 media_types: banner
 sidebarType: 1

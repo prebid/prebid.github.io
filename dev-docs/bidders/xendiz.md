@@ -3,6 +3,7 @@ layout: bidder
 title: Xendiz
 description: Prebid Xendiz Bidder Adaptor
 pbjs: true
+enable_download: false
 biddercode: xendiz
 sidebarType: 1
 ---

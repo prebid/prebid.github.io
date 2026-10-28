@@ -5,6 +5,7 @@ description: Prebid Globalsun Bidder Adapter
 biddercode: globalsun
 media_types: banner, video, native
 pbjs: true
+enable_download: false
 pbs: true
 safeframes_ok: true
 fpd_supported: false

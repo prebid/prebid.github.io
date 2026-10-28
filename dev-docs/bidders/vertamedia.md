@@ -3,6 +3,7 @@ layout: bidder
 title: Vertamedia
 description: Prebid Vertamedia Bidder Adaptor
 pbjs: true
+enable_download: false
 biddercode: vertamedia
 media_types: video
 sidebarType: 1

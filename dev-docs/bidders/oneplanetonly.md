@@ -3,6 +3,7 @@ layout: bidder
 title: Oneplanetonly
 description: Prebid Oneplanetonly Bidder Adaptor
 pbjs: true
+enable_download: false
 biddercode: oneplanetonly
 sidebarType: 1
 ---

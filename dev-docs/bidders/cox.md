@@ -3,6 +3,7 @@ layout: bidder
 title: Cox
 description: Prebid Cox Bidder Adaptor
 pbjs: true
+enable_download: false
 biddercode: cox
 sidebarType: 1
 ---

@@ -3,6 +3,7 @@ layout: bidder
 title: Eywamedia
 description: Prebid Eywamedia Bidder Adaptor
 pbjs: true
+enable_download: false
 biddercode: eywamedia
 media_types: display
 tcfeu_supported: false

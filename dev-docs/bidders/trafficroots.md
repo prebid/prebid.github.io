@@ -3,6 +3,7 @@ layout: bidder
 title: Trafficroots
 description: Prebid Trafficroots Bidder Adapter
 pbjs: true
+enable_download: false
 biddercode: trafficroots
 tcfeu_supported: false
 sidebarType: 1

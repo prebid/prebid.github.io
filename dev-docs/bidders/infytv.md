@@ -3,6 +3,7 @@ layout: bidder
 title: InfyTV
 description: Prebid InfyTV Bidder Adapter
 pbjs: true
+enable_download: false
 biddercode: infytv
 tcfeu_supported: false
 media_types: video

@@ -4,6 +4,7 @@ title: Yield Nexus
 description: Yield Nexus Bidder Adapter
 biddercode: yieldnexus
 pbjs: true
+enable_download: false
 media_types: banner, video
 tcfeu_supported: false
 sidebarType: 1

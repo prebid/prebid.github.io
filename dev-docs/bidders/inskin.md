@@ -3,6 +3,7 @@ layout: bidder
 title: Inskin
 description: Inskin Media Bidder Adaptor
 pbjs: true
+enable_download: false
 biddercode: inskin
 gvl_id: 150
 tcfeu_supported: true

@@ -2,7 +2,8 @@
 layout: bidder
 title: smartadline
 description: Prebid Smartadline Bidder Adaptor
-pbjs: true 
+pbjs: true
+enable_download: false
 pbs: false
 biddercode: smartadline
 media_types: banner

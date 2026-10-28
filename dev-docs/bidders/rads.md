@@ -3,6 +3,7 @@ layout: bidder
 title: Rads
 description: Prebid Rads Bidder Adaptor
 pbjs: true
+enable_download: false
 biddercode: rads
 media_types: banner, video 
 tcfeu_supported: true

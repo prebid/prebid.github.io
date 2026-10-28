@@ -3,6 +3,7 @@ layout: bidder
 title: Avocet
 description: Prebid Avocet Bidder Adapter
 pbjs: true
+enable_download: false
 pbs: true
 biddercode: avct
 aliasCode: avocet

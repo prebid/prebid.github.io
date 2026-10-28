@@ -4,6 +4,7 @@ title: RockYou
 description: PreBid RockYou Bidder Adapter
 biddercode: rockyou
 pbjs: true
+enable_download: false
 media_types: video
 sidebarType: 1
 ---

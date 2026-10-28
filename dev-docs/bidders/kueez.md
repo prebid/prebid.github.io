@@ -4,6 +4,7 @@ title: Kueez
 description: Prebid Kueez Bidder Adapter
 multiformat_supported: will-bid-on-any
 pbjs: true
+enable_download: false
 biddercode: kueez
 media_types: banner, video
 schain_supported: true

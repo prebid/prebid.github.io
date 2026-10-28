@@ -3,6 +3,7 @@ layout: bidder
 title: Arteebee
 description: Prebid Arteebee Bidder Adaptor
 pbjs: true
+enable_download: false
 biddercode: arteebee
 tcfeu_supported: false
 coppa_supported: true

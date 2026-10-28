@@ -3,6 +3,7 @@ layout: bidder
 title: GXOne
 description: GXOne Bidder Adapter
 pbjs: true
+enable_download: false
 biddercode: gxone
 sidebarType: 1
 ---

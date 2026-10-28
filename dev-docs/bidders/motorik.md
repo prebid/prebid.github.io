@@ -11,6 +11,7 @@ media_types: banner, video, native
 safeframes_ok: true
 deals_supported: true
 pbjs: true
+enable_download: false
 pbs: true
 sidebarType: 1
 floors_supported: true

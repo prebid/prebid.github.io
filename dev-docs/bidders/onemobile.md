@@ -3,6 +3,7 @@ layout: bidder
 title: ONE by AOL Mobile
 description: Prebid AOL Bidder Adaptor aliase
 pbjs: true
+enable_download: false
 biddercode: onemobile
 aliasCode : aol
 sidebarType: 1
