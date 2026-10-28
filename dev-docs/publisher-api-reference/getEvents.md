@@ -49,6 +49,8 @@ The available events are:
 | tcf2Enforcement | There was a TCF2 enforcement action taken | `{ storageBlocked: ['moduleA', 'moduleB'], biddersBlocked: ['moduleB'], analyticsBlocked: ['moduleC'] }` |
 | bidAccepted | A bid was accepted and is about to be added to the auction. Fired once per accepted bid, after bid adjustment and before `bidResponse`; for video and audio bids, before VAST caching. Removed in 11.0 and restored in 11.7. | Bid response object |
 | browserIntervention | The browser reported an intervention affecting a rendered creative (e.g., heavy-ad unload). | `{ bid, adId, intervention }` |
+| bidClick | A click was observed on a creative rendered by Prebid.js. Requires [`bidClickTracking`](/dev-docs/modules/bidClickTracking.html) (added in 11.45). | `{ bid, adId, adUnitCode, bidder, method, assetId }`; `method` is `creativeClick` or `nativeClick` |
+| bidClickInferred | A click was inferred on desktop from focus moving into a creative's iframe. Requires the [`bidClickTracking`](/dev-docs/modules/bidClickTracking.html) module with `desktopFallback` (added in 11.45). | `{ bid, adId, adUnitCode, bidder, method: 'iframeFocus' }` |
 
 The example below shows how these events can be used.
 
