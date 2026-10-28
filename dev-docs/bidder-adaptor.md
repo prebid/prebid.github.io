@@ -841,6 +841,7 @@ If the alias entry is an object, the following attributes are supported:
 | --- | --- | --- | --- |
 | `code` | required | shortcode/partner name | `string` |
 | `gvlid` | optional | global vendor list id of company scoped to alias | `integer` |
+| `acpId` | optional | Google Additional Consent provider id of company scoped to alias, used only if the alias has no GVL ID (PBJS 11.41+) | `integer` |
 | `skipPbsAliasing` | optional | If `true`, don't declare this alias to Prebid Server. See [skipPbsAliasing](#skippbsaliasing) below. Default value: `false` | `boolean` |
 
 {: .alert.alert-info :}
@@ -864,6 +865,7 @@ If your bid adapter is going to be used in Europe, you should support GDPR:
 
 * Get a [Global Vendor ID](https://iabeurope.eu/tcf-for-vendors/) from the IAB-Europe
 * Add your GVLID into the spec block as 'gvlid'. If you don't do this, Prebid.js may block requests to your adapter.
+* If you are not on the GVL but are on Google's [Additional Consent provider list](https://support.google.com/admanager/answer/9681920), add your provider ID into the spec block as 'acpId' instead (Prebid.js 11.41+). See [Additional Consent](/dev-docs/modules/tcfControl.html#additional-consent).
 * Read the gdprConsent string from the bid request object and pass it through to your endpoint
 
 If your bid adapter is going to be used in Canada, you should support GPP:
