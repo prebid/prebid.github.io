@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - /dev-docs/modules/fledgeForGpt.html
 layout: page_v2
 page_type: module
 title: Module - paapiForGpt

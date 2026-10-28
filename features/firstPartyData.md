@@ -66,7 +66,6 @@ If not specified through any of the methods above, Prebid.js attempts to automat
 | `device.ext.vpw` | Viewport width in pixels |
 | `device.ext.vph` | Viewport height in pixels |
 | `device.ext.webdriver`| `true` if the browser declares to be an automation tool | [Navigator.webdriver](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/webdriver) |
-| `device.ext.cdep`| Google Chrome cookie deprecation label | [Chrome-facilitated testing](https://developers.google.com/privacy-sandbox/setup/web/chrome-facilitated-testing) |
 | `regs.coppa` | COPPA Regulation flag | [COPPA config](/dev-docs/publisher-api-reference/setConfig.html#setConfig-coppa)
 | `regs.ext.gpc` | Global Privacy Control setting | [Navigator.globalPrivacyControl](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/globalPrivacyControl) |
 

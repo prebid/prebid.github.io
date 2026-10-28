@@ -13,6 +13,9 @@ sidebarType : 1
 
 # Google Ad Manager Adpod Support
 
+{: .alert.alert-warning :}
+This module was removed in Prebid.js 11.0. See the [Prebid.js 11 release notes](/dev-docs/pb11-notes.html#removed-modules).
+
 {:.no_toc}
 
 {: .alert.alert-warning :}

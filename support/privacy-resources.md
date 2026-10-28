@@ -64,8 +64,7 @@ Privacy Sandbox is the name the Chrome browser has given to a series of features
 At a high level, the "Topics" feature is Chrome's way of defining a taxonomy of information that can be used for ad targeting. See 
 [Chrome Topics](https://privacysandbox.com/proposals/topics/) for details.
 
-There's actually nothing to do to enable Topics in Prebid.js – bidders will receive their own Topics if they've implemented that feature.
-That said, Prebid.js does have a [Topics FPD Module](/dev-docs/modules/topicsFpdModule.html) that allows bidders to share each other's Topics.
+Chrome has since removed the Topics API. Since Prebid.js 11.26, Prebid.js no longer requests the Sec-Browsing-Topics header, and the [Topics FPD Module](/dev-docs/modules/topicsFpdModule.html) is a no-op.
 
 Prebid Server supports reading the Topics headers and inserting them into the OpenRTB at `user.data`.
 
@@ -129,6 +128,8 @@ This table may be useful to publishers trying to decide which version of Prebid.
 
 | Prebid.js Version | Notes |
 | --- | --- |
+| 11.26 | Topics support removed: the Sec-Browsing-Topics header is no longer requested and the topicsFpd module is a no-op |
+| 11.3 | The Chrome cookie deprecation label (`device.ext.cdep`) is no longer collected |
 | 8.22 | Makes Prebid FPD available to the PAAPI generateBid, scoreAds, and reportResult functions |
 | 8.15 | Added floor signal to the paapiForGpt module |
 | 8.9 | Initial release of the paapiForGpt module, Sec-Browsing-Topics header enabled |

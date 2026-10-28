@@ -173,7 +173,7 @@ A 'Simple Request' meets **all** of the following conditions:
 
 * No `ReadableStream` object is used in the request
 
-Prebid recommends keeping module HTTP requests 'simple' if at all possible. The default content-type used by Prebid.js is text/plain. Prebid switched to preferring the fetch api and added the Topics header when available in 8.9.
+Prebid recommends keeping module HTTP requests 'simple' if at all possible. The default content-type used by Prebid.js is text/plain. Prebid switched to preferring the fetch api and added the Topics header when available in 8.9. The Topics header was removed in 11.26, after Chrome removed the Topics API.
 
 ## Creating the Adapter
 
@@ -232,7 +232,7 @@ export const spec = {
     isBidRequestValid: function(bid) {},
     buildRequests: function(validBidRequests[], bidderRequest) {},
     interpretResponse: function(serverResponse, request) {},
-    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent) {},
+    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent, gppConsent, coppa) {},
     onTimeout: function(timeoutData) {},
     onBidWon: function(bid) {},
     onSetTargeting: function(bid) {},
@@ -286,10 +286,12 @@ Prebid will pass compressed payloads if the following criteria are met:
 If the above criteria is met, Prebid.js core will do the following:
 
 * Gzip compress the request payload
-* Set the `Content-Type` header to `plain/text` (to avoid a preflight request)
+* Set the `Content-Type` header to `text/plain` (to avoid a preflight request)
 * Append the `gzip=1` query param to the bidder request (to signal to a bidder's server-side endpoint that the request is compressed)
 
 Note: If the Prebid.js debugging query param `?pbjs_debug=true` is present in the URL or `debug: true` has been configured in `pbjs.setConfig()`, the gzip compression feature will be disabled and all bidder requests will be sent uncompressed.
+
+Note: Since Prebid.js 11.41, `isGzipCompressionSupported()` returns a Promise that resolves to a boolean. Adapters that call it directly must wait for the Promise to resolve (for example, with `await`) instead of using its return value as a boolean.
 
 #### Ad Unit Params in the validBidRequests Array
 
@@ -449,10 +451,6 @@ return {
 
 ```
 
-To have the topics in the Sec-Browsing-Topics request header marked by the browser as observed, but also to include the current page visit in the user's next epoch top topic calculation, the server's response has to include Observe-Browsing-Topics: ?1.
-
-Here's a JavaScript example using setHeader(): `res.setHeader('Observe-Browsing-Topics', '?1');`
-
 <a name="bidder-adaptor-Interpreting-the-Response"></a>
 
 ### Interpreting the Response
@@ -609,12 +607,26 @@ All user ID sync activity should be done using the `getUserSyncs` callback of th
 
 Given an array of all the responses from the server, `getUserSyncs` is used to determine which user syncs should occur. The order of syncs in the `serverResponses` array matters. The most important ones should come first, since publishers may limit how many are dropped on their page.
 
+`getUserSyncs` is called with these arguments:
+
+{: .table .table-bordered .table-striped }
+| Argument | Description |
+|----------+-------------|
+| `syncOptions` | Object with `iframeEnabled` and `pixelEnabled` booleans indicating which sync types the publisher allows. |
+| `serverResponses` | Array of server responses for this bidder. |
+| `gdprConsent` | GDPR consent data, if available. |
+| `uspConsent` | US Privacy consent string, if available. |
+| `gppConsent` | GPP consent data, or `null` if not available. |
+| `coppa` | Boolean, the value of the publisher's `coppa` setting in [`setConfig`]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html). Since Prebid.js 11.28. |
+
+Note that registered syncs are not fired in Safari (and, since Prebid.js 11.9, Firefox and Chrome on iOS) or when cookies are unavailable, even though `getUserSyncs` is still called. See [How User Syncing Works]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html#setConfig-ConfigureUserSyncing-HowUserSyncingWorks).
+
 See below for an example implementation.  For more examples, search for `getUserSyncs` in the [modules directory in the repo](https://github.com/prebid/Prebid.js/tree/master/modules).
 
 ```javascript
 
 {
-    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent) {
+    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent, gppConsent, coppa) {
        const syncs = []
 
        var gdpr_params;
@@ -646,7 +658,7 @@ See below for an example implementation.  For more examples, search for `getUser
 
 ### Registering on Timeout
 
-The `onTimeout` function will be called when an adapter has timed out for an auction. The adapter can fire an ajax or pixel call to register the timeout at their end.
+The `onTimeout` function will be called when an adapter has timed out for an auction. The adapter can fire an ajax or pixel call to register the timeout at their end. Adapters that do must disclose it on their bidder page; see [Disclosure](/dev-docs/module-rules.html#disclosure) in the module rules.
 
 Sample data passed to this function:
 
@@ -825,6 +837,7 @@ If the alias entry is an object, the following attributes are supported:
 | --- | --- | --- | --- |
 | `code` | required | shortcode/partner name | `string` |
 | `gvlid` | optional | global vendor list id of company scoped to alias | `integer` |
+| `acpId` | optional | Google Additional Consent provider id of company scoped to alias, used only if the alias has no GVL ID (PBJS 11.41+) | `integer` |
 | `skipPbsAliasing` | optional | If `true`, don't declare this alias to Prebid Server. See [skipPbsAliasing](#skippbsaliasing) below. Default value: `false` | `boolean` |
 
 {: .alert.alert-info :}
@@ -848,6 +861,7 @@ If your bid adapter is going to be used in Europe, you should support GDPR:
 
 * Get a [Global Vendor ID](https://iabeurope.eu/tcf-for-vendors/) from the IAB-Europe
 * Add your GVLID into the spec block as 'gvlid'. If you don't do this, Prebid.js may block requests to your adapter.
+* If you are not on the GVL but are on Google's [Additional Consent provider list](https://support.google.com/admanager/answer/9681920), add your provider ID into the spec block as 'acpId' instead (Prebid.js 11.41+). See [Additional Consent](/dev-docs/modules/tcfControl.html#additional-consent).
 * Read the gdprConsent string from the bid request object and pass it through to your endpoint
 
 If your bid adapter is going to be used in Canada, you should support GPP:
@@ -1159,7 +1173,7 @@ export const spec = {
      * @param {ServerResponse[]} serverResponses List of server's responses.
      * @return {UserSync[]} The user syncs which should be dropped.
      */
-    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent) {
+    getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent, gppConsent, coppa) {
        const syncs = []
 
        var gdpr_params;
@@ -1253,7 +1267,7 @@ registerBidder(spec);
     * If you support first party data, you must document what exactly is supported and then you may set `fpd_supported: true`. No default value.
     * If you support any OpenRTB blocking parameters, you must document what exactly is supported and then you may set `ortb_blocking_supported` to 'true','partial', or 'false'. No default value. In order to set 'true', you must support: bcat, badv, battr, and bapp.
     * Let publishers know how you support multiformat requests -- those with more than one mediatype (e.g. both banner and video). Here are the options: will-bid-on-any, will-bid-on-one, will-not-bid
-    * If you support [privacy sandbox features](https://developers.google.com/privacy-sandbox) you can list them in the `privacy_sandbox` meta field. Allowed values are `paapi`, `topics`.
+    * If you support [privacy sandbox features](https://developers.google.com/privacy-sandbox) you can list them in the `privacy_sandbox` meta field. Allowed values are `paapi`, `topics`. Note that Prebid.js no longer supports either: PAAPI was removed in 11.0 and Topics in 11.26, so these values only describe Prebid Server or older Prebid.js versions.
     * If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
     * Always add `sidebarType: 1`. This is required for docs.prebid.org site navigation.
 * Submit both the code and docs pull requests

@@ -220,10 +220,6 @@ Below is an example of a bid response for deals.
 }
 ```
 
-### Examples
-
-See [Prebid Video Examples](/examples/video/long-form/pb-ve-lf-freewheel.html) for examples of long-form video ads.
-
 ## Further Reading
 
 - [Prebid.js for Video Overview](/prebid-video/video-overview.html)
