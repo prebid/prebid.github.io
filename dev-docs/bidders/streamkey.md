@@ -3,6 +3,7 @@ layout: bidder
 title: Streamkey
 description: Prebid Streamkey.tv Bidder Adapter
 pbjs: true
+enable_download: false
 pbs: true
 media_types: video,banner
 gvl_id: 410 (adtelligent)

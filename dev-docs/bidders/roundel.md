@@ -5,6 +5,7 @@ description: Prebid Roundel Bidder Adapter
 biddercode: roundel
 aliasCode: ix
 pbjs: true
+enable_download: false
 pbs: true
 userIds: identityLink, netId, fabrickId, zeotapIdPlus
 pbs_app_supported: true

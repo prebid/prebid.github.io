@@ -14,6 +14,7 @@ usp_supported: true
 safeframes_ok: true
 prebid_member: false
 pbjs: true
+enable_download: false
 pbs: false
 deals_supported: false
 sidebarType: 1

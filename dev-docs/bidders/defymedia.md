@@ -3,6 +3,7 @@ layout: bidder
 title: Defy Media
 description: Prebid Defy Media Bidder Adaptor
 pbjs: true
+enable_download: false
 biddercode: defymedia
 aliasCode : appnexus
 sidebarType: 1
