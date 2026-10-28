@@ -75,7 +75,7 @@ For Prebid to rank the ad server's campaigns correctly against other demand, the
 - **Priority-adjusted CPM:** for most reservation campaigns, the ad server only needs to send a `priorityAdjustedCpm`: the value it would rank the campaign at, for example raised when the campaign is behind on delivery. The campaign then competes with programmatic demand on that value, while the bid's reported price stays the same.
 - **Priority:** send a `priority` only for campaigns that shouldn't compete on price: sponsorships (a priority below the default of 12, so they always win) and house campaigns (above 12, so they only fill when nothing else bids). Lower numbers win.
 - **Price floors:** priority doesn't bypass [price floors](/dev-docs/modules/floors.html). Deal bids are exempt from floor enforcement unless `enforcement.floorDeals` is set.
-- **House bids at CPM 0** are still dropped unless the adapter also has `allowZeroCpmBids`; a narrower setting is being discussed in [prebid/Prebid.js#15840](https://github.com/prebid/Prebid.js/issues/15840).
+- **House bids at CPM 0** are dropped by default. Since Prebid.js 11.45, set [`allowHouseBids`](/dev-docs/publisher-api-reference/bidderSettings.html#213-allowhousebids) for the ad server's adapter to accept its 0 CPM house bids (bids with a priority above 12) without accepting its other 0 CPM bids.
 
 The two approaches can also be combined: for example, an ad server can bid into Prebid while Prebid's winner is still sent to a second ad server as key-values.
 
