@@ -14,7 +14,7 @@ gpp_sids: tcfeu
 sidebarType: 1
 ---
 
-### Registration
+## Registration
 
 Before adding PubNative as a new bidder, there are 3 prerequisites:
 
@@ -24,15 +24,15 @@ Before adding PubNative as a new bidder, there are 3 prerequisites:
 
 Please see [documentation](https://developers.pubnative.net/docs/prebid-adding-pubnative-as-a-bidder) for more info.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name       | Scope    | Description            | Example | Type     |
-|------------|----------|------------------------|---------|----------|
-| zone_id | required | The ad zone identifier | 1 | integer |
-| app_auth_token | required | The app's authentication token | 'aaaabbbbcccc' | string |
+| Name           | Scope    | Description                    | Example        | Type    |
+|----------------|----------|--------------------------------|----------------|---------|
+| zone_id        | required | The ad zone identifier         | 1              | integer |
+| app_auth_token | required | The app's authentication token | 'aaaabbbbcccc' | string  |
 
-### Test Parameters
+## Test Parameters
 
 Please consult with our Account Manager for testing.
 We need to confirm that your ad request is correctly received by our system.
