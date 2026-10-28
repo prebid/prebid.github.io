@@ -280,10 +280,10 @@ Since Prebid.js 11.12, the TCF Control Module also enforces the publisher restri
 
 The narrowed legal basis is used for both the purpose and the vendor checks. Publisher restrictions are applied only when the vendor check is made using the module's GVL ID. They are not applied:
 
-- to modules listed in `vendorExceptions` or `softVendorExceptions`,
-- to rules with `enforceVendor: false`,
-- to modules without a GVL ID, or
-- to Special Feature 1 (`transmitPreciseGeo`).
+* to modules listed in `vendorExceptions` or `softVendorExceptions`,
+* to rules with `enforceVendor: false`,
+* to modules without a GVL ID, or
+* to Special Feature 1 (`transmitPreciseGeo`).
 
 ### Default Legal Basis
 
