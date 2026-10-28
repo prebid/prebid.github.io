@@ -274,6 +274,14 @@
   subgroup: 1
 
 - sbSecId: 1
+  title: Server-side only bidding
+  link: /dev-docs/examples/s2s-only.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 1
   title: Using Prebid.js with Microsoft Monetize Ad Server
   link: /dev-docs/examples/use-prebid-with-microsoft-ad-server.html
   isHeader: 0

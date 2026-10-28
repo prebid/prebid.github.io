@@ -129,6 +129,16 @@ Additional options for `s2sConfig` may be enabled by including the [Server-to-Se
 
 - Prebid Server can be instructed to return additional [SeatNonBid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#seat-non-bid) information about why bidders might not have bid on certain adunits. You can get this extra information by setting `extPrebid.returnallbidstatus` equal to `true`. Note that client-side analytics adapters can receive this data by listening to the `pbsAnalytics` event (its `seatnonbid` field). The `seatNonBid` event was removed in Prebid.js 11.
 
+## Server-Side Bidders Don't Need a Client-Side Adapter
+
+A bidder listed in `s2sConfig.bidders` doesn't have to be in the Prebid.js build. Prebid.js forwards the bidder's ad unit params to Prebid Server without calling the bidder's Prebid.js adapter, so you can leave the adapter out and keep the bundle smaller. That includes bidders that only have a Prebid Server adapter. Prebid Server handles parameter validation and type conversion and runs user syncs through `/cookie_sync`. Prebid.js has no bidder-specific parameter transforms for server-side bidders.
+
+If you leave the adapter out, keep these in mind:
+
+- **GDPR / TCF:** the bidder's Global Vendor List ID is normally declared by its Prebid.js adapter. Without the adapter, Prebid.js doesn't know it. If the [TCF Control module](/dev-docs/modules/tcfControl.html) is enforcing vendor consent for `basicAds` (the default), the bidder is removed from the auction. Either declare its ID with [`gvlMapping`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-gvlMapping), which also sends it to Prebid Server for aliases, or set `deferS2Sbidders: true` on the `basicAds` rule to let Prebid Server enforce vendor consent for bidders with unknown IDs.
+- **Aliases:** an alias that's defined in the bidder's Prebid.js adapter isn't defined without it. Use an alias Prebid Server knows, or declare it in `extPrebid.aliases` as described in [Server-Side Aliases](#server-side-aliases).
+- **Client-side fallback:** a bidder without an adapter can only bid server-side. Features that route a bidder to the client, such as the [s2sTesting module](/dev-docs/modules/s2sTesting.html), need the client-side adapter in the build.
+
 ## Bid Params
 
 Bid params are sourced from the adapter configurations set for client side. These do not need to change for Prebid Server.
