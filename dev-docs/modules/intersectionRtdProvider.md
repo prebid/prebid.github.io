@@ -7,7 +7,8 @@ description: Real Time Intersection
 page_type: module
 module_type: rtd
 module_code : intersectionRtdProvider
-enable_download : true
+enable_download : false
+pbjs_version_notes: removed in 11.0
 sidebarType : 1
 ---
 
@@ -15,7 +16,7 @@ sidebarType : 1
 {:.no_toc}
 
 {: .alert.alert-warning :}
-This module was removed in Prebid.js 11.0. See the [Prebid.js 11 release notes](/dev-docs/pb11-notes.html#removed-modules).
+The Intersection RTD module was removed in Prebid.js 11.0.
 
 * TOC
 {:toc}

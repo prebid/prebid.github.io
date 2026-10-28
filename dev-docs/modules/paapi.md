@@ -5,14 +5,15 @@ title: Module - PAAPI
 description: Protected Audience API
 module_code : paapi
 display_name : PAAPI
-enable_download : true
+enable_download : false
+pbjs_version_notes: removed in 11.0
 sidebarType : 1
 ---
 
 # PAAPI module
 
 {: .alert.alert-warning :}
-This module was removed in Prebid.js 11.0. See the [Prebid.js 11 release notes](/dev-docs/pb11-notes.html#removed-modules).
+The PAAPI module was removed in Prebid.js 11.0. Prebid.js no longer supports the Protected Audience API.
 
 This module allows Prebid.js to support PAAPI, formerly known as [FLEDGE](https://github.com/WICG/turtledove/blob/main/FLEDGE.md).
 
@@ -89,7 +90,7 @@ adunit. This attribute will take precedence over `defaultForSlots` setting.
 | ortb2Imp.ext.ae | Integer | Auction Environment: 1 indicates PAAPI eligible, 0 indicates it is not | Absence indicates this is not PAAPI eligible |
 
 The `ae` field stands for Auction Environment and was chosen to be consistent with the field that GAM passes to bidders
-in their Open Bidding and Exchange Bidding APIs. More details on that can be found in the
+in their Open Bidding and Exchange Bidding APIs. More details are in the
 [FLEDGE RTB proposal](https://github.com/google/ads-privacy/tree/master/proposals/fledge-rtb#bid-request-changes-indicating-interest-group-auction-support)
 In practice, this looks as follows:
 
@@ -123,7 +124,7 @@ Chrome has enabled a two-tier auction in PAAPI. This allows multiple sellers (fr
 a single entity serving as the final decision maker. In their [current approach](https://github.com/google/ads-privacy/tree/master/proposals/fledge-multiple-seller-testing),
 GPT has opted to run the final auction layer while allowing other SSPs/sellers to participate as
 [Component Auctions](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#21-initiating-an-on-device-auction) which feed their
-bids to the final layer. To learn more, see [Component Auctions in the FLEDGE explainer](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#24-scoring-bids-in-component-auctions).
+bids to the final layer. To learn more, see [scoring bids in component auctions](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#24-scoring-bids-in-component-auctions).
 
 The PAAPI auction, including Component Auctions, are configured via an `AuctionConfig` object that defines the parameters of the auction for a given
 seller. This module enables PAAPI support by allowing bid adaptors to return `AuctionConfig` objects in addition to bids. If a bid adaptor returns an

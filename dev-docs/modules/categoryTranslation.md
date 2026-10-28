@@ -5,7 +5,8 @@ title: Module - Category Translation
 description: Converts IAB category to ad server category for long-form videos.
 module_code : categoryTranslation
 display_name : CategoryTranslation
-enable_download : true
+enable_download : false
+pbjs_version_notes: removed in 11.0
 sidebarType : 1
 ---
 
@@ -13,7 +14,7 @@ sidebarType : 1
 {:.no_toc}
 
 {: .alert.alert-warning :}
-This module was removed in Prebid.js 11.0. See the [Prebid.js 11 release notes](/dev-docs/pb11-notes.html#removed-modules).
+The Category Translation module was removed in Prebid.js 11.0 along with ad pod (long-form) video support.
 
 This module converts the IAB sub category to Ad server industry group identifiers. The identifiers ensure competitive separation of industries and products.
 

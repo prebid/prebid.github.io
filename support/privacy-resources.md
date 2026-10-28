@@ -70,6 +70,9 @@ Prebid Server supports reading the Topics headers and inserting them into the Op
 
 #### Protected Audience API
 
+{: .alert.alert-warning :}
+The Prebid.js PAAPI modules (`paapi`, `paapiForGpt`, `topLevelPaapi`) and the `paapi` setConfig option were removed in Prebid.js 11.0. The Prebid.js guidance in this section applies to Prebid.js 10.x and earlier only.
+
 PAAPI (also called PAA) is Chrome's solution for ad targeting done in a privacy-friendly way. In short, GAM will kick off an in-browser auction after
 the contextual auction. If the in-browser auction wins, it can override the ad chosen by GAM. 
 

@@ -37,3 +37,10 @@ The following examples are available:
 
 - [Google Ad Manager](/examples/video/outstream/pb-ve-outstream-dfp.html)
 - [No Server](/examples/video/outstream/pb-ve-outstream-no-server.html)
+
+## Long-Form (Ad Pods)
+
+{: .alert.alert-warning :}
+Ad pod (long-form) video support was removed in Prebid.js 11.0. These examples apply to Prebid.js 10.x and earlier only.
+
+- [Freewheel](/examples/video/long-form/pb-ve-lf-freewheel.html)

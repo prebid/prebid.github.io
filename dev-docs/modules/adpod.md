@@ -5,7 +5,8 @@ title: Module - Adpod
 description: Enables developers to add support for a new adserver that handles ad pod (long-form) videos.
 module_code : adpod
 display_name : Adpod
-enable_download : true
+enable_download : false
+pbjs_version_notes: removed in 11.0
 sidebarType : 1
 ---
 
@@ -13,7 +14,7 @@ sidebarType : 1
 {:.no_toc}
 
 {: .alert.alert-warning :}
-This module was removed in Prebid.js 11.0. See the [Prebid.js 11 release notes](/dev-docs/pb11-notes.html#removed-modules).
+The Adpod module was removed in Prebid.js 11.0. Ad pod (long-form) video is no longer supported by Prebid.js.
 
 * TOC
 {:toc}

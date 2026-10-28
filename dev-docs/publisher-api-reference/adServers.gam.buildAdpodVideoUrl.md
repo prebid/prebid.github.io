@@ -1,10 +1,13 @@
 ---
 layout: api_prebidjs
-title: pbjs.adServers.gam.buildAdpodVideoUrl(options) <span style="color:red" markdown="1">[Alpha]</span>
+title: pbjs.adServers.gam.buildAdpodVideoUrl(options) <span style="color:red" markdown="1">[Removed in 11.0]</span>
+head_title: "pbjs.adServers.gam.buildAdpodVideoUrl(options) [Removed in 11.0] for Header Bidding"
 description: adServers.gam.buildAdpodVideoUrl API
 sidebarType: 1
 ---
 
+{: .alert.alert-warning :}
+This function was removed in Prebid.js 11.0 along with ad pod (long-form) video support.
 
 {: .alert.alert-info :}
 The GAM implementation of this function requires including the `gamAdServerVideo` module in your Prebid.js build.

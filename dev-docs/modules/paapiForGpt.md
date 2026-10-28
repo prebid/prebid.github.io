@@ -7,14 +7,15 @@ title: Module - paapiForGpt
 description: how to use PAAPI with GPT
 module_code : paapiForGpt
 display_name : Fledge (PAAPI) for GPT
-enable_download : true
+enable_download : false
+pbjs_version_notes: removed in 11.0
 sidebarType : 1
 ---
 
 # Protected Audience API (PAAPI) for GPT Module
 
 {: .alert.alert-warning :}
-This module was removed in Prebid.js 11.0. See the [Prebid.js 11 release notes](/dev-docs/pb11-notes.html#removed-modules).
+The paapiForGpt module was removed in Prebid.js 11.0. Prebid.js no longer supports the Protected Audience API.
 
 This module allows Prebid.js to support PAAPI (formerly FLEDGE) by integrating with GPT's support for [component auctions](https://developers.google.com/publisher-tag/reference#googletag.config.componentauctionconfig).
 
