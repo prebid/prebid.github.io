@@ -107,7 +107,8 @@ See [Prebid Native Implementation](/prebid/native-implementation.html) for detai
 |------------------+-------------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `pos` | Optional | Integer | Ad position on screen, see [OpenRTB 2.5 spec][openRTB]. OpenRTB page position value: 0=unknown, 1=above-the-fold, 3=below-the-fold, 4=header, 5=footer, 6=sidebar, 7=full-screen |
 | `context` | Recommended | String | The video context, either `'instream'` or `'outstream'`. Example: `context: 'outstream'`. Defaults to 'instream'. |
-| `useCacheKey` | Optional | Boolean | Defaults to `false`. While context `'instream'` always will return an vastUrl in bidResponse, `'outstream'` will not. Setting this `true` will use cache url defined in global options also for outstream responses. |
+| `useCacheKey` | Optional | Boolean | Defaults to `false`. Instream bids follow the global cache configuration. Set to `true` to use the globally configured cache URL for outstream bids too. Setting `cache: false` on the ad unit overrides this option. |
+| `cache` | Optional | Boolean | Set to `false` to skip remote and local caching by Prebid.js for this ad unit's video bids, even when global `cache.url` or `cache.useLocal` is configured. Omitted or `true` follows the existing cache rules. The player must be able to use the bid's VAST URL or XML directly. |
 | `placement` | Recommended | Integer | 1=in-stream, 2=in-banner, 3=in-article, 4=in-feed, 5=interstitial/floating. **Highly recommended** because some bidders require more than context=outstream. |
 | `plcmt` | Recommended | Integer | 1=in-stream, 2=accompanying content, 3=interstitial, 4=no content/standalone. **Highly recommended** to comply with new IAB video specifications. See [AdCOM v1 spec](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/develop/AdCOM%20v1.0%20FINAL.md#list_plcmtsubtypesvideo) |
 | `playerSize` | Optional | Array[Integer,Integer] | The size (width, height) of the video player on the page, in pixels. Example: `playerSize: [640, 480]` |
@@ -128,6 +129,12 @@ See [Prebid Native Implementation](/prebid/native-implementation.html) for detai
 | `maxbitrate` | Optional | Integer | Maximum bit rate in Kbps., see [OpenRTB 2.5 spec][openRTB]. |
 | `delivery` | Optional | Array[Integer] | Supported delivery methods (e.g., streaming, progressive), see [OpenRTB 2.5 spec][openRTB]. |
 | `playbackend` | Optional | Integer | The event that causes playback to end, see [OpenRTB 2.5 spec][openRTB]. |
+
+For mixed video setups, keep the global cache configured for ad units that need a cached VAST URL. Set `mediaTypes.video.cache: false` only on ad units whose player consumes the bid directly. This choice stays with the ad unit when auctions overlap; changing the global cache configuration between auctions does not provide that isolation.
+
+This option controls caching performed by Prebid.js. It does not disable caching by Prebid Server or bidders, or remove VAST URLs and cache keys they supply. Configure [Prebid Server caching](/dev-docs/modules/prebidServer.html#video-via-s2sconfig) separately.
+
+When caching is disabled, Prebid does not turn VAST XML into a VAST URL. For outstream video, if the active renderer declares `requiresVastUrl: true`, the bid must already supply a VAST URL. An XML-only bid is discarded in that case, including with local caching configured.
 
 <a name="adUnit-examples"></a>
 
@@ -748,7 +755,7 @@ pbjs.addAdUnits({
 * [Show Native Ads](/prebid/native-implementation.html)
 * [Show Video Ads](/dev-docs/show-video-with-a-dfp-video-tag.html)
 * [Show Outstream Video Ads](/dev-docs/show-outstream-video-ads.html)
-* [Show Long-Form Video Ads](/prebid-video/video-long-form.html)
+* [Show Long-Form Video Ads](/prebid-video/video-long-form.html) (removed in Prebid.js 11.0)
 * [Prebid.org Video Examples](/examples/video/)
 * [Prebid.org Native Examples](/dev-docs//examples/native-ad-example.html)
 

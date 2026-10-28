@@ -9,6 +9,9 @@ sidebarType: 4
 
 {: .no_toc}
 
+{: .alert.alert-warning :}
+Ad pod (long-form) video support was removed in Prebid.js 11.0. This page applies to Prebid.js 10.x and earlier only.
+
 In this tutorial, we'll detail how to set up Prebid.js to display a Programmatic OTT with Prebid (POP) video ad (ad pod) from Google Ad Manager (GAM).
 
 * TOC

@@ -32,6 +32,30 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <script src="{{site.baseurl}}/assets/js/main.js"></script>
     <script type="text/javascript" src="{{site.baseurl}}/assets/js/pbjs_home.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
+    <!-- site search: the Pagefind index is built after Jekyll, see README.md -->
+    <link rel="stylesheet" href="{{site.baseurl}}/pagefind/pagefind-component-ui.css" />
+    <script type="module">
+      // configure the instance before any Pagefind component connects, then add the trigger and modal
+      await import("{{site.baseurl}}/pagefind/pagefind-component-ui.js");
+      window.PagefindComponents.configureInstance("default", {
+        bundlePath: "{{site.baseurl}}/pagefind/",
+        ranking: { termFrequency: 0.5 }
+      });
+      const modal = document.getElementById("pagefind-modal-template");
+      const search = document.querySelector(".pb-header .c-search");
+      if (modal && search) {
+        search.append(document.createElement("pagefind-modal-trigger"));
+        document.body.append(modal.content.cloneNode(true));
+      }
+    </script>
+    <style>
+      :root {
+        --pf-outline-focus: #3e86c3;
+        --pf-modal-max-width: 720px;
+        --pf-result-title-font-size: 15px;
+        --pf-font: inherit;
+      }
+      .pb-header .c-search { display: flex; align-items: center; height: 100%; }
+    </style>
     <link href="{{site.baseurl}}/assets/css/prism.css" rel="stylesheet" />
 
