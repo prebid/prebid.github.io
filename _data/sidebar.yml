@@ -646,6 +646,14 @@
   subgroup: 8
 
 - sbSecId: 1
+  title: Custom Rendering for Deals
+  link: /features/customDealRendering.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 8
+
+- sbSecId: 1
   title: Timeouts
   link: /features/timeouts.html
   isHeader: 0
