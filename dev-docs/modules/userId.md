@@ -48,8 +48,8 @@ When paired with the [Consent Management](/dev-docs/modules/consentManagementTcf
 
 Since Prebid.js 11.14:
 
-- If a TCF or GPP consent management module is configured and its CMP lookup fails (for example, because no CMP is found or the CMP returns an error), user ID submodules do not run: no IDs are retrieved and none are added to bid requests. A CMP timeout is not treated as a failure; in that case user ID submodules run with the consent data available at the time, as before.
-- Once the User ID module has initialized, any change in consent data (TCF, GPP, USP or COPPA) triggers a refresh of all user ID submodules, as if [`pbjs.refreshUserIds()`](/dev-docs/publisher-api-reference/refreshUserIds.html) had been called.
+* If a TCF or GPP consent management module is configured and its CMP lookup fails (for example, because no CMP is found or the CMP returns an error), user ID submodules do not run: no IDs are retrieved and none are added to bid requests. A CMP timeout is not treated as a failure; in that case user ID submodules run with the consent data available at the time, as before.
+* Once the User ID module has initialized, any change in consent data (TCF, GPP, USP or COPPA) triggers a refresh of all user ID submodules, as if [`pbjs.refreshUserIds()`](/dev-docs/publisher-api-reference/refreshUserIds.html) had been called.
 
 In addition, individual users may opt-out of receiving cookies and HTML5 local storage by setting these values:
 
