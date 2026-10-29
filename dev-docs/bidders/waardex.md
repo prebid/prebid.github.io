@@ -6,17 +6,23 @@ hide: true
 biddercode: waardex
 media_types: banner, video
 pbjs: true
+pbs: true
+pbs_app_supported: true
 sidebarType: 1
 ---
 
-### Bid Params
+### Note
+
+The Waardex Bidding adaptor requires setup and approval before beginning. Please reach out to <support@waardex.com> for more details
+
+### Bid Params (Prebid.js)
 
 #### Banner
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                                                      | Example            | Type     |
 |---------------|----------|------------------------------------------------------------------|--------------------|----------|
-| `zoneId`      | required | publisher identifier                                             | 1                  | `number` |
+| `zoneId`      | required | zone ID assigned by Waardex                                      | 1                  | `number` |
 | `bidId`       | required | bid request id                                                   | `'22c4871113f461'` | `string` |
 | `bidfloor`    | required | bid request price                                                | 0.5                | `float`  |
 | `position`    | optional | ad position on the page                                          | 1                  | `number` |
@@ -27,7 +33,7 @@ sidebarType: 1
 {: .table .table-bordered .table-striped }
 | Name            | Scope    | Description                                                                                             | Example                         | Type            |
 |-----------------|----------|---------------------------------------------------------------------------------------------------------|---------------------------------|-----------------|
-| `zoneId`        | required | publisher identifier                                                                                    | 1                               | `number`        |
+| `zoneId`        | required | zone ID assigned by Waardex                                                                             | 1                               | `number`        |
 | `bidId`         | required | bid request id                                                                                          | `'22c4871113f461'`              | `string`        |
 | `bidfloor`      | required | bid request price                                                                                       | 0.5                             | `float`         |
 | `position`      | optional | ad position on the page                                                                                 | 1                               | `number`        |
@@ -46,3 +52,10 @@ sidebarType: 1
 | `playbackmethod`| optional | Playback methods that may be in use                                                                     | [1,2]                           | `array<number>` |
 | `api`           | optional | List of supported API frameworks for this impression                                                    | [1,2,3,4,5,6]                   | `array<number>` |
 | `linearity`     | optional | Indicates if the impression must be linear, nonlinear, etc                                              | 1                               | `number`        |
+
+### Bid Params (Prebid Server)
+
+{: .table .table-bordered .table-striped }
+| Name     | Scope    | Description                 | Example | Type      |
+|----------|----------|-----------------------------|---------|-----------|
+| `zoneId` | required | zone ID assigned by Waardex | `30164` | `integer` |
