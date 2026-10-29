@@ -157,6 +157,32 @@ pbjs.addAdUnits({
 {: .alert.alert-danger :}
 For each native ad unit, all of the bidders within that ad unit must have declared native support in their adapter if you want ads to appear.  If there are any bidders without native support in a native ad unit, requests will not be made to those bidders.  For a list of bidders with native support, see [Bidders with Video and Native Demand]({{site.baseurl}}/dev-docs/bidders.html).
 
+<a name="native-video-asset"></a>
+
+#### Native video asset
+
+Since Prebid.js 11.41, native ad units can request a video asset. It must define `mimes`, `protocols`, `minduration` and `maxduration`, which Prebid.js passes on as the OpenRTB native `video` asset:
+
+```javascript
+mediaTypes: {
+    native: {
+        title: {
+            required: true,
+            len: 80
+        },
+        video: {
+            required: true,
+            mimes: ['video/mp4'],
+            protocols: [2, 3, 5, 6],
+            minduration: 5,
+            maxduration: 30
+        }
+    }
+}
+```
+
+The bid's video asset is the VAST XML (the OpenRTB `vasttag`), available in native templates as `##hb_native_video##`. Prebid.js does not play it: the native template or renderer must load the VAST into a video player itself.
+
 #### Pre-defined native types
 
 Prebid.js defines "types" of native ad for you as a convenience. This way you have less code to maintain, that is hopefully more descriptive of your intent.

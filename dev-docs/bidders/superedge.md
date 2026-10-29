@@ -10,7 +10,7 @@ coppa_supported: true
 gvl_id: 1554
 usp_supported: true
 pbjs: true
-pbs: false
+pbs: true
 floors_supported: true
 schain_supported: false
 dchain_supported: false

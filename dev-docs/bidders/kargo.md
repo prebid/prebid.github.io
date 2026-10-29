@@ -25,11 +25,13 @@ pbjs_version_notes: if you require schains, avoid versions 7.46 to 7.53
 sidebarType: 1
 ---
 
-### Note
+{% include dev-docs/reports-timeout-events.md endpoint="krk2.kargo.com/api/v1/event/timeout" data="the auction ID and the auction timeout, once per timed-out bid request" %}
+
+## Note
 
 Kargo is an invitation-only marketplace.  Please reach out to your Kargo account manager to get setup.  Also, you *must* test on a mobile device, or emulate a mobile device by manipulating the user agent string sent to the server.
 
-### Bidder Settings
+## Bidder Settings
 
 The Kargo bid adapter uses browser local storage. Since Prebid.js 7.x, the access to it must be explicitly set.
 
@@ -44,14 +46,14 @@ pbjs.bidderSettings = {
 }
 ```
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description | Example | Type     |
-|---------------|----------|-------------|---------|----------|
-| `placementId`       | required | The placementId of the ad slot. |`'_jWuc8Hks'`| `string` |
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| `placementId` | required | The placementId of the ad slot. | `'_jWuc8Hks'` | `string` |
 
-### ORTB Blocking
+## ORTB Blocking
 
 Kargo supports blocking advertisers in `badv` and categories in `bcat` parameters.
 The blocked advertisers/categories list has no length limitation, but response timeout is more likely to occur as the number of entries grow.
@@ -60,7 +62,7 @@ Blocked categories list (`bcat`) is an array of IAB categories as strings.
 
 For example:
 
-#### Globally defined ORTB Blocking
+### Globally defined ORTB Blocking
 
 ```javascript
 pbjs.setConfig({
@@ -71,7 +73,7 @@ pbjs.setConfig({
 )};
 ```
 
-#### ORTB Blocking specific only to the Kargo bidder
+### ORTB Blocking specific only to the Kargo bidder
 
 ```javascript
 pbjs.setBidderConfig({
