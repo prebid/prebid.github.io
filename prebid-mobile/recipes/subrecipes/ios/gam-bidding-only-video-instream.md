@@ -94,7 +94,7 @@ func adsManagerDidRequestContentResume(_ adsManager: IMAAdsManager) {
 ```
 
 {: .alert.alert-warning :}
-Starting from PrebidMobile `2.1.0` the `VideoAdUnit` class is deprecated. Use `InstreamVideoAdUnit` class instead.
+Starting from PrebidMobile `2.1.0` the `VideoAdUnit` class is deprecated and from PrebidMobile `3.0.0` - removed. Use `InstreamVideoAdUnit` class with video ad format instead.
 
 ## Step 1: Create an InstreamVideoAdUnit
 {:.no_toc}

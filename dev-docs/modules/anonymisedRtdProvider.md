@@ -37,8 +37,12 @@ gulp build --modules=rtdModule,anonymisedRtdProvider,...
          waitForIt: true,
          params: {
            cohortStorageKey: "cohort_ids",
-           bidders: ["appnexus", "onetag", "pubmatic", "smartadserver", ...],
-           segtax: 1000
+           bidders: ["bidderA", "bidderB", "bidderC", ...],
+           segtax: 1000,
+           tagConfig: {
+            clientId: 'testId'
+            //The rest of the Anonymised Marketing Tag parameters goes here
+           }
          }
        }
      ]
@@ -46,16 +50,52 @@ gulp build --modules=rtdModule,anonymisedRtdProvider,...
  });
 ```
 
-Please note that anonymisedRtdProvider should be integrated into the publisher website along with the [Anonymised Marketing Tag](https://support.anonymised.io/integrate/marketing-tag).
-Please reach out to Anonymised [representative](mailto:support@anonymised.io) if you have any questions or need further help to integrate Prebid, anonymisedRtdProvider, and Anonymised Marketing Tag
+The `anonymisedRtdProvider` must be integrated into the publisher's website along with the [Anonymised Marketing Tag](https://support.anonymised.io/integrate/marketing-tag?t=LPukVCXzSIcRoal5jggyeg). One way to install the Marketing Tag is through `anonymisedRtdProvider` by specifying the required [parameters](https://support.anonymised.io/integrate/optional-anonymised-tag-parameters?t=LPukVCXzSIcRoal5jggyeg) in the `tagConfig` object.  
+
+The `tagConfig.clientId` parameter is mandatory for the Marketing Tag to initialize. If `tagConfig` is empty or `tagConfig.clientId` is undefined, the `anonymisedRtdProvider` will not initialize the Marketing Tag. The publisher's `clientId` is [provided by Anonymised](https://support.anonymised.io/integrate/install-the-anonymised-tag-natively#InstalltheAnonymisedtagnatively-Instructions?t=LPukVCXzSIcRoal5jggyeg).  
+
+For any questions or assistance with integrating Prebid, `anonymisedRtdProvider`, or the Anonymised Marketing Tag, please contact an [Anonymised representative](mailto:support@anonymised.io).
 
 **Config Syntax details:**
 
 {: .table .table-bordered .table-striped }
-| Name  |Type | Description   | Notes  |
-| :------------ | :------------ | :------------ |:------------ |
-| name | String | Anonymised Rtd module name | 'anonymised' always|
-| waitForIt | Boolean | Required to ensure that the auction is delayed until prefetch is complete | Optional. Defaults to false |
-| params.cohortStorageKey | String | the `localStorage` key, under which Anonymised Marketing Tag stores the segment IDs | 'cohort_ids' always |
-| params.bidders | Array | Bidders with which to share segment information | Required |
-| params.segtax | Integer | The taxonomy for Anonymised | '1000' always |
+
+| Name | Type | Description | Notes |
+| :------------ | :------------ | :------------ | :------------ |
+| name | `String` | Anonymised Rtd module name | 'anonymised' always |
+| waitForIt | `Boolean` | Required to ensure that the auction is delayed until prefetch is complete | Optional. Defaults to false |
+| params.cohortStorageKey | `String` | the `localStorage` key, under which Anonymised Marketing Tag stores the segment IDs | 'cohort_ids' always |
+| params.bidders | `Array` | Bidders with which to share segment information | Optional |
+| params.segtax | `Integer` | The taxonomy for Anonymised | '1000' always |
+| params.tagConfig | `Object` | Configuration for the Anonymised Marketing Tag | Optional. Defaults to `{}`. |
+| params.tagUrl | `String` | The URL of the Anonymised Marketing Tag script | **Deprecated.** Optional. Defaults to `https://static.anonymised.io/light/loader.js`. |
+
+## Publisher Provided Signals (PPS) / Seller-Defined Audiences (SDA)
+
+If the publisher has Anonymised's SignalLift service installed with PPS enabled, the Anonymised Marketing Tag makes IAB Audience Taxonomy 1.1 category IDs available on the page. The `anonymisedRtdProvider` picks these up and writes them as its own `user.data` entry with `segtax: 4`, as the IAB Seller-Defined Audiences spec requires:
+
+```javascript
+{
+  name: 'anonymised.io',
+  ext: { segtax: 4 },
+  segment: [{ id: '522' }]
+}
+```
+
+No additional configuration is required. This entry is independent of the `cohortStorageKey` and `segtax` params, and is written even when no cohort segment is present, and vice versa.
+
+A publisher who wants only this entry, and who already installs the Anonymised Marketing Tag on the page directly, can configure the module with `name` alone. Note that `params.tagConfig.clientId` is what makes this module load the Marketing Tag: omit `params` and the tag must be installed by other means, or no audience signals will be available to read:
+
+```javascript
+ pbjs.setConfig({
+   realTimeData: {
+     dataProviders: [
+       {
+         name: "anonymised"
+       }
+     ]
+   }
+ });
+```
+
+The entry is not written when PPS is not enabled in the publisher's Marketing Tag configuration, when no audience signals are available, or when the session is in the SignalLift holdout group.

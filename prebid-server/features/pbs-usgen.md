@@ -74,6 +74,7 @@ Here's an example:
 | Parameter | Type | Scope | Description |
 |------|------|-------------|
 | skipSids | array of integer | Optional | Do not process the named section IDs. |
+| allowPersonalDataConsent2 | boolean | Optional | Defaults to 'false'. [Prebid's logic](/features/mspa-usnat.html) for personal data consents considers a value of 2 as non-sensical. But it turns out that several CMPs didn't get that message and are reporting this value. We will deprecate this option once the CMPs are all on the same page. |
 
 By default the module will process GPP SIDs 7-12. The `skipSids`
 parameter allows the publisher to define a different processing flow for different GPP SIDs.
@@ -148,6 +149,26 @@ Prebid approach, but they want to process SID 8 with this custom module.
 }
 ```
 
+### Testing
+
+Before turning on the USGen module 100%, some host companies may want to partially enable it in order to gague impact. This can be done using the privacy module `skipRate` parameter. Here's an example account config:
+
+```json5
+{
+    "privacy": {
+        "modules": [{
+                "code": "iab.usgeneral",
+                "skipRate": 95,         // only run on 5% of requests. Default is to run on 100%, i.e. skipRate 0 
+                "config": {
+                    "skipSids": [9]
+                }
+        }]
+    }
+}
+```
+
+In order to utilize this test though, you will need an analytics adapter that can read the Activity Infrastructure log. See [privacy module analytics](/prebid-server/developers/add-a-privacy-module-java.html#privacy-trace-log-and-analytics) for more detail.
+
 ### Troubleshooting
 
 Additional information about the outcoming of privacy module processing can be obtained by setting `ext.prebid.trace: "basic"`.
@@ -157,4 +178,4 @@ Additional information about the outcoming of privacy module processing can be o
 * [Prebid US Compliance Support](/features/mspa-usnat.html)
 * [US Custom Logic Privacy Module](/prebid-server/features/pbs-uscustomlogic.html)
 * [Activity Control system](/prebid-server/features/pbs-activitycontrols.html)
-* [IAB US National Privacy Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md)
+* [IAB US National Privacy Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20Multi-State%20Privacy%20Agreement%20(MSPA)%20US%20National%20Technical%20Specification.md)

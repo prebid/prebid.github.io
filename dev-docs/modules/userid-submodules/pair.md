@@ -11,12 +11,14 @@ reliance on third-party cookies. PAIR can help advertisers and publishers mainta
 
 Add it to your Prebid.js package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=pairIdSystem
+```
 
 ## PAIR ID Configuration
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of PAIR ID user ID module. | `"pairId"` |

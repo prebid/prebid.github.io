@@ -4,7 +4,7 @@ title: MinuteMedia
 description: Prebid MinuteMedia Bidder Adapter
 pbjs: true
 biddercode: minutemedia
-media_types: banner, video
+media_types: banner, video, native
 multiformat_supported: will-bid-on-any
 schain_supported: true
 tcfeu_supported: true
@@ -25,9 +25,10 @@ The MinuteMedia adapter requires setup and approval. Please reach out to <hb@min
 
 ### Bid Parameters
 
-#### Banner ,Video
+#### Banner, Video, Native
 
 {: .table .table-bordered .table-striped }
+
 | Name | Scope | Type | Description | Example
 | ---- | ----- | ---- | ----------- | -------
 | `org` | required | String |  MinuteMedia publisher Id provided by your MinuteMedia representative  | "1234567890abcdef12345678"
@@ -35,7 +36,7 @@ The MinuteMedia adapter requires setup and approval. Please reach out to <hb@min
 | `placementId` | optional | String |  A unique placement identifier  | "12345678"
 | `testMode` | optional | Boolean |  This activates the test mode  | false
 
-## Example
+### Example
 
 ```javascript
 var adUnits = [{
@@ -87,3 +88,13 @@ var adUnits = [{
 ### Configuration
 
 MinuteMedia recommends setting UserSync by iframe for monetization.
+
+### Versions
+
+Prebid versions 5.0-5.3 are not supported.
+
+Banner >= 6.14.0.
+
+Native >= 9.27.0.
+
+Multi-format requests >= 9.27.0.

@@ -6,6 +6,9 @@ description: An beginner's guide to header bidding.
 sidebarType: 0
 ---
 
+<div style="text-align: center;">
+  <img src="/assets/images/logos/prebid-js-logo.png" alt="Prebid.js Logo" width="500" height="80" style="max-width: 100%; height: auto;" />
+</div>
 
 # Introduction to Header Bidding
 
@@ -58,7 +61,7 @@ Today header bidding might more appropriately be referred to as pre-ad server bi
 
 ## How It Works
 
-This is a very simplified version of how header bidding works with display ads on a website:
+This is a very simplified version of how header bidding works with display ads on a website, in the most common setup, where the ad server makes the final decision:
 
 1. The page starts to load.
 2. The header bidding code calls out to a set of demand partners asking for bids.
@@ -75,10 +78,9 @@ Here are a few details on the different aspects of header bidding.
 
 ### The Ad Server
 
-Yes, you still need an ad server. As we explained in the History, header bidding means that bid gathering takes place before calling the ad server. The ad server will still determine the final winner for each ad unit. It will consider sponsorships, direct sold, guaranteed, and other types of ads along with the bids generated from the header bidding software.
+Most publishers use an ad server alongside header bidding. In the most common setup, as explained in the History, bid gathering takes place before calling the ad server, and the ad server determines the final winner for each ad unit. It considers sponsorships, direct sold, guaranteed, and other types of ads along with the bids generated from the header bidding software.
 
-{: .alert.alert-info :}
-Header bidding can be done without an ad server, but that’s rare and out of scope for this discussion.
+That isn't the only way to set it up. Prebid can also choose the winner itself: either without an ad server, or with the ad server bidding into the Prebid auction like any other demand source. In that case, the ad server's direct campaigns can be ranked by [priority and priority-adjusted CPM](/dev-docs/publisher-api-reference/bidderSettings.html#212-allowprioritybids), and the page renders the most desirable bids (see `pbjs.getBestBids`).
 
 ### Ad Ops
 

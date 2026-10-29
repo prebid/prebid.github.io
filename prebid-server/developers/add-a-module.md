@@ -70,7 +70,8 @@ Here's a description of the Stages of a PBS request that modules can tap into fo
 | Bidder Request | The request has been customized for a particular bidder in the auction. Note that the module will be called in parallel for each bidder in the auction. | auction, amp, video | Bidder-specific bcat/badv, Bidder-specific deals |
 | Raw Bidder Response | Hook functions can get access to the unprocessed bidder response. Note that the module will be called in parallel for each bidder in the auction. | auction, amp, video | Response validations |
 | All Processed Bid Responses | All bids are back and PBS-core bid validations are done. | auction, amp, video | Creative validation, advanced bid validations. |
-| Auction Response | Last step before the response goes back to the client | auction, amp, video | Inject ad server targeting, alternate auction winner logic |
+| Auction Response | Last chance to modify the bid auction response | auction, amp, video | Inject ad server targeting, alternate auction winner logic |
+| Exitpoint | (PBS-Java 3.16+) Last step before the response goes back to the client. Specify the response headers and body | auction, amp, video | Create a VAST response instead of OpenRTB. |
 
 ### 3. Figure Out Which Stages You're Going to Hook Into
 

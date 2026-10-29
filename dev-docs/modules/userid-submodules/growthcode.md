@@ -3,6 +3,9 @@ layout: userid
 title: GrowthCode
 description: GrowthCode User ID sub-module
 useridmodule: growthCodeIdSystem
+bidRequestUserId: growthCodeId
+eidsource: growthcode.io
+example: '"1111"'
 ---
 
 
@@ -15,8 +18,9 @@ margin pressure.
 
 First, make sure to add the GrowthCode submodule to your Prebid.js package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=growthCodeIdSystem,userId
+```
 
 The following configuration parameters are available:
 
@@ -36,6 +40,7 @@ pbjs.setConfig({
 The following configuration parameters are available:
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope    | Type   | Description                                                            | Example         |
 |--------------------------------|----------|--------|------------------------------------------------------------------------|-----------------|
 | name                           | Required | String | The name of this module.                                               | `"growthCodeId"` |

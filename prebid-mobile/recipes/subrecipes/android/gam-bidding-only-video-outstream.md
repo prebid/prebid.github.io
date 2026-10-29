@@ -16,7 +16,7 @@ Integration example:
 
 ```kotlin
 private fun createAd() {
-    // 1. Create VideoAdUnit
+    // 1. Create BannerAdUnit
     adUnit = BannerAdUnit(CONFIG_ID, WIDTH, HEIGHT, EnumSet.of(AdUnitFormat.VIDEO))
 
     // 2. Configure video ad unit
@@ -39,7 +39,7 @@ private fun createAd() {
 ```
 
 {: .alert.alert-warning :}
-Starting from PrebidMobile `2.1.0` the `VideoAdUnit` class is deprecated. Use `BannerAdUnit` class with video ad format instead.
+Starting from PrebidMobile `2.1.0` the `VideoAdUnit` class is deprecated and from PrebidMobile `3.0.0` - removed. Use `BannerAdUnit` class with video ad format instead.
 
 Configure Video parameters:
 

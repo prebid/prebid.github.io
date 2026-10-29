@@ -3,6 +3,9 @@ layout: userid
 title: adQuery QiD
 description: adQuery QiD User ID sub-module
 useridmodule: adqueryIdSystem
+bidRequestUserId: qid
+eidsource: adquery.io
+example: '"p9v2dpnuckkzhuc"'
 ---
 
 

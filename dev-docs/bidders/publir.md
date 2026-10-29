@@ -26,11 +26,12 @@ The Publir adapter requires setup and approval. Please reach out to [info@publir
 #### Banner, Video
 
 {: .table .table-bordered .table-striped }
+
 | Name | Scope | Type | Description | Example
 | ---- | ----- | ---- | ----------- | -------
 | `pubId` | required | String |  Publir publisher Id provided by your Publir representative  | "1234567890abcdef12345678"
 
-## Example
+### Example
 
 ```javascript
 var adUnits = [{

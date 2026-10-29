@@ -13,7 +13,7 @@ Takes one ad unit object or an array of ad unit objects and adds them to the Pre
 
 <a name="addAdUnits-AdUnitProperties"></a>
 
-#### Ad Unit Properties
+## Ad Unit Properties
 
 See the table below for the list of properties on the ad unit.  For example ad units, see the [Examples](#addAdUnits-Examples) below.
 
@@ -30,7 +30,7 @@ See the table below for the list of properties on the ad unit.  For example ad u
 
 <a name="addAdUnits-Bids"></a>
 
-##### Bids
+### Bids
 
 See the table below for the list of properties in the `bids` array of the ad unit.  For example ad units, see the [Examples](#addAdUnits-Examples) below.
 
@@ -47,7 +47,7 @@ Note that `bids` is optional only for [Prebid Server stored impressions](/dev-do
 
 <a name="addAdUnits-MediaTypes"></a>
 
-##### Media Types
+### Media Types
 
 See the table below for the list of properties in the `mediaTypes` object of the ad unit.  For example ad units showing the different media types, see the [Examples](#addAdUnits-Examples) below.
 
@@ -58,7 +58,7 @@ See the table below for the list of properties in the `mediaTypes` object of the
 | `native` | optional | Object | Defines properties of a native ad.  For an example native ad unit, see [the native example below](#adUnit-native). |
 | `video`  | optional | Object | Defines properties of a video ad.  For examples, see [the video examples below](#adUnit-video).                    |
 
-#### Video
+### Video
 
 For the list of properties please visit the [adUnit.video reference]({{site.baseurl}}/dev-docs/adunit-reference.html#adUnit.video).
 
@@ -112,9 +112,9 @@ pbjs.addAdUnits({
     },
     bids: [
         {
-            bidder: 'appnexus',
+            bidder: 'bidderA',
             params: {
-                placementId: 13232354
+                placement_id: 13232354
             }
         }
     ]
@@ -143,9 +143,9 @@ pbjs.addAdUnits({
         }
     },
     bids: [{
-        bidder: 'appnexus',
+        bidder: 'bidderA',
         params: {
-            placementId: 13232361
+            placement_id: 13232361
         }
     }]
 });
@@ -167,9 +167,9 @@ pbjs.addAdUnits({
         },
     },
     bids: [{
-        bidder: 'appnexus',
+        bidder: 'bidderA',
         params: {
-            placementId: 13232361
+            placement_id: 13232361
         }
     }]
 });
@@ -219,9 +219,9 @@ pbjs.addAdUnits({
     },
     bids: [
         {
-            bidder: 'appnexus',
+            bidder: 'bidderA',
             params: {
-                placementId: 13144370
+                placement_id: 13144370
             }
         }
     ]

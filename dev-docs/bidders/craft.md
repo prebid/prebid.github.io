@@ -7,8 +7,9 @@ media_types: banner
 tcfeu_supported: false
 coppa_supported: false
 usp_supported: false
-schain_supported: false
+schain_supported: true
 pbjs: true
+userIds: all
 sidebarType: 1
 ---
 

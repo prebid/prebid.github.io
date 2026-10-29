@@ -10,7 +10,6 @@ sidebarType : 1
 ---
 
 # anPspParamsConverter Module
-
 {:.no_toc}
 
 This module is a temporary measure for publishers running Prebid.js 9.0+ and using the AppNexus PSP endpoint through their Prebid.js setup. Please ensure to include this module in your builds of Prebid.js 9.0+, otherwise requests to PSP may not complete successfully.

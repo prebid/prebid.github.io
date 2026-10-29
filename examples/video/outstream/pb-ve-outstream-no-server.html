@@ -12,9 +12,8 @@ sidebarType: 4
     <div class="vidHeader" style="width: 75vw">
       <h1>{{ page.title }}</h1>
       <p>{{page.description }}</p>
-    </div>
+    </div>  
 
-    <!--video warning-->
     <div class="pb-alert pb-alert-important">
       <p style="color: #85720f">
         <b>Important:</b> This example uses a test version of Prebid.js hosted
@@ -24,106 +23,61 @@ sidebarType: 4
         necessary bidder adapters are included.
       </p>
     </div>
+   
+<div>
+  {% capture htmlCodePrebid %}
+  <h3>Out-stream Example</h3>
+  
+  <div id="ad-unit-1"></div>
+  {% endcapture %}
+  
+  {% capture jsCode %}var pbjs = pbjs || {};
+  pbjs.que = pbjs.que || [];
+  
+  var adUnit = {
+    code: "ad-unit-1",
+    mediaTypes: {
+      video: {
+        context: "outstream",
+        playerSize: [640, 360],
+        mimes: ["video/mp4", "video/webm", "video/ogg"],
+        protocols: [2, 3, 5, 6, 7, 8],
+        api: [2],
+      }
+    },
+    bids: [
+      {
+        bidder: "michao",
+        params: {
+          placement: "inbanner",
+          site: 1,
+          test: true
+        },
+      },
+    ],
+    renderer: {
+      url: `https://cdn.jsdelivr.net/npm/in-renderer-js@1/dist/in-renderer.umd.min.js`,
+      render: (bid) => {
+        var inRenderer = new window.InRenderer();
+        inRenderer.render("ad-unit-1", bid);
+      },
+    },
+  };
+  
+  pbjs.que.push(function() {
+    pbjs.addAdUnits(adUnit);
+    pbjs.requestBids({
+      timeout: 5000,
+      bidsBackHandler: function () {
+        const highestCpmBids = pbjs.getHighestCpmBids("ad-unit-1");
+        pbjs.renderAd('ad-unit-1', highestCpmBids[0].adId);
+      },
+    });
+  })
+  {% endcapture %}
+  
+  {% include code/web-example.html id="basic-prebid-example" html=htmlCodePrebid js=jsCode %}
+</div>
 
-    <div>
-      <div>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-      </div>
-
-      <div id="video1">
-        <p>Prebid Outstream Video Ad</p>
-      </div>
-
-      <div>
-        <p>
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-          accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
-          ab illo inventore veritatis et quasi architecto beatae vitae dicta
-          sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-          aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos
-          qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui
-          dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed
-          quia non numquam eius modi tempora incidunt ut labore et dolore magnam
-          aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum
-          exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex
-          ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in
-          ea voluptate velit esse quam nihil molestiae consequatur, vel illum
-          qui dolorem eum fugiat quo voluptas nulla pariatur?
-        </p>
-      </div>
-    </div>
-
-    <!--video code fencing-->
-
-    <!--header code example-->
-    <div class="pb-alert pb-alert-warning">
-      <p style="color: #a94443">
-        <b>Warning:</b> Do not forget to exchange the placementId in the code
-        examples with your own placementId!
-      </p>
-    </div>
-
-    <h4>Place this code in the page header.</h4>
-    <div class="pb-code-hl-wrap">
-      <pre class="pb-code-hl">
-  <!--put javascript code here-->
-  &lt;script&gt;
-      var pbjs = pbjs || {};
-      pbjs.que = pbjs.que || [];
-
-      var adUnits = [{
-          code: 'video1',
-          mediaTypes: {
-              video: {
-                  context: 'outstream',
-                  playerSize: [640, 480],
-                  mimes: ['video/mp4'],
-                  protocols: [1, 2, 3, 4, 5, 6, 7, 8],
-                  playbackmethod: [2],
-                  skip: 1
-              }
-          },
-          bids: [{
-              bidder: 'appnexus',
-              params: {
-                  placementId: 13232385
-              }
-          }]
-      }];
-
-      pbjs.que.push(function() {
-          pbjs.addAdUnits(adUnits);
-          pbjs.requestBids({
-              timeout: 1000,
-              bidsBackHandler: function(bids) {
-                  var highestCpmBids = pbjs.getHighestCpmBids('video1');
-                  pbjs.renderAd(document, highestCpmBids[0].adId);
-              }
-          });
-      });
-
-  &lt;/script&gt;
-
-        </pre>
-    </div>
-
-    <h4>Place this code in the page body.</h4>
-    <div class="pb-code-hl-wrap">
-      <!--body code example-->
-      <pre class="pb-code-hl">
-  <!--put body html and javascript here-->
-  &lt;div id='video1'&gt;
-    &lt;p&gt;Prebid Outstream Video Ad&lt;/p&gt;
-  &lt;/div&gt;
-          </pre>
-    </div>
   </div>
 </div>

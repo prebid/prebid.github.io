@@ -19,10 +19,10 @@ Deep Link+ provides a premium user experience while letting advertisers scale re
 
 The new deeplinking format enables buyers to submit:
 
- * primary URL
- * fallback URL
- * primary tracking URL
- * fallback tracking URL
+* primary URL
+* fallback URL
+* primary tracking URL
+* fallback tracking URL
 
 And since Deep Link+ is built into the SDK, there is no need to pop up browser windows and re-directs that deteriorate the user experience.
 
@@ -32,12 +32,11 @@ The schema is supported for both kinds of ads - video and display.
 
 The JSTag integration is not supported yet.
 
-
 ## How it works
 
-
 DSPs should rely on the SDK version in the bid request:
-```
+
+```json
 "displaymanagerver": "4.11.0"
 ```
 
@@ -45,7 +44,7 @@ Starting with version 4.11.0 Android SDK supports deeplink+
 
 To leverage the retargeting campaigns buyers use a specific scheme as click URL in the ad response. That URL describes the deep-linking and failover logic:
 
-```
+```text
 deeplink+://navigate?
     primaryUrl=PRIMARY_DEEPLINK&
     primaryTrackingUrl=PRIMARY_TRACKER&
@@ -59,7 +58,7 @@ The `fallbackUrl` can be any supported URI type (e.g., http, traditional deeplin
 
 For example, below is a Deep Link+ URL whose primary target is the Twitter app, with two (2) primary tracker URLs, a fallback URL directing the user to Twitter’s mobile website if the primary deeplink fails and zero (0) fallback tracker URLs:
 
-```
+```text
 deeplink+://navigate?
     primaryUrl=twitter%3A%2F%2Ftimeline&
     primaryTrackingUrl=http%3A%2F%2Fmopub.com%2Fclicktracking&

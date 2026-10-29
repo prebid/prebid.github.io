@@ -2,12 +2,16 @@
 layout: bidder
 title: FeedAd
 description: Prebid FeedAd Bidder Adaptor
+gpp_sids: tcfeu, usp
 pbjs: true
+pbs: true
 biddercode: feedad
 tcfeu_supported: true
 media_types: banner
 gvl_id: 781
 sidebarType: 1
+usp_supported: true
+prebid_member: true
 ---
 
 ### Bid Params

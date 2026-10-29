@@ -12,7 +12,6 @@ sidebarType : 1
 ---
 
 # AAX Blockmeter Realtime Data Module
-
 {:.no_toc}
 
 * TOC

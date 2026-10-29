@@ -9,6 +9,9 @@ sidebarType: 4
 
 {: .no_toc}
 
+{: .alert.alert-warning :}
+Ad pod (long-form) video support was removed in Prebid.js 11.0. This page applies to Prebid.js 10.x and earlier only.
+
 In this tutorial, we'll detail how to set up Prebid.js to display a Programmatic OTT with Prebid (POP) video ad (ad pod) from Google Ad Manager (GAM).
 
 * TOC
@@ -22,10 +25,10 @@ The code example below was built with Prebid.js and the following:
 * The [`dfpAdServerVideo` module](/dev-docs/modules/dfp_video.html), which will provide the video ad support.  
 * The [`categoryTranslation` module](/dev-docs/modules/categoryTranslation.html), to enable competitive separation.
 
-For example, to build with the AppNexus bidder adapter and GAM use the following command:
+For example, to build with the Microsoft bidder adapter and GAM use the following command:
 
 ```bash
-gulp build --modules=appnexusBidAdapter,dfpAdServerVideo
+gulp build --modules=msftBidAdapter,dfpAdServerVideo
 ```
 
 For more information about how to build with modules, see the [Prebid module documentation](/dev-docs/modules/).
@@ -63,9 +66,9 @@ var videoAdUnit = [{
     },
     bids: [
         {
-            bidder: 'appnexus',
+            bidder: 'msft',
             params: {
-                placementId: 14542875
+                placement_id: 14542875
             }
         }
     ]
@@ -184,7 +187,7 @@ pbjs.que.push(function(){
     pbjs.addAdUnits(videoAdUnit);
     pbjs.setConfig({
         cache: {
-            url: 'https://prebid.adnxs.com/pbc/v1/cache'
+            url: 'https://my-pbs.example.com/cache'
         },
         adpod: {
             brandCategoryExclusion: true

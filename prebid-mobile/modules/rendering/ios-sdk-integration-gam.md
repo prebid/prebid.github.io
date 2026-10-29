@@ -5,6 +5,8 @@ description: Integration of Prebid Rendering module whith Google Ad Manager
 sidebarType: 2
 ---
 
+<!-- markdownlint-disable-file MD046 -->
+
 # Prebid SDK iOS with the GAM Prebid-Rendered Integration Method
 {:.no_toc}
 
@@ -91,11 +93,22 @@ Call the method `loadAd()` which will:
 
 #### Banner Video (non-instream)
 
-For non-instream **Banner Video** you also need to specify the ad format:
+For non-instream **Banner Video** you also need to specify the ad formats (requires SDK v3.4.0):
 
-```swift
-banner.adFormat = .video
+``` swift
+banner.adFormats = [.video]
 ```
+
+To let display and video demand compete for the same banner, request both formats:
+
+``` swift
+banner.adFormats = [.banner, .video]
+```
+
+`BannerView` renders `.banner` and `.video` only. An empty set, or a set with any other format such as `.native`, is ignored with a warning, and the current value is kept. Auto-refresh waits while a video creative is playing.
+
+{: .alert.alert-warning :}
+Starting from PrebidMobile `3.4.0`, the `adFormat` property is deprecated and will be removed in a future major release. Use `adFormats` instead.
 
 The rest of the code will be the same as for integration of Display Banner.
 
@@ -109,9 +122,9 @@ GAM setup:
 
 Integration:
 
-1. Replace the `GAMBannerView` with `BannerView` in the UI. 
+1. Replace the `AdManagerBannerView` with `BannerView` in the UI. 
 2. Implement the protocol `BannerViewDelegate` in the ViewController.
-3. Remove usage of `GAMBannerView`, `GAMRequest`, and implementation of the `GADBannerViewDelegate`.
+3. Remove usage of `AdManagerBannerView`, `AdManagerRequest`, and implementation of the `GoogleMobileAds.BannerViewDelegate`.
 4. Remove original `BannerAdUnit`.
 5. Follow the instructions to integrate [Banner API](#banners).
 
@@ -124,9 +137,9 @@ Integration example:
 let eventHandler = GAMInterstitialEventHandler(adUnitID: GAM_AD_UNIT_ID)
     
 // 2. Create Interstitial Ad Unit
-interstitial = InterstitialRenderingAdUnit  (configID: CONFIG_ID,
-                                  minSizePercentage: CGSize(width: 30, height: 30),
-                                  eventHandler: eventHandler)
+interstitial = InterstitialRenderingAdUnit(configID: CONFIG_ID,
+                                           minSizePercentage: MIN_SIZE_PERC,
+                                           eventHandler: eventHandler)
     
 interstitial.delegate = self
     
@@ -183,7 +196,7 @@ Call the method `loadAd()` which will make a bid request to Prebid Server.
 Wait for the Prebid Server to return an ad and show it to the user in any suitable time.
 
 ```swift
-// MARK: InterstitialRenderingAdUnitDelegate
+// MARK: InterstitialAdUnitDelegate
     
 func interstitialDidReceiveAd(_ interstitial: InterstitialAdUnit) {
     // Now the ad is ready for display
@@ -200,23 +213,24 @@ GAM setup:
 
 Integration:
 
-1. Replace the `GAMInterstitialAd` with `InterstitialRenderingAdUnit` in the View Controller. 
+1. Replace the `AdManagerInterstitialAd` with `InterstitialRenderingAdUnit` in the View Controller. 
 2. Implement the protocol `InterstitialAdUnitDelegate` in the View Controller.
-3. Remove usage of `GAMInterstitialAd`, `GAMRequest`.
+3. Remove usage of `AdManagerInterstitialAd`, `AdManagerRequest`.
 4. Remove original `InterstitialAdUnit`.
 5. Follow the instructions to integrate [Interstitial API](#interstitials).
 
-### Rewarded Video
+### Rewarded
 
-Integration example:
+{% include mobile/rewarded-server-side-configuration.md %}
+
+#### Integration example
 
 ```swift
  // 1. Create an Event Handler
 let eventHandler = GAMRewardedEventHandler(adUnitID: GAM_AD_UNIT_ID)
     
 // 2. Create an Ad Unit
-rewardedAd = RewardedAdUnit(configID: CONFIG_ID,
-                               eventHandler: eventHandler)
+rewardedAd = RewardedAdUnit(configID: CONFIG_ID, eventHandler: eventHandler)
     
 rewardedAd.delegate = self
     
@@ -237,23 +251,28 @@ The proccess for displaying the Rewarded Ad is the same as for the Interstitial 
 To be notified when a user earns a reward - implement the method of `RewardedAdUnitDelegate`:
 
 ```swift
-- (void)rewardedAdUserDidEarnReward:(RewardedAdUnit *)rewardedAd;
+func rewardedAdUserDidEarnReward(_ rewardedAd: RewardedAdUnit, reward: PrebidReward) {}
 ```
+
+##### Step 1: Create Event Handler
+{:.no_toc}
 
 The reward object is stored in the `RewardedAdUnit`:
 
-```swift
-if let reward = rewardedAd.reward as? GADAdReward {
+{% capture gma12 %}if let reward = rewardedAd.reward as? GoogleMobileAds.AdReward {
     // ...
 }
-```
+{% endcapture %}
+{% capture gma11 %}if let reward = rewardedAd.reward as? GADAdReward {
+    // ...
+}
+{% endcapture %}
 
-#### Step 1: Create Event Handler
-{:.no_toc}
+{% include code/gma-versions-tabs.html id="gam-reward" gma11=gma11 gma12=gma12 %}
 
 To create an event handler you should provide a **GAM Ad Unit ID**.
 
-#### Step 2: Create Rewarded Ad Unit
+##### Step 2: Create Rewarded Ad Unit
 {:.no_toc}
 
 Create the `RewardedAdUnit` object with parameters:
@@ -261,12 +280,12 @@ Create the `RewardedAdUnit` object with parameters:
 - `configID` - an ID of Stored Impression on the Prebid server
 - `eventHandler` - the instance of rewarded event handler
 
-#### Step 3: Load the Ad
+##### Step 3: Load the Ad
 {:.no_toc}
 
 Call the `loadAd()` method which will make a bid request to Prebid server.
 
-#### Step 4: Show the Ad when it is ready
+##### Step 4: Show the Ad when it is ready
 {:.no_toc}
 
 Wait for the ad to load and display it to the user in any suitable time.
@@ -276,6 +295,23 @@ Wait for the ad to load and display it to the user in any suitable time.
     
 func rewardedAdDidReceiveAd(_ rewardedAd: RewardedAdUnit) {
     // Now the ad is ready for display
+}
+```
+
+###### Step 4: Handle the reward
+{:.no_toc}
+
+Handle the reward in the appropriate method. 
+
+``` swift
+// MARK: RewardedAdUnitDelegate
+
+func rewardedAdUserDidEarnReward(_ rewardedAd: RewardedAdUnit, reward: PrebidReward) {
+    let type = reward.type
+    let count = reward.count
+    let ext = reward.ext
+        
+    // Process the reward
 }
 ```
 
@@ -289,15 +325,19 @@ GAM setup:
 
 Integration:
 
-1. Replace the `GADRewardedAd` with `RewardedAdUnit` in the View Controller. 
+1. Replace the `RewardedAd` with `RewardedAdUnit` in the View Controller. 
 2. Implement the protocol `RewardedAdUnitDelegate` in the View Controller.
-3. Remove usage of `GAMRequest`.
+3. Remove usage of `AdManagerRequest`.
 4. Remove original `RewardedVideoAdUnit`.
-5. Follow the instructions to integrate [Rewarded API](#rewarded-video).
+5. Follow the instructions to integrate [Rewarded API](#rewarded).
+
+## Ad Expiration
+
+{% include mobile/rendering-ad-expiration-ios.md %}
 
 ## Additional Ad Unit Configuration
 
-{% include mobile/adunit-config-ios.md %}
+{% include mobile/rendering-adunit-config-ios.md %}
 
 ## Further Reading
 

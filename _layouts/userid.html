@@ -21,7 +21,7 @@
             </div>
 
     <div class="col-lg-9">
-      <div class="pb-content" markdown="1">
+      <div class="pb-content" {% include pagefind-body.html %} markdown="1">{% include pagefind-title.html %}
 
           <div class="row">
 
@@ -30,6 +30,24 @@
                 <p><a href="/dev-docs/modules/userId.html#user-id-sub-modules">Back to User ID Module</a></p>
 
                 <h2>{{ page.title }}</h2>
+                <table class="table table-bordered table-striped">
+                  <tr>
+                    <th class="pbTh">Module</th>
+                    <td class="pbTd">{{ page.useridmodule }}</td>
+                  </tr>
+                  <tr>
+                    <th class="pbTh">EID Source</th>
+                    <td class="pbTd">{{ page.eidsource }}</td>
+                  </tr>
+                  <tr>
+                    <th class="pbTh">bidRequest.userId</th>
+                    <td class="pbTd">{{ page.bidRequestUserId }}</td>
+                  </tr>
+                  <tr>
+                    <th class="pbTh">Example</th>
+                    <td class="pbTd"><code>{{ page.example }}</code></td>
+                  </tr>
+                </table>
 
                 {{content}}
 

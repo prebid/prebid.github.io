@@ -8,6 +8,7 @@ floors_supported: true
 gvl_id: 647
 media_types: banner, native
 pbjs: true
+pbs: true
 sidebarType: 1
 ---
 
@@ -24,3 +25,5 @@ To use, our bidding adapter requires proper setup, including an existing publish
 | `placement` | required | Unique placement identifier per publisher. | `'1234'` | `string` |
 | `query` | optional | Semicolon separated list of keywords. | `'urlaub;ibiza;mallorca'` | `string` |
 | `adtest` | optional | Deactivates tracking of impressions and clicks.<br/>**Should only be used for testing purposes!** | `true` | `boolean` |
+| `debug` | optional | Enables debug mode.<br/>**Should only be used for testing purposes!** | `true` | `boolean` |
+| `ext` | optional | Additional parameters to be included in the request. | `{"foo": "bar"}` | `object` |

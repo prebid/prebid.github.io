@@ -47,3 +47,11 @@ pbjs.setConfig({
     }
 });
 ```
+
+### Parameters
+
+{: .table .table-bordered .table-striped }
+
+| Name | Type | Description | Required | Default |
+| :--- | :--- | :--- | :--- | :--- |
+| `configurationHash` | String | Hash provided by The Media Trust to load the protection script | yes | n/a |

@@ -4,6 +4,7 @@ title: Kobler
 description: Kobler Bidder Adapter
 biddercode: kobler
 pbjs: true
+pbs: true
 media_types: banner
 floors_supported: true
 deals_supported: true
@@ -15,7 +16,7 @@ sidebarType: 1
 The Kobler Bidder Adapter requires setup and approval from Kobler AS.
 Please reach out to <bidding-support@kobler.no> for more information.
 
-### Bid Params
+### Prebid.js Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                                                                                                                                                                                                                                               | Example                      | Type               |
@@ -24,7 +25,7 @@ Please reach out to <bidding-support@kobler.no> for more information.
 | `floorPrice`  | optional | Floor price in CPM and in USD. Can be used as an alternative to the [Floors module](https://docs.prebid.org/dev-docs/modules/floors.html), which is also supported by this adapter. Defaults to 0.                                                        | `5.0`                        | `float`            |
 | `dealIds`     | optional | Array of deal IDs.                                                                                                                                                                                                                                        | `['abc328745', 'mxw243253']` | `array of strings` |
 
-### Implicit parameters
+### Prebid.js Implicit parameters
 
 Kobler identifies the placement using the combination of the page URL and the allowed sizes. As a result, it's important that the correct sizes are provided in `banner.sizes` in order for Kobler to correctly identify the placement. The main, desired format should be the first element of this array.
 
@@ -46,8 +47,8 @@ Kobler identifies the placement using the combination of the page URL and the al
 
 In order to see a sample bid from Kobler (without a proper setup), you have to also do the following:
 
-- Set the `test` parameter to `true`.
-- Set `config.pageUrl` to `'https://www.tv2.no/mening-og-analyse/14555348/'`. This is necessary because Kobler only bids on recognized articles. Kobler runs its own test campaign to make sure there is always a bid for this specific page URL.
+- Prebid.js: Set the `test` parameter of Kobler's adapter to `true`. Prebid-server: Set the `test` parameter of the bid request to `1`.
+- Prebid.js: Set `config.pageUrl` to `'https://www.tv2.no/mening-og-analyse/14555348/'`. Prebid-server: Set the `site.page` parameter of the bid request to `'https://www.tv2.no/mening-og-analyse/14555348/'`. This is necessary because Kobler only bids on recognized articles. Kobler runs its own test campaign to make sure there is always a bid for this specific page URL.
 
 ### Example With Optional Parameters
 

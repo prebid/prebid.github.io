@@ -3,6 +3,9 @@ layout: userid
 title: ID+
 description: ID+ User ID sub-module
 useridmodule: zeotapIdPlusIdSystem
+bidRequestUserId: IDP
+eidsource: zeotap.com
+example: '"1111"'
 ---
 
 
@@ -14,8 +17,9 @@ More information on ID+ can be found here: [idplus.io](https://idplus.io/)
 
 Add it to your Prebid.js package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=zeotapIdPlusIdSystem
+```
 
 ## ID+ Registration
 

@@ -21,7 +21,7 @@
 			</div>
 
     <div class="col-lg-9">
-      <div class="pb-content" markdown="1">
+      <div class="pb-content" {% include pagefind-body.html %} markdown="1">{% include pagefind-title.html %}
 
         {% if page.is_full_screen %}
           {{content}}
@@ -39,10 +39,6 @@
 
                 <p><a href="/dev-docs/publisher-api-reference.html">Back to Publisher API Reference</a></p>
               </div>
-
-              {% if page.show_disqus %}
-                {% include disqus_addon.html %}
-              {% endif %}
             </div>
 
           </div>

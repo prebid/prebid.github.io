@@ -165,7 +165,8 @@ However, here is the list of items that the app developer can add to the applica
 - `NSPrivacyTracking` - true. Because Prebid SDK collects IDFA. 
 - `NSPrivacyTrackingDomains` - the tracking domain for the PBS. 
 
-Pay attention - if `NSPrivacyTracking` is true, the tracking domain is provided, and the user doesn't allow the app to track him or her, iOS will block the bid requests. Prebid SDK doesn't support tracking and non-tracking endpoints yet. Follow the [issue](https://github.com/prebid/prebid-mobile-ios/issues/954) for the details. 
+Pay attention - if `NSPrivacyTracking` is true, the tracking domain is provided, and the user doesn't allow the app to track him or her, iOS will block the bid requests. 
+Prebid SDK supports tracking and non-tracking endpoints. See [SDK initialization](/prebid-mobile/pbm-api/ios/code-integration-ios.html#handling-tracking-domains) for more details details.
 
 - `NSPrivacyCollectedDataTypes` array should contain the following `NSPrivacyCollectedDataType` items: `NSPrivacyCollectedDataTypePreciseLocation`, `NSPrivacyCollectedDataTypeCoarseLocation`,`NSPrivacyCollectedDataTypeDeviceID`, `NSPrivacyCollectedDataTypeProductInteraction`, `NSPrivacyCollectedDataTypeAdvertisingData`. 
 

@@ -41,11 +41,14 @@ This will add two types of messages to your browser’s developer console:
  "Prebid.js message log"){: height="50%"  width="50%" :}
 
  {: .table .table-bordered .table-striped }
-| Message |  Description   |
-| :----  |:--------|
-| Calling bidder |  When Prebid.js sends out bid requests, this message is logged |
+
+| Message | Description |
+| :--- | :--- |
+| Calling bidder | When Prebid.js sends out bid requests, this message is logged |
 | Set key value for placement | After all the bids came back, or when timeout is reached, prebid.js will set keyword targeting for the defined ad units. |
 | Calling renderAd | If a header bidding bid wins the ad server's auction, prebid.js will render the winning bid's creative. |
+
+Starting with Prebid.js 11.29.0, turning on debug mode also loads the [DevTools MCP module](/dev-docs/modules/devtoolsMcp.html), which lets an AI agent using Chrome DevTools inspect auctions, bids, events and config on the page.
 
 <hr>
 
@@ -107,7 +110,7 @@ You can review what ad units have been configured for Prebid by opening your bro
 To see all of the winning bids, open your browser console and type `pbjs.getAllWinningBids();`.
 
 {: .pb-alert .pb-alert-warning :}
-Keep in mind that any bid responses that come back after the [timeout you configured](/dev-docs/getting-started.html#set-the-ad-server-timeout) during setup will not be sent to the ad server.
+Keep in mind that any bid responses that come back after the [timeout you configured](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Bidder-Timeouts) during setup will not be sent to the ad server.
 
 {: .pb-alert .pb-alert-tip :}
 You can also print this data to the console in [table format](#see-all-bids-in-the-console) for easier reading.
@@ -168,7 +171,7 @@ Open your browser console and type `pbjs.getBidResponses();` to see a list of th
 To see all of the winning bids, open your browser console and type [`pbjs.getAllWinningBids();`](/dev-docs/publisher-api-reference/getAllWinningBids.html).
 
 {: .alert.alert-danger :}
-Keep in mind that any bid responses that come back after [the timeout you configured during setup](/dev-docs/getting-started.html#set-the-ad-server-timeout) will not be sent to the ad server.
+Keep in mind that any bid responses that come back after [the timeout you configured during setup](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Bidder-Timeouts) will not be sent to the ad server.
 
 {: .alert.alert-success :}
 You can also [print this data to the console in table format](#see-all-bids-in-the-console) for easier reading.
@@ -375,7 +378,7 @@ The following parameters in the `bidResponse` object are common across all bidde
 {: .table .table-bordered .table-striped }
 | Name     | Type    | Description                                                                                                                                                       | Example                                                                 |
 |----------+---------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------|
-| `bidder` | String  | Unique bidder code used by ad server's line items to identify the bidder                                                                                          | `"appnexus"`                                                            |
+| `bidder` | String  | Unique bidder code used by ad server's line items to identify the bidder                                                                                          | `"msft"`                                                            |
 | `adId`   | String  | Unique identifier of a bid creative. Used by the line item's creative as in [this example](/adops/gam-creative-banner-sbs.html) | `"123"`                                                                 |
 | `pbLg`   | String  | Low granularity price bucket: $0.50 increment, capped at $5, floored to 2 decimal places (0.50, 1.00, 1.50, ..., 5.00)                                            | `"1.50"`                                                                |
 | `pbMg`   | String  | Medium granularity price bucket: 0.10 increment, capped at $20, floored to 2 decimal places (0.10, 0.20, ..., 19.90, 20.00)                                       | `"1.60"`                                                                |
@@ -394,7 +397,7 @@ The below snippet can be added to your page to better understand the Auction whe
 ```javascript
 pbjs.que.push(function() {
   pbjs.addAdUnits(adUnits);
-  pbjs.aliasBidder('appnexus', 'waitForMe');
+  pbjs.aliasBidder('msft', 'waitForMe');
   pbjs.aliasBidder('rubicon', 'doNotWaitForMe');
   pbjs.setConfig({
       'auctionOptions': {

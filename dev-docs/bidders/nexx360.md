@@ -3,37 +3,49 @@ layout: bidder
 title: Nexx360
 description: Prebid Nexx360 Bidder Adapter
 pbjs: true
+pbs: true
 biddercode: nexx360
-tcfeu_supported: true
+gvl_id: 965
 usp_supported: true
+gpp_sids: tcfeu
 schain_supported: true
+dchain_supported: false
 floors_supported: true
 userIds: all
-tcf2_supported: true
+tcfeu_supported: true
 media_types: banner, video, native
-gvl_id: 965
-pbs: false
+safeframes_ok: true
+deals_supported: true
 sidebarType: 1
+fpd_supported: true
+multiformat_supported: will-bid-on-any
 
 ---
 
-
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description                | Example                                   | Type      |
-|---------------|----------|----------------------------|--------------------------------------     |-----------|
-| `tagId`       | required | Nexx360 tag ID             | `"luvxjvgn"`                              | `string`  |
-| `videoTagId`  | optional | Nexx360 Video tag ID       | `"luvxjvgn"`                              | `string`  |
-| `nativeTagId` | optional | Nexx360 Native tag ID      | `"luvxjvgn"`                              | `string`  |
-| `allBids`     | optional | Return all bids            | `true`                                    | `boolean` |
-| `divId`       | optional | divId linked to adUnit     | `"div-1"`                                 | `string`  |
-| `adUnitName`  | optional | A code to identify adUnit  | `"header-ad"`                             | `string`  |
-| `adUnitPath`  | optional | A reference to adUnit Path | `"/12345/nexx360/Homepage/HP/Header-Ad"`  | `string`  |
+| Name           | Scope    | Description                                                                                                                                        | Example                                  | Type       |
+|----------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------|------------|
+| `tagId`        | required | Nexx360 tag ID                                                                                                                                     | `"testnexx"`                             | `string`   |
+| `videoTagId`   | optional | Nexx360 Video tag ID                                                                                                                               | `"testnexx"`                             | `string`   |
+| `nativeTagId`  | optional | Nexx360 Native tag ID                                                                                                                              | `"testnexx"`                             | `string`   |
+| `allBids`      | optional | Return all bids                                                                                                                                    | `true`                                   | `boolean`  |
+| `divId`        | optional | divId linked to adUnit                                                                                                                             | `"div-1"`                                | `string`   |
+| `adUnitName`   | optional | A code to identify adUnit                                                                                                                          | `"header-ad"`                            | `string`   |
+| `adUnitPath`   | optional | A reference to adUnit Path                                                                                                                         | `"/12345/nexx360/Homepage/HP/Header-Ad"` | `string`   |
+| `placement`    | optional | Nexx360 placement                                                                                                                                  | `"TEST_PLACEMENT"`                       | `string`   |
+| `disabledSsps` | optional | List of dynamically disabled SSPs for an ad unit                                                                                                   | `['appnexus', 'criteo']`                 | `string[]` |
+| `enabledSsps`  | optional | List of dynamically enabled SSPs for an ad unit. Takes precedence over `disabledSsps`: a bidder specified in both will be included in the auction. | `['appnexus', 'criteo']`                 | `string[]` |
 
-### Bidder Config
+You *must* only include one ID field - either `tagId` or `placement`, not both. If you have questions on which parameter to use, please reach out to your Account Manager.
+The `tagId` and `placement` are **mutually exclusive** but at least one is required. If you pass both, `tagId` takes precedence.
+
+## Bidder Config
 
 You can allow writing in localStorage `pbjs.bidderSettings` for the bidder `nexx360`
+
+{% include dev-docs/storageAllowed.md %}
 
 ```javascript
 pbjs.bidderSettings = {
@@ -43,11 +55,11 @@ pbjs.bidderSettings = {
 }
 ```
 
-### First Party Data
+## First Party Data
 
 Publishers should use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html).
 
-### Test Parameters
+## Test Parameters
 
 ```javascript
 var adUnits = [
@@ -62,7 +74,7 @@ var adUnits = [
       bids: [{
          bidder: 'nexx360',
          params: {
-            tagId: 'luvxjvgn'
+            tagId: 'testnexx'
          }
        }]
    },
@@ -78,7 +90,7 @@ var adUnits = [
         bids: [{
             bidder: 'nexx360',
             params: {
-               tagId: 'luvxjvgn'
+               tagId: 'testnexx'
             }
         }]
     },
@@ -101,7 +113,7 @@ var adUnits = [
         bids: [{
             bidder: 'nexx360',
             params: {
-               tagId: 'luvxjvgn'
+               tagId: 'testnexx'
             }
         }]
     },
@@ -123,8 +135,8 @@ var adUnits = [
         bids: [{
             bidder: 'nexx360',
             params: {
-               tagId: 'luvxjvgn',
-               videoTagId: 'luvxjvgn'
+               tagId: 'testnexx',
+               videoTagId: 'testnexx'
             }
         }]
     };

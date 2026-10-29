@@ -1,10 +1,11 @@
 ---
 layout: bidder
 title: iMedia Digital Services (iMDS)
-description: Prebid iMedia Digital Services Bidder (iMDS) Adapter
+description: Prebid iMedia Digital Services Bidder (iMDS) Adapter (replaced by "Advertising.com")
 pbjs: true
 pbs: true
 biddercode: imds
+aliasCode: advertising
 tcfeu_supported: false
 usp_supported: true
 userIds: all
@@ -23,11 +24,12 @@ multiformat_supported: will-bid-on-any
 prebid_member: false
 gvl_id: none
 sidebarType: 1
+pbjs_version_notes: use advertising after 10.0
 ---
 
 ### Note
 
-The iMedia Digital Services bidder adapter requires setup and approval from iMedia Digital Services. Please reach out to your account manager for more information and to start using it.
+The iMedia Digital Services (iMDS) bidder adapter has been renamed to the [Advertising.com](/dev-docs/bidders/advertising.html) adapter, using a bidder code of `advertising`. Please update your implementation accordingly. This bidder adapter requires setup and approval from Advertising.com. Please reach out to your account manager for more information and to start using it.
 
 ### Configuration
 
@@ -51,7 +53,13 @@ pbjs.setConfig({
 ### DFP Video Creative
 To use video, setup a `VAST redirect` creative within Google Ad Manager with the following VAST tag URL:
 
-If using the new `imds` adapter with x8.x or later:
+If using the new `advertising` adapter with x9.x or later:
+
+```text
+https://track.technoratimedia.com/openrtb/tags?ID=%%PATTERN:hb_uuid_imds%%&AUCTION_PRICE=%%PATTERN:hb_pb_imds%%
+```
+
+If using the legacy `imds` adapter with x8.x or later:
 
 ```text
 https://track.technoratimedia.com/openrtb/tags?ID=%%PATTERN:hb_uuid_imds%%&AUCTION_PRICE=%%PATTERN:hb_pb_imds%%

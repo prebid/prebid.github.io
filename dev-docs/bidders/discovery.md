@@ -15,6 +15,7 @@ The DiscoveryDSP Bidding adapter requires setup before beginning. Please contact
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
 | `token`      | required | publisher token        | `'1e100887dd614b7f69fdd1360437'`    | `string` |
@@ -26,7 +27,7 @@ The DiscoveryDSP Bidding adapter requires setup before beginning. Please contact
 
 banner
 
-```
+```javascript
 var adUnits = [
       {
         code: "test-div-1",
@@ -51,7 +52,7 @@ var adUnits = [
 
 native
 
-```
+```javascript
 var adUnits = [
       {
         code: "test-div-2",
