@@ -7,13 +7,11 @@ bidRequestUserId: dmdId
 eidsource: hcn.health
 example: '"1111"'
 enable_download: false
+pbjs_version_notes: removed in 11.0
 ---
 
-# NOTE: DMD HAS BEEN DEPRECATED
-
-# THIS MODULE NO LONGER FUNCTIONS AND WILL BE REMOVED FROM A
-
-# FUTURE VERSION OF PREBID
+{: .alert.alert-warning :}
+The DMD ID module was deprecated and has been removed in Prebid.js 11.0.
 
 DMD is the preeminent supplier of US-based healthcare professional (HCP) identity data to the pharmaceutical, health system and medical publishing industries. DMD is the only data provider that has acquired its deterministic identity data through a fully consented, first-party, opt-in process. DMD’s privacy policy that can be found at [Privacy Policy](https://hcn.health/privacy-policy).
 
@@ -38,7 +36,7 @@ Please reach out to [prebid@dmdconnects.com](mailto:prebid@dmdconnects.com) to r
 | name | Required | String | The name of Module | `"dmdId"` |
 | storage | Required | Object | | |
 | storage.name | Required | String | `dmd-dgid` | |
-| params | Required | Object | Container of all module params. |  |
+| params | Required | Object | Container of all module params. | |
 | params.api_key | Required | String | This is your `api_key` as provided by DMD Marketing Corp. | `3fdbe297-3690-4f5c-9e11-ee9186a6d77c` |
 
 ## DMD ID Example

@@ -43,6 +43,8 @@ If the timeout period expires or an error from the CMP is thrown, one of these a
 - The auction is canceled outright.
 - The auction proceeds without the user's consent information.
 
+Since Prebid.js 11.14, if the CMP lookup fails (for example, because no CMP is found or the CMP returns an error), the [User ID module](/dev-docs/modules/userId.html#user-id-gdpr-permissions-and-opt-out) does not run. Timeouts do not have this effect.
+
 ## Page Integration
 
 To utilize this module, a Consent Management Platform (CMP) compatible with the [IAB GPP CMP spec](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Core/CMP%20API%20Specification.md) needs to be implemented on the site to interact with the user and obtain their consent choices.  It's important to understand the details of how the CMP works before integrating it with Prebid.js.
@@ -68,7 +70,7 @@ Here are the parameters supported in the `consentManagement` object specific for
 | gpp.consentData.sectionList | `Array of integers` | The sections contained within the encoded GPP string as parsed from the header. | |
 | gpp.consentData.applicableSections | `Array of integers` | Section ID considered to be in force for this transaction.  In most cases, this field should have a single section ID. In rare occasions where such a single section ID can not be determined, the field may contain up to 2 values. The value can be 0 or a Section ID specified by the Publisher / Advertiser, during stub / load. When no section is applicable, the value will be -1. | |
 | gpp.consentData.gppString | `String` | The complete encoded GPP string. | |
-| gpp.consentData.pingData | `Object` | An object representing the current status of the CMP at the time consent data was fetched.  See PingReturn in [IAB's CMP API doc](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Core/CMP%20API%20Specification.md#ping) for further information. |  |
+| gpp.consentData.pingData | `Object` | An object representing the current status of the CMP at the time consent data was fetched.  See PingReturn in [IAB's CMP API doc](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Core/CMP%20API%20Specification.md#ping) for further information. | |
 
 {: .alert.alert-info :}
 In addition to the static approach described above, there is another means to pass already known GPP consent data of a user via the Prebid.js [First Party Data](https://docs.prebid.org/features/firstPartyData.html) feature.  The values for `gppString` and `applicableSections` can be passed via the `ortb2.regs.gpp` and `ortb2.regs.gpp_sid` fields respectively; other fields in the GPP data object listed above are not available via the `ortb2` structure.  If the GPP consent module is present and successfully obtains the consent information from the CMP, it will override the GPP values set originally in the `ortb2` object (as we assume the CMP's values will be more up-to-date).  Please visit the [First Party Data](https://docs.prebid.org/features/firstPartyData.html) page for more overall information and examples.

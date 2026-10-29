@@ -27,7 +27,7 @@ Please use **humansecurityMalvDefenseRtdProvider** instead of **cleanioRtdProvid
 The clean.io Realtime module provides effective anti-malvertising solution for publishers, including, but not limited to,
 blocking unwanted 0- and 1-click redirects, deceptive ads or those with malicious landing pages, and various types of affiliate fraud.
 
-Using this module requires prior agreement with [clean.io](https://clean.io) to obtain the necessary distribution key.
+Using this module requires prior agreement with clean.io to obtain the necessary distribution key.
 
 ## Integration
 
@@ -59,8 +59,8 @@ pbjs.setConfig({
 
 {: .table .table-bordered .table-striped }
 
-| Name | Type  | Scope | Description |
-| :------------ | :------------ | :------------ |:------------ |
+| Name | Type | Scope | Description |
+| :--- | :--- | :--- | :--- |
 | ``cdnUrl`` | ``string`` | Required | CDN URL of the script, which is to be used for protection. |
 | ``protectionMode`` | ``'full' or 'bids' or 'bids-nowait'`` | Required | Integration mode. Please refer to the "Integration modes" section for details. |
 

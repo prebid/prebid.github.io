@@ -150,7 +150,7 @@ Prebid Mobile uses a special script called 'native-trk.js' to render native crea
 |:---------------------------|
 | - Prebid Mobile app-rendered native |
 
-The final native option is when the app itself does the rendering. See [Prebid In-App Native for GAM](/adops/gam-native.html#create-mobile-in-app-creative) for more information.
+The final native option is when the app itself does the rendering. See [Prebid In-App Native for GAM](/adops/gam-native.html#create-mobile-in-app-template) for more information.
 
 ### Mediation platforms
 

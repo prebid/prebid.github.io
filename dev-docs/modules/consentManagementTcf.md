@@ -36,7 +36,7 @@ This base EU TCF consent management module performs these actions:
 The optional [TCF control module](/dev-docs/modules/tcfControl.html) adds on these actions:
 
 1. Allows the page to define which activities should be enforced at the Prebid.js level.
-2. Actively enforces those activities based on user consent data (in the TCF string, not the AC string).
+2. Actively enforces those activities based on user consent data in the TCF string. Since Prebid.js 11.41, the AC string is also used for vendor consent of modules that have no GVL ID but declare an [Additional Consent provider ID](/dev-docs/modules/tcfControl.html#additional-consent).
 
 In the case of a new user, CMPs will generally respond only after there is consent information available (i.e., the user has made their consent choices).
 Making these selections can take some time for the average user, so the module provides timeout settings.
@@ -45,6 +45,8 @@ If the timeout period expires or an error from the CMP is thrown, one of these a
 
 - The auction is canceled outright.
 - The auction proceeds without the user's consent information.  
+
+Since Prebid.js 11.14, if the CMP lookup fails (for example, because no CMP is found or the CMP returns an error), the [User ID module](/dev-docs/modules/userId.html#user-id-gdpr-permissions-and-opt-out) does not run. Timeouts do not have this effect.
 
 ## Page Integration
 

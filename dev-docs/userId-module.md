@@ -34,16 +34,17 @@ A user ID module is a javascript file in the [modules](https://github.com/prebid
 `userIdSpec` has the following properties:
 
 {: .table .table-bordered .table-striped }
-| Property   | Scope                              | Type   | Description                                                                                                   | 
-|------------|------------------------------------|--------|---------------------------------------------------------------------------------------------------------------|
-| `name`     | Required                           | String | Name of your ID provider, used to match your module with the publisher's [userIds configuration](/dev-docs/modules/userId.html#basic-configuration)            |
-| `gvlid`    | Optional                           | Number | GVL ID to use for TCF. If omitted your module may be be excluded when TCF is in scope.                        |
-| `getId`    | Required                           | Function | Retrieve serializable ID data, see [`getId`](#getId)                                                          |
-| `extendId` | Optional                           | Function | Update previously stored ID data, see [`extendId`](#extendId)                                                 |
-| `decode`  | Required                           | Function | Decode result from `getId` or `extendId`, see [`decode`](#decode)                                             |
-| `eids`    | Optional, but strongly recommended | Object   | One or more [EID configurations](#eidConfig) used to translate the result from `decode` into ORTB EID Objects |
+| Property | Scope | Type | Description |
+| --- | --- | --- | --- |
+| `name` | Required | String | Name of your ID provider, used to match your module with the publisher's [userIds configuration](/dev-docs/modules/userId.html#basic-configuration) |
+| `gvlid` | Optional | Number | GVL ID to use for TCF. If omitted your module may be be excluded when TCF is in scope. |
+| `acpId` | Optional | Number | Google Additional Consent provider ID, used for TCF vendor consent if your module has no GVL ID. See [Additional Consent](/dev-docs/modules/tcfControl.html#additional-consent). (PBJS 11.41+) |
+| `getId` | Required | Function | Retrieve serializable ID data, see [`getId`](#getId) |
+| `extendId` | Optional | Function | Update previously stored ID data, see [`extendId`](#extendId) |
+| `decode` | Required | Function | Decode result from `getId` or `extendId`, see [`decode`](#decode) |
+| `eids` | Optional, but strongly recommended | Object | One or more [EID configurations](#eidConfig) used to translate the result from `decode` into ORTB EID Objects |
 
-See [SharedIdSystem](https://github.com/prebid/Prebid.js/blob/master/modules/sharedIdSystem.js) for an example.
+See [SharedIdSystem](https://github.com/prebid/Prebid.js/blob/master/modules/sharedIdSystem.ts) for an example.
 
 <a id="getId"></a>
 
@@ -59,25 +60,25 @@ Invoked when:
 #### Arguments
 
 {: .table .table-bordered .table-striped }
- | Name                | Type   | Description                                                                                                                   | 
- |---------------------|--------|-------------------------------------------------------------------------------------------------------------------------------|
- | `config`            | Object | Configuration for your module as provided by the publisher                                                                    |
- | `consentData`       | Object |                                                                                                                               |
- | `consentData.gdpr`  | Object | TCF consent data when [consentManagementTcf](/dev-docs/modules/consentManagementTcf.html) is included, or null otherwise      |
- | `consentData.gpp`   | Object | GPP consent data when [consentManagementGpp](/dev-docs/modules/consentManagementGpp.html) is included, or null otherwise      |
- | `consentData.usp`   | String  | US Privacy string when [consentManagementUsp](/dev-docs/modules/consentManagementUsp.html) is included, or null otherwise     |
- | `consentData.coppa` | Boolean | COPPA flag as set by [publisher configuration](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html#coppa) |
- | `storedId`          | String or Object | Your previously stored ID data, if any, as was returned by `getId` or `extendId`                                    |
+| Name | Type | Description |
+| --- | --- | --- |
+| `config` | Object | Configuration for your module as provided by the publisher |
+| `consentData` | Object | |
+| `consentData.gdpr` | Object | TCF consent data when [consentManagementTcf](/dev-docs/modules/consentManagementTcf.html) is included, or null otherwise |
+| `consentData.gpp` | Object | GPP consent data when [consentManagementGpp](/dev-docs/modules/consentManagementGpp.html) is included, or null otherwise |
+| `consentData.usp` | String | US Privacy string when [consentManagementUsp](/dev-docs/modules/consentManagementUsp.html) is included, or null otherwise |
+| `consentData.coppa` | Boolean | COPPA flag as set by [publisher configuration](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html#coppa) |
+| `storedId` | String or Object | Your previously stored ID data, if any, as was returned by `getId` or `extendId` |
 
 #### Return value
 
 `getId` should return an object containing one or both of:
 
 {: .table .table-bordered .table-striped }
-| Property    | Type | Description                                                                       |
-|-------------|------|-----------------------------------------------------------------------------------|
-| `id`        | String or Object | Serializable ID data. Objects will be passed through `JSON.stringify`             | 
-| `callback`  | Function | Invoked at a later point with another callback function `setId` as first argument |
+| Property | Type | Description |
+| --- | --- | --- |
+| `id` | String or Object | Serializable ID data. Objects will be passed through `JSON.stringify` |
+| `callback` | Function | Invoked at a later point with another callback function `setId` as first argument |
 
 If your module can provide ID data synchronously it should set `id` directly;
 otherwise it should provide a `callback` that calls its first argument `setId` passing it ID data. 
@@ -135,9 +136,9 @@ Decode ID data. Invoked every time data from your module is available, either fr
 Arguments are:
 
 {: .table .table-bordered .table-striped }
-| Name     | Type               | Description                                    |
-|----------|--------------------|------------------------------------------------|
-| `data`   | String or Object  | ID data as provided by `getId` / `extendId`     |
+| Name | Type | Description |
+| --- | --- | --- |
+| `data` | String or Object | ID data as provided by `getId` / `extendId` |
 | `config` | Object | Configuration for your module as provided by the publisher |
 
 Should return an object with at least one entry where the key is an identifier for your ID provider and the value is the ID (which can have any type or structure).
@@ -170,8 +171,8 @@ For each `key` and `idValue` entry in the object returned by `decode`, Prebid.js
 If a function, `eidConfig` is invoked with:
 
 {: .table .table-bordered .table-striped }
-| Name       | Type | Description                                                        |
-|------------|------|--------------------------------------------------------------------|
+| Name | Type | Description |
+| --- | --- | --- |
 | `idValues` | Array | ID values from `decode`, normalized to an array as described above |
 | `config` | Object | Configuration for your module as provided by the publisher |
 

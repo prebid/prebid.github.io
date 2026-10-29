@@ -22,7 +22,7 @@ This function returns the bid responses at the given moment.
 | `width`             | Integer | The width of the returned creative size.                                                                                        |                                                       300 |
 | `height`            | Integer | The height of the returned creative size.                                                                                       |                                                       250 |
 | `size`            | String | The width x height of the returned creative size.                                                                                       |                                                       "300x250" |
-| `cpm`               | Float   | The exact bid price from the bidder                                                                                             |                                                      1.59 |
+| `cpm`               | Float   | The exact bid price from the bidder. The [`bidCpmAdjustment`](/dev-docs/publisher-api-reference/bidderSettings.html#22-bidcpmadjustment) is applied, but not the [price granularity](/dev-docs/publisher-api-reference/setConfig.html#price-granularity).                                                                                             |                                                      1.59 |
 | `pbLg`,`pbMg`,`pbHg`,`pbAg`,`pbDg`,`pbCg`  | String  | CPM quantized to a granularity: Low (pbLg), Medium (pbMg), High (pbHg), Auto (pbAg), Dense (pbDg), and Custom (pbCg).    |  "5.00" |
 | `currency`  | String  | Currency of the bid CPM | `"USD"` |
 | `netRevenue`  | Boolean  | True if bid is Net, False if Gross | `true` |
@@ -46,6 +46,7 @@ This function returns the bid responses at the given moment.
 | `meta.brandId` | String | (Optional) The id of the brand | |
 | `meta.brandName` | String | (Optional) The name of the brand | |
 | `meta.dchain` | String | (Optional)  | |
+| `meta.deal` | Object | (Optional) Deal metadata for bids with a `dealId`, since Prebid.js 11.43. See [Deal metadata](/dev-docs/bidder-adaptor.html#bidder-adaptor-deal-metadata). | |
 | `meta.demandSource` | String | (Optional)  | |
 | `meta.mediaType` | String | (Optional)  | |
 | `meta.networkId` | String | (Optional) The id of the network | |

@@ -15,11 +15,14 @@ floors_supported: true
 fpd_supported: true
 ortb_blocking_supported: true
 pbjs: true
-pbs: false
+pbs: true
+pbs_app_supported: false
 prebid_member: true
 multiformat_supported: will-bid-on-any
 sidebarType: 1
 ---
+
+## Prebid.js
 
 ### Bidder Config Params
 
@@ -49,7 +52,7 @@ sidebarType: 1
 
 None.
 
-## User Syncs
+### User Syncs
 
 If you'd like to activate user syncs through APS, you must activate iframe syncing.
 
@@ -66,4 +69,42 @@ window.pbjs.que.push(function () {
     },
   });
 });
+```
+
+## Prebid Server
+
+The APS adapter is also available in Prebid Server, in both the Go (`prebid-server`) and Java (`prebid-server-java`) implementations. It serves web (site) banner and video inventory.
+
+This adapter is currently in limited beta and requires an APS account. If you're interested in testing, please contact your APS Account Manager or reach out via the Help button in your portal.
+
+### Prebid Server Bid Params
+
+This integration requires an APS account ID configured as follows:
+
+{: .table .table-bordered .table-striped }
+
+| Name                                  | Scope    | Description                                                                                                        | Example | Type     |
+| ------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------ | ------- | -------- |
+| `imp.ext.prebid.bidder.aps.accountID` | required | APS-provided publisher account ID. May instead be set once per request at `ext.prebid.bidderparams.aps.accountID`. | `1234`  | `string` |
+| `imp.ext.prebid.bidder.aps.region`    | optional | User region; one of `na`, `eu`, `fe`. Defaults to `na`.                                                            | `na`    | `string` |
+| `regs.ext.agerange`                   | optional | US age-law compliance value; see Agerange Values above.                                                            | `3`     | `number` |
+| `test`                                | optional | Set to `1` to enable APS server-side debug (`amzn_debug_mode=1` on the bid endpoint).                              | `1`     | `number` |
+
+```json
+{
+  "imp": [
+    {
+      "ext": {
+        "prebid": {
+          "bidder": {
+            "aps": {
+              "accountID": "1234",
+              "region": "na"
+            }
+          }
+        }
+      }
+    }
+  ]
+}
 ```

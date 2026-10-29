@@ -7,6 +7,8 @@ sidebarType: 1
 
 Since version 10, [pbjs.processQueue](/dev-docs/publisher-api-reference/processQueue.html) yields the main browser thread after executing each command in the queue, to improve UX (and some related metrics such as [interaction to next paint](https://web.dev/articles/inp)).
 
+`pbjs.yield` does not make auctions yield between bid adapter calls; for that, see [`auctionOptions.yield`](/dev-docs/publisher-api-reference/setConfig.html#auctionOptions-yield) (since Prebid.js 11.41).
+
 You can disable yielding by setting `pbjs.yield` to `false`:
 
 ```javascript

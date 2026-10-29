@@ -98,7 +98,7 @@ The following modules have been removed from Prebid.js as part of the 10.0 relea
 * Publishers should provide schain as first party data in `ortb2.source.schain` or `ortb2.source.ext.schain`.
 * The schain module is no longer necessary and has been updated to simply copy `schain` configuration into first party data; it will be removed in the future.
 * Adapters should look for schain in `ortb2.source.ext.schain`.
-* Like all first party data, **bidder-specific schains are now merged with the global schain**, where previously they would replace it. Publishers setting both global and bidder-specific schains will need to make changes; the simplest way to address this is to use only bidder-specific schains.            
+* Like all first party data, **bidder-specific schains are now merged with the global schain**, where previously they would replace it. Publishers setting both global and bidder-specific schains will need to make changes; the simplest way to address this is to use only bidder-specific schains. Since Prebid.js 11.45, setting [`firstPartyData.replaceGlobalSchain`](/dev-docs/modules/schain.html#global-and-bidder-specific-together) to `true` restores the earlier behavior, where a bidder-specific schain replaces the global one.
 
 ## API Changes
 

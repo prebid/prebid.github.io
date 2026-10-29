@@ -1,0 +1,13 @@
+{%- comment -%}
+  For pages without an <h1> in their content (e.g. the API reference layouts, which show the title outside
+  .pb-content), give Pagefind the page title as a hidden, weighted heading, so the page ranks first for its own name.
+  Punctuation is replaced by spaces so that "pbjs.setConfig(options)" matches a search for "setConfig".
+  The result title comes from element text (data-pagefind-meta="title"), so titles with commas, such as
+  "pbjs.renderAd(doc, id, options)", aren't split into metadata keys. A hair space (U+200A) follows each "." in it,
+  because Pagefind otherwise reads "pbjs.setConfig" as one word and the page loses its title match.
+  Pass has_h1=true from layouts that render their own <h1> inside .pb-content.
+{%- endcomment -%}
+{%- unless include.has_h1 or content contains '<h1' -%}
+<h1 data-pagefind-weight="10" style="display:none">{{ page.title | replace: '.', ' ' | replace: '(', ' ' | replace: ')', ' ' | replace: ',', ' ' | replace: ':', ' ' | replace: '/', ' ' | replace: '-', ' ' | replace: '_', ' ' | replace: '"', ' ' | replace: "'", ' ' | strip | escape }}</h1>
+<span data-pagefind-meta="title" style="display:none">{{ page.title | strip | replace: '.', '. ' | escape }}</span>
+{%- endunless -%}

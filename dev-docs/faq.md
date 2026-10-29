@@ -40,6 +40,12 @@ We would love for Amazon to contribute a TAM adapter, but so far that's not happ
 - You can generate the auctionId parameter outside of Prebid and pass it when calling [pbjs.requestBids()](/dev-docs/publisher-api-reference/requestBids.html)
 - [Example of Synchronizing Transaction IDs with Another Library](/dev-docs/examples/sync-tid.html)
 
+### Which browsers does Prebid.js support?
+
+Prebid.js builds are transpiled for the browsers matched by the [browserslist](https://github.com/browserslist/browserslist) query in Prebid.js's [package.json](https://github.com/prebid/Prebid.js/blob/master/package.json). Since Prebid.js 11.31 this is `> 0.25%, not ios_saf 11, not dead`: browsers with more than 0.25% global usage that are still maintained, excluding iOS Safari 11. Internet Explorer 11 has not been supported since Prebid.js 6.0.
+
+Versions 11.21 to 11.30 used `> 0.25%, not ios_saf 11`, without `not dead`.
+
 ### Should Prebid bidders be in ads.txt?
 
 Publishers should be careful to list all their bidding partners in their ads.txt file. Bidders without an entry in ads.txt may be
@@ -126,7 +132,7 @@ In both scenarios, your goal should be to see your inventory fill at the highest
 
 There is an analysis from the Prebid team here which may be useful:
 
-[How many bidders should I work with?](https://prebid.org/blog/how-many-bidders-for-header-bidding)
+[How many bidders should I work with?](/overview/how-many-bidders-for-header-bidding.html)
 
 ### Does Prebid.js cache bids?
 
@@ -226,7 +232,11 @@ It's technically possible, but we don't recommend doing this:
 - We don't test concurrent versions
 - We won't specifically support debugging problems caused by running two concurrent versions. But will take take PRs if someone finds an issue.
 
-If all this wasn't enough to warn you away from trying, it should work if you name the PBJS global differently for each instance (Update the value of 'globalVarName' in <https://github.com/prebid/Prebid.js/blob/master/package.json>)
+If all this wasn't enough to warn you away from trying, it should work if you name the PBJS global differently for each instance:
+
+- For builds made with `gulp build`, update the value of `globalVarName` in [package.json](https://github.com/prebid/Prebid.js/blob/master/package.json).
+- When bundling Prebid.js from npm with your own webpack or Rollup-compatible build, set the `globalVarName` build option through the webpack loader or Rollup plugin. See [Customize build options](https://github.com/prebid/Prebid.js/blob/master/README.md#customize-options).
+- When loading from the CDN with `bundle.js` (Prebid.js 11.40 and later), add a `globalVarName` query parameter, for example `https://cdn.jsdelivr.net/npm/prebid.js@11.40.0/dist/bundle.js?modules=rubiconBidAdapter&globalVarName=pbjs2`.
 
 ### Can I filter bid responses that don't meet my criteria?
 
