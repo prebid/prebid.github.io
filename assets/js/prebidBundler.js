@@ -249,7 +249,8 @@
             var disclosure = metadata && metadata.disclosures;
             if (!disclosure) return;
             Object.keys(disclosure).forEach(function (url) {
-                var identifiers = disclosure[url].disclosures;
+                // before Prebid.js 10.2.0 each entry is the identifier array itself
+                var identifiers = Array.isArray(disclosure[url]) ? disclosure[url] : disclosure[url].disclosures;
                 if (summary.hasOwnProperty(url)) {
                     summary[url].forEach(function (entry) {
                         entry.disclosedBy.push(moduleName);

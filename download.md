@@ -127,7 +127,7 @@ These modules may require accounts with a service provider.<br/>
 <br>
 
 {: .alert.alert-info :}
-The download includes the Prebid.js build, `prebid-config.json` (your version and module selection, which you can upload again later), and `prebid<version>_disclosures.json`, which lists the cookies and local storage keys disclosed by every module in the build. See the [Storage Control module](/dev-docs/modules/storageControl.html).
+The download includes the Prebid.js build, `prebid-config.json` (your version and module selection, which you can upload again later), and `prebid<version>_disclosures.json`, which lists the device storage (cookies, local storage, etc.) disclosed by every module in the build. See the [Storage Control module](/dev-docs/modules/storageControl.html).
 
 {: .alert.alert-info :}
 Note: If you receive an error during download you most likely selected a configuration that is not supported. Verify that each bidder / module is available in the selected version. Also please note that even though you can download older versions of Prebid.js,
