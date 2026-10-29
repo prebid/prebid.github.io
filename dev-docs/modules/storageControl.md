@@ -108,7 +108,7 @@ The return value follows the same format as the TCF [disclosures array](https://
 
 Modules that use storage should publish a [disclosure file](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/Vendor%20Device%20Storage%20%26%20Operational%20Disclosures.md) listing all keys that the pass to `storageManager` for the first party domain (`'*'`). This can be done by either:
 
-- providing a GVL ID in your adapter. The corresponding `deviceStorageDisclosureUrl` from the GVL is then used as your disclosure.
+- providing a GVL ID in your adapter. The corresponding `deviceStorageDisclosureUrl` from the GVL is then used as your disclosure. If your adapter declares several GVL IDs (Prebid.js 11.46+), the disclosures of all of them are used, and a key counts as disclosed if it appears in any one of them.
 - providing a `disclosureURL` directly. This does not require membership in the GVL, and overrides its disclosure if provided. For example:
 
 ```javascript
