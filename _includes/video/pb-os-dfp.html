@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="html--no-js">
   <head>
-    {% include head--common.html %} {% include prebidjs-non-prod.html %} {% include gptjs.html %}
+    {% include head--common.html %} {% include prebidjs-non-prod.html %} {% include gptjs.html %} {% include video/mock-outstream-bid.html %}
 
     <!--pbjs and player code -->
     <script>
@@ -28,9 +28,9 @@
           },
           bids: [
             {
-              bidder: "appnexus",
+              bidder: "msft",
               params: {
-                placementId: 13232385,
+                placement_id: 13232385,
               },
             },
           ],

@@ -33,10 +33,9 @@ Currently, `bidWon` is the only event that accepts the `id` parameter.
 Example 1: Basic event logging
 
 ```javascript
-/* Log when ad units are added to Prebid */
-pbjs.onEvent('addAdUnits', function() {
-  console.log('Ad units were added to Prebid.')
-  console.log(pbjs.adUnits);
+/* Log the ad units in each auction */
+pbjs.onEvent('auctionInit', function(data) {
+  console.log('Auction ' + data.auctionId + ' started for ad units:', data.adUnitCodes);
 });
 
 /* Log when Prebid wins the ad server auction */

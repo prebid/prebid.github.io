@@ -46,6 +46,8 @@ that can be provided by your RTD sub-module are on the right-hand side. Note tha
 When you create a Real-Time Data sub-module, you will be operating under the umbrella of the Real-Time Data core module. Here are the services core provides:
 
 * your sub-module will be initialized as soon as pbjs.setConfig({realTimeData}) is called. If you can initialize at the time of code load, that can be done at the bottom of your javascript file.
+* since Prebid.js 11.26, your sub-module may also register after Prebid.js has started (for example, when it is loaded as a separate script). If `realTimeData` has already been configured and lists your sub-module in `dataProviders`, it is initialized immediately on registration.
+* your `init()` function is called at most once. If another sub-module with the same `name` is already registered, the new registration is ignored with a warning.
 * whenever any of your functions is called, it will be passed the config params provided by the publisher. As a result, you should not call getConfig().
 * your functions will also be passed all available privacy information. As a result, you do not need to query to get GDPR, US Privacy, or any other consent parameters.
 
@@ -89,17 +91,19 @@ Now create a javascript file under `modules` with the name of the module suffixe
 In order to let RTD-core know where to find the functions in your sub-module, create an object called `submoduleObj` that contains key values:
 
 {: .table .table-bordered .table-striped }
-|  param name | type  | Scope | Description | Params |
-| :------------ | :------------ | :------ | :------ | :------ |
-| name  | string  | required | must match the name provided by the publisher in the on-page config | n/a |
+| param name | type | Scope | Description | Params |
+| :--- | :--- | :--- | :--- | :--- |
+| name | string | required | must match the name provided by the publisher in the on-page config | n/a |
 | gvlid | number | optional | global vendor list ID for your submodule | n/a |
+| acpId | number | optional | Google [Additional Consent](/dev-docs/modules/tcfControl.html#additional-consent) provider ID for your submodule, used only if it has no GVL ID (PBJS 11.41+) | n/a |
 | init | function | required | defines the function that does any auction-level initialization required | config, userConsent |
-| getTargetingData  | function | optional | defines a function that provides ad server targeting data to RTD-core | adUnitArray, config, userConsent |
-| getBidRequestData  | function | optional | defines a function that provides bid request data to RTD-core | reqBidsConfigObj, callback, config, userConsent  |
+| getTargetingData | function | optional | defines a function that provides ad server targeting data to RTD-core | adUnitArray, config, userConsent |
+| getBidRequestData | function | optional | defines a function that provides bid request data to RTD-core | reqBidsConfigObj, callback, config, userConsent |
 | onAuctionInitEvent | function | optional | listens to the AUCTION_INIT event and calls a sub-module function that lets it inspect and/or update the auction | auctionDetails, config, userConsent |
-| onAuctionEndEvent | function |optional | listens to the AUCTION_END event and calls a sub-module function that lets it know when auction is done | auctionDetails, config, userConsent |
-| onBidRequestEvent | function |optional | listens to the BID_REQUESTED event and calls a sub-module function that lets it know when a bid is about to be requested | bidRequest, config, userConsent |
-| onBidResponseEvent | function |optional | listens to the BID_RESPONSE event and calls a sub-module function that lets it know when a bid response has been collected | bidResponse, config, userConsent |
+| onAuctionEndEvent | function | optional | listens to the AUCTION_END event and calls a sub-module function that lets it know when auction is done | auctionDetails, config, userConsent |
+| onBidRequestEvent | function | optional | listens to the BID_REQUESTED event and calls a sub-module function that lets it know when a bid is about to be requested | bidRequest, config, userConsent |
+| onBidResponseEvent | function | optional | listens to the BID_RESPONSE event and calls a sub-module function that lets it know when a bid response has been collected | bidResponse, config, userConsent |
+| onBidAcceptedEvent | function | optional | since Prebid.js 11.7; listens to the BID_ACCEPTED event and calls a sub-module function that lets it know when a bid has been accepted and is about to be added to the auction | bidResponse, config, userConsent |
 
 For example:
 
@@ -133,6 +137,7 @@ These are provided so you can do the right thing with respect to regulations. Th
 
 1. This function receives module configuration and userConsent parameters
 2. If the function returns `false`, the submodule will be ignored.
+3. Since Prebid.js 11.33, if the function throws an error, the error is logged and the submodule is treated as if `init()` had returned `false`; sub-modules configured after it are still initialized.
 
 See the [Building the Request](/dev-docs/bidder-adaptor.html#building-the-request) section of the Bid Adapter documentation for more details about GDPR and USP.
 
@@ -248,7 +253,7 @@ submodule('realTimeData', subModuleObj);
 
 #### Using event listeners
 
-1. The RTD-core module listens for 3 events - `AUCTION_INIT`, `AUCTION_END`, and `BID_RESPONSE`.
+1. The RTD-core module listens for 5 events - `AUCTION_INIT`, `AUCTION_END`, `BID_REQUESTED`, `BID_RESPONSE`, and `BID_ACCEPTED` (since Prebid.js 11.7).
 2. Each time one of the events fires, RTD-core will invoke the corresponding function on each sub-module, allowing the sub-module to make changes to the event object.
 3. To use this on your sub-module, define the required functions as noted in the table above and the examples below.
 

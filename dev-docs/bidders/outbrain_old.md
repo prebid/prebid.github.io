@@ -3,7 +3,6 @@ layout: bidder
 title: Outbrain - Old
 description: Outbrain Prebid Bidder Adapter
 biddercode: outbrain
-aliasCode: zemanta
 tcfeu_supported: true
 gvl_id: 164
 usp_supported: true

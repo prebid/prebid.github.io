@@ -4,6 +4,7 @@ title: AlgoriX
 description: Prebid AlgoriX Bidder Adapter
 gvl_id: 1176
 biddercode: algorix
+aliasCode: rixengine
 tcfeu_supported: true
 usp_supported: true
 coppa_supported: true

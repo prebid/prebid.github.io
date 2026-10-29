@@ -51,7 +51,7 @@ The markdown files are linted via [markdownlint-cli](https://github.com/igorshub
 You may need to configure the disabled rules specified in [.markdownlint.json](.markdownlint.json) directly in your project settings. You can invoke linting in CLI via
 
 ```bash
-markdownlint --config .markdownlint.json --ignore-path .markdownlintignore "**/*.md"
+markdownlint --config .markdownlint.json "**/*.md"
 ```
 
 <a name="running-jekyll-locally"></a>
@@ -64,6 +64,12 @@ To get started editing the site and seeing your changes, clone this repo and ent
 
 ```bash
 JEKYLL_ENV=production bundle exec jekyll serve --watch --incremental
+```
+
+Site search uses [Pagefind](https://pagefind.app/), which indexes the built site. To try search locally, build the index once (with Node.js installed) while `jekyll serve` is running; Jekyll keeps the `_site/pagefind` folder between rebuilds:
+
+```bash
+npx -y pagefind --site _site
 ```
 
 You should see output that looks something like this:
@@ -84,6 +90,16 @@ Configuration file: /Users/me/git/prebid.github.io/_config.yml
 ```
 
 Open the `Server address` URL in your browser, and you should see a locally running copy of the site.
+
+<a name="checking-links"></a>
+
+## Checking Links
+
+CI checks internal links and anchors in the built site with [lychee](https://lychee.cli.rs/), configured in [lychee.toml](lychee.toml). To run the same check locally, [install lychee](https://lychee.cli.rs/guides/getting-started/) and run:
+
+```bash
+npm run linkcheck
+```
 
 <a name="building-assets"></a>
 

@@ -124,9 +124,9 @@ The AMP endpoint is somewhat different because it doesn't receive the openrtb - 
 
 ## How does Prebid Server determine the winner of a given impression?
 
-Prebid Server doesn't decide the overall winner... that's the job of the
-ad server. However, there are two decisions it does make that influence
-which bids are submitted to the ad server.
+Who picks the final winner depends on the setup. In the most common one, the publisher's ad server makes the final decision, weighing the header bids against its own campaigns. Prebid can also make that decision, either without an ad server or with the ad server bidding into the Prebid auction like any other demand source. In that case, Prebid.js ranks bids from trusted Prebid Server bidders by [priority and priority-adjusted CPM](/dev-docs/publisher-api-reference/bidderSettings.html#212-allowprioritybids) (see `s2sConfig.allowPriorityBids`).
+
+Either way, Prebid Server makes two decisions that influence which bids are returned to the client:
 
 **Decision 1**: best bid from each bidder on each impression
 
@@ -138,7 +138,7 @@ are multiple bids from a given bidder for a given imp[], here how it chooses:
 - highest CPM
 - random tiebreaker
 
-Note: if the request allows [multibid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#multibid-pbs-java-only), then several bid responses from the same bidder may
+Note: if the request allows [multibid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#multibid), then several bid responses from the same bidder may
 be returned to the client.
 
 **Decision 2**: which bidder for each imp[] object gets the hb_pb, hb_size, and hb_bidder targeting values

@@ -15,6 +15,8 @@ pbs: true
 floors_supported: true
 pbs_app_supported: true
 sidebarType: 1
+gvl_id: 1083
+tcfeu_supported: true
 ---
 
 ### Note

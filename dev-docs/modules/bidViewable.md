@@ -2,7 +2,7 @@
 layout: page_v2
 page_type: module
 title: Module - Bid Viewability - GAM
-description: Triggers a BID_VIEWABLE event when a rendered bid is viewable according to Active View criteria
+description: Triggers a 'bidViewable' event when a rendered bid is viewable according to Active View criteria
 module_code : bidViewability
 display_name : Bid Viewability - GAM
 enable_download : true
@@ -18,7 +18,7 @@ sidebarType : 1
 
 ## Overview
 
-This optional module will trigger a BID_VIEWABLE event which can be consumed by Analytics adapters. In addition, the winning bidder can implement an `onBidViewable` method to capture this event.
+This optional module will trigger a `bidViewable` event which can be consumed by Analytics adapters. In addition, the winning bidder can implement an `onBidViewable` method to capture this event.
 
 Notes:
 
@@ -48,7 +48,7 @@ The default logic used to find a matching Prebid.js bid for a GPT slot is
 | `bidViewability` | Required | Object | Configuration object |
 | `bidViewability.enabled` | Required | Boolean | when set to true, the module will emit BID_VIEWABLE when applicable. Default: `false` |
 | `bidViewability.firePixels` | Optional | Boolean | when set to true, will fire the urls mentioned in `bid.vurls` which should be array of URLs. Default: `false` |
-| `bidViewability.customMatchFunction` | Optional | function(bid, slot) | this function will be used to find the matching winning bid for the GPT slot. See above for the default. |
+| `bidViewability.customMatchFunction` | Optional | function(bid, slot) | REMOVED in 11.0; use [customGptSlotMatching](/dev-docs/publisher-api-reference/setConfig.html#customGptSlotMatching) instead. This function will be used to find the matching winning bid for the GPT slot. See above for the default. |
 
 ## Example of setting module config
 
@@ -56,11 +56,7 @@ The default logic used to find a matching Prebid.js bid for a GPT slot is
     pbjs.setConfig({
         bidViewability: {
             enabled: true,
-            firePixels: true,
-            customMatchFunction: function(bid, slot){
-                console.log('using custom match function....');
-                return bid.adUnitCode === slot.getAdUnitPath();
-            }
+            firePixels: true
         }
     });
 ```
