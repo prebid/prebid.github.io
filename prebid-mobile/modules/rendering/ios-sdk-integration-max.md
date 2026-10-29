@@ -56,12 +56,20 @@ This step is the same as for the original [MAX integration](https://dash.applovi
 #### Step 2: Create MAXMediationBannerUtils
 {:.no_toc}
 
-The `MAXMediationBannerUtils` is a helper class, which performs certain utilty work for the `MediationBannerAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
+The `MAXMediationBannerUtils` is a helper class, which performs certain utility work for the `MediationBannerAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
 
 #### Step 3: Create MediationBannerAdUnit
 {:.no_toc}
 
-The `MediationBannerAdUnit` is a part of the Prebid Mediation API. This class is responsible for making bid request and providing the winning bid and targeting keywords to mediating SDKs.  
+The `MediationBannerAdUnit` is a part of the Prebid Mediation API. This class is responsible for making bid request and providing the winning bid and targeting keywords to mediating SDKs.
+
+By default, the ad unit requests a display banner. To request an outstream video banner, or to let display and video demand compete for the same banner, set `adFormats` before making the bid request (requires SDK v3.4.0):
+
+```swift
+adUnit.adFormats = [.banner, .video]
+```
+
+Only `.banner` and `.video` are supported. An empty set, or a set with any other format, is ignored with a warning. Auto-refresh waits while a Prebid video creative is playing. The `adFormat` property is deprecated; use `adFormats` instead.
 
 #### Step 4: Make bid request
 {:.no_toc}
@@ -126,7 +134,7 @@ This step is the same as for the original [MAX integration](https://dash.applovi
 #### Step 2: Create MAXMediationInterstitialUtils
 {:.no_toc}
 
-The `MAXMediationInterstitialUtils` is a helper class, which performs certain utilty work for the `MediationInterstitialAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
+The `MAXMediationInterstitialUtils` is a helper class, which performs certain utility work for the `MediationInterstitialAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
 
 #### Step 3: Create MediationInterstitialAdUnit
 {:.no_toc}
@@ -186,7 +194,7 @@ This step is the same as for the original [MAX integration](https://dash.applovi
 ##### Step 2: Create MAXMediationRewardedUtils
 {:.no_toc}
 
-The `MAXMediationRewardedUtils` is a helper class, which performs certain utilty work for the `MediationRewardedAdUnit`, like passing the targeting keywords to the adapters.
+The `MAXMediationRewardedUtils` is a helper class, which performs certain utility work for the `MediationRewardedAdUnit`, like passing the targeting keywords to the adapters.
 
 ##### Step 3: Create MediationRewardedAdUnit
 {:.no_toc}
@@ -250,12 +258,12 @@ Prepare the `MANativeAdLoader` object before you make a bid request. It will be 
 #### Step 2: Create MAXMediationNativeUtils
 {:.no_toc}
 
-The `MAXMediationNativeUtils` is a helper class, which performs certain utilty work for `MediationNativeAdUnit`, like passing the targeting keywords to adapters and checking the visibility of the ad view.
+The `MAXMediationNativeUtils` is a helper class, which performs certain utility work for `MediationNativeAdUnit`, like passing the targeting keywords to adapters and checking the visibility of the ad view.
 
 #### Step 3: Create and configure MediationNativeAdUnit
 {:.no_toc}
 
-The `MediationNativeAdUnit` is a part of the Prebid Mediation API. This class is responsible for making a bid request and providing a winning bid and targeting keywords to the adapters. Fot the better targetting you should provide additional properties like `conteaxtType` and `placemantType`. 
+The `MediationNativeAdUnit` is a part of the Prebid Mediation API. This class is responsible for making a bid request and providing a winning bid and targeting keywords to the adapters. For better targeting you should provide additional properties like `contextType` and `placementType`.
  
 #### Step 4: Set up assets for bid request
 {:.no_toc}

@@ -98,7 +98,7 @@ private fun createNativeParameters(): NativeParameters {
 }
 ```
 
-If you use Custom Native Ads follow the [guide](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/native-banner) on how to implement processing of the ad response of the respective type. The following code snipet demonstrates how you can process the banner, video and in-banner native (Native Styles) ad resposnse:
+If you use Custom Native Ads follow the [guide](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/native-banner) on how to implement processing of the ad response of the respective type. The following code snippet demonstrates how you can process the banner, video and in-banner native (Native Styles) ad response:
 
 ``` kotlin
 private fun loadGam(gamRequest: AdManagerAdRequest) {

@@ -3,7 +3,7 @@ layout: page_v2
 page_type: module
 title: PubMatic RTD Provider
 display_name: PubMatic RTD Module
-description: RTD module for Prebid provided by PubMatic to set dynamic floors
+description: RTD module for Prebid provided by PubMatic for dynamic yield optimization
 module_type: rtd
 module_code: pubmaticRtdProvider
 enable_download: true
@@ -19,11 +19,11 @@ sidebarType: 1
 
 ## Overview
 
-The PubMatic RTD module fetches pricing floor data and updates the Price Floors Module based on user's context in real-time as per Price Floors Modules Floor Data Provider Interface guidelines [Dynamic Floor Data Provider](https://docs.prebid.org/dev-docs/modules/floors.html#floor-data-provider-interface).
+The PubMatic RTD module provides dynamic yield optimization by fetching real-time pricing floor data and generating targeting data for ad server integration and reporting. The module integrates with Prebid's Price Floors system as per [Dynamic Floor Data Provider](https://docs.prebid.org/dev-docs/modules/floors.html#floor-data-provider-interface) guidelines.
 
 ## Integration
 
-Step 1: Contact PubMatic to get a publisher ID and create your first profile.
+Step 1: Contact PubMatic to get a publisher ID and create your first profile. Additional settings like floor multipliers, and key-values enablement can be managed through the PubMatic UI.
 
 Step 2: Integrate the PubMatic Analytics Adapter (see Prebid Analytics modules) as well as the Price Floors module.
 
@@ -79,3 +79,14 @@ pbjs.setConfig({
 | params             | Object  |                                                                |                            |
 | params.publisherId | String  | Publisher ID                                                   |                            |
 | params.profileId   | String  | Profile ID                                                     |                            |
+
+## Targeting Keys
+
+The module sets the following targeting keys for ad server integration and reporting:
+
+{: .table .table-bordered .table-striped }
+| Key | Description | Values |
+| :-- | :---------- | :----- |
+| pm_ym_flrs | Whether RTD floor was applied to the auction | 0 (not applied)/1 (applied) |
+| pm_ym_flrv | Floor value after applying dynamic multipliers | Decimal value (e.g., "1.25") |
+| pm_ym_bid_s | Bid outcome status | 0 (no bid), 1 (won), 2 (floored) |

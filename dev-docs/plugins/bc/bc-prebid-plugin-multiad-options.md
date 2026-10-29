@@ -58,9 +58,9 @@ The following is a sample JSON definition of the plugin configuration defining c
         },
         "bids": [
             {
-                "bidder": "appnexus",
+                "bidder": "msft",
                 "params": {
-                    "placementId": 12527596
+                    "placement_id": 12527596
                 }
             }
         ]
@@ -109,7 +109,7 @@ The following is a sample JSON definition of the plugin configuration defining c
     },
     "prebidConfigOptions" : {
         "cache": {
-            "url": "https://prebid.adnxs.com/pbc/v1/cache"
+            "url": "https://prebid.example.com/pbc/v1/cache"
         },
         "enableSendAllBids" : true
     },
@@ -153,9 +153,9 @@ The following is a sample JSON definition of the plugin configuration defining c
         },
         "bids": [
             {
-                "bidder": "appnexus",
+                "bidder": "msft",
                 "params": {
-                    "placementId": 12531984
+                    "placement_id": 12531984
                 }
             }
         ]
@@ -204,7 +204,7 @@ The following is a sample JSON definition of the plugin configuration defining c
     },
     "prebidConfigOptions" : {
         "cache": {
-            "url": "https://prebid.adnxs.com/pbc/v1/cache"
+            "url": "https://prebid.example.com/pbc/v1/cache"
         },
         "enableSendAllBids" : true
     },
@@ -259,9 +259,9 @@ The following is a sample JSON definition of the plugin configuration defining c
         },
         "bids": [
             {
-                "bidder": "appnexus",
+                "bidder": "msft",
                 "params": {
-                    "placementId": 12527596
+                    "placement_id": 12527596
                 }
             }
         ]
@@ -310,7 +310,7 @@ The following is a sample JSON definition of the plugin configuration defining c
     },
     "prebidConfigOptions" : {
         "cache": {
-            "url": "https://prebid.adnxs.com/pbc/v1/cache"
+            "url": "https://prebid.example.com/pbc/v1/cache"
         },
         "enableSendAllBids" : true
     },
@@ -355,9 +355,9 @@ The following is a sample JSON definition of the plugin configuration defining c
         },
         "bids": [
             {
-                "bidder": "appnexus",
+                "bidder": "msft",
                 "params": {
-                    "placementId": 12531984
+                    "placement_id": 12531984
                 }
             }
         ]
@@ -406,7 +406,7 @@ The following is a sample JSON definition of the plugin configuration defining c
     },
     "prebidConfigOptions" : {
         "cache": {
-            "url": "https://prebid.adnxs.com/pbc/v1/cache"
+            "url": "https://prebid.example.com/pbc/v1/cache"
         },
         "enableSendAllBids" : true
     },
@@ -451,9 +451,9 @@ The following is a sample JSON definition of the plugin configuration defining c
         },
         "bids": [
             {
-                "bidder": "appnexus",
+                "bidder": "msft",
                 "params": {
-                    "placementId": 12531977
+                    "placement_id": 12531977
                 }
             }
         ]
@@ -502,7 +502,7 @@ The following is a sample JSON definition of the plugin configuration defining c
     },
     "prebidConfigOptions" : {
         "cache": {
-            "url": "https://prebid.adnxs.com/pbc/v1/cache"
+            "url": "https://prebid.example.com/pbc/v1/cache"
         },
         "enableSendAllBids" : true
     },

@@ -26,7 +26,7 @@ sidebarType: 3
 
 <div class="col-sm-6" markdown="1">
 
-This setup (captured using [Headerbid Expert](https://chrome.google.com/webstore/detail/headerbid-expert/cgfkddgbnfplidghapbbnngaogeldmop)) has demonstrated a few facts that made it an ideal header bidding auction.
+This setup (captured with a header bidding timeline tool) has demonstrated a few facts that made it an ideal header bidding auction.
 
 **1. Asynchronous Calls**
 All calls from the header bidding partners are asynchronous. The calls do not block the page, other header bidding partners, or the ad server from loading.
@@ -128,9 +128,4 @@ The ad server sees the impression and header bidding info immediately after all 
 
 ## Analyze Your Own Site
 
-Add the Plugin [Headerbid Expert](https://chrome.google.com/webstore/detail/headerbid-expert/cgfkddgbnfplidghapbbnngaogeldmop) to your browser.
-
-<div class="pb-sm-img">
-<a href="https://chrome.google.com/webstore/detail/headerbid-expert/cgfkddgbnfplidghapbbnngaogeldmop" target="_blank"><img src="/assets/images/hb-expert/headerbid-expert-logo.png" alt="headerbid-expert-logo" width="50%" style="cursor:pointer">
-</a>
-</div>
+Install [Professor Prebid](/tools/professor-prebid.html), Prebid's Chrome extension, to inspect the auction timeline, bidder timeouts and ad server timing on your own pages. See also the [Prebid.js Troubleshooting Guide](/troubleshooting/troubleshooting-guide.html).

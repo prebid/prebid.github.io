@@ -20,6 +20,13 @@ Server side ad insertion dominates CTV ad serving ecosystem mainly due to the fo
  
 Prebid Server is the most commonly used methodology for accessing programmatic demand for the server side ad insertion use cases.
 
+{: .alert.alert-success :}
+Prebid has published our CTV GET and VAST unwrapping requirements, which are now open for public feedback until Friday, October 10th. The document can be [found here](https://docs.google.com/document/d/1KrEQk7gOZj0pUJHwVb7850awbQdiE8EfzciwlfvtSQQ).
+
+We encourage the community to review the draft and share feedback directly as comments in the Google Doc. The Prebid team will actively monitor and respond to comments throughout the feedback period to ensure that all perspectives are considered.
+
+Your input is critical in shaping these requirements, and our goal is to incorporate community insights before we begin development in Q4.
+
 ## Further Reading
 
 - [Ad Server Integration with Prebid Server Architecture and Interface Recommendation](/prebid-server/use-cases/pbs-lfv.html)

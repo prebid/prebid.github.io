@@ -43,7 +43,7 @@ Prebid Mobile introduces a way for publishers to add a convenient [Prebid-owned 
 Documentation:
 
 - [iOS Global Arbitrary OpenRTB](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#arbitrary-openrtb)  
-- [iOS Impression-level Arbitrary OpenRTB](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.md#arbitrary-openrtb)  
+- [iOS Impression-level Arbitrary OpenRTB](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#arbitrary-openrtb)  
 - [Android Global Arbitrary OpenRTB](/prebid-mobile/pbm-api/android/pbm-targeting-android.html#arbitrary-openrtb)  
 - [Android Impression-level Arbitrary OpenRTB](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#arbitrary-openrtb)
 
@@ -96,6 +96,6 @@ Prebid Mobile introduces enhanced support and configuration of video ads, includ
 
 ## API Cleanup
 
-Documentation: [iOS](/prebid-mobile/updates-3.0/ios/updates-3.0.html), [Android](/prebid-mobile/updates-3.0/android/updates-3.0.html)
+Documentation: [iOS](/prebid-mobile/updates-3.0/ios/api-changes.html), [Android](/prebid-mobile/updates-3.0/android/api-changes.html)
 
 In the 3.0 release, the Prebid Mobile SDK gets rid of all previously deprecated methods in order to keep the API clean and minimalistic. Instead of using Ad Unit and configuration properties, the Prebid SDK encourages publishers to use methods to set [Arbitrary OpenRTB](#arbitrary-openrtb) parameters.

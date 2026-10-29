@@ -5,11 +5,15 @@ title: Module - PAAPI
 description: Protected Audience API
 module_code : paapi
 display_name : PAAPI
-enable_download : true
+enable_download : false
+pbjs_version_notes: removed in 11.0
 sidebarType : 1
 ---
 
 # PAAPI module
+
+{: .alert.alert-warning :}
+The PAAPI module was removed in Prebid.js 11.0. Prebid.js no longer supports the Protected Audience API.
 
 This module allows Prebid.js to support PAAPI, formerly known as [FLEDGE](https://github.com/WICG/turtledove/blob/main/FLEDGE.md).
 
@@ -38,13 +42,13 @@ To use PAAPI, publishers must:
 This module exposes the following settings:
 
 {: .table .table-bordered .table-striped }
-|Name |Type |Description |Notes |
-| ------------ | ------------ | ------------ |------------ |
-|enabled | Boolean |Enable/disable the module |Defaults to `false` |
-|bidders | Array[String] |Optional list of bidders |Defaults to all bidders |
-|defaultForSlots | Number |Default value for `imp.ext.ae` in requests for specified bidders |Should be 1 |
-|componentSeller | Object |Configuration for publishers acting as component sellers | See [note](#componentSeller) |
-|parallel | Boolean | If true, start PAAPI auctions in parallel with Prebid auctions when possible | See [parallel auctions](#parallel) |
+| Name | Type | Description | Notes |
+| --- | --- | --- | --- |
+| enabled | Boolean | Enable/disable the module | Defaults to `false` |
+| bidders | Array[String] | Optional list of bidders | Defaults to all bidders |
+| defaultForSlots | Number | Default value for `imp.ext.ae` in requests for specified bidders | Should be 1 |
+| componentSeller | Object | Configuration for publishers acting as component sellers | See [note](#componentSeller) |
+| parallel | Boolean | If true, start PAAPI auctions in parallel with Prebid auctions when possible | See [parallel auctions](#parallel) |
 
 As noted above, PAAPI support is disabled by default. To enable it, set the `enabled` value to `true` for this module and configure `defaultForSlots` to be `1` (meaning _Client-side auction_).
 using the `setConfig` method of Prebid.js:
@@ -81,13 +85,13 @@ If needed, adunits can be configured individually by setting an attribute of the
 adunit. This attribute will take precedence over `defaultForSlots` setting.
 
 {: .table .table-bordered .table-striped }
-|Name |Type |Description |Notes |
-| ------------ | ------------ | ------------ |------------ |
+| Name | Type | Description | Notes |
+| --- | --- | --- | --- |
 | ortb2Imp.ext.ae | Integer | Auction Environment: 1 indicates PAAPI eligible, 0 indicates it is not | Absence indicates this is not PAAPI eligible |
 
 The `ae` field stands for Auction Environment and was chosen to be consistent with the field that GAM passes to bidders
-in their Open Bidding and Exchange Bidding APIs. More details on that can be found
-[here](https://github.com/google/ads-privacy/tree/master/proposals/fledge-rtb#bid-request-changes-indicating-interest-group-auction-support)
+in their Open Bidding and Exchange Bidding APIs. More details are in the
+[FLEDGE RTB proposal](https://github.com/google/ads-privacy/tree/master/proposals/fledge-rtb#bid-request-changes-indicating-interest-group-auction-support)
 In practice, this looks as follows:
 
 ```js
@@ -109,10 +113,10 @@ Bid adapters typically act as PAAPI sellers, each providing one or more [compone
 Some adapters may act as PAAPI buyers: instead of a full component auction, they can reply directly with buyer information. By configuring `componentSeller`, these buyers are collected into one or more publisher-managed component auctions.
 
 {: .table .table-bordered .table-striped }
-|Name |Type |Description |
-| ------------ | ------------ | ------------ |
-|componentSeller.auctionConfig | Object | [AuctionConfig](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#21-initiating-an-on-device-auction) object to use for the component auction(s) |
-|componentSeller.separateAuctions | Boolean | If `true`, generate a component auction for each bid adapter. If `false` (the default), buyers are collected into as few component auctions as possible (typically one, but multiple are possible if multiple bidders reply with the same buyer) |
+| Name | Type | Description |
+| --- | --- | --- |
+| componentSeller.auctionConfig | Object | [AuctionConfig](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#21-initiating-an-on-device-auction) object to use for the component auction(s) |
+| componentSeller.separateAuctions | Boolean | If `true`, generate a component auction for each bid adapter. If `false` (the default), buyers are collected into as few component auctions as possible (typically one, but multiple are possible if multiple bidders reply with the same buyer) |
 
 ## Bid Adapter Integration
 
@@ -120,7 +124,7 @@ Chrome has enabled a two-tier auction in PAAPI. This allows multiple sellers (fr
 a single entity serving as the final decision maker. In their [current approach](https://github.com/google/ads-privacy/tree/master/proposals/fledge-multiple-seller-testing),
 GPT has opted to run the final auction layer while allowing other SSPs/sellers to participate as
 [Component Auctions](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#21-initiating-an-on-device-auction) which feed their
-bids to the final layer. To learn more about Component Auctions, go [here](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#24-scoring-bids-in-component-auctions).
+bids to the final layer. To learn more, see [scoring bids in component auctions](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#24-scoring-bids-in-component-auctions).
 
 The PAAPI auction, including Component Auctions, are configured via an `AuctionConfig` object that defines the parameters of the auction for a given
 seller. This module enables PAAPI support by allowing bid adaptors to return `AuctionConfig` objects in addition to bids. If a bid adaptor returns an
@@ -178,7 +182,7 @@ function interpretResponse(resp, req) {
 
 Each object must specify exactly one of `igb` or `config`.
 
-An example of this can be seen in the OpenX bid adapter [here](https://github.com/prebid/Prebid.js/blob/master/modules/openxBidAdapter.js) or RTB House bid adapter [here](https://github.com/prebid/Prebid.js/blob/master/modules/rtbhouseBidAdapter.js).
+An example of this can be seen in the [OpenX bid adapter](https://github.com/prebid/Prebid.js/blob/master/modules/openxBidAdapter.js).
 
 <a id="parallel"></a>
 ## Parallel auctions

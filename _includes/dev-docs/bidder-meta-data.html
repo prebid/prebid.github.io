@@ -54,14 +54,18 @@
       <td class="pbTd">{% if page.fpd_supported == true %}yes{% elsif page.fpd_supported == false %}no{% else %}check with bidder{% endif %}</td>
     </tr>
     <tr>
-      <th class="pbTh">User IDs</th>
-      <td class="pbTd">{% if page.userIds and page.userIds != '' %}{{page.userIds}}{% else %}none{% endif %}</td>
+      <th class="pbTh">Endpoint Compression</th>
+      <td class="pbTd">{% if page.endpoint_compression == true %}yes{% elsif page.endpoint_compression == false %}no{% else %}check with bidder{% endif %}</td>
       <th class="pbTh">ORTB Blocking Support</th>
       <td class="pbTd">{% if page.ortb_blocking_supported == true %}yes{% elsif page.ortb_blocking_supported == false %}no{% elsif page.ortb_blocking_supported == 'partial' %}partial{% else %}check with bidder{% endif %}</td>
     </tr>
     <tr>
+      <th class="pbTh">User IDs</th>
+      <td class="pbTd">{% if page.userIds and page.userIds != '' %}{{page.userIds}}{% else %}none{% endif %}</td>
       <th class="pbTh">Privacy Sandbox</th>
       <td class="pbTd">{% if page.privacy_sandbox %}{{page.privacy_sandbox}}{% else %}check with bidder{% endif %}</td>
+    </tr>
+    <tr>
       {% if page.pbs == true %}
       <th class="pbTh">Prebid Server App Support</th>
       <td class="pbTd">{% if page.pbs_app_supported == false %}no{% elsif page.pbs_app_supported == true %}yes{% else %}check with bidder{% endif %}</td>
@@ -69,6 +73,8 @@
       <th class="pbTh"></th>
       <td class="pbTd"></td>
       {% endif %}
+      <th class="pbTh"></th>
+      <td class="pbTd"></td>
     </tr>
 
   </table>

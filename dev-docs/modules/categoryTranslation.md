@@ -5,16 +5,20 @@ title: Module - Category Translation
 description: Converts IAB category to ad server category for long-form videos.
 module_code : categoryTranslation
 display_name : CategoryTranslation
-enable_download : true
+enable_download : false
+pbjs_version_notes: removed in 11.0
 sidebarType : 1
 ---
 
 # IAB Category Translation
 {:.no_toc}
 
+{: .alert.alert-warning :}
+The Category Translation module was removed in Prebid.js 11.0 along with ad pod (long-form) video support.
+
 This module converts the IAB sub category to Ad server industry group identifiers. The identifiers ensure competitive separation of industries and products.
 
-Each bidder must return one [IAB subcategory](https://support.aerserv.com/hc/en-us/articles/207148516-List-of-IAB-Categories) if they want to do competitive separation.
+Each bidder must return one [IAB subcategory](https://iabtechlab.com/standards/content-taxonomy/) if they want to do competitive separation.
 
 The module provides the following:
 
@@ -37,6 +41,14 @@ pbjs.setConfig({
     }
 });
 ```
+
+### Parameters
+
+{: .table .table-bordered .table-striped }
+
+| Name | Type | Description | Required | Default |
+| :--- | :--- | :--- | :--- | :--- |
+| `translationFile` | String | URL of a custom brand category translation map | no | Prebid default map |
 
 This file will be stored locally to expedite the conversion process. If a publisher opts to not provide a conversion mapping file Prebid will use its default conversion mapping file.
 

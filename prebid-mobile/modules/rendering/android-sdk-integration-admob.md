@@ -85,12 +85,20 @@ This step is the same as for the original [AdMob integration](https://developers
 #### Step 2: Create AdMobMediationBannerUtils
 {:.no_toc}
 
-The `AdMobBannerMediationUtils` is a helper class, which performs certain utilty work for the `MediationBannerAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
+The `AdMobBannerMediationUtils` is a helper class, which performs certain utility work for the `MediationBannerAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
 
 #### Step 3: Create MediationBannerAdUnit
 {:.no_toc}
 
-The `MediationBannerAdUnit` is part of the prebid mediation API. This class is responsible for making the bid request and providing the winning bid and targeting keywords to the mediating SDKs.  
+The `MediationBannerAdUnit` is part of the prebid mediation API. This class is responsible for making the bid request and providing the winning bid and targeting keywords to the mediating SDKs.
+
+By default, the ad unit requests a display banner. To request an outstream video banner, or to let display and video demand compete for the same banner, set the ad unit formats before making the bid request (requires SDK v3.4.0):
+
+```kotlin
+adUnit.setAdUnitFormats(EnumSet.of(AdUnitFormat.BANNER, AdUnitFormat.VIDEO))
+```
+
+A null or empty set is ignored, and the current value is kept. Unlike `BannerView`, the mediation ad unit doesn't know whether the Prebid bid won in the mediation SDK, so auto-refresh keeps running during video playback. If the refresh interval is shorter than the video creatives, call `stopRefresh()` and `resumeRefresh()` around playback.
 
 #### Step 4: Make a bid request
 {:.no_toc}
@@ -153,7 +161,7 @@ This step is the same as for original [AdMob integration](https://developers.goo
 #### Step 2: Create AdMobInterstitialMediationUtils
 {:.no_toc}
 
-The `AdMobInterstitialMediationUtils` is a helper class, which performs certain utilty work for the `MediationInterstitialAdUnit`, like passing the targeting keywords to adapters.
+The `AdMobInterstitialMediationUtils` is a helper class, which performs certain utility work for the `MediationInterstitialAdUnit`, like passing the targeting keywords to adapters.
 
 #### Step 3: Create MediationInterstitialAdUnit
 {:.no_toc}
@@ -240,7 +248,7 @@ This step is the same as for the original [AdMob integration](https://developers
 ##### Step 2: Create AdMobRewardedMediationUtils
 {:.no_toc}
 
-The `AdMobRewardedMediationUtils` is a helper class, which performs certain utilty work for the `MediationInterstitialAdUnit`, like passing the targeting keywords to adapters.
+The `AdMobRewardedMediationUtils` is a helper class, which performs certain utility work for the `MediationInterstitialAdUnit`, like passing the targeting keywords to adapters.
 
 ##### Step 3: Create MediationRewardedVideoAdUnit
 {:.no_toc}
@@ -315,7 +323,7 @@ Prepare the `AdLoader` and `AdRequest` objects before you make the bid request. 
 #### Step 2: Create NativeAdUnit
 {:.no_toc}
 
-The `NativeAdUnit` is responsible for making bid requests. Once the bid responce is received you can load an ad from AdMob.
+The `NativeAdUnit` is responsible for making bid requests. Once the bid response is received you can load an ad from AdMob.
 
 #### Step 3: Configure NativeAdUnit
 {:.no_toc}

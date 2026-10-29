@@ -9,7 +9,7 @@ coppa_supported: true
 tcfeu_supported: true
 usp_supported: true
 prebid_member: false
-pbjs: false
+pbjs: true
 pbs: true
 schain_supported: true
 floors_supported: true

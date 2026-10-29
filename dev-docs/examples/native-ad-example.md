@@ -48,10 +48,14 @@ function initAdserver() {
     if (pbjs.initAdserverSet) return;
 
     googletag.cmd.push(function() {
-        pbjs.que.push(function() {
-            pbjs.setTargetingForGPTAsync();
+        if (pbjs.libLoaded) {
+            pbjs.que.push(function() {
+                pbjs.setTargetingForGPTAsync();
+                googletag.pubads().refresh();
+            });
+        } else {
             googletag.pubads().refresh();
-        });
+        }
     });
 
     pbjs.initAdserverSet = true;
@@ -91,9 +95,9 @@ pbjs.que.push(function() {
                 }
             },
             bids: [{
-                bidder: 'appnexus',
+                bidder: 'msft',
                 params: {
-                    placementId: 13232354,
+                    placement_id: 13232354,
                     allowSmallerSizes: true
                 }
             }]
@@ -123,9 +127,9 @@ pbjs.que.push(function() {
                 }
             },
             bids: [{
-                bidder: 'appnexus',
+                bidder: 'msft',
                 params: {
-                    placementId: 13232354,
+                    placement_id: 13232354,
                     allowSmallerSizes: true
                 }
             }]

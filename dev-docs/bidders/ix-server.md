@@ -178,13 +178,13 @@ To call Index from a web browser using Prebid Server, you must first configure P
     ```javascript
     pbjs.setConfig({
         cache: {
-            url: 'https://prebid.adnxs.com/pbc/v1/cache'
+            url: 'https://my-pbs.example.com/cache'
         }
     });
     ```
 
 7. (Optional) If you want to monetize outstream video, you can choose among the following options:
-    * Use Index's outstream video player. For more information, see the [Index's outstream video player](/dev-docs/bidders/ix.html#index-outstream-video-player) section in our Prebid.js documentation on the Prebid site.
+    * Use Index's outstream video player. For more information, see the [Index's outstream video player](/dev-docs/bidders/ix.html#indexs-outstream-ad-unit) section in our Prebid.js documentation on the Prebid site.
     * Use your own outstream video player. For more information, see [Prebid's documentation on how to show video ads.](/dev-docs/show-outstream-video-ads.html)
 8. (Optional) Configure Prebid Native with Index. For more information, see the [Prebid Native](/dev-docs/bidders/ix.html#prebid-native-configuration) section in our Prebid.js documentation on the Prebid site. Prebid Native is available from Prebid.js version 7.4.0 or higher.
 
@@ -239,6 +239,8 @@ To request bids from Index:
 <a id="paapi"></a>
 
 ### Receive Protected Audience API demand from Index
+
+**Info:** Starting in June 2025, Index is pausing support for the Protected Audience API. After this date, you will no longer receive Protected Audience API demand from Index, even if your inventory is configured to be eligible for it.
 
 Publishers who want to use the Protected Audience API with Prebid Server, must first set up their inventory to be eligible for Protected Audience API in Prebid.js. Prebid Server will automatically pass through the on-device auction signals received from Prebid.js to Index. To receive Protected Audience API auction demand from Index, contact your Index Representative.
 

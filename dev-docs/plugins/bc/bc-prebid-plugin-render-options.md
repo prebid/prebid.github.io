@@ -321,7 +321,7 @@ String that can be one of the following:
 * `'start'` (for preroll)
 * `'end'` (for postroll)
 * `'hh:mm:ss'` (to specify a midroll at a specific time)
-* `'hh:mm:ss.mmm'` (to specify a midroll at a specfic time, including millseconds)
+* `'hh:mm:ss.mmm'` (to specify a midroll at a specific time, including milliseconds)
 * `'n%'` (to specify a midroll to play after the specified percentage of the content video has played)
 
 **Required?**

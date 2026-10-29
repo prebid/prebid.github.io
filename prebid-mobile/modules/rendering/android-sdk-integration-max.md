@@ -74,12 +74,20 @@ This step is totally the same as for original [MAX integration](https://dash.app
 #### Step 2: Create MaxMediationBannerUtils
 {:.no_toc}
 
-The `MaxMediationBannerUtils` is a helper class, which performs certain utilty work for the `MediationBannerAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
+The `MaxMediationBannerUtils` is a helper class, which performs certain utility work for the `MediationBannerAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
 
 #### Step 3: Create MediationBannerAdUnit
 {:.no_toc}
 
-The `MediationBannerAdUnit` is a part of Prebid mediation API. This class is responsible for making bid request and providing the winning bid and targeting keywords to mediating SDKs.  
+The `MediationBannerAdUnit` is a part of Prebid mediation API. This class is responsible for making bid request and providing the winning bid and targeting keywords to mediating SDKs.
+
+By default, the ad unit requests a display banner. To request an outstream video banner, or to let display and video demand compete for the same banner, set the ad unit formats before making the bid request (requires SDK v3.4.0):
+
+```kotlin
+adUnit.setAdUnitFormats(EnumSet.of(AdUnitFormat.BANNER, AdUnitFormat.VIDEO))
+```
+
+A null or empty set is ignored, and the current value is kept. Unlike `BannerView`, the mediation ad unit doesn't know whether the Prebid bid won in the mediation SDK, so auto-refresh keeps running during video playback. If the refresh interval is shorter than the video creatives, call `stopRefresh()` and `resumeRefresh()` around playback.
 
 #### Step 4: Make bid request
 {:.no_toc}
@@ -139,7 +147,7 @@ This step is totally the same as for original [MAX integration](https://dash.app
 #### Step 2: Create MaxMediationInterstitialUtils
 {:.no_toc}
 
-The `MaxMediationInterstitialUtils` is a helper class, which performs certain utilty work for the `MediationInterstitialAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
+The `MaxMediationInterstitialUtils` is a helper class, which performs certain utility work for the `MediationInterstitialAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
 
 #### Step 3: Create MediationInterstitialAdUnit
 {:.no_toc}
@@ -202,7 +210,7 @@ This step is totally the same as for original [MAX integration](https://dash.app
 ##### Step 2: Create MaxMediationRewardedUtils
 {:.no_toc}
 
-The `MaxMediationRewardedUtils` is a helper class, which performs certain utilty work for the `MediationRewardedVideoAdUnit`, like passing the targeting keywords to the adapters.
+The `MaxMediationRewardedUtils` is a helper class, which performs certain utility work for the `MediationRewardedVideoAdUnit`, like passing the targeting keywords to the adapters.
 
 ##### Step 3: Create MediationRewardedVideoAdUnit
 {:.no_toc}
@@ -262,7 +270,7 @@ Prepare the `MaxNativeAdLoader` object before you make a bid request. It will be
 #### Step 2: Create and configure NativeAdUnit
 {:.no_toc}
 
-The `NativeAdUnit` class is responsible for making a bid request and providing a winning bid and targeting keywords. Fot the better targetting you should provide additional properties like `conteaxtType` and `placemantType`. 
+The `NativeAdUnit` class is responsible for making a bid request and providing a winning bid and targeting keywords. For better targeting you should provide additional properties like `contextType` and `placementType`.
  
 #### Step 3: Set up assets for bid request
 {:.no_toc}

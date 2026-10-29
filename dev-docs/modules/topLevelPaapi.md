@@ -5,11 +5,15 @@ title: Module - topLevelPaapi
 description: Run top level PAAPI auctions
 module_code : topLevelPaapi
 display_name : Run top level PAAPI auctions
-enable_download : true
+enable_download : false
+pbjs_version_notes: removed in 11.0
 sidebarType : 1
 ---
 
 # Top level PAAPI module
+
+{: .alert.alert-warning :}
+The topLevelPaapi module was removed in Prebid.js 11.0. Prebid.js no longer supports the Protected Audience API.
 
 This module allows Prebid.js to support PAAPI by running on-device auctions as the top level seller.
 
@@ -40,12 +44,12 @@ To use topLevelPaapi:
 This module exposes the following settings:
 
 {: .table .table-bordered .table-striped }
-|Name |Type |Description |Notes |
-| ------------ | ------------ | ------------ |------------ |
-|paapi.topLevelSeller | Object | | |
-|paapi.topLevelSeller.auctionConfig | Object | Base [AuctionConfig](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#2-sellers-run-on-device-auctions) to use in `runAdAuction` | Only `seller` and `decisionLogicURL` are required |
-|paapi.topLevelSeller.autorun | Boolean | If `true` (the default) , automatically start PAAPI auctions as soon as possible | |
-|paapi.topLevelSeller.overrideWinner | Boolean | If `true`, replace contextual winners with PAAPI winners as they are rendered. Default is `false`. | see [example](#overrideWinner) |  
+| Name | Type | Description | Notes |
+| --- | --- | --- | --- |
+| paapi.topLevelSeller | Object | | |
+| paapi.topLevelSeller.auctionConfig | Object | Base [AuctionConfig](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#2-sellers-run-on-device-auctions) to use in `runAdAuction` | Only `seller` and `decisionLogicURL` are required |
+| paapi.topLevelSeller.autorun | Boolean | If `true` (the default) , automatically start PAAPI auctions as soon as possible | |
+| paapi.topLevelSeller.overrideWinner | Boolean | If `true`, replace contextual winners with PAAPI winners as they are rendered. Default is `false`. | see [example](#overrideWinner) |
 
 <a id="examples"></a>
 ## Examples

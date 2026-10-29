@@ -778,6 +778,7 @@ The second argument, `requestInfo`, is for extra information and helper methods 
 - `requestInfo.PbsEntryPoint` to access the entry point of the bid request, commonly used to determine if the request is for AMP or for a [Long Form Video Ad Pod](/dev-docs/modules/adpod.html).
 - `requestInfo.GlobalPrivacyControlHeader` to read the value of the `Sec-GPC` Global Privacy Control (GPC) header of the bid request.
 - `requestInfo.ConvertCurrency` a method to perform currency conversions.
+- `requestInfo.PageViewId` is the unique identifier for the page view (one load of Prebid.js); can also be refreshed programmatically. Shared across all requests and responses within the page view, for the same bidder. Different bidders see a different page view ID.
 
 The `MakeRequests` method is expected to return a slice (similar to a C# `List` or a Java `ArrayList`) of `adapters.RequestData` objects representing the HTTP calls to be sent to your bidding server and a slice of type `error` for any issues encountered creating them. If there are no HTTP calls or if there are no errors, please return `nil` for both return values. Please do not add `nil` items in the slices.
 
@@ -1065,7 +1066,7 @@ func newAdapterBuilders() map[openrtb_ext.BidderName]adapters.Builder {
 You need to provide default settings for your bid adapter. You can decide if you'd like your bid adapter to be enabled out of the box, and if so, you'll need to provide a default endpoint and default extra adapter info (if applicable). If your bid adapter requires host specific information to function properly, such as a security token or host account, then it's best to leave the adapter disabled.
 
 {: .alert.alert-warning :}
-**HOST SPECIFIC INFO:** The default endpoint must not be specific to any particular host, such as Xandr/AppNexus. We may ask you about suspicious looking ids during the review process. Please reach out to individual hosts if you need to set specialized configuration.
+**HOST SPECIFIC INFO:** The default endpoint must not be specific to any particular host, such as Microsoft/AppNexus. We may ask you about suspicious looking ids during the review process. Please reach out to individual hosts if you need to set specialized configuration.
 
 ## Aliasing an Adapter
 
@@ -1076,7 +1077,7 @@ the whole adapter codebase. Rather, follow these steps to create a 'hardcoded' a
 1. Add "aliasOf" in the config.yaml file with its value set to the name of the adapter you are creating an alias for
 
 ```yaml
-aliasOf: "appnexus"
+aliasOf: "msft"
 ```
 
 Notes:

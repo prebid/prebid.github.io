@@ -37,9 +37,9 @@ var adUnits = [{
         }
     },
     bids: [{
-        bidder: 'appnexus',
+        bidder: 'msft',
         params: {
-            placementId: 13144370
+            placement_id: 13144370
         }
     }]
 }];
@@ -97,10 +97,14 @@ function initAdserver() {
     if (pbjs.initAdserverSet) return;
     pbjs.initAdserverSet = true;
     googletag.cmd.push(function() {
-        pbjs.que.push(function() {
-            pbjs.setTargetingForGPTAsync();
+        if (pbjs.libLoaded) {
+            pbjs.que.push(function() {
+                pbjs.setTargetingForGPTAsync();
+                googletag.pubads().refresh();
+            });
+        } else {
             googletag.pubads().refresh();
-        });
+        }
     });
 }
 

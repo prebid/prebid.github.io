@@ -26,7 +26,7 @@ The 1plusX RTD module appends User and Contextual segments to the bidding object
 1. Compile the 1plusX RTD Module along with your bid adapter and other modules into your Prebid build:  
 
     ```bash
-    gulp build --modules="rtdModule,1plusXRtdProvider,appnexusBidAdapter,..."  
+    gulp build --modules="rtdModule,1plusXRtdProvider,bidderABidAdapter,..."  
     ```
 
 2. Use `setConfig` to instruct Prebid.js to initilize the 1plusX RTD module, as specified below.
@@ -45,8 +45,9 @@ pbjs.setConfig({
             waitForIt: true,
             params: {
                 customerId: 'acme',
-                bidders: ['appnexus', 'rubicon'],
-                timeout: TIMEOUT
+                bidders: ['bidderA', 'bidderB'],
+                timeout: TIMEOUT,
+                fpidStorageType: 'html5'
             }
         }]
     }
@@ -56,11 +57,13 @@ pbjs.setConfig({
 ## Parameters
 
 {: .table .table-bordered .table-striped }
-| Name              | Type          | Description                                                      | Default           |
-| :---------------- | :------------ | :--------------------------------------------------------------- |:----------------- |
-| name              | String        | Real time data module name                                       | Always '1plusX'   |
-| waitForIt         | Boolean       | Should be `true` if there's an `auctionDelay` defined (optional) | `false`           |
-| params            | Object        |                                                                  |                   |
-| params.customerId | String        | Your 1plusX customer id                                          |                   |
-| params.bidders    | Array<string> | List of bidders for which you would like data to be set          |                   |
-| params.timeout    | Integer       | timeout (ms)                                                     | 1000ms            |
+
+| Name | Type | Description | Default |
+| :--- | :--- | :--- | :--- |
+| name | String | Real time data module name | Always '1plusX' |
+| waitForIt | Boolean | Should be `true` if there's an `auctionDelay` defined (optional) | `false` |
+| params | Object | | |
+| params.customerId | String | Your 1plusX customer id | |
+| params.bidders | Array<string> | List of bidders for which you would like data to be set | |
+| params.timeout | Integer | timeout (ms) | 1000ms |
+| params.fpidStorageType | String | Where to read the first party id ('html5' or 'cookie') | 'html5' |

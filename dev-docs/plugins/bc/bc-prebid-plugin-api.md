@@ -123,14 +123,14 @@ If the results of the prebid process is being determined outside of the plugin, 
             }
         },
         "bids": [{
-            "bidder": "appnexus",
+            "bidder": "msft",
             "params": {
-                "placementId": 8845778
+                "placement_id": 8845778
             }
         }]
     },
     "prebidConfigOptions": {
-        "cache": {"url": "https://prebid.adnxs.com/pbc/v1/cache"},
+        "cache": {"url": "https://prebid.example.com/pbc/v1/cache"},
     "   enableSendAllBids": true
     },
     "prebidTimeout": 700,

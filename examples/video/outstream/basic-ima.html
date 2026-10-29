@@ -29,7 +29,8 @@ code_height: 2300
     overflow: hidden;
   }
 </style>
-{% include prebidjs-non-prod.html %}s
+{% include prebidjs-non-prod.html %}
+{% include video/mock-video-bid.html %}
 <div class="container">
   <div class="row">
     <div class="vidHeader" style="width: 75vw">
@@ -136,9 +137,9 @@ code_height: 2300
     },
     bids: [
       {
-        bidder: "appnexus",
+        bidder: "msft",
         params: {
-          placementId: 13232385,
+          placement_id: 13232385,
         },
       },
     ],

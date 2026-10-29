@@ -6,7 +6,7 @@ sidebarType: 1
 ---
 
 
-#### 1. Overview
+## 1. Overview
 
 The bidderSettings object provides a way to define some behaviors for the
 platform and specific adapters. The basic structure is a 'standard' section with defaults for all adapters, and then one or more adapter-specific sections that override behavior for that bidder:
@@ -33,23 +33,26 @@ Some sample scenarios where publishers may wish to alter the default settings:
 * passing additional information to the ad server
 * adjusting the bid CPM sent to the ad server
 
-#### 2. Bidder Setting Attributes
+## 2. Bidder Setting Attributes
 
 {: .table .table-bordered .table-striped }
 | Attribute | Scope | Version | Default | Description |
 | --- | --- | --- | --- | --- |
 | adserverTargeting | standard or adapter-specific | all | see below | Define which key/value pairs are sent to the ad server. |
 | bidCpmAdjustment | standard or adapter-specific | all | n/a | Custom CPM adjustment function. Could, for example, adjust a bidder's gross-price bid to net price. |
+| bidDesirabilityAdjustment | standard or adapter-specific | 11.15.0 | n/a | Custom bid desirability adjustment function. Allows bids to be ranked by a publisher-defined score without changing the adjusted CPM. |
 | inverseBidAdjustment | standard or adapter-specific | 7.33.0 | n/a | Inverse of `bidCpmAdjustment` |
 | sendStandardTargeting | adapter-specific | 0.13.0 | true | If adapter-specific targeting is specified, can be used to suppress the standard targeting for that adapter. |
 | suppressEmptyKeys | standard or adapter-specific | 0.13.0 | false | If custom adserverTargeting functions are specified that may generate empty keys, this can be used to suppress them. |
 | allowZeroCpmBids | standard or adapter-specific | 6.2.0 | false | Would allow bids with a 0 CPM to be accepted by Prebid.js and could be passed to the ad server. |
 | storageAllowed | standard or adapter-specific | 6.13.0 | true in 6.x, false after 7.0 | Allow use of cookies and/or local storage. |  
-| allowAlternateBidderCodes | standard or adapter-specific | 6.23.0 | true in v6.x <br /> false from v7.0| Allow adapters to bid with alternate bidder codes. |  
+| allowAlternateBidderCodes | standard or adapter-specific | 6.23.0 | true in v6.x <br /> false from v7.0 | Allow adapters to bid with alternate bidder codes. |  
 | allowedAlternateBidderCodes | standard or adapter-specific | 6.23.0 | n/a | Array of bidder codes for which an adapter can bid. <br />`undefined` or `['*']` will allow adapter to bid with any bidder code. |
+| allowPriorityBids | adapter-specific | 11.44.0 | false | Trust this adapter's deal metadata (priority and priority-adjusted CPM) when ranking its bids. See [below](#212-allowprioritybids). |
+| allowHouseBids | adapter-specific | 11.45.0 | false | Accept this adapter's house bids at a 0 CPM, without accepting its other 0 CPM bids. Requires `allowPriorityBids`. See [below](#213-allowhousebids). |
 | adjustAlternateBids | standard or adapter-specific | 7.48.0 | false | Optionally allow alternate bidder codes to use an adapter's bidCpmAdjustment function by default instead of the standard bidCpmAdjustment function if present (note: if a bidCpmAdjustment function exists for the alternate bidder code within bidderSettings, then this will be used instead of falling back to the adapter's bidCpmAdjustment function). |
 
-##### 2.1. adserverTargeting
+### 2.1. adserverTargeting
 
 As described in the [AdOps documentation]({{site.baseurl}}/adops/before-you-start.html), Prebid has a recommended standard
 set of ad server targeting that works across bidders. This standard targeting approach is
@@ -119,13 +122,13 @@ Note that the existence of `bidderSettings.adserverTargeting.standard` will prev
 **Keyword targeting for a specific bidder**
 
 Let’s say the bidder prefers a separate set of line items. You can overwrite the bidder
-settings as the below example for AppNexus shows.
+settings as the below example for Microsoft shows.
 
 *Note that the line item setup has to match the targeting change*
 
 ```javascript
 pbjs.bidderSettings = {
-    appnexus: {
+    msft: {
       sendStandardTargeting: false,
       adserverTargeting: [
         {
@@ -144,7 +147,7 @@ pbjs.bidderSettings = {
 }
 ```
 
-In other words, the above config sends 2 pairs of key/value strings targeting for every AppNexus bid and for every ad unit. The 1st pair would be `apn_pbMg` => the value of `bidResponse.pbMg`. The 2nd pair would be `apn_adId` => the value of `bidResponse.adId`. You can find the bidResponse object documentation [here](/troubleshooting/troubleshooting-guide.html#common-bid-response-parameters).
+In other words, the above config sends 2 pairs of key/value strings targeting for every Microsoft bid and for every ad unit. The 1st pair would be `apn_pbMg` => the value of `bidResponse.pbMg`. The 2nd pair would be `apn_adId` => the value of `bidResponse.adId`. See [common bid response parameters](/troubleshooting/troubleshooting-guide.html#common-bid-response-parameters) for bidResponse object documentation.
 
 Note that sendStandardTargeting is set to false so that the standard Prebid targeting (hb_bidder, etc.) aren't also sent to the ad server.
 
@@ -152,7 +155,7 @@ Note that sendStandardTargeting is set to false so that the standard Prebid targ
 
 Now let's say you would like to define a bidder-specific price bucket function rather than use the ones available by default in prebid.js. Even the [priceGranularity config](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Price-Granularity) option applies to all bidders -- with this approach you can overwrite price buckets.
 
-*Note: this will only impact the price bucket sent to the ad server for targeting. It won't actually impact the cpm value used for ordering the bids.*
+*Note: this will only impact the price bucket sent to the ad server for targeting. It won't actually impact the CPM or desirability score used for ordering the bids.*
 
 ```javascript
 pbjs.bidderSettings = {
@@ -180,7 +183,7 @@ pbjs.bidderSettings = {
 }
 ```
 
-##### 2.2. bidCpmAdjustment
+### 2.2. bidCpmAdjustment
 
 Some bidders return gross prices instead of the net prices (what the publisher will actually
 get paid). For example, a publisher's net price might be 15% below the returned gross price.
@@ -189,7 +192,7 @@ header bidding auction. Otherwise, this bidder's gross price will unfairly win o
 other demand sources who report the real price.
 
 Custom adjustment can be provided as a function taking 3 arguments: `bidCpmAdjustment(cpm, bidResponse, bidRequest)`.
-Note that either `bidResponse` or `bidRequest` may be missing, although at least one of them is guaranteed to be present. This is because Prebid will sometimes need to run adjustment when no bid has been made yet; see [inverseBidAdjustment](#23-inversebidadjustment) below.
+Note that either `bidResponse` or `bidRequest` may be missing, although at least one of them is guaranteed to be present. This is because Prebid will sometimes need to run adjustment when no bid has been made yet; see [inverseBidAdjustment](#24-inversebidadjustment) below.
 
 For example:
 
@@ -208,7 +211,36 @@ pbjs.bidderSettings = {
 
 In the above example, the AOL bidder will inherit from "standard" adserverTargeting keys, so that you don't have to define the targeting keywords again.
 
-##### 2.3. inverseBidAdjustment
+### 2.3. bidDesirabilityAdjustment
+
+By default, Prebid.js ranks accepted bids using their CPM after `bidCpmAdjustment` has been applied. Publishers who want to rank bids with additional business logic can provide `bidDesirabilityAdjustment`. This function returns a numeric score used to compare bids: higher scores are preferred.
+
+This is useful when the publisher wants auction ordering to account for signals that should not change the bid's adjusted CPM, price bucket, or ad server reporting value. For example, a publisher could prefer bids from a demand source that has better historical fill, lower discrepancy, or other business-priority signals while keeping the CPM available for targeting and reporting unchanged.
+
+The function takes 3 arguments: `bidDesirabilityAdjustment(cpm, bidResponse, bidRequest)`. The `cpm` argument is the bid CPM after `bidCpmAdjustment` has been applied. The function should return a number, and the default score is the adjusted CPM. If the function throws an error, Prebid.js logs the error and falls back to the adjusted CPM.
+
+For example:
+
+```javascript
+pbjs.bidderSettings = {
+  standard: { ... },
+  exampleBidder: {
+    bidDesirabilityAdjustment: function(adjustedCpm, bid) {
+      // Prefer this bidder slightly for ordering without changing its CPM.
+      if (bid.dealId) {
+        return adjustedCpm + 0.25;
+      }
+      return adjustedCpm;
+    }
+  }
+};
+```
+
+In the above example, deal bids from `exampleBidder` receive a higher desirability score than their adjusted CPM. The bid's CPM is not changed by this function.
+
+To render the most desirable bids directly instead of sending targeting to an ad server, use [`pbjs.getBestBids`](/dev-docs/publisher-api-reference/getBestBids.html).
+
+### 2.4. inverseBidAdjustment
 
 When using [price floors](/dev-docs/modules/floors.html), Prebid attempts to calculate the inverse of `bidCpmAdjustment`, so that the floor values it requests from SSPs take into account how the bid will be adjusted.
 For example, if the adjustment is `bidCpm * .85` as above, floors are adjusted by `bidFloor * 1 / .85`.
@@ -231,7 +263,7 @@ pbjs.bidderSettings = {
 };
 ```
 
-##### 2.4. sendStandardTargeting
+### 2.5. sendStandardTargeting
 
 This boolean flag minimizes key/value pairs sent to the ad server when
 adapter-specific targeting is specified. By default, the platform will send both adapter-specific adServerTargeting as well as the standard adServerTargeting.
@@ -241,19 +273,21 @@ suppress the standard targeting for adapters that define their own.
 
 See the [example above](#key-targeting-specific-bidder) for example usage.
 
-##### 2.5. suppressEmptyKeys
+### 2.6. suppressEmptyKeys
 
 If a custom adServerTargeting function can return an empty value, this boolean flag can be used to avoid sending those empty values to the ad server.
 
-##### 2.6. allowZeroCpmBids
+### 2.7. allowZeroCpmBids
 
 By default, 0 CPM bids are ignored by Prebid.js entirely.  However if there's a valid business reason to allow these bids, this setting can be enabled to allow
 either specific bid adapter(s) or all bid adapters the permission for these bids to be processed by Prebid.js and potentially sent to the respective ad server
 (depending on the Prebid.js auction results).
 
+To accept only an ad server's house bids at 0 CPM, use the narrower [`allowHouseBids`](#213-allowhousebids) instead.
+
 <a id="storageAllowed"></a>
 
-##### 2.7. storageAllowed
+### 2.8. storageAllowed
 
 This setting defines if the bid adapter can access browser cookies or local storage. Allowed values are:
 
@@ -271,13 +305,13 @@ Note that:
 
 <a id="allowAlternateBidderCodes" />
 
-##### 2.8. allowAlternateBidderCodes
+### 2.9. allowAlternateBidderCodes
 
 If this flag is set to `true`, bidders that have not been explicitly requested in [`adUnit.bids`](../adunit-reference.html#adunitbids) may take part in the auction.
 <br />Default value is `true` in version 6.x
 <br />Default value will be `false` from version 7.0
 
-##### 2.9. allowedAlternateBidderCodes
+### 2.10. allowedAlternateBidderCodes
 
 This array will work in conjunction with `allowAlternateBidderCodes`. In this array, you can specify the names of the bidder for which an adapter can accept the bid. If the value is not specified for the array or `[‘*’]` is specified, Prebid will accept bids of all the bidders for the given adapter.
 
@@ -294,7 +328,7 @@ pbjs.bidderSettings = {
         allowedAlternateBidderCodes: ["groupm"],
         [...]
     },
-    appnexus: {
+    msft: {
         allowAlternateBidderCodes: true,
         allowedAlternateBidderCodes: ["*"],
         bidCpmAdjustment: function(bidCpm, bid){ return bidCpm * .90; },
@@ -308,9 +342,9 @@ pbjs.bidderSettings = {
 ```
 
 In the above example, `groupm` bid will have a bid adjustment of 80% since the `bidCpmAdjustment` function says so.<br />
-If `appnexus` bids with another bidder code, say `appnexus2`. This bidder code will adjust the bid cpm to 95% because it will apply the `bidCpmAdjustment` function from `standard` setting, since the `bidCpmAdjustment` is missing for given bidder code I.e `appnexus2`
+If `msft` bids with another bidder code, say `msft2`. This bidder code will adjust the bid cpm to 95% because it will apply the `bidCpmAdjustment` function from `standard` setting, since the `bidCpmAdjustment` is missing for given bidder code I.e `msft2`
 
-##### 2.10. adjustAlternateBids
+### 2.11. adjustAlternateBids
 
 Optionally allow alternate bidder codes originating from a specific bid adapter to fallback to that same adapter's bidCpmAdjustment function. When adjustAlternateBids is set to true, the prioity of which bidCpmAdjustment function to utilize will be as follows based on what is present within the bidderSettings object:
 
@@ -333,7 +367,7 @@ pbjs.bidderSettings = {
         bidCpmAdjustment: function(bidCpm, bid){ return bidCpm * .85; },
         [...]
     },
-    appnexus: {
+    msft: {
         allowAlternateBidderCodes: true,
         allowedAlternateBidderCodes: ["*"],
         bidCpmAdjustment: function(bidCpm, bid){ return bidCpm * .90; },
@@ -343,5 +377,60 @@ pbjs.bidderSettings = {
 ```
 
 In the above example, if PubMatic were to return the "groupm" bidder code then the bidCpmAdjustment function under `pubmatic` would be used instead of what is available under `standard`.
+
+### 2.12. allowPriorityBids
+
+Since Prebid.js 11.43, deal bids can carry deal metadata in `bid.meta.deal`. It is filled in from the OpenRTB response (`seatbid[].bid[].ext.prebid.deal`) for bid adapters built on the ORTB conversion library and for Prebid Server bids, and other adapters can set it directly. It includes a `priority`, and a `priorityAdjustedCpm`: the CPM-equivalent value the ad server ranks the deal at, for example adjusted for how far the deal is ahead of or behind its delivery schedule. Since Prebid.js 11.44, setting `allowPriorityBids: true` for an adapter tells Prebid.js to trust these values when ranking the adapter's bids:
+
+* **Priority:** every bid gets a `priority`. Bids from allowed adapters take `meta.deal.priority`; all other bids, and allowed bids without a valid `meta.deal.priority`, get the default priority of `12`. Lower numbers win, and priority is compared before desirability and CPM. So a bid with priority 6 is preferred over any bid at the default priority, whatever their CPMs, and house campaigns can use a priority above 12.
+* **Desirability:** within the same priority, the bid's desirability starts from `meta.deal.priorityAdjustedCpm` instead of `cpm`. That value goes through the same [`bidCpmAdjustment`](#22-bidcpmadjustment) as the bid's `cpm` (for example a gross-to-net adjustment), then through [`bidDesirabilityAdjustment`](#23-biddesirabilityadjustment) as usual. Bids without a valid `priorityAdjustedCpm` are ranked on `cpm`.
+* **Deal prioritization:** [`sendBidsControl.dealPrioritization`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-Bids-Control) only applies within a priority tier: bids are ordered by priority first, then deals before non-deals among bids with the same priority, then by CPM. A higher-priority non-deal bid is kept over a lower-priority deal bid.
+* **Price floors:** priority doesn't bypass [price floors](/dev-docs/modules/floors.html). Floors are enforced on the bid's `cpm` when the bid is received, before its priority is considered. Deal bids are exempt from floor enforcement unless `enforcement.floorDeals` is `true`, so in the default configuration a priority deal bid below the floor is still accepted and ranked by its priority, while with `floorDeals: true` it is rejected.
+* The bid's `cpm`, price bucket targeting and the price reported to the ad server are not changed. Priority and desirability only affect which bids are chosen: the ad server targeting winner, the bids kept under a [bid limit](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-Bids-Control), [multibid](/dev-docs/modules/multibid.html) ordering, and `pbjs.getBestBids`.
+* The setting must be on the adapter that made the request, and `standard` is ignored. When an adapter bids with an [alternate bidder code](#29-allowalternatebiddercodes), the setting is read from the adapter, not the alternate code.
+* Bids from Prebid Server use [`s2sConfig.allowPriorityBids`](/dev-docs/modules/prebidServer.html) instead, which lists the trusted bidder codes for each Prebid Server instance.
+
+```javascript
+pbjs.bidderSettings = {
+    exampleAdServer: {
+        allowPriorityBids: true
+    }
+};
+```
+
+#### Choosing priorities
+{: .no_toc }
+
+Most ad servers shouldn't need to set a `priority` on reservation deals. Leaving them at the default priority and sending a `priorityAdjustedCpm` is usually enough: it lets reservation campaigns compete with programmatic, non-reservation demand at a value that reflects how urgently they need to deliver, while the best-paying bid still wins when a campaign is on schedule. Set a `priority` mainly for the two cases that shouldn't compete on price:
+
+* **Sponsorships:** a priority below 12 (for example 4), so they win over all price-competitive demand.
+* **House campaigns:** a priority above 12 (for example 16), so they only fill when nothing else bids. To accept house bids at a 0 CPM, see [`allowHouseBids`](#213-allowhousebids).
+
+### 2.13. allowHouseBids
+
+Since Prebid.js 11.45, `allowHouseBids: true` is a narrower form of [`allowZeroCpmBids`](#27-allowzerocpmbids): it lets an adapter's house bids be accepted at a CPM of 0, without accepting its other 0 CPM bids. A 0 CPM bid is accepted as a house bid when:
+
+* the adapter also has [`allowPriorityBids`](#212-allowprioritybids) (for Prebid Server bidders, it's listed in [`s2sConfig.allowPriorityBids`](/dev-docs/modules/prebidServer.html)), and
+* its `meta.deal.priority` is above the default of 12.
+
+`meta.deal.type` isn't considered, since any bidder could declare a house deal: the ad server must send a priority above 12 for its house campaigns.
+
+Notes:
+
+* If the adapter has `allowZeroCpmBids`, `allowHouseBids` has no effect, since every 0 CPM bid is already accepted.
+* House bids are ranked like any other priority bid: by their `meta.deal.priority`. Since that's above 12, a house bid only wins when nothing at the default or a higher priority bids.
+* Prebid.js marks accepted house bids with `bid.houseBid: true`, which analytics adapters and custom code can read. Adapters can't set it themselves: any value they set is overwritten.
+* The setting must be on the adapter that made the request, and `standard` is ignored. When an adapter bids with an [alternate bidder code](#29-allowalternatebiddercodes), the setting is read from the adapter, not the alternate code.
+* Like `allowZeroCpmBids`, and unlike `allowPriorityBids`, the setting is read from `bidderSettings` for Prebid Server bidders too. There is no `s2sConfig` option, and nothing is sent to Prebid Server.
+* If a 0 CPM house bid wins and its targeting is sent to an ad server, its price bucket (`hb_pb`) is the granularity's zero bucket (for example `0.00`), so that ad server needs a matching line item.
+
+```javascript
+pbjs.bidderSettings = {
+    exampleAdServer: {
+        allowPriorityBids: true,
+        allowHouseBids: true
+    }
+};
+```
 
 <hr class="full-rule" />

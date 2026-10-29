@@ -20,7 +20,7 @@ using the [improved Prebid.js native ad](/prebid/native-implementation.html) sup
 
 In this tutorial, we'll set up Prebid.js to show native ads.
 
-We'll use the [AppNexus adapter]({{site.github.url}}/dev-docs/bidders.html#appnexus) since that adapter supports native ads, but the concepts and setup will be largely the same for any bidder adapter that supports the `"native"` media type.
+We'll use the [Microsoft adapter]({{site.github.url}}/dev-docs/bidders/msft.html) since that adapter supports native ads, but the concepts and setup will be largely the same for any bidder adapter that supports the `"native"` media type.
 
 Similarly, we'll use Google Ad Manager as the ad server, but the concept and implementation should be pretty similar to other ad servers.
 
@@ -61,7 +61,7 @@ The ad ops team will then reference these keys in the ad server to set up the ti
 
 Keep the following prerequisites in mind during the implementation:
 
-* Make sure to work with native-enabled bidders. To see which bidders have native demand, see [Bidders with Video and Native Demand]({{site.baseurl}}/dev-docs/bidders.html#bidders-with-video-and-native-demand).
+* Make sure to work with native-enabled bidders. To see which bidders have native demand, see [Bidders with Video and Native Demand]({{site.baseurl}}/dev-docs/bidders.html).
 
 ## Implementation
 
@@ -69,7 +69,7 @@ This section describes the implementation using code samples, but ignores some o
 
 ### 1. Set up your ad slot
 
-In this example we'll store the ad slot info in a variable for reference throughout the page.  We use a 1x1 static ad slot size since AppNexus (our demand partner in this example) uses that size for native creatives.
+In this example we'll store the ad slot info in a variable for reference throughout the page.  We use a 1x1 static ad slot size since Microsoft (our demand partner in this example) uses that size for native creatives.
 
 ```javascript
 const slot = {
@@ -145,9 +145,9 @@ pbjs.addAdUnits({
         }
     },
     bids: [{
-        bidder: 'appnexus',
+        bidder: 'msft',
         params: {
-            placementId: 13232354
+            placement_id: 13232354
         }
     }, ]
 })
@@ -155,7 +155,33 @@ pbjs.addAdUnits({
 ```
 
 {: .alert.alert-danger :}
-For each native ad unit, all of the bidders within that ad unit must have declared native support in their adapter if you want ads to appear.  If there are any bidders without native support in a native ad unit, requests will not be made to those bidders.  For a list of bidders with native support, see [Bidders with Video and Native Demand]({{site.baseurl}}/dev-docs/bidders.html#bidders-with-video-and-native-demand).
+For each native ad unit, all of the bidders within that ad unit must have declared native support in their adapter if you want ads to appear.  If there are any bidders without native support in a native ad unit, requests will not be made to those bidders.  For a list of bidders with native support, see [Bidders with Video and Native Demand]({{site.baseurl}}/dev-docs/bidders.html).
+
+<a name="native-video-asset"></a>
+
+#### Native video asset
+
+Since Prebid.js 11.41, native ad units can request a video asset. It must define `mimes`, `protocols`, `minduration` and `maxduration`, which Prebid.js passes on as the OpenRTB native `video` asset:
+
+```javascript
+mediaTypes: {
+    native: {
+        title: {
+            required: true,
+            len: 80
+        },
+        video: {
+            required: true,
+            mimes: ['video/mp4'],
+            protocols: [2, 3, 5, 6],
+            minduration: 5,
+            maxduration: 30
+        }
+    }
+}
+```
+
+The bid's video asset is the VAST XML (the OpenRTB `vasttag`), available in native templates as `##hb_native_video##`. Prebid.js does not play it: the native template or renderer must load the VAST into a video player itself.
 
 #### Pre-defined native types
 
@@ -187,9 +213,9 @@ const adUnits = [{
         }
     }
     bids: [{
-        bidder: 'appnexus',
+        bidder: 'msft',
         params: {
-            placementId: 13232354
+            placement_id: 13232354
         }
     }]
 }];
