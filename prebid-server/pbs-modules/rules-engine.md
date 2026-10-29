@@ -247,7 +247,7 @@ These functions operate on the OpenRTB request at the Processed Auction Request 
 | dataCenter | null | Returns the value of the datacenter, which is host-company specific. Please work with your host company to get the list of values available in your environment. | "eu-west" |
 | dataCenterIn | `{"datacenters": ["eu-west"]}` | Tests the datacenter against a non-empty array of host-specific codes (case sensitive). | "true" |
 | channel | null | Returns ext.prebid.channel – e.g. web, amp, app. Returns empty string if there is no channel. | "app" |
-| eidAvailable | null  | Returns "true" if user.eids array exists and is non-empty. Returns "false" if user.eids doesn't exist or is empty. | "false" |
+| eidAvailable | null | Returns "true" if user.eids array exists and is non-empty. Returns "false" if user.eids doesn't exist or is empty. | "false" |
 | eidIn | `{"sources": ["pubcid.org"]}` | Returns "true" if any supplied EID source is present; the array must not be empty. | "true" |
 | userFpdAvailable | null | Scans user.ext.data and user.data  Returns "true" if either user.ext.data or user.data exists and is non-empty. If neither exists with data, returns "false". Maybe be extended in the future to support specific fields. | "false" |
 | fpdAvailable | null | Returns "true" if any of the following objects exists and has data: user.ext.data, user.data, site.ext.data, site.content.data, app.ext.data, app.content.data. Otherwise returns "false". | "false" |
