@@ -15,7 +15,7 @@ The general integration scenario requires these steps from publishers:
 1. Prepare the ad layout.
 2. Create Native Ad Unit and appropriate GAM ad loader.
 3. Configure the Native Ad unit using [NativeAdConfiguration](rendering-native-ad-configuration.md).
-    * Provide the list of [Native Assets](../../info-modules/rendering-native-guidelines#components) representing the ad's structure.
+    * Provide the list of [Native Assets](rendering-native-guidelines.html#components) representing the ad's structure.
     * Tune other general properties of the ad.
 4. Make a bid request.
 5. Prepare publisherAdRequest using `GAMUtils.shared.prepareRequest`
@@ -173,7 +173,7 @@ let assets = [
 ]
 ```
 
-See the full description of NativeAdConfiguration options [here](rendering-native-ad-configuration.md).
+See the full description of NativeAdConfiguration options in the [NativeAdConfiguration guide](rendering-native-ad-configuration.md).
 
 ### Step 4: Load the Ad
 

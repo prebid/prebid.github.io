@@ -1,0 +1,11 @@
+<script type="text/javascript">
+  function loadScript(url) {
+    const scr = document.createElement('script');
+    scr.src = url;
+    return new Promise((resolve, reject) => {
+      scr.onerror = reject;
+      scr.onload = resolve;
+      document.head.appendChild(scr);
+    });
+  }
+</script>

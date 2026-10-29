@@ -35,6 +35,9 @@ The `Prebid` class is a singleton that enables you to apply certain global setti
 
 ### Prebid Class Global Properties
 
+{: .alert.alert-warning :}
+The global properties exist only for PrebidMobile `2.5.0`. Starting from PrebidMobile `3.0.0` the global properties below are removed.
+
 All of these properties of the Prebid class can be set on the `shared` object like this:
 
 ```kotlin
@@ -44,9 +47,9 @@ Prebid.shared.sendMraidSupportParams=true
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Purpose | Description | Example |
 | --- | --- | --- | --- | --- |
-| isCoppaEnabled | optional | boolean | ORTB | Set this to true if this app is aimed at children. It sets the ORTB `regs.coppa` flag. Default is false. | `true` |
-| useExternalBrowser | optional | boolean | behavior | If true, clicking on the ad will open your default browser instead of showing within the app's webview. Defaults to `false`. | `true` |
-| sendMraidSupportParams | optional | boolean | ORTB | If `true`, the SDK sends imp[].banner.api=[3,5], indicating support for MRAID. Defaults to `true`. | `false` |
+| isCoppaEnabled | optional | boolean | ORTB | Starting from PrebidMobile `3.0.0` the property is removed. Can be replaces with `TargetingParams.setSubjectToCOPPA()`<wbr>Set this to true if this app is aimed at children. It sets the ORTB `regs.coppa` flag. Default is false. | `true` |
+| useExternalBrowser | optional | boolean | behavior | Starting from PrebidMobile `3.0.0` the property is removed<wbr>If true, clicking on the ad will open your default browser instead of showing within the app's webview. Defaults to `false`. | `true` |
+| sendMraidSupportParams | optional | boolean | ORTB | Starting from PrebidMobile `3.0.0` the property is removed<wbr>If `true`, the SDK sends imp[].banner.api=[3,5], indicating support for MRAID. Defaults to `true`. | `false` |
 
 ### Prebid Class Global Methods
 
@@ -57,6 +60,9 @@ Your Prebid Server team will tell you whether this is required or not and if so,
 #### setPrebidServerHost()
 
 This is where the Prebid SDK will send the auction information.
+
+{: .alert.alert-warning :}
+Starting from PrebidMobile `3.0.0` the `setPrebidServerHost` method is removed. Use the `initializeSdk` method instead.
 
 Signature:
 
@@ -74,8 +80,6 @@ Parameters:
 Examples:
 
 ```kotlin
-PrebidMobile.setPrebidServerHost(Host.APPNEXUS)
-PrebidMobile.setPrebidServerHost(Host.RUBICON)
 PrebidMobile.setPrebidServerHost(Host.createCustomHost("https://prebidserver.example.com/openrtb2/auction"))
 ```
 
@@ -183,6 +187,29 @@ void clearStoredBidResponses()
 ```
 
 Parameters: none.
+
+#### setAuctionSettingsId()
+
+For the SDK to separate out account from "auction settings".
+
+Signature:
+
+```kotlin
+func setAuctionSettingsId(settingsId: String)
+```
+
+Parameters: 
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| settingsId | optional | string | Use the settingsId to separate account from "auction settings", allowing each app to have different global parameters defined on the server side. If specified, the settingsId is used to set `ext.prebid.storedrequest.id`, otherwise prebidServerAccountId is taken by default. | "abc321" |
+
+Examples:
+
+```kotlin
+PrebidMobile.setAuctionSettingsId("abc321")
+```
 
 #### setLogLevel
 
@@ -321,6 +348,90 @@ Parameters:
 | --- | --- | --- | --- | --- |
 | eventDelegate | required | PrebidEventDelegate | The callback for handling all requests and responses. This interface takes request and response as the JSONObject types. | `{ request, response -> ... }` |
 
+#### setDisableStatusCheck()
+
+Informs the SDK whether it should check the PBS status during initialization. This will save initialization time if the PBS endpoint is always live and handled client side.
+
+Signature:
+
+```java
+public static void setDisableStatusCheck(boolean disableStatusCheck)
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| disableStatusCheck | required | boolean | Indicates whether the SDK should opt out of the PBS status checking during initialization. Default is `false`. | `true` |
+
+#### setFilterOutUncachedBids()
+
+(requires SDK v3.4.0)
+
+Applies to the Original API only. With the Original API, the ad server renders a Prebid bid through the Prebid Universal Creative, which loads the creative from Prebid Cache. A bid without a successful cache entry (`bid.ext.prebid.cache`) wins in the ad server but can't render. If this flag is `true`, the SDK drops these bids before their targeting reaches the ad server.
+
+Signature:
+
+```java
+public static void setFilterOutUncachedBids(boolean filterOutUncachedBids)
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| filterOutUncachedBids | required | boolean | Whether the SDK drops bids without a successful Prebid Cache entry. Default is `false`. | `true` |
+
+Example:
+
+```kotlin
+PrebidMobile.setFilterOutUncachedBids(true)
+
+prebidAdUnit.fetchDemand(gamRequest, prebidRequest) { bidInfo ->
+    when (bidInfo.resultCode) {
+        ResultCode.SUCCESS -> {
+            if (bidInfo.isTopBidFiltered) {
+                // The top bid had no cache entry, and a lower-priced cached bid was used instead
+            }
+        }
+        ResultCode.NO_CACHED_BIDS -> {
+            // None of the returned bids had a cache entry, so no Prebid targeting was added
+        }
+        else -> {}
+    }
+
+    adView.loadAd(gamRequest)
+}
+```
+
+- If the bid Prebid Server chose as the winner is dropped, the highest-priced cached bid takes its place, the result code stays `SUCCESS`, and `BidInfo.isTopBidFiltered()` returns `true`.
+- The promoted bid carries only the targeting keys Prebid Server returned for it, usually bidder-specific keys such as `hb_pb_bidderA`. Line items that target only `hb_pb` don't match it.
+- If every bid is dropped, the result code is `NO_CACHED_BIDS`.
+- `BannerAdUnit.fetchDemand(adObject, listener)` reports only a `ResultCode`. Use `PrebidAdUnit` to read `BidInfo.isTopBidFiltered()`.
+
+The setting doesn't apply to the Rendering API, which renders the creative from the bid markup and never loads it from Prebid Cache.
+
+#### setEidsPlacement()
+
+(requires SDK v3.4.0)
+
+Controls where the SDK places Extended IDs in the bid request. See [EID placement](#eid-placement).
+
+Signature:
+
+```java
+public static void setEidsPlacement(@NonNull EidsPlacement placement)
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| placement | required | EidsPlacement | `OPEN_RTB_2_6` (`user.eids`), `OPEN_RTB_2_5` (`user.ext.eids`), or `COMPATIBLE` (both). Default is `COMPATIBLE`. | `EidsPlacement.OPEN_RTB_2_6` |
+
 ---
 
 ## Consent Management Parameters
@@ -420,9 +531,9 @@ Since version 2.0.6, Prebid SDK reads and sends GPP signals:
 ## Open Measurement SDK (OMSDK) API
 
 {: .alert.alert-info :}
-Defining OMSDK values is only relevant for the 'Bidding-Only' Prebid integration with GAM. In this case the creative is rendered by GMA SDK and publishers should provide OMID description in the bid request. If you use Prebid SDK as a rendering engine you shouldn’t use these properties -- it sends them automaticaly according to the current OMID setup.
+Defining OMSDK values is only relevant for the 'Bidding-Only' Prebid integration with GAM. In this case the creative is rendered by GMA SDK and publishers should provide OMID description in the bid request. If you use Prebid SDK as a rendering engine you shouldn’t use these properties -- it sends them automatically according to the current OMID setup.
 
-OMSDK is designed to facilitate 3rd party viewability and verification measurement for ads served in mobile app enviroments. Prebid SDK will provide the signaling component to Bid Adapters by way of Prebid Server, indicating that the impression is eligible for OMSDK support. Prebid SDK does not currently integrate with OMSDK itself, instead it will rely on a publisher ad server to render viewability and verification measurement code.
+OMSDK is designed to facilitate 3rd party viewability and verification measurement for ads served in mobile app environments. Prebid SDK will provide the signaling component to Bid Adapters by way of Prebid Server, indicating that the impression is eligible for OMSDK support. Prebid SDK does not currently integrate with OMSDK itself, instead it will rely on a publisher ad server to render viewability and verification measurement code.
 
 There are three components to signaling support for OMSDK:
 
@@ -466,40 +577,30 @@ First Party Data (FPD) is information about the app or user known by the develop
 
 ### User FPD
 
-Prebid SDK provides a number of properties in the [Targeting class](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#targeting-class-properties-and-
-methods) for setting user-oriented First Party Data.
+Prebid SDK provides a number of properties in the [Targeting class](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#targeting-class-properties-and-methods) for setting user-oriented First Party Data.
 
 ```kotlin
-void addUserData(String key, String value)
+void addUserKeyword(String keyword)
 
-void updateUserData( String key, Set<String> value)
+void addUserKeywords(Set<String> keywords)
 
-void removeUserData(String key)
+void removeUserKeyword(String keyword)
 
-void clearUserData()
+void clearUserKeywords()
 
-Map<String, Set<String>> getUserDataDictionary() {
+String getUserKeywords()
 
-void addUserKeywords(Set<String> keywords) {
-
-void removeUserKeyword(String keyword) {
-
-void clearUserKeywords() {
-
-String getUserKeywords() {
-
-Set<String> getUserKeywordsSet() {
+Set<String> getUserKeywordsSet()
 ```
 
 Example:
 
 ```kotlin
-TargetingParams.addUserData("globalUserDataKey1", "globalUserDataValue1")
+TargetingParams.addUserKeyword("globalUserKeyword")
 ```
 
 {: .alert.alert-info :}
-Note: The 'UserData' functions end up putting data into the OpenRTB user.ext.data object while the 'UserKeywords' functions
-put data into user.keywords.
+Note: The 'UserKeywords' functions put data into user.keywords.
 
 ### Inventory FPD
 
@@ -513,16 +614,6 @@ void updateExtData(String key, Set<String> value)
 void removeExtData(String key)
 
 Map<String, Set<String>> getExtDataDictionary()
-
-void addExtKeyword(String keyword)
-
-void addExtKeywords(Set<String> keywords)
-
-void removeExtKeyword(String keyword)
-
-void clearExtKeywords()
-
-Set<String> getExtKeywordsSet()
 ```
 
 Example:
@@ -595,11 +686,46 @@ userIds.add(fullUserId);
 TargetingParams.setExternalUserIds(userIds);
 ```
 
+Starting from PrebidMobile `3.4.0`, `ExternalUserId` also supports the OpenRTB 2.6 provenance fields:
+
+{: .table .table-bordered .table-striped }
+| Setter | Type | Description |
+| --- | --- | --- |
+| setInserter() | String | Canonical domain of the entity that added the ID to the request. Maps to `user.eids[].inserter`. |
+| setMatcher() | String | Technology that provided the match method in `mm`. Maps to `user.eids[].matcher`. |
+| setMm() | Integer | Match method used by the matcher, from the AdCOM 1.0 "ID Match Methods" list. Maps to `user.eids[].mm`. |
+
+```java
+ExternalUserId fullUserId = new ExternalUserId("adserver.org", List.of(uniqueId1, uniqueId2));
+fullUserId.setInserter("example.com");
+fullUserId.setMatcher("example.com");
+fullUserId.setMm(3);
+```
+
+### EID placement
+
+(requires SDK v3.4.0)
+
+OpenRTB 2.6 moved EIDs from `user.ext.eids` to `user.eids`. Prebid Server reads `user.eids` and ignores `user.ext.eids` whenever `user.eids` is present. `PrebidMobile.setEidsPlacement()` controls where the SDK sends them:
+
+{: .table .table-bordered .table-striped }
+| Value | EIDs are sent in |
+| --- | --- |
+| `COMPATIBLE` (default) | Both `user.eids` and `user.ext.eids` |
+| `OPEN_RTB_2_6` | `user.eids` only |
+| `OPEN_RTB_2_5` | `user.ext.eids` only |
+
+```kotlin
+PrebidMobile.setEidsPlacement(EidsPlacement.OPEN_RTB_2_6)
+```
+
+The placement applies to all EIDs in the request: those set with `setExternalUserIds()`, the Shared ID, and any EIDs added to `user.eids` or `user.ext.eids` through the [global OpenRTB config](#arbitrary-openrtb). The SDK combines both locations into one list, where entries already in `user.eids` aren't added twice, and writes that list to each location the placement enables.
+
 ### Shared ID
 
 The Shared ID is a randomly generated first-party identifier managed by Prebid. It remains the same throughout the current app session unless reset. If local storage access is permitted, the same ID may persist across multiple app sessions indefinitely. However, Shared ID values do not remain consistent across different apps on the same device.
 
-The SDK will include it in the `user.ext.eids` array during auction request if the publisher explicitly permits it:
+The SDK will include it in the EIDs of the bid request (see [EID placement](#eid-placement)) if the publisher explicitly permits it:
 
 ```kotlin
 TargetingParams.setSendSharedId(true);
@@ -770,6 +896,25 @@ Parameters:
 | latitude | required | double | The device latitude. | 40.71 |
 | longitude | required | double | The device longitude. | 74.01 |
 
+### setLocationDecimalPrecision()
+
+Sets the decimal precision for location coordinates (latitude/longitude) in geo-targeting. This helps control the precision of location data sent in ad requests for privacy purposes.
+
+Signature:
+
+```kotlin
+void setLocationDecimalPrecision(Int? precision)
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| precision | optional | integer | Number of decimal places to keep, or null for no limit. Values outside the 0-6 range will be clamped to valid range. Default is `null` | 2 |
+
+Related function: getLocationDecimalPrecision().
+
 ---
 
 ## Arbitrary OpenRTB
@@ -802,22 +947,18 @@ TargetingParams.setGlobalOrtbConfig("")
 
 The `TargetingParams.setGlobalOrtbConfig()` also allows to **add** impression objects to the request. All objects in the `$.imp[]` array will be added to the request. Note that Ad Unit's `imp` object won't be changed using Global Config. To change the `imp` config, use the `setImpORTBConfig()` method of a particular Ad Unit. See the Ad Unit documentation for the details. 
 
+The global config is also the way to set OpenRTB fields that have no dedicated `TargetingParams` method. For instance, to pass the URL of the content displayed alongside the ad in `$.app.content.url`:
+
+``` kotlin
+TargetingParams.setGlobalOrtbConfig("{\"app\":{\"content\":{\"url\":\"https://example.com/articles/123\"}}}")
+```
+
+Each call replaces the previously set global config, so put all global-level fields in a single JSON object.
+
 Pay attention that there are certain protected fields such as `regs`, `device`, `geo`, `ext.gdpr`, `ext.us_privacy`, and `ext.consent` which cannot be changed using the `setGlobalOrtbConfig()` method.
 
 - App and User first party data should use the [functions defined for those purposes](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#first-party-data)
 - See the [Prebid Server auction endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#prebid-server-ortb2-extension-summary) reference for more information about how it will process incoming fields.
-
-### Deprecated 
-{:.no_toc}
-
-The Prebid Mobile SDK v2.2.1 contains the deprecated method to set the impression level RTB config: 
-
-``` swift
-//ad unit / impression-level
-adUnit.setOrtbConfig("{\"ext\":{\"gpid\":\"abc123"}}\")
-```
-
-This method has implementation issues and was deprecated in v2.4.0. If you use this method, we strongly recommend migrating to the new `setImpORTBConfig()` method since this one will be removed entirely in SDK version 3.0.
 
 ## Further Reading
 

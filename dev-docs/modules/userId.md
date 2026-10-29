@@ -46,6 +46,11 @@ When paired with the [Consent Management](/dev-docs/modules/consentManagementTcf
   * Calls to an external user ID vendor are not made.
   * Nothing is stored to cookies or HTML5 local storage.
 
+Since Prebid.js 11.14:
+
+* If a TCF or GPP consent management module is configured and its CMP lookup fails (for example, because no CMP is found or the CMP returns an error), user ID submodules do not run: no IDs are retrieved and none are added to bid requests. A CMP timeout is not treated as a failure; in that case user ID submodules run with the consent data available at the time, as before.
+* Once the User ID module has initialized, any change in consent data (TCF, GPP, USP or COPPA) triggers a refresh of all user ID submodules, as if [`pbjs.refreshUserIds()`](/dev-docs/publisher-api-reference/refreshUserIds.html) had been called.
+
 In addition, individual users may opt-out of receiving cookies and HTML5 local storage by setting these values:
 
 * `_pbjs_id_optout` cookie or HTML5 local storage. The value can be anything -- if it exists, the user is considered opted out and no userId modules will fire.
@@ -75,6 +80,9 @@ The PPID in GAM (which is unrelated to the PPID UserId Submodule) has strict rul
 | Param under userSync | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | ppid | Optional | String | Must be a source from the [pbjs.getUserIdsAsEids()](#getUserIdsAsEids) array | `"pubcid.org"` |
+| autoRefresh | Optional | Boolean | Refresh IDs automatically when their configuration changes. Defaults to `false`. | `true` |
+| retainConfig | Optional | Boolean | When set to `false`, previously configured IDs are removed if they are not present in updated configuration. Defaults to `true`. | `false` |
+| enforceStorageType | Optional | Boolean | Restrict submodules to storing IDs only in the location defined by `storage.type`. | `true` |
 
 The table below has the options that are common across ID systems. See the sections below for specific configuration needed by each system and examples.
 
@@ -90,7 +98,7 @@ The table below has the options that are common across ID systems. See the secti
 | name | Required | String | May be any of the following values: {% for page in userid_pages -%}`"{{ page.useridmodule -}}"`{% if forloop.last == false -%}, {% endif -%}{% endfor -%} | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
 | bidders | Optional | Array of Strings | An array of bidder codes to which this user ID may be sent. | `['bidderA', 'bidderB']` |
-| storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be a cookie, HTML5 storage or both.| |
+| storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be a cookie, HTML5 storage or both. | |
 | storage.type | Required | String | Must be `"cookie"`, `"html5"` or `"cookie&html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
 | storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"_unifiedId"` |
 | storage.expires | Strongly Recommended | Integer | How long (in days) the user ID information will be stored. If this parameter isn't specified, session cookies are used in cookie-mode, and local storage mode will create new IDs on every page. | `365` |
@@ -99,7 +107,7 @@ The table below has the options that are common across ID systems. See the secti
 
 ## Permissions
 
-Publishers can control which user ids are shared with the bid adapters they choose to work with by using the bidders array.  The bidders array is part of the User id module config, publisher may choose to send an id to some bidders but not all, the default behavior is that each user id go to all bid adapters the publisher is working with.
+Publishers can control which user ids are shared with the bid adapters they choose to work with by using the bidders array.  The bidders array is part of the User id module config, publisher may choose to send an id to some bidders but not all, the default behavior is that each user id goes to all bid adapters the publisher is working with.
 
 Use the optional `bidders` parameter to define an array of bidder codes to which this user ID may be sent.
 
@@ -323,30 +331,30 @@ If you're an ID provider that wants to get on this page:
 
 ## ESP Configurations
 
-Google now supports Encrypted Signals for Publishers(ESP), a program that allows publishers can explicitly share encrypted signals on bid requests with third-party bidders. User ID modules now support code which will register the signal sources and encrypted signals are created and are sent to GAM request in a3p parameter. 'encryptedSignal' configuration under userSync Module will help to configure signal sources.
+Google Ad Manager supports Encrypted Signals for Publishers (ESP), also called secure signals. It lets publishers share signals, such as user IDs, with bidders in Open Bidding and other programmatic demand through GAM. The User ID module can act as a signal collector. Prebid.js registers one secure signal provider with GPT (`googletag.secureSignalProviders`) for each configured source, and GPT collects the signals and sends them with the ad request (in the `a3p` parameter).
 
-Please find more details [Share encrypted signals with bidders (Beta)](https://support.google.com/admanager/answer/10488752?hl=en).
+For more details, see [Share secure signals with bidders](https://support.google.com/admanager/answer/10488752?hl=en).
 
-Alternatively, GAM can now pull IDs from Prebid for UserId submodules that [register with GAM](https://services.google.com/fb/forms/encryptedsignalsforpublishers-signalcollectorform/) For those registered submodules, publishers can [select Prebid UserID module (Beta)  under "Signal collection deployment."](https://support.google.com/admanager/answer/10488752?hl=en). Publishers selecting this option should not also select those identifiers in the `encryptedSignalSources.sources.source` array.
+Alternatively, GAM can pull IDs from Prebid for User ID submodules that [register with GAM](https://services.google.com/fb/forms/encryptedsignalsforpublishers-signalcollectorform/). For those registered submodules, publishers can [select Prebid UserID module (Beta) under "Signal collection deployment."](https://support.google.com/admanager/answer/10488752?hl=en). Publishers selecting this option should not also list those identifiers in `encryptedSignalSources.sources[].source`.
 
 {: .table .table-bordered .table-striped }
 
 | Param under userSync | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| encryptedSignalSources | Optional | Object | Publisher can specify the ESP config by adding encryptedSignal Object under userSync Object |  |
-| encryptedSignalSources.sources | Required | Object |  An array of Object consisting of a sources list and encryption flag | Check below config as an example  |
-| encryptedSignalSources.sources.source | Required | Array | An array of sources for which signals needs to be registered  | `['sharedid.org','criteo.com']` |
-| encryptedSignalSources.sources.encrypt | Required | Boolean | Should be set to false by default. Please find below note | `true` or `false` |
-| encryptedSignalSources.sources.customFunc | Required | function | This function will be defined for custom sources only and called which will return the custom data set from the page  | Check below config as an example  |
-| encryptedSignalSources.registerDelay | Optional | Integer | The amount of time (in milliseconds) after which registering of signals will happen. Default value 0 is considered if 'registerDelay' is not provided. | `3000` |
+| encryptedSignalSources | Optional | Object | ESP configuration. Has no effect until [`pbjs.registerSignalSources()`](/dev-docs/publisher-api-reference/registerSignalSources.html) is called. | |
+| encryptedSignalSources.sources | Required | Array of objects | Groups of signal sources that share the same settings. | See the example below |
+| encryptedSignalSources.sources[].source | Required | Array of strings | Signal source names. Each name is registered with GPT as a secure signal provider ID. Without a `customFunc`, each name must match the `source` of an EID produced by a configured User ID submodule (see [`pbjs.getUserIdsAsEids()`](/dev-docs/publisher-api-reference/getUserIdsAsEids.html)). | `['pubcid.org', 'criteo.com']` |
+| encryptedSignalSources.sources[].encrypt | Optional | Boolean | Only applies to sources without a `customFunc`. If `false` (the default), the signal is the first ID of the matching EID (`uids[0].id`). If `true`, the signal is the whole EID object, JSON-serialized, base64-encoded and prefixed with the format version, as in `1\|\|eyJzb3VyY2UiOi...`. See the note below. | `false` |
+| encryptedSignalSources.sources[].customFunc | Optional | Function | Use this for signals that don't come from a User ID submodule. It's called with the source name and should return the signal (a string, or an object that will be JSON-serialized). The return value is always base64-encoded with the `1\|\|` prefix, whatever `encrypt` is set to. If it returns a falsy value, no signal is sent for that source. When `customFunc` is set, EIDs are not used for the source. | See the example below |
+| encryptedSignalSources.registerDelay | Optional | Integer | Delay, in milliseconds, between the `registerSignalSources()` call and the registration with GPT. Defaults to 0. | `3000` |
 
 {: .alert.alert-info :}
 **NOTE:**
-For eids encryption (encryptedSignalSources.encrypt) set to true is not recommended unless downstream is informed of the changes.
+Despite the parameter names, Prebid.js does not encrypt the signal. `encrypt: true` and `customFunc` signals are only base64-encoded, with a version prefix (`1||`), so that structured data can be passed safely. How the signals are protected and which bidders receive them is controlled by the secure signals settings in Google Ad Manager. Only set `encrypt: true` for EIDs if the bidders reading the signal expect this format.
 
 {: .alert.alert-info :}
 **NOTE:**
-Publishers enabling passing eids/signal through ESP should reach out to SSPs integrated through OB to make sure to take any additional steps needed to ensure impact on 3p cookie based transaction is handled and impact is minimal.
+Publishers that pass EIDs or other signals through ESP should contact the SSPs they work with through Open Bidding to check whether any additional steps are needed, so that the impact on third-party cookie based transactions is minimal.
 
 ESP Configuration Example:
 
@@ -356,20 +364,20 @@ pbjs.setConfig({
         ...,
         encryptedSignalSources: {
             "sources": [{
-                source: ['sharedid.org', 'criteo.com', 'id5-sync.com', 'pubcid.org', 'audigent.com'],
+                // EID sources: the signal is the raw ID (uids[0].id) of the matching EID
+                source: ['pubcid.org', 'criteo.com', 'id5-sync.com', 'audigent.com'],
                 encrypt: false
             }, {
+                // custom source: the signal is "1||" + base64 of the returned value
                 source: ['pubmatic.com'],
-                customFunc: () => {
+                customFunc: (source) => {
                     return '{"keywords":["tech","auto"]}';
-                },
-                encrypt: true
+                }
             }, {
                 source: ['segment.com'],
-                customFunc: () => {
-                    return '[{ "id": "1", "value": "seg1" },{ "id": "2", "value": "seg2" }]';
-                },
-                encrypt: true
+                customFunc: (source) => {
+                    return [{ id: "1", value: "seg1" }, { id: "2", value: "seg2" }];
+                }
             }],
             "registerDelay": 3000
         },
@@ -380,7 +388,9 @@ pbjs.setConfig({
 ```
 
 This will have no effect until you call the `registerSignalSources` API. This method must be called
-**after** the `pbjs.setConfig` and `gpt.js` has loaded. See [API reference for `registerSignalSources`](/dev-docs/publisher-api-reference/registerSignalSources.html)
+**after** the `pbjs.setConfig` and `gpt.js` has loaded. See [API reference for `registerSignalSources`](/dev-docs/publisher-api-reference/registerSignalSources.html).
+
+To check the signal Prebid.js will produce for a source, for example while debugging, use [`pbjs.getEncryptedEidsForSource()`](/dev-docs/publisher-api-reference/getEncryptedEidsForSource.html).
 
 ## Further Reading
 

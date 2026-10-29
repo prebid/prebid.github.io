@@ -2,7 +2,7 @@
 layout: page_v2
 page_type: module
 title: Module - Bid Viewability - Ad Server Independent
-description: Triggers a BID_VIEWABLE event when a rendered bid is viewable according to an approximation of IAB viewability criteria
+description: Triggers a `bidViewable` event when a rendered bid is viewable according to an approximation of IAB viewability criteria
 module_code : bidViewabilityIO
 display_name : Bid Viewability - Ad Server Independent
 enable_download : true
@@ -17,7 +17,7 @@ sidebarType : 1
 
 ## Overview
 
-This optional module will trigger a BID_VIEWABLE event which can be consumed by Analytics adapters. In addition, the winning bidder can implement an `onBidViewable` method to capture this event.
+This optional module will trigger a `bidViewable` event which can be consumed by Analytics adapters. In addition, the winning bidder can implement an `onBidViewable` method to capture this event.
 
 Notes:
 

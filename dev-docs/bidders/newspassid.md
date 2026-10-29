@@ -1,22 +1,19 @@
 ---
-Module Name: NewspassId Bidder Adapter
-Module Type: Bidder Adapter
-Maintainer: techsupport@newspassid.com
 layout: bidder
-title: Newspass ID
-description: LMC Newspass ID Prebid JS Bidder Adapter
+title: NewsPassID
+description: Local Media Consortium's NewsPassID Prebid JS Bidder Adapter
 biddercode: newspassid
-tcfeu_supported: false
-gvl_id: none
+media_types: banner, video, native
+gvl_id: 1317
+tcfeu_supported: true
 usp_supported: true
-coppa_supported: false
+coppa_supported: true
+gpp_supported: true
 schain_supported: true
-dchain_supported: false
-userIds: criteo, id5Id, tdid, identityLink, liveIntentId, parrableId, pubCommonId, lotamePanoramaId, sharedId, fabrickId
-media_types: banner
+userIds: all
 safeframes_ok: true
-deals_supported: true
-floors_supported: false
+deals_supported: false
+floors_supported: true
 fpd_supported: false
 pbjs: true
 pbs: false
@@ -27,10 +24,9 @@ sidebarType: 1
 
 ### Description
 
-LMC Newspass ID Prebid JS Bidder Adapter that connects to the NewspassId demand source(s).
+LMC NewsPassID Prebid JS Bidder Adapter that connects to the NewsPassID demand source(s). Learn more about the NewsPassID initiative [here](https://www.newspassid.com).
 
-The Newspass bid adapter supports Banner mediaTypes ONLY.
-This is intended for USA audiences only, and does not support GDPR
+This requires setup on the NewsPassID provider's end before beginning. Don't hesitate to reach out at <techsupport@newspassid.com>.
 
 ### Bid Params
 
@@ -38,37 +34,46 @@ This is intended for USA audiences only, and does not support GDPR
 
 | Name      | Scope    | Description               | Example    | Type     |
 |-----------|----------|---------------------------|------------|----------|
-| `siteId`    | required | The site ID.             | `"NPID0000001"` | `string` |
-| `publisherId`    | required | The publisher ID.  | `"4204204201"` | `string` |
-| `placementId`    | required | The placement ID.  | `"0420420421"` | `string` |
-| `customData`     | optional | publisher key-values used for targeting | `[{"settings":{},"targeting":{"key1": "value1", "key2": "value2"}}],` | `array` |
+| `publisherId`    | required | The publisher ID in the NewsPassID backend.  | `"test-publisher"` | `string` |
+| `placementId`    | required | The placement ID in the NewsPassID backend.             | `"test-group1"` | `string` |
 
-### Test Parameters
+### Integration
 
-A test ad unit that will consistently return test creatives:
+#### Step 1: Configure NewsPassID publisher ID in global pbjs config to enable user syncs (Recommended)
 
 ```javascript
-//Banner adUnit
-
-const adUnits = [{
-                    code: 'id-of-your-banner-div',
-                    mediaTypes: {
-                      banner: {
-                        sizes: [[300, 250], [300,600]]
-                      }
-                    },
-                    bids: [{
-                        bidder: 'newspassid',
-                        params: {
-                            publisherId: 'NEWSPASS0001', /* an ID to identify the publisher account  - required */
-                            siteId: '4204204201', /* An ID used to identify a site within a publisher account - required */
-                            placementId: '8000000015', /* an ID used to identify the piece of inventory - required - for appnexus test use 13144370. */
-                            customData: [{"settings": {}, "targeting": {"key": "value", "key2": ["value1", "value2"]}}],/* optional array with 'targeting' placeholder for passing publisher specific key-values for targeting. */                            
-                        }
-                    }]
-                }];
+window.pbjs = window.pbjs || { que: [] };
+window.pbjs.que.push(function() {
+  window.pbjs.setConfig({
+    newspassid: {
+      publisherId: 'test-publisher'
+    }
+  });
+});
 ```
 
-### Note
+#### Step 2: Add the `newspassid` bidder and params to your ad unit(s)
 
-Please contact us at <techsupport@newspassid.com> for any assistance testing your implementation before going live into production.
+```javascript
+const adUnits = [
+  {
+    code: 'id-of-your-banner-div',
+    mediaTypes: {
+      banner: {
+        sizes: [[300, 250]]
+      }
+    },
+    bids: [
+      {
+        bidder: 'newspassid',
+        params: {
+            publisherId: 'test-publisher', /* an ID to identify the publisher account  - required if you skip step 1 */
+            placementId: 'test-group1' /* An ID used to identify the ad placement configuration - required */                          
+        }
+      }
+    ]
+  }
+];
+```
+
+The `publisherId` and `placementId` are the only params needed for all media types we support. These values are setup by the LMC partnership before you begin.

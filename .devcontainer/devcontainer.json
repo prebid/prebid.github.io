@@ -1,5 +1,11 @@
+
 {
   "image": "mcr.microsoft.com/devcontainers/jekyll:2",
+  "features": {
+    "ghcr.io/devcontainers/features/ruby:1": {
+      "version": "2.7.6"
+    }
+  },
   "customizations": {
     "vscode": {
       "extensions": [
@@ -9,3 +15,4 @@
     }
   }
 }
+

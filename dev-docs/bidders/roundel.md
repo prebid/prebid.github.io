@@ -20,7 +20,7 @@ sidebarType: 1
 
 ### Overview
 
-Roundel is an aliased bidder for Index Exchange and must be configured alongside the [IdentityLink](/dev-docs/modules/userId.html#identitylink) user ID module.
+Roundel is an aliased bidder for Index Exchange and must be configured alongside the [RampID](/dev-docs/modules/userid-submodules/ramp.html) user ID module.
 
 ### Bid Params
 

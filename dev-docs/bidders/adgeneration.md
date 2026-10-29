@@ -28,7 +28,7 @@ In release 1.6.4 and later, publishers should use the `ortb2` method of setting 
 * ortb2.site.content.data[]
 
 If `ad-generation.jp` is specified for ortb2.site.content.data[].name and `546` is specified for ortb2.site.content.data[].ext.segtax,
-`ortb2.site.content.data[].segment[].name` and `ortb2.site.content.data[].segment[].value` can be any string value.
+`ortb2.site.content.data[].segment[].id` and `ortb2.site.content.data[].segment[].value` can be any string value.
 
 Example first party data that's available to all bidders and all adunits:
 
@@ -43,9 +43,10 @@ pbjs.setConfig({
                         segtax: 546
                     },
                     segment: [
-                        { name: "news_category", value: "Sports_Sumo" },// name and value must be string types
-                        { name: "local_gourmet", value: "sushi" },
-                        { name: "location", value: "tokyo" }
+                        { id: "news_category", value: "Sports_Sumo" },// id and value must be string types
+                        { id: "local_gourmet", value: "sushi" },
+                        { id: "location", value: "tokyo" },
+                        { id: "code", value: "1001"}
                     ]
                 }]
             }

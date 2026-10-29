@@ -110,7 +110,7 @@ It serves 2 purposes:
             },
             "schains": [{
                 "bidders": ["bidderA"],
-                "schain": { SCHAIN OBJECT 1} // bid adapters will see their schain on source.[ext.]schain.
+                "schain": { SCHAIN OBJECT 1} // bid adapters will see their schain on source.schain.
             }],
             "server": {
                 "externalurl": "https://prebid-server.example.com",

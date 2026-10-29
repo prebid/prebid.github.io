@@ -5,12 +5,16 @@ title: Module - Freewheel
 description: Passes key value targeting to Freewheel SDK for adpod mediaType adUnits.
 module_code : freeWheelAdserverVideo
 display_name : Freewheel Video Support
-enable_download : true
+enable_download : false
+pbjs_version_notes: removed in 11.0
 vendor_specific: true
 sidebarType : 1
 ---
 
 # Freewheel Module
+
+{: .alert.alert-warning :}
+The Freewheel Video Support module (freeWheelAdserverVideo) was removed in Prebid.js 11.0 along with ad pod (long-form) video support.
 
 This module returns the targeting key value pairs for the FreeWheel ad server.
 
@@ -58,6 +62,15 @@ pbjs.adServers.freewheel.getTargeting({
   ]
 }
 ```
+
+### Parameters
+
+{: .table .table-bordered .table-striped }
+
+| Name | Type | Description | Required | Default |
+| :--- | :--- | :--- | :--- | :--- |
+| `codes` | Array<string> | AdUnit codes to retrieve targeting for | yes | n/a |
+| `callback` | Function | Function invoked with error and targeting map | yes | n/a |
 
 The values returned by `getTargeting` are concatenation of CPM, industy code, and video duration. FreeWheel SDK will send those values to FreeWheel Ad Server within the following query:
 

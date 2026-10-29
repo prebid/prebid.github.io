@@ -93,6 +93,7 @@ include: ['node_modules']
 keep_files:
   - assets/css/main-bundle.css
   - assets/js/main-bundle.js
+  - pagefind
 
 plugins:
   - jekyll-mentions

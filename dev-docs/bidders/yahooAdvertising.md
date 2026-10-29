@@ -5,7 +5,6 @@ description: Yahoo Advertising Bid Adapter
 pbs: true
 pbjs: true
 media_types: banner, video
-filename: yahooAdsBidAdapter
 biddercode: yahooAds
 prebid_member: true
 tcfeu_supported: true

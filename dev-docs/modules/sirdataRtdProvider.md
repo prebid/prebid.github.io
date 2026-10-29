@@ -125,7 +125,7 @@ Bidders can receive common setting :
 
 As indicated above, it is possible to provide your own bid augmentation functions. This is useful if you know a bid adapter's API supports segment fields which aren't specifically being added to request objects in the Prebid bid adapter.
 
-Please see the following example, which provides a function to modify bids for a bid adapter called ix and overrides the appnexus.
+Please see the following example, which provides a function to modify bids for a bid adapter called ix and overrides the msft.
 data Object format for usage in this kind of function :
 
 ```json
@@ -182,7 +182,7 @@ data Object format for usage in this kind of function :
 ```
 
 ```javascript
-function overrideAppnexus (adUnit, segmentsArray, dataObject, bid) {
+function overrideMsft (adUnit, segmentsArray, dataObject, bid) {
     for (var i = 0; i < segmentsArray.length; i++) {
         if (segmentsArray[i]) {
             bid.params.user.segments.push(segmentsArray[i]);
@@ -205,8 +205,8 @@ pbjs.setConfig({
                     contextualMinRelevancyScore: 50, //Min score to keep contextual category in the bidders (0-100 scale)
                     actualUrl: actual_url, //top location url, for contextual categories
                     bidders: [{
-                        bidder: 'appnexus',
-                        customFunction: overrideAppnexus,
+                        bidder: 'msft',
+                        customFunction: overrideMsft,
                         curationId: '111'
                     },{
                         bidder: 'ix',
@@ -227,7 +227,7 @@ pbjs.setConfig({
 To view an example of available segments returned by Sirdata's backends:
 
 ```bash
-gulp serve --modules=rtdModule,sirdataRtdProvider,appnexusBidAdapter
+gulp serve --modules=rtdModule,sirdataRtdProvider,msftBidAdapter
 ```
 
 and then point your browser at:

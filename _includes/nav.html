@@ -59,9 +59,25 @@
           </li>
 
         {% endfor %}
-        <li class="nav-item"><div class="c-search"><input type="search" id="site-search"></div></li>
+        <li class="nav-item"><div class="c-search"></div></li>
       </ul>
     </div>
   </div>
 </nav>
 </header>
+<!-- Pagefind search modal, added to the page with the trigger by the script in head--common.html -->
+<template id="pagefind-modal-template">
+  <pagefind-modal reset-on-close>
+    <pagefind-modal-header>
+      <pagefind-input placeholder="Search Prebid docs"></pagefind-input>
+    </pagefind-modal-header>
+    <pagefind-modal-body>
+      <pagefind-filter-dropdown filter="section" label="Section" sort="count-desc"></pagefind-filter-dropdown>
+      <pagefind-summary></pagefind-summary>
+      <pagefind-results max-sub-results="3"></pagefind-results>
+    </pagefind-modal-body>
+    <pagefind-modal-footer>
+      <pagefind-keyboard-hints></pagefind-keyboard-hints>
+    </pagefind-modal-footer>
+  </pagefind-modal>
+</template>

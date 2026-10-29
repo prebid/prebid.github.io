@@ -9,6 +9,24 @@
         $(".adapters .col-md-4").show();
         setPrepickedModules();
 
+        var configInput = document.getElementById('configFileInput');
+        if (configInput) {
+            configInput.addEventListener('change', function(event) {
+                var file = event.target.files[0];
+                if (!file) return;
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        var cfg = JSON.parse(e.target.result);
+                        applyConfig(cfg);
+                    } catch (err) {
+                        alert('Invalid configuration file');
+                    }
+                };
+                reader.readAsText(file);
+            });
+        }
+
         document.getElementById('download-button').addEventListener('click', function (event) {
             event.preventDefault();
             submit_download();
@@ -16,13 +34,9 @@
     });
 
     function getVersionList() {
-        $.ajax({
-            type: "GET",
-            url: "https://js-download.prebid.org/versions",
-        })
-            .success(function (data) {
+        prebidBundler.getVersions()
+            .then(function (data) {
                 try {
-                    data = JSON.parse(data);
                     var versions = data.versions;
                     if (!versions || versions.length === 0) {
                         showError();
@@ -52,8 +66,7 @@
                     console.log(e);
                     showError();
                 }
-            })
-            .fail(function (e) {
+            }, function (e) {
                 console.log(e);
                 showError();
             });
@@ -68,48 +81,43 @@
         $('#download-button').html('<i class="glyphicon glyphicon-send"></i> Sending Request...').addClass('disabled');
 
         var form_data = get_form_data();
-        $.ajax({
-            type: "POST",
-            url: "https://js-download.prebid.org/download",
-            dataType: "text",
-            data: form_data,
-        })
-        .success(function (data, textStatus, jqXHR) {
+        const removedModules = form_data.removedModules;
+        delete form_data.removedModules;
+        prebidBundler.download(form_data)
+        .then(function (data) {
             $('#download-button').html('<i class="glyphicon glyphicon-ok"></i> Prebid.js download successfully prepared!');
             setTimeout(function () {
                 $('#download-button').html('<i class="glyphicon glyphicon-download-alt"></i> Download Prebid.js').removeClass('disabled');
             }, 5000);
-            // Try to find out the filename from the content disposition `filename` value
             var filename = "prebid" + form_data["version"] + ".js";
-            // this doens't work in our current jquery version.
-            var disposition = jqXHR.getResponseHeader("Content-Disposition");
-            if (disposition && disposition.indexOf("attachment") !== -1) {
-                var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
-                var matches = filenameRegex.exec(disposition);
-                if (matches != null && matches[1])
-                    filename = matches[1].replace(/['"]/g, "");
-            }
-            // The actual download
-            var blob = new Blob([data], { type: "text/javascript" });
-            var link = document.createElement("a");
-            link.href = window.URL.createObjectURL(blob);
-            link.download = filename;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            if (form_data["removedModules"].length > 0) {
+
+            var jsBlob = new Blob([data], { type: "text/javascript" });
+            var configData = JSON.stringify({ version: form_data.version, modules: form_data.modules }, null, 2);
+
+            triggerDownload(jsBlob, filename);
+            triggerDownload(new Blob([configData], { type: "application/json" }), "prebid-config.json");
+
+            if (removedModules.length > 0) {
                 alert(
                     "The following modules were removed from your download because they aren't present in Prebid.js version " +
                     form_data["version"] +
                     ": " +
-                    JSON.stringify(form_data["removedModules"])
+                    JSON.stringify(removedModules)
                 );
             }
-        })
-        .fail(function (e) {
+        }, function (e) {
             console.log(e);
-            alert("Ran into an issue.");
+            alert("Ran into an issue: " + e.message);
         });
+    }
+
+    function triggerDownload(blob, filename) {
+        var link = document.createElement("a");
+        link.href = window.URL.createObjectURL(blob);
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     }
 
     const renameModules = (function() {
@@ -155,7 +163,7 @@
             });
 
         return {
-            modules: renameModules(version, modules),
+            modules: renameModules(version, modules).filter(mod => !removedModules.includes(mod)),
             version,
             removedModules,
         };
@@ -204,6 +212,32 @@
                 window.history.replaceState(null, "", currentUrl);
             });
         });
+    }
+
+    function applyConfig(cfg) {
+        if (!cfg) return;
+        if (cfg.version) {
+            var versionOption = document.querySelector('#version_selector option[value="' + cfg.version + '"]');
+            if (versionOption) {
+                versionOption.selected = true;
+                searchParams.set("version", cfg.version);
+            }
+        }
+
+        if (Array.isArray(cfg.modules)) {
+            var moduleCheckboxes = document.querySelectorAll('.module-check-box');
+            moduleCheckboxes.forEach(function(cb){ cb.checked = false; });
+            cfg.modules.forEach(function(module){
+                var cb = document.getElementById(module);
+                if (cb) cb.checked = true;
+            });
+            if (cfg.modules.length) {
+                searchParams.set("modules", cfg.modules.join(','));
+            } else {
+                searchParams.delete("modules");
+            }
+            window.history.replaceState(null, "", window.location.pathname + "?" + searchParams.toString());
+        }
     }
 
     function setPrepickedVersion() {

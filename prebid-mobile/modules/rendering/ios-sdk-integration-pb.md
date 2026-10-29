@@ -37,9 +37,9 @@ In this mode, the developer is responsible for the following actions:
 This approach is available for the following ad formats:
 
 - Display Banner via `BannerAdUnit`
-- Video Banner and Instream Video via `VideoAdUnit`
+- Video Banner and Instream Video via `VideoAdUnit` (The class has been removed in the PrebidMobile `3.0.0`. Use the `InStreamVideoAdUnit` instead)
 - Display Interstitial via `InterstitialAdUnit`
-- Video Interstitial via `VideoInterstitialAdUnit`
+- Video Interstitial via `VideoInterstitialAdUnit` (The class has been removed in the PrebidMobile `3.0.0`. Use the `InterstitialAdUnit` with video ad format instead)
 - Rewarded Video via `RewardedVideoAdUnit`
 - Native Styles via `NativeRequest`
 - Multiformat ad unit via `PrebidAdUnit`
@@ -71,7 +71,8 @@ The `BidInfo` provides the following properties:
 - `nativeAdCacheId` - the local cache ID of the winning bid. Applied only to the `native` ad format.
 - `events` - the map of some publically available event URLs attached to the bid. These can be used to enable Prebid Server-based analytics when the Prebid Universal Creative (PUC) is not involved in the rendering process. If the PUC is used for rendering, it will take care of hitting these events. These are the available event URLs:
   - **EVENT_WIN** - this bid was chosen by the ad server as the one to display. This is the main metric for banner and native. This returns the OpenRTB `seatbid.bid.ext.prebid.events.win` field. (requires SDK v2.1.6)
-  - **EVENT_IMP** - the ad creative for this bid was actually displayed. This is often the main metric for video ads. This returns the OpenRTB `seatbid.bid.ext.prebid.events.imp` field. (requires SDK v2.1.6)
+  - **EVENT_IMP** - the ad creative for this bid was actually displayed. This is often the main metric for video ads. This returns the OpenRTB `seatbid.bid.ext.prebid.events.imp` field. (requires SDK v2.1.6; before SDK v3.4.0, this key returned the `win` URL by mistake)
+- `topBidFiltered` - `true` when [`filterOutUncachedBids`](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#filtering-uncached-bids) dropped the bid Prebid Server chose as the winner and a lower-priced cached bid took its place. The result code stays `.prebidDemandFetchSuccess`. (requires SDK v3.4.0)
 
 Code sample to extract the events:
 
@@ -121,11 +122,22 @@ Call the method `loadAd()` which will:
 
 #### Banner Video (non-instream)
 
-**Banner Video** is the same as HTML banner, but you also need to specify the ad format:
+**Banner Video** is the same as HTML banner, but you also need to specify the ad formats (requires SDK v3.4.0):
 
 ``` swift
-banner.adFormat = .video
+banner.adFormats = [.video]
 ```
+
+To let display and video demand compete for the same banner, request both formats:
+
+``` swift
+banner.adFormats = [.banner, .video]
+```
+
+`BannerView` renders `.banner` and `.video` only. An empty set, or a set with any other format such as `.native`, is ignored with a warning, and the current value is kept. Auto-refresh waits while a video creative is playing.
+
+{: .alert.alert-warning :}
+Starting from PrebidMobile `3.4.0`, the `adFormat` property is deprecated and will be removed in a future major release. Use `adFormats` instead.
 
 #### Interstitials
 
@@ -150,16 +162,16 @@ if interstitial.isReady {
 
 ```
 
-The **default** ad format for interstitial is **.banner**. In order to make a `multiformat bid request`, set the respective values into the `adFormats` property.
+The **default** ad formats for interstitial are **.banner** and **video**. In order to make a banner-only or video-only request, set the respective values into the `adFormats` property.
 
 ``` swift
 // Make bid request for video ad
 adUnit?.adFormats = [.video]
 
-// Make bid request for both video and banner ads
+// Make bid request for both video and banner ads (default behaviour)
 adUnit?.adFormats = [.video, .banner]
 
-// Make bid request for banner ad (default behaviour)
+// Make bid request for banner ad 
 adUnit?.adFormats = [.banner]
 
 ```
@@ -192,9 +204,11 @@ func interstitialDidReceiveAd(_ interstitial: InterstitialRenderingAdUnit) {
 }
 ```
 
-#### Rewarded Video
+#### Rewarded
 
-Integration example:
+{% include mobile/rewarded-server-side-configuration.md %}
+
+##### Integration example
 
 ``` swift
 // 1. Create an Ad Unit
@@ -212,30 +226,60 @@ if rewardedAd.isReady {
 }
 ```
 
-##### Step 1: Create Rewarded Ad Unit
+###### Step 1: Create Rewarded Ad Unit
 {:.no_toc}
 
-Create the `RewardedAdUnit` object with parameter:
+Create the `RewardedAdUnit` object with the parameter:
 
 - `configID` - an ID of Stored Impression on the Prebid Server
 
-##### Step 2: Load the Ad
+You can also customize ad unit by setting additional properties: 
+
+- `adFormats` - the set of ad formats supported by the ad unit(the default value is `[.banner, .video]` formats);
+- `bannerParameters` - the banner parameters used for configuring ad unit;
+- `videoParameters` - the video parameters used for configuring ad unit.
+
+###### Step 2: Load the Ad
 {:.no_toc}
 
 Call the `loadAd()` method which will make a bid request to Prebid server.
 
-##### Step 3: Show the Ad when it is ready
+###### Step 3: Show the Ad when it is ready
 {:.no_toc}
 
-Wait until the ad will be loaded and present it to the user in any suitable time.
+Wait until the ad is loaded and present it to the user at any suitable time.
 
 ``` swift
 // MARK: RewardedAdUnitDelegate
 
 func rewardedAdDidReceiveAd(_ rewardedAd: RewardedAdUnit) {
-    // Now the ad is ready for display
+    // Now the ad is ready for display - call `show` method.
+    if rewardedAd.isReady {
+        rewardedAd.show(from: self)
+    }
 }
 ```
+
+###### Step 4: Handle the reward
+{:.no_toc}
+
+Handle the reward in the appropriate method. 
+
+``` swift
+// MARK: RewardedAdUnitDelegate
+
+func rewardedAdUserDidEarnReward(_ rewardedAd: RewardedAdUnit, reward: PrebidReward) {
+    let type = reward.type
+    let count = reward.count
+    let ext = reward.ext
+        
+    // Process the reward
+}
+```
+
+## Ad Expiration
+
+{% include mobile/rendering-ad-expiration-ios.md %}
 
 ## Additional Ad Unit Configuration
 

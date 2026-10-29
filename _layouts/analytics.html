@@ -21,7 +21,7 @@
             </div>
 
     <div class="col-lg-9">
-      <div class="pb-content" markdown="1">
+      <div class="pb-content" {% include pagefind-body.html has_h1=true %} markdown="1">{% include pagefind-title.html has_h1=true %}
 
         {% if page.is_full_screen %}
           {{content}}
@@ -32,9 +32,11 @@
             <div class="col-md-9" role="main">
               <div class="bs-docs-section">
 
-                <h3>{{ page.title }}</h3>
+                <h1>{% if page.title contains "Analytics" %}{{ page.title }} Adapter{% else %}{{ page.title }} Analytics Adapter{% endif %}</h1>
 
-                <h3>Features</h3>
+                <h2>Features</h2>
+
+                {% include dev-docs/analytics-meta-data.html %}
 
                 {{content}}
 

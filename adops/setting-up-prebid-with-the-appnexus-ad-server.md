@@ -18,7 +18,7 @@ This page describes how to set up the Microsoft Monetize Ad Server to work with 
 
 In some cases there are links to the [Microsoft Help Center](https://docs.xandr.com/).
 
-Once the Ad Ops setup is complete, developers will need to add code to the page as shown in the example [Using Prebid.js with Microsoft Monetize as your Ad Server]({{site.github.url}}/dev-docs/examples/use-prebid-with-appnexus-ad-server.html).
+Once the Ad Ops setup is complete, developers will need to add code to the page as shown in the example [Using Prebid.js with Microsoft Monetize as your Ad Server]({{site.github.url}}/dev-docs/examples/use-prebid-with-microsoft-ad-server.html).
 
 {: .alert.alert-success :}
 **Microsoft Monetize Ad Server Features**  
@@ -80,7 +80,7 @@ Follow the banner creative setup instructions in [Add Creatives](https://docs.xa
 * Self-Audit the creative and confirm compliance.
 
 ```html
-<script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/#{HB_FORMAT}.js"></script>
+<script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@#{HB_VER}/dist/#{HB_FORMAT}.js"></script>
 <script>
   var ucTagData = {};
   ucTagData.adServerDomain = window.location.host;
@@ -107,7 +107,7 @@ Note that creatives are automatically marked as inactive by the Microsoft Moneti
 
 {: .alert.alert-warning :}
 **SafeFrame**
-If you want your creative to serve into a SafeFrame, this will need to be enabled on the site-side of the Prebid.js implementation rather than as a setting in the ad server.  A developer can learn how to enable this setting for the publisher by referencing [Using Prebid.js with Microsoft Monetize Ad Server]({{site.github.url}}/dev-docs/examples/use-prebid-with-appnexus-ad-server.html).  Additionally if the Microsoft Monetize Ad Server tags are configured to use SafeFrames, you **will** need to use the above creative template to properly render the creative.  Earlier versions of the Prebid.js creative template may not be fully SafeFrame compliant (if they are still in-use from older setups), so it is recommended to switch to the above template in this scenario.
+If you want your creative to serve into a SafeFrame, this will need to be enabled on the site-side of the Prebid.js implementation rather than as a setting in the ad server.  A developer can learn how to enable this setting for the publisher by referencing [Using Prebid.js with Microsoft Monetize Ad Server]({{site.github.url}}/dev-docs/examples/use-prebid-with-microsoft-ad-server.html).  Additionally if the Microsoft Monetize Ad Server tags are configured to use SafeFrames, you **will** need to use the above creative template to properly render the creative.  Earlier versions of the Prebid.js creative template may not be fully SafeFrame compliant (if they are still in-use from older setups), so it is recommended to switch to the above template in this scenario.
 
 ## Step 4. Set up Insertion Order
 
@@ -163,4 +163,4 @@ It will also make it easy to turn the targeting on and off for a given placement
 * [Ad Ops and Prebid](/adops/before-you-start.html)
 * [Ad Ops Planning Guide](/adops/adops-planning-guide.html)
 * [Getting Started with Prebid.js for Developers](/dev-docs/getting-started.html)
-* [Using Prebid.js with Microsoft Monetize Ad Server](/dev-docs/examples/use-prebid-with-appnexus-ad-server.html)(Developer example)
+* [Using Prebid.js with Microsoft Monetize Ad Server](/dev-docs/examples/use-prebid-with-microsoft-ad-server.html)(Developer example)

@@ -8,18 +8,20 @@ media_types: banner, video
 biddercode: eplanning
 usp_supported: true
 tcfeu_supported: true
+schain_supported: true
 pbs_app_supported: true
 floors_supported: true
 userIds: all
 gvl_id: 90
 sidebarType: 1
+prebid_member: true
 ---
 
 
 
 ### Note
 
-The E-Planning Header Bidding adaptor requires setup and approval from the E-Planning team. Please go to [E-Planning website](http://www.e-planning.net) for more details.
+To use E-Planning bidder, you need to have an existing E-Planning account. To create a new account visit <https://www.e-planning.net/signup.html>. If you are an existing user, contact your account rep for information.
 
 ### Bid Params
 

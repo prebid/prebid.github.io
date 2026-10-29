@@ -127,3 +127,29 @@ pbjs.setBidderConfig({
   },
 }, true);
 ```
+
+### User Sync example
+
+```javascript
+pbjs.setConfig({
+  userSync: {
+    filterSettings: {
+      // Iframe and Image
+      all: {
+        bidders: ['aniview'],
+        filter: 'include',
+      },
+        
+      // Or you can specify which type should be enabled/disabled:
+      iframe: {
+        bidders: ['aniview'],
+        filter: 'include',
+      },
+      image: {
+        bidders: '*', // '*' represents all bidders
+        filter: 'include', // or 'exclude'
+      },
+    },
+  },
+});
+```

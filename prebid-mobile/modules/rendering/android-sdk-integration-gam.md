@@ -41,6 +41,21 @@ App module build.gradle:
 implementation('org.prebid:prebid-mobile-sdk-gam-event-handlers:x.x.x')
 ```
 
+### Custom Targeting for GAM Requests
+
+(requires SDK v3.4.0)
+
+The event handlers build the GAM ad request themselves. To add your own targeting or other request settings, set an `AdManagerRequestConfiguration` on the banner, interstitial, or rewarded event handler:
+
+```kotlin
+val eventHandler = GamBannerEventHandler(requireContext(), GAM_AD_UNIT, GAM_AD_SIZE)
+eventHandler.setAdManagerRequestConfiguration { builder ->
+    builder.addCustomTargeting("section", "sports")
+}
+```
+
+`GamInterstitialEventHandler` and `GamRewardedEventHandler` provide the same `setAdManagerRequestConfiguration()` method. The SDK calls the configuration before every GAM ad request. When there is a Prebid bid, the SDK adds its own targeting keys, such as `hb_pb`, afterwards, so they override values you set under the same keys.
+
 ## AdUnit-Specific instructions
 
 This section covers integration details for different ad formats. In each scenario, you'll be asked for a `configId` - this is a key worked out with your Prebid Server provider. It's used at runtime to pull in the bidders and parameters specific to this adunit. Depending on your Prebid Server partner, it may be a UUID or constructed out of parts like an account number and adunit name.
@@ -104,8 +119,18 @@ Call the `loadAd()` method to make a bid request.
 For **Non-Instream Video** you also need to specify video placement type of the expected ad:
 
 ```kotlin
-bannerView.videoPlacementType = PlacementType.IN_BANNER // or any other available type
+bannerView.videoPlacementType = VideoPlacementType.IN_BANNER // or any other available type
 ```
+
+Setting the placement type switches the ad unit to a video-only request. To let display and video demand compete for the same banner, set the ad unit formats (requires SDK v3.4.0):
+
+```kotlin
+bannerView.setAdUnitFormats(EnumSet.of(AdUnitFormat.BANNER, AdUnitFormat.VIDEO))
+// Optional: the placement type of the video ad
+bannerView.videoPlacementType = VideoPlacementType.IN_BANNER
+```
+
+Once the formats are set with `setAdUnitFormats()`, `setVideoPlacementType()` keeps them and only sets the placement type. A null or empty set is ignored, and the current value is kept. Auto-refresh waits while a video creative is playing.
 
 #### Migrating banners from a Bidding-Only integration
 
@@ -151,7 +176,7 @@ Pay attention that the `loadAd()` should be called on the main thread.
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
-The **default** ad format for an interstitial ad is **DISPLAY**. In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
+In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
 
 ```kotlin
 interstitialAdUnit = InterstitialAdUnit(
@@ -215,9 +240,13 @@ Integration:
 4. Remove the original `InterstitialAdUnit`.
 5. Follow the instructions to integrate [Interstitial API](#interstitials).  
 
-### Rewarded Video
+### Rewarded
 
-To display a Rewarded Ad follow these steps:
+{% include mobile/rewarded-server-side-configuration.md %}
+
+#### Integration example
+
+Displaying the **Rewarded Ad** is the same as displaying an Interstitial Ad, but it adds ability to handle reward. To display a Rewarded Ad follow these steps:
 
 ```kotlin
 // 1. Create a rewarded custom event handler for GAM ad server.
@@ -243,21 +272,7 @@ Pay attention that the `loadAd()` should be called on the main thread.
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
-Displaying the **Rewarded Ad** is the same as displaying an Interstitial Ad. The type of ad can be customized to:
-
-Be notified when user earns a reward - implement `RewardedAdUnitListener` interface:
-
-```kotlin
- fun onUserEarnedReward(rewardedAdUnit: RewardedAdUnit)
-```
-
-When the actual reward object is stored in the `RewardedAdUnit`:
-
-```kotlin
-val reward = rewardedAdUnit.getUserReward()
-```
-
-#### Step 1: Create Event Handler
+##### Step 1: Create Event Handler
 {:.no_toc}
 
 GAM's event handlers are special containers that wrap the GAM Ad Views and help to manage collaboration between GAM and Prebid views.
@@ -266,7 +281,7 @@ GAM's event handlers are special containers that wrap the GAM Ad Views and help 
 
 To create an event handler you should provide a GAM Ad Unit.
 
-#### Step 2: Create Rewarded Ad Unit
+##### Step 2: Create Rewarded Ad Unit
 {:.no_toc}
 
 **RewardedAdUnit** - is an object that will load and display the particular ad. To create it you should provide
@@ -276,12 +291,12 @@ To create an event handler you should provide a GAM Ad Unit.
 
 You can also assign the listener for processing ad events.
 
-#### Step 3: Load the Ad
+##### Step 3: Load the Ad
 {:.no_toc}
 
 Call the `loadAd()` method to make a bid request. The ad unit will load an ad and will wait for explicit instructions to display the Rewarded Ad.
 
-#### Step 4: Display the Ad when it is ready
+##### Step 4: Display the Ad when it is ready
 {:.no_toc}
 
 The most convenient way to determine if the ad is ready for displaying is to listen for the listener method:
@@ -292,7 +307,23 @@ override fun onAdLoaded(rewardedAdUnit: RewardedAdUnit) {
 }
 ```
 
-### Migrating rewarded video from a Bidding-Only integration
+##### Step 5: Handle a reward
+{:.no_toc}
+
+Handle earning the reward in the appropriate method. Important: a reward can be null.
+
+```kotlin
+override fun onUserEarnedReward(rewardedAdUnit: RewardedAdUnit?, reward: Reward?) {
+    if (reward != null) {
+        val rewardType = reward.type
+        val rewardCount = reward.count
+        val rewardExt = reward.ext
+        // Process the reward
+    }
+}
+```
+
+#### Migrating rewarded video from a Bidding-Only integration
 {:.no_toc}
 
 GAM setup:
@@ -306,7 +337,11 @@ Integration:
 1. Replace the `RewardedAd` with `RewardedAdUnit`.
 2. Implement the interface for `RewardedAdUnitListener`.
 3. Remove the original `RewardedVideoAdUnit`.
-4. Follow the instructions to integrate [Rewarded API](#rewarded-video).
+4. Follow the instructions to integrate [Rewarded API](#rewarded).
+
+## Ad Expiration
+
+{% include mobile/rendering-ad-expiration-android.md %}
 
 ## Additional Ad Unit Configuration
 

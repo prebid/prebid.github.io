@@ -157,7 +157,7 @@ private fun createNativeAdConfiguration(): NativeAdConfiguration {
 }
 ```
 
-See more NativeAdConfiguration options [here](rendering-native-ad-configuration.html).
+See more NativeAdConfiguration options in the [NativeAdConfiguration guide](rendering-native-ad-configuration.html).
 
 ### Step 4: Load the Ad
 

@@ -3,7 +3,7 @@ layout: bidder
 title: BeOp
 description: BeOp Bidder Adaptor
 pbjs: true
-pbs: false
+pbs: true
 media_types: banner
 biddercode: beop
 tcfeu_supported: true
@@ -12,39 +12,128 @@ usp_supported: false
 floors_supported: true
 schain_supported: true
 sidebarType: 1
+dsa_supported: false
+coppa_supported: false
+gpp_sids: tcfeu
+dchain_supported: false
+userIds: none
+safeframes_ok: false
+deals_supported: false
+fpd_supported: true
+prebid_member: false
+multiformat_supported: will-bid-on-any
+ortb_blocking_supported: false
+privacy_sandbox: no
 ---
 
 ### Disclosure
 
-The BeOp bidder adaptor needs an account id that you can find as a publisher, a reseller or a media group directly in your BeOp platform access. We also need to approve your account to be available for BeOp demand, so don't hesitate to reach your account manager or <publishers@beop.io> for more information.
+The BeOp bidder adapter requires an `accountId` or `networkId`, which you can retrieve from your BeOp platform dashboard (as a publisher, reseller, or media group). To activate BeOp demand on your account, please contact your account manager or reach out to <publishers@beop.io>.
 
-### Bid Params
+BeOp is available in both **Prebid.js** (client-side) and **Prebid Server** (server-side). You can use BeOp via Prebid Server when Prebid.js calls a Prebid Server host, or in server-to-server OpenRTB setups.
+
+### Bid Params (Prebid.js)
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
 |---------------|----------|-------------|---------|----------|
-| `accountId` or `networkId` | required | Your BeOp account ID | `'5a8af500c9e77c00017e4cad'` | `string` |
-| `networkPartnerId` | optional | Your own partner ID if you are a network | `'MY-WEBSITE-123'` | `string` |
-| `currency` | optional | Your currency | `'EUR'` (default) or `'USD'` | `string` |
+| `accountId` or `networkId` | required | Your BeOp account ID (24-character hex string) | `'5a8af500c9e77c00017e4cad'` | `string` |
+| `networkPartnerId` | optional | Your internal network partner ID (used for advanced partner tracking) | `'MY-WEBSITE-123'` | `string` |
+| `currency` | optional | Preferred bidding currency (defaults to `'EUR'`) | `'EUR'` or `'USD'` | `string` |
+| `keywords` | optional | Contextual keywords string or array to help target your campaign | `'cars, racing'` or `['cars', 'racing']` | `string/array` |
 
-## Why BeOp Requires Storage Access in Prebid.js
+### Prebid Server
 
-At BeOp, we prioritize transparency and respect for user privacy. Here’s why we request storage access:
+The BeOp Prebid Server adapter supports the same account models as the Prebid.js adapter. Use either **publisher mode** (`pid`) or **network mode** (`nid` + `ntpnid`).
+{: .table .table-bordered .table-striped }
+| Name | Scope | Description | Example | Type |
+|------|--------|-------------|---------|------|
+| `pid` | required (publisher) | BeOp publisher ID (same as `accountId` in Prebid.js) | `'5a8af500c9e77c00017e4cad'` | `string` |
+| `nid` | required (network) | BeOp network ID (same as `networkId` in Prebid.js). Use together with `ntpnid`. | `'5a8af500c9e77c00017e4cad'` | `string` |
+| `ntpnid` | required (network) | Network partner ID (same as `networkPartnerId` in Prebid.js). Use together with `nid`. | `'MY-WEBSITE-123'` | `string` |
 
-### 1. Usage of First-Party Cookies
+Either provide `pid` **or** the pair `nid` + `ntpnid`.
 
-We use the first-party cookie beopid exclusively. This allows us to manage session and user preferences without relying on third-party cookies, ensuring compliance with privacy standards like GDPR.
+If you host Prebid Server and need to enable the BeOp adapter, add BeOp to your bidders configuration. For endpoint or setup questions, contact <supply>.
 
-### 2. Capping Features for Publishers
+### User Syncs
 
-Storage access helps us enforce capping mechanisms directly on the publisher’s domain, ensuring a better user experience by limiting the frequency of ad displays.
+BeOp supports iframe and pixel-based user syncs using the `getUserSyncs` method.
 
-### 3. Enhanced User Interaction
+{: .table .table-bordered .table-striped }
+| Type | Supported | Description |
+|------|-----------|-------------|
+| iframe | yes | A sync iframe may be returned by the bidder response via `syncFrame`. |
+| pixel | yes | Additional sync pixels can be returned via `syncPixels` array in the bid response body. |
 
-We provide engaging voting experiences on BeOp formats. By using storage, we enable features such as resuming a voting session where the user last left off, making the interaction seamless and user-friendly.
+> Syncs are GDPR-aware and only triggered when appropriate consent is provided.
 
-### 4. Revenue Optimization in Compliance with GDPR
+### GDPR Compliance
 
-Storage access helps us improve bidding performance by aligning with GDPR consents. This ensures that external bidders can leverage compliant data to drive better revenue outcomes for publishers.
+- Vendor ID: `666`
+- BeOp supports TCFv2 and relies on the `gdprApplies` and `consentString` fields in the bid request.
+- If no valid consent is found, external user syncs will be disabled.
 
-By granting storage access, publishers empower us to provide these features while respecting user privacy and enhancing the overall experience.
+### Cookie Usage
+
+BeOp sets a first-party cookie `caudid` (Collective Audience user ID) for frequency capping and user session purposes. The value is a 24-character hex string (ObjectID-style). This ID is anonymized and used to improve campaign performance, capping logic, and personalization within publisher domains.
+
+### First-Party Data Support
+
+BeOp fully supports First-Party Data (FPD) and leverages it to enhance both targeting and audience intelligence for publishers.
+
+- Audience Enrichment: BeOp campaigns often include interactive formats (polls, quizzes, votes) that collect high-quality declarative data. This data can be matched against publisher segments to enrich their DMPs (Data Management Platforms).
+- Publisher-Centric Segments: Collected FPD (such as quiz responses, poll preferences, etc.) can be made available to the publisher under consent, allowing creation of custom audience segments usable across future campaigns.
+- Ortb2 Integration: BeOp reads ortb2.user.ext.data, ortb2.user.ext.bpsegs, and similar fields in the bid request to enhance match rates and ensure contextually relevant responses.
+- Respect for Privacy: All data is handled in accordance with GDPR, with processing based on user consent and transparent storage mechanisms.
+
+Thanks to BeOp’s unique interactive formats, publishers benefit not only from monetization, but also from deeper understanding and activation of their audiences through real-time feedback.
+
+### Test Parameters
+
+**Prebid.js**
+
+```js
+var adUnits = [
+  {
+    code: "div-id",
+    mediaTypes: {
+      banner: {
+        sizes: [
+          [300, 250],
+          [1, 1],
+        ],
+      },
+    },
+    bids: [
+      {
+        bidder: "beop",
+        params: {
+          accountId: "5a8af500c9e77c00017e4cad",
+          currency: "EUR",
+          keywords: ["sports", "elections"],
+        },
+      },
+    ],
+  },
+];
+```
+
+**Prebid Server** - 
+
+```json
+"properties": {
+    "pid": {
+      "type": "string",
+      "description": "BeOp publisher ID"
+    },
+    "nid": {
+      "type": "string",
+      "description": "BeOp Network ID"
+    },
+    "ntpnid": {
+      "type": "string",
+      "description": "Network partner ID"
+    }
+  },
+```

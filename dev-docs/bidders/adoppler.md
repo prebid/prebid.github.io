@@ -1,16 +1,24 @@
 ---
 layout: bidder
 title: Adoppler
-pbs: true
-media_types: video
+description: This bidder has been renamed to ElementalTV.
 biddercode: adoppler
+pbs: true
+pbjs: false
 sidebarType: 1
 ---
 
-### Bid Params
+### Deprecated
 
-{: .table .table-bordered .table-striped }
-| Name       | Scope    | Description            | Example | Type     |
-|------------|----------|------------------------|---------|----------|
-| adunit | required | AdUnit to bid against | 'test' | string |
-| client | optional | Client name | 'ads' | string |
+The **Adoppler** bidder has been renamed to **ElementalTV**.
+
+Please use the **ElementalTV** bidder documentation and biddercode going forward:
+
+- **Docs:** `/dev-docs/bidders/elementaltv.html`
+- **Bidder code:** `elementaltv`
+
+### Notes
+
+- `adoppler` is maintained as an alias for backward compatibility.
+- New integrations should use `elementaltv`.
+ 

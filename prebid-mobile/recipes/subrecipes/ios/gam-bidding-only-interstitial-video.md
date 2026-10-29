@@ -60,7 +60,7 @@ To integrate Video Interstitial ads into the app you should use the Prebid SDK `
     parameters.mimes = ["video/mp4"]
     parameters.protocols = [Signals.Protocols.VAST_2_0]
     parameters.playbackMethod = [Signals.PlaybackMethod.AutoPlaySoundOn]
-    adUnit.parameters = parameters
+    adUnit.bannerParameters = parameters
     
     // 4. Make a bid request to Prebid Server using Prebid Mobile SDK
     let gamRequest = GAMRequest()

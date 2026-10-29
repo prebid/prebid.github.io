@@ -23,13 +23,15 @@ sidebarType: 1
 ### Bid params
 
 {: .table .table-bordered .table-striped }
+
 | Name        | Scope                      | Description          | Example            | Type      |
 |-------------|----------------------------|----------------------|--------------------|-----------|
 | `mid`       | required, if `inv` and `nmane` not set | Placement ID | `12345`        | `integer` |
 | `inv`       | required, if `mid` not set | Inventory source ID  | `1234`             | `integer` |
 | `mname`     | required, if `mid` not set | Placement name       | `"Leaderboard"`    | `string`  |
 | `adxDomain` | optional, Prebid.js only   | The Adform domain    | `"adx.adform.net"` | `string`  |
-| `priceType` | optional                   | Price type           | `"gross"`          | `string`  |
+| `priceType` (alias `pt`) | optional | Price type | `"gross"` | `string` |
+| `test` | optional | Set to `1` to enable test mode | `1` | `integer` |
 
 Note: Bid placement should be defined using the `mid` parameter or `inv` and `mname` parameters (dynamic master tag) but not both.
 

@@ -28,7 +28,7 @@ While the default ad server for Prebid's Mobile SDK is GAM, it can be expanded t
 
 In this mode, the developer is responsible for the following actions:
 
-- Call `fetchDemand()` with extended targetingDict callback
+- Call `fetchDemand()` with extended targetingDict callback (The method has been removed in the PrebidMobile `3.0.0`. Use the `fetchDemand()` with extended BidInfo callback instead)
 - Retrieve targeting keys from the extended fetchDemand function
 - Convert targeting keys into the format for your ad server
 - Pass converted keys to your ad server
@@ -37,9 +37,9 @@ In this mode, the developer is responsible for the following actions:
 This approach is available for the following ad formats:
 
 - Display Banner via `BannerAdUnit`
-- Video Banner and Instream Video via `VideoAdUnit`
+- Video Banner and Instream Video via `VideoAdUnit` (The class has been removed in the PrebidMobile `3.0.0`. Use the `InStreamVideoAdUnit` instead)
 - Display Interstitial via `InterstitialAdUnit`
-- Video Interstitial via `VideoInterstitialAdUnit`
+- Video Interstitial via `VideoInterstitialAdUnit` (The class has been removed in the PrebidMobile `3.0.0`. Use the `InterstitialAdUnit` with video ad format instead)
 - Rewarded Video via `RewardedVideoAdUnit`
 - Native Styles via `NativeRequest`
 
@@ -74,12 +74,13 @@ The `BidInfo` provides the following properties:
 - `events` - the map of some publically available event URLs attached to the bid. These can be used to enable Prebid Server-based analytics when the Prebid Universal Creative (PUC) is not involved in the rendering process. If the PUC is used for rendering, it will take care of hitting these events. These are the available event URLs:
   - **EVENT_WIN** - this bid was chosen by the ad server as the one to display. This is the main metric for banner and native. This returns the OpenRTB `seatbid.bid.ext.prebid.events.win` field. (requires SDK v2.1.6)
   - **EVENT_IMP** - the ad creative for this bid was actually displayed. This is often the main metric for video ads. This returns the OpenRTB `seatbid.bid.ext.prebid.events.imp` field. (requires SDK v2.1.6)
+- `isTopBidFiltered()` - `true` when [`setFilterOutUncachedBids()`](/prebid-mobile/pbm-api/android/pbm-targeting-android.html#setfilteroutuncachedbids) dropped the bid Prebid Server chose as the winner and a lower-priced cached bid took its place. The result code stays `SUCCESS`. (requires SDK v3.4.0)
 
 Code sample to extract the events:
 
 ``` kotlin
 val win = bidInfo.events.get(BidInfo.EVENT_WIN)
-val imp = bidInfo.get(BidInfo.EVENT_IMP)
+val imp = bidInfo.events.get(BidInfo.EVENT_IMP)
 ```
 
 ### Prebid Rendered
@@ -130,8 +131,18 @@ Call `loadAd()` and SDK will:
 **Banner Video** is the same as HTML banner, but you will also need to specify the `bannerView.videoPlacementType`:
 
 ``` kotlin
-bannerView.videoPlacementType = PlacementType.IN_BANNER // or any other available type
+bannerView.videoPlacementType = VideoPlacementType.IN_BANNER // or any other available type
 ```
+
+Setting the placement type switches the ad unit to a video-only request. To let display and video demand compete for the same banner, set the ad unit formats (requires SDK v3.4.0):
+
+```kotlin
+bannerView.setAdUnitFormats(EnumSet.of(AdUnitFormat.BANNER, AdUnitFormat.VIDEO))
+// Optional: the placement type of the video ad
+bannerView.videoPlacementType = VideoPlacementType.IN_BANNER
+```
+
+Once the formats are set with `setAdUnitFormats()`, `setVideoPlacementType()` keeps them and only sets the placement type. A null or empty set is ignored, and the current value is kept. Auto-refresh waits while a video creative is playing.
 
 #### Interstitials
 
@@ -155,7 +166,7 @@ Pay attention that the `loadAd()` should be called on the main thread.
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
-The **default** ad format for interstitial is **DISPLAY**. In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
+In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
 
 ``` kotlin
 interstitialAdUnit = InterstitialAdUnit(
@@ -192,9 +203,11 @@ override fun onAdLoaded(interstitialAdUnit: InterstitialAdUnit) {
 }
 ```
 
-#### Rewarded Video
+#### Rewarded
 
-Integration example:
+{% include mobile/rewarded-server-side-configuration.md %}
+
+##### Integration example
 
 ``` kotlin
 // 1. Create an Ad Unit
@@ -215,19 +228,19 @@ Pay attention that the `loadAd()` should be called on the main thread.
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
-##### Step 1: Create a Rewarded Ad Unit
+###### Step 1: Create a Rewarded Ad Unit
 {:.no_toc}
 
 Create the `RewardedAdUnit` object with parameters:
 
 - `adUnitId` - an ID of Stored Impression on the Prebid server.
 
-##### Step 2: Load the Ad
+###### Step 2: Load the Ad
 {:.no_toc}
 
 Call the `loadAd()` to make a bid request.
 
-##### Step 3: Show the Ad when it is ready
+###### Step 3: Show the Ad when it is ready
 {:.no_toc}
 
 Wait until the ad is loaded and present it to the user in any suitable time.
@@ -237,6 +250,26 @@ override fun onAdLoaded(rewardedAdUnit: RewardedAdUnit) {
 //Ad is ready for display
 }
 ```
+
+##### Step 4: Handle a reward
+{:.no_toc}
+
+Handle earning a reward in the appropriate method. Important: a reward can be null.
+
+```kotlin
+override fun onUserEarnedReward(rewardedAdUnit: RewardedAdUnit?, reward: Reward?) {
+    if (reward != null) {
+        val rewardType = reward.type
+        val rewardCount = reward.count
+        val rewardExt = reward.ext
+        // Process the reward
+    }
+}
+```
+
+## Ad Expiration
+
+{% include mobile/rendering-ad-expiration-android.md %}
 
 ## Additional Ad Unit Configuration
 

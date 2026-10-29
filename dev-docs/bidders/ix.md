@@ -97,7 +97,7 @@ The following table lists the media types that Index supports. For information a
 
 ### Set up Prebid.js to call Index directly from the browser (client-side adapter)
 
-To call Index from a web browser environment using a Prebid Server integration, see the Index-specific configuration steps in [Setup instructions to call Index through Prebid Server](/dev-docs/bidders/ix-server.html#setup-instructions-to-call-index-through-prebid-server) in our Prebid Server documentation on the Prebid site.
+To call Index from a web browser environment using a Prebid Server integration, see the Index-specific configuration steps in [Setup instructions to call Index through Prebid Server](/dev-docs/bidders/ix-server.html#call-index-from-a-web-browser) in our Prebid Server documentation on the Prebid site.
 
 <a id="server-side-adapter"></a>
 
@@ -105,7 +105,7 @@ To call Index from a web browser environment using a Prebid Server integration, 
 
 In this configuration, Prebid.js makes a call to Prebid Server and then Prebid Server uses our server-side adapter to call Index. Complete the following steps to configure Index as a demand source:
 
-1. If you are hosting your own Prebid Server instance, see [Setup instructions to call Index through Prebid Server](/dev-docs/pbs-bidders.html#setup-instructions-to-call-index-through-prebid-server).
+1. If you are hosting your own Prebid Server instance, see [Setup instructions to call Index through Prebid Server](/dev-docs/bidders/ix-server.html#configure-the-index-adapter-in-your-prebid-server-instance).
 2. In the `[pbjs.setConfig()]` function, within the `s2sConfig` property, add `ix` to the `bidders` attribute.
 3. Define the Index-specific parameters at the bidder level. For Index's bidder-specific parameters, see the [Bid request parameters](#bid-request-parameters) section below.
 4. Define your ad units in the `adUnit` object. For more information about this object, see Prebid's [Ad Unit Reference](/dev-docs/adunit-reference.html) documentation.
@@ -226,7 +226,7 @@ To monetize instream video, complete the following steps:
    ```javascript
    pbjs.setConfig({ 
      cache: { 
-             url: 'https://prebid.adnxs.com/pbc/v1/cache' 
+             url: 'https://my-pbs.example.com/cache'
          } 
    });
    ```
@@ -373,6 +373,8 @@ pbjs.addAdUnits({
 <a id="protected-audience-api-support"></a>
 
 ### Protected Audience API support
+
+**Info:** Starting in June 2025, Index is pausing support for the Protected Audience API. After this date, you will no longer receive Protected Audience API demand from Index, even if your inventory is configured to be eligible for it.
 
 **Before you begin:**
 

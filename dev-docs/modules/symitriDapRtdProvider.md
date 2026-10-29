@@ -68,7 +68,7 @@ Please reach out to your Symitri account representative(<Prebid@symitri.com>) to
 | apiVersion | String | This holds the API version | Please reach out to your Symitri account representative(<Prebid@symitri.com>) for this value |
 | domain | String | The domain name of your webpage | |
 | identityType | String | 'simpleid' or 'compositeid' or 'hashedid' | See the section below labelled "identityType" for more details. |
-| identityValue | String | This is optional field to pass user hid. Will be used only if identityType is hid | |
+| identityValue | String | This is a required field to pass HEM and/or EIDs | See the "identity" section below for more details. |
 | segtax | Integer | The taxonomy for Symitri | The value should be 708 |
 | pixelUrl | String | Pixel URL provided by Symitri which will be triggered when bid matching with Symitri dealid wins and creative gets rendered | |
 
@@ -89,12 +89,25 @@ Use 'compositeid' to pass in multiple identifiers as key-value pairs as shown be
   "identityValue": "<hem>",
 ```
 
+### Identity
+
+In the event there is no identity, the ""identityType" and "identityValue" can be set to:
+
+```javascript
+pbjs.setConfig({
+  ...
+    identityType: 'compositeid',
+    identityValue: 'HEM:',
+  ...
+});
+```
+
 ### Testing
 
 To view an example of available segments returned by dap:
 
 ```bash
-gulp serve --modules=rtdModule,symitriDapRtdProvider,appnexusBidAdapter,sovrnBidAdapter
+gulp serve --modules=rtdModule,symitriDapRtdProvider,msftBidAdapter,sovrnBidAdapter
 ```
 
 and then point your browser at:

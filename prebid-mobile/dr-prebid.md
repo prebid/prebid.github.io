@@ -22,17 +22,17 @@ Dr. Prebid is a validation and troubleshooting app for publishers implementing P
 
 ## Get the App
 
-This app is available for iOS and Android:
+This app was available for iOS and Android:
 
-- [Download for iOS](https://itunes.apple.com/us/app/dr-prebid/id1442614692?mt=8)  
+- Download for iOS  
   System Requirements: Requires iOS 12.0 or later. Compatible with iPhone, iPad, and iPod touch.
 
-- [Download for Android](https://play.google.com/store/apps/details?id=org.prebid.validation.drprebid)  
+- Download for Android  
   System Requirements: Requires Android 4.2 and up.
 
 Dr. Prebid is an open source app. You can find the source on the Prebid GitHub site:
 
-- [Source for iOS](https://github.com/prebid/prebid-mobile-ios/tree/master/tools/PrebidValidator)
+- [Source for iOS](https://github.com/prebid/prebid-mobile-ios/tree/652271cc10a774e152435cff58a0f4e23eea5725/tools/PrebidValidator)
 - [Source for Android](https://github.com/prebid/prebid-mobile-android/tree/master/tools/drprebid)
 
 **Review the [Prebid.org Dr. Prebid Terms of Use]({{site.github.url}}/prebid-mobile/dr-prebid-tou.html).**
@@ -98,7 +98,7 @@ These settings will help verify that Prebid Mobile and Prebid Server are connect
 
 Select your Prebid Server host:
 
-- *AppNexus*
+- *AppNexus (Microsoft)*
 - *Rubicon*
 - *Custom*
 
@@ -146,9 +146,9 @@ After you’ve entered all the values on the **Setup** screen, tap **Run Tests**
 
 Three validation tests are performed: Ad Server Setup, Real-Time Demand, and End-to-End SDK Configuration. Each test will be displayed with either a green check mark (passed) or a red X (failed).
 
-| Passed        |     | Failed      |
-|:-----------:| --- |:-----------:|
-| ![Dr. Prebid Validation Test Passed]({{site.baseurl}}/assets/images/prebid-mobile/dr-prebid-pass.png) |     | ![Dr. Prebid Validation Test Failed]({{site.baseurl}}/assets/images/prebid-mobile/dr-prebid-fail.png) |
+| Passed | | Failed |
+| :---: | --- | :---: |
+| ![Dr. Prebid Validation Test Passed]({{site.baseurl}}/assets/images/prebid-mobile/dr-prebid-pass.png) | | ![Dr. Prebid Validation Test Failed]({{site.baseurl}}/assets/images/prebid-mobile/dr-prebid-fail.png) |
 
 <br />
 
@@ -260,7 +260,7 @@ Possible outcomes from this test:
 Some general things to check if this test fails include:
 
 - Check all your settings on the Setup screen. In particular, make sure all the IDs you entered are correct and valid.
-- Make sure your ad unit has been registered correctly. (See [Code Integration]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html#configure-prebid-server) for more information.)
+- Make sure your ad unit has been registered correctly. (See [Code Integration]({{site.github.url}}/prebid-mobile/prebid-mobile-getting-started.html#configure-prebid-server) for more information.)
 - Verify that your Prebid Mobile line items are set up correctly on your ad server.
 - Look through your bid request and bid response (if any). Check the key-value targeting.
 - If a creative was returned, ensure that the HTML returned is the same as the Prebid Mobile creative code associated with your Prebid Mobile line item. (NOTE: The ad server should have replaced the macro placeholder for `hb_cache_id` with an alphanumeric GUID.)
@@ -270,7 +270,7 @@ Here are some more specific things to look for and actions to take based on whic
 - **Ad unit registered**
   Be sure you’ve implemented your ad unit code correctly. See [Ad Unit Setup for iOS]({{site.github.url}}/prebid-mobile/pbm-api/ios/code-integration-ios.html) or [Ad Unit Setup for Android]({{site.github.url}}/prebid-mobile/pbm-api/android/code-integration-android.html) for information.
 - **Request to Prebid Server sent**  
-  Make sure your account ID and configuration ID were entered correctly on the Setup screen. For more on integrating with Prebid Server see [Getting Started with Prebid Mobile]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html).
+  Make sure your account ID and configuration ID were entered correctly on the Setup screen. For more on integrating with Prebid Server see [Getting Started with Prebid Mobile]({{site.github.url}}/prebid-mobile/prebid-mobile-getting-started.html).
 - **Prebid Server response received**  
   Review the requests and responses from the Real-Time Demand Validation.
 - **Creative content cached**  
@@ -283,5 +283,5 @@ Here are some more specific things to look for and actions to take based on whic
 ## Further Reading
 
 - [Prebid Mobile Overview](/prebid-mobile/prebid-mobile.html)
-- [Getting Started with Prebid Mobile](/prebid-mobile/prebid-mobile-pbs.html)
+- [Getting Started with Prebid Mobile](/prebid-mobile/prebid-mobile-getting-started.html)
 - [AdOps – Before You Start](/adops/before-you-start.html)

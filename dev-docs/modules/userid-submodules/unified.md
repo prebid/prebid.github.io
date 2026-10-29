@@ -38,6 +38,8 @@ The Unified ID privacy is covered under the [TradeDesk Services Privacy Policy](
 | params.url | Required for UnifiedId if not using TradeDesk | String | If specified for UnifiedId, overrides the default Trade Desk URL. | "<https://unifiedid.org/somepath?args>" |
 | value | Optional | Object | Used only if the page has a separate mechanism for storing the Unified ID. The value is an object containing the values to be sent to the adapters. In this scenario, no URL is called and nothing is added to local storage | `{"tdid": "D6885E90-2A7A-4E0F-87CB-7734ED1B99A3"}` |
 
+Either `params.partner` or `params.url` must be provided.
+
 ## Unified ID Examples
 
 1. Publisher has a partner ID with The Trade Desk, and is using the default endpoint for Unified ID.

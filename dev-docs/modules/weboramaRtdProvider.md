@@ -150,12 +150,8 @@ On this section we will explain the `params.weboUserDataConf` subconfiguration:
 
 ##### User Consent
 
-The WAM User-Centric configuration will check for user consent if gdpr applies. It will check for consent:
-
-* Vendor ID 284 (Weborama)
-* Purpose IDs: 1, 3, 4, 5 and 6
-
-If the user consent does not match such conditions, this module will not load, means we will not check for any data in local storage and the default profile will be ignored.
+In a user-centric configuration, the WAM module will verify user consent when GDPR is applicable. It specifically checks for consent related to the purposes declared by Weborama in the Global Vendor List (Vendor ID 284). 
+If the required consent is not provided, the module will not activate, and it will neither access local storage nor apply any default user profile.
 
 #### Sfbx LiTE Site-Centric Configuration
 
@@ -223,16 +219,16 @@ This property support the following types
 | Type  | Description | Example   | Notes  |
 | :------------ | :------------ | :------------ |:------------ |
 | Boolean|If true, send data to all bidders, or not in case of false| `true` | default value |
-| String|Will send data to only one bidder | `'appnexus'` |  |
-| Array of Strings|Will send data to only some bidders | `['appnexus','pubmatic']` |  |
-| Object |Will send data to only some bidders and some ad units | `{appnexus: true, pubmatic:['adUnitCode1']}` |  |
-| Callback |Will be executed for each adunit, expects return a true value to set prebid targeting or not| `function(bid, adUnitCode){return bid.bidder == 'appnexus' && adUnitCode == 'adUnitCode';}` |  |
+| String|Will send data to only one bidder | `'msft'` |  |
+| Array of Strings|Will send data to only some bidders | `['msft','pubmatic']` |  |
+| Object |Will send data to only some bidders and some ad units | `{msft: true, pubmatic:['adUnitCode1']}` |  |
+| Callback |Will be executed for each adunit, expects return a true value to set prebid targeting or not| `function(bid, adUnitCode){return bid.bidder == 'msft' && adUnitCode == 'adUnitCode';}` |  |
 
 A better look on the `Object` type
 
 ```javascript
 sendToBidders: {
-    appnexus: true,           // send profile to appnexus on all ad units
+    msft: true,           // send profile to msft on all ad units
     pubmatic: ['adUnitCode1'],// send profile to pubmatic on this ad units 
 }
 ```
@@ -258,8 +254,8 @@ It is possible customize the targeting based on the parameters:
 
 ```javascript
 sendToBidders: function(bid, adUnitCode, data, metadata){
-    if (bid.bidder == 'appnexus' && adUnitCode == 'adUnitCode1'){
-        data['foo']=['bar']; // add this section only for appnexus + adUnitCode1
+    if (bid.bidder == 'msft' && adUnitCode == 'adUnitCode1'){
+        data['foo']=['bar']; // add this section only for msft + adUnitCode1
         delete data['other']; // remove this section
     }
     return true;
@@ -286,7 +282,7 @@ sendToBidders: function(bid, adUnitCode, data, metadata){
 In case of using bid _aliases_, we should match the same string used in the adUnit configuration.
 
 ```javascript
-pbjs.aliasBidder('appnexus', 'foo');
+pbjs.aliasBidder('msft', 'foo');
 pbjs.aliasBidder('criteo', 'bar');
 pbjs.aliasBidder('pubmatic', 'baz');
 pbjs.setConfig({
@@ -507,7 +503,7 @@ pbjs.que.push(function () {
                     weboCtxConf: {
                         token: "to-be-defined", // mandatory
                         setPrebidTargeting: ['adUnitCode1',...], // set target only on certain adunits 
-                        sendToBidders: ['appnexus',...], // overide, send to only some bidders
+                        sendToBidders: ['msft',...], // overide, send to only some bidders
                         enabled: true,
                     },
                     weboUserDataConf: {
@@ -557,7 +553,7 @@ pbjs.que.push(function () {
                         token: "to-be-defined", // mandatory
                         targetURL: "https://prebid.org", // default is document.URL
                         setPrebidTargeting: true, // override param.setPrebidTargeting or default true
-                        sendToBidders: ['appnexus',...], // overide, send to only some bidders
+                        sendToBidders: ['msft',...], // overide, send to only some bidders
                         defaultProfile: {         // optional
                             webo_ctx: ['moon'],
                             webo_ds: ['bar']
@@ -569,7 +565,7 @@ pbjs.que.push(function () {
                         accountId: 12345,           // recommended
                         setPrebidTargeting: ['adUnitCode1',...], // set target only on certain adunits 
                         sendToBidders: { // send to only some bidders and adunits
-                            'appnexus': true,               // all adunits for appnexus 
+                            'msft': true,               // all adunits for msft 
                             'pubmatic': ['adUnitCode1',...] // some adunits for pubmatic
                             // other bidders will be ignored
                         },
@@ -586,7 +582,7 @@ pbjs.que.push(function () {
                             return adUnitCode == 'adUnitCode1';
                         },
                         sendToBidders: function(bid, adUnitCode){ // specify sendToBidders via callback
-                            return bid.bidder == 'appnexus' && adUnitCode == 'adUnitCode1';
+                            return bid.bidder == 'msft' && adUnitCode == 'adUnitCode1';
                         }
                         defaultProfile: {           // optional
                             lite_occupation: ['gérant', 'bénévole'],
@@ -607,7 +603,7 @@ pbjs.que.push(function () {
 
 We currently support the following bidder adapters with dedicated code:
 
-* AppNexus SSP
+* Microsoft SSP
 
 We also set the bidder (and global, if no specific bidders are set on `sendToBidders`) ortb2 `site.ext.data` and `user.ext.data` sections (as arbitrary data). The following bidders may support it, to be sure, check the `First Party Data Support` on the feature list for the particular bidder from [here](https://docs.prebid.org/dev-docs/bidders).
 
@@ -649,7 +645,7 @@ We also set the bidder (and global, if no specific bidders are set on `sendToBid
 
 To view an example of available segments returned by Weborama's backends:
 
-`gulp serve --notest --nolint --modules=rtdModule,weboramaRtdProvider,smartadserverBidAdapter,pubmaticBidAdapter,appnexusBidAdapter,rubiconBidAdapter,criteoBidAdapter`
+`gulp serve --notest --nolint --modules=rtdModule,weboramaRtdProvider,smartadserverBidAdapter,pubmaticBidAdapter,msftBidAdapter,rubiconBidAdapter,criteoBidAdapter`
 
 and then point your browser at:
 

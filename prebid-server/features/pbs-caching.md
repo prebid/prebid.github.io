@@ -49,26 +49,32 @@ You can watch the caching take place with your browser developer tools.
 From one of the [video instream examples](/examples/video/instream/jwplayer/pb-ve-jwplayer-platform.html):
 
 The VAST XML is stored into Prebid Cache from Prebid.js with this call:
-```
-POST https://prebid.adnxs.com/pbc/v1/cache
+
+```http
+POST https://my-pbs.example.com/cache
 <VAST XML BODY>
 ```
+
 And the response from the /cache call is:
-```
+
+```json
 {"responses":[{"uuid":"9b05c38c-709c-4fb5-8592-8fcacb1289f7"}]}
 ```
 
 And when the video player is ready to display the video ad, this
 call is seen go out:
+
+```http
+GET https://my-pbs.example.com/cache?uuid=9b05c38c-709c-4fb5-8592-8fcacb1289f7
 ```
-GET https://prebid.adnxs.com/pbc/v1/cache?uuid=9b05c38c-709c-4fb5-8592-8fcacb1289f7
-```
+
 And the response is the VAST XML.
 
 ### AMP
 
 Here's an example AMP response from Prebid Server:
-```
+
+```json
 {
     "targeting": {
         "hb_cache_id": "14b468d0-3c58-4a5d-ae5d-ab9a47b6152c",
@@ -84,7 +90,7 @@ Here's an example AMP response from Prebid Server:
 ```
 
 Then when the ad is chosen by the ad server, this fetch goes out from the browser:
-```
+
+```http
 https://prebid-server.example.com/cache?uuid=14b468d0-3c58-4a5d-ae5d-ab9a47b6152c
 ```
-

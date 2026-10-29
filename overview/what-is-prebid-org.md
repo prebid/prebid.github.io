@@ -7,7 +7,7 @@ sidebarType: 0
 
 # About Prebid.org
 
-Header bidding has seen incredible adoption across the industry, and Prebid.js has been an integral part of that. AppNexus (now Xandr) created Prebid.js, but considered it too important to be owned by any one company. Thus, Prebid.org was created.
+Header bidding has seen incredible adoption across the industry, and Prebid.js has been an integral part of that. AppNexus (now Microsoft) created Prebid.js, but considered it too important to be owned by any one company. Thus, Prebid.org was created.
 
 Formed in September of 2017, Prebid.org is an independent organization designed to ensure and promote fair, transparent, and efficient header bidding across the industry. Funded by dues-paying members, it manages the open source projects Prebid.js, Prebid Mobile, Prebid Server, Prebid Video, Prebid Native, and others.
 

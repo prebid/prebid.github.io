@@ -93,6 +93,10 @@ The structure of your module source code inside the modules directory must have 
 +- README.md <- documentation
 ```
 
+### Optional Code Update Notification
+
+The core Prebid engineering team sometimes makes changes to module files for various reasons: general refactoring, internal API changes, bug fixes, etc. If you want to receive an email alert about any changes made to your codebase, you can update the [codepath notification file](https://github.com/prebid/prebid-server-java/blob/master/.github/workflows/scripts/codepath-notification). Please read the instructions in the file. In many cases, the regex will just be your modulecode, but if you have a short modulecode, you might need to be more precise or you'll get false notifications.
+
 ## Module Configuration
 There are several places to configure a module:
 
@@ -109,7 +113,7 @@ Important Notes:
 
 The quick start is to take a look in two places:
 
-- the [ortb2-blocking module](https://github.com/prebid/prebid-server-java/tree/master/extra/modules/ortb2-blocking)
+- the [ortb2-blocking module](https://github.com/prebid/prebid-server-java/tree/master/extra/modules/pb-ortb2-blocking)
 - the [module test cases](https://github.com/prebid/prebid-server-java/tree/master/src/test/java/org/prebid/server/it/hooks)
 
 ### Adding module documentation

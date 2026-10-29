@@ -1,3 +1,4 @@
+<!-- markdownlint-disable MD041 -->
 {: .table .table-bordered .table-striped }
 | Asset Code       | Description                                                                          | Macro |
 |---------------+--------------------------------------------------------------------------------------|-----------------------|
@@ -9,8 +10,8 @@
 | `image`       | A picture that is associated with the brand, or grabs the user's attention.          | `##hb_native_image##`     |
 | `clickUrl`    | Where the user will end up if they click the ad.                                     | `##hb_native_linkurl##`   |
 | `displayUrl`  | Text that can be displayed instead of the raw click URL. e.g, "Example.com/Specials" | `##hb_native_displayUrl##`|
-| `privacyLink` | Link to the Privacy Policy of the Buyer, e.g. http://example.com/privacy             | `##hb_native_privacy##`   |
-| `privacyIcon` | Icon to display for the privacy link, e.g. http://example.com/privacy_icon.png       | `##hb_native_privicon##`  |
+| `privacyLink` | Link to the Privacy Policy of the Buyer, e.g. <http://example.com/privacy>             | `##hb_native_privacy##`   |
+| `privacyIcon` | Icon to display for the privacy link, e.g. <http://example.com/privacy_icon.png>       | `##hb_native_privicon##`  |
 | `cta`         | *Call to Action* text, e.g., "Click here for more information".                      | `##hb_native_cta##`       |
 | `rating`      | Rating information, e.g., "4" out of 5.                                              | `##hb_native_rating##`    |
 | `downloads`   | The total downloads of the advertised application/product                            | `##hb_native_downloads##` |
@@ -19,3 +20,4 @@
 | `salePrice`   | The sale price of the advertised application/product                                 | `##hb_native_saleprice##` |
 | `address`     | Address of the Buyer/Store. e.g, "123 Main Street, Anywhere USA"                     | `##hb_native_address##`   |
 | `phone`       | Phone Number of the Buyer/Store. e.g, "(123) 456-7890"                               | `##hb_native_phone##`     |
+| `video`       | VAST XML for a video asset (since Prebid.js 11.41). The request must set `mimes`, `protocols`, `minduration` and `maxduration`; see [Native video asset](/dev-docs/show-native-ads.html#native-video-asset). The native template must play it. | `##hb_native_video##`     |

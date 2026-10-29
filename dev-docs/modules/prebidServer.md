@@ -37,14 +37,15 @@ Video notes:
 
 ## Configuration
 
-Here's an example config enabling the AppNexus Prebid Server:
+Here's a minimal example config:
 
 ```javascript
 pbjs.setConfig({
     s2sConfig: {
         accountId : '12345',
-        bidders : ['appnexus','pubmatic', 'rubicon'],
-        defaultVendor: 'appnexus',
+        endpoint: 'https://prebid-server.example.com/openrtb2/auction',
+        syncEndpoint: 'https://prebid-server.example.com/cookie_sync',
+        bidders : ['msft','pubmatic', 'rubicon'],
         timeout: 300
     }
 });
@@ -55,22 +56,21 @@ The same bidder cannot be set in both configs. For example:
 
 ```javascript
 pbjs.setConfig({
-    s2sConfig: [
-      {
-          name: "pbs-appnexus",
-          accountId: '12345',
-          bidders: ['appnexus','pubmatic'],
-          defaultVendor: 'appnexus',
-          timeout: 300,
-      },
-      {
-          name: "pbs-rubicon",
-          accountId: '678910',
-          bidders: ['rubicon'],
-          defaultVendor: 'rubicon',
-          timeout: 300,
-      },
-    ],
+  s2sConfig: {
+    accountId: YOUR_SELLER_MEMBER_ID,
+    bidders: ['msft'],
+    enabled: true,
+    allowUnknownBidderCodes: true,
+    timeout: 1000,
+    endpoint: {
+      p1Consent:   'https://ib.adnxs.com/openrtb2/prebid',
+      noP1Consent: 'https://ib.adnxs-simple.com/openrtb2/prebid'
+    },
+    syncEndpoint: {
+      p1Consent:   'https://prebid.adnxs.com/pbs/v1/cookie_sync',
+      noP1Consent: 'https://prebid.adnxs-simple.com/pbs/v1/cookie_sync'
+    }
+  }
 });
 ```
 
@@ -83,7 +83,6 @@ There are many configuration options for s2sConfig:
 | `name` | Optional | String | A handle for this configuration, used to reference a specific server (when multiple are present) from [ad unit configuration](/dev-docs/adunit-reference.html#stored-imp) |
 | `bidders` | Optional | Array of Strings | Which bidders auctions should take place on the server side |
 | `allowUnknownBidderCodes` | Optional | Boolean | Allow Prebid Server to bid on behalf of bidders that are not explicitly listed in the adUnit. See important [note](#allowUnknownBidderCodes) below. Defaults to `false`. |
-| `defaultVendor` | Optional | String | Automatically includes all following options in the config with vendor's default values.  Individual properties can be overridden by including them in the config along with this setting. See the Additional Notes below for more information. |
 | `enabled` | Optional | Boolean | Enables this s2sConfig block - defaults to `false` |
 | `timeout` | Optional | Integer | Number of milliseconds allowed for the server-side auctions. This should be approximately 200ms-300ms less than your Prebid.js timeout to allow for all bids to be returned in a timely manner. Defaults to 75% of [`bidderTimeout`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Bidder-Timeouts) or 750ms, whichever is lesser. | 
 | `adapter` | Required | String | Adapter to use to connect to Prebid Server. Defaults to 'prebidServer' |
@@ -97,6 +96,10 @@ There are many configuration options for s2sConfig:
 | `adapterOptions` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server in every impression object at request.imp[].ext.BIDDER. See the example above. |
 | `extPrebid` | Optional | Object | Arguments will be added to resulting OpenRTB payload to Prebid Server in request.ext.prebid. See the examples below. |
 | `customHeaders` | Optional | Object | These custom headers will be included in the XHR call to the bidder's endpoint. This will allow you to send data specific to your use case. The format consists of an object where the keys represent the header names and the values correspond to the respective header values. Here is an example how a customHeader object might look like - `{"Header1": "Value1", "Header2": "Value2"}`|
+| `endpointCompression` | Optional | Boolean | Gzip compress the auction request payload when supported and debug mode is off. Adds `gzip=1` to the request URL. |
+| `filterBidderlessCalls` | Optional | Boolean | When `true`, ad units that have no bidders defined are excluded from Prebid Server requests. Defaults to `false`. |
+| `alwaysHasCapacity` | Optional | Boolean | When `true`, this prebid server instance will be omitted in checking if origin has http capacity, defaults to `false` |
+| `allowPriorityBids` | Optional | Array of Strings | Since Prebid.js 11.44. Bidder codes routed through this instance whose deal metadata is trusted when ranking: their bids take `meta.deal.priority` (lower wins) and are ranked on `meta.deal.priorityAdjustedCpm` instead of `cpm`, without changing the bid's price. Trusted bidders must be listed; there is no option to trust every bidder on the instance. The listed bidders in each request are sent to Prebid Server as `ext.prebid.as.apb`, along with `ext.prebid.as.ap: true` (priority bids allowed); `ext.prebid.as` is omitted when none of the requested bidders is listed. Prebid.js enforces this itself and doesn't rely on Prebid Server honoring those fields: it only trusts bids whose seat is one of those bidders, so bids under alternate or unknown seats are not trusted. Defaults to none. See [bidderSettings allowPriorityBids](/dev-docs/publisher-api-reference/bidderSettings.html#212-allowprioritybids). |
 
 If `endpoint` and `syncEndpoint` are objects, these are the supported properties:
 
@@ -108,14 +111,13 @@ If `endpoint` and `syncEndpoint` are objects, these are the supported properties
 
 **Notes on s2sConfig properties**
 
-- Currently supported vendors are: appnexus, openx, and rubicon
-- When using `defaultVendor` option, `accountId` still needs to be defined.
 - If `bidders` is omitted, only adUnits that also omit bidders will be sent to Prebid Server. See the [stored impressions](#stored-imp) example below.
 - If the `s2sConfig` timeout is not specified, Prebid Server will utilize a configured default for `tmax`.
 - When using the `endpoint` or `syncEndpoint` object configs, you should define both properties.  If either property is not defined, Prebid Server requests for that type of user will not be made.  If you do not need to distinguish endpoints for consent reasons, you can simply define the same URL value in both fields or use the String version of the field (which is configured to use defined URL for all users).
+- Since Prebid.js 11.20, the `cookie_sync` request to `syncEndpoint` is skipped in Safari, Firefox, and Chrome on iOS, or when cookies are disabled or denied, in line with the [user sync behavior]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html#setConfig-ConfigureUserSyncing-HowUserSyncingWorks) for bid adapters.
+- When `endpointCompression` is enabled, Prebid.js compresses the request body sent to Prebid Server and appends `gzip=1` to the endpoint URL. This feature is skipped when debug mode is active or the browser lacks GZIP support. Do not use if your PBS Host does not yet support gzip request compression.
 - <a name="allowUnknownBidderCodes" ></a> When `allowUnknownBidderCodes` is `true`, bidders that have not been explicitly requested in [`adUnit.bids`](../adunit-reference.html#adunitbids) may take part in the auction. This can break custom logic that relies on the availability of a bid request object for any given bid. Known scenarios where custom code won't get the request when there's an "unknown bidder":
   - There will not be a [`bidRequested`](/dev-docs/publisher-api-reference/getEvents.html) event.
-  - In the [MASS custom renderers](/dev-docs/modules/mass.html#configuration-parameters) module, `payload.bidRequest` will be undefined.
   - In the [Price Floors module](/dev-docs/modules/floors.html), custom schema functions will see the bidRequest object as undefined.
 
 Additional options for `s2sConfig` may be enabled by including the [Server-to-Server testing module]({{site.baseurl}}/dev-docs/modules/s2sTesting.html).
@@ -126,7 +128,17 @@ Additional options for `s2sConfig` may be enabled by including the [Server-to-Se
 
 **Emitting SeatNonBid Data**
 
-- Prebid Server can be instructed to return additional [SeatNonBid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#seat-non-bid) information about why bidders might not have bid on certain adunits. You can get this extra information by setting `extPrebid.returnallbidstatus` equal to `true`. Note that client-side analytics adapters can receive this data by listening to the `seatNonBid` event.
+- Prebid Server can be instructed to return additional [SeatNonBid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#seat-non-bid) information about why bidders might not have bid on certain adunits. You can get this extra information by setting `extPrebid.returnallbidstatus` equal to `true`. Note that client-side analytics adapters can receive this data by listening to the `pbsAnalytics` event (its `seatnonbid` field). The `seatNonBid` event was removed in Prebid.js 11.
+
+## Server-Side Bidders Don't Need a Client-Side Adapter
+
+A bidder listed in `s2sConfig.bidders` doesn't have to be in the Prebid.js build. Prebid.js forwards the bidder's ad unit params to Prebid Server without calling the bidder's Prebid.js adapter, so you can leave the adapter out and keep the bundle smaller. That includes bidders that only have a Prebid Server adapter. Prebid Server handles parameter validation and type conversion and runs user syncs through `/cookie_sync`. Prebid.js has no bidder-specific parameter transforms for server-side bidders.
+
+If you leave the adapter out, keep these in mind:
+
+- **GDPR / TCF:** the bidder's Global Vendor List ID is normally declared by its Prebid.js adapter. Without the adapter, Prebid.js doesn't know it. If the [TCF Control module](/dev-docs/modules/tcfControl.html) is enforcing vendor consent for `basicAds` (the default), the bidder is removed from the auction. Either declare its ID with [`gvlMapping`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-gvlMapping), which also sends it to Prebid Server for aliases, or set `deferS2Sbidders: true` on the `basicAds` rule to let Prebid Server enforce vendor consent for bidders with unknown IDs.
+- **Aliases:** an alias that's defined in the bidder's Prebid.js adapter isn't defined without it. Use an alias Prebid Server knows, or declare it in `extPrebid.aliases` as described in [Server-Side Aliases](#server-side-aliases).
+- **Client-side fallback:** a bidder without an adapter can only bid server-side. Features that route a bidder to the client, such as the [s2sTesting module](/dev-docs/modules/s2sTesting.html), need the client-side adapter in the build.
 
 ## Bid Params
 
@@ -143,7 +155,7 @@ the bad parameter.
 
 ### Defining endpoints
 
-s2sConfig example with the endpoint attributes defined instead of using the 'defaultVendor' approach:
+s2sConfig example with the endpoint attributes defined:
 
 ```javascript
 pbjs.setConfig({
@@ -187,7 +199,8 @@ pbjs.setConfig({
   s2sConfig: [{
     accountId: '1',
     bidders: ['tripleliftVideo'],
-    defaultVendor: 'appnexus',
+    endpoint: 'https://mypbs.example.com/path',
+    syncEndpoint: 'https://mypbs.example.com/path',
     timeout: 500,
     extPrebid: {
       aliases: {
@@ -204,6 +217,50 @@ Here's how it works:
 1. The s2sConfig.bidders array contains 'tripleliftVideo' telling Prebid.js to direct bids for that code to the server
 1. Finally, the extPrebid.aliases line tells Prebid Server to route the 'tripleliftVideo' biddercode to the 'triplelift' server-side adapter.
 
+Make sure to register your aliases' [`gvlMapping`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-gvlMapping) via setConfig as well.
+
+### Routing for Multiple PBS instances
+
+Bids:
+
+```javascript
+[{
+    bidder: 'foobar',
+    params: {...},
+},
+{
+    bidder: 'foobar',
+    params: {...},
+    pbsHost: 'foobar-2'
+}]
+```
+
+s2sConfig:
+
+```javascript
+[{
+    accountId: 1234,
+    bidders: ['foobar'],
+    enabled: true,
+    endpoint: {
+        noP1Consent : 'https://pbs.auction/openrtb2/auction',
+        p1Consent : 'https://pbs.auction/openrtb2/auction'
+    }
+},
+{
+     accountId: 5678,
+     bidders: ['foobar-2'],
+     syncBidders: ['foobar'],
+     enabled: true,
+     endpoint: {
+        noP1Consent : 'https://pbs.alt.auction/openrtb2/auction',
+        p1Consent : 'https://pbs.alt.auction/openrtb2/auction'
+     }
+}]
+```
+
+The above would distribute `bid[0]` to s2s endpoint `https://pbs.auction/openrtb2/auction`, whereas `bid[1]` will be distributed to `https://pbs.alt.auction/openrtb2/auction`. The syncBidders is used to sync both with the original biddercode to as well as applying bidder specific FPD for pbs calls via bidderconfig.
+
 ### Video via s2sConfig
 
 Supporting video through the Server-to-Server route can be done by providing a couple of extra arguments on the `extPrebid` object. e.g.
@@ -213,7 +270,6 @@ pbjs.setConfig({
     s2sConfig: [{
         accountId: '1001',
         bidders: ['rubicon', 'pubmatic'],
-        defaultVendor: 'rubicon',
         timeout: 250,
         extPrebid: {
             cache: {

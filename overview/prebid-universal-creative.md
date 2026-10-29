@@ -36,8 +36,10 @@ Note that as of PUC v1.15, the recommended way of loading the creative
 in the ad server involves using the `hb_format` ad server key-value. Before 1.15, the ad server needed to load creative.js which covered banner and in-renderer video, or native-render.js for native. 1.15 simplifies this
 by allowing the ad server creative to load banner.js, video.js, or native.js, which can be done programmatically using ad server macros. e.g.
 
+Since version 10.11.0, Prebid.js populates the `hb_ver` ad server key-value which is recommended for selecting a specific PUC version.
+
 ```html
-<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/%%PATTERN:hb_format%%.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@%%PATTERN:hb_ver%%/dist/%%PATTERN:hb_format%%.js"></script>
 ```
 
 This loads the PUC from the Prebid-maintained location. Your managed

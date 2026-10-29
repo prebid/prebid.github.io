@@ -129,11 +129,11 @@ None
 ```javascript
 "bidderAliases": [
     {
-      "bidderName": "appnexus",
+      "bidderName": "msft",
       "name": "alias1"
     },
     {
-      "bidderName": "appnexus",
+      "bidderName": "msft",
       "name": "alias2"
     }
 ]
@@ -325,7 +325,7 @@ None
 
 Parameters used when using Google Ad Manager as the ad server.
 
-See prebid.org documentation for [buildVideoUrl](/dev-docs/publisher-api-reference/adServers.dfp.buildVideoUrl.html)
+See prebid.org documentation for [buildVideoUrl](/dev-docs/publisher-api-reference/adServers.gam.buildVideoUrl.html)
 
 **Acceptable Values:**
 
@@ -610,7 +610,7 @@ No
 
 The publisher must pass the prebid parameters to the plugin, via the `biddersSpec` option, if the plugin is expected to invoke the prebid process.  The syntax for these parameters is defined in [Bidders' Params]({{site.baseurl}}/dev-docs/bidders.html) on Prebid.org.
 
-Use the parameters for AppNexus bidder to include an AppNexus bidder for video ads.
+Use the parameters for Microsoft bidder to include an Microsoft bidder for video ads.
 
 If these parameters are not specified, the plugin assumes that the prebid process has occurred outside of the plugin and that the results of the header bidding will be provided to the plugin via the `headerBiddingResult` option.
 

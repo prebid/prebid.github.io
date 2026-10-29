@@ -14,7 +14,7 @@ sidebarType: 3
 
 This article describes the basic steps to set up Prebid.js with Smart Ad Server.
 
-Comprehensive documentation is available in the article [Holistic+ Setup](https://support.smartadserver.com/s/article/Holistic-Setup) in Smart AdServer’s Help Center. This documentation may be more up to date than the explanations below.
+Comprehensive documentation is available in the article [Holistic+ Setup](https://help.equativ.com/monetize-with-partners/monetize-with-prebidjs-partners) in Smart AdServer’s Help Center. This documentation may be more up to date than the explanations below.
 
 For some of the setup steps described below, you need to have a login to [Smart AdServer’s UI](https://manage.smartadserver.com/).
 
@@ -39,7 +39,7 @@ Proceed as follows:
 - Make sure you specify the timeout; the timeout is the maximum time to wait until the Smart AdServer ad call is executed - even if some partners have not responded yet.
 - Implement the Prebid.js file on the site.
 
-This step is also documented [here](https://support.smartadserver.com/s/article/Holistic-Setup#implement-wrapper).
+This step is also documented [Smart AdServer setup documentation](https://help.equativ.com/monetize-with-partners/monetize-with-prebidjs-partners#step-1-implement-client-side-header-bidding-wrapper-3).
 
 ### Step 2 - Implement Smart AdServer’s tag
 
@@ -47,12 +47,12 @@ Smart AdServer’s OneCall tagging is strongly recommended. With OneCall, you ca
 
 Make sure you use Smart AdServer’s **new OneCall tagging**, which uses POST requests with all the necessary information in the request body; simply check if you see the `formats` array in your tag. If you see `formatId`, you are still dealing with an old tag - in this case, get back to your service contact at Smart AdServer.
 
-For samples of both the new and legacy OneCall as well as a full implementation example, read [here](https://support.smartadserver.com/s/article/Holistic-Setup#onecall).
+For samples of both the new and legacy OneCall as well as a full implementation example, read [OneCall documentation](https://help.equativ.com/monetize-with-partners/monetize-with-prebidjs-partners#onecall-7).
 
 **Additional resources**:
 
-- [Implementation with Smart AdServer’s Standard Call tagging](https://support.smartadserver.com/s/article/Holistic-Setup#implement-smart-tag)
-- [Full tagging guide](https://support.smartadserver.com/s/article/Tagging-guide)
+- [Implementation with Smart AdServer’s Standard Call tagging](https://help.equativ.com/monetize-with-partners/monetize-with-prebidjs-partners#standard-call-5)
+- [Full tagging guide](https://help.equativ.com/supply-inventory-with-web-ad-tags/tagging-guide-get-started)
 
 ### Step 3 - Setup in Smart AdServer’s UI
 
@@ -63,10 +63,10 @@ Things to keep in mind for the Setup in [Smart AdServer’s UI](https://manage.s
 - The Holistic+ feature must be enabled on the network.
 - You must use the official and Holistic RTB+ script templates in the insertions.
 
-For more details, read [here](https://support.smartadserver.com/s/article/Holistic-Setup#setup-ui).
+For more details, read [setup instructions](https://help.equativ.com/monetize-with-partners/monetize-with-prebidjs-partners#step-3-setup-in-emp-11).
 
 ### Step 4 - Get reporting
 
 Read these articles to learn more about the available header bidding reporting:
 
-- [Big Data Reports](https://support.smartadserver.com/s/article/Holistic-Setup#bdr) - provides full, in-depth reporting with header bidding related dimensions and metrics.
+- Big Data Reports - provides full, in-depth reporting with header bidding related dimensions and metrics.
