@@ -123,12 +123,14 @@ var adUnits = [
 ## Video Support
 
 The MonetiseUp adapter supports Video ads via both direct VAST XML (`vastXml`) and VAST URLs (`vastUrl`).
+
 - **Instream**: Video ads support standard `instream` player contexts.
 - **Outstream**: For `outstream` context, a publisher-defined renderer (e.g. `renderer: { url, render }`) or `useCacheKey` must be supplied on the ad unit.
 
 ## First Party Data (FPD)
 
 The adapter supports First Party Data (FPD) in multiple ways:
+
 - **Global FPD**: Automatically includes `pbjs.setConfig({ortb2: {...}})` site and user segment data.
 - **User IDs (EIDs)**: Automatically forwards external identifiers provided by Prebid User ID modules (`user.ext.eids`).
 - **Supply Chain**: Forwards `source.ext.schain` for transparent supply chain validation.
@@ -137,6 +139,7 @@ The adapter supports First Party Data (FPD) in multiple ways:
 ## User Sync
 
 The MonetiseUp adapter supports user synchronization to maximize bid yield:
+
 - **Client-Side**: Supports `iframe` and `image` syncs.
 - All privacy parameters (`gdpr`, `gdpr_consent`, `us_privacy`, `gpp`, `gpp_sid`) are automatically attached to sync requests.
 
