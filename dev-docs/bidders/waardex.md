@@ -11,13 +11,13 @@ pbs_app_supported: true
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 The Waardex Bidding adaptor requires setup and approval before beginning. Please reach out to <support@waardex.com> for more details
 
-### Bid Params (Prebid.js)
+## Bid Params (Prebid.js)
 
-#### Banner
+### Banner
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                                                      | Example            | Type     |
@@ -28,7 +28,7 @@ The Waardex Bidding adaptor requires setup and approval before beginning. Please
 | `position`    | optional | ad position on the page                                          | 1                  | `number` |
 | `instl`       | optional | 1 when ad is interstitial or full screen, 0 when not interstitial| 0                  | `number` |
 
-#### Video
+### Video
 
 {: .table .table-bordered .table-striped }
 | Name            | Scope    | Description                                                                                             | Example                         | Type            |
@@ -53,7 +53,7 @@ The Waardex Bidding adaptor requires setup and approval before beginning. Please
 | `api`           | optional | List of supported API frameworks for this impression                                                    | [1,2,3,4,5,6]                   | `array<number>` |
 | `linearity`     | optional | Indicates if the impression must be linear, nonlinear, etc                                              | 1                               | `number`        |
 
-### Bid Params (Prebid Server)
+## Bid Params (Prebid Server)
 
 {: .table .table-bordered .table-striped }
 | Name     | Scope    | Description                 | Example | Type      |
