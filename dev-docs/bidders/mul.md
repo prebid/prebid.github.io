@@ -122,7 +122,9 @@ var adUnits = [
 
 ## Video Support
 
-The MonetiseUp adapter supports Video ads via both direct VAST XML (`vastXml`) and VAST URLs (`vastUrl`). Video ads support standard IAB video parameters including instream and outstream player configurations.
+The MonetiseUp adapter supports Video ads via both direct VAST XML (`vastXml`) and VAST URLs (`vastUrl`).
+- **Instream**: Video ads support standard `instream` player contexts.
+- **Outstream**: For `outstream` context, a publisher-defined renderer (e.g. `renderer: { url, render }`) or `useCacheKey` must be supplied on the ad unit.
 
 ## First Party Data (FPD)
 
