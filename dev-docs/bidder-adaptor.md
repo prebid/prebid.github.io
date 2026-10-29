@@ -1095,16 +1095,16 @@ If possible, we recommend that publishers associate a renderer with their outstr
 
 However, if the publisher does not define a renderer, you will need to return a renderer with your bid response if you want to participate in the auction for outstream ad unit.
 
-To return a renderer, create one with `Renderer.install` from `src/Renderer.js`, give it a render function with `setRender`, and set it as `bid.renderer`:
+To return a renderer, create one with `Renderer.install` from `src/Renderer.js`, give it a render function with `setRender`, and set it as `bid.renderer`. Take `id` and `adUnitCode` from the original bid request (`bidRequest` here), since the bid response doesn't carry `adUnitCode`:
 
 ```javascript
 import { Renderer } from '../src/Renderer.js';
 
 const renderer = Renderer.install({
-    id: bid.requestId,
+    id: bidRequest.bidId,
     url: 'https://cdn.example.com/outstream-player.js', // script to load before rendering
     config: { /* passed through as renderer.config */ },
-    adUnitCode: bid.adUnitCode,
+    adUnitCode: bidRequest.adUnitCode,
     loaded: false
 });
 renderer.setRender(function (bid, doc) {
@@ -1124,7 +1124,7 @@ bid.renderer = renderer;
 | `id` | `string` | Identifier for the renderer. |
 | `adUnitCode` | `string` | The ad unit the renderer belongs to. If that ad unit (or its `mediaTypes.video`) has a publisher renderer with both `url` and `render`, and it isn't `backupOnly`, `url` is not loaded and `render` is called directly. |
 | `loaded` | `boolean` | Set to `true` if the script at `url` is already loaded; queued commands then run immediately. |
-| `callback` | `function` | Called when the script at `url` has loaded. Defaults to running the renderer's command queue. |
+| `callback` | `function` | Called when the script at `url` has loaded. It replaces the default callback, which sets `loaded` and runs the queued commands, including the pending `render`, so a custom callback must do the same (`renderer.loaded = true; renderer.process();`). If the script fails to load, `callback` isn't called; give the function an `error` property to be notified instead. |
 
 A renderer is used when it has a `url` or `renderNow: true`. Publisher renderers defined on the ad unit or bidder without a `url` are treated as `renderNow` automatically.
 
