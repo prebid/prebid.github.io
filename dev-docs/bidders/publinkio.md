@@ -59,3 +59,29 @@ rendering are not supported.
 
 US privacy, GPP and COPPA signals are forwarded. No GVL ID or TCF-EU support is
 claimed. No user syncs, cookies or local-storage access are performed.
+
+## Optional Campaign Priority
+
+The priority extension requires both the companion Publink adapter update and a
+Publink gateway that supports campaign priority metadata. Confirm availability
+with Publink before enabling it; the initial bidder registration alone does
+not enable this extension.
+
+For client-to-server bidding, the publisher explicitly trusts this bidder:
+
+```javascript
+pbjs.bidderSettings = pbjs.bidderSettings || {};
+pbjs.bidderSettings.publinkio = Object.assign({}, pbjs.bidderSettings.publinkio, {
+  allowPriorityBids: true
+});
+```
+
+A winning direct campaign with a configured positive integer priority can then
+supply deal metadata. Lower numbers take precedence; ordinary bids use Prebid's
+default priority of 12. The bid CPM remains the transaction price. This does not
+enable zero-CPM house bids or bypass publisher floors.
+
+Priority through Prebid Server additionally requires the host to preserve the
+request permission and response deal metadata. The current PBS bidder
+submission supports ordinary bids; `s2sConfig.allowPriorityBids` alone does not
+enable Publink campaign priorities through PBS.
