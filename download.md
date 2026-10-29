@@ -127,7 +127,7 @@ These modules may require accounts with a service provider.<br/>
 <br>
 
 {: .alert.alert-info :}
-The download includes three files: the Prebid.js build; `prebid-config.json`, which records your version and module selection and can be uploaded again later; and `prebid<version>_disclosures.json`, which lists the storage keys (cookies and local storage) that the core library and every module in the build (including parent modules and modules added as dependencies) disclose, with the URL each disclosure comes from and the modules that use it. See the [Storage Control module](/dev-docs/modules/storageControl.html) for how disclosures are used.
+The download includes the Prebid.js build, `prebid-config.json` (your version and module selection, which you can upload again later), and `prebid<version>_disclosures.json`, which lists the cookies and local storage keys disclosed by every module in the build. See the [Storage Control module](/dev-docs/modules/storageControl.html).
 
 {: .alert.alert-info :}
 Note: If you receive an error during download you most likely selected a configuration that is not supported. Verify that each bidder / module is available in the selected version. Also please note that even though you can download older versions of Prebid.js,

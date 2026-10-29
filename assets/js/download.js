@@ -91,12 +91,19 @@
             }, 5000);
             var filename = "prebid" + form_data["version"] + ".js";
 
-            var jsBlob = new Blob([data], { type: "text/javascript" });
+            var jsBlob = new Blob([data.source], { type: "text/javascript" });
             var configData = JSON.stringify({ version: form_data.version, modules: form_data.modules }, null, 2);
 
             triggerDownload(jsBlob, filename);
             triggerDownload(new Blob([configData], { type: "application/json" }), "prebid-config.json");
-            downloadDisclosures(form_data.version, form_data.modules, filename.replace(/\.js$/, "") + "_disclosures.json");
+            if (data.disclosures) {
+                triggerDownload(
+                    new Blob([JSON.stringify(data.disclosures, null, 2)], { type: "application/json" }),
+                    filename.replace(/\.js$/, "") + "_disclosures.json"
+                );
+            } else {
+                alert("Prebid.js was downloaded, but the storage disclosure file couldn't be generated. Download again to retry.");
+            }
 
             if (removedModules.length > 0) {
                 alert(
@@ -109,60 +116,6 @@
         }, function (e) {
             console.log(e);
             alert("Ran into an issue: " + e.message);
-        });
-    }
-
-    // Storage disclosure summary for the build, in the format of the <bundle>_disclosures.json file `gulp build`
-    // generates, computed from the metadata published with the selected Prebid.js version. Unlike gulp, which only
-    // looks at the requested modules, it covers every module in the bundle, including parent modules (e.g. userId)
-    // and modules pulled in as dependencies.
-    function getStorageDisclosureSummary(moduleNames, getModuleMetadata) {
-        // port of libraries/storageDisclosure/summary.mjs in Prebid.js
-        var summary = {};
-        moduleNames.forEach(function (moduleName) {
-            var metadata = getModuleMetadata(moduleName);
-            var disclosure = metadata && metadata.disclosures;
-            if (!disclosure) return;
-            Object.keys(disclosure).forEach(function (url) {
-                var identifiers = disclosure[url].disclosures;
-                if (summary.hasOwnProperty(url)) {
-                    summary[url].forEach(function (entry) {
-                        entry.disclosedBy.push(moduleName);
-                    });
-                } else if (identifiers && identifiers.length > 0) {
-                    summary[url] = identifiers.map(function (identifier) {
-                        return Object.assign({ disclosedIn: url, disclosedBy: [moduleName] }, identifier);
-                    });
-                }
-            });
-        });
-        return [].concat.apply([], Object.keys(summary).map(function (url) { return summary[url]; }));
-    }
-
-    function downloadDisclosures(version, modules, filename) {
-        var base = "https://cdn.jsdelivr.net/npm/prebid.js@" + encodeURIComponent(version) + "/metadata/modules/";
-        var moduleNames;
-        prebidBundler.getBundleModules({ version: version, modules: modules }).then(function (bundleModules) {
-            moduleNames = bundleModules;
-            return Promise.all(moduleNames.map(function (moduleName) {
-                return fetch(base + encodeURIComponent(moduleName) + ".json").then(function (response) {
-                    if (response.status === 404) return null; // module without storage metadata
-                    if (!response.ok) throw new Error("HTTP " + response.status + " for " + moduleName);
-                    return response.json();
-                });
-            }));
-        }).then(function (metadata) {
-            var byModule = {};
-            moduleNames.forEach(function (moduleName, i) {
-                byModule[moduleName] = metadata[i];
-            });
-            var summary = getStorageDisclosureSummary(moduleNames, function (moduleName) {
-                return byModule[moduleName];
-            });
-            triggerDownload(new Blob([JSON.stringify(summary, null, 2)], { type: "application/json" }), filename);
-        }).catch(function (e) {
-            console.log(e);
-            alert("Prebid.js was downloaded, but the storage disclosure file couldn't be generated. Please try again later.");
         });
     }
 
