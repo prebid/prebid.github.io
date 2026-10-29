@@ -262,42 +262,234 @@ What we know about yield group feature:
 
 ### Naming of bidders and modules
 
-There are a set of naming conventions and rules that need to be followed when it comes to naming things.
-Currently the prebid documentation is not versioned, which is why we highly discourage any change in names as links, build processes and information might get lost.
+Changing a bidder code, alias, or module filename can break existing integrations even if the
+underlying adapter continues to work. Prebid.js is distributed as an npm package as well as
+through the Download page: npm consumers may import an adapter by its filename, list that
+filename in a build command, or refer to its bidder code in ad units, floors, bidder settings,
+and ad server targeting. Renaming or deleting a file therefore breaks builds with errors such as
+`Cannot resolve 'prebid.js/modules/oldBidAdapter'`; changing a bidder code can also silently
+stop requests or change targeting keys.
+
+The documentation generally describes the current release rather than providing separate
+pages for every past release. Prefer additive changes and a deprecation period over silently
+replacing a public name.
 
 #### Bidder file name conventions
 
+- Name the adapter file `modules/<name>BidAdapter.js` (or `.ts` for TypeScript adapters);
+  use `<name>` consistently as the bidder's registered `spec.code` and in the
+  `biddercode` field of the bidder documentation when possible.
+- Keep the adapter filename, JavaScript bidder code, bidder alias, and documentation
+  page name distinct in reviews. They are not necessarily identical, and changing any
+  of them has different effects on consumers.
+- In the bidder documentation front matter, use `filename` when the module filename
+  differs from the bidder code, and `aliasCode` when an alternate bidder code should
+  load the same module. See the [bidder documentation metadata guide](/guide.html)
+  for these fields.
+- Preserve an existing filename through non-major releases when renaming a module,
+  even if the Download page presents only the new name.
+
 #### Adding an alias for the same company
+
+Use the existing adapter's `spec.aliases` when a company needs another bidder code
+(e.g., to use a shorter code for ad server targeting). This does not require a second
+implementation or a second adapter filename.
+
+```javascript
+export const spec = {
+  code: 'original',
+  aliases: ['shortname'],
+  // ... existing adapter implementation
+};
+```
+
+Update the bidder documentation so users know the preferred bidder code, and use
+`aliasCode`/`prevBiddercode` in its front matter when applicable. Keep the original
+code working, and test both names. An alias changes the bidder identifier used for
+targeting and bidder-specific configuration; existing installations do not
+automatically migrate. See [Adding adapter aliases](/dev-docs/bidder-adaptor.html#adding-adapter-aliases).
 
 #### Adding an alias for a whitelabel solution
 
+An alias can also identify a partner or white-label integration that shares an
+adapter implementation. Use an alias object if it needs its own GVL ID or other
+supported alias metadata:
+
+```javascript
+export const spec = {
+  code: 'original',
+  aliases: [{ code: 'partner', gvlid: 123 }],
+  // ... shared implementation
+};
+```
+
+The GVL ID above is illustrative. Confirm the partner's actual privacy disclosures
+and consent requirements; do not inherit or invent its vendor identity. Document
+the partner's parameters and maintainers as appropriate. Confirm that both the
+client-side and Prebid Server alias mappings are correct. If Prebid Server already
+has a distinct implementation under that name, review `skipPbsAliasing` instead of
+silently redirecting its traffic. Use a separate adapter when behavior cannot
+safely be shared. See [skipPbsAliasing](/dev-docs/bidder-adaptor.html#skippbsaliasing).
+
 #### Removing an alias
+
+Removing a name from `spec.aliases` is a breaking change for publishers using
+`bidder: 'oldalias'`, bidder-specific configuration, or ad server targeting keys.
+A filename shim does not preserve an alias registered by an existing adapter.
+
+1. Announce which name replaces the alias, update examples and docs, and keep the
+   old alias registered for the remainder of the current major version when possible.
+2. Open an issue in [Prebid.js](https://github.com/prebid/Prebid.js/issues)
+   to remove the obsolete alias in the **next major release**; link it from the
+   deprecation PR.
+3. If the old name must become inactive before then (e.g., the underlying service
+   has shut down), document the loss of bidding and use the no-op compatibility
+   approach under [Remove a module](#remove-a-module). Do not suggest that an
+   inactive alias still generates bids.
+4. After removal, update the docs and test that unsupported names are no longer
+   registered. Check the Prebid Server configuration separately.
 
 #### Changing an alias
 
+Treat this as **adding the new alias and deprecating the old one**, not replacing
+the old string immediately. Keep both codes functional during the transition,
+prefer the new name in documentation, and record the old name with
+`prevBiddercode` where appropriate.
+
+Review differences in `hb_bidder` and bidder-specific targeting keys, bidder
+settings, floors, and any server-side aliases. If the replacement name is already
+registered by another adapter, resolve the collision rather than overriding it.
+Track deletion of the old alias in a separate next-major Prebid.js issue.
+
 #### Renaming a module
 
-Sometimes the owner of a bid adapter or other kind of module wants to rename their module. However, Prebid considers module renames a
-'breaking change' -- publishers' build processes and pages could break as a result of a renaming, so Prebid's policy on renaming is:
+A module rename is a breaking change even when no runtime behavior changes.
+For example, an npm consumer building with `--modules=oldBidAdapter` or importing
+`prebid.js/modules/oldBidAdapter` will fail if that file disappears. Updating the
+docs Download page alone cannot protect those integrations.
 
-1. Create the new Prebid.js module files (js and md)
-2. If they're basically the same code base, change the old file so that it includes the new file. This prevents duplicate maintenance of code. In general we don't approve modules including each other, but we'll approve it to avoid repetition.
-3. The docs repo should contain both names, with the old name referring to the new name. You can add the "enable_download: false" flag to prevent installations of the old name.
-4. At the next major release the old files may be removed.
+For a **working bidder renamed to a new name**, use a forwarding compatibility
+module so the old path and bidder code keep working in the current major version:
+
+1. Add the new implementation and documentation, and move the full behavioral
+   tests to the new adapter.
+2. Keep `modules/oldBidAdapter.js` as a small shim that imports the new spec and
+   registers the legacy bidder code. Do not duplicate adapter business logic.
+3. Remove the old adapter's full behavioral test suite, which would otherwise
+   duplicate the new tests; retain at most a focused compatibility smoke test
+   verifying that the legacy filename and bidder code still work.
+4. Emit a deprecation warning **once**, preferably when the old bidder is used,
+   pointing to the replacement file and bidder code. Use Prebid's `logWarn`
+   (visible in the browser console when Prebid debug logging is enabled) rather
+   than repeatedly printing for every bid.
+5. Update docs for both names; `enable_download: false` can hide the deprecated
+   entry from new builds, but does **not** preserve or remove a module at runtime.
+6. Open a **separate Prebid.js issue for the next major release** to delete the
+   compatibility file, its remaining smoke test, and its old documentation
+   entry. Link that issue in the rename PR.
+
+For example, with a replacement whose new bidder code is `new`:
+
+```javascript
+// modules/oldBidAdapter.js - transitional compatibility shim
+import { spec as newSpec } from './newBidAdapter.js'; // eslint-disable-line prebid/validate-imports
+import { registerBidder } from '../src/adapters/bidderFactory.js';
+import { logWarn } from '../src/utils.js';
+
+let warned = false;
+
+export const spec = {
+  ...newSpec,
+  code: 'old',
+  aliases: [], // avoid registering the new adapter's aliases twice
+  isBidRequestValid(bid) {
+    if (!warned) {
+      warned = true;
+      logWarn('oldBidAdapter is deprecated; use newBidAdapter and bidder "new".');
+    }
+    return newSpec.isBidRequestValid(bid);
+  }
+};
+
+registerBidder(spec);
+```
+
+The import-register pattern is based on the
+[ShowHeroes rename](https://github.com/prebid/Prebid.js/pull/14644), which
+retained `showheroes-bsBidAdapter.js` as a wrapper importing
+`showheroesBidAdapter.js`. It also had a
+[follow-up removal issue](https://github.com/prebid/Prebid.js/issues/14751)
+for the next major version. The import may need a narrowly scoped
+`prebid/validate-imports` lint exception, as in that PR. Avoid inheriting
+`aliases` without reviewing them, as this can register the same alias twice.
+If the replacement spec has additional side effects or different parameters,
+verify that the shim really preserves the old behavior before using it.
 
 #### Remove a module
 
-Reasons
+An adapter may need to be retired when its company closes, its service
+disappears, its traffic moves to another adapter, or it cannot meet policy
+requirements. Removal of the filename is a separate concern from stopping
+outbound requests.
 
-- company is out of business
-- M&A process
+- **Renamed but functional:** forward to the replacement, as described above,
+  only when it truly supports the legacy parameters and bidder code.
+- **Discontinued or unsafe:** keep a minimal **no-op stub** through the
+  current major version if feasible. It should register the old code, warn
+  that it no longer bids, reject incoming bids, and send no bid or user-sync
+  requests. Do **not** forward requests to a different commercial endpoint
+  unless the change is explicitly approved and compatible.
+- Delete the retired implementation's behavioral tests and replace them, if
+  useful, with a small stub test confirming that no network requests are made.
+  File a separate issue to remove the stub at the next major release.
+
+For a discontinued bidder, the stub can look like:
+
+```javascript
+import { registerBidder } from '../src/adapters/bidderFactory.js';
+import { logWarn } from '../src/utils.js';
+
+let warned = false;
+
+export const spec = {
+  code: 'old',
+  isBidRequestValid() {
+    if (!warned) {
+      warned = true;
+      logWarn('oldBidAdapter is discontinued and no longer requests bids.');
+    }
+    return false;
+  },
+  buildRequests() { return []; },
+  interpretResponse() { return []; },
+  getUserSyncs() { return []; }
+};
+
+registerBidder(spec);
+```
+
+Recent precedents are the
+[BidsCube compatibility stub](https://github.com/prebid/Prebid.js/blob/master/modules/bidscubeBidAdapter.js)
+and [TPMN compatibility stub](https://github.com/prebid/Prebid.js/blob/master/modules/tpmnBidAdapter.js).
+Both preserve the old module path while disabling bidding; unlike a rename
+shim, they are intentionally **not** functional replacements. Their removal
+is appropriate for a major release.
 
 #### Mark a module not available for certain versions
 
-Reasons
+Document when a module was introduced, deprecated, or removed, and why
+(e.g., noncompliance or a critical bug). Add `pbjs_version_notes` to the
+bidder documentation where applicable. Setting `enable_download: false`
+hides the module from the **current** docs Download experience; it is not a
+version-specific runtime block and will not disable already-installed npm
+builds.
 
-- non compliance
-- critical bug in this version
+Because the docs are not versioned by Prebid.js release, make the version
+range explicit in the page text. Fix critical defects or compliance problems
+in supported branches as appropriate; if immediate removal is necessary,
+explain why the usual compatibility period is not safe. Coordinate
+equivalent changes in Prebid Server separately, and open a next-major
+cleanup issue for obsolete paths, aliases, and tests.
 
 ## Related Reading
 
