@@ -28,7 +28,7 @@ The first phase is limited in several ways:
 
 - Runs only at the Processed-Auction stage.
 - Only delivers functions for including and excluding bidders.
-- Does not necessarily reload config periodically like the Floors feature, making integration with a backend machine learning system more challenging.
+- Unlike Floors, the Rules Engine does not directly poll an external URL for new rules. The host must update the account configuration; PBS-Go can periodically refresh that configuration through the account fetcher.
 - Does not support getting rules config from multiple sources. e.g. host-level rules cannot be merged with account-level rules. And ideally, there could be an ecosystem of vendors supplying config for different rule sets. This is not currently possible.
 
 ### Future Enhancements
@@ -37,20 +37,20 @@ The first phase is limited in several ways:
 - Support additional module stages.
 - Improve getting the configuration from multiple sources.
 
-The team will tackle enhancements as important use cases drive priority. 
+The team will tackle enhancements as important use cases drive priority.
 
 ## Quick Start
 
-For those who prefer to jump right in and see what it looks like, here's an example Rules Engine configuration that:
+For those who prefer to jump right in, this **PBS-Go account configuration** illustrates a Rules Engine experiment. The module is named `prebid.rulesengine` in PBS-Go and `pb-rule-engine` in PBS-Java. Their configuration and execution-plan field names differ; do not copy the Go examples directly into PBS-Java. The following configuration:
 
-98% of the time
+**98% of the time:**
 
 - removes bidderA in the EU datacenter
 - removes bidderD in the EU datacenter if that bidder hasn't synced with this user
 - removes bidderB and bidderF in the APAC datacenter
 - logs any bidder removed to analytics
 
-2% of the time
+**2% of the time:**
 
 - logs "control" to analytics
 
@@ -58,69 +58,95 @@ For those who prefer to jump right in and see what it looks like, here's an exam
 {
   "hooks": {
     "modules": {
-      "pb-rules-engine": {
-        "enabled": true,
-        "timestamp": "20250314 00:00:00",
-        "ruleSets": [
-          {
-            "stage": "processed-auction-request",
-            "name": "remove-bidder-by-datacenter",
-            "version": "1234",
-            "modelGroups": [{
-                "weight": 98,
-                "analyticsKey": "rm-bidder-by-dc",
-                "version": "4567",
-                "schema": [{"function": "datacenters"}],
-                "default": [],
-                "rules": [{
-                    "conditions": ["eu"],
-                    "results": [{
-                        "function": "excludeBidders",
-                        "args": [{
-                            "bidders": [ "bidderA"],
+      "prebid": {
+        "rulesengine": {
+          "enabled": true,
+          "timestamp": "20250314 00:00:00",
+          "rulesets": [
+            {
+              "stage": "processed_auction_request",
+              "name": "remove-bidder-by-datacenter",
+              "version": "1234",
+              "modelgroups": [
+                {
+                  "weight": 98,
+                  "analyticsKey": "rm-bidder-by-dc",
+                  "version": "4567",
+                  "schema": [
+                    {
+                      "function": "dataCenter"
+                    }
+                  ],
+                  "default": [],
+                  "rules": [
+                    {
+                      "conditions": [
+                        "eu"
+                      ],
+                      "results": [
+                        {
+                          "function": "excludeBidders",
+                          "args": {
+                            "bidders": [
+                              "bidderA"
+                            ],
                             "seatnonbid": 203,
                             "analyticsValue": "rm-eu"
-                          },{
-                            "bidders": ["bidderD"],
+                          }
+                        },
+                        {
+                          "function": "excludeBidders",
+                          "args": {
+                            "bidders": [
+                              "bidderD"
+                            ],
                             "seatnonbid": 203,
                             "ifSyncedId": false,
                             "analyticsValue": "rm-eu-nosync"
                           }
-                        ]
-                      }
-                    ]
-                  },{
-                    "conditions": ["apac"],
-                    "results": [{
-                        "function": "excludeBidders",
-                        "args": [{
-                            "bidders": ["bidderB", "bidderF"],
+                        }
+                      ]
+                    },
+                    {
+                      "conditions": [
+                        "apac"
+                      ],
+                      "results": [
+                        {
+                          "function": "excludeBidders",
+                          "args": {
+                            "bidders": [
+                              "bidderB",
+                              "bidderF"
+                            ],
                             "seatnonbid": 203,
                             "analyticsValue": "rm-apac"
                           }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              },{
-                "weight": 2,
-                "analyticsKey": "rm-bidder-by-dc",
-                "default": [
-                  {
-                    "function": "logAtag",
-                    "args": {
-                      "analyticsValue": "control"
+                        }
+                      ]
                     }
-                  }
-                ]
-
-              }
-            ]
-          }
-        ]
+                  ]
+                },
+                {
+                  "weight": 2,
+                  "analyticsKey": "rm-bidder-by-dc",
+                  "default": [
+                    {
+                      "function": "logATag",
+                      "args": {
+                        "analyticsValue": "control"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "generate_rules_from_bidderconfig": false
+        }
       }
-    }
+    },
+    "enabled": true
   }
 }
 ```
@@ -138,13 +164,13 @@ Similar to the Floors feature, it's assumed that an offline machine-learning alg
 
 The initial goal of this module is to define the runtime capabilities that are required to surgically select bidders. We've defined a technical interface and a runtime behavior. Some uses of the module might be manually configured, but the most valuable use of the system will be in the periodic offline machine learning. The goal there is for Prebid to step out of the way and let members of the ecosystem compete to do the best job.
 
-We envision a time when, like the floors sytem, there are multiple vendors providing optimization services of different kinds.
+We envision a time when, like the floors system, there are multiple vendors providing optimization services of different kinds.
 
 ## Configuration Details
 
 Configuration is covered in several sections:
 
-1. [Module configuration syntax](#module-account-level-configuration) - the JSON used to express which bidders should run when. This is basically a kind of a Domain-Specific Language (DSL) where the 
+1. [Module configuration syntax](#module-account-level-configuration) - the JSON used to express which bidders should run and when. It functions as a domain-specific language (DSL).
 1. [Rule Trees](#rule-trees) - groups of rules should be thought of as 'trees' split along dimensions like 'datacenter' and 'channel'. These trees are processed in a particular way.
 1. [Schema Functions](#schema-functions) - which dimensions and comparisons can be used in the configuration. 
 1. [Results Functions](#results-functions) - the specific outcomes once a specific rule is chosen.
@@ -152,33 +178,33 @@ Configuration is covered in several sections:
 
 ### Module Account-Level Configuration
 
-These are the full set of attributes that can be present in the account-level configuration:
+The following fields describe the **PBS-Go** account-level module configuration (`hooks.modules.prebid.rulesengine`). For PBS-Java, see its `pb-rule-engine` module configuration and use camel-case field names such as `ruleSets` and `modelGroups` instead of Go's `rulesets` and `modelgroups`:
 
 {: .table .table-bordered .table-striped }
 | Property | Scope | Type | Description | Example |
-|----------|-------|------|-------------|---------|
+| ---------- | ------- | ------ | ------------- | --------- |
 | enabled | optional | boolean | Whether the module as a whole is enabled. Allows for easy temporary deactivation. Defaults to true. | true |
-| generateRulesFromBidderConfig | optional | boolean | (PBS-Go only) If true, the module automatically generates rules based on 'geoscope' section of the bidder YAML files to include or exclude that bidder from certain countries. Defaults to true. | false |
-| ruleSets[] | required | array of objects | One or more independent sets of rules. | |
-| ruleSets[]<wbr>.enabled | optional | boolean | Indicates whether this ruleset is active. Defaults to true. Allows easy toggling for troubleshooting. | true |
-| ruleSets[]<wbr>.timestamp | optional | string | String indicates when this ruleset was last updated. Useful in optimization and troubleshooting. Format is ISO 8601. | "20250101T00:00:00" |
-| ruleSets[]<wbr>.stage | required | string | Which module stage this object applies to. Initially, the only value allowed is "processed auction" | "processed auction" |
+| generate_rules_from_bidderconfig | optional | boolean | (PBS-Go only) Generate geoscope rules from bidder YAML configuration. Set explicitly; the Go default is `false`. | false |
+| rulesets[] | required | array of objects | One or more independent sets of rules. | none |
+| timestamp | optional | string | Account-level rules configuration revision (informational in PBS-Go; the cache compares a hash of configuration). | "2025-03-14T00:00:00Z" |
+| rulesets[]<wbr>.version | optional | string | Version of the ruleset. | "1234" |
+| rulesets[]<wbr>.stage | required | string | Which module stage this object applies to. Initially, the currently supported stage is `processed_auction_request` | "processed_auction_request" |
 | rulesets[]<wbr>.name | optional | string | Just for human readability. | "remove-bidder-by-datacenter" |
-| ruleSets[]<wbr>.modelGroups[] | required | array of objects | This is where the rule details are stored. It's an array in case there's a desire to A/B test different rule configs. Model groups work here like they do for [floors](/dev-docs/modules/floors.html#schema-2). | |
-| ruleSets[]<wbr>.modelGroups[]<wbr>.weight | optional | integer | The relative weight of this specific modelGroup entry. Only one array entry within this modelGroup will be chosen. Default weight is 1, and they must range from 1 to 100. | 10 |
-| ruleSets[]<wbr>.modelGroups[]<wbr>.version | optional | string | In case the machine learning system would like to track the specifics of an experiment. | "123" |
-| ruleSets[]<wbr>.modelGroups[]<wbr>.default[] | optional | array of objects | The default results object to be used if anything goes wrong while traversing the rule tree or if there aren't any rules defined. | |
-| ruleSets[]<wbr>.modelGroups[]<wbr>.default[]<wbr>.function | optional | string | Which results function to call. | "logAtag" |
-| ruleSets[]<wbr>.modelGroups[]<wbr>.default[]<wbr>.args | optional | object or array of objects | Which arguments to pass to the function. | |
-| ruleSets[]<wbr>.modelGroups[]<wbr>.schema[] | optional | array of objects | Array of functions used to define the tree. | |
-| ruleSets[]<wbr>.modelGroups[]<wbr>.schema[]<wbr>.function | optional | string | Which schema function to call. | "deviceCountry" |
-| ruleSets[]<wbr>.modelGroups[]<wbr>.schema[]<wbr>.args | optional | array | Arguments to pass to the schema function. | [["USA","CAN"]] |
-| ruleSets[]<wbr>.modelGroups[]<wbr>.analyticsKey | optional | string | Used to produce aTags and intended to identify an experiment or optimization target. | "456" |
-| ruleSets[]<wbr>.modelGroups[]<wbr>.rules[] | optional | array of objects | The rules themselves. If not present, only the default rule will be chosen. | |
-| ruleSets[]<wbr>.modelGroups[]<wbr>.rules[]<wbr>.conditions[] | optional | array of strings | Defines a node on the rule tree. The order of the entries in this array must match the order defined in the schema. | ["true", "false", "app"] |
-| ruleSets[]<wbr>.modelGroups[]<wbr>.rules[]<wbr>.results[] | optional | array of objects | One or more results functions to run when this leaf of the tree is chosen. | |
-| ruleSets[]<wbr>.modelGroups[]<wbr>.rules[]<wbr>.results[]<wbr>.function | optional | string | Which results function to call. | "logAtag" |
-| ruleSets[]<wbr>.modelGroups[]<wbr>.rules[]<wbr>.results[]<wbr>.args | optional | object or array of objects | Which arguments to pass to the function. | |
+| rulesets[]<wbr>.modelgroups[] | required | array of objects | This is where the rule details are stored. It's an array in case there's a desire to A/B test different rule configs. Model groups work here like they do for [floors](/dev-docs/modules/floors.html#schema-2). | |
+| rulesets[]<wbr>.modelgroups[]<wbr>.weight | optional | integer | The relative weight of this specific modelGroup entry. Only one array entry within this modelGroup will be chosen. Default weight is 1, and they must range from 1 to 100. | 10 |
+| rulesets[]<wbr>.modelgroups[]<wbr>.version | optional | string | In case the machine learning system would like to track the specifics of an experiment. | "123" |
+| rulesets[]<wbr>.modelgroups[]<wbr>.default[] | optional | array of objects | The default results object to be used if anything goes wrong while traversing the rule tree or if there aren't any rules defined. | |
+| rulesets[]<wbr>.modelgroups[]<wbr>.default[]<wbr>.function | optional | string | Which results function to call. | "logATag" |
+| rulesets[]<wbr>.modelgroups[]<wbr>.default[]<wbr>.args | optional | object | Which arguments to pass to the function. | |
+| rulesets[]<wbr>.modelgroups[]<wbr>.schema[] | optional | array of objects | Array of functions used to define the tree. | |
+| rulesets[]<wbr>.modelgroups[]<wbr>.schema[]<wbr>.function | optional | string | Which schema function to call. | "deviceCountry" |
+| rulesets[]<wbr>.modelgroups[]<wbr>.schema[]<wbr>.args | optional | object | Named arguments for the schema function. | {"countries":["USA","CAN"]} |
+| rulesets[]<wbr>.modelgroups[]<wbr>.analyticsKey | optional | string | Used to produce aTags and intended to identify an experiment or optimization target. | "456" |
+| rulesets[]<wbr>.modelgroups[]<wbr>.rules[] | optional | array of objects | The rules themselves. If not present, only the default rule will be chosen. | |
+| rulesets[]<wbr>.modelgroups[]<wbr>.rules[]<wbr>.conditions[] | optional | array of strings | Defines a node on the rule tree. The order of the entries in this array must match the order defined in the schema. | ["true", "false", "app"] |
+| rulesets[]<wbr>.modelgroups[]<wbr>.rules[]<wbr>.results[] | optional | array of objects | One or more results functions to run when this leaf of the tree is chosen. | |
+| rulesets[]<wbr>.modelgroups[]<wbr>.rules[]<wbr>.results[]<wbr>.function | optional | string | Which results function to call. | "logATag" |
+| rulesets[]<wbr>.modelgroups[]<wbr>.rules[]<wbr>.results[]<wbr>.args | optional | object | Which arguments to pass to the function. | |
 
 ### Rule Trees
 
@@ -211,37 +237,37 @@ See the [runtime processing](#runtime-processing) section below for more details
 
 The module provides a set of functions that parse the OpenRTB request for specific fields, extracting a particular value. For instance, finding out which specific country or channel is associated with this request. These functions are called 'schema functions' because they form the structure of the Rule Tree as described in the section above.
 
-All of these functions operate only on the OpenRTB request at the 'Processed Auction Request' stage of module invocation.
+These functions operate on the OpenRTB request at the Processed Auction Request stage. Availability varies by server implementation; functions marked Java-only are not supported by PBS-Go.
 
 {: .table .table-bordered .table-striped }
 | Schema Function | Args | Description | Output Example |
 | :---- | :---- | :---- | :---- |
-| deviceCountry | null  | Returns OpenRTB device.geo.country. | "CAN" |
-| deviceCountryIn | array of strings representing country codes | If the parameter is an array of strings, then check to see if device.geo.country is part of the named set (case sensitive). If yes, then return "true", else return "false". The parameter must be an array of strings. No length limit. If the array is length zero, treat it as 'null' above. | "true" |
-| datacenters | null  This is an option for those who don't have geo-lookup available on every request. | Returns the value of the datacenter, which is host-company specific. Please work with your host company to get the list of values available in your environment. | "eu-west" |
-| datacentersIn | array of strings containing PBS host company-specific code for region.  This is an option for those who don't have geo-lookup available on every request. | Arguments must be an array of strings with no length limit. The function returns "true"/"false" if the actual datacenter is on the array (case sensitive). Please work with your host company to get the list values available in your environment. | "true" |
+| deviceCountry | null | Returns OpenRTB device.geo.country. | "CAN" |
+| deviceCountryIn | `{"countries": ["USA", "CAN"]}` | Returns "true" if `device.geo.country` matches a country in the non-empty array (case sensitive); otherwise "false". | "true" |
+| dataCenter | null | Returns the value of the datacenter, which is host-company specific. Please work with your host company to get the list of values available in your environment. | "eu-west" |
+| dataCenterIn | `{"datacenters": ["eu-west"]}` | Tests the datacenter against a non-empty array of host-specific codes (case sensitive). | "true" |
 | channel | null | Returns ext.prebid.channel – e.g. web, amp, app. Returns empty string if there is no channel. | "app" |
 | eidAvailable | null  | Returns "true" if user.eids array exists and is non-empty. Returns "false" if user.eids doesn't exist or is empty. | "false" |
-| eidIn | array of strings meant to be extended ID source values like "pubcid.org" | Returns "true"/"false" if the named eid.source is on the array (case sensitive). | "true" |
+| eidIn | `{"sources": ["pubcid.org"]}` | Returns "true" if any supplied EID source is present; the array must not be empty. | "true" |
 | userFpdAvailable | null | Scans user.ext.data and user.data  Returns "true" if either user.ext.data or user.data exists and is non-empty. If neither exists with data, returns "false". Maybe be extended in the future to support specific fields. | "false" |
 | fpdAvailable | null | Returns "true" if any of the following objects exists and has data: user.ext.data, user.data, site.ext.data, site.content.data, app.ext.data, app.content.data. Otherwise returns "false". | "false" |
 | gppSidAvailable | null | Returns "true" if there are any values on regs.gpp\_sid greater than 0. Otherwise returns "false". | "true" |
-| gppSidIn | array of ints | Returns "true" if any of the regs.gpp\_sid values are on the supplied array. (i.e. intersection is true). Otherwise returns "false". | "true" |
+| gppSidIn | `{"sids": [7, 8]}` | Returns "true" if any of the regs.gpp\_sid values are on the supplied array. (i.e. intersection is true). Otherwise returns "false". | "true" |
 | tcfInScope | null | Returns "true" if regs.gdpr is "1". Otherwise returns "false". | "true" |
-| percent | int | Returns "true" if a random integer between 0 and 100 inclusive is less than the supplied number. If the 'args' is null, default to 5. | "true" |
-| domain | null | Returns \{site,app,dooh\}.publisher.domain | "example.com" |
-| domainIn | array of strings representing domains | Returns "true" or "false" based on whether any of the supplied domains is on \{site,app,dooh\}.publisher.domain or \{site,app,dooh\}.domain | "true" |
-| bundle | null | Returns app.bundle | "com.example.myapp" |
-| bundleIn | array of strings representing app bundles | Returns "true" or "false" based on whether any of the supplied bundles is on app.bundle. | "false" |
-| mediaTypes | array of strings representing media types | This function is called for each impression object on the request. It returns "true" or "false" based on whether any of the supplied mediaTypes is on the imp. Valid mediaTypes are "banner", "video", "native" | "true" |
-| adUnitCode | null | This function is called for each impression object on the request. It returns the first of: imp.ext.gpid, imp.tagid, imp.ext.data.pbadslot, imp.ext.prebid.storedrequest.id | "/home/med-rect" |
-| adUnitCodeIn | array of strings | This function is called for each impression object on the request. It returns "true" or "false" based on whether any of the supplied strings is on imp.ext.gpid, imp.tagid, imp.ext.data.pbadslot, imp.ext.prebid.storedrequest.id. | "true" |
-| deviceType | null | Returns the OpenRTB device.devicetype. See the [AdCOM device type list](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/main/AdCOM%20v1.0%20FINAL.md#list--device-types-) for the integers that may be returned. Returns empty string if no device.devicetype exists. | "1" |
-| deviceTypeIn | array of integers | Returns "true" or "false" based on whether any of the supplied integers matches device.devicetype. | "true" |
+| percent | `{"pct": 90}` | Returns "true" if a random integer between 0 and 100 inclusive is less than the supplied number. If the 'args' is null, default to 5. | "true" |
+| domain (Java only) | null | Returns \{site,app,dooh\}.publisher.domain | "example.com" |
+| domainIn (Java only) | array of strings representing domains | Returns "true" or "false" based on whether any of the supplied domains is on \{site,app,dooh\}.publisher.domain or \{site,app,dooh\}.domain | "true" |
+| bundle (Java only) | null | Returns app.bundle | "com.example.myapp" |
+| bundleIn (Java only) | array of strings representing app bundles | Returns "true" or "false" based on whether any of the supplied bundles is on app.bundle. | "false" |
+| mediaTypeIn (Java only) | `{"types": ["video"]}` | This function is called for each impression object on the request. It returns "true" or "false" based on whether any of the supplied mediaTypes is on the imp. Valid mediaTypes are "banner", "video", "native" | "true" |
+| adUnitCode (Java only) | null | This function is called for each impression object on the request. It returns the first of: imp.ext.gpid, imp.tagid, imp.ext.data.pbadslot, imp.ext.prebid.storedrequest.id | "/home/med-rect" |
+| adUnitCodeIn (Java only) | array of strings | This function is called for each impression object on the request. It returns "true" or "false" based on whether any of the supplied strings is on imp.ext.gpid, imp.tagid, imp.ext.data.pbadslot, imp.ext.prebid.storedrequest.id. | "true" |
+| deviceType (Java only) | null | Returns the OpenRTB device.devicetype. See the [AdCOM device type list](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/main/AdCOM%20v1.0%20FINAL.md#list--device-types-) for the integers that may be returned. Returns empty string if no device.devicetype exists. | "1" |
+| deviceTypeIn (Java only) | array of integers | Returns "true" or "false" based on whether any of the supplied integers matches device.devicetype. | "true" |
 
 Notes:
 
-- all args are wrapped in an array, so if the arg in the table above is an array, the JSON will be an array of arrays.
+- Schema-function arguments are JSON objects with named fields (for example, `{"countries":["USA","CAN"]}`). For `*In` functions, the arrays must contain at least one value; empty arrays are invalid.
 - All schema functions return strings -- even boolean and integer values are returned as strings.
 
 #### Schema Function Examples
@@ -295,12 +321,12 @@ Here's an example invocation that means:
     ]
 ```
 
-Both functions expect an array of objects, each of which has these parameters:
+Both functions expect an `args` object with the following parameters. Use multiple results entries to perform multiple include or exclude operations:
 
 {: .table .table-bordered .table-striped }
 | Arg | Value Type | Required? | Meaning | Default |
 | :---- | :---- | :---- | :---- | :---- |
-| bidders | array of strings | yes | The bidders to include or exclude | none |
+| bidders | non-empty array of strings | yes | The bidders to include or exclude | none |
 | seatnonbid | integer | no | The seatnonbid code to use | 203 |
 | ifSyncedId | boolean | no | Whether to consider this bidder's synced ID status | none |
 | analyticsValue | string | no | Sent to the [aTag](/prebid-server/developers/module-atags.html) | none |
@@ -333,11 +359,11 @@ Here's how they work:
 }
 ```
 
-#### logAtag
+#### logATag
 
 [Analytics tags](/prebid-server/developers/module-atags.html) are how Prebid Server modules communicate their activity to the analytics adapters. Each analytics adapter needs to know how to retrieve these values. Check with your analytics vendor to make sure they can receive this data.
 
-The `logAtag` results function communicates some details to the analytics adapters via the analytics tags. The idea is that data science teams will design experiments (e.g. try running bidderA on 5% of Brazilian traffic) and they will need analytics data for the experiment and the control. The syntax of the Rules Engine allows for flexibly defining how the analytics system sees various decisions made at runtime.
+The `logATag` results function communicates some details to the analytics adapters via the analytics tags. The idea is that data science teams will design experiments (e.g. try running bidderA on 5% of Brazilian traffic) and they will need analytics data for the experiment and the control. The syntax of the Rules Engine allows for flexibly defining how the analytics system sees various decisions made at runtime.
 
 Here's an example invocation that means:
 
@@ -345,7 +371,7 @@ Here's an example invocation that means:
 
 ```json5
 "default": [{
-    "function": "logAtag",
+    "function": "logATag",
     "args": {
       "analyticsValue": "control"
     }
@@ -370,7 +396,7 @@ The resulting analytics tag as seen by analytics adapters is:
            analyticsValue: "ANALYTICS_VAL",
            modelVersion: "MODEL_VERSION",
            conditionFired: CONDITION_ARRAY,
-           resultFunctions: ["logAtag"]
+           resultFunctions: ["logATag"]
         }
         appliedTo: {
             impIds: ["*"]
@@ -382,14 +408,14 @@ The resulting analytics tag as seen by analytics adapters is:
 
 For those curious about the technical details, here's how the module works in detail:
 
-1. If not at the "processed-auction-request" stage, exit.  
-2. Check to see if we've already got the parsed account config in cache. If yes, then check the timestamp on the incoming account config to see if there's been an update since last parsing it.  
+1. If not at the `processed_auction_request` stage, exit (PBS-Go).  
+2. Check the parsed account configuration in cache. PBS-Go uses a hash of the account configuration and a configurable refresh interval to determine whether it needs to rebuild trees, rather than using the ruleset timestamp.  
    1. If necessary, parse (or re-parse) the config.  
       1. Validate every call to a schema or result function by passing in the "validation: true" parameter and letting them verify their own params.  
       2. Create data structures for parsed rules.  
       3. Verify there's a "default" for every set of rules.  
    2. If the config is completely validated, then cache it. If validation failed, log a failure aTag against the "pb-rules-engine-config" activity.  
-   3. If this was an update because of a new timestamp, continue with the previously cached parsed config.  
+   3. If new configuration is still loading, the previous cached configuration remains in effect.  
    4. If this is the first run so there's no valid parsed config, exit with error  
 3. Check the module enabled in config. If not, exit.  
 4. Loop through ruleSets  
@@ -414,80 +440,105 @@ For those curious about the technical details, here's how the module works in de
 
 ## Configuration Examples
 
-### Example 1: Remove bidders by datacenter
+### Example 1: Remove bidders by datacenter (PBS-Go)
 
 - in the 'eu' datacenter, always remove bidderA. Remove bidderD if it hasn't done a user sync.
 - in the 'apac' datacenter, always remove bidderB and bidderF
 
-```json5
+```json
 {
   "hooks": {
     "modules": {
-      "pb-rules-engine": {
-        "enabled": true,
-        "timestamp": "20250314 00:00:00",
-        "ruleSets": [
-          {
-            "stage": "processed-auction-request",
-            "name": "remove-bidder-by-datacenter",
-            "version": "1234",
-            "modelGroups": [
-              {
-                "weight": 100,
-                "analyticsKey": "rm-bidder-by-dc",
-                "version": "4567",
-                "schema": [{"function": "datacenters"}],
-                "default": [],
-                "rules": [{
-                    "conditions": ["eu"],
-                    "results": [{
-                        "function": "excludeBidders",
-                        "args": [{
-                            "bidders": [ "bidderA"],
+      "prebid": {
+        "rulesengine": {
+          "enabled": true,
+          "timestamp": "20250314 00:00:00",
+          "rulesets": [
+            {
+              "stage": "processed_auction_request",
+              "name": "remove-bidder-by-datacenter",
+              "version": "1234",
+              "modelgroups": [
+                {
+                  "weight": 100,
+                  "analyticsKey": "rm-bidder-by-dc",
+                  "version": "4567",
+                  "schema": [
+                    {
+                      "function": "dataCenter"
+                    }
+                  ],
+                  "default": [],
+                  "rules": [
+                    {
+                      "conditions": [
+                        "eu"
+                      ],
+                      "results": [
+                        {
+                          "function": "excludeBidders",
+                          "args": {
+                            "bidders": [
+                              "bidderA"
+                            ],
                             "seatnonbid": 203,
                             "analyticsValue": "rm-eu"
-                          },{
-                            "bidders": ["bidderD"],
+                          }
+                        },
+                        {
+                          "function": "excludeBidders",
+                          "args": {
+                            "bidders": [
+                              "bidderD"
+                            ],
                             "seatnonbid": 203,
                             "ifSyncedId": false,
                             "analyticsValue": "rm-eu-nosync"
                           }
-                        ]
-                      }
-                    ]
-                  },{
-                    "conditions": ["apac"],
-                    "results": [{
-                        "function": "excludeBidders",
-                        "args": [{
-                            "bidders": ["bidderB", "bidderF"],
+                        }
+                      ]
+                    },
+                    {
+                      "conditions": [
+                        "apac"
+                      ],
+                      "results": [
+                        {
+                          "function": "excludeBidders",
+                          "args": {
+                            "bidders": [
+                              "bidderB",
+                              "bidderF"
+                            ],
                             "seatnonbid": 203,
                             "analyticsValue": "rm-apac"
                           }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "generate_rules_from_bidderconfig": false
+        }
       }
-    }
+    },
+    "enabled": true
   }
 }
 ```
 
-### Example 2: Remove certain bidders from video requests 90% of the time
+### Example 2: Remove certain bidders from video requests 90% of the time (PBS-Java)
 
 - if the impression mediatype contains 'video', then remove bidderD 90% of the time
 
-```json5
+```json
 {
   "hooks": {
     "modules": {
-      "pb-rules-engine": {
+      "pb-rule-engine": {
         "enabled": true,
         "timestamp": "20250314 00:00:00",
         "ruleSets": [
@@ -500,24 +551,47 @@ For those curious about the technical details, here's how the module works in de
                 "weight": 100,
                 "analyticsKey": "test-video-bidders",
                 "version": "4567",
-                "schema": [{"function": "mediaType", "args": [["video"]]},
-                           {"function": "percent", "args": [90]}
+                "schema": [
+                  {
+                    "function": "mediaTypeIn",
+                    "args": {
+                      "types": [
+                        "video"
+                      ]
+                    }
+                  },
+                  {
+                    "function": "percent",
+                    "args": {
+                      "pct": 90
+                    }
+                  }
                 ],
-                "default": [{
-                    "function": "logAtag",
+                "default": [
+                  {
+                    "function": "logATag",
                     "args": {
                       "analyticsValue": "control"
                     }
-                }],
-                "rules": [{
-                    "conditions": ["true","true"],
-                    "results": [{
+                  }
+                ],
+                "rules": [
+                  {
+                    "conditions": [
+                      "true",
+                      "true"
+                    ],
+                    "results": [
+                      {
                         "function": "excludeBidders",
-                        "args": [{
-                            "bidders": [ "bidderD"],
-                            "analyticsValue": "leaf1"
-                        }]
-                    }]
+                        "args": {
+                          "bidders": [
+                            "bidderD"
+                          ],
+                          "analyticsValue": "leaf1"
+                        }
+                      }
+                    ]
                   }
                 ]
               }
@@ -525,12 +599,13 @@ For those curious about the technical details, here's how the module works in de
           }
         ]
       }
-    }
+    },
+    "enabled": true
   }
 }
 ```
 
-### Example 3: Remove Bidders by country, channel, eid, userFpd
+### Example 3: Remove Bidders by country, channel, eid, userFpd (PBS-Go)
 
 This is a complex example Rule Tree with 12 leaves:
 
@@ -579,146 +654,321 @@ This is a complex example Rule Tree with 12 leaves:
 
 Rules engine config:
 
-```json5
+```json
 {
   "hooks": {
     "modules": {
-      "pb-rules-engine": {
-        "enabled": true,
-        "timestamp": "20250314 00:00:00",
-        "ruleSets": [
-          {
-            "stage": "processed-auction-request",
-            "name": "remove-bidder-by-country-channel-eid-userFpd",
-            "version": "5678",
-            "modelGroups": [
-              {
-                "weight": 100,
-                "analyticsKey": "filter-bidder",
-                "version": "4567",
-                "schema": [{"function": "deviceCountry", "args": [["FRA","DEU","GBR"]]},
-                           {"function": "deviceCountry", "args": [["JPN","AUS","KOR"]]},
-                           {"function": "channel"},
-                           {"function": "eidAvailable", "args": [["pubcid.org"]]},
-                           {"function": "userFpdAvailable" }
-                ],
-                "default": [],
-                "rules": [{
-                    "conditions": ["true","false","app","true","*"],
-                    "results": [{
-                        "function": "excludeBidders",
-                        "args": [{
-                            "bidders": [ "bidderA"],
+      "prebid": {
+        "rulesengine": {
+          "enabled": true,
+          "timestamp": "20250314 00:00:00",
+          "rulesets": [
+            {
+              "stage": "processed_auction_request",
+              "name": "remove-bidder-by-country-channel-eid-userFpd",
+              "version": "5678",
+              "modelgroups": [
+                {
+                  "weight": 100,
+                  "analyticsKey": "filter-bidder",
+                  "version": "4567",
+                  "schema": [
+                    {
+                      "function": "deviceCountryIn",
+                      "args": {
+                        "countries": [
+                          "FRA",
+                          "DEU",
+                          "GBR"
+                        ]
+                      }
+                    },
+                    {
+                      "function": "deviceCountryIn",
+                      "args": {
+                        "countries": [
+                          "JPN",
+                          "AUS",
+                          "KOR"
+                        ]
+                      }
+                    },
+                    {
+                      "function": "channel"
+                    },
+                    {
+                      "function": "eidIn",
+                      "args": {
+                        "sources": [
+                          "pubcid.org"
+                        ]
+                      }
+                    },
+                    {
+                      "function": "userFpdAvailable"
+                    }
+                  ],
+                  "default": [],
+                  "rules": [
+                    {
+                      "conditions": [
+                        "true",
+                        "false",
+                        "app",
+                        "true",
+                        "*"
+                      ],
+                      "results": [
+                        {
+                          "function": "excludeBidders",
+                          "args": {
+                            "bidders": [
+                              "bidderA"
+                            ],
                             "analyticsValue": "leaf1"
-                        }]
-                    }]
-                  },{
-                    "conditions": ["true","false","app","false","true"],
-                    "results": [{
-                        "function": "excludeBidders",
-                        "args": [{
-                            "bidders": ["bidderA", "bidderD"],
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "conditions": [
+                        "true",
+                        "false",
+                        "app",
+                        "false",
+                        "true"
+                      ],
+                      "results": [
+                        {
+                          "function": "excludeBidders",
+                          "args": {
+                            "bidders": [
+                              "bidderA",
+                              "bidderD"
+                            ],
                             "analyticsValue": "leaf2"
-                        }]
-                    }]
-                  },{
-                    "conditions": ["true","false","app","false","false"],
-                    "results": [{
-                        "function": "excludeBidders",
-                        "args": [{
-                            "bidders": ["bidderA", "bidderB"],
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "conditions": [
+                        "true",
+                        "false",
+                        "app",
+                        "false",
+                        "false"
+                      ],
+                      "results": [
+                        {
+                          "function": "excludeBidders",
+                          "args": {
+                            "bidders": [
+                              "bidderA",
+                              "bidderB"
+                            ],
                             "analyticsValue": "leaf3"
-                        }]
-                    }]
-                  },{
-                    "conditions": ["true","false","*","*","*"],
-                    "results": [{
-                        "function": "excludeBidders",
-                        "args": [{
-                            "bidders": ["bidderC"],
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "conditions": [
+                        "true",
+                        "false",
+                        "*",
+                        "*",
+                        "*"
+                      ],
+                      "results": [
+                        {
+                          "function": "excludeBidders",
+                          "args": {
+                            "bidders": [
+                              "bidderC"
+                            ],
                             "analyticsValue": "leaf4"
-                        }]
-                    }]
-                  },{
-                    "conditions": ["false","true","web","true","true"],
-                    "results": [{
-                        "function": "excludeBidders",
-                        "args": [{
-                            "bidders": ["bidderA", "bidderE"],
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "conditions": [
+                        "false",
+                        "true",
+                        "web",
+                        "true",
+                        "true"
+                      ],
+                      "results": [
+                        {
+                          "function": "excludeBidders",
+                          "args": {
+                            "bidders": [
+                              "bidderA",
+                              "bidderE"
+                            ],
                             "analyticsValue": "leaf5"
-                        }]
-                    }]
-                  },{
-                    "conditions": ["false","true","web","true","false"],
-                    "results": [{
-                        "function": "excludeBidders",
-                        "args": [{
-                            "bidders": ["bidderA", "bidderB","bidderE"],
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "conditions": [
+                        "false",
+                        "true",
+                        "web",
+                        "true",
+                        "false"
+                      ],
+                      "results": [
+                        {
+                          "function": "excludeBidders",
+                          "args": {
+                            "bidders": [
+                              "bidderA",
+                              "bidderB",
+                              "bidderE"
+                            ],
                             "analyticsValue": "leaf6"
-                        }]
-                    }]
-                  },{
-                    "conditions": ["false","true","web","false","*"],
-                    "results": [{
-                        "function": "excludeBidders",
-                        "args": [{
-                            "bidders": ["bidderA", "bidderD","bidderF"],
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "conditions": [
+                        "false",
+                        "true",
+                        "web",
+                        "false",
+                        "*"
+                      ],
+                      "results": [
+                        {
+                          "function": "excludeBidders",
+                          "args": {
+                            "bidders": [
+                              "bidderA",
+                              "bidderD",
+                              "bidderF"
+                            ],
                             "analyticsValue": "leaf7"
-                        }]
-                    }]
-                  },{
-                    "conditions": ["false","true","*","*","true"],
-                    "results": [{
-                        "function": "excludeBidders",
-                        "args": [{
-                            "bidders": ["bidderA", "bidderC"],
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "conditions": [
+                        "false",
+                        "true",
+                        "*",
+                        "*",
+                        "true"
+                      ],
+                      "results": [
+                        {
+                          "function": "excludeBidders",
+                          "args": {
+                            "bidders": [
+                              "bidderA",
+                              "bidderC"
+                            ],
                             "analyticsValue": "leaf8"
-                        }]
-                    }]
-                  },{
-                    "conditions": ["false","true","*","*","false"],
-                    "results": [{
-                        "function": "excludeBidders",
-                        "args": [{
-                            "bidders": ["bidderA", "bidderF"],
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "conditions": [
+                        "false",
+                        "true",
+                        "*",
+                        "*",
+                        "false"
+                      ],
+                      "results": [
+                        {
+                          "function": "excludeBidders",
+                          "args": {
+                            "bidders": [
+                              "bidderA",
+                              "bidderF"
+                            ],
                             "analyticsValue": "leaf9"
-                        }]
-                    }]
-                  },{
-                    "conditions": ["false","false","web","*","*"],
-                    "results": [{
-                        "function": "excludeBidders",
-                        "args": [{
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "conditions": [
+                        "false",
+                        "false",
+                        "web",
+                        "*",
+                        "*"
+                      ],
+                      "results": [
+                        {
+                          "function": "excludeBidders",
+                          "args": {
                             "bidders": [],
                             "analyticsValue": "leaf10"
-                        }]
-                    }]
-                  },{
-                    "conditions": ["false","false","*","true","*"],
-                    "results": [{
-                        "function": "excludeBidders",
-                        "args": [{
-                            "bidders": ["bidderB", "bidderE"],
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "conditions": [
+                        "false",
+                        "false",
+                        "*",
+                        "true",
+                        "*"
+                      ],
+                      "results": [
+                        {
+                          "function": "excludeBidders",
+                          "args": {
+                            "bidders": [
+                              "bidderB",
+                              "bidderE"
+                            ],
                             "analyticsValue": "leaf11"
-                        }]
-                    }]
-                  },{
-                    "conditions": ["false","false","*","false","*"],
-                    "results": [{
-                        "function": "excludeBidders",
-                        "args": [{
-                            "bidders": ["bidderE", "bidderF"],
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "conditions": [
+                        "false",
+                        "false",
+                        "*",
+                        "false",
+                        "*"
+                      ],
+                      "results": [
+                        {
+                          "function": "excludeBidders",
+                          "args": {
+                            "bidders": [
+                              "bidderE",
+                              "bidderF"
+                            ],
                             "analyticsValue": "leaf12"
-                        }]
-                    }]
-                  }
-                ]
-              }
-            ]
-          }
-        ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "generate_rules_from_bidderconfig": false
+        }
       }
-    }
+    },
+    "enabled": true
   }
 }
 ```
@@ -754,45 +1004,34 @@ And here's how these scenarios would play out in various runtime conditions:
 
 ## Installing the Module
 
-Like any Prebid Server module, the Rules Engine requires an execution plan.
-We recommend placing the execution plan at the host level so all accounts have the module enabled.
+Enable the hooks system and register the Rules Engine hook in the host execution plan. Here is a **PBS-Go** host-configuration example:
 
-```json5
-        "execution-plan": {
-            "endpoints": {
-                "/openrtb2/amp": {
-                    "stages": {
-                        "processed-auction": {
-                            "groups": [{
-                                    "timeout": 10,
-                                    "hook-sequence": [{
-                                            "module-code": "rules-engine",
-                                            "hook-impl-code": "rules-engine-processed-auction"
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    }
-                },
-                "/openrtb2/auction": {
-                    "stages": {
-                        "processed-auction": {
-                            "groups": [{
-                                    "timeout": 10,
-                                    "hook-sequence": [ {
-                                            "module-code": "rules-engine",
-                                            "hook-impl-code": "rules-engine-processed-auction"
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    }
-                }
+```json
+{
+  "hooks": {
+    "enabled": true,
+    "host_execution_plan": {
+      "endpoints": {
+        "/openrtb2/auction": {
+          "stages": {
+            "processed_auction_request": {
+              "groups": [{
+                "timeout": 10,
+                "hook_sequence": [{
+                  "module_code": "prebid.rulesengine",
+                  "hook_impl_code": "prebid-rulesengine-processed-auction-hook"
+                }]
+              }]
             }
+          }
         }
+      }
+    }
+  }
+}
 ```
+
+PBS-Java uses module code `pb-rule-engine`, hook implementation code `pb-rule-engine-processed-auction-request-hook`, and its own execution-plan field names. Consult your deployment's hooks configuration before applying a host execution plan.
 
 ## Next Steps
 
