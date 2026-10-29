@@ -15,7 +15,7 @@ prebid_member: true
 floors_supported: true
 fpd_supported: true
 safeframes_ok: true
-media_types: banner, native
+media_types: banner, native, video (s2s only)
 schain_supported: true
 userIds: id5Id, identityLink, pubProvidedId
 pbs_app_supported: true
@@ -23,26 +23,29 @@ ortb_blocking_supported: partial
 multiformat_supported: will-bid-on-any
 privacy_sandbox: topics
 sidebarType: 1
+endpoint_compression: true
+deals_supported: false
 ---
 
+Video is supported by the Prebid Server adapter only.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description         | Example       | Type     |
-|---------------|----------|---------------------|---------------|----------|
-| `publisherId` | required | Unique publisher ID | `'ABCDEF'`    | `string` |
-| `region`      | required | Assigned region     | `'prebid-eu'` | `string` |
-| `bidfloor`    | optional | Minimal CPM value   | `0.01`        | `float`  |
-| `channel`     | optional | Inventory channel identifier, limited to 50 characters  | `Partner 1 - News`        | `string`  |
+| Name          | Scope    | Description                                               | Example             | Type     |
+|---------------|----------|-----------------------------------------------------------|---------------------|----------|
+| `publisherId` | required | Unique publisher ID                                       | `'ABCDEF'`          | `string` |
+| `region`      | required | Assigned region                                           | `'prebid-eu'`       | `string` |
+| `bidfloor`    | optional | Minimal CPM value                                         | `0.01`              | `float`  |
+| `channel`     | optional | Inventory channel identifier, limited to 50 characters    | `Partner 1 - News`  | `string` |
 
-#### Please note
+### Please note
 
 * Since 4.43 the bidfloor param will be ignored if a value is specified via floor module.
 
 * The channel param is available starting from Prebid 6.6.0. Please reach your RTBHouse representative for details on how to enable and use the channel param.
 
-### ORTB Blocking
+## ORTB Blocking
 
 RTB House supports blocking advertisers in `badv` and categories in `bcat` parameters.
 The blocked advertisers/categories list has no length limitation, but response timeout is more likely to occur as the number of entries grow.
@@ -51,7 +54,7 @@ Blocked categories list (`bcat`) is an array of IAB categories as strings.
 
 For example:
 
-#### Globally defined ORTB Blocking
+### Globally defined ORTB Blocking
 
 ```javascript
 pbjs.setConfig({
@@ -62,7 +65,7 @@ pbjs.setConfig({
 )};
 ```
 
-#### ORTB Blocking specific only to rtbhouse bidder
+### ORTB Blocking specific only to rtbhouse bidder
 
 ```javascript
 pbjs.setBidderConfig({
@@ -76,6 +79,6 @@ pbjs.setBidderConfig({
 });
 ```
 
-### Setting up the Prebid Server Adapter
+## Setting up the Prebid Server Adapter
 
 If you’re a Prebid Server host company looking to enable the RTB House server-side adapter, you'll need to contact <prebid@rtbhouse.com>. They will guide you through the process. Do not use the default bidder config file as it will require custom partner code to be entered. It will be provided by RTB House.
