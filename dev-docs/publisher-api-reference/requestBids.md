@@ -17,7 +17,7 @@ Request bids. When `adUnits` or `adUnitCodes` are not specified, request bids fo
 {: .table .table-bordered .table-striped }
 | Param | Scope | Type | Description |
 | --- | --- | --- | --- |
-| requestObj | Optional | `Object` |  |
+| requestObj | Optional | `Object` | |
 | requestObj.adUnitCodes | Optional | `Array of strings` | adUnit codes to request. Use this or `requestObj.adUnits`. Default to all `adUnitCodes` if empty. |
 | requestObj.adUnits | Optional | `Array of objects` | AdUnitObjects to request. Use this or `requestObj.adUnitCodes`. Default to all `adUnits` if empty. |
 | requestObj.timeout | Optional | `Integer` | Timeout for requesting the bids specified in milliseconds |
@@ -25,18 +25,35 @@ Request bids. When `adUnits` or `adUnitCodes` are not specified, request bids fo
 | requestObj.labels | Optional | `Array of strings` | Defines `labels` that may be matched on ad unit targeting conditions. |
 | requestObj.auctionId | Optional | `String` | Defines an auction ID to be used rather than having the system generate one. This can be useful if there are multiple wrappers on a page and a single auction ID is desired to tie them together in analytics. |
 | requestObj.ortb2 | Optional | `Object` | Additional [first-party data](/features/firstPartyData.html) to use for this auction only |
-| requestObj.ttlBuffer | Optional | `Number` |  TTL buffer override for this auction. See [setConfig({ttlBuffer})](/dev-docs/publisher-api-reference/setConfig.html#setConfig-ttlBuffer) |
+| requestObj.ttlBuffer | Optional | `Number` | TTL buffer override for this auction. See [setConfig({ttlBuffer})](/dev-docs/publisher-api-reference/setConfig.html#setConfig-ttlBuffer) |
 
 <a id="result"></a>
 
 **Result**:
 
 {: .table .table-bordered .table-stripped :}
-| Param     | Type    | Description                                                                    |
-| ---       | ---     | ---                                                                            |
-| bids      | Object  | Bids received; see [getBidResponses](getBidResponses.html) for details |
-| timedOut  | Boolean | true if any bidder timed out                                                   |
-| auctionId | String  | the auction's ID                                                               |
+| Param | Type | Description |
+| --- | --- | --- |
+| bids | Object | Bids received; see [getBidResponses](getBidResponses.html) for details |
+| timedOut | Boolean | true if any bidder timed out |
+| auctionId | String | the auction's ID |
+
+<a id="rejection"></a>
+
+**Rejection**:
+
+Since Prebid.js 11.41, the returned promise rejects if the auction is aborted before it starts - for example, when the [consent management](/dev-docs/modules/consentManagementTcf.html) module cancels the auction, or when first party data enrichment or another pre-auction step throws an error. In that case `bidsBackHandler` is still called, but with no arguments. In earlier versions the promise never settled in these situations.
+
+If you `await` the result of `requestBids`, wrap it in `try`/`catch`:
+
+```javascript
+try {
+    const {bids, timedOut, auctionId} = await pbjs.requestBids({timeout: 1000});
+    // ...
+} catch (e) {
+    // the auction did not run
+}
+```
 
 Example call:
 

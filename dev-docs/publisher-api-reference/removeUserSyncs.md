@@ -5,11 +5,11 @@ description: removeUserSyncs API
 sidebarType: 1
 ---
 
-Removes the user sync iframes that were inserted by this Prebid instance,
+Since Prebid.js 11.30, removes the user sync iframes that were inserted by this Prebid instance,
 and returns how many iframes got removed.
 Iframes belonging to other instances running on the same page are left alone.
 
-User sync iframes are appended to and never cleaned up, so in a single page application they keep accumulating for as long as the user stays on the page without a reload.
+User sync iframes are appended to the page's `<html>` element and never cleaned up, so in a single page application they keep accumulating for as long as the user stays on the page without a reload.
 Calling this method on navigation in a single page application would clean those up.
 
 Removal is a pure DOM cleanup.

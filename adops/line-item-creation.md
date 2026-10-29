@@ -15,7 +15,7 @@ sbUUID: 3.2
 The settings you apply when creating line items to capture bids coming in from the header bidding process are different from those you apply when creating line items for house ads. This document will walk you through some of the differences, and outline requirements and recommendations for creating line items to work with Prebid.
 
 {: .alert.alert-success :}
-Manually configuring ad server elements for Prebid can be a fair amount of work. If you’re using Google Ad Manager (GAM), consider using our official command line tool, [Prebid Line Item Manager](/tools/line-item-manager.html#prebid-line-item-manager.html), to create the setup. Using this tool may save you time and help you avoid mistakes.
+Manually configuring ad server elements for Prebid can be a fair amount of work. If you’re using Google Ad Manager (GAM), consider using our official command line tool, [Prebid Line Item Manager](/tools/line-item-manager.html), to create the setup. Using this tool may save you time and help you avoid mistakes.
 
 ## Overview
 

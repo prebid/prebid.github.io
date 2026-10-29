@@ -9,7 +9,7 @@ sidebarType: 1
 privacy_sandbox: topics
 ---
 
-### Prebid Client
+## Prebid Client
 
 This Adapter integrates with Yandex's ad services. Please reach out to <prebid@yandex-team.com> for the integration guide and more details.
 
@@ -19,7 +19,7 @@ For detailed auction analytics, check out our [Analytics Adapter](/dev-docs/anal
 {: .alert.alert-info :}
 To improve the personalization of ads for publishers’ users, check out our [User ID Module](/dev-docs/modules/userid-submodules/yandex.html).
 
-#### Client Bid Params
+### Client Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope                                              | Description                                        | Example                           | Type      |
@@ -29,7 +29,7 @@ To improve the personalization of ads for publishers’ users, check out our [Us
 | `pageId`      | optional, **deprecated** in favor of `placementId` | Page ID                                            | `123`                             | `Integer` |
 | `impId`       | optional, **deprecated** in favor of `placementId` | Imp ID                                             | `1`                               | `Integer` |
 
-#### Client Test Parameters
+### Client Test Parameters
 
 ```js
 // Simple banner
@@ -50,23 +50,4 @@ const adUnits = [{
     }
   ]
 }];
-```
-
-#### Topics Iframe Configuration
-
-[Topics First Party Data (FPD) Module](/dev-docs/modules/topicsFpdModule.html) `topicsFpdModule` should be included in prebid final package to call topics API.
-
-```js
-pbjs.setConfig({
-  userSync: {
-    // ...,
-    topics: {
-      bidders: [{
-        bidder: 'yandex',
-        iframeURL: 'https://yandex.ru/ads/prebid/topics_frame.html'
-      }]
-    }
-    // ...
-  }
-})
 ```

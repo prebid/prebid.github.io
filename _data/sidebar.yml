@@ -266,6 +266,22 @@
   subgroup: 1
 
 - sbSecId: 1
+  title: Prebid as an ad server, cross-origin rendering
+  link: /dev-docs/examples/no-adserver-safeframe.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 1
+  title: Server-side only bidding
+  link: /dev-docs/examples/s2s-only.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 1
   title: Using Prebid.js with Microsoft Monetize Ad Server
   link: /dev-docs/examples/use-prebid-with-microsoft-ad-server.html
   isHeader: 0
@@ -632,6 +648,14 @@
 - sbSecId: 1
   title: Interstitial Ads
   link: /features/InterstitialAds.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 8
+
+- sbSecId: 1
+  title: Custom Rendering for Deals
+  link: /features/customDealRendering.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1230,7 +1254,7 @@
 
 - sbSecId: 3
   title: 'Setting up Prebid'
-  link: /adops/setting-up-prebid-with-the-microsoft-ad-server.html
+  link: /adops/setting-up-prebid-with-the-appnexus-ad-server.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1924,6 +1948,14 @@
 - sbSecId: 7
   title: FAQs
   link: /faq/faq.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 7
+  title: Release Notes
+  link: /dev-docs/release-notes.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
