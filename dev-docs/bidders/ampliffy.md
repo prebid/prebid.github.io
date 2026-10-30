@@ -43,15 +43,15 @@ The following table lists the media types that Ampliffy supports.
 
 ### Modules to include in your build process
 
-If you are building the JS binary on your own from source code, follow the instructions in [Prebid.js project README](https://github.com/prebid/Prebid.js/blob/master/README.md#build-optimization). You will need to include the `ampliffyBidAdapter`. To show video ads with Google Ad Manager, you need to include the `dfpAdServerVideo` module. We highly recommend adding the `gptPreAuction` module as well, which improves a DSP's ability to bid accurately on your supply. The following is an example build command that include these modules: <br />
-`gulp build --modules=ampliffyBidAdapter,dfpAdServerVideo,gptPreAuction`
+If you are building the JS binary on your own from source code, follow the instructions in [Prebid.js project README](https://github.com/prebid/Prebid.js/blob/master/README.md#build-optimization). You will need to include the `ampliffyBidAdapter`. To show video ads with Google Ad Manager, you need to include the `gamAdServerVideo` module (named `dfpAdServerVideo` before Prebid.js 10). We highly recommend adding the `gptPreAuction` module as well, which improves a DSP's ability to bid accurately on your supply. The following is an example build command that include these modules: <br />
+`gulp build --modules=ampliffyBidAdapter,gamAdServerVideo,gptPreAuction`
 
-If you are using a JSON file to specify modules, add `ampliffyBidAdapter` and `dfpAdServerVideo` to the modules array as follows:
+If you are using a JSON file to specify modules, add `ampliffyBidAdapter` and `gamAdServerVideo` to the modules array as follows:
 
 ```javascript
 [
     "ampliffyBidAdapter",
-    "dfpAdServerVideo",
+    "gamAdServerVideo",
     "gptPreAuction"
 ]
 ```

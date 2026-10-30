@@ -214,7 +214,7 @@ If you need to run the tests suite but do *not* want to have to build the full a
 gulp test --file "test/spec/modules/aidemBidAdapter_spec.js"
 ```
 
-For video: gulp serve --modules=aidemBidAdapter,dfpAdServerVideo
+For video: gulp serve --modules=aidemBidAdapter,gamAdServerVideo
 
 ### FAQs
 
