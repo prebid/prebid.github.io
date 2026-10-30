@@ -155,6 +155,58 @@ class MarkdownReviewTests(unittest.TestCase):
         self.assertEqual(report["files"][0]["outcome"], "unparseable_response")
         self.assertEqual(report["files"][0]["raw_response"], raw)
 
+    def general(self, patch, line, quote, fix, source=None):
+        finding = {**FINDING, "line": line, "quote": quote, "fix": fix,
+                   "problem": "The example does not match the documented API.",
+                   "failure_case": "A reader who copies this line gets an error."}
+        lines = review.added_lines(patch)
+        source = document(patch) if source is None else source
+        return review.validate(finding, lines, source, review.replaced_lines(patch, line))
+
+    def test_code_example_fix_accepted(self):
+        patch = "@@ -0,0 +1,5 @@\n+## Example\n+\n+```javascript\n+pbjs.setConfig({ debug: true };\n+```"
+        self.assertTrue(self.general(patch, 4, "pbjs.setConfig({ debug: true };",
+                                     "pbjs.setConfig({ debug: true });"))
+
+    def test_prose_fix_rejected(self):
+        patch = "@@ -0,0 +1,1 @@\n+Set the timeout to 300 ms."
+        self.assertFalse(self.general(patch, 1, "Set the timeout to 300 ms.", "Set the timeout to 3000 ms."))
+
+    def test_table_row_fix_accepted(self):
+        patch = ("@@ -0,0 +1,3 @@\n+| Name | Scope | Type |\n+|------|-------|------|\n"
+                 "+| `bidfloor` | optional | string |")
+        self.assertTrue(self.general(patch, 3, "| `bidfloor` | optional | string |",
+                                     "| `bidfloor` | optional | number |"))
+
+    def test_table_formatting_only_rejected(self):
+        patch = "@@ -0,0 +1,2 @@\n+| Name | Type |\n+| bidfloor | number |"
+        self.assertFalse(self.general(patch, 2, "| bidfloor | number |", "| `bidfloor` | **number** |"))
+
+    def test_front_matter_rejected(self):
+        patch = "@@ -0,0 +1,4 @@\n+---\n+biddercode: foo\n+gvl_id: 12\n+---"
+        self.assertFalse(self.general(patch, 3, "gvl_id: 12", "gvl_id: 21"))
+
+    def test_revert_of_replaced_line_rejected(self):
+        patch = ("@@ -1,3 +1,3 @@\n ```js\n-pbjs.setConfig({ debug: false });\n"
+                 "+pbjs.setConfig({ debug: true });\n ```")
+        source = "```js\npbjs.setConfig({ debug: true });\n```"
+        self.assertFalse(self.general(patch, 2, "pbjs.setConfig({ debug: true });",
+                                      "pbjs.setConfig({ debug: false });", source))
+
+    def test_fix_breaking_out_of_suggestion_rejected(self):
+        patch = "@@ -0,0 +1,3 @@\n+```js\n+foo(1;\n+```"
+        self.assertFalse(self.general(patch, 2, "foo(1;", "foo(1); ``` @someone"))
+
+    def test_general_comment_is_sanitized_suggestion(self):
+        finding = {**FINDING, "quote": "  foo(1;", "fix": "foo(1);",
+                   "problem": "See https://evil.example and ping @everyone <!-- bounded-qwen:x -->",
+                   "failure_case": "Copying the line throws a SyntaxError."}
+        comment = review.build_comment(finding, "a" * 64, "  foo(1;")
+        self.assertIn("```suggestion\n  foo(1);\n```", comment)
+        self.assertNotIn("evil.example", comment)
+        self.assertNotIn("@everyone", comment)
+        self.assertNotIn("<!-- bounded-qwen:x", comment)
+
     def test_normalize_keeps_literal_plus_line(self):
         lines = {1: "+1 see [Configuration](#configuraton)"}
         raw = {**INLINE_FINDING, "line": 1, "quote": lines[1],

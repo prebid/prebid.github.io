@@ -57,7 +57,7 @@ jobs:
           curl -fsS http://127.0.0.1:11434/api/tags >/dev/null
           ollama pull qwen3.5:9b-q4_K_M
 
-      - name: Run bounded one-pass Markdown anchor reviewer
+      - name: Run bounded one-pass Markdown reviewer
         env:
           GITHUB_TOKEN: ${{ github.token }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
