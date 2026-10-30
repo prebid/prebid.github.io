@@ -836,7 +836,7 @@ If the alias entry is an object, the following attributes are supported:
 | Name | Scope | Description | Type |
 | --- | --- | --- | --- |
 | `code` | required | shortcode/partner name | `string` |
-| `gvlid` | optional | global vendor list id of company scoped to alias | `integer` |
+| `gvlid` | optional | global vendor list id of company scoped to alias. Since PBJS 11.46, this can be a list, for example the alias's own ID plus that of the company running the endpoint | `integer` or `integer[]` |
 | `acpId` | optional | Google Additional Consent provider id of company scoped to alias, used only if the alias has no GVL ID (PBJS 11.41+) | `integer` |
 | `skipPbsAliasing` | optional | If `true`, don't declare this alias to Prebid Server. See [skipPbsAliasing](#skippbsaliasing) below. Default value: `false` | `boolean` |
 
@@ -847,7 +847,7 @@ Look for other doc entries containing an `aliasCode` metadata entry.
 
 #### skipPbsAliasing
 
-When a request for an aliased bidder goes to Prebid Server, Prebid.js tells Prebid Server which adapter the alias stands for. It does this by adding `ext.prebid.aliases.<alias>: "<adapter code>"` to the request, and `ext.prebid.aliasgvlids.<alias>` when the alias has a GVL ID. This happens for bidders in [`s2sConfig`](/dev-docs/modules/prebidServer.html) and for requests from adapters that use the ORTB conversion library's Prebid Server extensions. With `skipPbsAliasing: true`, both entries are left out, so Prebid Server resolves the bidder code on its own.
+When a request for an aliased bidder goes to Prebid Server, Prebid.js tells Prebid Server which adapter the alias stands for. It does this by adding `ext.prebid.aliases.<alias>: "<adapter code>"` to the request, and `ext.prebid.aliasgvlids.<alias>` when the alias has a single GVL ID. This happens for bidders in [`s2sConfig`](/dev-docs/modules/prebidServer.html) and for requests from adapters that use the ORTB conversion library's Prebid Server extensions. With `skipPbsAliasing: true`, both entries are left out, so Prebid Server resolves the bidder code on its own.
 
 Only set it when Prebid Server already has its own adapter or hard-coded alias with the alias's name, and that doesn't work the same way as your Prebid.js adapter. For example, it might use a different endpoint or be built on a different adapter. Without the flag, Prebid Server can apply the request's alias and send the bidder's requests to the wrong adapter.
 
@@ -861,6 +861,7 @@ If your bid adapter is going to be used in Europe, you should support GDPR:
 
 * Get a [Global Vendor ID](https://iabeurope.eu/tcf-for-vendors/) from the IAB-Europe
 * Add your GVLID into the spec block as 'gvlid'. If you don't do this, Prebid.js may block requests to your adapter.
+* If your adapter sends data to more than one vendor on the GVL, for example because your endpoint is run by another company, you can declare all of their IDs as a list: `gvlid: [IAB_GVL_ID, OTHER_GVL_ID]` (Prebid.js 11.46+). Requests are then allowed only if every vendor in the list has a legal basis. See [multiple GVL IDs](/dev-docs/modules/tcfControl.html#multiple-gvl-ids).
 * If you are not on the GVL but are on Google's [Additional Consent provider list](https://support.google.com/admanager/answer/9681920), add your provider ID into the spec block as 'acpId' instead (Prebid.js 11.41+). See [Additional Consent](/dev-docs/modules/tcfControl.html#additional-consent).
 * Read the gdprConsent string from the bid request object and pass it through to your endpoint
 

@@ -24,7 +24,7 @@ This is an analytics adapter that can interface with any backend, meant for publ
 | `batchDelay` | optional | Number | Time (in milliseconds) to wait before calling `handler` or `url` with an incomplete batch (when fewer than `batchSize` events have been collected). Defaults to `100` |
 | `events` | optional | Object | Map from event name to a custom format function. When provided, only events in this map (and in the `preset`, if any) will be collected, using the data returned by their corresponding function - [example](#event-formatters) |
 | `preset` | optional | String | Name of a preset set of event formatters, provided by a separate module that must be included in the build. Since Prebid.js 11.44, the only preset is `'skinny'` - see [Skinny preset](#skinny-preset). Functions in `events` override the preset's for the same event, and can add events the preset doesn't collect |
-| `gvlid` | optional | Number | Global vendor list ID to use for the purpose of GDPR purpose 7 enforcement - see [note](#gdpr) |
+| `gvlid` | optional | Number or Array of Numbers | Global vendor list ID(s) to use for the purpose of GDPR purpose 7 enforcement - see [note](#gdpr). A list is accepted since Prebid.js 11.46; all IDs in it then need a legal basis |
 | `sampling` | optional | Number | Sampling rate, expressed as a number between 0 and 1. Data is collected only on this ratio of browser sessions. Defaults to `1` |
 
 <a id="gdpr"></a>

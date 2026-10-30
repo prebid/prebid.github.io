@@ -37,7 +37,7 @@ A user ID module is a javascript file in the [modules](https://github.com/prebid
 | Property | Scope | Type | Description |
 | --- | --- | --- | --- |
 | `name` | Required | String | Name of your ID provider, used to match your module with the publisher's [userIds configuration](/dev-docs/modules/userId.html#basic-configuration) |
-| `gvlid` | Optional | Number | GVL ID to use for TCF. If omitted your module may be be excluded when TCF is in scope. |
+| `gvlid` | Optional | Number or Array of Numbers | GVL ID to use for TCF. If omitted your module may be be excluded when TCF is in scope. Since Prebid.js 11.46, a list of IDs can be given for modules that act on behalf of several vendors; all of them then need a legal basis. |
 | `acpId` | Optional | Number | Google Additional Consent provider ID, used for TCF vendor consent if your module has no GVL ID. See [Additional Consent](/dev-docs/modules/tcfControl.html#additional-consent). (PBJS 11.41+) |
 | `getId` | Required | Function | Retrieve serializable ID data, see [`getId`](#getId) |
 | `extendId` | Optional | Function | Update previously stored ID data, see [`extendId`](#extendId) |
