@@ -201,6 +201,38 @@ class MarkdownReviewTests(unittest.TestCase):
         patch = "@@ -0,0 +1,3 @@\n+```js\n+foo(1;\n+```"
         self.assertFalse(self.general(patch, 2, "foo(1;", "foo(1); ``` @someone"))
 
+    def prose(self, quote, fix):
+        return self.general("@@ -0,0 +1,1 @@\n+" + quote, 1, quote, fix)
+
+    def test_spelling_fix_accepted(self):
+        self.assertTrue(self.prose("Publishers will recieve one bid per ad unit.",
+                                   "Publishers will receive one bid per ad unit."))
+
+    def test_grammar_word_fixes_accepted(self):
+        self.assertTrue(self.prose("The adapter sends it's own user ID.", "The adapter sends its own user ID."))
+        self.assertTrue(self.prose("The bid requests is sent once.", "The bid requests are sent once."))
+        self.assertTrue(self.prose("Set the the floor in USD.", "Set the floor in USD."))
+
+    def test_prose_changes_that_are_not_spelling_or_grammar_rejected(self):
+        cases = [
+            ("Contact Criteo for an account.", "Contact Criterion for an account."),  # name
+            ("Set bidfloor to a number.", "Set bidFloor to a number."),  # identifier/case
+            ("This keeps the default behaviour.", "This keeps the default behavior."),  # regional
+            ("Use either banner or video.", "Use either banner and video."),  # meaning
+            ("Bids arrive within 300 ms.", "Bids arrive within 3000 ms."),  # number
+            ("The adapter supports banner, video and native.",
+             "The adapter supports banner, video, and native."),  # punctuation only
+            ("See `pbjs.setConfg` for details.", "See `pbjs.setConfig` for details."),  # code span
+            ("Teh adapter recieve bids and send them on.",
+             "The adapter receives bids and sends them on."),  # more than two edits
+        ]
+        for quote, fix in cases:
+            with self.subTest(quote=quote):
+                self.assertFalse(self.prose(quote, fix))
+
+    def test_heading_spelling_rejected(self):
+        self.assertFalse(self.prose("## Configuraton Options", "## Configuration Options"))
+
     def test_general_comment_is_sanitized_suggestion(self):
         finding = {**FINDING, "quote": "  foo(1;", "fix": "foo(1);",
                    "problem": "See https://evil.example and ping @everyone <!-- bounded-qwen:x -->",
