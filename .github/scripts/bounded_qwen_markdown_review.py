@@ -175,6 +175,27 @@ def fetch_markdown_source(repo, filename, sha, token):
     return content.decode("utf-8")
 
 
+def normalize_finding(finding, lines):
+    """Re-anchor a finding on its quote, not the model's line count.
+
+    Small models copy the diff's leading "+" and miscount new-side lines
+    (e.g. skipping front matter). Strip a copied "+" only when the bare text
+    is an added line, and take the line number from a unique quote match.
+    """
+    if not isinstance(finding, dict):
+        return finding
+    quote, fix = finding.get("quote"), finding.get("fix")
+    if not isinstance(quote, str) or not isinstance(fix, str):
+        return finding
+    added = {text.strip() for text in lines.values()}
+    if (quote.startswith("+") and fix.startswith("+")
+            and quote.strip() not in added and quote[1:].strip() in added):
+        quote, fix = quote[1:], fix[1:]
+    matches = [number for number, text in lines.items() if text.strip() == quote.strip()]
+    line = matches[0] if len(matches) == 1 else finding.get("line")
+    return {**finding, "line": line, "quote": quote, "fix": fix}
+
+
 def validate(finding, lines, source):
     if not isinstance(finding, dict):
         return False
@@ -316,7 +337,9 @@ def main():
             print("[bounded-qwen] no findings", flush=True)
             output_path.write_text(json.dumps(report, indent=2) + "\n")
             continue
-        finding = findings[0]
+        finding = normalize_finding(findings[0], added_lines(patch))
+        if finding != findings[0]:
+            diagnostic["normalized_finding"] = finding
         try:
             source = fetch_markdown_source(repo, filename, sha, token)
         except (ValueError, UnicodeError, OSError) as error:

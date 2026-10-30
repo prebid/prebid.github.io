@@ -116,6 +116,29 @@ class MarkdownReviewTests(unittest.TestCase):
     def test_image_links_ignored(self):
         self.assertEqual(review.in_page_links("![Logo](#logo)"), [])
 
+    def test_normalize_copied_plus_and_miscounted_line(self):
+        # Fork smoke: Qwen quoted "+..." and said line 10 for line 12.
+        patch = INLINE.replace("{frag}", "#configuraton")
+        raw = {**INLINE_FINDING, "line": 7, "quote": "+" + INLINE_FINDING["quote"],
+               "fix": "+" + INLINE_FINDING["fix"]}
+        lines = review.added_lines(patch)
+        self.assertFalse(review.validate(raw, lines, document(patch)))
+        normalized = review.normalize_finding(raw, lines)
+        self.assertEqual((normalized["line"], normalized["quote"]), (1, INLINE_FINDING["quote"]))
+        self.assertTrue(review.validate(normalized, lines, document(patch)))
+
+    def test_normalize_keeps_model_line_when_quote_is_ambiguous(self):
+        patch = "@@ -0,0 +1,3 @@\n+See [A](#configuraton).\n+See [A](#configuraton).\n+## Configuration"
+        raw = {**INLINE_FINDING, "line": 9, "quote": "See [A](#configuraton).",
+               "fix": "See [A](#configuration)."}
+        self.assertEqual(review.normalize_finding(raw, review.added_lines(patch))["line"], 9)
+
+    def test_normalize_keeps_literal_plus_line(self):
+        lines = {1: "+1 see [Configuration](#configuraton)"}
+        raw = {**INLINE_FINDING, "line": 1, "quote": lines[1],
+               "fix": "+1 see [Configuration](#configuration)"}
+        self.assertEqual(review.normalize_finding(raw, lines)["quote"], lines[1])
+
 
 INLINE = "@@ -0,0 +1,3 @@\n+See [Configuration]({frag}) for options.\n+\n+## Configuration"
 INLINE_FINDING = {
