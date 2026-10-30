@@ -3,7 +3,7 @@ layout: bidder
 title: Sevio
 description: Prebid Sevio Bidder Adaptor
 pbjs: true
-pbs: false
+pbs: true
 biddercode: sevio
 sidebarType: 1
 tcfeu_supported: true
@@ -18,10 +18,18 @@ ortb_blocking_supported: false
 ---
 
 
-### Bid Params
+## Bid Params for Prebid.js
 
 {: .table .table-bordered .table-striped }
 
 | Name          | Scope    | Description      | Example | Type     |
 |---------------|----------|------------------|---------|----------|
 | `zone`        | required | Zone Id          |         | `string` |
+
+## Bid Params for Prebid Server
+
+{: .table .table-bordered .table-striped }
+
+| Name          | Scope    | Description      | Example | Type     |
+|---------------|----------|------------------|---------|----------|
+| `placementId` | required | Zone Id          |         | `string` |
