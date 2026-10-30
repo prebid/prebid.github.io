@@ -26,7 +26,7 @@ privacy_sandbox: no
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 The Amli Media adapter needs a placement id (`pid`) for every ad unit. Publishers get one from the
 Amli Media dashboard each time they create a new end point. Contact [anand@amlimedia.com](mailto:anand@amlimedia.com) for an account.
@@ -34,7 +34,7 @@ Amli Media dashboard each time they create a new end point. Contact [anand@amlim
 Each ad unit is sent to Amli Media as its own OpenRTB request, with first party data,
 device data, user ids, supply chain, floors and the GDPR, US Privacy, GPP and COPPA signals.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 
@@ -42,17 +42,17 @@ device data, user ids, supply chain, floors and the GDPR, US Privacy, GPP and CO
 |---------------|----------|-----------------------------------------------------------------------------------|--------------|--------------------|
 | `pid`         | required | Placement id from the Amli Media dashboard                                        | `'amli-123'` | `string \| number` |
 | `test`        | optional | `1` enables test mode: test creatives, nothing billed, request logged to console  | `1`          | `integer`          |
-| `bidfloor`    | optional | Static floor CPM in USD, used only when the floors module did not set one        | `0.5`        | `float`            |
+| `bidfloor`    | optional | Static floor CPM in USD, used only when the floors module did not set one         | `0.5`        | `float`            |
 
 Video and audio settings are read from `mediaTypes.video` and `mediaTypes.audio`.
 
-### Currency
+## Currency
 
 Amli Media bids in USD. Publishers with a non-USD ad server currency should include the
 [currency module](/dev-docs/modules/currency.html) so Amli Media bids are converted. Floors in other
 currencies are converted to USD with the currency module, or left out when they cannot be converted.
 
-### Example
+## Example
 
 ```javascript
 var adUnits = [{
@@ -67,7 +67,7 @@ var adUnits = [{
 }];
 ```
 
-### User Sync
+## User Sync
 
 Amli Media syncs through an iframe, falling back to an image pixel when iframes are not allowed,
 so image syncing works without any configuration. To allow the iframe sync:
