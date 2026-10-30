@@ -1,6 +1,10 @@
 import importlib.util
+import json
+import os
 import pathlib
+import tempfile
 import unittest
+from unittest import mock
 
 target = pathlib.Path(__file__).with_name("bounded_qwen_markdown_review.py")
 spec = importlib.util.spec_from_file_location("bounded_qwen_markdown_review", target)
@@ -132,6 +136,24 @@ class MarkdownReviewTests(unittest.TestCase):
         raw = {**INLINE_FINDING, "line": 9, "quote": "See [A](#configuraton).",
                "fix": "See [A](#configuration)."}
         self.assertEqual(review.normalize_finding(raw, review.added_lines(patch))["line"], 9)
+
+    def test_truncated_json_leaves_file_unreviewed_without_failing(self):
+        patch_text = INLINE.replace("{frag}", "#configuraton")
+        file = {"filename": "dev-docs/example.md", "status": "added", "patch": patch_text}
+        raw = {"message": {"content": '{"findings": [{"line": 1, "problem": "cut off'},
+               "eval_count": 650}
+        with tempfile.TemporaryDirectory() as directory, mock.patch.dict(os.environ, {
+            "GITHUB_REPOSITORY": "prebid/prebid.github.io", "PR_NUMBER": "1",
+            "PR_HEAD_SHA": "a" * 40, "GITHUB_TOKEN": "test-only", "RUNNER_TEMP": directory,
+        }), mock.patch.object(review, "paged", side_effect=lambda repo, number, token, endpoint: (
+            [file] if endpoint == "files" else []
+        )), mock.patch.object(review, "api", return_value=raw):
+            review.main()
+            report = json.loads((pathlib.Path(directory) / "bounded-qwen-result.json").read_text())
+        self.assertEqual(report["errors"], [])
+        self.assertEqual((report["reviewed"], report["skipped"]), (0, 1))
+        self.assertEqual(report["files"][0]["outcome"], "unparseable_response")
+        self.assertEqual(report["files"][0]["raw_response"], raw)
 
     def test_normalize_keeps_literal_plus_line(self):
         lines = {1: "+1 see [Configuration](#configuraton)"}

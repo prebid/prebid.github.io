@@ -1,8 +1,15 @@
-name: Bounded Qwen docs smoke
+name: Bounded Qwen docs review
 
+# Runs a small open model (Qwen3.5 9B) on the GitHub runner's CPU; no external
+# AI service or API key. pull_request_target can comment on fork PRs, so the
+# job checks out only the trusted base branch and reads the PR diff as data.
 on:
   pull_request_target:
     types: [opened, synchronize, reopened]
+    # Only Markdown is reviewed; skip the model download for other PRs.
+    paths:
+      - '**/*.md'
+      - '**/*.markdown'
 
 permissions:
   contents: read
@@ -13,8 +20,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  smoke:
-    if: ${{ startsWith(github.event.pull_request.head.ref, 'ci/bounded-qwen-docs-') }}
+  review:
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:

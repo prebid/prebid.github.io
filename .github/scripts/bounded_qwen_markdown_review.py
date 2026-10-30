@@ -18,7 +18,7 @@ from pathlib import Path
 API = "https://api.github.com"
 HUNK = re.compile(r"^@@ -\d+(?:,\d+)? \+(\d+)(?:,\d+)? @@")
 EXTENSIONS = (".md", ".markdown")
-# Docs smoke test: review up to eight Markdown patches, each <=40K characters.
+# Review up to eight Markdown patches per PR, each <=40K characters.
 MAX_PATCH_CHARS = 40000
 MAX_REVIEW_FILES = 8
 MAX_DOCUMENT_BYTES = 200000
@@ -268,10 +268,21 @@ def predict(model, filename, patch):
         print("[bounded-qwen] response received", flush=True)
     print("[bounded-qwen] prompt tokens:", result.get("prompt_eval_count"),
           "output tokens:", result.get("eval_count"), flush=True)
-    parsed = json.loads(result["message"]["content"])
+    try:
+        parsed = json.loads(result["message"]["content"])
+    except (KeyError, TypeError, ValueError) as error:
+        raise UnparseableResponse(f"{type(error).__name__}: {error}", result) from error
     if not isinstance(parsed, dict) or not isinstance(parsed.get("findings"), list):
-        raise ValueError("Invalid model findings payload")
+        raise UnparseableResponse("Invalid model findings payload", result)
     return parsed["findings"], result
+
+
+class UnparseableResponse(ValueError):
+    """Model output that is not a findings object, e.g. JSON cut off at num_predict."""
+
+    def __init__(self, message, raw):
+        super().__init__(message)
+        self.raw = raw
 
 
 def main():
@@ -325,6 +336,21 @@ def main():
             findings, raw = predict(model, filename, patch)
             diagnostic["raw_response"] = raw
             diagnostic["parsed_findings"] = findings
+        except (UnparseableResponse, TimeoutError) as error:
+            # A slow or rambling model is not a problem with the PR: leave the
+            # file unreviewed with a warning instead of failing the check.
+            unparseable = isinstance(error, UnparseableResponse)
+            reason = "unparseable_response" if unparseable else "inference_timeout"
+            diagnostic["outcome"] = reason
+            diagnostic["error"] = f"{type(error).__name__}: {str(error)[:300]}"
+            if unparseable:
+                diagnostic["raw_response"] = error.raw
+            report["reviewed"] -= 1
+            report["skipped"] += 1
+            report["skipped_files"].append({"path": filename, "reason": reason})
+            print(f"::warning::{reason} on {filename}; it was not reviewed", flush=True)
+            output_path.write_text(json.dumps(report, indent=2) + "\n")
+            continue
         except Exception as error:
             diagnostic["outcome"] = "inference_error"
             diagnostic["error"] = f"{type(error).__name__}: {str(error)[:300]}"
