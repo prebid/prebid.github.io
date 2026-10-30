@@ -21,6 +21,9 @@ prebid_member: false
 sidebarType: 1
 gpp_sids: tcfeu, usnat, usstate_all
 ---
+
+{% include dev-docs/reports-timeout-events.md endpoint="ms-ads-monitoring-events.presage.io/bid_timeout" data="the timeout data for the first timed-out bid request and the page URL" %}
+
 ## Registration
 
 Before Ogury's adapter integration, you have to register an account in the Ogury Platform. Please contact <supply-development@ogury.co> if you're interested in a partnership.
@@ -35,9 +38,9 @@ This is the minimal list of params for integrating with Ogury:
 
 {: .table .table-bordered .table-striped }
 
-| Name       | Scope    | Description                           | Example                                  | Type     |
-|------------|----------|---------------------------------------|------------------------------------------|----------|
-| `assetKey` | required | The asset key provided by Ogury       | `'OGY-CA41D116484F'`                     | `string` |
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| `assetKey` | required | The asset key provided by Ogury | `'OGY-CA41D116484F'` | `string` |
 | `adUnitId` | required | Your ad unit id configured with Ogury | `'2c4d61d0-90aa-0139-0cda-0242ac120004'` | `string` |
 
 NOTE: You don't need these params to integrate with Ogury, see [inventory mapping](#inventory-mapping)

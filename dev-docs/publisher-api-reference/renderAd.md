@@ -29,3 +29,4 @@ Note: In regards to `options.clickThrough`:
 | id | Required | `string` | bid id to locate the ad |
 | options | Optional | `object` | object containing other additional params to be used (listed below) |
 | options.clickThrough | Optional | `string` | a url used to keep track of clicks on the ad to be rendered (used to resolve the ${CLICKTHROUGH} macro) |
+| options.viewUrl | Optional | `string` | the ad server's view-tracking URL. Prebid.js stores it on the rendered bid as `bid.viewUrl` but does not fire it. Since Prebid.js 11.27. |

@@ -94,6 +94,9 @@ Prebid retrieves the winning video bid and renderer from the ad ID (hb_adid). Pr
 
 ### Long-form Video
 
+{: .alert.alert-warning :}
+Ad pod (long-form) video support was removed in Prebid.js 11.0. This section applies to Prebid.js 10.x and earlier only.
+
 Here’s a high-level diagram showing how long-form video header bidding works for adpod video (with more details outlined in the steps below):
 
 ![Instream Video Diagram]({{site.baseurl}}/assets/images/prebid-video/instream-video.png){: .pb-img.pb-lg-img :}
@@ -125,7 +128,7 @@ The video player loads the master video ad server tag URL, which makes a call to
 ## Further Reading
 
 - [Getting Started with Video for Prebid.js](/prebid-video/video-getting-started.html)
-- [Getting Started with Long-Form Video for Prebid.js](/prebid-video/video-long-form.html)
+- [Getting Started with Long-Form Video for Prebid.js](/prebid-video/video-long-form.html) (Prebid.js 10.x and earlier)
 - [What is Prebid?](/overview/intro.html)
 - [AdOps - Before You Start](/adops/before-you-start.html)
 - [Getting Started for Developers](/dev-docs/getting-started.html)

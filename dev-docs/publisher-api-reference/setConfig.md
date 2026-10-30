@@ -22,8 +22,6 @@ Module-specific configuration:
 * [Currency module](/dev-docs/modules/currency.html)
 * [Consent Management](/dev-docs/modules/consentManagementTcf.html#page-integration)
 * [User ID module](/dev-docs/modules/userId.html#basic-configuration)
-* [Adpod](/dev-docs/modules/adpod.html)
-* [IAB Category Translation](/dev-docs/modules/categoryTranslation.html)
 
 <a name="setConfig-Debugging"></a>
 
@@ -630,6 +628,7 @@ However, there are also good reasons why publishers may want to control the use 
 {: .alert.alert-info :}
 **User syncing default behavior**
 If you don't tweak any of the settings described in this section, the default behavior of Prebid.js is to wait 3 seconds after the auction ends, and then allow every adapter to drop up to 5 image-based user syncs.
+No user syncs are fired in browsers that don't support third-party sync cookies (Safari, and since Prebid.js 11.9 also Firefox and Chrome on iOS) or when cookies are disabled or denied. See [How User Syncing Works](#setConfig-ConfigureUserSyncing-HowUserSyncingWorks).
 
 For more information, see the sections below.
 
@@ -650,9 +649,10 @@ For descriptions of all the properties that control user syncs, see the table be
 | `filterSettings` | Object  | Configure lists of adapters to include or exclude their user syncing based on the pixel type (image/iframe). |
 | `syncsPerBidder` | Integer | Number of registered syncs allowed per adapter. Default: `5`. To allow all, set to `0`. |
 | `syncDelay`      | Integer | Delay in milliseconds for user syncing (both bid adapter user sync pixels and [userId module]({{site.baseurl}}/dev-docs/modules/userId.html) ID providers) after the auction ends. Default: `3000`. Ignored by the [userId module]({{site.baseurl}}/dev-docs/modules/userId.html) if auctionDelay > 0. |
-| `auctionDelay`   | Integer | Delay in milliseconds of the auction to retrieve user ids via the [userId module]({{site.baseurl}}/dev-docs/modules/userId.html) before the auction starts. Continues auction once all IDs are retrieved or delay times out. Does not apply to bid adapter user sync pixels. Default: `0`. |
+| `auctionDelay`   | Integer | Delay in milliseconds of the auction to retrieve user ids via the [userId module]({{site.baseurl}}/dev-docs/modules/userId.html) before the auction starts. Continues auction once all IDs are retrieved or delay times out. Does not apply to bid adapter user sync pixels. Default: `500` (`0` before Prebid.js 9.0). |
 | `enableOverride` | Boolean | Enable/disable publisher to trigger user syncs by calling `pbjs.triggerUserSyncs()`. Default: `false`. |
 | `aliasSyncEnabled` | Boolean | Enable/disable registered syncs for aliased adapters. Default: `false`. |
+| `usePoliteSync` | Boolean | Fire user syncs as low-priority background work. Image syncs are sent with `fetch` (`no-cors`, `credentials: 'include'`, `keepalive`), falling back to an image pixel; iframe syncs are inserted the same way as before, but in a background task. Background tasks use `scheduler.postTask` with `background` priority where available, otherwise `requestIdleCallback` with a 2 second timeout, otherwise they run immediately. Filtering, limits and delays are unchanged. Default: `false`. Since Prebid.js 11.14. |
 
 <a name="setConfig-ConfigureUserSyncing-UserSyncExamples"></a>
 
@@ -676,6 +676,16 @@ Turn off user syncing entirely:
 pbjs.setConfig({
     userSync: {
         syncEnabled: false
+    }
+});
+```
+
+Fire user syncs as background tasks to reduce their impact on page performance:
+
+```javascript
+pbjs.setConfig({
+    userSync: {
+        usePoliteSync: true
     }
 });
 ```
@@ -783,6 +793,8 @@ The [userSync.registerSync()]({{site.baseurl}}/dev-docs/bidder-adaptor.html#bidd
 
 When user syncs are run, regardless of whether they are invoked by the platform or by the page calling pbjs.triggerUserSyncs(), the queue entries are randomized and appended to the bottom of the HTML tag.
 
+The queue is not fired at all if the browser is Safari (or, since Prebid.js 11.9, Firefox or Chrome on iOS), or if cookies are disabled or access to them is denied (for example, by consent or activity controls). This applies to syncs run after `syncDelay` and to `pbjs.triggerUserSyncs()`. Adapters' `getUserSyncs()` functions are still called and their syncs registered, but no image or iframe syncs are fired. Since Prebid.js 11.20, the [Prebid Server adapter]({{site.baseurl}}/dev-docs/modules/prebidServer.html) also skips its `cookie_sync` request under the same conditions.
+
 <a name="setConfig-targetingControls"></a>
 
 ### Configure Targeting Controls
@@ -801,6 +813,7 @@ The `targetingControls` object passed to `pbjs.setConfig` provides some options 
 | lock               | Array of Strings | Targeting keys to lock |
 | lockTimeout        | Integer          | Lock timeout in milliseconds                                   |
 | version            | String           | Value to set in the `hb_ver` targeting key |
+| presetGPTTargeting | Boolean          | Clear Prebid targeting on GPT slots when an auction starts and after a Prebid bid wins. Defaults to `true`. See [below](#targetingControls-presetGPTTargeting). |
 
 {: .alert.alert-info :}
 Note that this feature overlaps and can be used in conjunction with [sendBidsControl.bidLimit](#setConfig-Send-Bids-Control).
@@ -1022,7 +1035,7 @@ pbjs.setConfig({
 calling `pbjs.setTargetingForGPTAsync()` will "lock" the targeted `hb_adid` until its slot renders or 2 seconds have passed, preventing subsequent calls to `setTargetingForGPTAsync` from using bids with the same `hb_adid` in the meanwhile.
 If using standard targeting `hb_adid` is unique for each bid, so this would have the effect of preventing the same bid from being used for multiple slots at the same time.      
 
-<a name="setConfig-Configure-Responsive-Ads"></a>
+Since version 11.36, the lock on a GPT slot is also released as soon as the bid targeted on it wins (the `bidWon` event).
 
 #### Details on the version setting
 {: .no_toc }
@@ -1048,6 +1061,27 @@ pbjs.setConfig({
   }
 })
 ```
+
+<a name="targetingControls-presetGPTTargeting"></a>
+
+#### Details on the presetGPTTargeting setting
+{: .no_toc }
+
+Since version 11.14, when an auction starts Prebid clears its targeting keys on the GPT slots for that auction's ad units. Normally this has no visible effect, because the full targeting is set after the auction (typically by `pbjs.setTargetingForGPTAsync()`). It prevents a slot that refreshes before then, for example on a failsafe timeout, from sending stale targeting from an earlier auction.
+
+Since version 11.36, Prebid also clears its targeting keys from a GPT slot after the bid targeted on it wins, so refreshing that slot without a new auction doesn't send the bid that was already used.
+
+This only applies when GPT is on the page. To turn it off:
+
+```javascript
+pbjs.setConfig({
+  targetingControls: {
+    presetGPTTargeting: false
+  }
+})
+```
+
+<a name="setConfig-Configure-Responsive-Ads"></a>
 
 ### Configure Responsive Ads
 
@@ -1383,7 +1417,7 @@ pbjs.setConfig({
 })
 ```
 
-`customGptSlotMatching` should be a function accepting a single GPT [Slot](https://developers.google.com/publisher-tag/reference#googletag.Slot). It should return another function accepting a single string representing an ad unit code. The inner function should return true if the givne slot matches the given ad unit code. 
+`customGptSlotMatching` should be a function accepting a single GPT [Slot](https://developers.google.com/publisher-tag/reference#googletag.Slot). It should return another function accepting a single string representing an ad unit code. The inner function should return true if the given slot matches the given ad unit code. 
 
 <a name="setConfig-auctionOptions"></a>
 
@@ -1418,7 +1452,7 @@ less accurate than the observer, so opting out used to mean accepting bad viewab
 
 * `'boundingBox'`: nothing is waited for, so the auction never queues behind the rest of the page. In exchange each measurement forces a layout, and inside a cross-origin iframe it can only measure against the frame's own viewport.
 
-It also follows (`pbjs.yield`)[/dev-docs/publisher-api-reference/yield.html]: with no explicit setting, `pbjs.yield = false` selects `'boundingBox'`, since that flag already asks Prebid not to yield the main thread. An explicit `viewabilityMeasurement` wins over `pbjs.yield` in both directions.
+It also follows [`pbjs.yield`](/dev-docs/publisher-api-reference/yield.html): with no explicit setting, `pbjs.yield = false` selects `'boundingBox'`, since that flag already asks Prebid not to yield the main thread. An explicit `viewabilityMeasurement` wins over `pbjs.yield` in both directions.
 
 #### Examples
 {: .no_toc}
@@ -1587,43 +1621,8 @@ Notes:
 
 ### Topics Iframe Configuration
 
-Topics iframe implementation is the enhancements of existing module under topicsFpdModule.js where different bidders will call the topic API under their domain to fetch the topics for respective domain and the segment data will be part of ORTB request under user.data object. Default config is maintained in the module itself. Below are the configuration which can be used to configure and override the default config maintained in the module.
-
-```javascript
-pbjs.setConfig({
-    userSync: {
-        ...,
-        topics: { 
-            maxTopicCaller: 3, // SSP rotation 
-            bidders: [{
-                bidder: 'pubmatic',
-                iframeURL: 'https://ads.pubmatic.com/AdServer/js/topics/topics_frame.html',
-                expiry: 7 // Configurable expiry days
-            },{
-                bidder: 'rubicon',
-                iframeURL: 'https://rubicon.com:8080/topics/fpd/topic.html', // dummy URL
-                expiry: 7 // Configurable expiry days
-            },{
-                bidder: 'msft',
-                iframeURL: 'https://microsoft.com:8080/topics/fpd/topic.html', // dummy URL
-                expiry: 7 // Configurable expiry days
-            }]
-        }
-        ....
-    }
-})
-
-```
-
-{: .table .table-bordered .table-striped }
-
-| Field | Required? | Type | Description |
-| --- | --- | --- | --- |
-| topics.maxTopicCaller | no | integer | Defines the maximum numbers of Bidders Iframe which needs to be loaded on the publisher page. Default is 1 which is hardcoded in Module. Eg: topics.maxTopicCaller is set to 3. If there are 10 bidders configured along with their iframe URLS, random 3 bidders iframe URL is loaded which will call TOPICS API. If topics.maxTopicCaller is set to 0, it will load random 1(default) bidder iframe atleast. |
-| topics.bidders | no | Array of objects | Array of topics callers with the iframe locations and other necessary informations like bidder(Bidder code) and expiry. Default Array of topics in the module itself. |
-| topics.bidders[].bidder | yes | string | Bidder Code of the bidder(SSP). |
-| topics.bidders[].iframeURL | yes | string | URL which is hosted on bidder/SSP/third-party domains which will call Topics API. |
-| topics.bidders[].expiry | no | integer | Max number of days where Topics data will be persist. If Data is stored for more than mentioned expiry day, it will be deleted from storage. Default is 21 days which is hardcoded in Module. |
+{: .alert.alert-warning :}
+Chrome has removed the Topics API. Since Prebid.js 11.26, the `userSync.topics` configuration is ignored and the [Topics FPD Module](/dev-docs/modules/topicsFpdModule.html) is a no-op.
 
 <a id="setConfig-performanceMetrics"></a>
 
@@ -1685,6 +1684,23 @@ pbjs.setConfig({
   }
 })
 ```
+
+<a id="setConfig-acpMapping"></a>
+
+### Map modules to Additional Consent provider IDs
+
+Since version 11.41, modules that are not on the GVL but are on Google's [Additional Consent](https://support.google.com/admanager/answer/9681920) (AC) provider list can declare their AC provider ID as `acpId`. The optional `acpMapping` object lets publishers specify these IDs or override the ones declared by the module itself.
+
+```javascript
+pbjs.setConfig({
+  acpMapping: {
+    bidderA: 1234,
+    someModule: 5678
+  }
+});
+```
+
+The [TCF Control Module](/dev-docs/modules/tcfControl.html#additional-consent) uses this ID to check vendor consent against the AC string, only for modules that have no GVL ID. A module with a GVL ID, whether declared or set through `gvlMapping`, is never checked against the AC string.
 
 ### Set Max Bid
 

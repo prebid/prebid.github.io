@@ -46,6 +46,8 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: bundle exec jekyll build
+      - name: Build search index
+        run: npx -y pagefind@1.5.2 --site _site
       - uses: lycheeverse/lychee-action@v2
         with:
           lycheeVersion: v0.24.2
