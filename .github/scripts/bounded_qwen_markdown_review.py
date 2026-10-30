@@ -25,6 +25,12 @@ MAX_REVIEW_FILES = 8
 MAX_DOCUMENT_BYTES = 200000
 MODEL_CONTEXT_TOKENS = 16384
 MODEL_REQUEST_TIMEOUT = 240
+# Small slices: on a whole page the model skims past a one-letter typo, and
+# long pages time out. 12 slices of ~1 minute each fit the 40-minute job.
+MAX_CHUNK_CHARS = 3000
+MAX_CHUNKS_PER_FILE = 4
+MAX_CHUNKS_PER_PR = 12
+HUNK_RANGES = re.compile(r"^@@ -(\d+)(?:,\d+)? \+(\d+)(?:,\d+)? @@")
 SCHEMA = {"type": "object", "properties": {"findings": {
     "type": "array", "maxItems": 1,
     "items": {"type": "object", "properties": {
@@ -67,6 +73,53 @@ def added_lines(patch):
 
 
 # Docs links are inline in prose, so match links anywhere in a line.
+def chunk_patch(patch, max_chars=MAX_CHUNK_CHARS):
+    """Split a unified diff into bounded hunks that keep GitHub's line numbers.
+
+    Same approach as the Prebid.js reviewer: new hunk headers are computed
+    from the original cursors, and a single line too long for a chunk is
+    omitted (and counted) rather than truncated.
+    """
+    chunks, skipped_lines = [], 0
+    old_cursor = new_cursor = None
+    part, old_start, new_start, old_count, new_count, size = [], 0, 0, 0, 0, 0
+
+    def flush():
+        nonlocal part, old_count, new_count, size
+        if part and any(line.startswith("+") for line in part):
+            chunks.append(f"@@ -{old_start},{old_count} +{new_start},{new_count} @@\n" + "\n".join(part))
+        part, old_count, new_count, size = [], 0, 0, 0
+
+    for line in patch.splitlines():
+        match = HUNK_RANGES.match(line)
+        if match:
+            flush()
+            old_cursor, new_cursor = map(int, match.groups())
+            continue
+        if old_cursor is None or line.startswith("\\") or not line or line[0] not in ("+", "-", " "):
+            continue
+        if len(line) + 80 > max_chars:
+            flush()
+            skipped_lines += 1
+            old_cursor += line[0] != "+"
+            new_cursor += line[0] != "-"
+            continue
+        if part and size + len(line) + 1 + 80 > max_chars:
+            flush()
+        if not part:
+            old_start, new_start = old_cursor, new_cursor
+        part.append(line)
+        size += len(line) + 1
+        if line[0] != "+":
+            old_cursor += 1
+            old_count += 1
+        if line[0] != "-":
+            new_cursor += 1
+            new_count += 1
+    flush()
+    return chunks, skipped_lines
+
+
 IN_PAGE_LINK = re.compile(r"(?<!!)\[([^\]\n]+)\]\((#[a-z0-9][a-z0-9-]*)\)")
 CODE_SPAN = re.compile(r"(`+).*?\1")
 HTML_ANCHOR = re.compile(r"""<[A-Za-z][^>]*\b(?:id|name)\s*=\s*["']([^"']+)["']""")
@@ -457,7 +510,8 @@ def main():
     if not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", repo) or not number.isdigit() or not re.fullmatch(r"[0-9a-f]{40}", sha):
         raise ValueError("Invalid GitHub event context")
     model = env.get("REVIEW_MODEL", "qwen3.5:9b-q4_K_M")
-    report = {"model": model, "reviewed": 0, "posted": 0, "rejected": 0, "skipped": 0, "errors": [], "files": [], "skipped_files": []}
+    report = {"model": model, "reviewed": 0, "posted": 0, "rejected": 0, "skipped": 0, "chunks_reviewed": 0,
+              "chunks_unreviewed": 0, "errors": [], "files": [], "skipped_files": []}
     # Save raw response per file for iteration (no secrets or code execution).
     output_path = Path(env.get("RUNNER_TEMP", "/tmp"), "bounded-qwen-result.json")
     prior = set()
@@ -489,13 +543,30 @@ def main():
     for file in files[MAX_REVIEW_FILES:]:
         report["skipped"] += 1
         report["skipped_files"].append({"path": file["filename"], "reason": "file_count_limit"})
+    # Review each file in bounded diff chunks, within a per-file and per-PR budget.
+    work = []
     for file in files[:MAX_REVIEW_FILES]:
-        filename, patch = file["filename"], file["patch"]
+        chunks, oversized_lines = chunk_patch(file["patch"])
+        budget = min(MAX_CHUNKS_PER_FILE, max(0, MAX_CHUNKS_PER_PR - len(work)))
+        unreviewed = max(0, len(chunks) - budget) + oversized_lines
+        if unreviewed:
+            report["chunks_unreviewed"] += unreviewed
+            report["skipped_files"].append({"path": file["filename"], "reason": "partial_chunk_coverage",
+                                            "chunks_not_reviewed": max(0, len(chunks) - budget),
+                                            "oversized_lines": oversized_lines})
+        if budget == 0 or not chunks:
+            report["skipped"] += 1
+            continue
         report["reviewed"] += 1
-        diagnostic = {"path": filename, "patch": patch, "outcome": "started"}
+        work += [(file["filename"], part, index, len(chunks)) for index, part in enumerate(chunks[:budget], 1)]
+    sources = {}
+    for filename, patch, chunk_index, chunk_total in work:
+        report["chunks_reviewed"] += 1
+        diagnostic = {"path": filename, "chunk": chunk_index, "total_chunks": chunk_total,
+                      "patch": patch, "outcome": "started"}
         report["files"].append(diagnostic)
         output_path.write_text(json.dumps(report, indent=2) + "\n")
-        print(f"[bounded-qwen] reviewing {filename}", flush=True)
+        print(f"[bounded-qwen] reviewing {filename} chunk {chunk_index}/{chunk_total}", flush=True)
         started = time.monotonic()
         try:
             findings, raw = predict(model, filename, patch)
@@ -503,17 +574,17 @@ def main():
             diagnostic["parsed_findings"] = findings
         except (UnparseableResponse, TimeoutError) as error:
             # A slow or rambling model is not a problem with the PR: leave the
-            # file unreviewed with a warning instead of failing the check.
+            # chunk unreviewed with a warning instead of failing the check.
             unparseable = isinstance(error, UnparseableResponse)
             reason = "unparseable_response" if unparseable else "inference_timeout"
             diagnostic["outcome"] = reason
             diagnostic["error"] = f"{type(error).__name__}: {str(error)[:300]}"
             if unparseable:
                 diagnostic["raw_response"] = error.raw
-            report["reviewed"] -= 1
-            report["skipped"] += 1
-            report["skipped_files"].append({"path": filename, "reason": reason})
-            print(f"::warning::{reason} on {filename}; it was not reviewed", flush=True)
+            report["chunks_reviewed"] -= 1
+            report["chunks_unreviewed"] += 1
+            report["skipped_files"].append({"path": filename, "reason": reason, "chunk": chunk_index})
+            print(f"::warning::{reason} on {filename} chunk {chunk_index}; it was not reviewed", flush=True)
             output_path.write_text(json.dumps(report, indent=2) + "\n")
             continue
         except Exception as error:
@@ -531,14 +602,18 @@ def main():
         finding = normalize_finding(findings[0], added_lines(patch))
         if finding != findings[0]:
             diagnostic["normalized_finding"] = finding
-        try:
-            source = fetch_markdown_source(repo, filename, sha, token)
-        except (ValueError, UnicodeError, OSError) as error:
+        if filename not in sources:
+            try:
+                sources[filename] = fetch_markdown_source(repo, filename, sha, token)
+            except (ValueError, UnicodeError, OSError) as error:
+                sources[filename] = error
+        source = sources[filename]
+        if isinstance(source, Exception):
             diagnostic["outcome"] = "source_unavailable"
-            diagnostic["error"] = str(error)[:300]
-            report["skipped"] += 1
-            report["reviewed"] -= 1
-            report["skipped_files"].append({"path": filename, "reason": "source_unavailable"})
+            diagnostic["error"] = str(source)[:300]
+            report["chunks_reviewed"] -= 1
+            report["chunks_unreviewed"] += 1
+            report["skipped_files"].append({"path": filename, "reason": "source_unavailable", "chunk": chunk_index})
             output_path.write_text(json.dumps(report, indent=2) + "\n")
             continue
         if not validate(finding, added_lines(patch), source,
@@ -569,8 +644,10 @@ def main():
     output_path.write_text(json.dumps(report, indent=2) + "\n")
     if env.get("GITHUB_STEP_SUMMARY"):
         with open(env["GITHUB_STEP_SUMMARY"], "a") as summary:
-            summary.write(f"### Bounded local review\n\nFiles reviewed: {report['reviewed']}; comments posted: {report['posted']}; rejected findings: {report['rejected']}; skipped files: {report['skipped']}.\n")
+            summary.write(f"### Bounded local review\n\nFiles reviewed: {report['reviewed']} ({report['chunks_reviewed']} chunks; {report['chunks_unreviewed']} not reviewed); comments posted: {report['posted']}; rejected findings: {report['rejected']}; skipped files: {report['skipped']}.\n")
     print("[bounded-qwen] result:", json.dumps(report), flush=True)
+    if report["chunks_unreviewed"]:
+        print(f"::warning::{report['chunks_unreviewed']} diff chunks were not reviewed; see skipped_files.", flush=True)
     if not report["reviewed"]:
         print("::warning::Bounded Qwen reviewed no eligible files; success does not imply code coverage.", flush=True)
     if report["errors"]:

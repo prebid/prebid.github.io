@@ -155,7 +155,7 @@ class MarkdownReviewTests(unittest.TestCase):
                 review.main()
             report = json.loads((pathlib.Path(directory) / "bounded-qwen-result.json").read_text())
         self.assertEqual(report["errors"], [])
-        self.assertEqual((report["reviewed"], report["skipped"]), (0, 1))
+        self.assertEqual((report["reviewed"], report["chunks_reviewed"], report["chunks_unreviewed"]), (1, 0, 1))
         self.assertEqual(report["files"][0]["outcome"], "unparseable_response")
         self.assertEqual(report["files"][0]["raw_response"], raw)
 
@@ -257,6 +257,39 @@ INLINE_FINDING = {
     "quote": "See [Configuration](#configuraton) for options.",
     "fix": "See [Configuration](#configuration) for options.",
 }
+
+
+
+class ChunkTests(unittest.TestCase):
+    def test_chunks_keep_new_side_line_numbers(self):
+        lines = [f"+Line {n} explains how publishers configure the adapter for a page." for n in range(1, 121)]
+        patch = "@@ -0,0 +1,120 @@\n" + "\n".join(lines)
+        chunks, omitted = review.chunk_patch(patch, max_chars=1000)
+        self.assertEqual(omitted, 0)
+        self.assertGreater(len(chunks), 5)
+        collected = {}
+        for chunk in chunks:
+            self.assertLessEqual(len(chunk), 1000)
+            collected.update(review.added_lines(chunk))
+        self.assertEqual(collected, review.added_lines(patch))
+
+    def test_typo_line_lands_in_one_small_chunk(self):
+        # Fork smoke: a 6.5 KB page sent whole hid a one-letter typo from the model.
+        lines = [f"+Prose line {n} about bids, auctions and ad servers on the page." for n in range(1, 101)]
+        lines[60] = "+1. Prebid.js passes infromation about those bids to the ad server."
+        patch = "@@ -0,0 +1,100 @@\n" + "\n".join(lines)
+        chunks, _ = review.chunk_patch(patch)
+        holding = [c for c in chunks if "infromation" in c]
+        self.assertEqual(len(holding), 1)
+        self.assertLessEqual(len(holding[0]), review.MAX_CHUNK_CHARS)
+        self.assertEqual(review.added_lines(holding[0])[61], lines[60][1:])
+
+    def test_oversized_line_is_counted_not_truncated(self):
+        patch = "@@ -0,0 +1,2 @@\n+" + "x" * 5000 + "\n+Short line."
+        chunks, omitted = review.chunk_patch(patch)
+        self.assertEqual(omitted, 1)
+        self.assertEqual(review.added_lines(chunks[0]), {2: "Short line."})
+
 
 if __name__ == "__main__":
     unittest.main()
