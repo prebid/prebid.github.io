@@ -73,6 +73,17 @@ def meaningful_fix(quote, fix):
     return bool(old and new and old.group(1) == new.group(1) and old.group(2) != new.group(2))
 
 
+def heading_anchor(value):
+    """Conservative GitHub-like slug for simple ATX headings used in this smoke."""
+    match = re.match(r"^#{1,6} +(.+?) *#* *$", value.strip())
+    if not match:
+        return None
+    title = match.group(1).lower()
+    if not re.fullmatch(r"[a-z0-9 _-]+", title):
+        return None
+    return "#" + re.sub(r" +", "-", title.strip()).replace("_", "-")
+
+
 def validate(finding, lines):
     if not isinstance(finding, dict):
         return False
@@ -83,9 +94,16 @@ def validate(finding, lines):
         return False
     if not lines[line].strip() or lines[line].lstrip().startswith(("<!--", "```", "~~~")):
         return False
-    return (all(isinstance(finding.get(k), str) and 10 <= len(finding[k].strip()) <= 700
+    if not (all(isinstance(finding.get(k), str) and 10 <= len(finding[k].strip()) <= 700
                 for k in ("problem", "failure_case", "fix"))
-            and meaningful_fix(quote, finding["fix"]))
+            and meaningful_fix(quote, finding["fix"])):
+        return False
+    old_link, fixed_link = MD_LINK.fullmatch(quote.strip()), MD_LINK.fullmatch(finding["fix"].strip())
+    visible_anchors = {anchor for value in lines.values()
+                       if (anchor := heading_anchor(value)) is not None}
+    # The model may only fix anchors that are demonstrably present in the
+    # changed diff. Unknown heading slug rules => abstain rather than guess.
+    return fixed_link.group(2) in visible_anchors and old_link.group(2) not in visible_anchors
 
 
 def paged(repo, number, token, endpoint):
