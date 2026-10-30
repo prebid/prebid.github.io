@@ -1,8 +1,15 @@
-name: Bounded Qwen docs smoke
+name: Bounded Qwen docs review
 
+# Runs a small open model (Qwen3.5 9B) on the GitHub runner's CPU; no external
+# AI service or API key. pull_request_target can comment on fork PRs, so the
+# job checks out only the trusted base branch and reads the PR diff as data.
 on:
   pull_request_target:
     types: [opened, synchronize, reopened]
+    # Only Markdown is reviewed; skip the model download for other PRs.
+    paths:
+      - '**/*.md'
+      - '**/*.markdown'
 
 permissions:
   contents: read
@@ -13,30 +20,18 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  smoke:
-    if: ${{ startsWith(github.event.pull_request.head.ref, 'ci/bounded-qwen-docs-') }}
+  review:
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
       - name: Check out trusted base only
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: ${{ github.event.pull_request.base.sha }}
           persist-credentials: false
 
-      - name: Fetch pinned reviewer and unit tests from Prebid.js
-        env:
-          UPSTREAM_SHA: 6e59b1d2cc452b3699df30bdb7bf264948c2631c
-        run: |
-          mkdir -p .github/scripts
-          for file in bounded_qwen_review.py test_bounded_qwen_review.py; do
-            curl --fail --silent --show-error --location --retry 3 \
-              "https://raw.githubusercontent.com/prebid/Prebid.js/$UPSTREAM_SHA/.github/scripts/$file" \
-              --output ".github/scripts/$file"
-          done
-
-      - name: Validate reviewer guardrails
-        run: python3 -m unittest discover -s .github/scripts -p 'test_bounded_qwen_review.py' -v
+      - name: Validate Markdown reviewer guardrails
+        run: python3 -m unittest discover -s .github/scripts -p 'test_bounded_qwen_markdown_review.py' -v
 
       - name: Install Ollama v0.40.13
         run: |
@@ -62,13 +57,13 @@ jobs:
           curl -fsS http://127.0.0.1:11434/api/tags >/dev/null
           ollama pull qwen3.5:9b-q4_K_M
 
-      - name: Run pinned one-pass reviewer on changed JS/TS files
+      - name: Run bounded one-pass Markdown reviewer
         env:
           GITHUB_TOKEN: ${{ github.token }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
           REVIEW_MODEL: qwen3.5:9b-q4_K_M
-        run: python3 .github/scripts/bounded_qwen_review.py
+        run: python3 .github/scripts/bounded_qwen_markdown_review.py
 
       - name: Upload diagnostic artifacts
         if: always()
