@@ -19,7 +19,8 @@ const read = file => fs.readFileSync(file, 'utf8');
 const list = dir => (fs.existsSync(dir) ? fs.readdirSync(dir) : []);
 
 function frontMatter(file) {
-  const match = read(file).match(/^---\r?\n([\s\S]*?)\r?\n---/);
+  // Jekyll accepts trailing spaces on the delimiter lines (e.g. dev-docs/analytics/yuktamedia.md).
+  const match = read(file).match(/^---[ \t]*\r?\n([\s\S]*?)\r?\n---[ \t]*(?:\r?\n|$)/);
   const data = {};
   if (match) {
     for (const line of match[1].split(/\r?\n/)) {
@@ -71,7 +72,13 @@ const docs = dir => list(dir).filter(f => f.endsWith('.md')).map(f => ({ file: `
 const bidderDocs = docs('dev-docs/bidders').filter(d => d.biddercode);
 const moduleDocs = docs('dev-docs/modules').filter(d => d.module_code)
   .map(d => ({ ...d, code: d.module_code }))
-  .concat(docs('dev-docs/analytics').filter(d => d.modulecode).map(d => ({ ...d, code: d.modulecode + 'AnalyticsAdapter' })))
+  // The download page always appends "AnalyticsAdapter" to modulecode; a page whose modulecode already ends with it
+  // names the module correctly but gets a doubled checkbox name (reported as a download finding below).
+  .concat(docs('dev-docs/analytics').filter(d => d.modulecode).map(d => ({
+    ...d,
+    code: /AnalyticsAdapter$/.test(d.modulecode) ? d.modulecode : d.modulecode + 'AnalyticsAdapter',
+    downloadCode: d.modulecode + 'AnalyticsAdapter',
+  })))
   .concat(docs('dev-docs/modules/userid-submodules').filter(d => d.useridmodule).map(d => ({ ...d, code: d.useridmodule })));
 
 // A removal noted in the docs (e.g. pbjs_version_notes: removed in 9.0) is acknowledged, not a finding.
@@ -107,14 +114,15 @@ for (const doc of bidderDocs) {
   if (yes(doc.pbjs)) {
     const moduleCode = doc.filename || (doc.aliasCode ? doc.aliasCode + 'BidAdapter' : code + 'BidAdapter');
     if (acknowledgedRemoval(doc) && !pbjsBidders.has(code)) {
+      // Acknowledged for Prebid.js only; the Prebid Server check below still applies.
       add('acknowledged', doc.file, `\`${code}\`: ${doc.pbjs_version_notes}`);
-      continue;
-    }
-    if (doc.enable_download !== 'false' && !pbjsModules.has(moduleCode)) {
-      add('download', doc.file, `checkbox module \`${moduleCode}\` is not in Prebid.js \`modules/\`${caseHint(moduleCode, pbjsModules)}`);
-    }
-    if (!pbjsBidders.has(code)) {
-      add('notInPbjs', doc.file, `\`${code}\`${caseHint(code, pbjsBidders.keys())}`);
+    } else {
+      if (doc.enable_download !== 'false' && !pbjsModules.has(moduleCode)) {
+        add('download', doc.file, `checkbox module \`${moduleCode}\` is not in Prebid.js \`modules/\`${caseHint(moduleCode, pbjsModules)}`);
+      }
+      if (!pbjsBidders.has(code)) {
+        add('notInPbjs', doc.file, `\`${code}\`${caseHint(code, pbjsBidders.keys())}`);
+      }
     }
   }
   if (yes(doc.pbs) && !pbsGo.has(code) && !pbsJava.has(code)) {
@@ -139,6 +147,9 @@ for (const code of new Set([...pbsGo.keys(), ...pbsJava.keys()])) {
 }
 
 for (const doc of moduleDocs) {
+  if (doc.downloadCode && doc.downloadCode !== doc.code && doc.enable_download !== 'false' && pbjsModules.has(doc.code)) {
+    add('download', doc.file, `checkbox module \`${doc.downloadCode}\` does not exist: the download page appends "AnalyticsAdapter" to \`modulecode: ${doc.modulecode}\`, which should be \`${doc.code.replace(/AnalyticsAdapter$/, '')}\``);
+  }
   if (pbjsModules.has(doc.code)) continue;
   if (acknowledgedRemoval(doc) || doc.enable_download === 'false') {
     add('acknowledged', doc.file, `\`${doc.code}\`${doc.pbjs_version_notes ? ': ' + doc.pbjs_version_notes : ' (enable_download: false)'}`);
