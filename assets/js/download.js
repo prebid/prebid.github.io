@@ -93,7 +93,9 @@
             var filename = "prebid" + form_data["version"] + ".js";
 
             var jsBlob = new Blob([data.source], { type: "text/javascript" });
-            var configData = JSON.stringify({ version: form_data.version, modules: form_data.modules }, null, 2);
+            // Record only what the bundle contains, so reloading this config reproduces it.
+            var bundled = form_data.modules.filter(function (m) { return (data.missing || []).indexOf(m) === -1; });
+            var configData = JSON.stringify({ version: form_data.version, modules: bundled }, null, 2);
 
             triggerDownload(jsBlob, filename);
             triggerDownload(new Blob([configData], { type: "application/json" }), "prebid-config.json");

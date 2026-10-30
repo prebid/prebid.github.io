@@ -33,7 +33,9 @@ async function waitForFile(dir, pattern, deadline) {
   const browser = await puppeteer.launch({ executablePath: process.env.CHROME_BIN, headless: true });
   try {
     const page = await browser.newPage();
-    page.on('pageerror', error => failures.push('Page error: ' + error.message.slice(0, 300)));
+    // Errors elsewhere on the page (e.g. search on a preview without its index) are reported, not failed:
+    // anything that breaks downloading fails below on its own.
+    page.on('pageerror', error => notes.push('Page error: ' + error.message.slice(0, 300)));
     page.on('dialog', async dialog => {
       const message = dialog.message();
       // "removed from your download" is expected when the docs list modules newer than the release.
