@@ -134,7 +134,7 @@ Every page is also published as its raw Markdown source: replace `.html` in a pa
 <https://docs.prebid.org/dev-docs/bidders/msft.md>. `_plugins/raw_markdown_generator.rb` copies the sources at build time.
 
 * [/llms.txt](https://docs.prebid.org/llms.txt) indexes all of them by section, following [llmstxt.org](https://llmstxt.org). It's generated from each page's `title`, `description` and `biddercode` front matter, so keep those accurate.
-* Each page's `<head>` links its Markdown with `<link rel="alternate" type="text/markdown">`, and a "View as Markdown" link sits at the top of the content.
+* Each page's `<head>` links its Markdown with `<link rel="alternate" type="text/markdown">`, and documentation pages (not the homepage) show a "View as Markdown" link above the content.
 * Liquid tags such as `{% include %}` are not expanded in the `.md` files, so put content that agents need in the page itself rather than in an include.
 
 ## Codex

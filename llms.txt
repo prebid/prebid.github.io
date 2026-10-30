@@ -23,7 +23,7 @@ sitemap: false
   {%- include doc-section.html url=p.url -%}
   {%- assign title = p.title | default: p.path | strip_newlines | strip -%}
   {%- if doc_section == "Bidders" -%}
-    {%- capture line -%}- [{{ title }}]({{ root }}/{{ p.path }}){% if p.biddercode %}: biddercode `{{ p.biddercode }}`{% endif %}{%- endcapture -%}
+    {%- capture line -%}- [{{ title }}]({{ root }}/{{ p.path }}){% if p.biddercode %}: biddercode `{{ p.biddercode }}`{% elsif p.aliasCode %}: alias of `{{ p.aliasCode }}`{% endif %}{%- endcapture -%}
   {%- else -%}
     {%- assign description = p.description | strip_newlines | strip -%}
     {%- capture line -%}- [{{ title }}]({{ root }}/{{ p.path }}){% if description != "" %}: {{ description }}{% endif %}{%- endcapture -%}
