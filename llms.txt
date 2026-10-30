@@ -1,0 +1,88 @@
+---
+layout: null
+permalink: /llms.txt
+sitemap: false
+---
+{%- comment -%}
+  Index of the docs for AI agents, following https://llmstxt.org. It lists every page's raw Markdown source
+  (published by _plugins/raw_markdown_generator.rb) and is generated, so it stays current as pages change.
+  Sections come from _includes/doc-section.html, the same grouping as the search filter. Bidder pages go last,
+  under "Optional", which llms.txt consumers may skip when context is short.
+{%- endcomment -%}
+{%- assign root = site.url | default: "https://docs.prebid.org" | append: site.baseurl -%}
+{%- assign sec_js = "" -%}{%- assign sec_modules = "" -%}{%- assign sec_pbs = "" -%}{%- assign sec_mobile = "" -%}
+{%- assign sec_video = "" -%}{%- assign sec_adops = "" -%}{%- assign sec_analytics = "" -%}{%- assign sec_general = "" -%}
+{%- assign sec_bidders = "" -%}
+{%- assign sorted_pages = site.pages | sort: "path" -%}
+{%- for p in sorted_pages -%}
+  {%- assign ext = p.path | split: "." | last | downcase -%}
+  {%- if ext != "md" and ext != "markdown" -%}{%- continue -%}{%- endif -%}
+  {%- if p.redirect_to or p.published == false or p.sitemap == false -%}{%- continue -%}{%- endif -%}
+  {%- assign first_char = p.path | slice: 0 -%}
+  {%- if first_char == "_" or p.path contains "node_modules/" -%}{%- continue -%}{%- endif -%}
+  {%- include doc-section.html url=p.url -%}
+  {%- assign title = p.title | default: p.path | strip_newlines | strip -%}
+  {%- if doc_section == "Bidders" -%}
+    {%- capture line -%}- [{{ title }}]({{ root }}/{{ p.path }}){% if p.biddercode %}: biddercode `{{ p.biddercode }}`{% endif %}{%- endcapture -%}
+  {%- else -%}
+    {%- assign description = p.description | strip_newlines | strip -%}
+    {%- capture line -%}- [{{ title }}]({{ root }}/{{ p.path }}){% if description != "" %}: {{ description }}{% endif %}{%- endcapture -%}
+  {%- endif -%}
+  {%- case doc_section -%}
+    {%- when "Prebid.js" -%}{%- capture sec_js -%}{{ sec_js }}{{ line }}
+{% endcapture -%}
+    {%- when "Modules" -%}{%- capture sec_modules -%}{{ sec_modules }}{{ line }}
+{% endcapture -%}
+    {%- when "Prebid Server" -%}{%- capture sec_pbs -%}{{ sec_pbs }}{{ line }}
+{% endcapture -%}
+    {%- when "Prebid Mobile" -%}{%- capture sec_mobile -%}{{ sec_mobile }}{{ line }}
+{% endcapture -%}
+    {%- when "Video" -%}{%- capture sec_video -%}{{ sec_video }}{{ line }}
+{% endcapture -%}
+    {%- when "Ad Ops" -%}{%- capture sec_adops -%}{{ sec_adops }}{{ line }}
+{% endcapture -%}
+    {%- when "Analytics adapters" -%}{%- capture sec_analytics -%}{{ sec_analytics }}{{ line }}
+{% endcapture -%}
+    {%- when "Bidders" -%}{%- capture sec_bidders -%}{{ sec_bidders }}{{ line }}
+{% endcapture -%}
+    {%- else -%}{%- capture sec_general -%}{{ sec_general }}{{ line }}
+{% endcapture -%}
+  {%- endcase -%}
+{%- endfor -%}
+# Prebid Documentation
+
+> Documentation for Prebid, the open-source header bidding suite: Prebid.js (in the browser), Prebid Server, Prebid Mobile SDKs and Prebid video. Every page on {{ root }} is also published as its Markdown source: replace `.html` in a page's URL with `.md`.
+
+- Bidder adapter docs follow the pattern `{{ root }}/dev-docs/bidders/<biddercode>.md`. Their YAML front matter lists the bidder code, supported media types, GVL ID and supported features (TCF, GPP, schain, floors, user IDs and so on).
+- The Markdown is the raw source. Some pages pull in shared snippets with Liquid tags such as `{% raw %}{% include ... %}{% endraw %}`, which are not expanded in the `.md` version; the `.html` page has the full text.
+- Source repository: https://github.com/prebid/prebid.github.io
+
+## Prebid.js
+
+{{ sec_js }}
+## Prebid.js modules
+
+{{ sec_modules }}
+## Analytics adapters
+
+{{ sec_analytics }}
+## Prebid Server
+
+{{ sec_pbs }}
+## Prebid Mobile
+
+{{ sec_mobile }}
+## Video
+
+{{ sec_video }}
+## Ad Ops
+
+{{ sec_adops }}
+## General
+
+{{ sec_general }}
+## Optional
+
+Bidder adapter pages, one per bidder code.
+
+{{ sec_bidders }}
