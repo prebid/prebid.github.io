@@ -46,6 +46,9 @@ device data, user ids, supply chain, floors and the GDPR, US Privacy, GPP and CO
 
 Video and audio settings are read from `mediaTypes.video` and `mediaTypes.audio`.
 
+Outstream video needs a publisher-supplied renderer (`mediaTypes.video.renderer` or `adUnit.renderer`);
+Amli Media does not provide one, and Prebid rejects outstream bids without a renderer.
+
 ## Currency
 
 Amli Media bids in USD. Publishers with a non-USD ad server currency should include the
