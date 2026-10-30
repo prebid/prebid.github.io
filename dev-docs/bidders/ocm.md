@@ -16,7 +16,8 @@ prebid_member: true
 multiformat_supported: will-bid-on-any
 ortb_blocking_supported: partial
 pbjs: true
-pbs: false
+pbs: true
+pbs_app_supported: true
 deals_supported: true
 floors_supported: true
 gvl_id: 1148
@@ -30,6 +31,12 @@ sidebarType: 1
 |---------------|----------|----------------------------------------|---------------|----------|
 | `publisherId` | required | The publisher id (e.g. "domain.tld")   | `example.com` | `string` |
 | `placementId` | required | Domain-wide placement id               | `1234567890`  | `string` |
+
+### Prebid Server
+
+The Prebid Server adapter takes the same two parameters. `placementId` is sent as the
+impression's stored request id, and `publisherId` is sent as the request-level publisher
+id, so every impression in a single request must use the same `publisherId`.
 
 ### Description
 
