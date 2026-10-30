@@ -27,7 +27,7 @@ sidebarType: 1
 - If you provide `params.id`, ensure it is **unique per ad unit** (e.g. `div-1`, `div-2`) so multi-slot requests map correctly.
 - GDPR/TCF: the adapter reads `gdprConsent` from the Prebid bidder request and may route traffic to a different endpoint depending on whether GDPR applies and Purpose 1 consent is present.
 
-## Example
+### Example
 
 ```javascript
 pbjs.addAdUnits([{
