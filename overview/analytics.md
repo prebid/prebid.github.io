@@ -53,7 +53,7 @@ pbjs.que.push(function() {
 ## Search for analytics adapters
 
 <input type="text" id="autocomplete-filter" class="autocomplete-filter">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.js" integrity="sha512-HcBl0GSJvt4Qecm4srHapirUx0HJDi2zYXm6KUKNNUGdTIN9cBwakVZHWmRVj4MKgy1AChqhWGYcMDbRKgO0zg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.7/awesomplete.min.js" integrity="sha512-Pc3/aEr2FIVZhHxe0RAC9SFrd+pxBJHN3pNJfJNTKc2XAFnXUjgQGIh6X935ePSXNMN6rFa3yftxSnZfJE8ZAg==" crossorigin="anonymous"></script>
 <script>
 var AutocompleteList = [{% for page in analytics_pages %}{ label: '{{ page.title }}', value: '{{ page.url }}' },{% endfor %}];
 </script>
