@@ -3,6 +3,7 @@
 
 Adapted from Prebid.js bounded_qwen_review.py at 6e59b1d2cc452b3699df30bdb7bf264948c2631c.
 """
+import base64
 import hashlib
 import json
 import os
@@ -10,6 +11,8 @@ import re
 import sys
 import time
 import urllib.request
+from urllib.parse import quote as url_quote
+from collections import Counter
 from pathlib import Path
 
 API = "https://api.github.com"
@@ -18,6 +21,7 @@ EXTENSIONS = (".md", ".markdown")
 # Docs smoke test: review up to eight Markdown patches, each <=40K characters.
 MAX_PATCH_CHARS = 40000
 MAX_REVIEW_FILES = 8
+MAX_DOCUMENT_BYTES = 200000
 MODEL_CONTEXT_TOKENS = 16384
 MODEL_REQUEST_TIMEOUT = 240
 SCHEMA = {"type": "object", "properties": {"findings": {
@@ -53,7 +57,7 @@ def added_lines(patch):
             number = int(match.group(1))
         elif number is None or line.startswith("\\"):
             continue
-        elif line.startswith("+") and not line.startswith("+++"):
+        elif line.startswith("+"):
             lines[number] = line[1:]
             number += 1
         elif line.startswith(" "):
@@ -74,36 +78,96 @@ def meaningful_fix(quote, fix):
 
 
 def heading_anchor(value):
-    """Conservative GitHub-like slug for simple ATX headings used in this smoke."""
-    match = re.match(r"^#{1,6} +(.+?) *#* *$", value.strip())
+    """Return a safe slug only for unambiguous, plain ASCII headings.
+
+    Do not guess at Kramdown GFM slugs for underscores, repeated spaces,
+    punctuation or markup. This deliberately sacrifices coverage for precision.
+    """
+    match = re.fullmatch(r"#{1,6} ([A-Za-z0-9]+(?:[- ][A-Za-z0-9]+)*)", value)
     if not match:
         return None
-    title = match.group(1).lower()
-    if not re.fullmatch(r"[a-z0-9 _-]+", title):
-        return None
-    return "#" + re.sub(r" +", "-", title.strip()).replace("_", "-")
+    return "#" + match.group(1).lower().replace(" ", "-")
 
 
-def validate(finding, lines):
+def markdown_evidence(source):
+    """Collect actual headings and link line numbers, ignoring fenced code.
+
+    Parse the FULL new-side Markdown document, not an isolated diff hunk:
+    its opening code fence may be outside the hunk being reviewed.
+    """
+    headings, links = [], set()
+    fence = None
+    for number, line in enumerate(source.splitlines(), 1):
+        if fence:
+            char, length = fence
+            if re.fullmatch(r" {0,3}" + re.escape(char) + "{" + str(length) + r",}[ \t]*", line):
+                fence = None
+            continue
+        opening = re.match(r"^ {0,3}(`{3,}|~{3,})(.*)$", line)
+        if opening:
+            fence = (opening.group(1)[0], len(opening.group(1)))
+            continue
+        # Indented code is not a source of headings or live links.
+        if line.startswith(("    ", "\t")):
+            continue
+        slug = heading_anchor(line)
+        if slug is not None:
+            headings.append(slug)
+        if MD_LINK.fullmatch(line):
+            links.add(number)
+    # A repeated heading can have a renderer-assigned suffix; abstain.
+    counts = Counter(headings)
+    return {slug for slug, count in counts.items() if count == 1}, links
+
+
+def fetch_markdown_source(repo, filename, sha, token):
+    """Read PR's new-side Markdown as data; never checkout/execute PR code."""
+    path = url_quote(filename, safe="/")
+    payload = api(f"{API}/repos/{repo}/contents/{path}?ref={sha}", token)
+    if (not isinstance(payload, dict) or payload.get("type") != "file"
+            or payload.get("encoding") != "base64"
+            or payload.get("size", MAX_DOCUMENT_BYTES + 1) > MAX_DOCUMENT_BYTES):
+        raise ValueError("Markdown document unavailable or over size limit")
+    content = base64.b64decode(payload.get("content", ""), validate=False)
+    if len(content) > MAX_DOCUMENT_BYTES:
+        raise ValueError("Markdown document exceeds size limit")
+    return content.decode("utf-8")
+
+
+def validate(finding, lines, source):
     if not isinstance(finding, dict):
         return False
     line, quote = finding.get("line"), finding.get("quote")
     if type(line) is not int or line not in lines or not isinstance(quote, str):
         return False
-    if not quote.strip() or quote.strip() != lines[line].strip():
+    if not quote.strip() or quote.strip() != lines[line].strip() or len(quote) > 350:
         return False
-    if not lines[line].strip() or lines[line].lstrip().startswith(("<!--", "```", "~~~")):
+    source_lines = source.splitlines()
+    if line > len(source_lines) or source_lines[line - 1] != lines[line]:
         return False
     if not (all(isinstance(finding.get(k), str) and 10 <= len(finding[k].strip()) <= 700
                 for k in ("problem", "failure_case", "fix"))
             and meaningful_fix(quote, finding["fix"])):
         return False
-    old_link, fixed_link = MD_LINK.fullmatch(quote.strip()), MD_LINK.fullmatch(finding["fix"].strip())
-    visible_anchors = {anchor for value in lines.values()
-                       if (anchor := heading_anchor(value)) is not None}
-    # The model may only fix anchors that are demonstrably present in the
-    # changed diff. Unknown heading slug rules => abstain rather than guess.
-    return fixed_link.group(2) in visible_anchors and old_link.group(2) not in visible_anchors
+    old_link = MD_LINK.fullmatch(quote.strip())
+    fixed_link = MD_LINK.fullmatch(finding["fix"].strip())
+    anchors, active_links = markdown_evidence(source)
+    # Never report links inside code or guessed slugs. Require actual
+    # source-line anchoring AND the corrected target in a unique heading.
+    return (line in active_links and
+            fixed_link.group(2) in anchors and old_link.group(2) not in anchors)
+
+
+def build_comment(finding, marker):
+    """Publish only validated fragments, never model-authored prose/mentions."""
+    old = MD_LINK.fullmatch(finding["quote"].strip()).group(2)
+    new = MD_LINK.fullmatch(finding["fix"].strip()).group(2)
+    return ("**Automated local Qwen Markdown anchor check (unverified)**\n\n"
+            "This new in-page link targets `" + old +
+            "`, which is not a heading anchor in this document. "
+            "A corresponding heading anchor `" + new +
+            "` is present. Change the link's fragment to `" + new + "`.\n\n"
+            "<!-- bounded-qwen:" + marker + " -->")
 
 
 def paged(repo, number, token, endpoint):
