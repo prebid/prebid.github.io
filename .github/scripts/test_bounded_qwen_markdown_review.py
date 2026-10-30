@@ -17,31 +17,61 @@ FINDING = {
     "fix": "[Configuration](#configuration)",
 }
 
+def document(patch):
+    return "\n".join(review.added_lines(patch).values())
+
 class MarkdownReviewTests(unittest.TestCase):
     def test_diff_lines(self):
         self.assertEqual(review.added_lines(BUG)[3], FINDING["quote"])
 
     def test_valid_corrected_anchor(self):
-        self.assertTrue(review.validate(FINDING, review.added_lines(BUG)))
+        self.assertTrue(review.validate(FINDING, review.added_lines(BUG), document(BUG)))
 
     def test_no_op(self):
-        self.assertFalse(review.validate({**FINDING, "fix": FINDING["quote"]}, review.added_lines(BUG)))
+        self.assertFalse(review.validate({**FINDING, "fix": FINDING["quote"]}, review.added_lines(BUG), document(BUG)))
 
     def test_wrong_destination(self):
-        self.assertFalse(review.validate({**FINDING, "fix": "[Configuration](#different)"}, review.added_lines(BUG)))
+        self.assertFalse(review.validate({**FINDING, "fix": "[Configuration](#different)"}, review.added_lines(BUG), document(BUG)))
 
     def test_clean_control(self):
         self.assertFalse(review.validate({**FINDING, "quote": "[Configuration](#configuration)"},
-                                         review.added_lines(CLEAN)))
+                                         review.added_lines(CLEAN), document(CLEAN)))
 
     def test_unadded_anchor(self):
-        self.assertFalse(review.validate(FINDING, {3: FINDING["quote"]}))
+        self.assertFalse(review.validate(FINDING, {3: FINDING["quote"]}, document(BUG)))
 
     def test_reject_wrong_line(self):
-        self.assertFalse(review.validate({**FINDING, "line": 77}, review.added_lines(BUG)))
+        self.assertFalse(review.validate({**FINDING, "line": 77}, review.added_lines(BUG), document(BUG)))
 
     def test_reject_changed_link_label(self):
-        self.assertFalse(review.validate({**FINDING, "fix": "[Else](#configuration)"}, review.added_lines(BUG)))
+        self.assertFalse(review.validate({**FINDING, "fix": "[Else](#configuration)"}, review.added_lines(BUG), document(BUG)))
+
+
+    def test_plus_prefix_in_diff(self):
+        patch = "@@ -0,0 +1,4 @@\\n+++\\n+# Heading\\n+\\n+[Heading](#heding)"
+        self.assertEqual(review.added_lines(patch)[4], "[Heading](#heding)")
+
+    def test_repeated_spaces_and_underscores_abstain(self):
+        self.assertIsNone(review.heading_anchor("## Foo  Bar"))
+        self.assertIsNone(review.heading_anchor("## foo_bar"))
+
+    def test_fenced_heading_not_visible(self):
+        source = "[Configuration](#configuraton)\\n" + "```md\\n## Configuration\\n```"
+        self.assertNotIn("#configuration", review.markdown_evidence(source)[0])
+
+    def test_fence_started_before_added_lines(self):
+        source = "```markdown\\n## Configuration\\n```\\n[Configuration](#configuraton)"
+        self.assertFalse(review.validate(FINDING, review.added_lines(BUG), source))
+
+    def test_avoid_untrusted_model_prose(self):
+        malicious = {**FINDING, "problem": "@everybody https://malicious.example"}
+        comment = review.build_comment(malicious, "a" * 64)
+        self.assertNotIn("@everybody", comment)
+        self.assertNotIn("malicious.example", comment)
+
+    def test_duplicate_headings_abstain(self):
+        source = "[Configuration](#configuraton)\\n## Configuration\\n## Configuration"
+        self.assertNotIn("#configuration", review.markdown_evidence(source)[0])
 
     def test_filter_markdown_extensions(self):
         self.assertEqual(review.EXTENSIONS, (".md", ".markdown"))
