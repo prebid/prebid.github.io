@@ -22,63 +22,63 @@ ortb_blocking_supported: false
 sidebarType: 1
 ---
 
-### Description
+## Description
 
 This module connects publishers to AIDEM demand.
 
 This module is GDPR and CCPA compliant, and no 3rd party userIds are allowed.
 
-### Global Bid Params
+## Global Bid Params
 
 {: .table .table-bordered .table-striped }
 
-| Name          | Scope    | Description         | Example    | Type     |
-|---------------|----------|---------------------|------------|----------|
-| `siteId`      | required | Unique site ID      | `'ABCDEF'` | `String` |
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| `siteId` | required | Unique site ID | `'ABCDEF'` | `String` |
 | `publisherId` | required | Unique publisher ID | `'FEDCBA'` | `String` |
-| `placementId` | optional | Unique publisher tag ID | `'ABCDEF'`    | `String` |
-| `rateLimit`   | optional | Limit the volume sent to AIDEM. Must be between 0 and 1 | `0.6`      | `Number`   |
+| `placementId` | optional | Unique publisher tag ID | `'ABCDEF'` | `String` |
+| `rateLimit` | optional | Limit the volume sent to AIDEM. Must be between 0 and 1 | `0.6` | `Number` |
 
-#### Banner Bid Params
-
-{: .table .table-bordered .table-striped }
-
-| Name       | Scope    | Description              | Example                   | Type    |
-|------------|----------|--------------------------|---------------------------|---------|
-| `sizes`    | required | List of the sizes wanted | `[[300, 250], [300,600]]` | `Array` |
-
-#### Video Bid Params
+### Banner Bid Params
 
 {: .table .table-bordered .table-striped }
 
-| Name          | Scope    | Description                             | Example         | Type      |
-|---------------|----------|-----------------------------------------|-----------------|-----------|
-| `context`     | required | One of instream, outstream, adpod       | `'instream'`    | `String`  |
-| `playerSize`  | required | Width and height of the player          | `'[640, 480]'`  | `Array`   |
-| `maxduration` | required | Maximum video ad duration, in seconds   | `30`            | `Integer` |
-| `minduration` | required | Minimum video ad duration, in seconds   | `5`             | `Integer` |
-| `mimes`       | required | List of the content MIME types supported by the player    | `["video/mp4"]` | `Array`   |
-| `protocols`   | required | An array of supported video protocols. At least one supported protocol must be specified, where: `2` = VAST 2.0 `3` = VAST 3.0 `5` = VAST 2.0 wrapper `6` = VAST 3.0 wrapper | `2`             | `Array`   |
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| `sizes` | required | List of the sizes wanted | `[[300, 250], [300,600]]` | `Array` |
 
-#### Additional Config
+### Video Bid Params
 
 {: .table .table-bordered .table-striped }
 
-| Name                | Scope    | Description                                             | Example | Type      |
-|---------------------|----------|---------------------------------------------------------|---------|-----------|
-| `coppa`             | optional | Child Online Privacy Protection Act                     | `true`  | `Boolean` |
-| `consentManagement` | optional | [Consent Management Object](#consent-management-object) | `{}`    | `Object`  |
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| `context` | required | One of instream, outstream, adpod | `'instream'` | `String` |
+| `playerSize` | required | Width and height of the player | `'[640, 480]'` | `Array` |
+| `maxduration` | required | Maximum video ad duration, in seconds | `30` | `Integer` |
+| `minduration` | required | Minimum video ad duration, in seconds | `5` | `Integer` |
+| `mimes` | required | List of the content MIME types supported by the player | `["video/mp4"]` | `Array` |
+| `protocols` | required | An array of supported video protocols. At least one supported protocol must be specified, where: `2` = VAST 2.0 `3` = VAST 3.0 `5` = VAST 2.0 wrapper `6` = VAST 3.0 wrapper | `2` | `Array` |
 
-#### Consent Management Object
+### Additional Config
 
 {: .table .table-bordered .table-striped }
 
-| Name   | Scope    | Description                                                                                      | Example | Type     |
-|--------|----------|--------------------------------------------------------------------------------------------------|---------|----------|
-| `gdpr` | optional | GDPR Object see [Prebid.js doc](https://docs.prebid.org/dev-docs/modules/consentManagementTcf.html) | `{}`    | `Object` |
-| `usp`  | optional | USP Object see [Prebid.js doc](https://docs.prebid.org/dev-docs/modules/consentManagementUsp.html)                                                                     | `{}`    | `Object` |
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| `coppa` | optional | Child Online Privacy Protection Act | `true` | `Boolean` |
+| `consentManagement` | optional | [Consent Management Object](#consent-management-object) | `{}` | `Object` |
 
-#### Example Banner ad unit
+### Consent Management Object
+
+{: .table .table-bordered .table-striped }
+
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| `gdpr` | optional | GDPR Object see [Prebid.js doc](https://docs.prebid.org/dev-docs/modules/consentManagementTcf.html) | `{}` | `Object` |
+| `usp` | optional | USP Object see [Prebid.js doc](https://docs.prebid.org/dev-docs/modules/consentManagementUsp.html) | `{}` | `Object` |
+
+### Example Banner ad unit
 
 ```javascript
 var adUnits = [{
@@ -101,7 +101,7 @@ var adUnits = [{
 }];
 ```
 
-#### Example Video ad unit
+### Example Video ad unit
 
 ```javascript
 var adUnits = [{
@@ -126,7 +126,7 @@ var adUnits = [{
 }];
 ```
 
-#### Example GDPR Consent Management
+### Example GDPR Consent Management
 
 ```javascript
 var pbjs = pbjs || {};
@@ -143,7 +143,7 @@ pbjs.que.push(function (){
 })
 ```
 
-#### Example USP Consent Management
+### Example USP Consent Management
 
 ```javascript
 var pbjs = pbjs || {};
@@ -165,7 +165,7 @@ pbjs.que.push(function (){
 })
 ```
 
-#### Setting First Party Data (FPD)
+### Setting First Party Data (FPD)
 
 ```javascript
 var pbjs = pbjs || {};
@@ -184,16 +184,16 @@ pbjs.que.push(function (){
 })
 ```
 
-### Supported Media Types
+## Supported Media Types
 
 {: .table .table-bordered .table-striped }
 
-| Type   | Support                                                            |
-|--------|--------------------------------------------------------------------|
+| Type | Support |
+| --- | --- |
 | Banner | Support all [AIDEM Sizes](https://kb.aidem.com/ssp/lists/adsizes/) |
-| Video  | Support all [AIDEM Sizes](https://kb.aidem.com/ssp/lists/adsizes/) |
+| Video | Support all [AIDEM Sizes](https://kb.aidem.com/ssp/lists/adsizes/) |
 
-### Setup / Dev Guide
+## Setup / Dev Guide
 
 ```shell
 nvm use
@@ -216,9 +216,9 @@ gulp test --file "test/spec/modules/aidemBidAdapter_spec.js"
 
 For video: gulp serve --modules=aidemBidAdapter,gamAdServerVideo
 
-### FAQs
+## FAQs
 
-#### How do I view AIDEM bid request?
+### How do I view AIDEM bid request?
 
 Navigate to a page where AIDEM is setup to bid. In the network tab,
 search for requests to `zero.aidemsrv.com/bid/request`.
