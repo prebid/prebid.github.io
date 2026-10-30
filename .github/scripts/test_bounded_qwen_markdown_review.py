@@ -38,7 +38,7 @@ class MarkdownReviewTests(unittest.TestCase):
                                          review.added_lines(CLEAN), document(CLEAN)))
 
     def test_unadded_anchor(self):
-        self.assertFalse(review.validate(FINDING, {3: FINDING["quote"]}, document(BUG)))
+        self.assertFalse(review.validate(FINDING, {4: "## Configuration"}, document(BUG)))
 
     def test_reject_wrong_line(self):
         self.assertFalse(review.validate({**FINDING, "line": 77}, review.added_lines(BUG), document(BUG)))
@@ -48,7 +48,7 @@ class MarkdownReviewTests(unittest.TestCase):
 
 
     def test_plus_prefix_in_diff(self):
-        patch = "@@ -0,0 +1,4 @@\\n+++\\n+# Heading\\n+\\n+[Heading](#heding)"
+        patch = "@@ -0,0 +1,4 @@\n+++\n+# Heading\n+\n+[Heading](#heding)"
         self.assertEqual(review.added_lines(patch)[4], "[Heading](#heding)")
 
     def test_repeated_spaces_and_underscores_abstain(self):
@@ -56,11 +56,11 @@ class MarkdownReviewTests(unittest.TestCase):
         self.assertIsNone(review.heading_anchor("## foo_bar"))
 
     def test_fenced_heading_not_visible(self):
-        source = "[Configuration](#configuraton)\\n" + "```md\\n## Configuration\\n```"
+        source = "[Configuration](#configuraton)\n" + "```md\n## Configuration\n```"
         self.assertNotIn("#configuration", review.markdown_evidence(source)[0])
 
     def test_fence_started_before_added_lines(self):
-        source = "```markdown\\n## Configuration\\n```\\n[Configuration](#configuraton)"
+        source = "```markdown\n## Configuration\n```\n[Configuration](#configuraton)"
         self.assertFalse(review.validate(FINDING, review.added_lines(BUG), source))
 
     def test_avoid_untrusted_model_prose(self):
@@ -70,7 +70,7 @@ class MarkdownReviewTests(unittest.TestCase):
         self.assertNotIn("malicious.example", comment)
 
     def test_duplicate_headings_abstain(self):
-        source = "[Configuration](#configuraton)\\n## Configuration\\n## Configuration"
+        source = "[Configuration](#configuraton)\n## Configuration\n## Configuration"
         self.assertNotIn("#configuration", review.markdown_evidence(source)[0])
 
     def test_filter_markdown_extensions(self):
