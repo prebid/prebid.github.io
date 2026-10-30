@@ -219,6 +219,8 @@ def main():
     output_path = Path(env.get("RUNNER_TEMP", "/tmp"), "bounded-qwen-result.json")
     prior = set()
     for comment in paged(repo, number, token, "comments"):
+        if comment.get("user", {}).get("login") != "github-actions[bot]":
+            continue
         prior.update(re.findall(r"<!-- bounded-qwen:([0-9a-f]{64}) -->", comment.get("body", "")))
     files = []
     for file in paged(repo, number, token, "files"):
@@ -269,7 +271,17 @@ def main():
             output_path.write_text(json.dumps(report, indent=2) + "\n")
             continue
         finding = findings[0]
-        if not validate(finding, added_lines(patch)):
+        try:
+            source = fetch_markdown_source(repo, filename, sha, token)
+        except (ValueError, UnicodeError, OSError) as error:
+            diagnostic["outcome"] = "source_unavailable"
+            diagnostic["error"] = str(error)[:300]
+            report["skipped"] += 1
+            report["reviewed"] -= 1
+            report["skipped_files"].append({"path": filename, "reason": "source_unavailable"})
+            output_path.write_text(json.dumps(report, indent=2) + "\n")
+            continue
+        if not validate(finding, added_lines(patch), source):
             report["rejected"] += 1
             diagnostic["outcome"] = "rejected"
             diagnostic["rejection_reason"] = (
@@ -285,11 +297,7 @@ def main():
             print("[bounded-qwen] already posted", flush=True)
             output_path.write_text(json.dumps(report, indent=2) + "\n")
             continue
-        body = ("**Automated local Qwen correctness check (unverified)**\n\n"
-            + "**Issue:** " + finding["problem"] + "\n\n"
-            + "**Failure case:** " + finding["failure_case"] + "\n\n"
-            + "**Suggested fix:** `" + finding["fix"].replace("`", "'") + "`\n\n"
-            + f"<!-- bounded-qwen:{marker} -->")
+        body = build_comment(finding, marker)
         output_path.write_text(json.dumps(report, indent=2) + "\n")
         api(f"{API}/repos/{repo}/pulls/{number}/comments", token, "POST", {
             "body": body, "commit_id": sha, "path": filename, "line": finding["line"], "side": "RIGHT"})
