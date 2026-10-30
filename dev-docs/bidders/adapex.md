@@ -4,7 +4,8 @@ title: Adapex
 description: Prebid Adapex Bidder Adapter
 biddercode: adapex
 pbjs: true
-pbs: false
+pbs: true
+pbs_app_supported: true
 media_types: banner, video, native
 safeframes_ok: true
 sidebarType: 1
@@ -41,6 +42,18 @@ The Adapex bidder adapter connects publishers to the Adapex programmatic exchang
 | `bidFloorCur` | optional | Currency of `bidFloor` (default: `USD`) | `"USD"` | `string` |
 
 Bid requests are sent to `https://hb.adapex.io/pbjs?seat={seat}`, one request per distinct seat. Parameter and configuration types are exported from `prebid.js/modules/adapexBidAdapter` for publishers using TypeScript.
+
+## Prebid Server
+
+The Adapex adapter is available in Prebid Server Go (`prebid-server`) and Prebid Server Java (`prebid-server-java`) as an alias of the Floxis adapter, and also supports audio there. Requests are sent to `https://hb.adapex.io/pbs?seat={seat}`, one request per seat. User sync uses the standard Prebid Server cookie-sync mechanism via `https://sync.adapex.io/sync`.
+
+## Prebid Server Bid Params
+
+{: .table .table-bordered .table-striped }
+
+| Name | Scope | Description | Example | Type |
+| ---- | ----- | ----------- | ------- | ---- |
+| `seat` | required | Seat identifier provided by Adapex | `"testSeat"` | `string` |
 
 ## Error and Timeout Telemetry
 
