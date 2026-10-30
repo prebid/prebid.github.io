@@ -24,19 +24,8 @@ jobs:
           ref: ${{ github.event.pull_request.base.sha }}
           persist-credentials: false
 
-      - name: Fetch pinned reviewer and unit tests from Prebid.js
-        env:
-          UPSTREAM_SHA: 6e59b1d2cc452b3699df30bdb7bf264948c2631c
-        run: |
-          mkdir -p .github/scripts
-          for file in bounded_qwen_review.py test_bounded_qwen_review.py; do
-            curl --fail --silent --show-error --location --retry 3 \
-              "https://raw.githubusercontent.com/prebid/Prebid.js/$UPSTREAM_SHA/.github/scripts/$file" \
-              --output ".github/scripts/$file"
-          done
-
-      - name: Validate reviewer guardrails
-        run: python3 -m unittest discover -s .github/scripts -p 'test_bounded_qwen_review.py' -v
+      - name: Validate Markdown reviewer guardrails
+        run: python3 -m unittest discover -s .github/scripts -p 'test_bounded_qwen_markdown_review.py' -v
 
       - name: Install Ollama v0.40.13
         run: |
@@ -62,13 +51,13 @@ jobs:
           curl -fsS http://127.0.0.1:11434/api/tags >/dev/null
           ollama pull qwen3.5:9b-q4_K_M
 
-      - name: Run pinned one-pass reviewer on changed JS/TS files
+      - name: Run bounded one-pass Markdown anchor reviewer
         env:
           GITHUB_TOKEN: ${{ github.token }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
           REVIEW_MODEL: qwen3.5:9b-q4_K_M
-        run: python3 .github/scripts/bounded_qwen_review.py
+        run: python3 .github/scripts/bounded_qwen_markdown_review.py
 
       - name: Upload diagnostic artifacts
         if: always()
