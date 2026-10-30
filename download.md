@@ -48,6 +48,16 @@ a.tip:hover span {
 
 {: .lead :}
 
+<p><strong>Choose a download method:</strong></p>
+<nav aria-label="Prebid.js download options" class="mb-4">
+  <ul class="nav nav-pills nav-justified">
+    <li class="nav-item"><a class="nav-link" href="#option-1-customize-your-download-here">1. Customize download</a></li>
+    <li class="nav-item"><a class="nav-link" href="#option-2-build-from-source-code-more-advanced">2. Build from source</a></li>
+    <li class="nav-item"><a class="nav-link" href="#option-3-load-from-the-jsdelivr-cdn">3. jsDelivr CDN</a></li>
+    <li class="nav-item"><a class="nav-link" href="#option-4-use-prebidjs-as-an-npm-dependency">4. npm dependency</a></li>
+  </ul>
+</nav>
+
 {: .alert.alert-warning :}
 Prebid.js is open source software that is offered for free as a convenience. While it is designed to help companies address legal requirements associated with header bidding, we cannot and do not warrant that your use of Prebid.js will satisfy legal requirements. You are solely responsible for ensuring that your use of Prebid.js complies with all applicable laws.  We strongly encourage you to obtain legal advice when using Prebid.js to ensure your implementation complies with all laws where you operate.
 
@@ -55,6 +65,7 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 **Note:** recommended modules are now checked by default. Please uncheck them as desired.
 
 ## Option 1: Customize your download here
+{: #option-1-customize-your-download-here }
 
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
 {% assign module_pages = site.pages | where: "page_type", "module" %}
@@ -138,6 +149,7 @@ Prebid only supports the most recent major version. Within a month or so after a
 <div class="bs-docs-section" markdown="1">
 
 ## Option 2: Build from Source Code (More Advanced)
+{: #option-2-build-from-source-code-more-advanced }
 
 {: .lead :}
 Alternatively, you can build Prebid.js from the source code. For instructions, see the [Prebid.js README on GitHub](https://github.com/prebid/Prebid.js/blob/master/README.md).
@@ -147,6 +159,7 @@ Alternatively, you can build Prebid.js from the source code. For instructions, s
 <div class="bs-docs-section" markdown="1">
 
 ## Option 3: Load from the jsDelivr CDN
+{: #option-3-load-from-the-jsdelivr-cdn }
 
 {: .lead :}
 Since Prebid.js 11.40.0, each release includes a loader, `bundle.js`, that assembles Prebid.js in the browser from individual modules hosted on [jsDelivr](https://www.jsdelivr.com/package/npm/prebid.js). No build step is needed: list the modules you want in the script URL.
@@ -188,6 +201,7 @@ Module scripts are added with `crossorigin="anonymous"` and `crossoriginstorage=
 </div>
 
 ## Option 4: Use Prebid.js as an npm Dependency
+{: #option-4-use-prebidjs-as-an-npm-dependency }
 
 {: .lead :}
 If your project is already built with a JavaScript bundler, you can install Prebid.js from npm and bundle it with the rest of your code.
