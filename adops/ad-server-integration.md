@@ -77,6 +77,8 @@ For Prebid to rank the ad server's campaigns correctly against other demand, the
 - **Price floors:** priority doesn't bypass [price floors](/dev-docs/modules/floors.html). Deal bids are exempt from floor enforcement unless `enforcement.floorDeals` is set.
 - **House bids at CPM 0** are dropped by default. Since Prebid.js 11.45, set [`allowHouseBids`](/dev-docs/publisher-api-reference/bidderSettings.html#213-allowhousebids) for the ad server's adapter to accept its 0 CPM house bids (bids with a priority above 12) without accepting its other 0 CPM bids.
 
+- **Click analytics:** Prebid renders the winner, so no ad server creative counts its clicks. With [`bidClickTracking`](/dev-docs/modules/bidClickTracking.html) (Prebid.js 11.45 and later), clicks observed on the rendered creative emit `bidClick` events for analytics, and the ad server's click URL can be passed to `pbjs.renderAd` as `clickThrough` to be requested on each click.
+
 The two approaches can also be combined: for example, an ad server can bid into Prebid while Prebid's winner is still sent to a second ad server as key-values.
 
 ## Next Step

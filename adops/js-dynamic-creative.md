@@ -40,8 +40,13 @@ Since Prebid.js 11.27, any fields passed to `pbRender` besides `adId` and `pubUr
 
 To render native ads, you also need to include the [nativeRendering](/dev-docs/modules/nativeRendering.html) module in your Prebid.js bundle.
 
+## Click tracking
+
+Since Prebid.js 11.45, the dynamic creative can register Prebid clicks in GAM: the example passes GAM's click URL (`clickUrl: "%%CLICK_URL_UNESC%%"`), and with [`bidClickTracking`](/dev-docs/modules/bidClickTracking.html) and `fireTrackers` enabled, Prebid.js requests it when it observes a click on the winning creative. This is not available with the Prebid Universal Creative.
+
 ## Further reading
 
 - [Creative Considerations](/adops/creative-considerations.html)
 - [Prebid Universal Creative](/overview/prebid-universal-creative.html)
 - [Native rendering module](/dev-docs/modules/nativeRendering.html)
+- [Bid Click Tracking module](/dev-docs/modules/bidClickTracking.html)
