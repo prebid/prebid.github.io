@@ -22,7 +22,7 @@ Before adding PubNative as a new bidder, there are 3 prerequisites:
 - You need a configured Prebid Server (either self-hosted or hosted by 3rd party).
 - You need to be integrated with Ad Server SDK or internal product which communicates with Prebid Mobile SDK.
 
-Please see [documentation](https://developers.pubnative.net/docs/prebid-adding-pubnative-as-a-bidder) for more info.
+Please see [documentation](https://developers.verve.com/docs/prebid-adding-verve-as-bidder) for more info.
 
 ## Bid Params
 
