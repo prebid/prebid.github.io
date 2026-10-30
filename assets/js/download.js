@@ -85,6 +85,7 @@
         delete form_data.removedModules;
         prebidBundler.download(form_data)
         .then(function (data) {
+            removedModules.push.apply(removedModules, data.missing || []);
             $('#download-button').html('<i class="glyphicon glyphicon-ok"></i> Prebid.js download successfully prepared!');
             setTimeout(function () {
                 $('#download-button').html('<i class="glyphicon glyphicon-download-alt"></i> Download Prebid.js').removeClass('disabled');
