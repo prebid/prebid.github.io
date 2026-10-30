@@ -76,5 +76,54 @@ class MarkdownReviewTests(unittest.TestCase):
     def test_filter_markdown_extensions(self):
         self.assertEqual(review.EXTENSIONS, (".md", ".markdown"))
 
+    def test_inline_link_in_prose(self):
+        patch = INLINE.replace("{frag}", "#configuraton")
+        self.assertTrue(review.validate(INLINE_FINDING, review.added_lines(patch), document(patch)))
+
+    def test_inline_comment_names_fragments(self):
+        comment = review.build_comment(INLINE_FINDING, "a" * 64)
+        self.assertIn("`#configuraton`", comment)
+        self.assertIn("`#configuration`", comment)
+
+    def test_reject_inline_fix_that_rewrites_prose(self):
+        patch = INLINE.replace("{frag}", "#configuraton")
+        finding = {**INLINE_FINDING, "fix": "Read [Configuration](#configuration) first."}
+        self.assertFalse(review.validate(finding, review.added_lines(patch), document(patch)))
+
+    def test_reject_link_inside_code_span(self):
+        patch = "@@ -0,0 +1,3 @@\n+Write `[Configuration](#configuraton)` like this.\n+\n+## Configuration"
+        finding = {**INLINE_FINDING, "quote": "Write `[Configuration](#configuraton)` like this.",
+                   "fix": "Write `[Configuration](#configuration)` like this."}
+        self.assertFalse(review.validate(finding, review.added_lines(patch), document(patch)))
+
+    def test_html_anchor_target_is_not_broken(self):
+        patch = INLINE.replace("{frag}", "#configuraton") + '\n+<a name="configuraton"></a>'
+        self.assertFalse(review.validate(INLINE_FINDING, review.added_lines(patch), document(patch)))
+
+    def test_reject_non_typo_retarget(self):
+        patch = "@@ -0,0 +1,3 @@\n+See [Configuration](#bidder-params) for options.\n+\n+## Configuration"
+        finding = {**INLINE_FINDING, "quote": "See [Configuration](#bidder-params) for options.",
+                   "fix": "See [Configuration](#configuration) for options."}
+        self.assertFalse(review.validate(finding, review.added_lines(patch), document(patch)))
+
+    def test_only_one_of_several_links_changes(self):
+        line = "See [Setup](#setup) and [Configuration](#configuraton)."
+        self.assertEqual(review.changed_link(line, line.replace("#configuraton", "#configuration")),
+                         ("#configuraton", "#configuration"))
+        self.assertIsNone(review.changed_link(line, line.replace("#configuraton", "#configuration")
+                                              .replace("#setup", "#set-up")))
+
+    def test_image_links_ignored(self):
+        self.assertEqual(review.in_page_links("![Logo](#logo)"), [])
+
+
+INLINE = "@@ -0,0 +1,3 @@\n+See [Configuration]({frag}) for options.\n+\n+## Configuration"
+INLINE_FINDING = {
+    **FINDING,
+    "line": 1,
+    "quote": "See [Configuration](#configuraton) for options.",
+    "fix": "See [Configuration](#configuration) for options.",
+}
+
 if __name__ == "__main__":
     unittest.main()
