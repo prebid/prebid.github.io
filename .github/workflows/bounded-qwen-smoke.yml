@@ -16,7 +16,7 @@ jobs:
   smoke:
     if: ${{ startsWith(github.event.pull_request.head.ref, 'ci/bounded-qwen-docs-') }}
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 40
     steps:
       - name: Check out trusted base only
         uses: actions/checkout@v4
@@ -26,7 +26,7 @@ jobs:
 
       - name: Fetch pinned reviewer and unit tests from Prebid.js
         env:
-          UPSTREAM_SHA: dcef45733c1609b6230d2065d348775a9a9cf71b
+          UPSTREAM_SHA: 6e59b1d2cc452b3699df30bdb7bf264948c2631c
         run: |
           mkdir -p .github/scripts
           for file in bounded_qwen_review.py test_bounded_qwen_review.py; do
@@ -51,7 +51,7 @@ jobs:
           OLLAMA_HOST: 127.0.0.1:11434
           OLLAMA_NO_CLOUD: '1'
           OLLAMA_NUM_PARALLEL: '1'
-          OLLAMA_CONTEXT_LENGTH: '8192'
+          OLLAMA_CONTEXT_LENGTH: '16384'
         run: |
           sudo systemctl stop ollama 2>/dev/null || true
           nohup ollama serve > "$RUNNER_TEMP/ollama.log" 2>&1 &
