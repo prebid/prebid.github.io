@@ -1,4 +1,6 @@
+import contextlib
 import importlib.util
+import io
 import json
 import os
 import pathlib
@@ -145,10 +147,12 @@ class MarkdownReviewTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory, mock.patch.dict(os.environ, {
             "GITHUB_REPOSITORY": "prebid/prebid.github.io", "PR_NUMBER": "1",
             "PR_HEAD_SHA": "a" * 40, "GITHUB_TOKEN": "test-only", "RUNNER_TEMP": directory,
+            "GITHUB_STEP_SUMMARY": "",
         }), mock.patch.object(review, "paged", side_effect=lambda repo, number, token, endpoint: (
             [file] if endpoint == "files" else []
         )), mock.patch.object(review, "api", return_value=raw):
-            review.main()
+            with contextlib.redirect_stdout(io.StringIO()):  # its ::warning:: would annotate the real run
+                review.main()
             report = json.loads((pathlib.Path(directory) / "bounded-qwen-result.json").read_text())
         self.assertEqual(report["errors"], [])
         self.assertEqual((report["reviewed"], report["skipped"]), (0, 1))
