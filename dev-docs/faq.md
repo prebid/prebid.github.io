@@ -396,7 +396,10 @@ module so the old path and bidder code keep working in the current major version
    entry from new builds, but does **not** preserve or remove a module at runtime.
 6. Open a **separate Prebid.js issue for the next major release** to delete the
    compatibility file, its remaining smoke test, and its old documentation
-   entry. Link that issue in the rename PR.
+   entry. Link that issue in the rename PR. When the old documentation entry is
+   deleted, add its URL to the replacement page's `redirect_from` front matter
+   (as `dev-docs/bidders/agenticx.md` does for `adsmartx`), so existing links
+   keep working.
 
 For example, with a replacement whose new bidder code is `new`:
 
@@ -479,8 +482,9 @@ registerBidder(spec);
 ```
 
 Recent precedents are the
-[BidsCube compatibility stub](https://github.com/prebid/Prebid.js/blob/master/modules/bidscubeBidAdapter.js)
-and [TPMN compatibility stub](https://github.com/prebid/Prebid.js/blob/master/modules/tpmnBidAdapter.js).
+[BidsCube compatibility stub](https://github.com/prebid/Prebid.js/blob/6a8df5800e1099bdb615efc3f3258b62b806768d/modules/bidscubeBidAdapter.js)
+and [TPMN compatibility stub](https://github.com/prebid/Prebid.js/blob/6a8df5800e1099bdb615efc3f3258b62b806768d/modules/tpmnBidAdapter.js)
+(linked at a fixed commit, since both are removed in Prebid.js 12).
 Both preserve the old module path while disabling bidding; unlike a rename
 shim, they are intentionally **not** functional replacements. Their removal
 is appropriate for a major release.
