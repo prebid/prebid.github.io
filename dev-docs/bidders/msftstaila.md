@@ -17,7 +17,8 @@ floors_supported: true
 fpd_supported: true
 pbjs: true
 pbjs_version_notes:
-pbs: false
+pbs: true
+pbs_biddercode: msft
 gvl_id: 32
 sidebarType: 1
 ---

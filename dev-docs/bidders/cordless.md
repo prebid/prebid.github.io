@@ -8,8 +8,9 @@ usp_supported: true
 media_types: video, native
 safeframes_ok: true
 pbjs: true
-pbs: false
-pbs_app_supported: false
+pbs: true
+pbs_biddercode: aso
+pbs_app_supported: true
 floors_supported: true
 schain_supported: true
 fpd_supported: true

@@ -3,7 +3,8 @@ layout: bidder
 title: Netads
 description: Prebid Netads Bidder Adapter
 pbjs: true
-pbs: false
+pbs: true
+pbs_biddercode: nexx360
 biddercode: netads
 aliasCode: nexx360
 gvl_id: 965

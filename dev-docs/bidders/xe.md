@@ -9,7 +9,8 @@ tcfeu_supported: true
 usp_supported: true
 prebid_member: true
 pbjs: true
-pbs: false
+pbs: true
+pbs_biddercode: xeworks
 schain_supported: true
 floors_supported: true
 multiformat_supported: will-bid-on-any

@@ -3,7 +3,8 @@ layout: bidder
 title: Mandeta (FutureAds)
 description: Prebid Mandeta (FutureAds) Bidder Adaptor
 pbjs: true
-pbs: false
+pbs: true
+pbs_biddercode: admixer
 biddercode: futureads
 aliasCode: admixer
 media_types: banner, video, native

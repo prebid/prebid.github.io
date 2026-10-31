@@ -11,6 +11,14 @@
       <th class="pbTh">Prebid Server Adapter</th>
       <td class="pbTd">{% if page.pbs == true %}yes{% else %}no{% endif %}</td>
     </tr>
+    {% if page.pbs == true and page.pbs_biddercode and page.pbs_biddercode != page.biddercode %}
+    <tr>
+      <th class="pbTh">Prebid Server Bidder Code</th>
+      <td class="pbTd"><code>{{ page.pbs_biddercode }}</code></td>
+      <th class="pbTh"></th>
+      <td class="pbTd"></td>
+    </tr>
+    {% endif %}
     <tr>
       <th class="pbTh">Media Types</th>
       <td class="pbTd">{% unless page.media_types contains 'no-display' %}display{% if page.media_types contains 'video' %},{% endif %}{% endunless %}{% if page.media_types contains 'video' %} video{% endif %}{% if page.media_types != "no-display, native" and page.media_types contains 'native' %}, native{% endif %}{% if page.media_types == "no-display, native" %}native{% endif %}</td>

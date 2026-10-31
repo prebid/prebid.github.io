@@ -15,7 +15,8 @@ usp_supported: true
 floors_supported: true
 fpd_supported: false
 pbjs: true
-pbs: false
+pbs: true
+pbs_biddercode: appnexus
 gvl_id: 32
 sidebarType: 1
 ---

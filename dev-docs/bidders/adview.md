@@ -23,7 +23,6 @@ ortb_blocking_supported: true
 sidebarType: 1
 ---
 
-> **Prebid Server bidder code:** Use `adview` (lowercase) as the Prebid Server bidder code.
 
 ### Note
 

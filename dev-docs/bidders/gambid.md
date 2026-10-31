@@ -4,7 +4,8 @@ title: Gambid
 description: Prebid Gambid Bidder Adapter
 biddercode: gambid
 pbjs: true
-pbs: false
+pbs: true
+pbs_biddercode: gamoshi
 media_types: banner, video
 userIds: all
 gvl_id: 644

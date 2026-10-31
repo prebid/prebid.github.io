@@ -12,7 +12,8 @@ media_types: banner, video, native
 safeframes_ok: true
 deals_supported: true
 pbjs: true
-pbs: false
+pbs: true
+pbs_biddercode: appnexus
 prebid_member: false
 multiformat_supported: will-bid-on-any
 sidebarType: 1

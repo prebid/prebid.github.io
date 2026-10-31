@@ -48,7 +48,7 @@ gulp build --modules=vdoaiBidAdapter,consentManagementTcf,consentManagementUsp,c
 | `custom4`     | optional | Free-form passthrough value surfaced in VDO.AI reporting                                                                                                            | `'custom4'`           | `string`           |
 | `custom5`     | optional | Free-form passthrough value surfaced in VDO.AI reporting                                                                                                            | `'custom5'`           | `string`           |
 
-Both the Prebid.js and Prebid Server adapters support only `banner` and `video` media types, and do not support `audio` or `native`.
+The Prebid.js adapter supports only `banner` and `video` media types, and does not support `audio` or `native`.
 
 ## Banner Example
 
@@ -136,20 +136,4 @@ pbjs.setConfig({
     }
   }
 });
-```
-
-## Prebid Server
-
-The Prebid Server adapter uses the same bid params. Requests are sent to `https://{host}/{publisherId}`. Cookie sync uses the standard Prebid Server `/cookie_sync` and `/setuid` flow, and identity IDs in `user.eids` are passed through to VDO.AI.
-
-```javascript
-{
-  bidder: 'vdoai',
-  params: {
-    host: 'ortb.vdo.ai',
-    publisherId: 'your-publisher-id',
-    adUnitId: 'au_1a2b3c4d',
-    adUnitType: 'banner'
-  }
-}
 ```

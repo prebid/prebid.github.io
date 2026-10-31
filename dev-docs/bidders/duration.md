@@ -5,7 +5,8 @@ description: Prebid Duration Media Bidder Adapter
 biddercode: duration
 aliasCode: nobid
 pbjs: true
-pbs: false
+pbs: true
+pbs_biddercode: nobid
 media_types: banner, video
 tcfeu_supported: true
 gvl_id: 816

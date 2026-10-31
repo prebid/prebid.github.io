@@ -5,9 +5,10 @@ description: Prebid Roundel Bidder Adapter
 biddercode: roundel
 aliasCode: ix
 pbjs: true
-pbs: false
+pbs: true
+pbs_biddercode: ix
 userIds: identityLink, netId, fabrickId, zeotapIdPlus
-pbs_app_supported: false
+pbs_app_supported: true
 schain_supported: true
 coppa_supported: true
 tcfeu_supported: true
