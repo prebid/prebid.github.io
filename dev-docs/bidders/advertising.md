@@ -3,7 +3,7 @@ layout: bidder
 title: Advertising.com
 description: Prebid Advertising.com Bidder Adapter
 pbjs: true
-pbs: true
+pbs: false
 biddercode: advertising
 tcfeu_supported: false
 usp_supported: true
@@ -14,7 +14,7 @@ gpp_supported: true
 schain_supported: true
 dchain_supported: false
 safeframes_ok: true
-pbs_app_supported: true
+pbs_app_supported: false
 deals_supported: false
 floors_supported: true
 fpd_supported: false

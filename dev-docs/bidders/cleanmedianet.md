@@ -4,7 +4,7 @@ title: Clean Media Net
 description: Clean Media Bidder Adapter
 biddercode: cleanmedianet
 pbjs: true
-pbs: true
+pbs: false
 media_types: banner, video
 userIds: all
 gvl_id: 644

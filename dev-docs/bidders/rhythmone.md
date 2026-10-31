@@ -3,7 +3,7 @@ layout: bidder
 title: RhythmOne
 description: Prebid RhythmOne Bidder Adaptor
 pbjs: true
-pbs: true
+pbs: false
 biddercode: rhythmone
 media_types: video
 tcfeu_supported: true

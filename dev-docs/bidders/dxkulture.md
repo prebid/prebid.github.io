@@ -3,7 +3,7 @@ layout: bidder
 title: DXKulture
 description: Prebid DXKulture Bidder Adapter
 pbjs: true
-pbs: true
+pbs: false
 biddercode: dxkulture
 media_types: banner, video
 tcfeu_supported: false

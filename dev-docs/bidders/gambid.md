@@ -4,7 +4,7 @@ title: Gambid
 description: Prebid Gambid Bidder Adapter
 biddercode: gambid
 pbjs: true
-pbs: true
+pbs: false
 media_types: banner, video
 userIds: all
 gvl_id: 644

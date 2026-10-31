@@ -2,7 +2,7 @@
 layout: bidder
 title: AdView
 description: Prebid AdView Bidder Adapter
-biddercode: AdView
+biddercode: adview
 tcfeu_supported: true
 gvl_id: 1022
 usp_supported: true
@@ -22,6 +22,8 @@ multiformat_supported: will-bid-on-any
 ortb_blocking_supported: true
 sidebarType: 1
 ---
+
+> **Prebid Server bidder code:** Use `adview` (lowercase) as the Prebid Server bidder code.
 
 ### Note
 

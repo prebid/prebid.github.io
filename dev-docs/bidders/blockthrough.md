@@ -14,7 +14,7 @@ media_types: banner
 floors_supported: true
 fpd_supported: true
 pbjs: true
-pbs: true
+pbs: false
 multiformat_supported: will-not-bid
 ortb_blocking_supported: false
 sidebarType: 1

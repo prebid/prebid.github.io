@@ -2,7 +2,7 @@
 layout: bidder
 title: intertech
 description: Prebid Intertech Bidder Adapter
-pbs: true
+pbs: false
 biddercode: intertech
 media_types: banner, native
 ---

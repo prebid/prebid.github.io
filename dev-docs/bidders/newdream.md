@@ -15,7 +15,7 @@ usp_supported: true
 floors_supported: true
 fpd_supported: false
 pbjs: true
-pbs: true
+pbs: false
 gvl_id: 32
 sidebarType: 1
 ---

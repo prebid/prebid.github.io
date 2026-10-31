@@ -1,7 +1,7 @@
 ---
 layout: bidder
 title: Applogy
-pbs: true
+pbs: false
 media_types: banner
 biddercode: applogy
 sidebarType: 1

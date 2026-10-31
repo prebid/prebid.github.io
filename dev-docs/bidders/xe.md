@@ -9,7 +9,7 @@ tcfeu_supported: true
 usp_supported: true
 prebid_member: true
 pbjs: true
-pbs: true
+pbs: false
 schain_supported: true
 floors_supported: true
 multiformat_supported: will-bid-on-any

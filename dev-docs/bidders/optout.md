@@ -3,7 +3,7 @@ layout: bidder
 title: Opt Out Advertising
 description: Prebid Opt Out Advertising Bidder Adapter
 pbjs: true
-pbs: true
+pbs: false
 biddercode: optout
 tcfeu_supported: true
 gvl_id: 227

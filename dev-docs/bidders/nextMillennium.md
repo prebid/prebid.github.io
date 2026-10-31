@@ -15,6 +15,7 @@ fpd_supported: false
 pbs_app_supported: false
 pbjs: true
 pbs: true
+pbs_biddercode: nextmillennium
 biddercode: nextMillennium
 media_types: banner, video
 prebid_member: true

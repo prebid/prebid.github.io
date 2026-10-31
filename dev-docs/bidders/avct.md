@@ -3,7 +3,7 @@ layout: bidder
 title: Avocet
 description: Prebid Avocet Bidder Adapter
 pbjs: true
-pbs: true
+pbs: false
 biddercode: avct
 aliasCode: avocet
 tcfeu_supported: false

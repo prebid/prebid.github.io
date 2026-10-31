@@ -3,6 +3,7 @@ layout: bidder
 title: InteractiveOffers
 description: Prebid InteractiveOffers.com Bidder Adapter
 pbs: true
+pbs_biddercode: interactiveoffers
 pbjs: true
 biddercode: interactiveOffers
 tcfeu_supported: false

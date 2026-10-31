@@ -8,7 +8,7 @@ tcfeu_supported: false
 gpp_supported: false
 usp_supported: false
 pbjs: true
-pbs: true
+pbs: false
 sidebarType: 1
 ---
 

@@ -12,7 +12,7 @@ gpp_supported: true
 user_sync: false
 schain_supported: true
 pbjs: true
-pbs: true
+pbs: false
 ---
 
 # Overview

@@ -2,7 +2,7 @@
 layout: bidder
 title: ProgX
 description: Prebid ProgX Bidder Adapter
-biddercode: progX
+biddercode: progx
 gpp_sids: usstate_all
 gvl_id: 1344
 tcfeu_supported: true

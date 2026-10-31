@@ -3,7 +3,7 @@ layout: bidder
 title: Moving Up
 description: Prebid Moving Up Bidder Adapter
 pbjs: true
-pbs: true
+pbs: false
 biddercode: movingup
 gvl_id: 1416
 tcfeu_supported: true

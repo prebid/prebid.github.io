@@ -3,7 +3,7 @@ layout: bidder
 title: CodeFuel
 description: CodeFuel Prebid Bidder Adapter
 pbjs: true
-pbs: true
+pbs: false
 media_types: banner
 biddercode: codefuel
 tcfeu_supported: false

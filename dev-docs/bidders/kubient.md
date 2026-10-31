@@ -3,7 +3,7 @@ layout: bidder
 title: Kubient
 description: Prebid Kubient Bidder Adapter
 pbjs: true
-pbs: true
+pbs: false
 schain_supported: true
 biddercode: kubient
 media_types: banner, video

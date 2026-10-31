@@ -1,7 +1,7 @@
 ---
 layout: bidder
 title: NinthDecimal
-pbs: true
+pbs: false
 media_types: banner
 biddercode: ninthdecimal
 sidebarType: 1

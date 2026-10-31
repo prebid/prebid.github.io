@@ -3,7 +3,7 @@ layout: bidder
 title: PubxAi
 description: Prebid PubxAi Bidder Adapter
 pbjs: true
-pbs: true
+pbs: false
 biddercode: pubxai
 aliasCode: nexx360
 gvl_id: 1485
