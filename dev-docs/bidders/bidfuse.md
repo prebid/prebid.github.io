@@ -27,7 +27,7 @@ sidebarType: 1
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description  | Example | Type       |
-|----------------|-----------|---------------|----------|-------------|
+|---------------|----------|--------------|---------|------------|
 | `placementId` | optional | Placement Id | `'0'`   | `'string'` |
 | `endpointId`  | optional | Endpoint Id  | `'0'`   | `'string'` |
 
