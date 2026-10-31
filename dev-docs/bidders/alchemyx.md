@@ -36,7 +36,7 @@ more details.
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description                                                        | Example                                      | Type      |
-|-------------|-----------|---------------------------------------------------------------------|-----------------------------------------------|------------|
+|------------|----------|--------------------------------------------------------------------|----------------------------------------------|-----------|
 | `adUnitId` | required | Unique identifier for the ad unit in AlchemyX platform.            | `1`                                          | `integer` |
 | `auth`     | required | Authentication token provided by AlchemyX platform for the AdUnit. | `'61336e75e414c77c367eq5c47c2599ce80a8032b'` | `string`  |
 
