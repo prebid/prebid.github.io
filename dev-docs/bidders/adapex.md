@@ -4,7 +4,7 @@ title: Adapex
 description: Prebid Adapex Bidder Adapter
 biddercode: adapex
 pbjs: true
-pbs: false
+pbs: true
 media_types: banner, video, native
 safeframes_ok: true
 sidebarType: 1

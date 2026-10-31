@@ -3,7 +3,7 @@ layout: bidder
 title: OCM Media
 description: OCM Media bidder adapter
 biddercode: orangeclickmedia
-pbjs: false
+pbjs: true
 pbs: true
 enable_download: false
 pbjs_version_notes: The orangeclickmedia Prebid.js bid adapter is deprecated. Publishers should migrate to the OCM bid adapter (biddercode `ocm`), documented on the ocm.md page.

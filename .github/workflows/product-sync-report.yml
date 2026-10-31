@@ -1,0 +1,77 @@
+name: Docs vs. product sync report
+
+# Compares bidder and module docs with what Prebid.js, Prebid Server (Go) and Prebid Server (Java) contain (#5612),
+# and writes a report to the job summary and an artifact. On pull requests, findings on changed pages become
+# warning annotations. It reports and never fails the build.
+on:
+  pull_request:
+    paths:
+      - 'dev-docs/bidders/**'
+      - 'dev-docs/modules/**'
+      - 'dev-docs/analytics/**'
+      - '.github/scripts/check-product-sync.js'
+      - '.github/workflows/product-sync-report.yml'
+  push:
+    branches: [master]
+  schedule:
+    - cron: '41 5 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Check out Prebid.js metadata and modules
+        uses: actions/checkout@v6
+        with:
+          repository: prebid/Prebid.js
+          path: _ext/Prebid.js
+          persist-credentials: false
+          sparse-checkout: |
+            metadata/modules.json
+            modules
+          sparse-checkout-cone-mode: false
+
+      - name: Check out Prebid Server (Go) bidder info
+        uses: actions/checkout@v6
+        with:
+          repository: prebid/prebid-server
+          path: _ext/prebid-server
+          persist-credentials: false
+          sparse-checkout: static/bidder-info
+
+      - name: Check out Prebid Server (Java) bidder config
+        uses: actions/checkout@v6
+        with:
+          repository: prebid/prebid-server-java
+          path: _ext/prebid-server-java
+          persist-credentials: false
+          sparse-checkout: src/main/resources/bidder-config
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+
+      - name: Compare docs with products
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          REPORT_DIR: ${{ runner.temp }}/product-sync
+        run: |
+          if [ -n "$BASE_SHA" ]; then
+            export CHANGED_FILES="$(git diff --name-only "$BASE_SHA" HEAD)"
+          fi
+          node .github/scripts/check-product-sync.js
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: product-sync-report
+          path: ${{ runner.temp }}/product-sync
