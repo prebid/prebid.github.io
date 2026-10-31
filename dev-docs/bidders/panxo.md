@@ -17,7 +17,8 @@ media_types: video, native
 safeframes_ok: true
 deals_supported: false
 pbjs: true
-pbs: false
+pbs: true
+pbs_app_supported: true
 prebid_member: true
 multiformat_supported: will-bid-on-one
 ortb_blocking_supported: false
