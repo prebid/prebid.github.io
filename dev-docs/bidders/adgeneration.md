@@ -4,7 +4,7 @@ title: Ad Generation
 description: Prebid Ad Generation Bidder Adaptor
 schain_supported: true
 pbjs: true
-pbs: no
+pbs: true
 pbs_app_supported: no
 fpd_supported: true
 biddercode: adgeneration
@@ -14,14 +14,14 @@ sidebarType: 1
 ---
 
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name | Scope    | Description | Example  | Type     |
 |------|----------|-------------|----------|----------|
 | `id` | required | adId        | `'1234'` | `string` |
 
-#### First Party Data
+### First Party Data
 
 In release 1.6.4 and later, publishers should use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html). The following fields are supported:
 

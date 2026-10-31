@@ -4,7 +4,7 @@ title: BalanceX
 description: Prebid BalanceX Adaptor
 biddercode: balancex
 pbjs: true
-pbs: false
+pbs: true
 media_types: banner, video, audio, native
 userIds: all
 fpd_supported: false
