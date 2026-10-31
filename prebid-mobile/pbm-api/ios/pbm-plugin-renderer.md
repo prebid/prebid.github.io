@@ -209,6 +209,29 @@ class CustomRendererBannerController: UIViewController {
 }
 ```
 
+## Win Notice
+
+Prebid SDK sends the win notice for banner, interstitial and rewarded ads that your Plugin Renderer creates, so your renderer does not need to send it. The win notice is the bid's `nurl`, the Prebid Cache URLs built from the `hb_cache_host`, `hb_cache_path`, `hb_cache_id` and `hb_uuid` targeting keys, and `ext.prebid.events.win`. Prebid SDK sends it once, right after `createBannerView` or `createInterstitialController` returns your ad view or controller.
+
+If your Plugin Renderer, or the ad SDK it wraps, already sends the win notice itself, implement the optional `sendsWinNotice` property and return `true`. Prebid SDK then skips its own win notice for ads that your renderer creates, so the notice is not sent twice.
+
+```swift
+public class SampleRenderer: NSObject, PrebidMobilePluginRenderer {
+
+    public let name = "SampleRenderer"
+    public let version = "1.0.0"
+    public var data: [String: Any]?
+
+    // The renderer sends the win notice itself.
+    public let sendsWinNotice = true
+
+    // ...
+}
+```
+
+{: .alert.alert-info :}
+If your renderer returns `nil` and Prebid SDK falls back to its own renderer, Prebid SDK sends the win notice for that ad, whatever `sendsWinNotice` returns.
+
 ## Limitations
 
 ### Supported Ad Formats
