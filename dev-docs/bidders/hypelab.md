@@ -49,4 +49,3 @@ var adUnits = [
   }
 ]
 ```
-
