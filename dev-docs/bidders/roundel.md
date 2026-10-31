@@ -25,4 +25,4 @@ Roundel is an aliased bidder for Index Exchange and must be configured alongside
 
 ### Bid Params
 
-Bidder params for roundel follow the same structure as the Index Exchange bidder. Please reference configuration examples [here](/dev-docs/bidders/ix.html).
+Bidder params for roundel follow the same structure as the Index Exchange bidder. See the [Index Exchange bidder configuration examples](/dev-docs/bidders/ix.html).
