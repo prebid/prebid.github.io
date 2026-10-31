@@ -3,6 +3,7 @@ layout: bidder
 title: Finative
 description: Prebid Finative Bidder Adaptor
 pbjs: true
+pbs: true
 biddercode: finative
 media_types: native
 tcfeu_supported: false

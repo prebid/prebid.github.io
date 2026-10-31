@@ -8,6 +8,7 @@ gvl_id: 786
 tcfeu_supported: true
 schain_supported: true
 pbjs: true
+pbs: true
 prebid_member: true
 userIds: all
 floors_supported: true

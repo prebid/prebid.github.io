@@ -3,7 +3,7 @@ layout: bidder
 title: HypeLab
 description: Prebid HypeLab Bidder Adapter
 pbjs: true
-pbs: false
+pbs: true
 biddercode: hypelab
 sidebarType: 1
 media_types: banner

@@ -3,7 +3,7 @@ layout: bidder
 title: Telaria
 description: Telaria Bidder Adaptor
 pbjs: true
-pbs: false
+pbs: true
 biddercode: telaria
 media_types: video, no-display
 tcfeu_supported: true

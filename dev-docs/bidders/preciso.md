@@ -8,7 +8,7 @@ media_types: display,native
 gdpr_supported: true
 usp_supported: true
 pbjs: true
-pbs: false
+pbs: true
 biddercode: preciso
 prebid_member: true
 floors_supported: true

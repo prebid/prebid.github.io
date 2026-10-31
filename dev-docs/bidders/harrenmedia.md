@@ -4,7 +4,7 @@ title: Harrenmedia
 description: Prebid Harrenmedia Bidder Adapter
 aliasCode: adverxo
 pbjs: true
-pbs: false
+pbs: true
 pbs_app_supported: false
 biddercode: harrenmedia
 userIds:

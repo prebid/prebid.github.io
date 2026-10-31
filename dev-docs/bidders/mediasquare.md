@@ -3,6 +3,7 @@ layout: bidder
 title: MediaSquare
 description: Prebid MediaSquare Bidder Adapter
 pbjs: true
+pbs: true
 biddercode: mediasquare
 tcfeu_supported: true
 usp_supported: true

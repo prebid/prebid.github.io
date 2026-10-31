@@ -3,7 +3,7 @@ layout: bidder
 title: Sevio
 description: Prebid Sevio Bidder Adaptor
 pbjs: true
-pbs: false
+pbs: true
 biddercode: sevio
 sidebarType: 1
 tcfeu_supported: true

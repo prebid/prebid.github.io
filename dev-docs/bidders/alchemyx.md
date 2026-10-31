@@ -4,7 +4,7 @@ title: AlchemyX
 description: Prebid AlchemyX Bidder Adapter
 aliasCode: adverxo
 pbjs: true
-pbs: false
+pbs: true
 pbs_app_supported: false
 biddercode: alchemyx
 media_types: banner, native, video

@@ -12,7 +12,7 @@ floors_supported: true
 fpd_supported: true
 userIds: all
 pbjs: true
-pbs: false
+pbs: true
 multiformat_supported: will-bid-on-any
 sidebarType: 1
 ---
