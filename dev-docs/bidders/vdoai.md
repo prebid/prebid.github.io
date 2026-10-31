@@ -4,8 +4,8 @@ title: VDO.AI
 description: Prebid vdo.ai Bidder Adaptor
 biddercode: vdoai
 pbjs: true
-pbs: true
-pbs_app_supported: true
+pbs: false
+pbs_app_supported: false
 media_types: video, banner
 userIds: all
 fpd_supported: true

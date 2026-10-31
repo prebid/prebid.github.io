@@ -8,6 +8,7 @@ pbjs: true
 enable_download: false
 pbjs_version_notes: "This alias is not currently registered by its Prebid.js module; specific reason unknown."
 pbs: true
+pbs_biddercode: ix
 userIds: identityLink, netId, fabrickId, zeotapIdPlus
 pbs_app_supported: true
 schain_supported: true
