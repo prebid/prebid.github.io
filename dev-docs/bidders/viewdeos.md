@@ -4,6 +4,7 @@ title: Viewdeos Server
 description: Prebid Server ViewDeos Adapter
 pbjs: true
 enable_download: false
+pbjs_version_notes: Unknown; no specific reason for unavailability has been documented.
 pbs: true
 biddercode: viewdeos
 aliasCode: viewdeosDX
@@ -16,8 +17,8 @@ sidebarType: 1
 ## Bid params
 
 {: .table .table-bordered .table-striped }
-| Name  | Scope    | Description                    | Example | Type      |
-|-------|----------|--------------------------------|---------|-----------|
+| Name  | Scope    | Description                    | Example  | Type      |
+|-------|----------|--------------------------------|----------|-----------|
 | `aid` | required | The source ID from member zone | `350975` | `integer` |
 
 ### Test Parameters
