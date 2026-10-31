@@ -4,24 +4,5 @@
   Pass has_h1=true from layouts that render their own <h1> inside .pb-content.
   Usage: <div class="pb-content" {% include pagefind-body.html %}>
 {%- endcomment -%}
-{%- assign pf_url = page.url -%}
-{%- if pf_url contains '/dev-docs/bidders/' -%}
-  {%- assign pf_section = 'Bidders' -%}
-{%- elsif pf_url contains '/dev-docs/analytics/' -%}
-  {%- assign pf_section = 'Analytics adapters' -%}
-{%- elsif pf_url contains '/dev-docs/modules/' -%}
-  {%- assign pf_section = 'Modules' -%}
-{%- elsif pf_url contains '/prebid-server/' -%}
-  {%- assign pf_section = 'Prebid Server' -%}
-{%- elsif pf_url contains '/prebid-mobile/' -%}
-  {%- assign pf_section = 'Prebid Mobile' -%}
-{%- elsif pf_url contains '/prebid-video/' or pf_url contains '/examples/video/' -%}
-  {%- assign pf_section = 'Video' -%}
-{%- elsif pf_url contains '/adops/' -%}
-  {%- assign pf_section = 'Ad Ops' -%}
-{%- elsif pf_url contains '/dev-docs/' or pf_url contains '/prebid/' or pf_url contains '/troubleshooting/' or pf_url contains '/debugging/' or pf_url contains '/features/' -%}
-  {%- assign pf_section = 'Prebid.js' -%}
-{%- else -%}
-  {%- assign pf_section = 'General' -%}
-{%- endif -%}
-data-pagefind-body data-pagefind-filter="section:{{ pf_section }}"
+{%- include doc-section.html url=page.url -%}
+data-pagefind-body data-pagefind-filter="section:{{ doc_section }}"

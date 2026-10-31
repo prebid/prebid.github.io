@@ -100,11 +100,19 @@
             }, 5000);
             var filename = "prebid" + form_data["version"] + ".js";
 
-            var jsBlob = new Blob([data], { type: "text/javascript" });
+            var jsBlob = new Blob([data.source], { type: "text/javascript" });
             var configData = JSON.stringify({ version: form_data.version, modules: form_data.modules }, null, 2);
 
             triggerDownload(jsBlob, filename);
             triggerDownload(new Blob([configData], { type: "application/json" }), "prebid-config.json");
+            if (data.disclosures) {
+                triggerDownload(
+                    new Blob([JSON.stringify(data.disclosures, null, 2)], { type: "application/json" }),
+                    filename.replace(/\.js$/, "") + "_disclosures.json"
+                );
+            } else {
+                alert("Prebid.js was downloaded, but the storage disclosure file couldn't be generated. Download again to retry.");
+            }
 
             if (removedModules.length > 0) {
                 alert(

@@ -64,6 +64,7 @@ Here are the parameters supported in the `consentManagement` object specific for
 | gpp.cmpApi | `string` | The CMP interface that is in use. Supported values are **'iab'** or **'static'**. Static allows integrations where IAB-formatted consent strings are provided in a non-standard way. Default is `'iab'`. | `'iab'` |
 | gpp.timeout | `integer` | Length of time (in milliseconds) to allow the CMP to obtain the GPP consent information. Default is `10000`. | `10000` |
 | gpp.actionTimeout | `integer` | Length of time (in milliseconds) to allow the user to take action to consent if they have not already done so. The actionTimer first waits for the CMP to load, then the actionTimeout begins for the specified duration. Default is `undefined`. | `10000` |
+| gpp.waitForCmp | `boolean` | If `__gpp` is not yet present when Prebid looks for it, wait (polling every 100ms, up to `gpp.timeout`) for it to appear before giving up. This supports non-compliant integrations that load their CMP stub late. Per the [GPP spec](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Core/CMP%20API%20Specification.md), the CMP stub should already be present synchronously before Prebid loads, so this should only be needed to work around a non-compliant page. Defaults to `false`. | `true` |
 | gpp.consentData | `Object` | An object representing the IAB GPP consent data being passed directly; only used when cmpApi is 'static'. Default is `undefined`. | |
 | gpp.consentData.sectionId | `integer` | Indicates the header section of the GPP consent string, recommended to be `3`. | |
 | gpp.consentData.gppVersion | `string` | The version number parsed from the header of the GPP consent string. | |
@@ -96,7 +97,25 @@ Example 1: IAB CMP using a custom timeout
      });
 ```
 
-Example 2: Static CMP using custom data passing.
+Example 2: IAB CMP that may load its stub later than Prebid.js (e.g. injected asynchronously). Prebid will poll for `__gpp` for up to `timeout` before giving up.
+
+```javascript
+     var pbjs = pbjs || {};
+     pbjs.que = pbjs.que || [];
+     pbjs.que.push(function() {
+        pbjs.setConfig({
+          consentManagement: {
+            gpp: {
+              cmpApi: 'iab',
+              timeout: 8000,
+              waitForCmp: true
+            }
+          }
+        });
+     });
+```
+
+Example 3: Static CMP using custom data passing.
 
 ```javascript
      var pbjs = pbjs || {};
@@ -120,7 +139,7 @@ Example 2: Static CMP using custom data passing.
      });
 ```
 
-Example 3: Disabling the module. When disabled, Prebid.js will not fetch GPP data, will not wait for the CMP. Existing CMP listeners (if any were previously active) are cleaned up.
+Example 4: Disabling the module. When disabled, Prebid.js will not fetch GPP data, will not wait for the CMP. Existing CMP listeners (if any were previously active) are cleaned up.
 
 ```javascript
     var pbjs = pbjs || {};
