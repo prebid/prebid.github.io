@@ -570,6 +570,7 @@ Since Prebid.js 11.43, a bid with a `dealId` can describe its deal in `meta.deal
 | `priorityAdjustedCpm` | `priority_adjusted_cpm` | Number, 0 or more | CPM-equivalent value the ad server ranks the deal at, after any adjustment to its price (for example for pacing or delivery), in the bid's currency. Named `pacingAdjustedCpm` / `pacing_adjusted_cpm` in Prebid.js 11.43. |
 | `onSchedule` | `on_schedule` | Number, 0 or more | Delivery relative to schedule. For example, `0.5` means half of the expected impressions have been served. |
 | `priority` | `priority` | Integer | Relative precedence among deals. Lower integers have higher priority. |
+| `source` | `source` | Non-empty string | Since Prebid.js 11.45. Who validated the deal metadata. Prebid Server is expected to set `"adserver"` on metadata from bidders listed in the request's `ext.prebid.as.apb`. Informational only: Prebid.js doesn't use it to decide whether to trust the metadata. |
 
 For example, this OpenRTB bid:
 
@@ -586,7 +587,7 @@ For example, this OpenRTB bid:
 
 results in `bid.meta.deal` of `{ type: 2, cpm: 5, priorityAdjustedCpm: 6.5, onSchedule: 0.8, priority: 10 }`.
 
-When the [Currency module](/dev-docs/modules/currency.html) converts a bid, it converts `meta.deal.cpm` and `meta.deal.priorityAdjustedCpm` at the same rate as the bid's `cpm`. Prebid.js only exposes this metadata for now: it doesn't change how bids are ranked.
+When the [Currency module](/dev-docs/modules/currency.html) converts a bid, it converts `meta.deal.cpm` and `meta.deal.priorityAdjustedCpm` at the same rate as the bid's `cpm`. Prebid.js only uses this metadata for ranking when the publisher trusts the adapter with [`allowPriorityBids`](/dev-docs/publisher-api-reference/bidderSettings.html#212-allowprioritybids) (since Prebid.js 11.44).
 
 #### Resolve OpenRTB Macros in the Creatives
 
