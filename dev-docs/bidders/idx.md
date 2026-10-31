@@ -13,7 +13,8 @@ safeframes_ok: true
 deals_supported: false
 floors_supported: false
 fpd_supported: false
-pbjs: false
+pbjs: true
+enable_download: false
 pbs: false
 prebid_member: false
 sidebarType: 1
