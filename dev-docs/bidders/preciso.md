@@ -22,7 +22,7 @@ ortb_blocking_supported: true
 sidebarType: 1
 ---
 
-### Modules
+## Modules
 
 SharedID: We need you to include the [SharedID module](/dev-docs/modules/userid-submodules/sharedid.html) in order to bid effectively on your inventory.
 
@@ -35,11 +35,11 @@ The following table contains currently supported parameters we parse.
 
 {: .table .table-bordered .table-striped }
 
-| Name               | Scope    | Description                                                   | Example           | Type           |
-|--------------------|----------|---------------------------------------------------------------|-------------------|----------------|
-| `bcat`             | optional | List of blocked advertiser categories (IAB)                   | `['IAB1-1']`      | `string array` |
-| `badv`             | optional | Blocked Advertiser Domains                                    | `['example.com']` | `string array` |
-| `wlang`            | optional | Allow List of languages for creatives using ISO-639-1-alpha-2 | `['fr', 'en']`    | `string array` |
+| Name    | Scope    | Description                                                   | Example           | Type           |
+|---------|----------|---------------------------------------------------------------|-------------------|----------------|
+| `bcat`  | optional | List of blocked advertiser categories (IAB)                   | `['IAB1-1']`      | `string array` |
+| `badv`  | optional | Blocked Advertiser Domains                                    | `['example.com']` | `string array` |
+| `wlang` | optional | Allow List of languages for creatives using ISO-639-1-alpha-2 | `['fr', 'en']`    | `string array` |
 
 Example configuration:
 
@@ -57,14 +57,14 @@ pbjs.setConfig({
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description         | Example       | Type     |
-|---------------|----------|---------------------|---------------|----------|
-| `publisherId` | required | Numeric Publisher ID <br>(as provided by Preciso)  | `'123AB123'`    | `string` |
-| `region`      | optional,recommended | 3 letter country code     | `'IND'` | `string` |
-| `bidFloor`    | optional,recommended | Minimum bid for this impression expressed in CPM (USD). It is used if the Floor Module is not available  | `0.01`        | `float`  |
-| `pageType`    | optional, recommended  | Kind of content present in the page   | `'homepage'`          | `String`     |
-| `bcat`        | optional | List of blocked advertiser categories (IAB)   | `['IAB1-1']`          | `string array`    |
-| `badv`        | optional | Blocked Advertiser Domains| `'example.com'`   | `string array`| 
+| Name          | Scope                 | Description                                                                                             | Example         | Type           |
+|---------------|-----------------------|---------------------------------------------------------------------------------------------------------|-----------------|----------------|
+| `publisherId` | required              | Numeric Publisher ID <br>(as provided by Preciso)                                                       | `'123AB123'`    | `string`       |
+| `region`      | optional,recommended  | 3 letter country code                                                                                   | `'IND'`         | `string`       |
+| `bidFloor`    | optional,recommended  | Minimum bid for this impression expressed in CPM (USD). It is used if the Floor Module is not available | `0.01`          | `float`        |
+| `pageType`    | optional, recommended | Kind of content present in the page                                                                     | `'homepage'`    | `String`       |
+| `bcat`        | optional              | List of blocked advertiser categories (IAB)                                                             | `['IAB1-1']`    | `string array` |
+| `badv`        | optional              | Blocked Advertiser Domains                                                                              | `'example.com'` | `string array` |
 
 Notes:
 

@@ -20,18 +20,18 @@ gvl_id: 202
 sidebarType: 1
 ---
 
-### Registration
+## Registration
 
 The Telaria adapter requires setup and approval from your Magnite account manager. Please reach out to them for more information.
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name                 | Scope    | Description                                                                                                                                                   | Example                                                                                                                                                                                              | Type        |
-|----------------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|
-| adCode | required | A unique ID assigned by your Magnite account team. | `'lufip'`   | `string`    |
-| supplyCode | required | A code assigned by your Magnite account team. | `'demo'`   | `string`    |
-| videoId | optional | The ID of video asset. | `'myVideo'`   | `string`    |
+| Name       | Scope    | Description                                        | Example     | Type     |
+|------------|----------|----------------------------------------------------|-------------|----------|
+| adCode     | required | A unique ID assigned by your Magnite account team. | `'lufip'`   | `string` |
+| supplyCode | required | A code assigned by your Magnite account team.      | `'demo'`    | `string` |
+| videoId    | optional | The ID of video asset.                             | `'myVideo'` | `string` |
 
 For other parameters, please refer to the **Tag Parameters** section in the  [Telaria Console](https://console.telaria.com)
 

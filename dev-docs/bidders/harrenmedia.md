@@ -29,7 +29,7 @@ privacy_sandbox: no
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 The Harrenmedia Bidding adapter requires setup and approval before beginning. Please reach out to <prebid@harrenmedia.com> for
 more details.
@@ -37,10 +37,10 @@ more details.
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example | Type |
-|----------|----------|-----------------------|---------------------------|----------|
-| `adUnitId`   | required | Unique identifier for the ad unit in Harrenmedia platform. | `1` | `integer` |
-| `auth`       | required | Authentication token provided by Harrenmedia platform for the AdUnit. |`'61336e75e414c77c367eq5c47c2599ce80a8032b'` | `string` |
+| Name       | Scope    | Description                                                           | Example                                      | Type      |
+|------------|----------|-----------------------------------------------------------------------|----------------------------------------------|-----------|
+| `adUnitId` | required | Unique identifier for the ad unit in Harrenmedia platform.            | `1`                                          | `integer` |
+| `auth`     | required | Authentication token provided by Harrenmedia platform for the AdUnit. | `'61336e75e414c77c367eq5c47c2599ce80a8032b'` | `string`  |
 
 ### Setting First Party Data (FPD)
 

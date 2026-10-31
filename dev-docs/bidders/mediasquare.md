@@ -16,10 +16,10 @@ sidebarType: 1
 ---
 
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description           | Example                              | Type      |
-|---------------|----------|-----------------------|--------------------------------------|-----------|
-| `owner`      | required | Mediasquare owner ID  | `'test'`                               | `string`  |
-| `code`        | required | Mediasquare code ID   | `'publishername_atf_desktop_rg_pave'`  | `string`  |
+| Name    | Scope    | Description          | Example                               | Type     |
+|---------|----------|----------------------|---------------------------------------|----------|
+| `owner` | required | Mediasquare owner ID | `'test'`                              | `string` |
+| `code`  | required | Mediasquare code ID  | `'publishername_atf_desktop_rg_pave'` | `string` |

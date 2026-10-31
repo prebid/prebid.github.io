@@ -18,10 +18,10 @@ ortb_blocking_supported: false
 ---
 
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 
-| Name          | Scope    | Description      | Example | Type     |
-|---------------|----------|------------------|---------|----------|
-| `zone`        | required | Zone Id          |         | `string` |
+| Name   | Scope    | Description | Example | Type     |
+|--------|----------|-------------|---------|----------|
+| `zone` | required | Zone Id     |         | `string` |

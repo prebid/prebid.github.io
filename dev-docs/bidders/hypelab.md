@@ -14,18 +14,17 @@ fpd_supported: false
 ortb_blocking_supported: false
 ---
 
-### Registration
+## Registration
 
 The HypeLab adapter requires setup and approval from the HypeLab team. Please reach out to your account manager for more information.
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example | Type |
-|---------------|----------|------------------|---------|----------|
-| `property_slug` | required | The property slug | `prebid` | `string` |
+| Name             | Scope    | Description        | Example          | Type     |
+|------------------|----------|--------------------|------------------|----------|
+| `property_slug`  | required | The property slug  | `prebid`         | `string` |
 | `placement_slug` | required | The placement slug | `test_placement` | `string` |
-
 
 ### Example Banner Configuration
 
