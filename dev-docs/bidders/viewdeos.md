@@ -2,7 +2,8 @@
 layout: bidder
 title: Viewdeos Server
 description: Prebid Server ViewDeos Adapter
-pbjs: false
+pbjs: true
+enable_download: false
 pbs: true
 biddercode: viewdeos
 aliasCode: viewdeosDX
