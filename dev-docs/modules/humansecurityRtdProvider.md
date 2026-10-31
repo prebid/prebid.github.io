@@ -5,7 +5,7 @@ display_name: HUMAN Security RTD Submodule
 description: The HUMAN Security RTD Submodule offers publishers a mechanism to integrate pre-bid signal collection for the purpose of providing real-time protection against all sorts of invalid traffic.
 page_type: module
 module_type: rtd
-module_code : humansecurity
+module_code : humansecurityRtdProvider
 enable_download : true
 vendor_specific: true
 sidebarType : 1

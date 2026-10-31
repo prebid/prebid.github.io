@@ -30,6 +30,21 @@
     // GitHub repository.
     var VERSION_PATTERN = /^\d+\.\d+\.\d+$/;
     var MODULE_PATTERN = /^[A-Za-z0-9_][A-Za-z0-9_-]*$/;
+    // so that a stalled request fails instead of leaving the page waiting forever
+    var REQUEST_TIMEOUT = 30000;
+
+    function fetchWithTimeout(url, options) {
+        options = Object.assign({}, options);
+        if (typeof AbortSignal !== 'undefined' && typeof AbortSignal.timeout === 'function') {
+            options.signal = AbortSignal.timeout(REQUEST_TIMEOUT);
+        }
+        return fetch(url, options).catch(function (error) {
+            if (error && error.name === 'TimeoutError') {
+                throw new Error('Timed out retrieving ' + url);
+            }
+            throw error;
+        });
+    }
 
     function parseVersion(version) {
         return version.split('.').map(Number);
@@ -40,7 +55,7 @@
     }
 
     function getVersions() {
-        return fetch(REGISTRY_URL)
+        return fetchWithTimeout(REGISTRY_URL)
             .then(function (response) {
                 if (!response.ok) {
                     throw new Error('Could not retrieve the list of Prebid.js versions (HTTP ' + response.status + ')');
@@ -78,7 +93,7 @@
         if (url.indexOf(base) !== 0) {
             return Promise.reject(new Error('Refusing to fetch ' + url + ', which is outside ' + base));
         }
-        return fetch(url, integrity ? {integrity: integrity} : undefined)
+        return fetchWithTimeout(url, integrity ? {integrity: integrity} : undefined)
             .then(function (response) {
                 if (!response.ok) {
                     var error = new Error('Could not retrieve ' + path + ' for Prebid.js ' + version + ' (HTTP ' + response.status + ')');

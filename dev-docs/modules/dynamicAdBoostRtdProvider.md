@@ -5,7 +5,7 @@ display_name: Dynamic Ad Boost RTD Module
 description: This module is intended for publishers looking to enhance ad performance visibility and improve monetization through data analytics.
 page_type: module
 module_type: rtd
-module_code: dynamicAdBoostRtd
+module_code: dynamicAdBoostRtdProvider
 enable_download: true
 vendor_specific: true
 sidebarType: 1

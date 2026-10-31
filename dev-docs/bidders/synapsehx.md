@@ -2,6 +2,7 @@
 layout: bidder
 title: Synapse HX
 biddercode: synapseHX
+filename: synapsehxBidAdapter
 description: Prebid Synapse HX Adapter
 tcfeu_supported: false
 coppa_supported: true
