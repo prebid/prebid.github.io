@@ -18,14 +18,14 @@ safeframes_ok: true
 sidebarType: 1
 ---
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description | Example | Type     |
-|---------------|----------|-------------|---------|----------|
-| `siteId` | required | siteId is provided by your Duration Media account manager(s) |         | `integer` |
-| `placementId` | optional | placementId is provided by your Duration Media account manager(s). This parameter allows to report on a specific ad unit |         | `integer` |
-| `video`| optional | Object containing video targeting parameters. Note that this parameter is not used in Prebid Server.  See [Video Object](#duration-video-object) for details. | `video: { playback_method: ['auto_play_sound_off'] }` | `object`|
+| Name          | Scope    | Description                                                                                                                                                   | Example                                               | Type      |
+|---------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|-----------|
+| `siteId`      | required | siteId is provided by your Duration Media account manager(s)                                                                                                  |                                                       | `integer` |
+| `placementId` | optional | placementId is provided by your Duration Media account manager(s). This parameter allows to report on a specific ad unit                                      |                                                       | `integer` |
+| `video`       | optional | Object containing video targeting parameters. Note that this parameter is not used in Prebid Server.  See [Video Object](#duration-video-object) for details. | `video: { playback_method: ['auto_play_sound_off'] }` | `object`  |
 
 ### Note
 

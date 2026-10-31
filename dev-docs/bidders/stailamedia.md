@@ -18,12 +18,12 @@ prebid_member: false
 multiformat_supported: will-bid-on-any
 sidebarType: 1
 ---
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description           | Example   | Type      |
-|---------------|----------|-----------------------|-----------|-----------|
-| `placement_id` (PBS+PBJS) or `placementId` (PBJS) | required | Placement id          | `'33037108'` | `string`  |
+| Name                                              | Scope    | Description  | Example      | Type     |
+|---------------------------------------------------|----------|--------------|--------------|----------|
+| `placement_id` (PBS+PBJS) or `placementId` (PBJS) | required | Placement id | `'33037108'` | `string` |
 
 stailamedia is an aliased bidder for AppNexus.
 

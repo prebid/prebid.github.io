@@ -3,8 +3,7 @@ layout: bidder
 title: gopl
 description: Go.pl Bidder Adaptor
 pbjs: true
-pbs: true
-pbs_biddercode: sspBC
+pbs: false
 biddercode: gopl
 redirect_from:
   - /dev-docs/bidders/sspBC

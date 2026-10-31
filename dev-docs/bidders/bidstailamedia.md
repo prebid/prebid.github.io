@@ -3,8 +3,7 @@ layout: bidder
 title: stailamedia Bidder
 description: Prebid bidstailamedia Bidder Adapter
 pbjs: true
-pbs: true
-pbs_biddercode: nexx360
+pbs: false
 biddercode: bidstailamedia
 aliasCode: nexx360
 gvl_id: 965 (nexx360)

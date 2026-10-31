@@ -3,8 +3,7 @@ layout: bidder
 title: Glomex Bidder
 description: Prebid Glomex Bidder Adapter
 pbjs: true
-pbs: true
-pbs_biddercode: nexx360
+pbs: false
 biddercode: glomexbidder
 aliasCode: nexx360
 gvl_id: 967

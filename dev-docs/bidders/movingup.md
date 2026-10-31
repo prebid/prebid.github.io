@@ -23,13 +23,13 @@ multiformat_supported: will-bid-on-any
 
 ---
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description                | Example                                   | Type      |
-|---------------|----------|----------------------------|--------------------------------------     |-----------|
-| `tagId`       | optional | tag ID                     | `"testnexx"`                              | `string`  |
-| `placement`   | optional | Placement                  | `"test"`                                  | `string`  |
+| Name        | Scope    | Description | Example      | Type     |
+|-------------|----------|-------------|--------------|----------|
+| `tagId`     | optional | tag ID      | `"testnexx"` | `string` |
+| `placement` | optional | Placement   | `"test"`     | `string` |
 
 For the prebid.js you only need to use one parameter: either tagId or placement
 

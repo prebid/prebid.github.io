@@ -23,13 +23,13 @@ ortb_blocking_supported: false
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 The Greenbids Bidding adapter requires setup before beginning. Please contact us at [sales@greenbids.ai](mailto:sales@greenbids.ai).
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description           | Example   | Type      |
-|---------------|----------|-----------------------|-----------|-----------|
-| `placementId` | required | Placement id          | `'11111'` | `string`  |
+| Name          | Scope    | Description  | Example   | Type     |
+|---------------|----------|--------------|-----------|----------|
+| `placementId` | required | Placement id | `'11111'` | `string` |

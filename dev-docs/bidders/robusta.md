@@ -19,7 +19,6 @@ sidebarType: 1
 |------------|----------|------------------|---------|----------|
 | lineItemId | Required | The Line Item ID | `'123'` | `string` |
 
-
 # Example Ad Unit Config
 
 ```javascript

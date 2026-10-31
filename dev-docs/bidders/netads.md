@@ -24,13 +24,13 @@ multiformat_supported: will-bid-on-any
 
 ---
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description                | Example                              | Type      |
-|---------------|----------|----------------------------|--------------------------------------|-----------|
-| `tagId`       | required | tag ID                     | `"testnexx"`                         | `string`  |
-| `placement`   | required*| Placement                  | `"TEST_PLACEMENT"`                   | `string`  |
+| Name        | Scope     | Description | Example            | Type     |
+|-------------|-----------|-------------|--------------------|----------|
+| `tagId`     | required  | tag ID      | `"testnexx"`       | `string` |
+| `placement` | required* | Placement   | `"TEST_PLACEMENT"` | `string` |
 
 You *must* only include one ID field - either `tagId` or `placement`, not both. If you have questions on which parameter to use, please reach out to your Account Manager.
 The `tagId` and `placement` are **mutually exclusive** but at least one is required. If you pass both, `tagId` takes precedence.

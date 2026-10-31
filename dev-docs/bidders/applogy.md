@@ -7,9 +7,9 @@ biddercode: applogy
 sidebarType: 1
 ---
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name       | Scope    | Description            | Example | Type     |
-|------------|----------|------------------------|---------|----------|
-| token | required | Applogy tokeb | 'aaaa' | string |
+| Name  | Scope    | Description   | Example | Type   |
+|-------|----------|---------------|---------|--------|
+| token | required | Applogy tokeb | 'aaaa'  | string |

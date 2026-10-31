@@ -19,10 +19,10 @@ prebid_member: yes
 sidebarType: 1
 ---
 
-### Overview
+## Overview
 
 Roundel is an aliased bidder for Index Exchange and must be configured alongside the [RampID](/dev-docs/modules/userid-submodules/ramp.html) user ID module.
 
 ### Bid Params
 
-Bidder params for roundel follow the same structure as the Index Exchange bidder. Please reference configuration examples [here](/dev-docs/bidders/ix).
+Bidder params for roundel follow the same structure as the Index Exchange bidder. Please reference configuration examples [here](/dev-docs/bidders/ix.html).

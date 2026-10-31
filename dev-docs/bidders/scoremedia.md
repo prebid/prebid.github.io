@@ -3,8 +3,7 @@ layout: bidder
 title: scoremedia
 description: Prebid scoremedia Bidder Adapter
 pbjs: true
-pbs: true
-pbs_biddercode: nexx360
+pbs: false
 biddercode: scoremedia
 aliasCode: nexx360
 gvl_id: 1090
