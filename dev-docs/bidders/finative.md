@@ -14,6 +14,6 @@ sidebarType: 1
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description       | Example       | Type     |
-|-------------|-----------|--------------------|----------------|-----------|
+|------------|----------|-------------------|---------------|----------|
 | `adUnitId` | required | ID of the Ad Unit | `8ao`         | `string` |
 | `url`      | optional | URL from the Page | `example.tld` | `string` |
