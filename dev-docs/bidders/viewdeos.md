@@ -13,16 +13,16 @@ gvl_id: 924
 sidebarType: 1
 ---
 
-### Bid params
+## Bid params
 
 {: .table .table-bordered .table-striped }
-| Name  | Scope    | Description                     | Example  | Type      |
-|-------|----------|---------------------------------|----------|-----------|
-| `aid` | required | The source ID from member zone | `350975` | `integer` |
+| Name  | Scope    | Description                    | Example | Type      |
+|-------|----------|--------------------------------|---------|-----------|
+| `aid` | required | The source ID from member zone | `350975`| `integer` |
 
 ### Test Parameters
 
-```
+```javascript
     var adUnits = [
       // Banner adUnit
       {
