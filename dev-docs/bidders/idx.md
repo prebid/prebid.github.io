@@ -15,6 +15,7 @@ floors_supported: false
 fpd_supported: false
 pbjs: true
 enable_download: false
+pbjs_version_notes: Unknown; no specific reason for unavailability has been documented.
 pbs: false
 prebid_member: false
 sidebarType: 1
