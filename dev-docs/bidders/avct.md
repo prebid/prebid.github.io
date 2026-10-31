@@ -6,6 +6,7 @@ pbjs: true
 enable_download: false
 pbjs_version_notes: "Not available in current Prebid.js builds; specific reason unknown."
 pbs: true
+pbs_biddercode: avocet
 biddercode: avct
 aliasCode: avocet
 tcfeu_supported: false

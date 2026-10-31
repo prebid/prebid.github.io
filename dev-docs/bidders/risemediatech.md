@@ -12,7 +12,7 @@ gpp_supported: true
 user_sync: false
 schain_supported: true
 pbjs: true
-pbs: true
+pbs: false
 ---
 
 # Overview
@@ -21,8 +21,7 @@ RiseMediaTech is a digital advertising platform that supports banner and video a
 
 # Bid Params
 
-| Name         | Scope              | Type             | Description                                | Example                 |
-|--------------|--------------------|------------------|--------------------------------------------|-------------------------|     
-| `bidFloor`   | optional           | string           | Bid Floor                                  | `'0.01'`|
-| `testMode`   | optional           | string           | Parameter to indicate prebid test mode                                  | `'1'`|
-
+| Name       | Scope    | Type   | Description                            | Example  |
+|------------|----------|--------|----------------------------------------|----------|
+| `bidFloor` | optional | string | Bid Floor                              | `'0.01'` |
+| `testMode` | optional | string | Parameter to indicate prebid test mode | `'1'`    |

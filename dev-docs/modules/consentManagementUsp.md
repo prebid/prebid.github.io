@@ -42,10 +42,10 @@ If the timeout period expires or an error from the USP-API is thrown, the auctio
 {: .table .table-bordered .table-striped }
 | String Component | Values |
 | --- | --- |
-| 1) Specification Version|    1|
-| 2) Explicit Notice/Opportunity to Opt Out|    (N = No,Y = Yes,– = Not Applicable)|
-| 3) Has user opted-out of the sale of his or her personal information?|     (N = No,Y = Yes,– = Not Applicable)|
-| 4) Publisher is a signatory to the IAB Limited Service Provider Agreement|     (N = No,Y = Yes,– = Not Applicable)|
+| 1) Specification Version | 1 |
+| 2) Explicit Notice/Opportunity to Opt Out | (N = No,Y = Yes,– = Not Applicable) |
+| 3) Has user opted-out of the sale of his or her personal information? | (N = No,Y = Yes,– = Not Applicable) |
+| 4) Publisher is a signatory to the IAB Limited Service Provider Agreement | (N = No,Y = Yes,– = Not Applicable) |
 
 ### Deletes
 
@@ -80,6 +80,7 @@ Here are the parameters supported in the `consentManagement` object:
 | usp | `Object` | | |
 | usp.cmpApi | `string` | The USP-API interface that is in use. Supported values are **'iab'** or **'static'**. Static allows integrations where IAB-formatted strings are provided in a non-standard way. Default is `'iab'`. | `'iab'` |
 | usp.timeout | `integer` | Length of time (in milliseconds) to allow the USP-API to obtain the CCPA string. Default is `50`. | `50` |
+| usp.waitForCmp | `boolean` | If `__uspapi` is not yet present when Prebid looks for it, wait (polling every 100ms, up to `usp.timeout`) for it to appear before giving up. This supports non-compliant integrations that load their CMP stub late. Per the [USP API spec](https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/master/CCPA/USP%20API.md), the stub should already be present synchronously before Prebid loads, so this should only be needed to work around a non-compliant page. Defaults to `false`. | `true` |
 | usp.consentData | `Object` | An object representing the CCPA notice and opt-out status data being passed directly; only used when cmpApi is 'static'. Default is `undefined`. | |
 
 {: .alert.alert-info :}
@@ -126,7 +127,25 @@ Example 2: Support US Privacy; timeout the api availability at zero because it i
      });
 ```
 
-Example 3: Static CMP using custom data passing. Placing this config call in the command queue before loading Prebid is important to ensure the string is available before Prebid begins making external calls.
+Example 3: IAB CMP that may load its stub later than Prebid.js (e.g. injected asynchronously). Prebid will poll for `__uspapi` for up to `timeout` before giving up.
+
+```javascript
+     var pbjs = pbjs || {};
+     pbjs.que = pbjs.que || [];
+     pbjs.que.push(function() {
+        pbjs.setConfig({
+          consentManagement: {
+            usp: {
+              cmpApi: 'iab',
+              timeout: 8000,
+              waitForCmp: true
+            }
+          }
+        });
+     });
+```
+
+Example 4: Static CMP using custom data passing. Placing this config call in the command queue before loading Prebid is important to ensure the string is available before Prebid begins making external calls.
 
 ```javascript
      var pbjs = pbjs || {};
@@ -147,7 +166,7 @@ Example 3: Static CMP using custom data passing. Placing this config call in the
      });
 ```
 
-Example 4: Static CMP with USP string set to does not apply for all fields, which may be useful to prevent excessive interaction with the `__uspapi` outside of the geographic scope. Placing this config call in the command queue before loading Prebid is important to ensure it is available early.
+Example 5: Static CMP with USP string set to does not apply for all fields, which may be useful to prevent excessive interaction with the `__uspapi` outside of the geographic scope. Placing this config call in the command queue before loading Prebid is important to ensure it is available early.
 
 ```javascript
      var pbjs = pbjs || {};

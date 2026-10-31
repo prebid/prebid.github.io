@@ -4,8 +4,8 @@ title: Telaria
 description: Telaria Bidder Adaptor
 pbjs: true
 enable_download: false
-pbjs_version_notes: "Not available in current Prebid.js builds; specific reason unknown."
-pbs: false
+pbjs_version_notes: "Not available in current Prebid.js builds; acquired by Magnite."
+pbs: true
 biddercode: telaria
 media_types: video, no-display
 tcfeu_supported: true
