@@ -85,7 +85,7 @@ The following fields related to anonymizing aspects of the auction are supported
 Notes:
 
 * <a id="strictStorageEnforcement"></a> By default, Prebid allows some limited use of storage even when purpose 1 consent was not given: this is limited to non-PII, such as temporary test data used to probe the browser's storage features. If `strictStorageEnforcement` is true, Purpose 1 consent will always be enforced for any access to storage.
-* To accommodate Prebid.js modules and adapters that don't have GVL IDs, the vendorExceptions list is based on Prebid.js biddercodes instead of Global Vendor List (GVL) IDs (i.e. "bidderA" instead of "12345").
+* To accommodate Prebid.js modules and adapters that don't have GVL IDs, the vendorExceptions list is based on Prebid.js biddercodes instead of Global Vendor List (GVL) IDs (i.e. "bidderA" instead of "12345"). For custom vendors, see [consent-dependent exceptions](#consent-dependent-exceptions-for-custom-vendors).
 * An alternate way of establishing a GVL mapping is to define a 'gvlMapping' object:
 
 ```javascript
@@ -105,6 +105,63 @@ pbjs.setConfig({
   * Modules with a GVL ID are never checked against the AC string.
   * Both AC v1 (`1~1.2.3`) and v2 (`2~1.2.3~dv.1.2.3.4.5`) strings are accepted. Only the providers in the consented list (before `~dv.`) have consent; the `dv.` list of disclosed providers is ignored, so a provider that appears only there has no consent. A malformed AC string means no AC vendor consent.
   * This applies to the `storage`, `basicAds`, `personalizedAds`, `measurement` and `transmitPreciseGeo` rules, and to the default [`transmitEids`](#note-transmitEids) check. `vendorExceptions`, `softVendorExceptions` and `enforceVendor: false` work as before.
+
+### Consent-dependent exceptions for custom vendors
+
+A `vendorExceptions` entry is an enforcement override, **not** proof that the user consented to the vendor. It bypasses both purpose and vendor checks for that rule, even if the user later withdraws consent. An exception on `basicAds`, `personalizedAds`, or `measurement` can also allow the default [`transmitEids` activity](#note-transmitEids) without purpose or vendor consent. By contrast, `softVendorExceptions` skips only the vendor check and still requires the applicable purpose signal. Neither option queries the CMP for a custom vendor's consent.
+
+For vendors on the IAB Global Vendor List (GVL), let Prebid.js enforce the vendor's TCF signal using its GVL ID (or [`gvlMapping`](#page-integration) where necessary). The standard `__tcfapi` response exposes GVL consent under `tcData.vendor.consents[gvlId]`, **not** consent for arbitrary custom/non-IAB vendors. If a CMP collects consent for a custom vendor outside the TCF string, use that CMP's documented interface to read the user's current opt-in. For non-GVL vendors on Google's Additional Consent provider list, prefer Prebid.js [Additional Consent support](#additional-consent) instead of maintaining an exception.
+
+For example, the following pattern **starts without any exception**, then adds a `softVendorExceptions` entry only when a CMP-specific lookup confirms current opt-in. Replace the fail-closed `hasCurrentCustomVendorOptIn` stub with your CMP's actual custom-vendor API:
+
+```javascript
+const customBidder = 'exampleBidder';
+
+// Replace with a lookup using your CMP's custom-vendor consent API.
+// This is not provided by the standard __tcfapi interface.
+function hasCurrentCustomVendorOptIn() {
+  return false; // Fail closed until the CMP integration is implemented.
+}
+
+function configureCustomVendor(hasOptIn) {
+  const exceptions = hasOptIn ? [customBidder] : [];
+  pbjs.que.push(function () {
+    pbjs.setConfig({
+      consentManagement: {
+        gdpr: {
+          cmpApi: 'iab',
+          rules: [{
+            purpose: 'storage',
+            enforcePurpose: true,
+            enforceVendor: true
+          }, {
+            purpose: 'basicAds',
+            enforcePurpose: true,
+            enforceVendor: true,
+            softVendorExceptions: exceptions
+          }, {
+            purpose: 'personalizedAds',
+            enforcePurpose: true,
+            enforceVendor: true,
+            softVendorExceptions: exceptions
+          }]
+        }
+      }
+    });
+  });
+}
+
+// Apply before the first auction. Also retain any other rules your page needs.
+configureCustomVendor(false);
+
+window.__tcfapi('addEventListener', 2, function (tcData, success) {
+  const choicesReady = success && tcData &&
+    ['tcloaded', 'useractioncomplete'].includes(tcData.eventStatus);
+  configureCustomVendor(choicesReady && hasCurrentCustomVendorOptIn() === true);
+});
+```
+
+The `__tcfapi` listener above tracks when TCF choices are ready or updated; **it does not provide the custom-vendor opt-in itself**. Some CMPs expose custom-vendor consent through a separate asynchronous API or change event: integrate with those callbacks as needed, and finish applying the updated rules **before** requesting bids. Recheck on each consent change, including withdrawal, so the exception is removed when the user has not opted in. This example supplies the complete `gdpr.rules` array; when adapting it, preserve any other rules already required by your integration. Use the stronger `vendorExceptions` override only if your legal assessment specifically supports bypassing purpose enforcement as well as the vendor check.
 
 ### Examples
 
