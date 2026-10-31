@@ -125,8 +125,11 @@ for (const doc of bidderDocs) {
       }
     }
   }
-  if (yes(doc.pbs) && !pbsGo.has(code) && !pbsJava.has(code)) {
-    add('notInPbs', doc.file, `\`${code}\`${caseHint(code, new Set([...pbsGo.keys(), ...pbsJava.keys()]))}`);
+  // The Prebid.js and Prebid Server bidder codes can differ in case.
+  // Keep biddercode as the PBJS identifier, using an explicit PBS code when supplied.
+  const pbsCode = doc.pbs_biddercode || code;
+  if (yes(doc.pbs) && !pbsGo.has(pbsCode) && !pbsJava.has(pbsCode)) {
+    add('notInPbs', doc.file, `\`${pbsCode}\`${caseHint(pbsCode, new Set([...pbsGo.keys(), ...pbsJava.keys()]))}`);
   }
 }
 
