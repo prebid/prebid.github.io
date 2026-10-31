@@ -3,7 +3,7 @@ layout: bidder
 title: Advertising.com
 description: Prebid Advertising.com Bidder Adapter
 pbjs: true
-pbs: true
+pbs: false
 biddercode: advertising
 tcfeu_supported: false
 usp_supported: true
@@ -14,7 +14,7 @@ gpp_supported: true
 schain_supported: true
 dchain_supported: false
 safeframes_ok: true
-pbs_app_supported: true
+pbs_app_supported: false
 deals_supported: false
 floors_supported: true
 fpd_supported: false
@@ -26,7 +26,7 @@ sidebarType: 1
 pbjs_version_notes: please avoid using versions from 10.7.0 to 10.11.0
 ---
 
-### Note
+## Note
 
 The Advertising.com bidder adapter requires setup and approval from Advertising.com. Please reach out to your account manager for more information and to start using it.
 
@@ -73,12 +73,12 @@ https://track.technoratimedia.com/openrtb/tags?ID=%%PATTERN:hb_uuid_synacormedia
 ### Bid params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example | Type |
-| ---- | ----- | ----------- | ------- | ---- |
-| `seatId` | required | The seat ID from Advertising.com. This will be the same for all ad units. | `'prebid'` | `string` |
-| `tagId` | required | The placement ID or tag ID from Advertising.com. | `'demo1'` | `string` |
-| `placementId` | optional | Legacy parameter replaced by `tagId` | `'demo1'` | `string` |
-| `bidfloor` | optional | Legacy parameter for floor price for the request. Replaced by [Price Floors Module](/dev-docs/modules/floors.html) | `0.1` | `float` |
+| Name          | Scope    | Description                                                                                                        | Example    | Type     |
+|---------------|----------|--------------------------------------------------------------------------------------------------------------------|------------|----------|
+| `seatId`      | required | The seat ID from Advertising.com. This will be the same for all ad units.                                          | `'prebid'` | `string` |
+| `tagId`       | required | The placement ID or tag ID from Advertising.com.                                                                   | `'demo1'`  | `string` |
+| `placementId` | optional | Legacy parameter replaced by `tagId`                                                                               | `'demo1'`  | `string` |
+| `bidfloor`    | optional | Legacy parameter for floor price for the request. Replaced by [Price Floors Module](/dev-docs/modules/floors.html) | `0.1`      | `float`  |
 
 ### Example Ad Unit
 

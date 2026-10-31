@@ -8,7 +8,7 @@ tcfeu_supported: false
 gpp_supported: false
 usp_supported: false
 pbjs: true
-pbs: true
+pbs: false
 sidebarType: 1
 ---
 
@@ -18,7 +18,6 @@ sidebarType: 1
 | Name       | Scope    | Description      | Example | Type     |
 |------------|----------|------------------|---------|----------|
 | lineItemId | Required | The Line Item ID | `'123'` | `string` |
-
 
 # Example Ad Unit Config
 

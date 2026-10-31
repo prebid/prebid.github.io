@@ -16,20 +16,20 @@ deals_supported: false
 floors_supported: true
 fpd_supported: true
 pbjs: true
-pbs: true
+pbs: false
 prebid_member: false
 multiformat_supported: will-not-bid
 ortb_blocking_supported: false
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 The Greenbids Bidding adapter requires setup before beginning. Please contact us at [sales@greenbids.ai](mailto:sales@greenbids.ai).
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description           | Example   | Type      |
-|---------------|----------|-----------------------|-----------|-----------|
-| `placementId` | required | Placement id          | `'11111'` | `string`  |
+| Name          | Scope    | Description  | Example   | Type     |
+|---------------|----------|--------------|-----------|----------|
+| `placementId` | required | Placement id | `'11111'` | `string` |
