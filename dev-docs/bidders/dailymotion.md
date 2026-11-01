@@ -19,13 +19,13 @@ safeframes_ok: true
 ortb_blocking_supported: false
 ---
 
-### Registration
+## Registration
 
 To use the adapter with any non-test request, you first need to ask an API key from Dailymotion. Please contact us through <publishers@dailymotion.com> .
 
 This API key will ensure proper identification of your inventory and allow you to get real bids.
 
-### Configuration options
+## Configuration options
 
 Before calling this adapter, you need to at least set a video adUnit in an instream context and the API key in the bid parameters:
 
@@ -50,7 +50,7 @@ const adUnits = [
 
 `apiKey` is your publisher API key. For testing purpose, you can use "dailymotion-testing".
 
-#### User Sync
+### User Sync
 
 To enable user synchronization, add the following code. Dailymotion highly recommends using iframes and/or pixels for user syncing. This feature enhances DSP user match rates, resulting in higher bid rates and bid prices. Ensure that `pbjs.setConfig()` is called only once.
 
@@ -72,7 +72,7 @@ pbjs.setConfig({
 });
 ```
 
-#### Price floor
+### Price floor
 
 The price floor can be set at the ad unit level, for example : 
 
@@ -182,7 +182,7 @@ This will send the following bid floor in the request to Daiymotion Prebid Servi
 
 You can also [set dynamic floors](https://docs.prebid.org/dev-docs/modules/floors.html#bid-adapter-interface).
 
-### Test Parameters
+## Test Parameters
 
 By setting the following bid parameters, you'll get a constant response to any request, to validate your adapter integration:
 
@@ -207,7 +207,7 @@ const adUnits = [
 
 Please note that failing to set these will result in the adapter not bidding at all.
 
-### Sample video AdUnit
+## Sample video AdUnit
 
 To allow better targeting, you should provide as much context about the video as possible.
 There are three ways of doing this depending on if you're using Dailymotion player or a third party one.
