@@ -130,7 +130,7 @@ pbjs.setConfig({
       }
     }
   }
-};
+});
 ```
 
 ### Media Types 
