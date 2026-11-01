@@ -85,7 +85,7 @@ The following fields related to anonymizing aspects of the auction are supported
 Notes:
 
 * <a id="strictStorageEnforcement"></a> By default, Prebid allows some limited use of storage even when purpose 1 consent was not given: this is limited to non-PII, such as temporary test data used to probe the browser's storage features. If `strictStorageEnforcement` is true, Purpose 1 consent will always be enforced for any access to storage.
-* To accommodate Prebid.js modules and adapters that don't have GVL IDs, the vendorExceptions list is based on Prebid.js biddercodes instead of Global Vendor List (GVL) IDs (i.e. "bidderA" instead of "12345").
+* To accommodate Prebid.js modules and adapters that don't have GVL IDs, the vendorExceptions list is based on Prebid.js biddercodes instead of Global Vendor List (GVL) IDs (i.e. "bidderA" instead of "12345"). For custom vendors, see [consent-dependent exceptions](#consent-dependent-exceptions-for-custom-vendors).
 * An alternate way of establishing a GVL mapping is to define a 'gvlMapping' object:
 
 ```javascript
@@ -105,6 +105,71 @@ pbjs.setConfig({
   * Modules with a GVL ID are never checked against the AC string.
   * Both AC v1 (`1~1.2.3`) and v2 (`2~1.2.3~dv.1.2.3.4.5`) strings are accepted. Only the providers in the consented list (before `~dv.`) have consent; the `dv.` list of disclosed providers is ignored, so a provider that appears only there has no consent. A malformed AC string means no AC vendor consent.
   * This applies to the `storage`, `basicAds`, `personalizedAds`, `measurement` and `transmitPreciseGeo` rules, and to the default [`transmitEids`](#note-transmitEids) check. `vendorExceptions`, `softVendorExceptions` and `enforceVendor: false` work as before.
+
+### Consent-dependent exceptions for custom vendors
+
+A `vendorExceptions` entry is an enforcement override, **not** proof that the user consented to the vendor. It bypasses both purpose and vendor checks for that rule, even if the user later withdraws consent. An exception on `basicAds`, `personalizedAds`, or `measurement` can also allow the default [`transmitEids` activity](#note-transmitEids) without purpose or vendor consent. By contrast, `softVendorExceptions` skips only the vendor check and still requires the applicable purpose signal. Neither option queries the CMP for a custom vendor's consent.
+
+For vendors on the IAB Global Vendor List (GVL), let Prebid.js enforce the vendor's TCF signal using its GVL ID (or [`gvlMapping`](#page-integration) where necessary). The standard `__tcfapi` response exposes GVL consent under `tcData.vendor.consents[gvlId]`, **not** consent for arbitrary custom/non-IAB vendors. If a CMP collects consent for a custom vendor outside the TCF string, use that CMP's documented interface to read the user's current opt-in. For non-GVL vendors on Google's Additional Consent provider list, prefer Prebid.js [Additional Consent support](#additional-consent) instead of maintaining an exception.
+
+The following example configures Prebid.js **once**, after the CMP has returned the current custom-vendor choice and **before the first auction**. It leaves the vendor unexcepted unless that separate CMP lookup confirms opt-in. The lookup must wait for the CMP's custom-vendor consent to be ready; `__tcfapi` itself does not supply this value.
+
+```javascript
+const customBidder = 'exampleBidder';
+const exceptionPurposes = ['storage', 'basicAds', 'personalizedAds'];
+
+// Replace with your CMP's custom-vendor API and wait for its result.
+// Do not infer custom-vendor consent from tcData.vendor.consents.
+async function hasCurrentCustomVendorOptIn() {
+  return false; // Fail closed until the CMP integration is implemented.
+}
+
+async function configureCustomVendorBeforeFirstAuction() {
+  const hasOptIn = await hasCurrentCustomVendorOptIn() === true;
+
+  pbjs.que.push(function () {
+    // Keep existing GDPR timeouts and other consent frameworks (GPP/USP).
+    const existing = pbjs.getConfig('consentManagement') || {};
+    const gdpr = existing.gdpr || {};
+
+    // Match the default enforcement rules when none were explicitly set.
+    // If rules are already configured, retain them and their options.
+    const defaults = ['storage', 'basicAds', 'personalizedAds',
+      'measurement', 'transmitPreciseGeo'].map(purpose => ({
+      purpose,
+      enforcePurpose: true,
+      enforceVendor: true
+    }));
+    const rules = (gdpr.rules || defaults).map(rule => {
+      if (!exceptionPurposes.includes(rule.purpose)) {
+        return rule;
+      }
+
+      const exceptions = (rule.softVendorExceptions || [])
+        .filter(name => name !== customBidder);
+      if (hasOptIn) {
+        exceptions.push(customBidder);
+      }
+      return { ...rule, softVendorExceptions: exceptions };
+    });
+
+    pbjs.setConfig({
+      consentManagement: {
+        ...existing,
+        gdpr: { ...gdpr, rules }
+      }
+    });
+
+    // Only now start the first auction (or release your auction queue).
+  });
+}
+
+configureCustomVendorBeforeFirstAuction();
+```
+
+The `storage` exception is included for a custom bidder that needs device access: without it, Purpose 1's vendor check can still block cookies or local storage despite the custom-vendor opt-in. All three `softVendorExceptions` continue to require the relevant TCF purpose signal; the example preserves any other rules and exceptions already configured. Adjust the list of purposes to the activities that the custom module actually performs, with legal review.
+
+**Consent changes require additional integration.** This example configures consent management once; it does **not** update rules automatically after initialization. Listen for your CMP's custom-vendor consent changes, including withdrawal, and **prevent new auctions** while applying a fresh consent-dependent configuration (for example, by reloading the page after blocking auctions). Do not repeatedly call `pbjs.setConfig({consentManagement: ...})` inside a `__tcfapi('addEventListener', ...)` callback: that reinitializes the TCF CMP integration and can register additional listeners. `pbjs.mergeConfig` is not a drop-in solution either, because it merges arrays rather than reliably removing a withdrawn exception. Make sure any new choice is effective before resuming bid requests. Use the stronger `vendorExceptions` override only if your legal assessment specifically supports bypassing purpose enforcement as well as the vendor check.
 
 ### Examples
 
