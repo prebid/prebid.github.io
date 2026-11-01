@@ -211,7 +211,7 @@ const adUnits = [{
         native: {
             type: 'image'
         }
-    }
+    },
     bids: [{
         bidder: 'msft',
         params: {
