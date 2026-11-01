@@ -45,7 +45,7 @@ Bid requests are sent to `https://hb.adapex.io/pbjs?seat={seat}`, one request pe
 
 ## Prebid Server
 
-The Adapex adapter is available in Prebid Server Go (`prebid-server`) and Prebid Server Java (`prebid-server-java`) as an alias of the Floxis adapter, and also supports audio there. Requests are sent to `https://hb.adapex.io/pbs?seat={seat}`, one request per seat. User sync uses the standard Prebid Server cookie-sync mechanism via `https://sync.adapex.io/sync`.
+The Adapex adapter is available in Prebid Server Go (`prebid-server`) and Prebid Server Java (`prebid-server-java`) as an alias of the Floxis adapter, and also supports audio there. Requests are sent to `https://hb.adapex.io/pbs?seat={seat}`, one request per seat. User sync uses the standard Prebid Server cookie-sync mechanism via `https://px-us-e.floxis.tech/sync`.
 
 ## Prebid Server Bid Params
 
