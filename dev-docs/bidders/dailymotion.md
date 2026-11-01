@@ -222,7 +222,7 @@ const adUnits = [
       params: {
         apiKey: 'dailymotion-testing',
         video: {
-          id: 'x123456'     // Dailymotion infrastructure unique video ID
+          id: 'x123456',    // Dailymotion infrastructure unique video ID
           autoplay: false,
           playerName: 'dailymotion',
           playerVolume: 8
@@ -266,7 +266,7 @@ const adUnits = [
           private: false,
           tags: 'tag_1,tag_2,tag_3',
           title: 'test video',
-          url: 'https://test.com/testvideo'
+          url: 'https://test.com/testvideo',
           topics: 'topic_1, topic_2',
           isCreatedForKids: false,
           videoViewsInSession: 1,
