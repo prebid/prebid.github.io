@@ -11,7 +11,7 @@ coppa_supported: false
 schain_supported: true
 gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 floors_supported: true
-media_types: banner, video
+media_types: banner, video, native
 prebid_member: false
 safeframes_ok: false
 deals_supported: false
@@ -35,6 +35,8 @@ sidebarType: 1
 | `bidFloor` | optional | The minimum bid value desired. OpaMarketplace will not respond with bids lower than this value. | `0.90`                       | `float`  |
 
 ### Example
+
+#### Banner
 
   ```javascript
 var adUnits = [{
@@ -69,4 +71,51 @@ pbjs.setConfig({
         }
     }
 });
+```
+
+#### Native
+
+```javascript
+var adUnits = [{
+    code: 'native-div',
+    mediaTypes: {
+        native: {
+            ortb: {
+                assets: [
+                    {
+                        id: 1,
+                        required: 1,
+                        title: {
+                            len: 80
+                        }
+                    },
+                    {
+                        id: 2,
+                        required: 1,
+                        img: {
+                            type: 3,
+                            w: 1200,
+                            h: 627
+                        }
+                    },
+                    {
+                        id: 3,
+                        required: 1,
+                        data: {
+                            type: 1
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    bids: [{
+        bidder: 'opamarketplace',
+        params: {
+            cId: '562524b21b1c1f08117fc7f9', // Required - PROVIDED DURING SETUP...
+            pId: '59ac17c192832d0011283fe3', // Required - PROVIDED DURING SETUP...
+            bidFloor: 1.23                   // Optional
+        }
+    }]
+}];
 ```
