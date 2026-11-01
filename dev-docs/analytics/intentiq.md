@@ -87,7 +87,7 @@ currency: 'USD', // Currency for the CPM value.
 originalCpm: 1.5, // Original CPM value.
 originalCurrency: 'USD', // Original currency.
 status: 'rendered', // Auction status, e.g., 'rendered'.
-placementId: 'div-1' // ID of the ad placement.
+placementId: 'div-1', // ID of the ad placement.
 adType: 'banner', // Specifies the type of ad served
 size: '320x250', // Size of adUnit item,
 pos: 0 // The following values are defined in the ORTB 2.5 spec
