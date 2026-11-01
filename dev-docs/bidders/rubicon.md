@@ -82,7 +82,7 @@ pbjs.setConfig({
       }
     }
   }
-};
+});
 ```
 
 Example of first party data available only to the Rubicon Project bidder. Applies across all ad units.
@@ -109,7 +109,7 @@ pbjs.setBidderConfig({
       }
     }
   }
-};
+});
 ```
 
 For Prebid.js 4.29 and before, use the bidder specific AdUnit parameters noted above:
