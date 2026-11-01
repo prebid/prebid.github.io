@@ -24,11 +24,11 @@ ortb_blocking_supported: true
 sidebarType: 1
 ---
 
-### Registration
+## Registration
 
 The Melvad bidding adapter requires setup before beginning. Please contact us at <support@melvad.com> to get your `sspId`.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name    | Scope    | Description                      | Example    | Type     |
