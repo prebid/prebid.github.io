@@ -3,17 +3,19 @@ layout: bidder
 title: Oneplanetonly
 description: Prebid Oneplanetonly Bidder Adaptor
 pbjs: true
+enable_download: false
+pbjs_version_notes: "Not available in current Prebid.js builds; specific reason unknown."
 biddercode: oneplanetonly
 sidebarType: 1
 ---
 
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name       | Scope    | Description    | Example       | Type     |
-|------------|----------|----------------|---------------|----------|
-| `siteId`   | required | The site id    | `'5'`         | `string` |
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| `siteId` | required | The site id | `'5'` | `string` |
 | `adUnitId` | required | The ad unit id | `'5-4587544'` | `string` |
 
 Example:

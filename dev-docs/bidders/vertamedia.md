@@ -3,28 +3,30 @@ layout: bidder
 title: Vertamedia
 description: Prebid Vertamedia Bidder Adaptor
 pbjs: true
+enable_download: false
+pbjs_version_notes: "Not available in current Prebid.js builds; specific reason unknown."
 biddercode: vertamedia
 media_types: video
 sidebarType: 1
 ---
 
-### Bid params
+## Bid params
 
 {: .table .table-bordered .table-striped }
-| Name  | Scope    | Description                    | Example  | Type      |
-|-------|----------|--------------------------------|----------|-----------|
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
 | `aid` | required | The source ID from Vertamedia. | `350975` | `integer` |
 
-### Description
+## Description
 
 Get access to multiple demand partners across VertaMedia AdExchange and maximize your yield with VertaMedia header bidding adapter.
 
 VertaMedia header bidding adapter connects with VertaMedia demand sources in order to fetch bids.
 This adapter provides a solution for accessing Video demand and display demand
 
-### Test Parameters
+## Test Parameters
 
-```
+```javascript
     var adUnits = [
 
       // Video instream adUnit
