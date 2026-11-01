@@ -3,6 +3,7 @@ layout: bidder
 title: SMB
 description: SMB Bidder Adapter
 biddercode: SMB
+filename: smbBidAdapter
 usp_supported: true
 coppa_supported: true
 schain_supported: true
