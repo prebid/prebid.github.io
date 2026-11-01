@@ -132,6 +132,6 @@ Example AdUnit specific data using the `ortb2Imp` object
         }
 
         pbjs.que.push(function(){
-            pbjs.addAdUnits(videoAdUnits);
-        }
+            pbjs.addAdUnits(videoAdUnit);
+        });
 ```
