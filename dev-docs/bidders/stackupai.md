@@ -18,7 +18,7 @@ sidebarType: 1
 
 ### Note
 
-The StackUp AI adapter sends one OpenRTB request per auction to the StackUp ad server, with one imp per ad unit. Banner and video are supported.
+The StackUp AI adapter sends one OpenRTB request per auction to the StackUp ad server, with one imp per ad unit.
 
 Use the bidder code `stackupai` directly. Don't alias it (`pbjs.aliasBidder('stackupai', ...)`): aliased requests don't get bids.
 
@@ -31,6 +31,10 @@ StackUp AI is not yet registered with the IAB TCF, so the adapter declares no GV
 ### First Party Data
 
 Publishers should use the `ortb2` and `ortb2Imp` methods of setting first party data. The adapter passes them to StackUp AI in the OpenRTB request.
+
+### Timeout Notifications
+
+When StackUp AI's response misses the auction timeout, the adapter sends one POST per auction to `events.<endpoint host>/e/timeout` with the timed-out bid IDs, their `tag` and the timeout in milliseconds. It is sent without cookies.
 
 ### Bid Params
 
