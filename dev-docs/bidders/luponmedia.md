@@ -20,14 +20,14 @@ sidebarType: 1
 
 The LuponMedia bidder adapter requires setup and approval from the LuponMedia support team, even for existing LuponMedia publishers. Please contact us at [info@luponmedia.com](mailto:info@luponmedia.com).
 
-Each ad unit sends an integration key issued by LuponMedia. The LuponMedia auction server selects the demand partners and their parameters for the key and the page's domain, so no partner configuration is needed on the page. All bids are returned under the `luponmedia` bidder code.
+Each ad unit sends an integration key issued by LuponMedia. All bids are returned under the `luponmedia` bidder code.
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name  | Scope    | Description                                                                                                                                                | Example  | Type     |
-|-------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|----------|
-| `key` | required | Integration key from LuponMedia. The same key can be used on every ad unit of a site; a slot with its own demand gets a longer key (`client.placement`). | `'acme'` | `string` |
+| Name  | Scope    | Description                     | Example  | Type     |
+|-------|----------|---------------------------------|----------|----------|
+| `key` | required | Integration key from LuponMedia | `'acme'` | `string` |
 
 ### Banner
 
@@ -83,7 +83,7 @@ var adUnits = [{
 
 ### Multiple Bids
 
-The adapter returns every bid from every demand partner, highest CPM first. To send more than the best `luponmedia` bid to the ad server, enable the `multibid` module:
+The adapter may return several bids per ad unit, highest CPM first. To send more than the best `luponmedia` bid to the ad server, enable the `multibid` module:
 
 ```javascript
 pbjs.setConfig({
@@ -93,7 +93,7 @@ pbjs.setConfig({
 
 ### User Sync
 
-LuponMedia syncs users through one iframe. Enable iframe syncs for the bidder:
+Enable iframe user syncs for `luponmedia`:
 
 ```javascript
 pbjs.setConfig({
