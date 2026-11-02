@@ -419,9 +419,19 @@ def validate(finding, lines, source, replaced=()):
 
 def sanitize(text):
     """Model prose may be shaped by the untrusted diff: no links, mentions or HTML."""
-    text = re.sub(r"https?://\S+|www\.\S+", "[link removed]", text)
+    text = re.sub(r"https?://\S+|www\.\S+", "(link removed)", text)
+    # Escape backslashes first so an escaped bracket cannot be un-escaped,
+    # then brackets so no Markdown link (e.g. "[x](//host)") can render.
+    text = text.replace("\\", "\\\\").replace("[", "\\[").replace("]", "\\]")
     text = text.replace("@", "@⁠").replace("<", "&lt;").replace("```", "'''")
     return re.sub(r"\s+", " ", text).strip()
+
+
+def finding_marker(filename, finding):
+    """Identify a suggestion by file, line text and fix, not by head SHA, so
+    later pushes do not repost a suggestion the author has not taken."""
+    key = "\0".join((filename, finding["quote"].strip(), finding["fix"].strip()))
+    return hashlib.sha256(key.encode()).hexdigest()
 
 
 def build_comment(finding, marker, original_line=""):
@@ -627,7 +637,7 @@ def main():
             print("[bounded-qwen] rejected finding:", diagnostic["rejection_reason"], flush=True)
             output_path.write_text(json.dumps(report, indent=2) + "\n")
             continue
-        marker = hashlib.sha256(f"{sha}:{filename}:{finding['line']}".encode()).hexdigest()
+        marker = finding_marker(filename, finding)
         if marker in prior:
             diagnostic["outcome"] = "duplicate"
             print("[bounded-qwen] already posted", flush=True)

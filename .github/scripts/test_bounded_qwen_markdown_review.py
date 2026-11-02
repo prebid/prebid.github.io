@@ -243,6 +243,25 @@ class MarkdownReviewTests(unittest.TestCase):
         self.assertNotIn("@everyone", comment)
         self.assertNotIn("<!-- bounded-qwen:x", comment)
 
+    def test_sanitize_neutralizes_markdown_links(self):
+        for text in ("Read [the guide](//evil.example/x) first.",
+                     "Read \\[the guide\\](//evil.example/x) first.",
+                     "See ![img](//evil.example/p.png) and [ref][1]."):
+            sanitized = review.sanitize(text)
+            # Every bracket is preceded by an odd number of backslashes.
+            for index, char in enumerate(sanitized):
+                if char in "[]":
+                    run = len(sanitized[:index]) - len(sanitized[:index].rstrip("\\"))
+                    self.assertEqual(run % 2, 1, sanitized)
+
+    def test_marker_is_stable_across_pushes_and_specific_to_fix(self):
+        finding = {**FINDING, "line": 3}
+        marker = review.finding_marker("a.md", finding)
+        self.assertEqual(marker, review.finding_marker("a.md", {**finding, "line": 7}))
+        self.assertNotEqual(marker, review.finding_marker("b.md", finding))
+        self.assertNotEqual(marker, review.finding_marker("a.md", {**finding, "fix": "[Configuration](#config)"}))
+        self.assertRegex(marker, r"^[0-9a-f]{64}$")
+
     def test_normalize_keeps_literal_plus_line(self):
         lines = {1: "+1 see [Configuration](#configuraton)"}
         raw = {**INLINE_FINDING, "line": 1, "quote": lines[1],
