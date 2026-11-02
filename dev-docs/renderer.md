@@ -39,11 +39,12 @@ Renderers can be specified at multiple levels by specifying either `safeRenderer
 
 ### Priority Order
 
-Prebid.js picks a Safe Renderer and a top window renderer separately, then uses at most one of them.
+Prebid.js picks a Safe Renderer and a top window renderer separately, with the same rule for each, then uses at most one of them.
 
-**Safe Renderer:** the publisher's `safeRenderer` at the MediaType level, otherwise at the Bidder level, otherwise at the AdUnit level. A Safe Renderer provided with the bid is used instead when the publisher didn't define one, or when the MediaType-level top window `renderer` has `backupOnly: true`.
+**Rule:** the publisher's `safeRenderer` (or `renderer`) at the MediaType level, otherwise at the Bidder level, otherwise at the AdUnit level. A publisher one with `backupOnly: true` is skipped when the bid comes with its own of the same kind, and the next level is tried instead. When no publisher one applies, the one provided with the bid, if any, is used.
 
-**Top window renderer:** the publisher's `renderer` at the MediaType level, otherwise at the Bidder level, otherwise at the AdUnit level. A publisher `renderer` with `backupOnly: true` is skipped when the bid comes with its own renderer, at any of these levels. A renderer provided with the bid is used when no publisher renderer applies.
+{: .alert.alert-info :}
+Before Prebid.js 11.47, a `safeRenderer`'s own `backupOnly` was ignored (the MediaType-level `renderer`'s `backupOnly` was applied instead), and a publisher renderer skipped for `backupOnly` did not fall through to the next level.
 
 **Which one runs:** if the bid ends up with a Safe Renderer, from the publisher or from the bid, it is used and any top window renderer is ignored. Otherwise the top window renderer is used, if there is one (and `allowTopWindowRenderers` is not `false`). Otherwise Prebid.js falls back to the default rendering for the media type.
 
@@ -65,6 +66,7 @@ The Safe Renderer works similarly to the default Prebid renderer in that it is i
 | `url` | Required | String | URL to the external renderer script that will be loaded and executed within Safe renderer |
 | `config` | Optional | Object | Object that will be passed to external renderer script as a `config` field. For bid adapters use |
 | `getConfig` | Optional | Function | Function that will evaluate `config` object accessible in external renderer script. For publisher's use. Accepts `bidResponse` as a parameter |
+| `backupOnly` | Optional | Boolean | If `true`, used only when the bid doesn't provide its own Safe Renderer; otherwise the next level is tried (see [Priority Order](#priority-order)). Since Prebid.js 11.47 |
 
 ```javascript
 const adUnits = [
