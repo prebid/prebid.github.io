@@ -427,11 +427,35 @@ def sanitize(text):
     return re.sub(r"\s+", " ", text).strip()
 
 
-def finding_marker(filename, finding):
-    """Identify a suggestion by file, line text and fix, not by head SHA, so
-    later pushes do not repost a suggestion the author has not taken."""
-    key = "\0".join((filename, finding["quote"].strip(), finding["fix"].strip()))
+def occurrence(file_lines, finding):
+    """Which of the file's identical added lines the finding is on (0-based).
+
+    Distinguishes the same mistake added in several places, while staying
+    stable when unrelated lines shift the line numbers.
+    """
+    quote = finding["quote"].strip()
+    same = [number for number, text in sorted(file_lines.items()) if text.strip() == quote]
+    return same.index(finding["line"]) if finding["line"] in same else 0
+
+
+def finding_marker(filename, finding, occurrence_index=0):
+    """Identify a suggestion by file, line text, fix and occurrence, not by head
+    SHA, so later pushes do not repost a suggestion the author has not taken."""
+    key = "\0".join((filename, finding["quote"].strip(), finding["fix"].strip(), str(occurrence_index)))
     return hashlib.sha256(key.encode()).hexdigest()
+
+
+def prior_markers(comments):
+    """Markers from the workflow's own comments only, and only the one
+    build_comment appends last: anyone can comment, and a model-written fix
+    shown in the suggestion block could carry a planted marker."""
+    prior = set()
+    for comment in comments:
+        if (comment.get("user") or {}).get("login") == "github-actions[bot]":
+            match = re.search(r"<!-- bounded-qwen:([0-9a-f]{64}) -->\s*\Z", comment.get("body") or "")
+            if match:
+                prior.add(match.group(1))
+    return prior
 
 
 def build_comment(finding, marker, original_line=""):
@@ -524,11 +548,7 @@ def main():
               "chunks_unreviewed": 0, "errors": [], "files": [], "skipped_files": []}
     # Save raw response per file for iteration (no secrets or code execution).
     output_path = Path(env.get("RUNNER_TEMP", "/tmp"), "bounded-qwen-result.json")
-    prior = set()
-    for comment in paged(repo, number, token, "comments"):
-        if comment.get("user", {}).get("login") != "github-actions[bot]":
-            continue
-        prior.update(re.findall(r"<!-- bounded-qwen:([0-9a-f]{64}) -->", comment.get("body", "")))
+    prior = prior_markers(paged(repo, number, token, "comments"))
     files = []
     for file in paged(repo, number, token, "files"):
         patch = file.get("patch")
@@ -570,6 +590,7 @@ def main():
         report["reviewed"] += 1
         work += [(file["filename"], part, index, len(chunks)) for index, part in enumerate(chunks[:budget], 1)]
     sources = {}
+    file_lines = {file["filename"]: added_lines(file["patch"]) for file in files[:MAX_REVIEW_FILES]}
     for filename, patch, chunk_index, chunk_total in work:
         report["chunks_reviewed"] += 1
         diagnostic = {"path": filename, "chunk": chunk_index, "total_chunks": chunk_total,
@@ -637,7 +658,8 @@ def main():
             print("[bounded-qwen] rejected finding:", diagnostic["rejection_reason"], flush=True)
             output_path.write_text(json.dumps(report, indent=2) + "\n")
             continue
-        marker = finding_marker(filename, finding)
+        # Count occurrences across the whole file's added lines, not just this chunk.
+        marker = finding_marker(filename, finding, occurrence(file_lines[filename], finding))
         if marker in prior:
             diagnostic["outcome"] = "duplicate"
             print("[bounded-qwen] already posted", flush=True)

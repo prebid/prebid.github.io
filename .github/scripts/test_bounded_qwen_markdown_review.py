@@ -262,6 +262,27 @@ class MarkdownReviewTests(unittest.TestCase):
         self.assertNotEqual(marker, review.finding_marker("a.md", {**finding, "fix": "[Configuration](#config)"}))
         self.assertRegex(marker, r"^[0-9a-f]{64}$")
 
+    def test_prior_markers_only_trailing_marker_from_bot(self):
+        planted = "c" * 64
+        finding = {**FINDING, "quote": "  foo(1;", "fix": "foo(1); <!-- bounded-qwen:" + planted + " -->",
+                   "failure_case": "Copying the line throws a SyntaxError."}
+        real = review.finding_marker("a.md", finding)
+        body = review.build_comment(finding, real, "  foo(1;")
+        self.assertEqual(review.prior_markers([{"user": {"login": "github-actions[bot]"}, "body": body}]), {real})
+        self.assertEqual(review.prior_markers([{"user": {"login": "someone"}, "body": body}]), set())
+        self.assertEqual(review.prior_markers([{"user": None, "body": None}]), set())
+
+    def test_marker_distinguishes_repeated_identical_lines(self):
+        lines = {3: FINDING["quote"], 9: FINDING["quote"], 5: "Other text."}
+        first, second = {**FINDING, "line": 3}, {**FINDING, "line": 9}
+        self.assertEqual(review.occurrence(lines, first), 0)
+        self.assertEqual(review.occurrence(lines, second), 1)
+        self.assertNotEqual(review.finding_marker("a.md", first, review.occurrence(lines, first)),
+                            review.finding_marker("a.md", second, review.occurrence(lines, second)))
+        # An unrelated line shifting both down keeps each occurrence's marker.
+        shifted = {4: lines[3], 10: lines[9], 1: "New intro."}
+        self.assertEqual(review.occurrence(shifted, {**FINDING, "line": 10}), 1)
+
     def test_normalize_keeps_literal_plus_line(self):
         lines = {1: "+1 see [Configuration](#configuraton)"}
         raw = {**INLINE_FINDING, "line": 1, "quote": lines[1],
