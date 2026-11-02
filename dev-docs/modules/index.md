@@ -198,10 +198,72 @@ a substitute for enforcing the user's privacy choices. Where consent or ID
 availability changes, use the current CMP or publisher signal and do not start
 an affected auction until its required modules are loaded.
 
-For self-hosted precompiled chunks (rather than npm imports), see the example
-below. Those scripts must match the Prebid core build and include any
-dependent chunks; loading another full `prebid.js` bundle onto an already
-initialized page is not a way to add a module.
+For self-hosted precompiled chunks (rather than npm imports), see
+[Self-hosted precompiled chunks](#self-hosted-precompiled-chunks). Those
+scripts must match the Prebid core build and include any dependent chunks;
+loading another full `prebid.js` bundle onto an already initialized page is
+not a way to add a module.
+
+### Load a user ID module after collecting an email (npm)
+
+{: .alert.alert-info :}
+**Use case:** some ID providers (for example UID2) build their ID from the
+user's email address, which a publisher only has after the user logs in,
+registers, or signs up for a newsletter. Most visitors never provide one, so
+there is no reason to ship that ID module to every page view. Load it only
+when the email becomes available, and include the resulting ID in later
+auctions.
+
+The `userId` core module is bundled up front; only the ID submodule is
+loaded on demand. An ID submodule registers itself when its import resolves,
+and adding its entry to `userSync.userIds` starts its ID lookup:
+
+```javascript
+import pbjs from 'prebid.js';
+import 'prebid.js/modules/userId';
+// Import consent management and any other modules needed on every page.
+pbjs.processQueue();
+
+// Call this from your login, registration, or newsletter sign-up handler.
+async function onUserEmailAvailable(email) {
+  try {
+    // The submodule registers with the userId module when the import resolves.
+    await import('prebid.js/modules/uid2IdSystem');
+  } catch (error) {
+    console.error('Could not load optional Prebid ID module', error);
+    return;
+  }
+
+  // setConfig replaces the whole userSync object, so keep existing settings.
+  const userSync = pbjs.getConfig('userSync') || {};
+  pbjs.setConfig({
+    userSync: {
+      ...userSync,
+      userIds: [
+        ...(userSync.userIds || []),
+        {
+          name: 'uid2',
+          params: {
+            serverPublicKey: 'YOUR_SERVER_PUBLIC_KEY',
+            subscriptionId: 'YOUR_SUBSCRIPTION_ID',
+            email
+          }
+        }
+      ]
+    }
+  });
+
+  // Resolves once the new ID is available; later auctions will include it.
+  await pbjs.refreshUserIds({ submoduleNames: ['uid2'] });
+}
+```
+
+Auctions that start before `refreshUserIds()` resolves run without the new
+ID; wait for it if the next auction should include it. Collecting an email
+does not replace consent: the ID module's storage and EID transmission are
+still subject to your consent management and activity control
+configuration. See the [User ID module](/dev-docs/modules/userId) and the
+ID provider's page for its parameters.
 
 ### Self-hosted precompiled chunks
 
