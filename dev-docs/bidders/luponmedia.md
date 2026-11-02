@@ -16,20 +16,20 @@ multiformat_supported: will-bid-on-any
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 The LuponMedia bidder adapter requires setup and approval from the LuponMedia support team, even for existing LuponMedia publishers. Please contact us at [info@luponmedia.com](mailto:info@luponmedia.com).
 
 Each ad unit sends an integration key issued by LuponMedia. All bids are returned under the `luponmedia` bidder code.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name  | Scope    | Description                     | Example  | Type     |
 |-------|----------|---------------------------------|----------|----------|
 | `key` | required | Integration key from LuponMedia | `'acme'` | `string` |
 
-### Banner
+## Banner
 
 ```javascript
 var adUnits = [{
@@ -39,7 +39,7 @@ var adUnits = [{
 }];
 ```
 
-### Outstream Video
+## Outstream Video
 
 Only outstream video is supported. Bids carry VAST XML and play in Prebid's outstream renderer inside the ad unit's div (its id must be the ad unit code), unless the ad unit sets its own `renderer`. Video and native ad units need their own key from LuponMedia.
 
@@ -61,7 +61,7 @@ var adUnits = [{
 }];
 ```
 
-### Native
+## Native
 
 ```javascript
 var adUnits = [{
@@ -81,7 +81,7 @@ var adUnits = [{
 }];
 ```
 
-### Multiple Bids
+## Multiple Bids
 
 The adapter may return several bids per ad unit, highest CPM first. To send more than the best `luponmedia` bid to the ad server, enable the `multibid` module:
 
@@ -91,7 +91,7 @@ pbjs.setConfig({
 });
 ```
 
-### User Sync
+## User Sync
 
 Enable iframe user syncs for `luponmedia`:
 
