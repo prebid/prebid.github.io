@@ -96,7 +96,7 @@ pbjs.setConfig({
 
 ## Testing
 
-The `prebid-test` publisher's `prebid-test-display` placement always bids a CPM of 2.50 EUR (unless a floor is above it) with an Aivertise banner, in sizes 300x250, 300x600, 320x50, 320x100, 320x480, 728x90, 970x250 and 1024x728 (desktop interstitial):
+The `prebid-test` publisher's `prebid-test-display` placement always bids a CPM of 2.50 EUR (unless a floor is above it) with an Aivertise banner, in sizes 300x250, 300x600, 320x50, 320x100, 320x480, 728x90, 970x250 and 1024x768 (desktop interstitial):
 
 ```javascript
 bids: [
