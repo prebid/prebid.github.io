@@ -44,7 +44,7 @@ Prebid.js picks a Safe Renderer and a top window renderer separately, with the s
 **Rule:** the publisher's `safeRenderer` (or `renderer`) at the MediaType level, otherwise at the Bidder level, otherwise at the AdUnit level. A publisher one with `backupOnly: true` is skipped when the bid comes with its own of the same kind, and the next level is tried instead. When no publisher one applies, the one provided with the bid, if any, is used.
 
 {: .alert.alert-info :}
-Before Prebid.js 11.47, a `safeRenderer`'s own `backupOnly` was ignored (the MediaType-level `renderer`'s `backupOnly` was applied instead), and a publisher renderer skipped for `backupOnly` did not fall through to the next level.
+Before Prebid.js 11.47: an AdUnit-level `renderer` took precedence over a Bidder-level one (Safe Renderers already used MediaType > Bidder > AdUnit); a `safeRenderer`'s own `backupOnly` was ignored, and the MediaType-level `renderer`'s `backupOnly` applied instead; and a publisher renderer skipped for `backupOnly` did not fall through to the next level.
 
 **Which one runs:** if the bid ends up with a Safe Renderer, from the publisher or from the bid, it is used and any top window renderer is ignored. Otherwise the top window renderer is used, if there is one (and `allowTopWindowRenderers` is not `false`). Otherwise Prebid.js falls back to the default rendering for the media type.
 
@@ -194,7 +194,7 @@ window.pbRenderInFrame = function ({ config, ...renderingData }) {
 |--------------+----------+---------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `url` | Required | String | URL to the renderer script that will be loaded. This script should create a renderer object in the global scope. |
 | `render` | Required | Function | Function that tells Prebid.js how to invoke the renderer script to render a bid. The function receives the bid object as a parameter. |
-| `backupOnly` | Optional | Boolean | if set to true, buyer or adapter renderer will be preferred |
+| `backupOnly` | Optional | Boolean | If `true`, used only when the bid doesn't provide its own renderer; otherwise the next level is tried (see [Priority Order](#priority-order)). |
 
 ### Special Cases
 
