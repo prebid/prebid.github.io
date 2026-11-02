@@ -154,7 +154,7 @@ pbjs.que.push(function() {
     pbjs.setConfig({
         debug: true,
         cache: {
-            url: '<https://my-pbs.example.com/cache>'
+            url: 'https://my-pbs.example.com/cache'
         }
     });
     pbjs.requestBids({

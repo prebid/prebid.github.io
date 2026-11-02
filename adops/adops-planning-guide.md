@@ -12,7 +12,10 @@ sbUUID: 3.2
 - TOC
 {: toc }
 
-There are several decisions you need to make as you’re planning out your Prebid implementation. The following diagram guides you through these decisions. Click on the boxes to navigate to detailed information about each one. (See below for an overview of these options.)
+{: .alert.alert-info :}
+This guide covers Prebid used as a **header bidding library**, where your ad server makes the final decision and needs line items for Prebid's bids. If you use Prebid as a **complete bidding library**, where your ad server (if any) bids into Prebid and Prebid chooses the winner, most of these steps (send all bids vs. top price, line item creation, price granularity) don't apply. See [The ad server bids into Prebid](/adops/ad-server-integration.html#the-ad-server-bids-into-prebid) instead.
+
+There are several decisions you need to make as you’re planning out your Prebid implementation as a header bidding library. The following diagram guides you through these decisions. Click on the boxes to navigate to detailed information about each one. (See below for an overview of these options.)
 
 <img src="/assets/images/ad-ops/planning/ad-ops-planning.png" alt="Ad Ops Decisions" usemap="#decisions">
 
@@ -45,7 +48,7 @@ Notes:
 
 We’ve presented the decision steps in what we believe is a logical order, but you can go in any order that makes sense to you and your implementation. Here is a brief overview of each step so you can decide where to start.
 
-[Ad Server Integration](/adops/ad-server-integration.html): Determine what type of support your ad server has for header bidding and whether you want to add that into your configuration.
+[Ad Server Integration](/adops/ad-server-integration.html): Decide whether Prebid works as a header bidding library, with your ad server making the final decision, or as a complete bidding library, with your ad server bidding into Prebid. Then determine what type of support your ad server has for that approach.
 
 [Send All Bids vs Top Price](/adops/send-all-vs-top-price.html): You can choose to send all bids that are received from header bidding demand partners, or send only the top bid. Learn the advantages and disadvantages of each.
 

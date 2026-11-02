@@ -13,6 +13,9 @@ sidebarType: 4
 
 {: .no_toc }
 
+{: .alert.alert-warning :}
+Ad pod (long-form) video support was removed in Prebid.js 11.0. This page applies to Prebid.js 10.x and earlier only.
+
 If you’re new to header bidding and Prebid review the following to get a general understanding of Prebid.js.
 
 - [What Is Prebid?](/overview/intro.html)
@@ -216,10 +219,6 @@ Below is an example of a bid response for deals.
   ]
 }
 ```
-
-### Examples
-
-See [Prebid Video Examples](/examples/video/long-form/pb-ve-lf-freewheel.html) for examples of long-form video ads.
 
 ## Further Reading
 

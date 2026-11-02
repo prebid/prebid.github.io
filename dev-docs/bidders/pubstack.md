@@ -5,7 +5,7 @@ description: Prebid Pubstack Bidder Adapter
 biddercode: pubstack
 prebid_member: true
 pbjs: true
-pbs: true
+pbs: false
 gvl_id: 1408
 media_types: banner, video, native
 multiformat_supported: will-bid-on-any

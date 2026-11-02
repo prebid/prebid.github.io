@@ -66,6 +66,12 @@ To get started editing the site and seeing your changes, clone this repo and ent
 JEKYLL_ENV=production bundle exec jekyll serve --watch --incremental
 ```
 
+Site search uses [Pagefind](https://pagefind.app/), which indexes the built site. To try search locally, build the index once (with Node.js installed) while `jekyll serve` is running; Jekyll keeps the `_site/pagefind` folder between rebuilds:
+
+```bash
+npx -y pagefind --site _site
+```
+
 You should see output that looks something like this:
 
 ```bash
@@ -89,7 +95,7 @@ Open the `Server address` URL in your browser, and you should see a locally runn
 
 ## Checking Links
 
-CI checks internal links and anchors in the built site with [lychee](https://lychee.cli.rs/), configured in [lychee.toml](lychee.toml). To run the same check locally, [install lychee](https://lychee.cli.rs/installation/) and run:
+CI checks internal links and anchors in the built site with [lychee](https://lychee.cli.rs/), configured in [lychee.toml](lychee.toml). To run the same check locally, [install lychee](https://lychee.cli.rs/guides/getting-started/) and run:
 
 ```bash
 npm run linkcheck
@@ -121,6 +127,15 @@ This means an adaptor is not available to download from Prebid.org as soon as th
 ## Liquid Templating
 
 * [jekyll - check for non empty](https://michaelcurrin.github.io/dev-cheatsheets/cheatsheets/jekyll/liquid/conditionals/non-empty.html)
+
+## Markdown for AI Agents
+
+Every page is also published as its raw Markdown source: replace `.html` in a page's URL with `.md`, for example
+<https://docs.prebid.org/dev-docs/bidders/msft.md>. `_plugins/raw_markdown_generator.rb` copies the sources at build time.
+
+* [/llms.txt](https://docs.prebid.org/llms.txt) indexes all of them by section, following [llmstxt.org](https://llmstxt.org). It's generated from each page's `title`, `description` and `biddercode` front matter, so keep those accurate.
+* Each page's `<head>` links its Markdown with `<link rel="alternate" type="text/markdown">`, and documentation pages (not the homepage) show a "View as Markdown" link above the content.
+* Liquid tags such as `{% include %}` are not expanded in the `.md` files, so put content that agents need in the page itself rather than in an include.
 
 ## Codex
 

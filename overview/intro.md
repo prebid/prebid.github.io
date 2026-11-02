@@ -12,7 +12,7 @@ sidebarType: 0
 - TOC
 {:toc}
 
-Prebid is the leading header bidding solution. It is free and fully open source, available to any publisher who wants to implement header bidding. This introduction describes Prebid and its benefits. For a general overview of header bidding, see [Introduction to Header Bidding](/overview/intro-to-header-bidding.html).
+Prebid is the leading header bidding solution. It is free and fully open source, available to any publisher who wants to implement header bidding. It is most often used as a **header bidding library**: Prebid collects bids before the ad server is called, and the ad server makes the final decision. It can also be used as a **complete bidding library**, as the decision layer on the page. In that case demand sources, including the publisher's ad server if there is one, bid into Prebid, and Prebid chooses the winning ad. See [Ad Server Integration](/adops/ad-server-integration.html). This introduction describes Prebid and its benefits. For a general overview of header bidding, see [Introduction to Header Bidding](/overview/intro-to-header-bidding.html).
 
 {: .alert.alert-info :}
 If you’re looking for a marketing-level overview of the Prebid software and organization, including product features, membership, events, and so on, visit [Prebid.org](https://prebid.org/).
@@ -50,7 +50,7 @@ The Prebid.org suite of products leads the industry in providing header bidding 
 
 Prebid is more than a product; it’s a product suite, a community, and an independent organization.
 
-- **Product Suite:** A free and open source suite of software products that enables publishers to implement header bidding on websites and mobile apps.
+- **Product Suite:** A free and open source suite of software products that enables publishers to implement header bidding, or to run the complete auction, on websites and mobile apps.
 - **Community:** Our community is comprised of developers from companies across the ad tech industry who maintain and improve our products.
 - **Organization:** Prebid.org is an active membership of leaders within the ad tech industry that promotes Prebid products and works with the ad tech community to define and implement enhanced solutions. For more about the organization, see Prebid.org.
 

@@ -22,17 +22,17 @@ Dr. Prebid is a validation and troubleshooting app for publishers implementing P
 
 ## Get the App
 
-This app is available for iOS and Android:
+This app was available for iOS and Android:
 
-- [Download for iOS](https://itunes.apple.com/us/app/dr-prebid/id1442614692?mt=8)  
+- Download for iOS  
   System Requirements: Requires iOS 12.0 or later. Compatible with iPhone, iPad, and iPod touch.
 
-- [Download for Android](https://play.google.com/store/apps/details?id=org.prebid.validation.drprebid)  
+- Download for Android  
   System Requirements: Requires Android 4.2 and up.
 
 Dr. Prebid is an open source app. You can find the source on the Prebid GitHub site:
 
-- [Source for iOS](https://github.com/prebid/prebid-mobile-ios/tree/master/tools/PrebidValidator)
+- [Source for iOS](https://github.com/prebid/prebid-mobile-ios/tree/652271cc10a774e152435cff58a0f4e23eea5725/tools/PrebidValidator)
 - [Source for Android](https://github.com/prebid/prebid-mobile-android/tree/master/tools/drprebid)
 
 **Review the [Prebid.org Dr. Prebid Terms of Use]({{site.github.url}}/prebid-mobile/dr-prebid-tou.html).**
@@ -146,9 +146,9 @@ After you’ve entered all the values on the **Setup** screen, tap **Run Tests**
 
 Three validation tests are performed: Ad Server Setup, Real-Time Demand, and End-to-End SDK Configuration. Each test will be displayed with either a green check mark (passed) or a red X (failed).
 
-| Passed        |     | Failed      |
-|:-----------:| --- |:-----------:|
-| ![Dr. Prebid Validation Test Passed]({{site.baseurl}}/assets/images/prebid-mobile/dr-prebid-pass.png) |     | ![Dr. Prebid Validation Test Failed]({{site.baseurl}}/assets/images/prebid-mobile/dr-prebid-fail.png) |
+| Passed | | Failed |
+| :---: | --- | :---: |
+| ![Dr. Prebid Validation Test Passed]({{site.baseurl}}/assets/images/prebid-mobile/dr-prebid-pass.png) | | ![Dr. Prebid Validation Test Failed]({{site.baseurl}}/assets/images/prebid-mobile/dr-prebid-fail.png) |
 
 <br />
 

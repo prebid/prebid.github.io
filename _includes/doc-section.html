@@ -1,0 +1,24 @@
+{%- comment -%}
+  Assigns doc_section, the docs section of the page at include.url, for the Pagefind "section" filter and llms.txt.
+  Usage: {% include doc-section.html url=page.url %}
+{%- endcomment -%}
+{%- assign ds_url = include.url -%}
+{%- if ds_url contains '/dev-docs/bidders/' -%}
+  {%- assign doc_section = 'Bidders' -%}
+{%- elsif ds_url contains '/dev-docs/analytics/' -%}
+  {%- assign doc_section = 'Analytics adapters' -%}
+{%- elsif ds_url contains '/dev-docs/modules/' -%}
+  {%- assign doc_section = 'Modules' -%}
+{%- elsif ds_url contains '/prebid-server/' -%}
+  {%- assign doc_section = 'Prebid Server' -%}
+{%- elsif ds_url contains '/prebid-mobile/' -%}
+  {%- assign doc_section = 'Prebid Mobile' -%}
+{%- elsif ds_url contains '/prebid-video/' or ds_url contains '/examples/video/' -%}
+  {%- assign doc_section = 'Video' -%}
+{%- elsif ds_url contains '/adops/' -%}
+  {%- assign doc_section = 'Ad Ops' -%}
+{%- elsif ds_url contains '/dev-docs/' or ds_url contains '/prebid/' or ds_url contains '/troubleshooting/' or ds_url contains '/debugging/' or ds_url contains '/features/' -%}
+  {%- assign doc_section = 'Prebid.js' -%}
+{%- else -%}
+  {%- assign doc_section = 'General' -%}
+{%- endif -%}
