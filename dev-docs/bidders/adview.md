@@ -2,7 +2,7 @@
 layout: bidder
 title: AdView
 description: Prebid AdView Bidder Adapter
-biddercode: AdView
+biddercode: adview
 tcfeu_supported: true
 gvl_id: 1022
 usp_supported: true
@@ -23,14 +23,14 @@ ortb_blocking_supported: true
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 The Example Bidding adapter requires setup before beginning. Please contact us at <partner@adview.com>
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description  | Example   | Type     |
-|---------------|----------|--------------|-----------|----------|
-| `placementId` | required | Placement ID | `'posid00001'` | `string` |
-| `accountId` | required | Account ID | `'accountid01'` | `string` |
+| Name          | Scope    | Description  | Example         | Type     |
+|---------------|----------|--------------|-----------------|----------|
+| `placementId` | required | Placement ID | `'posid00001'`  | `string` |
+| `accountId`   | required | Account ID   | `'accountid01'` | `string` |

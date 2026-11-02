@@ -1,6 +1,6 @@
 ---
 layout: page_v2
-title: Prebid SDK Utilities - Android
+title: Prebid SDK Utilities - iOS
 description: Utilities used in conjuntion with the Prebid SDK
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile
@@ -19,7 +19,7 @@ This page will store any utilities that can used in conjuntion with the Prebid S
 
 Prebid SDK provides a function `findPrebidCreativeSize` to address a bug in the Google Ad Manager ad server (described in [this Google forum thread](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!category-topic/google-admob-ads-sdk/ios/648jzAP2EQY)) where under certain situations ads fail to render.
 
-It is recommended all Google Ad Manager integrations resize all ads served based on the winning Prebid creative size `findPrebidCreativeSize`. Functionally speaking the Prebid SDK resizes ad slots based on the [adViewDidReceiveAd event](https://developers.google.com/admob/ios/banner) (when an ad is received) to determine the winning Prehbid ad size to determine how to resize the ad slot.
+For GAM banner integrations, call `findPrebidCreativeSize` from [`bannerViewDidReceiveAd`](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/banner) after each successful banner load. The utility searches the creative’s HTML for Prebid size information. If found, use the success callback to resize the ad view accordingly. Size resolution may fail when GAM serves a non-Prebid creative or when the required size information cannot be extracted from a Prebid creative. The failure callback does not distinguish between these cases; leave the ad view’s current size unchanged.
 
 Usage example:
 
@@ -28,23 +28,24 @@ func bannerViewDidReceiveAd(_ bannerView: GoogleMobileAds.BannerView) {
     AdViewUtils.findPrebidCreativeSize(bannerView, success: { size in
         guard let bannerView = bannerView as? AdManagerBannerView else { return }
 
-        // In the case of Prebid's line item - resize te ad view
+        // Resize the ad view using the resolved Prebid creative size.
         bannerView.resize(adSizeFor(cgSize: size))
-    }, failure: { (error) in
-        PrebidDemoLogger.shared.error("Error occurring during searching for Prebid creative size: \(error)")
+    }, failure: { error in
+        // Size resolution may fail for a non-Prebid creative served by GAM,
+        // or when size information cannot be extracted from a Prebid creative.
     })
 }
 {% endcapture %}
 {% capture gma11 %}func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
 
-    // Determine the kind of winning line item
     AdViewUtils.findPrebidCreativeSize(bannerView, success: { size in
         guard let bannerView = bannerView as? GAMBannerView else { return }
         
-        // In the case of Prebid's line item - resize te ad view
+        // Resize the ad view using the resolved Prebid creative size.
         bannerView.resize(GADAdSizeFromCGSize(size))
-    }, failure: { (error) in
-        PrebidDemoLogger.shared.error("Error occurring during searching for Prebid creative size: \(error)")
+    }, failure: { error in
+        // Size resolution may fail for a non-Prebid creative served by GAM,
+        // or when size information cannot be extracted from a Prebid creative.
     })
 }
 {% endcapture %}

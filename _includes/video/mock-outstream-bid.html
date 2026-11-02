@@ -1,0 +1,36 @@
+<!-- Simulated outstream video bid for the examples, so they don't depend on a live bidder.
+     With no vastXml or vastUrl, the debugging module adds a demo VAST and an outstream renderer. -->
+<script>
+    window.pbjs = window.pbjs || {};
+    pbjs.que = pbjs.que || [];
+    const enableMockOutstreamBid = () => pbjs.que.push(() => {
+      pbjs.setConfig({
+        debugging: {
+          enabled: true,
+          intercept: [
+            {
+              when: {},
+              then: {
+                cpm: 1,
+                mediaType: "video"
+              }
+            }
+          ]
+        }
+      });
+    });
+
+    enableMockOutstreamBid();
+
+    // A debug override persists in sessionStorage unless explicitly disabled.
+    window.addEventListener('pagehide', () => {
+      if (typeof pbjs.setConfig === 'function') {
+        pbjs.setConfig({ debugging: { enabled: false } });
+      }
+    });
+
+    // A bfcache restore does not rerun scripts, so reapply the mock on return.
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) enableMockOutstreamBid();
+    });
+</script>

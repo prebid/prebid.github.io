@@ -9,6 +9,9 @@ sidebarType: 3
 # FreeWheel Guide for Premium Long-Form Video
 
 {: .alert.alert-warning :}
+The Prebid.js FreeWheel and ad pod (long-form) modules were removed in Prebid.js 11.0. This guide applies to Prebid.js 10.x and earlier only.
+
+{: .alert.alert-warning :}
 This guide is not written, maintained, or endorsed by Freewheel. Freewheel recommends speaking to your account team before implementing any header-bidding setup to ensure full implications for direct-sold ad delivery, forecasting, and reporting is understood.
 
 {: .alert.alert-warning :}

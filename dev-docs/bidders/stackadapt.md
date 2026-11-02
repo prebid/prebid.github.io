@@ -143,7 +143,7 @@ Below are video ad unit examples with required and optional parameters:
                         minduration: 1,
                         maxduration: 60,
                         api: [1, 2],
-                        playback_method: [1],
+                        playbackmethod: [1],
                         plcmt: 1,
                         startdelay: 1,
                         pos: 1,

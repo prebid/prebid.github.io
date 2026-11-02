@@ -36,6 +36,8 @@ Dynamic creatives require Prebid.js version 8.36 or higher.
 
 Set up the creative following [this example](https://github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/x-domain/creative.html). If you are not using GAM, replace the macros in the second `script` tag with appropriate equivalents.
 
+Since Prebid.js 11.27, any fields passed to `pbRender` besides `adId` and `pubUrl` are forwarded to Prebid.js as render options. The example passes the GAM view-tracking URL as `viewUrl: "%%VIEW_URL_UNESC%%"`; Prebid.js stores it on the rendered bid as `bid.viewUrl` but does not fire it.
+
 To render native ads, you also need to include the [nativeRendering](/dev-docs/modules/nativeRendering.html) module in your Prebid.js bundle.
 
 ## Further reading

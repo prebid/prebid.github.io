@@ -43,7 +43,7 @@ Prebid Mobile introduces a way for publishers to add a convenient [Prebid-owned 
 Documentation:
 
 - [iOS Global Arbitrary OpenRTB](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#arbitrary-openrtb)  
-- [iOS Impression-level Arbitrary OpenRTB](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.md#arbitrary-openrtb)  
+- [iOS Impression-level Arbitrary OpenRTB](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#arbitrary-openrtb)  
 - [Android Global Arbitrary OpenRTB](/prebid-mobile/pbm-api/android/pbm-targeting-android.html#arbitrary-openrtb)  
 - [Android Impression-level Arbitrary OpenRTB](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#arbitrary-openrtb)
 

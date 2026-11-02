@@ -4,7 +4,7 @@ title: Nuclion
 description: Prebid Nuclion Bidder Adaptor
 biddercode: nuclion
 pbjs: true
-pbs: false
+pbs: true
 media_types: video, banner
 userIds: all
 fpd_supported: false

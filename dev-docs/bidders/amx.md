@@ -22,16 +22,18 @@ gvl_id: 737
 sidebarType: 1
 ---
 
-### Bid Params
+{% include dev-docs/reports-timeout-events.md endpoint="1x1.a-mo.net/e" data="the page domain, URL and referrer, a user ID, the Prebid.js version and, for each timed-out bid request, its tag ID, ad unit, bid and transaction IDs, size and timeout" %}
+
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
-|-------------|----------|-----------------------------------------------------------------|---------------------------------|----------|
+| --- | --- | --- | --- | --- |
 | `tagId` | required | Tag ID | `'cHJlYmlkLm9yZw'` | `string` |
-| `testMode` | optional | Activate 100% fill ads | `true` | `boolean`|
+| `testMode` | optional | Activate 100% fill ads | `true` | `boolean` |
 | `adUnitId` | optional | Ad Unit ID used in reporting. Will default to `bid.adUnitCode` | `'sticky_banner'` | `string` |
 
-### Bidder Settings
+## Bidder Settings
 
 The AMX RTB bid adapter uses local storage. Please add `storageAllowed` in your bidder settings.
 
@@ -46,7 +48,7 @@ pbjs.bidderSettings = {
 };
 ```
 
-### Test Parameters
+## Test Parameters
 
 To enable 100% fill test ads, you can use the following `params`:
 
@@ -61,7 +63,7 @@ This will produce a bid at $10 with a test creative.
 
 Note that the `tagId` is case-sensitive. Do not use `cHJlYmlkLm9yZw` in production environments: this ID is for testing only.
 
-### First Party Data
+## First Party Data
 
 From Prebid.js >= 4.30, publishers can use the `ortb2` configuration parameter to provide First Party Data. We accept all standard OpenRTB fields for both:
 
@@ -70,7 +72,7 @@ From Prebid.js >= 4.30, publishers can use the `ortb2` configuration parameter t
 
 Note that all fields are optional. For contextual data (e.g. categories), standard IAB taxonomies are supported. We do not support passing first party data via bid parameters.
 
-#### Example - Setting ortb2.site and ortb2.user fields
+### Example - Setting ortb2.site and ortb2.user fields
 
 ```javascript
 pbjs.setBidderConfig({

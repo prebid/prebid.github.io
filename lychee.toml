@@ -1,0 +1,19 @@
+# Link checker configuration, used by CI and `npm run linkcheck`.
+# Checks internal links in the built site (_site); external links are not checked.
+
+offline = true
+include_fragments = "full"
+no_progress = true
+
+# GitHub Pages serves /foo/bar as /foo/bar.html
+fallback_extensions = ["html"]
+
+# node_modules is copied into _site via `include` in _config.yml
+exclude_path = ["^_site/node_modules/"]
+
+exclude = [
+  # protocol-relative URLs are external
+  '^file://[^/]',
+  # SDK API reference, deployed separately from this repo
+  '/prebid-mobile-(ios|android)/',
+]

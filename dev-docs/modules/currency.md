@@ -112,6 +112,8 @@ bids. See the `bidderCurrencyDefault` config setting below for an interim soluti
 
 The platform will detect whether a conversion is needed from the bid currency to the ad server currency and is pretty smart about using the conversion file to do so: if a direct conversion isn't available, it will try to find a one-hop conversion. e.g. if the bid is in AUD and needs to be converted to BRL, it could convert to AUD-USD first, then USD-BRL.
 
+Since Prebid.js 11.43, the deal amounts in a bid's [deal metadata](/dev-docs/bidder-adaptor.html#bidder-adaptor-deal-metadata) (`meta.deal.cpm` and `meta.deal.priorityAdjustedCpm`) are converted at the same rate as the bid's `cpm`, so they stay in the bid's currency.
+
 ### 4. Mapping Bids to Price Bucket
 
 All price granularities, including custom granularities, are scaled by the value of

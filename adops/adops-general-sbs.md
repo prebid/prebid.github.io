@@ -18,7 +18,7 @@ sidebarType: 3
 Prebid.org provides step-by-step instructions for manually configuring Prebid in the following ad servers:
 
 * [Google Ad Manager](/adops/step-by-step.html)
-* [Xandr Monetize Ad Server](/adops/setting-up-prebid-with-the-microsoft-ad-server.html)
+* [Xandr Monetize Ad Server](/adops/setting-up-prebid-with-the-appnexus-ad-server.html)
 * [Freewheel](/adops/setting-up-prebid-video-in-freewheel.html)
 * [Smart Ad Server](/adops/setting-up-prebidjs-with-Smart-Ad-Server.html)
 
@@ -106,7 +106,7 @@ For example, for a line item with a $10.00 CPM as the price, a competitive exclu
 For deals, the price bucket portion of this value will contain the dealID if deals are prioritized. See [Getting Started with Long Form Video](/prebid-video/video-long-form.html#configuration) for more information.
 
 {: .alert.alert-info :}
-Engineers will need to include the [Adpod module](/dev-docs/modules/adpod.html) and the [Category Translation module](/dev-docs/modules/categoryTranslation.html) in Prebid.js to implement long-form video bidding.
+Ad pod (long-form) video support was removed in Prebid.js 11.0. With Prebid.js 10.x and earlier, engineers will need to include the [Adpod module](/dev-docs/modules/adpod.html) and the [Category Translation module](/dev-docs/modules/categoryTranslation.html) in Prebid.js to implement long-form video bidding.
 
 ### Creative-level Targeting
 
