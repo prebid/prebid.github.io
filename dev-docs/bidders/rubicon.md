@@ -26,11 +26,11 @@ privacy_sandbox: paapi, topics
 sidebarType: 1
 ---
 
-### Registration
+## Registration
 
 For both Prebid.js and Prebid Server, the Rubicon Project adapter requires setup and approval from the Magnite team, even for existing accounts. Please reach out to your account manager for more information.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name         | Scope              | Description                                                                                                                 | Example                                                                             | Type             |
@@ -49,7 +49,7 @@ For both Prebid.js and Prebid Server, the Rubicon Project adapter requires setup
 | pchain | optional | deprecated option that was an early alternative to schain | "GAM:11111-reseller1:22222" | string |
 | `bidonmultiformat` | optional | By default, the Magnite exchange will bid on only one media type in this order: video, banner, native. Setting this flag to true will cause it to bid on all mediatypes. | `boolean` | `true` |
 
-#### First Party Data
+### First Party Data
 
 In release 4.30 and later, publishers should use the `ortb2` method of setting First Party Data. The following fields are supported:
 
@@ -82,7 +82,7 @@ pbjs.setConfig({
       }
     }
   }
-};
+});
 ```
 
 Example of first party data available only to the Rubicon Project bidder. Applies across all ad units.
@@ -109,7 +109,7 @@ pbjs.setBidderConfig({
       }
     }
   }
-};
+});
 ```
 
 For Prebid.js 4.29 and before, use the bidder specific AdUnit parameters noted above:
@@ -134,7 +134,7 @@ var adUnit = {
 };
 ```
 
-#### ORTB Blocking
+### ORTB Blocking
 
 Rubicon supports passing up to 50 domains in `badv` for anything hitting Prebid Server, which includes these scenarios:
 
@@ -153,43 +153,43 @@ pbjs.setConfig({
 });
 ```
 
-### Media Types
+## Media Types
 
-#### Video
+### Video
 
-##### mediaTypes.video
+#### mediaTypes.video
 
 The following video parameters are supported here so publishers may fully declare their video inventory. These apply to both instream and outstream.
 
 {: .table .table-bordered .table-striped }
-| Name           | Scope              | Description                                                                                                                                                                                              | Example | Type      |
-|----------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----------|
-| context | required | instream or outstream |"outstream" | string |
-| playerSize| required | width, height of the player in pixels | [640,360] - will be translated to w and h in bid request | array<integers> |
-| mimes | required | List of content MIME types supported by the player (see openRTB v2.5 for options) | ["video/mp4"]| array<string>|
-| protocols | required | Supported video bid response protocol values <br />1: VAST 1.0 <br />2: VAST 2.0 <br />3: VAST 3.0 <br />4: VAST 1.0 Wrapper <br />5: VAST 2.0 Wrapper <br />6: VAST 3.0 Wrapper <br />7: VAST 4.0 <br />8: VAST 4.0 Wrapper | [2,3,5,6] | array<integers>|
+| Name | Scope | Description | Example | Type |
+| ---------------- | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ----------- |
+| context | required | instream or outstream | "outstream" | string |
+| playerSize | required | width, height of the player in pixels | [640,360] - will be translated to w and h in bid request | array<integers> |
+| mimes | required | List of content MIME types supported by the player (see openRTB v2.5 for options) | ["video/mp4"] | array<string> |
+| protocols | required | Supported video bid response protocol values <br />1: VAST 1.0 <br />2: VAST 2.0 <br />3: VAST 3.0 <br />4: VAST 1.0 Wrapper <br />5: VAST 2.0 Wrapper <br />6: VAST 3.0 Wrapper <br />7: VAST 4.0 <br />8: VAST 4.0 Wrapper | [2,3,5,6] | array<integers> |
 | linearity | required | OpenRTB2 linearity. 1: linear (in-stream ad), 2: non-linear (overlay ad) | 1 | integer |
 | maxduration | recommended | Maximum video ad duration in seconds. | 30 | integer |
 | minduration | recommended | Minimum video ad duration in seconds | 6 | integer |
-| playbackmethod | recommended | Playback methods that may be in use. Only one method is typically used in practice. (see openRTB v2.5 section 5.10 for options)| [2]| array<integers> |
-| api | optional | Supported API framework values: <br />1: VPAID 1.0 <br />2: VPAID 2.0 <br />3: MRAID-1 <br />4: ORMMA <br />5: MRAID-2 | [2] |  array<integers> |
+| playbackmethod | recommended | Playback methods that may be in use. Only one method is typically used in practice. (see openRTB v2.5 section 5.10 for options) | [2] | array<integers> |
+| api | optional | Supported API framework values: <br />1: VPAID 1.0 <br />2: VPAID 2.0 <br />3: MRAID-1 <br />4: ORMMA <br />5: MRAID-2 | [2] | array<integers> |
 | skip | optional | Indicates if the player will allow the video to be skipped, where 0 = no, 1 = yes. | 1 | integer |
-| skipafter| optional | Number of seconds a video must play before skipping is enabled; only applicable if the ad is skippable. | 6 | integer|
+| skipafter | optional | Number of seconds a video must play before skipping is enabled; only applicable if the ad is skippable. | 6 | integer |
 | minbitrate | optional | Minimum bit rate in Kbps. | 300 | integer |
 | maxbitrate | optional | Maximum bit rate in Kbps. | 9600 | integer |
 | startdelay | recommended | Indicates the start delay in seconds for pre-roll, mid-roll, or post-roll ad placements.<br /> >0: Mid-Roll (value indicates start delay in second)<br /> 0: Pre-Roll<br />-1: Generic Mid-Roll<br />-2: Generic Post-Roll | 0 | integer |
 | placement | recommended | Placement type for the impression. (see OpenRTB v2.5 section 5.9 for options) | 1 | integer |
 | plcmt | recommended | Placement type for the impression. (See [OpenRTB v2.6](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/develop/AdCOM%20v1.0%20FINAL.md) Plcmt Subtypes - Video) | 1 | integer |
 
-##### bids.params.video
+#### bids.params.video
 
 The following Rubicon Project-specific video parameters are supported:
 
 {: .table .table-bordered .table-striped }
-| Name           | Scope              | Description                                                                                                                                                                                              | Example | Type      |
-|----------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----------|
-| `size_id`      | optional |  Integer indicating the Rubicon Project video ad format ID. If not set, will be inferred from mediaTypes.video.context, placement, startDelay | `201`   | `integer` |
-| `language`     | recommended | Indicates the language of the content video, in ISO 639-1/alpha2. Highly recommended for successful monetization for pre-, mid-, and post-roll video ads. Not applicable for interstitial and outstream. | `'en'`  | `string`  |
+| Name | Scope | Description | Example | Type |
+| ---------------- | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ----------- |
+| `size_id` | optional | Integer indicating the Rubicon Project video ad format ID. If not set, will be inferred from mediaTypes.video.context, placement, startDelay | `201` | `integer` |
+| `language` | recommended | Indicates the language of the content video, in ISO 639-1/alpha2. Highly recommended for successful monetization for pre-, mid-, and post-roll video ads. Not applicable for interstitial and outstream. | `'en'` | `string` |
 
 Here's a video example for Prebid.js 2.5 or later:
 
@@ -227,11 +227,11 @@ We recommend discussing video demand with your Magnite account representative.
 
 Lists of values are in the [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) documentation as referenced above.
 
-##### Outstream Video
+#### Outstream Video
 
 As of Prebid.js 4.37 Magnite's Rubicon Project adapter supports outstream video in two ways: using your own renderer or using ours. See the [Prebid.org Outstream documentation](/dev-docs/show-outstream-video-ads.html) for more information on using your own renderer.
 
-##### Outstream Renderer
+#### Outstream Renderer
 
 The Magnite outstream renderer is a JavaScript tag that will load our outstream video player and render when it is 50% or more in view, pause when it’s more than 50% out of view, and close when the ad has completed playing.
 
@@ -251,7 +251,7 @@ pbjs.setConfig({
 });
 ```
 
-#### Native
+### Native
 
 Note: the client-side adapter supports native as of PBJS 7.39.
 
@@ -259,7 +259,7 @@ We recommend using the ORTB Native spec 1.2, but do support versions 1.0 and 1.1
 
 {: .table .table-bordered .table-striped }
 | Native Version | Required Fields |
-|----------------|-----------------|
+| ---------------- | ----------------- |
 | 1.0 and 1.1 | layout, adunit, assets |
 | 1.2 | context, plcmttype, assets, eventtrackers. privacy is a recommended field. |
 
@@ -302,16 +302,16 @@ var nativeAdUnit = {
 };
 ```
 
-### Setting up the Prebid Server Adapter
+## Setting up the Prebid Server Adapter
   
 If you're a Prebid Server host company looking to enable the Rubicon server-side adapter, you'll need to contact your Magnite account team. They will provide:
 
 * a Magnite DV+ XAPI login and password that you'll place in the PBS config
 * a partner code you can use for cookie-syncing with Magnite's service
   
-### Configuration Options
+## Configuration Options
 
-#### Single-Request
+### Single-Request
 
 By default, the Rubicon Project adapter sends one request to rubiconproject.com for each AdUnit. For example, if there are 4 PBJS AdUnits defined on the page, you'll see 4 calls out to rubiconproject.com/fastlane.json.
 
@@ -325,7 +325,7 @@ pbjs.setConfig({
 
 <a name="rubicon-revenue-type"></a>
 
-#### Net Revenue
+### Net Revenue
 
 Bids through the Magnite Exchange are by default 'net'.  For certain use cases it is possible for publishers to define a bid as either 'net' or 'gross'.  In either case the Rubicon platform does not signal externally to other systems either bid state.  
 
@@ -337,7 +337,7 @@ It’s important to note that what the Rubicon Prebid bid adapter reports is not
 pbjs.setConfig({ rubicon: {netRevenue: false} });
 ```
 
-### Notes
+## Notes
 
 1. There can only be one siteId and zoneId in an AdUnit bid. To get bids on multiple sitesIds or zoneIds, just add more 'rubicon' entries in the bids array.
 2. PAAPI and Topics support released in PBJS 8.23
