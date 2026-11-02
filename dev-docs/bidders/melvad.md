@@ -42,7 +42,7 @@ Prebid.js and Prebid Server take different parameters.
 
 The adapter sends one OpenRTB 2.5 request per auction as `text/plain` without cookies, so no preflight is made. Video bids are returned as `vastXml`; set `cache.allowVastXmlOnly` when the player takes the XML directly. The adapter calls the win and billing URLs of a bid on the `bidWon` and `billable` events and runs no user sync of its own.
 
-Melvad bids in the currency of the placement. Set `currency.adServerCurrency` to that currency (RUB for the test placements below), or load the Prebid currency module so the bids can be converted.
+Melvad bids in the ad server currency of the request: USD, EUR, GBP or RUB.
 
 The user is taken from first party data (`ortb2.user.buyeruid`); without it the request gets no bid.
 
@@ -50,7 +50,6 @@ The user is taken from first party data (`ortb2.user.buyeruid`); without it the 
 
 ```javascript
 pbjs.setConfig({
-  currency: { adServerCurrency: 'RUB' },
   cache: { allowVastXmlOnly: true },
   ortb2: { user: { buyeruid: 'prebid-test-user' } }
 });
