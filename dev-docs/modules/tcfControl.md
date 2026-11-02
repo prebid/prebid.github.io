@@ -132,15 +132,16 @@ async function configureCustomVendorBeforeFirstAuction() {
     const existing = pbjs.getConfig('consentManagement') || {};
     const gdpr = existing.gdpr || {};
 
-    // Match the default enforcement rules when none were explicitly set.
-    // If rules are already configured, retain them and their options.
-    const defaults = ['storage', 'basicAds', 'personalizedAds',
-      'measurement', 'transmitPreciseGeo'].map(purpose => ({
-      purpose,
-      enforcePurpose: true,
-      enforceVendor: true
-    }));
-    const rules = (gdpr.rules || defaults).map(rule => {
+    // Prebid.js applies the default rule to any purpose missing from
+    // gdpr.rules, so add that default before excepting the vendor. Rules that
+    // are already configured keep their options.
+    const configured = [...(gdpr.rules || [])];
+    exceptionPurposes.forEach(purpose => {
+      if (!configured.some(rule => rule.purpose === purpose)) {
+        configured.push({ purpose, enforcePurpose: true, enforceVendor: true });
+      }
+    });
+    const rules = configured.map(rule => {
       if (!exceptionPurposes.includes(rule.purpose)) {
         return rule;
       }
@@ -167,7 +168,7 @@ async function configureCustomVendorBeforeFirstAuction() {
 configureCustomVendorBeforeFirstAuction();
 ```
 
-The `storage` exception is included for a custom bidder that needs device access: without it, Purpose 1's vendor check can still block cookies or local storage despite the custom-vendor opt-in. All three `softVendorExceptions` continue to require the relevant TCF purpose signal; the example preserves any other rules and exceptions already configured. Adjust the list of purposes to the activities that the custom module actually performs, with legal review.
+The `storage` exception is included for a custom bidder that needs device access: without it, Purpose 1's vendor check can still block cookies or local storage despite the custom-vendor opt-in. All three `softVendorExceptions` continue to require the relevant TCF purpose signal; the example preserves any other rules and exceptions already configured, and adds the default rule for an exception purpose that has none (Prebid.js would otherwise apply that default without the exception). Adjust the list of purposes to the activities that the custom module actually performs, with legal review.
 
 **Consent changes require additional integration.** This example configures consent management once; it does **not** update rules automatically after initialization. Listen for your CMP's custom-vendor consent changes, including withdrawal, and **prevent new auctions** while applying a fresh consent-dependent configuration (for example, by reloading the page after blocking auctions). Do not repeatedly call `pbjs.setConfig({consentManagement: ...})` inside a `__tcfapi('addEventListener', ...)` callback: that reinitializes the TCF CMP integration and can register additional listeners. `pbjs.mergeConfig` is not a drop-in solution either, because it merges arrays rather than reliably removing a withdrawn exception. Make sure any new choice is effective before resuming bid requests. Use the stronger `vendorExceptions` override only if your legal assessment specifically supports bypassing purpose enforcement as well as the vendor check.
 
