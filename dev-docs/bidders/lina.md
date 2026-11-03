@@ -254,6 +254,14 @@ Confirm your account currency when configuring your ad server. The adapter
 does not offer bidder parameters to override currency or floors and does not
 integrate with the Prebid Floors Module.
 
+An SSP placement floor takes priority, including an explicit zero. When it is
+unset, LINA uses `ortb2Imp.bidfloor` from the request. If both are unset or null,
+no floor restriction applies. There are no currency-specific default floors.
+Floors are publisher Net CPM; LINA converts the selected floor to DSP Gross CPM
+using the publisher fee. A positive request floor's `bidfloorcur` must match the
+publisher currency. An omitted `bidfloorcur` means USD under OpenRTB; LINA does
+not convert a floor between currencies.
+
 Returned CPM is publisher Net CPM after applicable SSP fees, with
 `netRevenue: true`. The adapter passes this CPM to Prebid unchanged. A zero fee
 rate still produces a Net CPM response.
