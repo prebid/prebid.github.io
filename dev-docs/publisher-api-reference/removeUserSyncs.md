@@ -32,7 +32,7 @@ Some sync iframes load partner sync frames, which load more of their own. A sing
 
 ## Automatic removal
 
-Since Prebid.js 11.47, Prebid.js also removes sync iframes on its own, timed from when each one loads:
+Since Prebid.js 11.47, Prebid.js also removes sync iframes on its own, including those requested by Prebid Server's cookie sync, timed from when each one loads:
 
 * after 3 seconds, if it has created frames of its own, with a warning in the console naming the sync URL;
 * after 15 seconds, regardless.
