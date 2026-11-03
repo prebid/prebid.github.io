@@ -40,7 +40,7 @@ To render native ads, you also need to include the [nativeRendering](/dev-docs/m
 
 ## Click tracking
 
-Since Prebid.js 11.45, the dynamic creative can register Prebid clicks in GAM: the example passes GAM's click URL (`clickUrl: "%%CLICK_URL_UNESC%%"`), and with [`bidClickTracking`](/dev-docs/modules/bidClickTracking.html) and `fireTrackers` enabled, Prebid.js requests it when it observes a click on the winning creative. This is not available with the Prebid Universal Creative.
+Since Prebid.js 11.45, the dynamic creative can register **banner** clicks in GAM: the example passes GAM's click URL (`clickUrl: "%%CLICK_URL_UNESC%%"`), and with [`bidClickTracking`](/dev-docs/modules/bidClickTracking.html) and `fireTrackers` enabled, Prebid.js requests it when it observes a click on the winning creative. This banner-click mechanism does not apply to native creatives: native GAM clicks must still be tracked through the native template's click links. It is not available with the Prebid Universal Creative. The dynamic creative is intended for browser-only line items; split any line item also serving AMP or Prebid Mobile before replacing PUC.
 
 ## Further reading
 
