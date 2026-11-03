@@ -30,3 +30,6 @@ mediaTypes: {
     }
 }
 ```
+
+{: .alert.alert-info :}
+Prebid.js converts legacy native assets to an [OpenRTB Native](https://github.com/InteractiveAdvertisingBureau/Native-Ads/blob/main/OpenRTB-Native-Ads-Specification-Final-1.2.pdf) request, which allows only one size per image asset. If `sizes` contains several sizes (e.g. `[[300, 250], [600, 500]]`), only the first one is used as `img.w`/`img.h` (Prebid.js 11.47 and later; earlier versions ignore a multi-size `sizes` array entirely). If `aspect_ratios` has several entries, only the first entry's `min_width`/`min_height` become `img.wmin`/`img.hmin`; all ratios are still passed in `img.ext.aspectratios`. Prebid.js logs a warning when values are dropped. Bid adapters that read the legacy request (`bidRequest.nativeParams`) still see every entry.
