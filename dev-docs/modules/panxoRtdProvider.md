@@ -88,8 +88,7 @@ gulp build --modules=panxoBidAdapter,rtdModule,panxoRtdProvider
 **Disclosure:** This module loads external code that is not open source and
 has not been reviewed by Prebid.org. The runtime is downloaded from
 `https://api.idsequoia.ai/rtd.js` to obtain the Panxo signals. Publisher
-registration is required to use the commercial service. The isolated test mode
-below instead selects its disclosed static reviewer URL and reserved fixtures.
+registration is required to use the commercial service. This update retains that same script URL and introduces no alternative script source.
 
 The initial script request sends the property `siteId` and a per-connection
 `session` value. It does not include the publisher's referrer domain as a query
@@ -128,50 +127,25 @@ continue when the remote classification does not complete within that bound.
 | --- | --- | --- | --- |
 | `siteId` | `string` | 16 lowercase hexadecimal characters identifying the publisher property | Yes |
 | `verbose` | `boolean` | Enable additional diagnostic messages; defaults to `false` | No |
-| `test` | `boolean` | Use the fixed synthetic reviewer with a reserved site identifier; defaults to `false` | No |
 
 Replace `YOUR_SITE_ID` with the value issued by Panxo; the placeholder is not a
 valid property identifier. For syntax illustration, `a1b2c3d4e5f67890` has the
-required format but is not a reviewer account.
+required format; use your assigned publisher identifier.
 
 The provider implementation is loaded through Prebid's module loader and
 activity controls. Prebid publishers should not install a second Panxo signal
 script directly on the page.
 
-## Isolated reviewer mode
+## External script
 
-The optional boolean `params.test: true` selects the fixed synthetic reviewer
-script `https://panxo-prebid-reviewer-external.okpbidgx.workers.dev/rtd.js`.
-It requires one of the six reserved site identifiers `0000000000000001`
-through `0000000000000006`, corresponding to banner, instream video, native,
-CTV video, in-app banner and in-app native. Those identifiers are rejected
-without `test: true`; ordinary site identifiers are rejected in test mode.
-Non-boolean values are rejected. The provider never falls back from the
-reviewer to the commercial script endpoint.
+The provider loads only the previously approved implementation at
+`https://api.idsequoia.ai/rtd.js`. There is no configurable script URL or
+external-script test mode. Synthetic test services and reserved inventory
+are not part of the distributed module.
 
-```javascript
-pbjs.setConfig({
-    realTimeData: {
-        auctionDelay: 1500,
-        dataProviders: [{
-            name: 'panxo', waitForIt: true,
-            params: { siteId: '0000000000000001', test: true }
-        }]
-    }
-});
-```
-
-Use a clean test page and configure the provider before its first auction.
-The core still initializes it once. If the provider is explicitly initialized
-again, its endpoint, site and signal state belong to a new connection generation;
-late callbacks from the previous mode cannot enrich it. A rejected initialization
-retires the old connection and releases its pending auctions without enrichment.
-Activity controls, anonymous CORS and the no-referrer policy apply to both modes.
-
-This RTD option does not change bidder routing. Prebid.js bidder review also
-requires numeric `ortb2.test: 1` and the matching reserved property key described
-in the bidder documentation. The reviewer is synthetic and has no live demand
-or billing. It does not verify serving at the default commercial endpoint.
+Reinitialization creates a new connection generation. Callbacks from an older
+connection cannot enrich a later auction, and invalid replacement configuration
+retires the old connection and releases pending auctions.
 
 ## Data added to the auction
 
