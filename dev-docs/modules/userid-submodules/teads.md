@@ -7,8 +7,12 @@ pbjs_version_notes: please avoid using v7.20.0 and v7.21.0
 bidRequestUserId: teadsId
 eidsource: teads.com
 example: '"1111"'
+enable_download: false
 ---
 
+
+{: .alert.alert-warning :}
+Teads no longer uses the Teads ID. The module has been replaced with a no-op that provides no ID and logs a warning, and it will be removed in Prebid.js 12. Please remove `teadsId` from your `userSync.userIds` configuration.
 
 The Teads ID is a first-party identifier designed for publishers using the Teads adapter. For more information please contact [innov-ssp@teads.com](mailto:innov-ssp@teads.com)
 
