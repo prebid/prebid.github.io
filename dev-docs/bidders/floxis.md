@@ -90,7 +90,7 @@ Sending `user.ext.floxisId` also requires both the `transmitEids` and `transmitU
 
 ## Error and Timeout Telemetry
 
-The Prebid.js adapter sends cookieless `keepalive` beacons to `https://px-us-e.floxis.tech/event` for auction timeouts and bidder transport errors. They contain the seat, region, event type and available operational fields (HTTP status, timeout flag, duration and publisher domain). Error beacons also carry consent signals when available; timeout beacons carry none. They contain no user, device or auction identifier and are deduplicated per seat and region per event.
+The Prebid.js adapter sends cookieless `keepalive` beacons to `https://px-us-e.floxis.tech/event` for auction timeouts and bidder transport errors. They contain the seat, region, event type and available operational fields (HTTP status, timeout flag, duration and publisher domain). Error beacons also carry consent signals when available. Timeout beacons carry no consent signals, but list the timed-out bid ids (`bidIds`, at most 32), the same random per-bid ids already sent as `imp.id` in the bid request. Beacons contain no user or device identifier and are deduplicated per seat and region per event.
 
 ## AdUnit Configuration for Banner
 
