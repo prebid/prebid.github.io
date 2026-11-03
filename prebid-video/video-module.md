@@ -556,6 +556,30 @@ For your convenience, when an auction begins, the Video Module will update oRTB 
 The params in `adUnit.mediaTypes.video` are populated with information extracted from the player. Any param already filled by the publisher will remain unchanged.
 Some params such as `battr`, `minduration`, `maxduration` are specific to a publisher's preferences and should therefore be populated by the Publisher.
 
+<a name="size-buckets"></a>
+
+##### Size buckets
+
+By default, the player size (`mediaTypes.video.playerSize`, `w` and `h`, which become `imp.video.w` and `imp.video.h` in the bid request) is the player's actual size.
+Players are often sized dynamically, so their actual size rarely matches the sizes that demand targets: a 495x655 player may not get bids from an SSP that targets 480x640.
+To report standard sizes instead, set `video.sizeBuckets` to a list of `[width, height]` sizes:
+
+```javascript
+pbjs.setConfig({
+    video: {
+        providers: [/* ... */],
+        sizeBuckets: [[640, 360], [640, 480], [480, 640], [300, 250]]
+    }
+});
+```
+
+When `sizeBuckets` is set:
+
+- the reported player size is the bucket nearest to the player's actual size, that is, the one with the smallest Euclidean distance between the two `[width, height]` pairs. If two buckets are equally near, the one listed first is used.
+- the player's actual size is reported as `imp.video.ext.true_size`, in the form `{w: 495, h: 655}` (set on `adUnit.ortb2Imp.video.ext.true_size`).
+- entries that are not a pair of positive integers are ignored, and a warning is logged.
+- ad units where you have set `mediaTypes.video.playerSize`, `w` or `h` (or `ortb2Imp.video.w` or `h`) keep the size you set, and are not bucketed.
+
 ##### bidderRequest.ortb2.site.content
 
 The params in `bidderRequest.ortb2.site.content` are populated with information extracted from the video player. Any params already filled by the publisher will remain unchanged.
