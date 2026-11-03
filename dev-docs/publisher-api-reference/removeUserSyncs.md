@@ -32,12 +32,16 @@ Some sync iframes load partner sync frames, which load more of their own. A sing
 
 ## Automatic removal
 
-Since Prebid.js 11.47, Prebid.js also removes sync iframes on its own, including those requested by Prebid Server's cookie sync, timed from when each one loads:
+Since Prebid.js 11.47, Prebid.js can also remove sync iframes on its own, including those requested by Prebid Server's cookie sync. Turn it on with [`userSync.removeIframes`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-ConfigureUserSyncing-UserSyncProperties). With `removeIframes: true`, each sync iframe is removed, timed from when it loads:
 
 * after 3 seconds, if it has created frames of its own, with a warning in the console naming the sync URL;
 * after 15 seconds, regardless.
 
-Change the delays or turn this off with [`userSync.removeIframes`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-ConfigureUserSyncing-UserSyncProperties). `removeUserSyncs` is still useful to remove sync iframes right away, for example on navigation in a single page application, or when automatic removal is turned off.
+```javascript
+pbjs.setConfig({ userSync: { removeIframes: true } });
+```
+
+It is off by default in Prebid.js 11. `removeUserSyncs` is still useful to remove sync iframes right away, for example on navigation in a single page application.
 
 **Example**
 
