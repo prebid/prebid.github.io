@@ -653,6 +653,7 @@ For descriptions of all the properties that control user syncs, see the table be
 | `enableOverride` | Boolean | Enable/disable publisher to trigger user syncs by calling `pbjs.triggerUserSyncs()`. Default: `false`. |
 | `aliasSyncEnabled` | Boolean | Enable/disable registered syncs for aliased adapters. Default: `false`. |
 | `usePoliteSync` | Boolean | Fire user syncs as low-priority background work. Image syncs are sent with `fetch` (`no-cors`, `credentials: 'include'`, `keepalive`), falling back to an image pixel; iframe syncs are inserted the same way as before, but in a background task. Background tasks use `scheduler.postTask` with `background` priority where available, otherwise `requestIdleCallback` with a 2 second timeout, otherwise they run immediately. Filtering, limits and delays are unchanged. Default: `false`. Since Prebid.js 11.14. |
+| `removeIframes` | Object or `false` | Remove sync iframes automatically after they load, with delays in milliseconds. `withChildFrames`: remove an iframe at this point if it has created frames of its own, and log a warning (default `3000`). `all`: remove it at this point regardless (default `15000`). Set either to `false` to skip that step, or `removeIframes: false` to keep sync iframes for the life of the page. See [removeUserSyncs]({{site.baseurl}}/dev-docs/publisher-api-reference/removeUserSyncs.html). Since Prebid.js 11.47. |
 
 <a name="setConfig-ConfigureUserSyncing-UserSyncExamples"></a>
 
@@ -686,6 +687,19 @@ Fire user syncs as background tasks to reduce their impact on page performance:
 pbjs.setConfig({
     userSync: {
         usePoliteSync: true
+    }
+});
+```
+
+Remove sync iframes that fan out after 2 seconds, and keep the others for a minute (the defaults are 3 and 15 seconds):
+
+```javascript
+pbjs.setConfig({
+    userSync: {
+        removeIframes: {
+            withChildFrames: 2000,
+            all: 60000
+        }
     }
 });
 ```
