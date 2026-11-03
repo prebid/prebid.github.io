@@ -266,6 +266,15 @@ Returned CPM is publisher Net CPM after applicable SSP fees, with
 `netRevenue: true`. The adapter passes this CPM to Prebid unchanged. A zero fee
 rate still produces a Net CPM response.
 
+### Timeout
+
+LINA uses the timeout budget supplied by Prebid. When it is absent, LINA uses
+the SSP's configured default, which is 1000ms if not configured. LINA caps the
+total budget at 5000ms and reserves 200ms for network and SSP processing before
+allocating the remainder to its server-side auction. Budgets of 200ms or less
+are rejected. Configure the page's normal Prebid timeout; there is no
+LINA-specific bidder timeout parameter.
+
 ### Privacy and User Sync
 
 The adapter forwards GDPR applicability and consent strings, GPP strings and
