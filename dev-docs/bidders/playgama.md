@@ -31,10 +31,9 @@ The Playgama bidder adapter requires setup before beginning. Please contact <ads
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                                                                                | Example               | Type      |
 |---------------|----------|--------------------------------------------------------------------------------------------|-----------------------|-----------|
-| `publisherId` | required | Publisher ID issued by Playgama                                                            | `'pub-demo-001'`      | `string`  |
-| `adUnitId`    | required | Ad unit ID issued by Playgama                                                              | `'au-banner-300x250'` | `string`  |
-| `env`         | optional | `'production'` (default) or `'staging'`; staging is for integration testing only           | `'staging'`           | `string`  |
-| `test`        | optional | Test mode: the impression is not billed                                                    | `true`                | `boolean` |
+| `publisherId` | required | Publisher ID issued by Playgama                                                            | `'playgama-test'`     | `string`  |
+| `adUnitId`    | required | Ad unit ID issued by Playgama                                                              | `'banner-300x250'`    | `string`  |
+| `env`         | optional | `'production'` (default) or `'staging'`, Playgama's own pre-production environment          | `'staging'`           | `string`  |
 
 ### Storage and external scripts
 
