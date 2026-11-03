@@ -34,7 +34,11 @@ const yes = value => value === 'true';
 
 // ---- Prebid.js: registered components (bidders incl. aliases, analytics, userId, rtd) and module files
 const components = JSON.parse(read(path.join(PBJS, 'metadata/modules.json'))).components;
-const pbjsBidders = new Map(components.filter(c => c.componentType === 'bidder').map(c => [c.componentName, c]));
+// prebidServer registers as a bidder, but it is the s2sConfig adapter (documented with s2sConfig), not a bidder
+const NOT_BIDDERS = new Set(['prebidServer']);
+const pbjsBidders = new Map(components
+  .filter(c => c.componentType === 'bidder' && !NOT_BIDDERS.has(c.componentName))
+  .map(c => [c.componentName, c]));
 const pbjsModules = new Set(list(path.join(PBJS, 'modules'))
   .filter(name => !name.startsWith('.') && !/\.(md|d\.ts)$/.test(name))
   .map(name => name.replace(/\.(js|ts)$/, '')));
