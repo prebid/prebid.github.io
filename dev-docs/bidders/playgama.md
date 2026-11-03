@@ -22,23 +22,23 @@ multiformat_supported: will-bid-on-any
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 The Playgama bidder adapter requires setup before beginning. Please contact <ads@playgama.com> for a publisher ID and ad unit IDs.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                                                                                | Example               | Type      |
 |---------------|----------|--------------------------------------------------------------------------------------------|-----------------------|-----------|
 | `publisherId` | required | Publisher ID issued by Playgama                                                            | `'playgama-test'`     | `string`  |
 | `adUnitId`    | required | Ad unit ID issued by Playgama                                                              | `'banner-300x250'`    | `string`  |
-| `env`         | optional | `'production'` (default) or `'staging'`, Playgama's own pre-production environment          | `'staging'`           | `string`  |
+| `env`         | optional | `'production'` (default) or `'staging'`, Playgama's own pre-production environment         | `'staging'`           | `string`  |
 
-### TCF
+## TCF
 
 Playgama has no IAB GVL ID yet. Where TCF applies, the `tcfControl` module blocks bidders without a GVL ID by default; add `playgama` to its `vendorExceptions` to run this adapter there.
 
-### Storage and external scripts
+## Storage and external scripts
 
 The adapter stores the Playgama user id returned by the SSP in the first-party cookie `_pgid` (90 days) through the Prebid `StorageManager`, when the publisher allows it with `pbjs.bidderSettings.playgama.storageAllowed = true`. Outstream video and interstitial bids are rendered by Playgama's own renderer scripts, loaded on demand from `https://playgama.com/prebid-renderers/`.
