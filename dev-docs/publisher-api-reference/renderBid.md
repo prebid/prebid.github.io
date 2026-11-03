@@ -6,7 +6,7 @@ sidebarType: 1
 ---
 
 
-Render a bid in an isolated iframe inside its ad unit's element, without an ad server. Requires the [Safe Rendering module](/dev-docs/modules/safeRendering.html).
+Render a bid in an isolated iframe inside its ad unit's element, without an ad server's on-page library (such as GPT) handling rendering. Requires the [Safe Rendering module](/dev-docs/modules/safeRendering.html).
 
 **Kind**: static method of pbjs API
 

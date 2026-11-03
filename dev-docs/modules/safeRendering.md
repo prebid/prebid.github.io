@@ -2,7 +2,7 @@
 layout: page_v2
 page_type: module
 title: Module - Safe Rendering
-description: Render winning bids in isolated, SafeFrame-style iframes without an ad server
+description: Render winning bids in isolated, SafeFrame-style iframes without an ad server's on-page library
 module_code : safeRendering
 display_name : Safe Rendering
 enable_download : true
@@ -17,11 +17,11 @@ sidebarType : 1
 
 ## Overview
 
-The Safe Rendering module adds [`pbjs.renderBid`](/dev-docs/publisher-api-reference/renderBid.html), which renders a winning bid in an iframe that can't reach the publisher's page: a `data:` URL frame, which has an opaque origin, with the same `sandbox` attribute Google Ad Manager uses for its SafeFrames. You don't need GPT, an ad server or a separately hosted creative.
+The Safe Rendering module adds [`pbjs.renderBid`](/dev-docs/publisher-api-reference/renderBid.html), which renders a winning bid in an iframe that can't reach the publisher's page: a `data:` URL frame, which has an opaque origin, with the same `sandbox` attribute Google Ad Manager uses for its SafeFrames. You don't need GPT or another ad server's on-page library to handle rendering and SafeFrames, nor a separately hosted creative.
 
-Use it when Prebid.js selects the winner itself, for example when [running Prebid.js as an ad server](/dev-docs/examples/no-adserver.html), and you want the creative isolated from the page. It works with any way of picking the winner, including [deal priority](/dev-docs/publisher-api-reference/bidderSettings.html#212-allowprioritybids).
+Use it when Prebid.js selects the winner itself, for example when [running Prebid.js as an ad server](/dev-docs/examples/no-adserver.html), and you want the creative isolated from the page. Ad servers can still compete as demand, for example by bidding into the auction through their bid adapter. It works with any way of picking the winner, including [deal priority](/dev-docs/publisher-api-reference/bidderSettings.html#212-allowprioritybids).
 
-This is the recommended way to isolate Prebid.js demand without an ad server. Prefer it to hosting the IAB SafeFrame 1.1 reference implementation or building your own frames. It uses modern browser messaging (a `MessageChannel` per render, tied to a one-time token), and keeps Prebid.js's rendering, events and tracking.
+This is the recommended way to isolate creatives when no ad server's on-page library handles rendering and SafeFrames. Prefer it to hosting the IAB SafeFrame 1.1 reference implementation or building your own frames. It uses modern browser messaging (a `MessageChannel` per render, tied to a one-time token), and keeps Prebid.js's rendering, events and tracking.
 
 ## Usage
 
