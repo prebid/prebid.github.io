@@ -4,6 +4,8 @@ title: Kueez
 description: Prebid Kueez Bidder Adapter
 multiformat_supported: will-bid-on-any
 pbjs: true
+enable_download: false
+pbjs_version_notes: "Not available in current Prebid.js builds; specific reason unknown."
 biddercode: kueez
 media_types: banner, video
 schain_supported: true
@@ -16,7 +18,7 @@ fpd_supported: true
 sidebarType: 1
 ---
 
-### IMPORTANT NOTICE
+## IMPORTANT NOTICE
 
 **TL;DR**
 The `kueez` adapter is currently "on hold" in favor of the [KueezRTB bidder](/dev-docs/bidders/kueezrtb.html).

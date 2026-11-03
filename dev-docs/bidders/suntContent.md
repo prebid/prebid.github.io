@@ -16,16 +16,18 @@ deals_supported: false
 floors_supported: true
 fpd_supported: false
 pbjs: true
+enable_download: false
+pbjs_version_notes: "Not available in current Prebid.js builds; specific reason unknown."
 pbs: true
 pbs_app_supported: false
 prebid_member: false
 sidebarType: 1
 ---
 
-### Bid params
+## Bid params
 
 {: .table .table-bordered .table-striped }
-| Name        | Scope    | Description          | Example            | Type      |
-|-------------|----------|----------------------|--------------------|-----------|
-| `adUnitId`  | required | ID of the Ad Unit    | `8ao`              | `string`  |
-| `url`       | optional | URL from the Page    | `example.tld`      | `string`  |
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| `adUnitId` | required | ID of the Ad Unit | `8ao` | `string` |
+| `url` | optional | URL from the Page | `example.tld` | `string` |

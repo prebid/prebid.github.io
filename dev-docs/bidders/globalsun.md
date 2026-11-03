@@ -5,6 +5,8 @@ description: Prebid Globalsun Bidder Adapter
 biddercode: globalsun
 media_types: banner, video, native
 pbjs: true
+enable_download: false
+pbjs_version_notes: "Not available in current Prebid.js builds; specific reason unknown."
 pbs: true
 safeframes_ok: true
 fpd_supported: false
@@ -17,9 +19,9 @@ schain_supported: true
 floors_supported: true
 ---
 
-### Prebid Params
+## Prebid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description           | Example   | Type      |
-|---------------|----------|-----------------------|-----------|-----------|
-| `placementId`      | optional | Placement Id         | `'0'`    | `'string'` |
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| `placementId` | optional | Placement Id | `'0'` | `'string'` |

@@ -3,6 +3,7 @@ layout: bidder
 title: DistrictmDMX
 description: Prebid DistrictmDMX Bidder Adaptor
 pbjs: true
+enable_download: false
 biddercode: districtmDMX
 tcfeu_supported: false
 schain_supported: true
@@ -15,22 +16,22 @@ sidebarType: 1
 ---
 
 
-### Bid Params
+## Bid Params
 
-#### Prebid version 1.0 and above
-
-{: .table .table-bordered .table-striped }
-| Name       | Scope    | Description         | Example          |    Type   |
-|------------|----------|---------------------|------------------|-----------|
-| `dmxid`    | required | Placement Id        |  `100001`          | `integer` |
-| `memberid` | required | Account id          |  `100003`          | `integer` |
-
-#### Prebid 0.34~ legacy
+### Prebid version 1.0 and above
 
 {: .table .table-bordered .table-striped }
-| Name       | Scope    | Description             | Example          | Type      |
-|------------|----------|-------------------------|------------------|-----------|
-| `id`       | required | Placement ID            | `123456789`        | `integer` |
-| `floor`    | optional | Bid floor price         | `"1.00"`           | `string`  |
-| `revShare` | optional | Publisher Revenue Share | `"0.85"`           | `string`  |
-| `currency` | optional | Currency code           | `"usd"`            | `string`  |
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| `dmxid` | required | Placement Id | `100001` | `integer` |
+| `memberid` | required | Account id | `100003` | `integer` |
+
+### Prebid 0.34~ legacy
+
+{: .table .table-bordered .table-striped }
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| `id` | required | Placement ID | `123456789` | `integer` |
+| `floor` | optional | Bid floor price | `"1.00"` | `string` |
+| `revShare` | optional | Publisher Revenue Share | `"0.85"` | `string` |
+| `currency` | optional | Currency code | `"usd"` | `string` |

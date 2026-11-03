@@ -3,26 +3,28 @@ layout: bidder
 title: Kumma
 description: Prebid Kumma Bidder Adapter
 pbjs: true
+enable_download: false
+pbjs_version_notes: "Not available in current Prebid.js builds; specific reason unknown."
 biddercode: kumma
 media_types: banner, native, video
 tcfeu_supported: false
 sidebarType: 1
 ---
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description                      | Example        | Type     |
-|---------------|----------|----------------------------------|----------------|----------|
-| `pubId`       | required | The publisher account ID         | `'28082'`      | `string` |
-| `siteId`      | required | The publisher site ID            | `'26047'`      | `string` |
-| `placementId` | required | Identifies specific ad placement | `'17394'`      | `string` |
-| `bidFloor`    | optional | The bid floor                    | `'0.001'`      | `string` |
-| `ifa`         | optional | IFA ID                           | `'XXX-XXX'`    | `string` |
-| `latitude`    | optional | Latitude                         | `'40.712775'`  | `string` |
-| `longitude`   | optional | Longitude                        | `'-74.005973'` | `string` |
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| `pubId` | required | The publisher account ID | `'28082'` | `string` |
+| `siteId` | required | The publisher site ID | `'26047'` | `string` |
+| `placementId` | required | Identifies specific ad placement | `'17394'` | `string` |
+| `bidFloor` | optional | The bid floor | `'0.001'` | `string` |
+| `ifa` | optional | IFA ID | `'XXX-XXX'` | `string` |
+| `latitude` | optional | Latitude | `'40.712775'` | `string` |
+| `longitude` | optional | Longitude | `'-74.005973'` | `string` |
 
-### test params
+## test params
 
 ```javascript
 var adUnits = [{

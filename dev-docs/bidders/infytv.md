@@ -3,6 +3,8 @@ layout: bidder
 title: InfyTV
 description: Prebid InfyTV Bidder Adapter
 pbjs: true
+enable_download: false
+pbjs_version_notes: "Not available in current Prebid.js builds; specific reason unknown."
 biddercode: infytv
 tcfeu_supported: false
 media_types: video
@@ -14,14 +16,14 @@ schain_supported: true
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 The Example Bidding adapter requires setup before beginning. Please contact us at <adops@infy.tv>
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
-|---------------|----------|--------------|-----------|----------|
+| --- | --- | --- | --- | --- |
 | `publisherId` | required | Publisher ID | `'11111'` | `string` |
 | `placementId` | optional | Placement ID | `'11111'` | `string` |
