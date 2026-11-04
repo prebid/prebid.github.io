@@ -9,7 +9,8 @@ Since Prebid.js 11.30, removes the user sync iframes that were inserted by this 
 and returns how many iframes got removed.
 Iframes belonging to other instances running on the same page are left alone.
 
-User sync iframes are appended to the page's `<html>` element and never cleaned up, so in a single page application they keep accumulating for as long as the user stays on the page without a reload.
+User sync iframes are appended to the page's `<html>` element.
+Before Prebid.js 11.47, or with [automatic removal](#automatic-removal) turned off, they are never cleaned up, so in a single page application they keep accumulating for as long as the user stays on the page without a reload.
 Calling this method on navigation in a single page application would clean those up.
 
 Removal is a pure DOM cleanup.
@@ -26,7 +27,7 @@ Image pixels are unaffected, they never enter the DOM.
 
 ## Removing sync frames that fan out
 
-Some sync iframes load partner sync frames, which load more of their own. A single sync can grow into hundreds of hidden nested frames, each costing memory, a browser process and main thread time, and they stay until the user leaves the page.
+Some sync iframes load partner sync frames, which load more of their own. A single sync can grow into hundreds of hidden nested frames, each costing memory, a browser process and main thread time. Without [automatic removal](#automatic-removal), they stay until the user leaves the page.
 
 `withChildFrames: true` removes only those sync iframes: the ones whose window contains frames (`iframe.contentWindow.length > 0`, which Prebid.js can read even when the sync page is on another origin). Simple syncs are left in place, and a later call without options can still remove them.
 
