@@ -334,6 +334,8 @@ Other notes:
 * **userIdAsEid** is the EID-formatted version of `userId`.
 * **ortb2** a copy of `bidderRequest.ortb2` (see below), provided here for convenience.
 * **schain** is where bidders can look for any [Supply Chain](/dev-docs/modules/schain.html) data that they should pass through to the endpoint.
+* **allowTopWindowRenderers** is the effective boolean renderer policy supplied by core before client-side `isBidRequestValid()` and `buildRequests()`. Adapters that require a top-window renderer must not bid when it is false.
+* **safeRenderer** carries the bid's Safe Renderer configuration, falling back to the ad unit's configuration when the bid does not override it. Media-type renderer settings remain in `mediaTypes`. Adapters must account for [renderer precedence](/dev-docs/renderer.html) when their formats require a particular renderer. Renderer configuration and policy are local Prebid metadata, not OpenRTB fields to forward to the exchange.
 
 #### bidderRequest Parameters
 
