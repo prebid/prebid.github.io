@@ -124,6 +124,12 @@ This means an adaptor is not available to download from Prebid.org as soon as th
 
 <a name="thanks"></a>
 
+## Sidebar
+
+The left navigation comes from `_data/sidebar.yml`. Each top-level section is an entry with `isSectionHeader: 1` and an `sbSecId`; its pages are the entries with the same `sbSecId`. A page's `sidebarType` front matter names the section that opens when you're on it.
+
+`sbSecId` is an ID, not a position: to reorder sections, move their blocks in `sidebar.yml`. Pages don't need to change. A new section needs an unused `sbSecId`.
+
 ## Liquid Templating
 
 * [jekyll - check for non empty](https://michaelcurrin.github.io/dev-cheatsheets/cheatsheets/jekyll/liquid/conditionals/non-empty.html)

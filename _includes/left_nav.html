@@ -25,8 +25,8 @@
       <span class="menu-collapsed pb-sidebar-section pb-section-title">{{sectionHeader.sectionTitle}}</span>
     </a>
 
-    {% assign sectionIdx = forloop.index0 %}
-    {% assign arrSectionItems = site.data.sidebar | where: "sbSecId", sectionIdx %}
+    {% comment %} Match items by the section's own sbSecId, not its position, so sections can be reordered in sidebar.yml without renumbering pages. {% endcomment %}
+    {% assign arrSectionItems = site.data.sidebar | where: "sbSecId", sectionHeader.sbSecId %}
 
     <!--get all sub section headers-->
     {% assign arrSectionHeaders = arrSectionItems | where: "isHeader", "1" %}
