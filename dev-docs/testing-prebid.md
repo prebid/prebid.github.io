@@ -46,27 +46,26 @@ When you are adding code to Prebid.js, or modifying code that isn't covered by a
 
 ## Running tests
 
-After checking out the Prebid.js repository and installing dev dependencies with `npm install`, use the following commands to run tests as you are working on code:
+The tests run under [Vitest](https://vitest.dev/guide/browser/) in a real browser. After checking out the Prebid.js repository and installing dev dependencies with `npm ci`, install a browser once with `npx playwright install chromium`, then use the following commands as you are working on code:
 
-* `gulp test` will run the test suite once (`npm test` is aliased to call `gulp test`)
-* `gulp serve` will run tests once and stay open, re-running tests whenever a file in the `src` or `test` directory is modified
+* `npx gulp test-only --file test/spec/modules/exampleBidAdapter_spec.js` runs one spec file
+* `npx gulp test-only` runs the whole suite once, as CI does
+* `npx gulp serve-and-test` re-runs the tests that import a file whenever a source file changes
+* `--browsers chrome,firefox,safari,edge` picks the browsers (Chromium by default)
+
+CI also runs the suite in Firefox, Safari, Edge, an old Chrome, and Safari on a real iPhone, whose test page is served from `http://bs-local.com` rather than `localhost` and isn't a secure context. The [Prebid.js test README](https://github.com/prebid/Prebid.js/blob/master/test/vitest/README.md) describes the setup.
 
 ## Checking results and code coverage
 
 Check the test results using these guidelines:
 
-* Look at the total number of tests run, passed, and failed (shown below the rainbow Nyan Cat in the shell window).
+* Look at the total number of tests run, passed, and failed, shown at the end of the run. In a pull request, a failing test is also annotated on its line in the spec file.
 * If all tests are passing, great.
 * Otherwise look for errors printed in the console for a description of the failing test.
 * You may need to iterate on your code or tests until all tests are passing.
 * Make sure existing tests still pass.
-* There is a table below the testing report that shows code coverage percentage, for each file under the `src` directory.
-* Each time you run tests, a code coverage report is generated in `build/coverage/lcov/lcov-report/index.html`.
-* This is a static HTML page that you can load in your browser.
-* On that page, navigate to the file you are testing to see which lines are being tested.
-* Red indicates that a line isn't covered by a test.
-* Gray indicates a line that doesn't need coverage, such as a comment or blank line.
-* Green indicates a line that is covered by tests.
+* `npx gulp test-only --file <spec> --coverage` writes an lcov coverage report to `build/coverage/chunks/1/lcov.info`. Its paths are the source files, so you can open it with any lcov viewer or editor plugin to see which lines your tests cover.
+* In a pull request, CI compares the coverage of the whole suite with the base branch's.
 * The code you have added or modified must have greater than 80% coverage to be accepted.
 
 ## Examples
@@ -74,7 +73,7 @@ Check the test results using these guidelines:
 Prebid.js already has lots of tests. Read them to see how Prebid.js is tested, and for inspiration:
 
 * Look in `test/spec` and its subdirectories
-* Tests for bidder adaptors are located in `test/spec/adapters`
+* Tests for bid adapters and other modules are located in `test/spec/modules`
 
 A test module might have the following general structure:
 
@@ -105,5 +104,6 @@ The Prebid.js testing stack contains some of the following tools. It may be help
 * [Mocha - test framework](https://mochajs.org/)
 * [Chai - BDD/TDD assertion library](https://chaijs.com/)
 * [Sinon - spy, stub, and mock library](https://sinonjs.org/)
+* [Vitest Browser Mode - test runner](https://vitest.dev/guide/browser/)
 
 </div>
