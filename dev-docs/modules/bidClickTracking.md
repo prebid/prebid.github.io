@@ -54,7 +54,7 @@ pbjs.onEvent('bidClick', ({ adId, adUnitCode, bidder, method }) => {
 ## How It Works
 
 - **Banner:** for markup (`ad`) rendered by Prebid, Prebid listens inside the creative's iframe for trusted clicks on links (`<a href>`, `<area href>`) and emits `bidClick` with `method: 'creativeClick'`. It doesn't change navigation or add overlays. Clicks inside nested cross-origin iframes, `adUrl` creatives, and clicks that navigate with JavaScript can't be observed.
-- **Native:** clicks reported by the native creative (links with the `pb-click` class) emit `bidClick` with `method: 'nativeClick'` and the clicked `assetId`, if any. The bidder's native click trackers fire on every click, as they do without this setting, with keepalive requests so they survive the navigation. GAM clicks still come from the native template's `%%CLICK_URL_UNESC%%` links, so enabling this doesn't change what bidders or GAM receive. Native landing URLs are never fired as trackers.
+- **Native:** clicks reported by the native creative (links with the `pb-click` class) emit `bidClick` with `method: 'nativeClick'` and the clicked `assetId`, if any. GAM clicks still come from the native template's `%%CLICK_URL_UNESC%%` links, so enabling this doesn't change what bidders or GAM receive. Native landing URLs are never fired as trackers.
 - **Desktop fallback:** with `desktopFallback: true` and the module included, on devices with a fine pointer, focus moving from the page into a creative's iframe (not with the Tab key) is treated as a click and emits `bidClickInferred`. It's a heuristic: some focus changes aren't clicks, and some clicks don't move focus.
 - Each bid emits at most one banner click event (observed or inferred), and with `dedupeNativeClicks`, one native click event.
 
