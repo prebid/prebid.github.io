@@ -97,6 +97,20 @@ pbjs.setConfig({
 });
 ```
 
+* <a id="multiple-gvl-ids"></a> Since Prebid.js 11.46, a module may declare more than one GVL ID - for example, a bidder alias whose endpoint is run by another company, or a user ID module that reads identifiers from several vendors. The module's `gvlid` (or its `gvlMapping` entry) is then a list, and the module is allowed only if **every** GVL ID in the list has a legal basis for the purpose being checked:
+  * Each ID is checked as if it were the only one: vendor consent or legitimate interest, publisher restrictions, and the ID's own legal-basis declarations (or `gvlLegalBasisMapping`, or `defaultLegalBasis`).
+  * If any ID fails, the module is blocked, and the log names the ID(s) without a legal basis.
+  * `vendorExceptions` and `softVendorExceptions` still take module names, and apply to all of the module's GVL IDs.
+  * Additional Consent (`acpId`) is used only when a module has no GVL ID at all.
+
+```javascript
+pbjs.setConfig({
+    gvlMapping: {
+        bidderA: [12345, 67890] // requires a legal basis for both 12345 and 67890
+    }
+});
+```
+
 * If you set `gvlMapping` for a module whose legal-basis declarations are not
   already known to Prebid.js (i.e. it maps to a GVL ID not used by any other module), also set [`gvlLegalBasisMapping`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-gvlLegalBasisMapping) for that GVL ID or
   review the `defaultLegalBasis` fallback described below.
