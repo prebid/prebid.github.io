@@ -1,6 +1,6 @@
 ---
 layout: api_prebidjs
-title: pbjs.removeUserSyncs()
+title: pbjs.removeUserSyncs(options)
 description: removeUserSyncs API
 sidebarType: 1
 ---
@@ -9,7 +9,8 @@ Since Prebid.js 11.30, removes the user sync iframes that were inserted by this 
 and returns how many iframes got removed.
 Iframes belonging to other instances running on the same page are left alone.
 
-User sync iframes are appended to the page's `<html>` element and never cleaned up, so in a single page application they keep accumulating for as long as the user stays on the page without a reload.
+User sync iframes are appended to the page's `<html>` element.
+Before Prebid.js 11.47, or with [automatic removal](#automatic-removal) turned off, they are never cleaned up, so in a single page application they keep accumulating for as long as the user stays on the page without a reload.
 Calling this method on navigation in a single page application would clean those up.
 
 Removal is a pure DOM cleanup.
@@ -17,6 +18,30 @@ Syncs registered afterwards insert new iframes as usual and the call can be repe
 Image pixels are unaffected, they never enter the DOM.
 
 **Kind**: static method of `pbjs`.
+
+{: .table .table-bordered .table-striped }
+| Param | Scope | Type | Description |
+| --- | --- | --- | --- |
+| options | Optional | `object` | Options (listed below). Without them, every sync iframe of this instance is removed. |
+| options.withChildFrames | Optional | `boolean` | If `true`, only remove the sync iframes that have created frames of their own. Since Prebid.js 11.47. |
+
+## Removing sync frames that fan out
+
+Some sync iframes load partner sync frames, which load more of their own. A single sync can grow into hundreds of hidden nested frames, each costing memory, a browser process and main thread time. Without [automatic removal](#automatic-removal), they stay until the user leaves the page.
+
+`withChildFrames: true` removes only those sync iframes: the ones whose window contains frames (`iframe.contentWindow.length > 0`, which Prebid.js can read even when the sync page is on another origin). Simple syncs are left in place, and a later call without options can still remove them.
+
+## Automatic removal
+
+Since Prebid.js 11.47, Prebid.js also removes sync iframes on its own, including those requested by Prebid Server's cookie sync: each one is removed 15 seconds after it is added to the page, whether or not it has finished loading. A sync iframe that has created frames of its own is reported with a warning in the console naming the sync URL.
+
+Change the delays, or keep sync iframes for the life of the page, with [`userSync.removeIframes`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-ConfigureUserSyncing-UserSyncProperties):
+
+```javascript
+pbjs.setConfig({ userSync: { removeIframes: false } });
+```
+
+`removeUserSyncs` is still useful to remove sync iframes right away, for example on navigation in a single page application.
 
 **Example**
 
