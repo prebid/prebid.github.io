@@ -1,0 +1,12 @@
+{%- comment -%}
+  Assigns markdown_source, the URL of the page's raw Markdown source (published by _plugins/raw_markdown_generator.rb
+  at the source path, e.g. /dev-docs/bidders/msft.md), or "" when the page has none.
+  Usage: {% include markdown-source.html %}
+{%- endcomment -%}
+{%- assign markdown_source = "" -%}
+{%- assign ms_ext = page.path | split: "." | last | downcase -%}
+{%- if ms_ext == "md" or ms_ext == "markdown" -%}
+  {%- unless page.redirect_to or page.published == false -%}
+    {%- assign markdown_source = page.path | prepend: "/" | prepend: site.baseurl -%}
+  {%- endunless -%}
+{%- endif -%}

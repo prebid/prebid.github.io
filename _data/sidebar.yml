@@ -622,7 +622,7 @@
   subgroup: 8
 
 - sbSecId: 1
-  title: Prebid Ad Slot and GPID
+  title: Global Placement ID (GPID)
   link: /features/pbAdSlot.html
   isHeader: 0
   isSectionHeader: 0

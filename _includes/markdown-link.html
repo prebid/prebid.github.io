@@ -1,0 +1,7 @@
+{%- comment -%}
+  "View as Markdown" link for readers who want to paste a page into an AI assistant. Kept out of the search index.
+{%- endcomment -%}
+{%- include markdown-source.html -%}
+{%- if markdown_source != "" -%}
+<p class="small text-right" data-pagefind-ignore><a href="{{ markdown_source }}" type="text/markdown">View as Markdown</a></p>
+{%- endif -%}

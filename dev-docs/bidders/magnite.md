@@ -16,7 +16,7 @@ prebid_member: true
 safeframes_ok: true
 deals_supported: true
 pbjs: true
-pbs: false
+pbs: true
 fpd_supported: true
 ortb_blocking_supported: true
 gvl_id: 52

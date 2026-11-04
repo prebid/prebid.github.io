@@ -6,6 +6,7 @@
 - Check for broken internal links with `npm run linkcheck` (requires [lychee](https://lychee.cli.rs/guides/getting-started/)).
 - Please name your branch to include codex or agent in the branch name
 - If you cannot run markdownlint please warn your user to setup their environment using the instructions in README.md and document your failure in your pr description
+- To read a published page, fetch its Markdown: replace `.html` with `.md` (e.g. `https://docs.prebid.org/dev-docs/bidders/msft.md`). `https://docs.prebid.org/llms.txt` indexes every page.
 
 # Style for vendor modules
 
