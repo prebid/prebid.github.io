@@ -35,6 +35,7 @@ For more developer resources, see:
 
 * [Publisher API Reference](/dev-docs/publisher-api-reference.html)
 * [Prebid.js Module Overview](/dev-docs/modules/)
+* [Build selected adapters or load modules conditionally](/dev-docs/modules/index.html#loading-modules-separately)
 * [Prebid.js Analytics Adapters](/overview/analytics.html)
 
 To learn more about header bidding and Prebid see:
