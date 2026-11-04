@@ -2,18 +2,18 @@
 layout: analytics
 title: LiveIntent
 description: LiveIntent Analytics Adapter
-modulecode: liveintent
+modulecode: liveIntent
 prebid_member: true
 gvl_id: 148
 ---
 
-#### Registration
+## Registration
 
 Please visit [LiveIntent](https://www.liveintent.com/) for more information.
 
-#### Example Configuration
+## Example Configuration
 
-```
+```javascript
 pbjs.enableAnalytics(
   {
     provider: 'liveintent',
