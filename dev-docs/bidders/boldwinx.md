@@ -12,6 +12,7 @@ schain_supported: true
 dchain_supported: false
 userIds: all
 media_types: banner, video, native
+multiformat_supported: will-bid-on-any
 deals_supported: true
 floors_supported: true
 fpd_supported: true
