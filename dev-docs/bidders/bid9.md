@@ -4,7 +4,8 @@ title: bid9
 description: Prebid bid9 Bidder Adapter
 biddercode: bid9
 pbjs: true
-pbs: false
+pbs: true
+pbs_app_supported: true
 media_types: banner, video
 multiformat_supported: will-bid-on-any
 tcfeu_supported: false
@@ -45,6 +46,42 @@ The bid9 adapter sends one OpenRTB 2.6 request per ad unit, routed by the ad uni
 All standard OpenRTB video fields set in `mediaTypes.video` are sent in `imp.video`, including `mimes`, `protocols`, `minduration`/`maxduration`, `startdelay`, `plcmt`, `linearity`, `skip`/`skipmin`/`skipafter`, `playbackmethod`, `api` and the pod fields. `playerSize` is sent as `w`/`h`. Objects that `mediaTypes.video` does not model, such as `companionad`, can be passed through `ortb2Imp.video`.
 
 Outstream bids need a renderer configured by the publisher on the ad unit.
+
+## Prebid Server
+
+bid9 is also available in Prebid Server, for banner and video on site and app traffic. It uses the same bid params as Prebid.js, so an ad unit's `params` can stay as they are when bid9 moves server-side. Prebid Server sends each impression to bid9 as its own request. To route bid9 through a Prebid Server host, add it to `s2sConfig`:
+
+```javascript
+pbjs.setConfig({
+  s2sConfig: {
+    accountId: 'your-account-id',
+    enabled: true,
+    adapter: 'prebidServer',
+    bidders: ['bid9'],
+    timeout: 800,
+    endpoint: 'https://your-pbs-host/openrtb2/auction',
+    syncEndpoint: 'https://your-pbs-host/cookie_sync'
+  }
+});
+```
+
+## Regions
+
+bid9 does not serve Europe yet (EEA, UK and Switzerland), because it has no IAB TCF vendor ID. Prebid Server hosts in Europe should consider disabling it. European support is planned once the ID is registered.
+
+## User Sync
+
+bid9 declares an iframe user sync in Prebid Server, so `/cookie_sync` returns an iframe for bid9 and the synced ID is sent as `user.buyeruid`. Publishers using Prebid.js need iframe syncs allowed for bid9, for example:
+
+```javascript
+pbjs.setConfig({
+  userSync: {
+    filterSettings: {
+      iframe: { bidders: ['bid9'], filter: 'include' }
+    }
+  }
+});
+```
 
 ## First Party Data
 
