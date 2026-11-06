@@ -31,10 +31,9 @@ The BoldwinX adapter needs an `epid` (endpoint ID) before it can bid. Please con
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name   | Scope    | Description                                          | Example   | Type     |
-|--------|----------|------------------------------------------------------|-----------|----------|
-| `epid` | required | Endpoint ID issued by Boldwin. A number is accepted. | `'12345'` | `string` |
+| Name   | Scope    | Description                   | Example   | Type                 |
+|--------|----------|-------------------------------|-----------|----------------------|
+| `epid` | required | Endpoint ID issued by Boldwin | `'12345'` | `string` or `number` |
 
 - Floors: set with the [Price Floors module](/dev-docs/modules/floors.html). Bids and floors are in USD; a floor in another currency is left out of the request, and Prebid still enforces it on the bids.
-- First party data: everything in `ortb2` and `ortb2Imp` is passed on.
 - User sync: an image pixel that carries the GDPR, US Privacy and GPP signals. No sync is made when COPPA applies.
