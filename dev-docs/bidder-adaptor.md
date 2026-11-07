@@ -570,6 +570,7 @@ Since Prebid.js 11.43, a bid with a `dealId` can describe its deal in `meta.deal
 | `priorityAdjustedCpm` | `priority_adjusted_cpm` | Number, 0 or more | CPM-equivalent value the ad server ranks the deal at, after any adjustment to its price (for example for pacing or delivery), in the bid's currency. Named `pacingAdjustedCpm` / `pacing_adjusted_cpm` in Prebid.js 11.43. |
 | `onSchedule` | `on_schedule` | Number, 0 or more | Delivery relative to schedule. For example, `0.5` means half of the expected impressions have been served. |
 | `priority` | `priority` | Integer | Relative precedence among deals. Lower integers have higher priority. |
+| `source` | `source` | Non-empty string | Since Prebid.js 11.45. Who validated the deal metadata. Prebid Server is expected to set `"adserver"` on metadata from bidders listed in the request's `ext.prebid.as.apb`. Informational only: Prebid.js doesn't use it to decide whether to trust the metadata. |
 
 For example, this OpenRTB bid:
 
@@ -586,7 +587,7 @@ For example, this OpenRTB bid:
 
 results in `bid.meta.deal` of `{ type: 2, cpm: 5, priorityAdjustedCpm: 6.5, onSchedule: 0.8, priority: 10 }`.
 
-When the [Currency module](/dev-docs/modules/currency.html) converts a bid, it converts `meta.deal.cpm` and `meta.deal.priorityAdjustedCpm` at the same rate as the bid's `cpm`. Prebid.js only exposes this metadata for now: it doesn't change how bids are ranked.
+When the [Currency module](/dev-docs/modules/currency.html) converts a bid, it converts `meta.deal.cpm` and `meta.deal.priorityAdjustedCpm` at the same rate as the bid's `cpm`. Prebid.js only uses this metadata for ranking when the publisher trusts the adapter with [`allowPriorityBids`](/dev-docs/publisher-api-reference/bidderSettings.html#212-allowprioritybids) (since Prebid.js 11.44).
 
 #### Resolve OpenRTB Macros in the Creatives
 
@@ -964,6 +965,39 @@ As described in [Show Outstream Video Ads]({{site.baseurl}}/dev-docs/show-outstr
 If possible, we recommend that publishers associate a renderer with their outstream video ad units.  By doing so, all video-enabled demand partners will be able to participate in the auction, regardless of whether a given demand partner provides a renderer on its bid responses.  Prebid.js will always invoke a publisher-defined renderer on a given ad unit.
 
 However, if the publisher does not define a renderer, you will need to return a renderer with your bid response if you want to participate in the auction for outstream ad unit.
+
+To return a renderer, create one with `Renderer.install` from `src/Renderer.js`, give it a render function with `setRender`, and set it as `bid.renderer`. Take `id` and `adUnitCode` from the original bid request (`bidRequest` here), since the bid response doesn't carry `adUnitCode`:
+
+```javascript
+import { Renderer } from '../src/Renderer.js';
+
+const renderer = Renderer.install({
+    id: bidRequest.bidId,
+    url: 'https://cdn.example.com/outstream-player.js', // script to load before rendering
+    config: { /* passed through as renderer.config */ },
+    adUnitCode: bidRequest.adUnitCode,
+    loaded: false
+});
+renderer.setRender(function (bid, doc) {
+    // runs once the script at `url` has loaded
+    window.examplePlayer.render(bid.adUnitCode, bid.vastXml || bid.vastUrl);
+});
+bid.renderer = renderer;
+```
+
+{: .table .table-bordered .table-striped }
+
+| Option | Type | Description |
+| --- | --- | --- |
+| `url` | `string` | Script to load before `render` is called. |
+| `renderNow` | `boolean` | If `true`, `render` is called immediately, without loading `url`. Use it when the render function is self-contained, for example when the player is already on the page or the creative is written directly into the slot. `url` can then be omitted (Prebid.js 7.45+). |
+| `config` | `object` | Arbitrary configuration, available to the render function as `renderer.config`. A `documentResolver(bid, sourceDocument, renderDocument)` function in it can choose the document passed to `render`. |
+| `id` | `string` | Identifier for the renderer. |
+| `adUnitCode` | `string` | The ad unit the renderer belongs to. If that ad unit (or its `mediaTypes.video`) has a publisher renderer with both `url` and `render`, and it isn't `backupOnly`, `url` is not loaded and `render` is called directly. |
+| `loaded` | `boolean` | Set to `true` if the script at `url` is already loaded; queued commands then run immediately. |
+| `callback` | `function` | Called when the script at `url` has loaded. It replaces the default callback, which sets `loaded` and runs the queued commands, including the pending `render`, so a custom callback must do the same (`renderer.loaded = true; renderer.process();`). If the script fails to load, `callback` isn't called; give the function an `error` property to be notified instead. |
+
+A renderer is used when it has a `url` or `renderNow: true`. Publisher renderers defined on the ad unit or bidder without a `url` are treated as `renderNow` automatically.
 
 ### Step 3: Respond with a VAST URL or raw VAST XML
 

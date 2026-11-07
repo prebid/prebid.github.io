@@ -235,11 +235,11 @@ function init(config, userConsent) {
 function alterBidRequests(reqBidsConfigObj, callback, config, userConsent) {
   // do stuff
   // put data in adUnits' ortb2Imp:
-  reqBidsConfigObj.adUnits.forEach((adUnit) => mergeDeep(adUnit, 'ortb2Imp.ext', myCustomData);
+  reqBidsConfigObj.adUnits.forEach((adUnit) => mergeDeep(adUnit, {ortb2Imp: {ext: myCustomData}}));
   // or in global first party data:
   mergeDeep(reqBidsConfigObj.ortb2Fragments.global, myCustomData);
   // or in bidder-specific first party data:
-  config.bidders.forEach((bidderCode) => mergeDeep(reqBidsConfigObj.ortb2Fragments.bidder, {[bidderCode]: myCustomData});
+  config.bidders.forEach((bidderCode) => mergeDeep(reqBidsConfigObj.ortb2Fragments.bidder, {[bidderCode]: myCustomData}));
   callback();
 }
 

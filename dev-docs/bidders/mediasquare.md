@@ -3,6 +3,7 @@ layout: bidder
 title: MediaSquare
 description: Prebid MediaSquare Bidder Adapter
 pbjs: true
+pbs: true
 biddercode: mediasquare
 tcfeu_supported: true
 usp_supported: true
@@ -15,10 +16,10 @@ sidebarType: 1
 ---
 
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description           | Example                              | Type      |
-|---------------|----------|-----------------------|--------------------------------------|-----------|
-| `owner`      | required | Mediasquare owner ID  | `'test'`                               | `string`  |
-| `code`        | required | Mediasquare code ID   | `'publishername_atf_desktop_rg_pave'`  | `string`  |
+| Name    | Scope    | Description          | Example                               | Type     |
+|---------|----------|----------------------|---------------------------------------|----------|
+| `owner` | required | Mediasquare owner ID | `'test'`                              | `string` |
+| `code`  | required | Mediasquare code ID  | `'publishername_atf_desktop_rg_pave'` | `string` |
