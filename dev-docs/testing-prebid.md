@@ -51,7 +51,8 @@ The tests run under [Vitest](https://vitest.dev/guide/browser/) in a real browse
 * `npx gulp test-only --file test/spec/modules/exampleBidAdapter_spec.js` runs one spec file
 * `npx gulp test-only` runs the whole suite once, as CI does
 * `npx gulp serve-and-test` re-runs the tests that import a file whenever a source file changes
-* `--browsers chrome,firefox,safari,edge` picks the browsers (Chromium by default)
+* `--browsers chrome,firefox,safari,edge` picks the browsers (Chromium by default). Install Firefox with `npx playwright install firefox`; `safari` drives the installed Safari on macOS (once: `sudo safaridriver --enable`).
+* `VITEST_PARALLEL=0 npx gulp test-only ...` runs one spec file at a time. Spec files otherwise run in several pages at once, which share cookies and storage, so try it when a test fails only alongside others.
 
 CI also runs the suite in Firefox, Safari, Edge, an old Chrome, and Safari on a real iPhone, whose test page is served from `http://bs-local.com` rather than `localhost` and isn't a secure context. The [Prebid.js test README](https://github.com/prebid/Prebid.js/blob/master/test/vitest/README.md) describes the setup.
 
@@ -64,7 +65,7 @@ Check the test results using these guidelines:
 * Otherwise look for errors printed in the console for a description of the failing test.
 * You may need to iterate on your code or tests until all tests are passing.
 * Make sure existing tests still pass.
-* `npx gulp test-only --file <spec> --coverage` writes an lcov coverage report to `build/coverage/chunks/1/lcov.info`. Its paths are the source files, so you can open it with any lcov viewer or editor plugin to see which lines your tests cover.
+* `npx gulp test-coverage --file <spec>` writes an lcov coverage report to `build/coverage/chunks/1/lcov.info`. Its paths are the source files, so you can open it with any lcov viewer or editor plugin to see which lines your tests cover.
 * In a pull request, CI compares the coverage of the whole suite with the base branch's.
 * The code you have added or modified must have greater than 80% coverage to be accepted.
 
