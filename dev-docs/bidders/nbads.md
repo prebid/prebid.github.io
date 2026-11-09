@@ -22,13 +22,13 @@ pbs: false
 sidebarType: 1
 ---
 
-### Registration
+## Registration
 
 Contact [NexBids](https://nexbids.com/) for a publisher account and placement codes.
 Register each site's domain with NexBids;
 the gateway validates the page origin and the placement's permitted media formats.
 
-### Bid parameters
+## Bid parameters
 
 {: .table .table-bordered .table-striped }
 
@@ -46,7 +46,7 @@ unit sets `ortb2Imp.tagid`, its bidder entry can be
 Responses without an OpenRTB `cur` default to `USD`; explicitly returned
 currencies are preserved.
 
-### Configuration
+## Configuration
 
 {: .table .table-bordered .table-striped }
 
@@ -58,7 +58,7 @@ currencies are preserved.
 pbjs.setConfig({ nbads: { env: 'prod' } });
 ```
 
-### Media configuration
+## Media configuration
 
 - Declare banner sizes in `mediaTypes.banner.sizes`.
 - For video, declare `mediaTypes.video.playerSize` and the standard OpenRTB video
@@ -74,7 +74,7 @@ pbjs.setConfig({ nbads: { env: 'prod' } });
   format. Each format can bid independently, subject to the placement's registered
   format allowlist.
 
-### Examples
+## Examples
 
 The following production review placements use publisher `Pub-d253acc11ce4b315`
 and the registered page origin `https://test.ssp.nexbids.com`. They must be used
@@ -142,7 +142,7 @@ pbjs.addAdUnits([
 ]);
 ```
 
-### First-party data and privacy
+## First-party data and privacy
 
 First-party data supplied through Prebid's `ortb2` and `ortb2Imp` fields is
 forwarded through the standard OpenRTB converter, including publisher, site,
