@@ -29,7 +29,7 @@ Two modes are supported:
 
 {: .alert.alert-warning :}
 Since Prebid 10, schain is treated as first party data: this module just copies `schain.config` into `ortb2.source.ext.schain`. You may provide it (or `ortb2.source.schain`) directly, removing the need for this module.
-Note that bidder-specific first party data is merged with global first party data, while up until Prebid 9 bidder-specific schains override the global schain. The simplest way to upgrade to 10 is to avoid using both.   
+Like other first party data, a bidder-specific schain is merged with the global one, so the bidder receives the global nodes followed by its own. Up to Prebid.js 9, it replaced the global schain instead; since Prebid.js 11.45 you can restore that with `firstPartyData.replaceGlobalSchain`. See [Global and Bidder-Specific Together](#global-and-bidder-specific-together).
 
 First, build the schain module into your Prebid.js package:
 
@@ -41,44 +41,46 @@ The module performs validations on the schain data provided and makes it availab
 
 ### Global Supply Chains
 
-Call `setConfig` with the `schain` object to be used:
+Call `setConfig` with the supply chain object in `schain.config`:
 
 ```javascript
 pbjs.setConfig({
   "schain": {
-    "validation": "strict",
-      "ver":"1.0",
+    "config": {
+      "ver": "1.0",
       "complete": 1,
       "nodes": [
         {
-          "asi":"indirectseller.com",
-          "sid":"00001",
-          "hp":1
+          "asi": "indirectseller.com",
+          "sid": "00001",
+          "hp": 1
         }
       ]
+    }
   }
 });
 ```
 
 ### Bidder-Specific Supply Chains
 
-This method uses the `pbjs.setBidderConfig` function, with a syntax similar to the global scenario above.
+This method uses the `pbjs.setBidderConfig` function, with a syntax similar to the global scenario above. Note the two levels of `config`: the outer one is part of `setBidderConfig`, the inner one is `schain.config`.
 
 ```javascript
 pbjs.setBidderConfig({
   "bidders": ['bidderA'],   // can list more bidders here if they share the same config
   "config": {
     "schain": {
-      "validation": "relaxed",
-      "ver":"1.0",
-      "complete": 1,
-      "nodes": [
-        {
-            "asi":"bidderA.com",
-            "sid":"00001",
-            "hp":1
-        }
-      ]
+      "config": {
+        "ver": "1.0",
+        "complete": 1,
+        "nodes": [
+          {
+            "asi": "bidderA.com",
+            "sid": "00001",
+            "hp": 1
+          }
+        ]
+      }
     }
   }
 });
@@ -91,7 +93,38 @@ You can find more information about the `pbjs.setBidderConfig` function in the [
 
 ### Global and Bidder-Specific Together
 
-Yes, you can set both global and bidder-specific SChain configs. When together, the schain config setup via `pbjs.setConfig` acts as a global config that applies to all your bidders, while `pbjs.setBidderConfig` overrides the global config for the noted bidder(s).
+Yes, you can set both global and bidder-specific SChain configs. The schain set with `pbjs.setConfig` applies to all your bidders. For the bidders in `pbjs.setBidderConfig`, how the two combine depends on `firstPartyData.replaceGlobalSchain`:
+
+* **By default**, the bidder-specific schain is merged with the global one like other first party data: the bidder receives the global nodes followed by its own. This is useful when every chain starts with the same nodes.
+* **With `replaceGlobalSchain: true`** (Prebid.js 11.45 and later), the bidder-specific schain replaces the global one for those bidders. This was the behavior up to Prebid.js 9.
+
+Other bidders receive the global schain either way. This works the same whether you use this module or provide the schain as first party data:
+
+```javascript
+pbjs.setConfig({
+  ortb2: {
+    source: {
+      schain: { ver: '1.0', complete: 1, nodes: [{ asi: 'indirectseller.com', sid: '00001', hp: 1 }] }
+    }
+  }
+});
+
+// Prebid.js 11.45+: bidderA receives only its own chain; other bidders receive the global one.
+// setConfig replaces the whole firstPartyData object: set this together with any other
+// firstPartyData options (such as uaHints) in one call.
+pbjs.setConfig({ firstPartyData: { replaceGlobalSchain: true } });
+
+pbjs.setBidderConfig({
+  bidders: ['bidderA'],
+  config: {
+    ortb2: {
+      source: {
+        schain: { ver: '1.0', complete: 1, nodes: [{ asi: 'bidderA.com', sid: '00001', hp: 1 }] }
+      }
+    }
+  }
+});
+```
 
 ## SChain Config Syntax
 

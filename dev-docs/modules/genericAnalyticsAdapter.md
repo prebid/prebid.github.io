@@ -22,7 +22,8 @@ This is an analytics adapter that can interface with any backend, meant for publ
 | `method` | optional | String | HTTP method used to call `url`. Defaults to `'POST'` |
 | `batchSize` | optional | Number | Number of events to collect into a single call to `handler` or `url`. Defaults to `1` |
 | `batchDelay` | optional | Number | Time (in milliseconds) to wait before calling `handler` or `url` with an incomplete batch (when fewer than `batchSize` events have been collected). Defaults to `100` |
-| `events` | optional | Object | Map from event name to a custom format function. When provided, only events in this map will be collected, using the data returned by their corresponding function - [example](#event-formatters) |
+| `events` | optional | Object | Map from event name to a custom format function. When provided, only events in this map (and in the `preset`, if any) will be collected, using the data returned by their corresponding function - [example](#event-formatters) |
+| `preset` | optional | String | Name of a preset set of event formatters, provided by a separate module that must be included in the build. Since Prebid.js 11.44, the only preset is `'skinny'` - see [Skinny preset](#skinny-preset). Functions in `events` override the preset's for the same event, and can add events the preset doesn't collect |
 | `gvlid` | optional | Number | Global vendor list ID to use for the purpose of GDPR purpose 7 enforcement - see [note](#gdpr) |
 | `sampling` | optional | Number | Sampling rate, expressed as a number between 0 and 1. Data is collected only on this ratio of browser sessions. Defaults to `1` |
 
@@ -210,7 +211,7 @@ pbjs.enableAnalytics({
     provider: 'generic',
     options: {
         handler(data) {
-            // `data` is an array of length `batchSize`. If `events` is provided, the elements are the values returned
+            // `data` is an array of length `batchSize`. If `events` or `preset` is provided, the elements are the values returned
             // by the format functions defined therein; otherwise, they have the format {eventType, args}.
             fetch('https://example.com', {
                 method: 'POST',
@@ -222,6 +223,69 @@ pbjs.enableAnalytics({
         }
     }
 })
+```
+
+<a id="skinny-preset"></a>
+
+### Skinny preset
+
+By default, the adapter collects full event payloads, which contain a lot of data that is rarely needed for analytics: full EIDs, first party data repeated on every bid request, consent strings, creative markup and so on. Since Prebid.js 11.44, the `skinny` preset collects only the events and fields below. It is provided by the [Generic Analytics Skinny Events](/dev-docs/modules/genericAnalyticsSkinnyEvents.html) module, which must be included in the build:
+
+```bash
+gulp build --modules=genericAnalyticsSkinnyEvents,...
+```
+
+```javascript
+pbjs.enableAnalytics({
+    provider: 'generic',
+    options: {
+        url: 'https://example.com/analytics',
+        preset: 'skinny'
+    }
+});
+```
+
+If `preset: 'skinny'` is set but the module isn't included, the adapter logs an error and is not enabled.
+
+{: .table .table-bordered .table-striped }
+| Event | Fields |
+| :--- | :--- |
+| `bidRequested` | `auctionId`, `bidderRequestId`, `bidderCode`, `auctionStart`, `start`, `timeout`, `ortb2` (without EIDs), `eidsSources`, `bids` (see below) |
+| `bidResponse` | `auctionId`, `adUnitCode`, `transactionId`, `requestId`, `adId`, `bidder`, `bidderCode`, `cpm`, `currency`, `originalCpm`, `originalCurrency`, `mediaType`, `width`, `height`, `size`, `dealId`, `meta`, `adserverTargeting`, `floorData`, `requestTimestamp`, `responseTimestamp`, `timeToRespond`, `ttl`, `source` |
+| `bidWon` | same as `bidResponse`, plus `status` |
+| `noBid` | `auctionId`, `bidId`, `bidderRequestId`, `adUnitCode`, `bidder`, `source` |
+| `bidTimeout` | `bidderRequests`: the timed out bids grouped by bidder request, each with `auctionId`, `bidderRequestId`, `bidderCode`, `ortb2` (without EIDs), `eidsSources` and `bids` (see below) |
+
+Bid requests (the `bids` in `bidRequested` and `bidTimeout`) contain `bidId`, `bidderRequestId`, `auctionId`, `adUnitCode`, `transactionId`, `bidder`, `source`, `mediaTypes`, `sizes`, `auctionsCount`, `bidRequestsCount`, `bidderRequestsCount`, `bidderWinsCount` and `ortb2Imp`.
+
+Notes:
+
+- `ortb2` is always on the bidder request, sent once rather than repeated on every bid, and `ortb2Imp` is always on each bid, in both `bidRequested` and `bidTimeout`.
+- Instead of EIDs, `eidsSources` lists which ID sources were present, for example `['pubcid.org', 'id5-sync.com']`.
+- Timed out bidder requests don't include `auctionStart`, `start` or `timeout`; use `bidderRequestId` to match them to the corresponding `bidRequested` event.
+- `noBid` and bid responses can be matched to their bid request with `bidId` (`requestId` on bid responses).
+- Every payload also includes `eventType` (the name of the event) and `analyticsLabels`, if any are configured.
+
+Functions in `options.events` take precedence over the preset for the same event, and can add events the preset doesn't collect:
+
+```javascript
+pbjs.enableAnalytics({
+    provider: 'generic',
+    options: {
+        url: 'https://example.com/analytics',
+        preset: 'skinny',
+        events: {
+            // replaces the preset's bidWon
+            bidWon(bid) {
+                return { eventType: 'bidWon', adId: bid.adId, cpm: bid.cpm };
+            },
+            // not in the preset
+            auctionEnd(auction) {
+                return { eventType: 'auctionEnd', auctionId: auction.auctionId };
+            }
+        }
+    }
+});
 ```
 
 ### See also

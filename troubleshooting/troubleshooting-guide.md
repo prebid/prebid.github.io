@@ -42,11 +42,13 @@ This will add two types of messages to your browser’s developer console:
 
  {: .table .table-bordered .table-striped }
 
-| Message |  Description   |
-| :----  |:--------|
-| Calling bidder |  When Prebid.js sends out bid requests, this message is logged |
+| Message | Description |
+| :--- | :--- |
+| Calling bidder | When Prebid.js sends out bid requests, this message is logged |
 | Set key value for placement | After all the bids came back, or when timeout is reached, prebid.js will set keyword targeting for the defined ad units. |
 | Calling renderAd | If a header bidding bid wins the ad server's auction, prebid.js will render the winning bid's creative. |
+
+Starting with Prebid.js 11.29.0, turning on debug mode also loads the [DevTools MCP module](/dev-docs/modules/devtoolsMcp.html), which lets an AI agent using Chrome DevTools inspect auctions, bids, events and config on the page.
 
 <hr>
 
@@ -436,7 +438,7 @@ function auctionOptionsLogging() {
         console.log(`Auction Options: Auction End! Timed Out! Bidders: ${Array.from(new Set(timedOutBidders.map(each => each.bidder))).join(',')} - ${auctionId}`);
     })
 
-    pbjs.onEvent('bidderError', { error, bidderRequest } => {
+    pbjs.onEvent('bidderError', ({ error, bidderRequest }) => {
         console.log(`Auction Error: Bidder ${bidderRequest.bidderCode} responded with ${error.status} ${error.statusText} - ${bidderRequest.auctionId}`);
     })
 
@@ -473,7 +475,7 @@ function auctionOptionsLogging() {
                     adunit: code,
                     adId: bid.adId,
                     bidder: bid.bidder,
-                    secondary: !config.secondaryBidders.includes(bid.bidder),
+                    secondary: config.secondaryBidders.includes(bid.bidder),
                     time: bid.timeToRespond,
                     auctionTimeout: auctionTime,
                     cpm: bid.cpm,
@@ -492,7 +494,7 @@ function auctionOptionsLogging() {
                     adunit: code,
                     adId: bid.bidId,
                     bidder: bid.bidder,
-                    secondary: !config.secondaryBidders.includes(bid.bidder),
+                    secondary: config.secondaryBidders.includes(bid.bidder),
                 });
             });
         }

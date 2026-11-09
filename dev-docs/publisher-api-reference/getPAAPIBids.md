@@ -1,9 +1,13 @@
 ---
 layout: api_prebidjs
-title: pbjs.getPAAPIBids(options)
+title: pbjs.getPAAPIBids(options) <span style="color:red" markdown="1">[Removed in 11.0]</span>
+head_title: "pbjs.getPAAPIBids(options) [Removed in 11.0] for Header Bidding"
 description: getPAAPIBids API
 sidebarType: 1
 ---
+
+{: .alert.alert-warning :}
+This function was removed in Prebid.js 11.0 along with the topLevelPaapi module.
 
 Returns a promise of the latest PAAPI bid for each ad unit, optionally filtered by auction or ad unit.
 
@@ -16,26 +20,26 @@ Returns a promise of the latest PAAPI bid for each ad unit, optionally filtered 
 {: .table .table-bordered .table-striped }
 | Param | Scope | Type | Description |
 | --- | --- | --- | --- |
-| options | Optional | `Object` |  |
+| options | Optional | `Object` | |
 | options.adUnitCode | Optional | `String` | Ad unit filter; if provided, only return the PAAPI winner for this ad unit |
-| options.auctionId | Optional | `String` | Auction filter; if provided, only return PAAPI winners for this auction  |
+| options.auctionId | Optional | `String` | Auction filter; if provided, only return PAAPI winners for this auction |
 
 **Result**:
 
 The return value is a map where each value is either `null` (when there is no PAAPI winner), or an object with this format:
 
 {: .table .table-bordered .table-stripped :}
-| Param         | Type    | Description                                                                    |
-| ---           | ---     | ---                                                                            |
-| adId          | String  | Ad ID. can be used with [renderAd](/dev-docs/publisher-api-reference/renderAd.html) |
-| auctionId     | String  | Auction ID tied to this bid                                                      |
-| adUnitCode    | String  | Ad unit code tied to this bid |
-| source        | String  | Always `"paapi"` |
-| urn           | String  | Creative URN (only set if `paapi.topLevelSeller.auctionConfig.resolveToConfig` is `false`|
-| frameConfig   | Object  | Creative fenced frame config (only set if `paapi.topLevelSeller.auctionConfig.resolveToConfig` is `true`|
-| auctionConfig | Object  | The auction config object that was passed to `navigator.runAdAuction` and generated this bid |
-| width         | Number  | Creative width |
-| height        | Number  | Creative height |
+| Param | Type | Description |
+| --- | --- | --- |
+| adId | String | Ad ID. can be used with [renderAd](/dev-docs/publisher-api-reference/renderAd.html) |
+| auctionId | String | Auction ID tied to this bid |
+| adUnitCode | String | Ad unit code tied to this bid |
+| source | String | Always `"paapi"` |
+| urn | String | Creative URN (only set if `paapi.topLevelSeller.auctionConfig.resolveToConfig` is `false` |
+| frameConfig | Object | Creative fenced frame config (only set if `paapi.topLevelSeller.auctionConfig.resolveToConfig` is `true` |
+| auctionConfig | Object | The auction config object that was passed to `navigator.runAdAuction` and generated this bid |
+| width | Number | Creative width |
+| height | Number | Creative height |
 
 **Example**:
 

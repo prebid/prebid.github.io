@@ -755,7 +755,7 @@ pbjs.addAdUnits({
 * [Show Native Ads](/prebid/native-implementation.html)
 * [Show Video Ads](/dev-docs/show-video-with-a-dfp-video-tag.html)
 * [Show Outstream Video Ads](/dev-docs/show-outstream-video-ads.html)
-* [Show Long-Form Video Ads](/prebid-video/video-long-form.html)
+* [Show Long-Form Video Ads](/prebid-video/video-long-form.html) (removed in Prebid.js 11.0)
 * [Prebid.org Video Examples](/examples/video/)
 * [Prebid.org Native Examples](/dev-docs//examples/native-ad-example.html)
 

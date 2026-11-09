@@ -17,6 +17,9 @@ sidebarType: 3
 
 # How to optimize header bidding setup
 
+{: .alert.alert-info :}
+This analysis was done several years ago with older versions of Prebid.js. The methodology still applies, but the specific numbers may not reflect current browsers and demand.
+
 While helping publishers run header bidding, we hear the same questions asked many times:
 
 * How many bidders should I work with?

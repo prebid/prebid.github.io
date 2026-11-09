@@ -28,25 +28,25 @@ Details on all of these below.
 The following modules have been removed from Prebid.js as part of the 8.0 release. Publishers building with one of them will need to point to its replacement or remove the module from their build.
 
 {: .table .table-bordered .table-striped }
-| Module      | Replacement |
-|:-----------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Google Analytics Adapter | Recommend publishers explore the Generic Analytics Adapter
-| Inmar Bid Adapter
-| Inskin Bid Adapter
-| MASS Deal Rendering Module | Replaced by (documentation) <https://github.com/prebid/prebid.github.io/issues/4535>
-| AOL Bid Adapter | Reach out to Yahoo
-| CPEX ID submodule | CzechAdId Module
-| PubcommonID module | SharedID Userid Submodule
-| OpenX Analytics module
-| Zeus Prime Module
-| Captify RTD module | pending integration updates
-| Realvu Analytics module | pending integration updates
-| TrustPID userid submodule | Utiq userid submodule
-| OpenX ORTB Bid Adapter | OpenX Bid Adapter
-| Synacor Bid Adapter | IMDS Bid Adapter
-| AdGeneration Bid Adapter
-| EMX Bid Adapter | Cadent Aperture MX Bid Adapter
-| Rubicon Analytics Adapter | Magnite Analytics Adapter
+| Module | Replacement |
+| --- | --- |
+| Google Analytics Adapter | Recommend publishers explore the Generic Analytics Adapter |
+| Inmar Bid Adapter | None, remove it from your build |
+| Inskin Bid Adapter | None, remove it from your build |
+| MASS Deal Rendering Module | Replaced by publisher code; see [Custom Rendering for Deals](/features/customDealRendering.html) |
+| AOL Bid Adapter | Reach out to Yahoo |
+| CPEX ID submodule | CzechAdId Module |
+| PubcommonID module | SharedID Userid Submodule |
+| OpenX Analytics module | None, remove it from your build |
+| Zeus Prime Module | None, remove it from your build |
+| Captify RTD module | pending integration updates |
+| Realvu Analytics module | pending integration updates |
+| TrustPID userid submodule | Utiq userid submodule |
+| OpenX ORTB Bid Adapter | OpenX Bid Adapter |
+| Synacor Bid Adapter | IMDS Bid Adapter |
+| AdGeneration Bid Adapter | None, remove it from your build |
+| EMX Bid Adapter | Cadent Aperture MX Bid Adapter |
+| Rubicon Analytics Adapter | Magnite Analytics Adapter |
 
 ## Transaction identifiers are now reliable and opt in
 

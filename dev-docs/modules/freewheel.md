@@ -5,12 +5,16 @@ title: Module - Freewheel
 description: Passes key value targeting to Freewheel SDK for adpod mediaType adUnits.
 module_code : freeWheelAdserverVideo
 display_name : Freewheel Video Support
-enable_download : true
+enable_download : false
+pbjs_version_notes: removed in 11.0
 vendor_specific: true
 sidebarType : 1
 ---
 
 # Freewheel Module
+
+{: .alert.alert-warning :}
+The Freewheel Video Support module (freeWheelAdserverVideo) was removed in Prebid.js 11.0 along with ad pod (long-form) video support.
 
 This module returns the targeting key value pairs for the FreeWheel ad server.
 

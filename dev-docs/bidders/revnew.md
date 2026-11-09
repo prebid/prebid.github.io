@@ -3,7 +3,7 @@ layout: bidder
 title: Revnew
 description: Prebid Revnew Bidder Adapter
 pbjs: true
-pbs: true
+pbs: false
 biddercode: revnew
 gvl_id: 1468
 tcfeu_supported: true
