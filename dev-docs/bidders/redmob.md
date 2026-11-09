@@ -11,7 +11,7 @@ dsa_supported: false
 gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 schain_supported: true
 dchain_supported: false
-media_types: banner, video
+media_types: banner, video, native
 safeframes_ok: false
 deals_supported: false
 floors_supported: true
