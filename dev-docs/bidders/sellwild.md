@@ -25,13 +25,13 @@ privacy_sandbox: no
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 The Sellwild adapter requires setup and approval before use. Sellwild assigns each partner a partner code and an auth token. Contact <prebid@sellwild.com> to get started.
 
 Keep the `token` in server-side stored requests or stored impressions, not in parameters sent from the page or app.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 
@@ -40,7 +40,7 @@ Keep the `token` in server-side stored requests or stored impressions, not in pa
 | `partnerCode` | required | Partner code assigned by Sellwild       | `'acme'`       | `string` |
 | `token`       | required | Partner auth token assigned by Sellwild | `'your-token'` | `string` |
 
-### Example
+## Example
 
 ```json
 "imp": [{
@@ -59,7 +59,7 @@ Keep the `token` in server-side stored requests or stored impressions, not in pa
 }]
 ```
 
-### Notes
+## Notes
 
 - Send `device.ip`, `device.ua` and `device.geo.country` on every request. Without `device.geo.country`, Sellwild doesn't apply floors and geo-targeted demand won't bid.
 - Fire the returned `nurl` or `burl` when the ad wins or renders. Sellwild bills its demand from that notice.
