@@ -60,6 +60,11 @@ Note:
 * Use the same sid on every ad unit. The adapter sends one call per bid
   request, under the sid of the first impression.
 
+## User Sync
+
+Tunnl uses iframe user syncs. If you restrict iframe syncs with
+`userSync.filterSettings`, make sure `tunnl` is allowed.
+
 ## Multi-format Ad Units
 
 Tunnl accepts banner, video and native, and will bid on any of the media types
