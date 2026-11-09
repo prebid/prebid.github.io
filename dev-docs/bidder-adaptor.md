@@ -291,6 +291,8 @@ If the above criteria is met, Prebid.js core will do the following:
 
 Note: If the Prebid.js debugging query param `?pbjs_debug=true` is present in the URL or `debug: true` has been configured in `pbjs.setConfig()`, the gzip compression feature will be disabled and all bidder requests will be sent uncompressed.
 
+Note: Since Prebid.js 11.48, publishers can turn compression off for all adapters or for one with the [`disableGzipCompression`](/dev-docs/publisher-api-reference/bidderSettings.html#214-disablegzipcompression) bidder setting, so an adapter's endpoint must keep accepting uncompressed requests.
+
 Note: Since Prebid.js 11.41, `isGzipCompressionSupported()` returns a Promise that resolves to a boolean. Adapters that call it directly must wait for the Promise to resolve (for example, with `await`) instead of using its return value as a boolean.
 
 #### Ad Unit Params in the validBidRequests Array
