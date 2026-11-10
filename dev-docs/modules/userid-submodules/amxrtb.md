@@ -30,11 +30,22 @@ pbjs.setConfig({
                 name: 'amxId',
                 type: 'html5',
                 expires: 14,
+            },
+            params: {
+                tagId: 'cHJlYmlkLm9yZw'
             }
         }]
     }
 });
 ```
+
+{: .table .table-bordered .table-striped }
+
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module. | `"amxId"` |
+| params | Optional | Object | Container of all module params. | |
+| params.tagId | Optional | String | AMX-provided tag ID, sent as the `tagId` query parameter of the ID sync request. Default `""`. | `"cHJlYmlkLm9yZw"` |
 
 This will add a `userId.amxId` property to all bidRequests:
 
