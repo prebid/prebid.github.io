@@ -14,11 +14,11 @@ gvl_id: 1383
 
 The xe Analytics Adapter reports the Prebid.js auctions of ad units that carry an XE placement to
 [xe.works](https://xe.works), for the auction reports XE publishers see: competition, win share, floors,
-timeouts, rejected bids and render outcomes. Publishers that use the `xe` bidder (or its `xeworks` and
-`lunamediax` codes) can enable it without any account option.
+timeouts, rejected bids and render outcomes. Publishers that use the `xe` bidder (or its `xeworks` code) can
+enable it without any account option.
 
 Every bidder of such an ad unit is reported, but bidder params are not: only the XE placement id (`pid`) of the
-`xe`, `xeworks` and `lunamediax` bidders, their aliases and the codes listed in the `bidders` option. Auctions and
+`xe` and `xeworks` bidders, their aliases and the codes listed in the `bidders` option. Auctions and
 ad units without an XE placement are not sent.
 
 The adapter sends no user ids, IP addresses or consent strings: only flags (GDPR applies, GPP section ids, US
