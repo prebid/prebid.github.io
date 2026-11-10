@@ -33,7 +33,7 @@ The Xe.works adapter requires setup before beginning. Please contact us at <team
 
 Prebid.js 9.10 and later require `pid`. Bids with only the old `placement` param are rejected by the adapter.
 
-The adapter also answers to the bidder codes `xeworks` and `lunamediax`.
+The adapter also answers to the bidder code `xeworks`.
 
 ### Prebid Server Bid Params
 
