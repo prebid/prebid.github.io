@@ -1598,8 +1598,11 @@ The controls publishers have over the RTD modules:
 
 | Field | Required? | Type | Description |
 | --- | --- | --- | --- |
-| realTimeData.auctionDelay | no | integer | Defines the maximum amount of time, in milliseconds, the header bidding auction will be delayed while waiting for a response from the RTD modules as a whole group. The default is 0 ms delay, which means that RTD modules need to obtain their data when the page initializes. |
+| realTimeData.auctionDelay | no | integer | Defines the maximum amount of time, in milliseconds, the header bidding auction will be delayed while waiting for the RTD modules flagged with `waitForIt`. The default is 0 ms delay, which means that RTD modules need to obtain their data when the page initializes. |
+| realTimeData.dataProviders | yes | array of objects | The RTD modules to enable, in the order they are called. A module that is included in the build but not listed here does not run. |
+| realTimeData.dataProviders[].name | yes | string | Name of the RTD module, as given on its documentation page. |
 | realTimeData.dataProviders[].waitForIt | no | boolean | Setting this value to true flags this RTD module as "important" enough to wait the full auction delay period. Once all such RTD modules have returned, the auction will proceed even if there are other RTD modules that have not yet responded. The default is `false`. |
+| realTimeData.dataProviders[].params | no | object | Module-specific parameters; see the module's documentation page. |
 
 The idea behind the `waitForIt` flag is that publishers can decide which
 modules are worth waiting for and which better hustle. For example, imagine a bus stop:
@@ -1613,8 +1616,9 @@ of the real-time data with the revenue loss from auction delay.
 
 Notes:
 
-* The only time `waitForIt` means anything is if some modules are flagged as true and others as false. If all modules are the same (true or false), it has no effect.
+* The auction is delayed only if `auctionDelay` is greater than 0 and at least one module has `waitForIt: true`. Without a `waitForIt` module, `auctionDelay` has no effect and the auction does not wait for any module.
 * Likewise, `waitForIt` doesn't mean anything without an auctionDelay specified.
+* `realTimeData` is read once: the first `setConfig` call that includes `dataProviders` configures the RTD modules, and later `realTimeData` updates are ignored.
 * Since Prebid.js 11.26, RTD providers may be loaded after Prebid.js has started (for example, from a separate script). A provider that registers after `realTimeData` has been configured is initialized as soon as it registers, as long as it is listed in `realTimeData.dataProviders`; it takes part in auctions that start after that point.
 
 <a name="setConfig-topicsIframeConfig"></a>

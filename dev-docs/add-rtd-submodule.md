@@ -94,16 +94,17 @@ In order to let RTD-core know where to find the functions in your sub-module, cr
 | param name | type | Scope | Description | Params |
 | :--- | :--- | :--- | :--- | :--- |
 | name | string | required | must match the name provided by the publisher in the on-page config | n/a |
-| gvlid | number | optional | global vendor list ID for your submodule | n/a |
+| gvlid | number or array of numbers | optional | global vendor list ID for your submodule; an array if it acts on behalf of several vendors | n/a |
 | acpId | number | optional | Google [Additional Consent](/dev-docs/modules/tcfControl.html#additional-consent) provider ID for your submodule, used only if it has no GVL ID (PBJS 11.41+) | n/a |
-| init | function | required | defines the function that does any auction-level initialization required | config, userConsent |
-| getTargetingData | function | optional | defines a function that provides ad server targeting data to RTD-core | adUnitArray, config, userConsent |
-| getBidRequestData | function | optional | defines a function that provides bid request data to RTD-core | reqBidsConfigObj, callback, config, userConsent |
+| init | function | required | defines the function that does any initialization required; return `true` to enable the sub-module | config, userConsent |
+| getTargetingData | function | optional | defines a function that provides ad server targeting data to RTD-core | adUnitCodes, config, userConsent, auction |
+| getBidRequestData | function | optional | defines a function that provides bid request data to RTD-core | reqBidsConfigObj, callback, config, userConsent, timeout |
 | onAuctionInitEvent | function | optional | listens to the AUCTION_INIT event and calls a sub-module function that lets it inspect and/or update the auction | auctionDetails, config, userConsent |
 | onAuctionEndEvent | function | optional | listens to the AUCTION_END event and calls a sub-module function that lets it know when auction is done | auctionDetails, config, userConsent |
-| onBidRequestEvent | function | optional | listens to the BID_REQUESTED event and calls a sub-module function that lets it know when a bid is about to be requested | bidRequest, config, userConsent |
+| onBidRequestEvent | function | optional | listens to the BID_REQUESTED event and calls a sub-module function that lets it know when bids are about to be requested from a bidder | bidderRequest, config, userConsent |
 | onBidResponseEvent | function | optional | listens to the BID_RESPONSE event and calls a sub-module function that lets it know when a bid response has been collected | bidResponse, config, userConsent |
 | onBidAcceptedEvent | function | optional | since Prebid.js 11.7; listens to the BID_ACCEPTED event and calls a sub-module function that lets it know when a bid has been accepted and is about to be added to the auction | bidResponse, config, userConsent |
+| onDataDeletionRequest | function | optional | called when the US Privacy CMP registers a data deletion request; delete any data the sub-module stored about the user | config |
 
 For example:
 
@@ -129,6 +130,7 @@ Several of the interfaces get a `userConsent` object. It's an object that carrie
 
 * [gdpr](/dev-docs/modules/consentManagementTcf.html#bidder-adapter-gdpr-integration) - GDPR
 * [usp](/dev-docs/modules/consentManagementUsp.html#bidder-adapter-us-privacy-integration) - US Privacy (aka CCPA)
+* [gpp](/dev-docs/modules/consentManagementGpp.html) - GPP
 * [coppa](/dev-docs/publisher-api-reference/setConfig.html#setConfig-coppa) - the Child Online Privacy Protection Act
 
 These are provided so you can do the right thing with respect to regulations. The only privacy requirement imposed by the RTD-core is that sub-modules make make use of the StorageManager instead of attempting to access cookies or localstorage directly.
@@ -145,7 +147,7 @@ See the [Building the Request](/dev-docs/bidder-adaptor.html#building-the-reques
 
 This is the function that will allow RTD sub-modules to merge ad server targeting data into the auction. It's called at the AUCTION_END event for each auction.
 
-1. RTD-core will call this function with an array of adUnits, config, and userConsent as parameters
+1. RTD-core will call this function with an array of ad unit codes, config, userConsent, and the auction (the AUCTION_END event payload) as parameters
 2. Your sub-module should respond with per-adslot data that should be set as key values on the ad server targeting in this format:
 
 ```json
@@ -175,7 +177,7 @@ function init(config, userConsent) {
   return true;
 }
 
-function returnTargetingData(adUnits, config, userConsent) {
+function returnTargetingData(adUnitCodes, config, userConsent, auction) {
   // do stuff
   return data;
 }
@@ -192,6 +194,7 @@ This is the function that will allow RTD sub-modules to modify the AdUnit object
     2. callback: lets RTD-core know which auction the sub-module is done with.
     3. config: the sub-module's config params provided by the publisher
     4. userConsent object (see above)
+    5. timeout: the time, in milliseconds, RTD-core waits for sub-modules flagged with `waitForIt`; 0 when the auction is not delayed
 2. Your sub-module may update the reqBidsConfigObj and hit the callback. To inject data into the bid requests, you should follow one of these conventions:
     1. Recommended: use one of these [First Party Data](/features/firstPartyData.html) conventions:
         1. For AdUnit-specific first party data, set AdUnit.ortb2Imp.ext.data.ATTRIBUTES
