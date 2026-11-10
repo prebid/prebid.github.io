@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: xe.works
-description: Prebid Xe.works Bidder Adaptor
+title: Xeworks
+description: Prebid Xeworks Bidder Adapter
 biddercode: xe
 media_types: banner, video
 coppa_supported: true
