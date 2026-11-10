@@ -27,7 +27,7 @@ sidebarType: 1
 
 ## Note
 
-The Sellwild adapter requires setup and approval before use. Sellwild assigns each partner a partner code and an auth token. Contact <prebid@sellwild.com> to get started.
+The Sellwild adapter requires setup and approval before use. Sellwild assigns each partner a partner code and an auth token. Contact <support@sellwild.com> to get started.
 
 Keep the `token` in server-side stored requests or stored impressions, not in parameters sent from the page or app.
 
