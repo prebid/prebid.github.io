@@ -1,7 +1,7 @@
 ---
 layout: analytics
-title: xe.works
-description: xe Analytics Adapter
+title: Xeworks
+description: Xeworks Analytics Adapter
 modulecode: xe
 prebid_member: true
 tcfeu_supported: true
@@ -12,7 +12,7 @@ gvl_id: 1383
 
 ## About
 
-The xe Analytics Adapter reports the Prebid.js auctions of ad units that carry an XE placement to
+The Xeworks Analytics Adapter (code `xe`) reports the Prebid.js auctions of ad units that carry an XE placement to
 [xe.works](https://xe.works), for the auction reports XE publishers see: competition, win share, floors,
 timeouts, rejected bids and render outcomes. Publishers that use the `xe` bidder (or its `xeworks` code) can
 enable it without any account option.
