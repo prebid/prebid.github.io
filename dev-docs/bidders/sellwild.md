@@ -31,6 +31,9 @@ The Sellwild adapter requires setup and approval before use. Sellwild assigns ea
 
 Keep the `token` in server-side stored requests or stored impressions, not in parameters sent from the page or app.
 
+- Send `device.ip`, `device.ua` and `device.geo.country` on every request. Without `device.geo.country`, Sellwild doesn't apply floors and geo-targeted demand won't bid.
+- Fire the returned `nurl` or `burl` when the ad wins or renders. Sellwild bills its demand from that notice.
+
 ## Bid Params
 
 {: .table .table-bordered .table-striped }
@@ -58,8 +61,3 @@ Keep the `token` in server-side stored requests or stored impressions, not in pa
   }
 }]
 ```
-
-## Notes
-
-- Send `device.ip`, `device.ua` and `device.geo.country` on every request. Without `device.geo.country`, Sellwild doesn't apply floors and geo-targeted demand won't bid.
-- Fire the returned `nurl` or `burl` when the ad wins or renders. Sellwild bills its demand from that notice.
