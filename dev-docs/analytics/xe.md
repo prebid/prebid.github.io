@@ -18,7 +18,7 @@ timeouts, rejected bids and render outcomes. Publishers that use the `xe` bidder
 enable it without any account option.
 
 Every bidder of such an ad unit is reported, but bidder params are not: only the XE placement id (`pid`) of the
-`xe` and `xeworks` bidders, their aliases and the codes listed in the `bidders` option. Auctions and
+XE family bidders (`xe`, `xeworks`, `adipolo`, `anyclip`, `anzuDSP`, `driftpixel`, `iqx`, `leagueM`, `lm_kiviads`, `kivi`, `matterfull`, `revealon` and `robustApps`), their aliases and the codes listed in the `bidders` option. Auctions and
 ad units without an XE placement are not sent.
 
 The adapter sends no user ids, IP addresses or consent strings: only flags (GDPR applies, GPP section ids, US
