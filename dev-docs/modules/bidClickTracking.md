@@ -17,7 +17,7 @@ sidebarType : 1
 
 ## Overview
 
-Since Prebid.js 11.45, Prebid can observe clicks on the banner and native creatives it renders, on mobile and desktop. Observed clicks can emit `bidClick` events and be reported to the ad server. Banner events are limited to one per bid; native events are also deduplicated per bid by default, unless `dedupeNativeClicks: false` is set. These events are not a count of every individual click. This serves two setups:
+Since Prebid.js 11.50, Prebid can observe clicks on the banner and native creatives it renders, on mobile and desktop. Observed clicks can emit `bidClick` events and be reported to the ad server. Banner events are limited to one per bid; native events are also deduplicated per bid by default, unless `dedupeNativeClicks: false` is set. These events are not a count of every individual click. This serves two setups:
 
 - **GAM with the dynamic creative:** register Prebid clicks in Google Ad Manager. The [dynamic creative](/adops/js-dynamic-creative.html) (`creative.html`) passes GAM's `%%CLICK_URL_UNESC%%` click URL to Prebid. With `fireTrackers: true`, Prebid requests that URL when it observes a click on the winning creative, so GAM can count the click on the Prebid line item.
 - **The ad server bids into Prebid:** when [Prebid chooses the winner and renders it](/adops/ad-server-integration.html#the-ad-server-bids-into-prebid), no ad server creative counts clicks. `bidClick` gives analytics adapters, including the ad server's own analytics, a click event for the winning bid. `pbjs.renderAd` can also take the ad server's click URL as `clickThrough`, which `fireTrackers` requests.
