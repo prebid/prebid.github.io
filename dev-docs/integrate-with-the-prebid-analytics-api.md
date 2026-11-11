@@ -174,6 +174,24 @@ There are two error events analytics modules may wish to listen for: auctionDebu
 * batch up calls to the backend for post-auction logging rather than calling immediately after each event.
 * consider using the keepalive option on the ajax request to keep the priority low and the request queued after the pageview dies
 
+#### Sending events when the page is hidden
+
+Prebid.js passes events to an adapter's `track` function after a short delay, so events that occur just before the page goes away (for example, a `bidClick` from a same-tab ad click) can be lost. Since Prebid.js 11.50, an adapter can opt in to receiving them when the page is hidden or unloaded (`pagehide`, or `visibilitychange` to hidden):
+
+```javascript
+let exAnalytics = Object.assign(adapter({url, analyticsType, flushOnPageHide: true}), {
+  track({eventType, args}) {
+    // called synchronously for every queued event while the page is going away
+  },
+  onPageHide() {
+    // optional: called after the queued events have been passed to track;
+    // send anything your adapter is still holding (for example, a batch)
+  }
+});
+```
+
+Only opt in if `track` is cheap and synchronous, and sends with `navigator.sendBeacon` or with the `keepalive` option of `ajax`. Adapters that don't opt in behave as before. The [generic analytics adapter](/dev-docs/modules/genericAnalyticsAdapter.html) and the 33Across, IM, Nexx360 and PGAM Direct analytics adapters opt in.
+
 ### Step 3: Add unit tests
 
 1. Create a JS file under `test/spec/modules` with the name of the bidder suffixed with 'AnalyticsAdapter_spec', e.g., `exAnalyticsAdapter_spec.js`
