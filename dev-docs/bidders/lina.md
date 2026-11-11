@@ -49,8 +49,12 @@ The adapter uses the fixed HTTPS endpoint
 `https://ssp-api.qa.web3lge.com/v1/prebid/bids` (QA).
 Endpoint overrides are not supported.
 
-The SSP must allow the page origin and the `Content-Type` and `X-App-Key`
-headers through CORS.
+Requests send a JSON body with `Content-Type: text/plain` and no custom headers.
+The body field `publisherId` is the only publisher integration key;
+`X-App-Key` is not used and cannot replace a missing `publisherId`.
+The SSP must allow the page origin through CORS and return
+`Access-Control-Allow-Credentials: true`. Confirm SSP support for this body-only
+contract before using this adapter version. Responses remain JSON.
 
 ### Bid Params
 
