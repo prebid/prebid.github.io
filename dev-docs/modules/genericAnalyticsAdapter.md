@@ -21,7 +21,7 @@ This is an analytics adapter that can interface with any backend, meant for publ
 | `url` | required unless `handler` is provided | String | Data collection URL |
 | `method` | optional | String | HTTP method used to call `url`. Defaults to `'POST'` |
 | `batchSize` | optional | Number | Number of events to collect into a single call to `handler` or `url`. Defaults to `1` |
-| `batchDelay` | optional | Number | Time (in milliseconds) to wait before calling `handler` or `url` with an incomplete batch (when fewer than `batchSize` events have been collected). Defaults to `100`. Since Prebid.js 11.48, an incomplete batch is sent right away when the page is hidden or unloaded |
+| `batchDelay` | optional | Number | Time (in milliseconds) to wait before calling `handler` or `url` with an incomplete batch (when fewer than `batchSize` events have been collected). Defaults to `100` |
 | `events` | optional | Object | Map from event name to a custom format function. When provided, only events in this map will be collected, using the data returned by their corresponding function - [example](#event-formatters) |
 | `gvlid` | optional | Number | Global vendor list ID to use for the purpose of GDPR purpose 7 enforcement - see [note](#gdpr) |
 | `sampling` | optional | Number | Sampling rate, expressed as a number between 0 and 1. Data is collected only on this ratio of browser sessions. Defaults to `1` |
@@ -214,7 +214,6 @@ pbjs.enableAnalytics({
             // by the format functions defined therein; otherwise, they have the format {eventType, args}.
             fetch('https://example.com', {
                 method: 'POST',
-                keepalive: true,
                 body: JSON.stringify({
                     location: window.location.href,
                     data
@@ -224,8 +223,6 @@ pbjs.enableAnalytics({
     }
 })
 ```
-
-When the page is hidden or unloaded (for example, after a same-tab ad click), the handler is called right away with any incomplete batch. Use `keepalive: true` or `navigator.sendBeacon` so the request isn't cancelled when the page goes away.
 
 ### See also
 
