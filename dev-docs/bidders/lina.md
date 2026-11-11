@@ -14,22 +14,6 @@ userId: none
 sidebarType: 1
 ---
 
-<!--
-Submission draft for prebid/prebid.github.io: dev-docs/bidders/lina.md.
-Before opening the documentation PR:
-- Configure and verify the adapter's deployed HTTPS endpoint and browser CORS.
-  The fixed endpoint is https://ssp-api.qa.web3lge.com/v1/prebid/bids (QA).
-- Verify deployed test inventory and creative supply for every declared format
-  using the test parameters in modules/linaBidAdapter.md.
-- Validate the examples with the target Prebid.js release, including auction ID
-  handling, video caching/player integration, native rendering, and multi-format.
-- Verify backend behavior before declaring GPP sections, COPPA, supply chain,
-  first-party data, deals, SafeFrame, or OpenRTB blocking support in metadata.
-  Omitted fields are unconfirmed. TCF-EU and USP support are not declared.
-  Do not add a GVL ID until a real vendor registration has been confirmed.
-- Link the code and documentation PRs and remove this comment before publication.
--->
-
 <!-- markdownlint-disable-next-line MD001 -->
 ### Note
 
@@ -47,14 +31,11 @@ for the common setup flow.
 
 The adapter uses the fixed HTTPS endpoint
 `https://ssp-api.qa.web3lge.com/v1/prebid/bids` (QA).
-Endpoint overrides are not supported.
 
-Requests send a JSON body with `Content-Type: text/plain` and no custom headers.
-The body field `publisherId` is the only publisher integration key;
-`X-App-Key` is not used and cannot replace a missing `publisherId`.
-The SSP must allow the page origin through CORS and return
-`Access-Control-Allow-Credentials: true`. Confirm SSP support for this body-only
-contract before using this adapter version. Responses remain JSON.
+Requests send a JSON body with `Content-Type: text/plain`. The `publisherId`
+body field contains the publisher integration key. Responses use JSON.
+Configure LINA SSP CORS to allow the page origin and return
+`Access-Control-Allow-Credentials: true`.
 
 ### Bid Params
 
