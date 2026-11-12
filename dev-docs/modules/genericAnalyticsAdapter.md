@@ -21,7 +21,7 @@ This is an analytics adapter that can interface with any backend, meant for publ
 | `url` | required unless `handler` is provided | String | Data collection URL |
 | `method` | optional | String | HTTP method used to call `url`. Defaults to `'POST'` |
 | `batchSize` | optional | Number | Number of events to collect into a single call to `handler` or `url`. Defaults to `1` |
-| `batchDelay` | optional | Number | Time (in milliseconds) to wait before calling `handler` or `url` with an incomplete batch (when fewer than `batchSize` events have been collected). Defaults to `100` |
+| `batchDelay` | optional | Number | Time (in milliseconds) to wait before calling `handler` or `url` with an incomplete batch (when fewer than `batchSize` events have been collected). Defaults to `100`. Since Prebid.js 11.50, an incomplete batch is sent right away when the page is hidden or unloaded |
 | `events` | optional | Object | Map from event name to a custom format function. When provided, only events in this map (and in the `preset`, if any) will be collected, using the data returned by their corresponding function - [example](#event-formatters) |
 | `preset` | optional | String | Name of a preset set of event formatters, provided by a separate module that must be included in the build. Since Prebid.js 11.44, the only preset is `'skinny'` - see [Skinny preset](#skinny-preset). Functions in `events` override the preset's for the same event, and can add events the preset doesn't collect |
 | `gvlid` | optional | Number | Global vendor list ID to use for the purpose of GDPR purpose 7 enforcement - see [note](#gdpr) |
@@ -215,6 +215,7 @@ pbjs.enableAnalytics({
             // by the format functions defined therein; otherwise, they have the format {eventType, args}.
             fetch('https://example.com', {
                 method: 'POST',
+                keepalive: true,
                 body: JSON.stringify({
                     location: window.location.href,
                     data
@@ -224,6 +225,8 @@ pbjs.enableAnalytics({
     }
 })
 ```
+
+When the page is hidden or unloaded (for example, after a same-tab ad click), the handler is called right away with any incomplete batch. Use `keepalive: true` or `navigator.sendBeacon` so the request isn't cancelled when the page goes away, and send it synchronously from the handler; see [Sending analytics events when the page is hidden](/dev-docs/analytics-page-hide.html).
 
 <a id="skinny-preset"></a>
 
