@@ -1,7 +1,7 @@
 ---
 layout: page_v2
 page_type: module
-title: Module - Bid Click Tracking
+title: Module - Bid Click Tracking (Experimental)
 description: Observes clicks on Prebid-rendered creatives, emits bidClick events, and can register them with the ad server
 module_code : bidClickTracking
 display_name : Bid Click Tracking
@@ -9,8 +9,11 @@ enable_download : true
 sidebarType : 1
 ---
 
-# Bid Click Tracking
+# Bid Click Tracking (Experimental)
 {:.no_toc}
+
+{: .alert.alert-warning :}
+**Experimental.** This feature is new and may change in any Prebid.js release, including its configuration, events and behavior. Click counts from `bidClick`, `bidClickInferred` and ad server click URLs requested by `fireTrackers` are not expected to match the counts of the ad server, the bidder or other click trackers exactly. See [Why Click Counts Differ](#why-click-counts-differ).
 
 - TOC
 {:toc}
@@ -65,6 +68,16 @@ Prebid line items using the [dynamic creative](/adops/js-dynamic-creative.html) 
 - Prebid only requests resolved HTTPS URLs, and doesn't request the click URL when the bid's markup contains `${CLICKTHROUGH}`, since that creative already sends its clicks through the ad server.
 - Requesting GAM's click URL as a background request, rather than navigating through it, hasn't been validated for GAM click counting or invalid-click treatment. Check the reported clicks against your expectations before relying on them.
 - Click tracking inside the bidder's creative is independent, so clicks may also be counted elsewhere.
+
+## Why Click Counts Differ
+
+Treat these events as an approximate, directional signal. Expect gaps against other sources in both directions:
+
+- **Missed clicks:** clicks Prebid can't observe aren't reported, such as those in nested cross-origin iframes, `adUrl` creatives, links that navigate with JavaScript, and Prebid Universal Creative line items. A click that unloads the page can be lost before an analytics adapter sends it.
+- **Deduplication:** banner events are limited to one per bid, and native events by default, while other trackers may count every click.
+- **Inferred clicks:** `bidClickInferred` is a heuristic. Some focus changes aren't clicks, and some clicks don't move focus.
+- **Unverified reports:** a frame on the page can report a click it didn't receive (see [Trust](#trust)).
+- **Different counting rules:** the ad server, the bidder and other click trackers apply their own filtering, such as invalid-click detection, and count at different moments.
 
 ## Trust
 
