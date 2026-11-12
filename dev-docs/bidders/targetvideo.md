@@ -8,6 +8,7 @@ gvl_id: 786
 tcfeu_supported: true
 schain_supported: true
 pbjs: true
+pbs: true
 prebid_member: true
 userIds: all
 floors_supported: true
@@ -15,10 +16,10 @@ sidebarType: 1
 multiformat_supported: will-bid-on-one
 ---
 
-#### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name                | Scope    | Description                                                                                                                                                                   | Example                                               | Type             |
-|---------------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|------------------|
-| `placementId`       | required | The placement ID from TargetVideo. You will get this value from your TargetVideo account manager. The placementID parameter should be a `string`.                                                    | `234234`                                            | `string`         |
-| `floor`       | optional           | Sets the global floor -- no bids will be made under this value.                                                             | `0.50`                                                                              | `float`          |
+| Name          | Scope    | Description                                                                                                                                       | Example  | Type     |
+|---------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------|----------|----------|
+| `placementId` | required | The placement ID from TargetVideo. You will get this value from your TargetVideo account manager. The placementID parameter should be a `string`. | `234234` | `string` |
+| `floor`       | optional | Sets the global floor -- no bids will be made under this value.                                                                                   | `0.50`   | `float`  |

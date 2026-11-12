@@ -38,10 +38,10 @@ The following Video Players are currently supported:
 
 {: .table .table-bordered .table-striped }
 | Video Player | Submodule Name | Vendor Code |
-|--------------|----------------|-------------|
-| [JW Player](https://info.jwplayer.com/sign-up/?utm_source=developer&utm_medium=CTA)  | jwplayerVideoProvider | 1 |
-| [video.js](https://videojs.com/)   | videojsVideoProvider | 2 |
-| [AdPlayer.Pro](https://adplayer.pro/)   | adplayerproVideoProvider | 3 |
+| --- | --- | --- |
+| [JW Player](https://info.jwplayer.com/sign-up/?utm_source=developer&utm_medium=CTA) | jwplayerVideoProvider | 1 |
+| [video.js](https://videojs.com/) | videojsVideoProvider | 2 |
+| [AdPlayer.Pro](https://adplayer.pro/) | adplayerproVideoProvider | 3 |
 
 Not seeing your desired video player ? Learn how to add support by reading our [contribution guide](#Video-Module-Contributing)
 
@@ -49,8 +49,8 @@ Optionally, if you are using an Ad Server, you can configure the Video Module to
 
 {: .table .table-bordered .table-striped }
 | Ad Server | Module Name | Vendor Code |
-|--------------|----------------|-------------|
-| [Google Ad Manager](https://admanager.google.com/)  | dfpAdServerVideo | 'gam' |
+| --- | --- | --- |
+| [Google Ad Manager](https://admanager.google.com/) | gamAdServerVideo | 'gam' |
 
 {: .alert.alert-warning :}
 **Note:** You must include the Ad Server's module in your build.
@@ -90,7 +90,7 @@ The event payload includes metadata which can be used for analytics, error handl
 
 {: .table .table-bordered .table-striped }
 | Event Constant | Event String | Description |
-|----------------|--------------|-------------|
+| --- | --- | --- |
 | SETUP_COMPLETE | 'videoSetupComplete' | Fired when the player is instantiated and the integration is complete. At this point the API is ready to be used. |
 | SETUP_FAILED | 'videoSetupFailed' | Fired when the integration was unsuccessful. |
 | DESTROYED | 'videoDestroyed' | Fired when the player instance has been destroyed. |
@@ -200,8 +200,6 @@ No additional params.
 | adPlacementType | number | The video placements per IAB guidelines. Enum list: In-Stream: 1, In-Banner: 2, In-Article: 3, In-Feed: 4, Interstitial/Slider/Floating: 5 |
 | waterfallIndex | number | Index of the current item in the ad waterfall |
 | waterfallCount | number |  The count of items in a given ad waterfall |
-| adPodCount | number | the total number of ads in the pod |
-| adPodIndex | number | The index of the currently playing ad within an ad pod |
 | wrapperAdIds | array[string] | Ad IDs of the VAST Wrappers that were loaded while loading the Ad tag. The list returned starts at the inline ad (innermost) and traverses to the outermost wrapper ad. An empty array is returned if there are no wrapper ads. |
 
 ###### AD_STARTED
@@ -229,8 +227,6 @@ No additional params.
 | adPlacementType | number | The video placements per IAB guidelines. Enum list: In-Stream: 1, In-Banner: 2, In-Article: 3, In-Feed: 4, Interstitial/Slider/Floating: 5 |
 | waterfallIndex | number | Index of the current item in the ad waterfall |
 | waterfallCount | number |  The count of items in a given ad waterfall |
-| adPodCount | number | the total number of ads in the pod |
-| adPodIndex | number | The index of the currently playing ad within an ad pod |
 | wrapperAdIds | array[string] | Ad IDs of the VAST Wrappers that were loaded while loading the Ad tag. The list returned starts at the inline ad (innermost) and traverses to the outermost wrapper ad. An empty array is returned if there are no wrapper ads. |
 
 <a name="ad-impression-params"></a>
@@ -260,8 +256,6 @@ No additional params.
 | adPlacementType | number | The video placements per IAB guidelines. Enum list: In-Stream: 1, In-Banner: 2, In-Article: 3, In-Feed: 4, Interstitial/Slider/Floating: 5 |
 | waterfallIndex | number | Index of the current item in the ad waterfall |
 | waterfallCount | number |  The count of items in a given ad waterfall |
-| adPodCount | number | the total number of ads in the pod |
-| adPodIndex | number | The index of the currently playing ad within an ad pod |
 | wrapperAdIds | array[string] | Ad IDs of the VAST Wrappers that were loaded while loading the Ad tag. The list returned starts at the inline ad (innermost) and traverses to the outermost wrapper ad. An empty array is returned if there are no wrapper ads. |
 | time | number | The playback time in the ad when the event occurs, in seconds. |
 | duration | number | Total duration of an ad in seconds |
@@ -311,8 +305,6 @@ No additional params.
 | adPlacementType | number | The video placements per IAB guidelines. Enum list: In-Stream: 1, In-Banner: 2, In-Article: 3, In-Feed: 4, Interstitial/Slider/Floating: 5 |
 | waterfallIndex | number | Index of the current item in the ad waterfall |
 | waterfallCount | number |  The count of items in a given ad waterfall |
-| adPodCount | number | the total number of ads in the pod |
-| adPodIndex | number | The index of the currently playing ad within an ad pod |
 | wrapperAdIds | array[string] | Ad IDs of the VAST Wrappers that were loaded while loading the Ad tag. The list returned starts at the inline ad (innermost) and traverses to the outermost wrapper ad. An empty array is returned if there are no wrapper ads. |
 | time | number | The playback time in the ad when the event occurs, in seconds. |
 | duration | number | Total duration of an ad in seconds |
@@ -355,8 +347,6 @@ No additional params.
 | adPlacementType | number | The video placements per IAB guidelines. Enum list: In-Stream: 1, In-Banner: 2, In-Article: 3, In-Feed: 4, Interstitial/Slider/Floating: 5 |
 | waterfallIndex | number | Index of the current item in the ad waterfall |
 | waterfallCount | number |  The count of items in a given ad waterfall |
-| adPodCount | number | the total number of ads in the pod |
-| adPodIndex | number | The index of the currently playing ad within an ad pod |
 | wrapperAdIds | array[string] | Ad IDs of the VAST Wrappers that were loaded while loading the Ad tag. The list returned starts at the inline ad (innermost) and traverses to the outermost wrapper ad. An empty array is returned if there are no wrapper ads. |
 | time | number | The playback time in the ad when the event occurs, in seconds. |
 | duration | number | Total duration of an ad in seconds |

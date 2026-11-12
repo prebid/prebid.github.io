@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/AtreNet/prebid.github.io#readme",
   "dependencies": {
-    "awesomplete": "^1.1.5",
+    "awesomplete": "^1.1.7",
     "bootstrap": "^4.6.2",
     "bourbon": "^7.0.0",
     "include-media": "^1.4.9",

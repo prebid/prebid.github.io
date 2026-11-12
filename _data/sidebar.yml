@@ -177,6 +177,14 @@
   subgroup: 0
 
 - sbSecId: 1
+  title: Using Prebid.js with TypeScript
+  link: /dev-docs/typescript.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 1
   title: Basic Impression Flow
   link: /prebid/prebidjs-flow-video.html
   isHeader: 0
@@ -260,6 +268,22 @@
 - sbSecId: 1
   title: Running Prebid.js as an ad server
   link: /dev-docs/examples/no-adserver.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 1
+  title: Prebid as an ad server, cross-origin rendering
+  link: /dev-docs/examples/no-adserver-safeframe.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 1
+  title: Server-side only bidding
+  link: /dev-docs/examples/s2s-only.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -614,7 +638,7 @@
   subgroup: 8
 
 - sbSecId: 1
-  title: Prebid Ad Slot and GPID
+  title: Global Placement ID (GPID)
   link: /features/pbAdSlot.html
   isHeader: 0
   isSectionHeader: 0
@@ -640,6 +664,14 @@
 - sbSecId: 1
   title: Interstitial Ads
   link: /features/InterstitialAds.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 8
+
+- sbSecId: 1
+  title: Custom Rendering for Deals
+  link: /features/customDealRendering.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1932,6 +1964,14 @@
 - sbSecId: 7
   title: FAQs
   link: /faq/faq.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 7
+  title: Release Notes
+  link: /dev-docs/release-notes.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:

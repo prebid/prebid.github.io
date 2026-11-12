@@ -95,6 +95,7 @@ In order to let RTD-core know where to find the functions in your sub-module, cr
 | :--- | :--- | :--- | :--- | :--- |
 | name | string | required | must match the name provided by the publisher in the on-page config | n/a |
 | gvlid | number | optional | global vendor list ID for your submodule | n/a |
+| acpId | number | optional | Google [Additional Consent](/dev-docs/modules/tcfControl.html#additional-consent) provider ID for your submodule, used only if it has no GVL ID (PBJS 11.41+) | n/a |
 | init | function | required | defines the function that does any auction-level initialization required | config, userConsent |
 | getTargetingData | function | optional | defines a function that provides ad server targeting data to RTD-core | adUnitArray, config, userConsent |
 | getBidRequestData | function | optional | defines a function that provides bid request data to RTD-core | reqBidsConfigObj, callback, config, userConsent |
@@ -234,11 +235,11 @@ function init(config, userConsent) {
 function alterBidRequests(reqBidsConfigObj, callback, config, userConsent) {
   // do stuff
   // put data in adUnits' ortb2Imp:
-  reqBidsConfigObj.adUnits.forEach((adUnit) => mergeDeep(adUnit, 'ortb2Imp.ext', myCustomData);
+  reqBidsConfigObj.adUnits.forEach((adUnit) => mergeDeep(adUnit, {ortb2Imp: {ext: myCustomData}}));
   // or in global first party data:
   mergeDeep(reqBidsConfigObj.ortb2Fragments.global, myCustomData);
   // or in bidder-specific first party data:
-  config.bidders.forEach((bidderCode) => mergeDeep(reqBidsConfigObj.ortb2Fragments.bidder, {[bidderCode]: myCustomData});
+  config.bidders.forEach((bidderCode) => mergeDeep(reqBidsConfigObj.ortb2Fragments.bidder, {[bidderCode]: myCustomData}));
   callback();
 }
 

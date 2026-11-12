@@ -10,7 +10,9 @@
  * Exposes `window.prebidBundler`:
  *  - `getVersions()` resolves to `{versions: [...]}`, newest first: the 20 highest releases plus the 20 most recently
  *    published, which is what the bundler service at js-download.prebid.org keeps built;
- *  - `download({version, modules})` resolves to the bundle's source code.
+ *  - `download({version, modules})` resolves to `{source, disclosures}`: the bundle's source code and its storage
+ *    disclosure summary, in the format of the `<bundle>_disclosures.json` file that `gulp build` generates (null if
+ *    the metadata could not be retrieved).
  */
 (function () {
     var CDN_BASE = 'https://cdn.jsdelivr.net/npm/prebid.js@';
@@ -168,7 +170,12 @@
         return '})(),' + pkg.globalVarName + '.processQueue();';
     }
 
-    function download(request) {
+    /**
+     * Validate a `{version, modules}` request and work out what goes in its bundle: resolves to
+     * `{version, pkg, modules, chunks, checksums, hasMetadata}`, where `modules` includes any parent modules that were
+     * added and `chunks` are all the chunk files to concatenate.
+     */
+    function resolveBundle(request) {
         var version = request.version;
         if (typeof version !== 'string' || !VERSION_PATTERN.test(version)) {
             return Promise.reject(new Error('Not a valid Prebid.js version: ' + version));
@@ -203,18 +210,90 @@
                     throw new Error('Modules not available in Prebid.js ' + version + ': ' + missing.join(', '));
                 }
             }
-            var chunks = resolveChunks(modules, dependencies, function (module) {
+            function hasMetadata(module) {
                 return available.hasOwnProperty(module + METADATA_SUFFIX);
+            }
+            return {
+                version: version,
+                pkg: pkg,
+                modules: modules,
+                chunks: resolveChunks(modules, dependencies, hasMetadata),
+                checksums: checksums,
+                hasMetadata: hasMetadata
+            };
+        });
+    }
+
+    function bundleSource(bundle) {
+        var version = bundle.version;
+        var checksums = bundle.checksums;
+        return Promise.all(bundle.chunks.map(function (chunk) {
+            return fetchFile(version, 'dist/chunks/' + chunk, checksums && checksums[chunk]).catch(function (error) {
+                if (error.status === 404) {
+                    throw new Error(chunk.replace(/\.js$/, '') + ' is not available in Prebid.js ' + version);
+                }
+                throw error;
             });
-            return Promise.all(chunks.map(function (chunk) {
-                return fetchFile(version, 'dist/chunks/' + chunk, checksums && checksums[chunk]).catch(function (error) {
-                    if (error.status === 404) {
-                        throw new Error(chunk.replace(/\.js$/, '') + ' is not available in Prebid.js ' + version);
-                    }
-                    throw error;
-                });
-            })).then(function (sources) {
-                return [header(pkg, modules)].concat(sources, [footer(pkg)]).join('\n');
+        })).then(function (sources) {
+            return [header(bundle.pkg, bundle.modules)].concat(sources, [footer(bundle.pkg)]).join('\n');
+        });
+    }
+
+    /**
+     * Port of libraries/storageDisclosure/summary.mjs in Prebid.js.
+     */
+    function getStorageDisclosureSummary(moduleNames, getModuleMetadata) {
+        var summary = {};
+        moduleNames.forEach(function (moduleName) {
+            var metadata = getModuleMetadata(moduleName);
+            var disclosure = metadata && metadata.disclosures;
+            if (!disclosure) return;
+            Object.keys(disclosure).forEach(function (url) {
+                // before Prebid.js 10.2.0 each entry is the identifier array itself
+                var identifiers = Array.isArray(disclosure[url]) ? disclosure[url] : disclosure[url].disclosures;
+                if (summary.hasOwnProperty(url)) {
+                    summary[url].forEach(function (entry) {
+                        entry.disclosedBy.push(moduleName);
+                    });
+                } else if (identifiers && identifiers.length > 0) {
+                    summary[url] = identifiers.map(function (identifier) {
+                        return Object.assign({disclosedIn: url, disclosedBy: [moduleName]}, identifier);
+                    });
+                }
+            });
+        });
+        return [].concat.apply([], Object.keys(summary).map(function (url) {
+            return summary[url];
+        }));
+    }
+
+    /**
+     * Unlike `gulp build`, which only summarizes prebid-core and the requested modules, this covers every module in
+     * the bundle, including the parent modules added for them and the modules they depend on.
+     */
+    function bundleDisclosures(bundle) {
+        var moduleNames = bundle.chunks.filter(function (chunk) {
+            return !chunk.endsWith(METADATA_SUFFIX);
+        }).map(function (chunk) {
+            return chunk.replace(/\.js$/, '');
+        }).filter(bundle.hasMetadata);
+        return Promise.all(moduleNames.map(function (module) {
+            return fetchJSON(bundle.version, 'metadata/modules/' + module + '.json');
+        })).then(function (metadata) {
+            return getStorageDisclosureSummary(moduleNames, function (module) {
+                return metadata[moduleNames.indexOf(module)];
+            });
+        });
+    }
+
+    function download(request) {
+        return resolveBundle(request).then(function (bundle) {
+            var disclosures = bundleDisclosures(bundle).catch(function (error) {
+                console.error(error);
+                return null;
+            });
+            return Promise.all([bundleSource(bundle), disclosures]).then(function (results) {
+                return {source: results[0], disclosures: results[1]};
             });
         });
     }

@@ -358,7 +358,7 @@ The attributes in the Jekyll 'front matter' drive various behaviors and dynamic 
 {: .table .table-bordered .table-striped }
 
 | Key | Required? | Values | Use |
-| ----- | ------ | ------ | ------ |
+| --- | --- | --- | --- |
 | layout | yes | bidder | Links this file to the bidder.html layout |
 | title | yes | company name | For display |
 | pbjs | sorta | true or false | defines whether this is a Prebid.js bidder |
@@ -384,13 +384,14 @@ with a prefix like `hb_cache_host`. So they wanted to have shorter bidderCode fo
 4. optionally add prevBiddercode to add a note to the page about the legacy value
 5. optionally add filename if the bid adapter was created using a filename that's different than their bidder code. e.g. if the biddercode is "biddera" but they named the file "bidderABidAdapter", set the biddercode to "biddera" and the filename to "bidderABidAdapter".
 
-## Algolia Search
+## Site Search
 
-We use Algolia for site search.
+We use [Pagefind](https://pagefind.app/) for site search. It indexes the built site after `jekyll build`, in the deploy workflow (`.github/workflows/pages-deploy.yml`).
 
-- The configuration defining the search parameters is at <https://github.com/algolia/docsearch-configs/blob/master/configs/prebid.json>
-- Only elements p, th, td, li, code, and h1-h3 are indexed
-- Code implementation in _includes/body-end.html and a the 'site-search' div in the header.
+- Only the `.pb-content` area of each layout is indexed (`data-pagefind-body`, from `_includes/pagefind-body.html`), which also sets the `section` filter shown in the search modal.
+- Pages without an `<h1>` in their content get their title as a weighted, hidden heading and as the result title (`_includes/pagefind-title.html`).
+- The search trigger and modal are added by the script in `_includes/head--common.html`, from the template in `_includes/nav.html`.
+- To try search locally, see [Running Jekyll Locally](https://github.com/prebid/prebid.github.io#running-jekyll-locally) in the README.
 
 ## Cookie Privacy
 

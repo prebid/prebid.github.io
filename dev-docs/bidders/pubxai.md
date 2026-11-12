@@ -4,6 +4,7 @@ title: PubxAi
 description: Prebid PubxAi Bidder Adapter
 pbjs: true
 pbs: true
+pbs_biddercode: nexx360
 biddercode: pubxai
 aliasCode: nexx360
 gvl_id: 1485
@@ -23,13 +24,13 @@ multiformat_supported: will-bid-on-any
 
 ---
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description                | Example                                   | Type      |
-|---------------|----------|----------------------------|--------------------------------------     |-----------|
-| `tagId`       | required | PubxAi tag ID              | `"testnexx"`                              | `string`  |
-| `placement`   | required*| PubxAi placement           | `"test.com_header_ad"`                    | `string`  |
+| Name        | Scope     | Description      | Example                | Type     |
+|-------------|-----------|------------------|------------------------|----------|
+| `tagId`     | required  | PubxAi tag ID    | `"testnexx"`           | `string` |
+| `placement` | required* | PubxAi placement | `"test.com_header_ad"` | `string` |
 
 *You*must* only include one ID field - either `tagId` or `placement`, not both. If you have questions on which parameter to use, please reach out to your Account Manager.
 The `tagId` and `placement` are **mutually exclusive** but at least one is required. If you pass both, `tagId` takes precedence.

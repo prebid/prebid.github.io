@@ -63,7 +63,7 @@ With `flushOnPageHide: true`:
 * On `pagehide`, or on `visibilitychange` when `document.visibilityState` is `hidden`, the base adapter cancels the debounce timer and passes every queued event to `track`, synchronously, inside the browser event.
 * It then calls the adapter's `onPageHide`, if there is one. `onPageHide` is called on every page hide, even when the queue was empty. Errors it throws are logged and don't affect other listeners.
 * After that, events are queued and debounced as usual, so an adapter keeps working if the page becomes visible again.
-* `disableAnalytics` removes the listeners and discards queued events, as before.
+* `disableAnalytics` removes the listeners and discards queued events, as before. Prebid.js may disable and re-enable an adapter as consent changes (see [the analytics adapter guide](/dev-docs/integrate-with-the-prebid-analytics-api.html#step-2-add-analytics-source-code)); the listeners are added again when it is re-enabled. If your adapter overrides `disableAnalytics`, it must still call the base version.
 
 Adapters that don't set `flushOnPageHide` behave as before: queued events are passed to `track` only when the debounce timer fires, which may be never.
 

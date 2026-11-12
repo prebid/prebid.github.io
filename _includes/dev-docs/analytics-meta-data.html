@@ -1,0 +1,29 @@
+{% assign module_name = page.modulecode | append: "AnalyticsAdapter" %}
+<table class="table table-bordered table-striped">
+    <tr>
+      <th class="pbTh">Module</th>
+      <td class="pbTd"><code>{{ module_name }}</code></td>
+      <th class="pbTh">Prebid.org Member</th>
+      <td class="pbTd">{% if page.prebid_member == true %}yes{% else %}no{% endif %}</td>
+    </tr>
+    <tr>
+      <th class="pbTh">TCF-EU Support</th>
+      <td class="pbTd">{% if page.tcfeu_supported == true %}yes{% elsif page.tcfeu_supported == false %}no{% else %}check with vendor{% endif %}</td>
+      <th class="pbTh">IAB GVL ID</th>
+      <td class="pbTd">{% if page.gvl_id %}{{ page.gvl_id }}{% else %}check with vendor{% endif %}</td>
+    </tr>
+    <tr>
+      <th class="pbTh">USP/CCPA Support</th>
+      <td class="pbTd">{% if page.usp_supported == true %}yes{% elsif page.usp_supported == false %}no{% else %}check with vendor{% endif %}</td>
+      <th class="pbTh">COPPA Support</th>
+      <td class="pbTd">{% if page.coppa_supported == true %}yes{% elsif page.coppa_supported == false %}no{% else %}check with vendor{% endif %}</td>
+    </tr>
+    <tr>
+      <th class="pbTh">GPP Support</th>
+      <td class="pbTd">{% if page.gpp_sids and page.gpp_sids != '' %}{{ page.gpp_sids }}{% elsif page.gpp_supported == true %}yes{% elsif page.gpp_supported == false %}no{% else %}check with vendor{% endif %}</td>
+      <th class="pbTh">Download</th>
+      <td class="pbTd">{% if page.enable_download == false %}not on the download page{% else %}<a href="/download.html?modules={{ module_name }}">download page</a>{% endif %}</td>
+    </tr>
+</table>
+{% if page.pbjs_version_notes %}<p><em>{{ page.pbjs_version_notes }}</em></p>{% endif %}
+<p>To use this adapter, include <code>{{ module_name }}</code> in your Prebid.js build (for example <code>gulp build --modules={{ module_name }}</code>) and call <a href="/dev-docs/publisher-api-reference/enableAnalytics.html"><code>pbjs.enableAnalytics()</code></a> as described below. See <a href="/overview/analytics.html">Prebid.js Analytics Adapters</a> for all analytics adapters.</p>
