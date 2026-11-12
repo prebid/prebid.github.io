@@ -369,6 +369,7 @@ Here is a sample bidderRequest object:
 Notes on parameters in the bidderRequest object:
 
 * **auctionId** (see [note](#tid-warning)) is unique per call to `requestBids()`, but is the same across ad units.
+* **allowTopWindowRenderers** is the top-window renderer permission for a client-side bidder when its request is created, including overrides from `setBidderConfig`. It does not resolve publisher renderer or Safe Renderer precedence, and is not an OpenRTB field. It is absent on server-side requests and may be absent in older Prebid.js versions.
 * **ortb2** is the global (not specific to any adUnit) [first party data](/features/firstPartyData.html) to use for all requests in this auction. Note that Prebid allows any standard ORTB field or extension as first party data - including items that typically wouldn't be considered as such, for example user agent client hints (`device.sua`) or information on the regulatory environment (`regs.ext.gpc`).
 
     {: .alert.alert-warning :}
