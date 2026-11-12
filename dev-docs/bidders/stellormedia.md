@@ -14,24 +14,26 @@ usp_supported: true
 safeframes_ok: true
 prebid_member: false
 pbjs: true
+enable_download: false
+pbjs_version_notes: "This alias is not currently registered by its Prebid.js module; specific reason unknown."
 pbs: false
 deals_supported: false
 sidebarType: 1
 ---
 
-### Bid params
+## Bid params
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
-|-------|----------|---------------------------------|----------|-----------|
+| --- | --- | --- | --- | --- |
 | `aid` | required | The source ID from Stellor Media. | `12412` | `integer` |
 
-### Description
+## Description
 
 Stellor Media header bidding adapter connects with Indicue Media demand sources in order to fetch bids.
 This adapter provides a solution for accessing Video demand and display demand.
 
-### Test Parameters
+## Test Parameters
 
 ```javascript
     var adUnits = [

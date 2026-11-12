@@ -9,6 +9,7 @@ media_types: video, native
 safeframes_ok: true
 pbjs: true
 pbs: true
+pbs_biddercode: aso
 pbs_app_supported: true
 floors_supported: true
 schain_supported: true
@@ -19,17 +20,17 @@ userIds: all
 sidebarType: 1
 aliasCode: aso
 ---
-### Note
+## Note
 
 The Cordless.co adapter requires approval and setup. Please reach out to <info@cordless.co> or visit us at [cordless.co](https://cordless.co) for more details.
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description      | Example                         | Type      |
-|---------------|----------|------------------|---------------------------------|-----------|
-| `server`      | required | Server endpoint  | `https://srv.cordlessmedia.com` | `String`  |
-| `zone`        | required | Zone ID          | `73815`                         | `Integer` |
+| Name     | Scope    | Description     | Example                         | Type      |
+|----------|----------|-----------------|---------------------------------|-----------|
+| `server` | required | Server endpoint | `https://srv.cordlessmedia.com` | `String`  |
+| `zone`   | required | Zone ID         | `73815`                         | `Integer` |
 
 #### Video Caching
 

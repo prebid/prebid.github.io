@@ -3,22 +3,22 @@ layout: bidder
 title: Opt Out Advertising
 description: Prebid Opt Out Advertising Bidder Adapter
 pbjs: true
-pbs: true
+pbs: false
 biddercode: optout
 tcfeu_supported: true
 gvl_id: 227
 sidebarType: 1
 ---
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name        | Scope    | Description                                                                 | Example                         | Type     |
-|-------------|----------|-----------------------------------------------------------------------------|----------------------------------|----------|
-| `publisher` | required | Opt Out publisher ID                                                        | `"4"`                            | `string` |
-| `adSlot`    | required | Opt Out ad slot name (inventory key)                                        | `"1Limburg_Web_Sticky - Desktop"`| `string` |
-| `id`        | optional | Slot identifier returned by the Opt Out bidder endpoint and used for mapping to the correct Prebid `bidId`. If omitted, the adapter falls back to `adSlot`. | `"div-1"` | `string` |
-| `customs`   | optional | Custom targeting / extra parameters forwarded to the Opt Out endpoint       | `{ "foo": "bar" }`               | `object` |
+| Name        | Scope    | Description                                                                                                                                                 | Example                           | Type     |
+|-------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------|----------|
+| `publisher` | required | Opt Out publisher ID                                                                                                                                        | `"4"`                             | `string` |
+| `adSlot`    | required | Opt Out ad slot name (inventory key)                                                                                                                        | `"1Limburg_Web_Sticky - Desktop"` | `string` |
+| `id`        | optional | Slot identifier returned by the Opt Out bidder endpoint and used for mapping to the correct Prebid `bidId`. If omitted, the adapter falls back to `adSlot`. | `"div-1"`                         | `string` |
+| `customs`   | optional | Custom targeting / extra parameters forwarded to the Opt Out endpoint                                                                                       | `{ "foo": "bar" }`                | `object` |
 
 ### Notes
 

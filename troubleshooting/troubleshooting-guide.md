@@ -438,7 +438,7 @@ function auctionOptionsLogging() {
         console.log(`Auction Options: Auction End! Timed Out! Bidders: ${Array.from(new Set(timedOutBidders.map(each => each.bidder))).join(',')} - ${auctionId}`);
     })
 
-    pbjs.onEvent('bidderError', { error, bidderRequest } => {
+    pbjs.onEvent('bidderError', ({ error, bidderRequest }) => {
         console.log(`Auction Error: Bidder ${bidderRequest.bidderCode} responded with ${error.status} ${error.statusText} - ${bidderRequest.auctionId}`);
     })
 
@@ -475,7 +475,7 @@ function auctionOptionsLogging() {
                     adunit: code,
                     adId: bid.adId,
                     bidder: bid.bidder,
-                    secondary: !config.secondaryBidders.includes(bid.bidder),
+                    secondary: config.secondaryBidders.includes(bid.bidder),
                     time: bid.timeToRespond,
                     auctionTimeout: auctionTime,
                     cpm: bid.cpm,
@@ -494,7 +494,7 @@ function auctionOptionsLogging() {
                     adunit: code,
                     adId: bid.bidId,
                     bidder: bid.bidder,
-                    secondary: !config.secondaryBidders.includes(bid.bidder),
+                    secondary: config.secondaryBidders.includes(bid.bidder),
                 });
             });
         }

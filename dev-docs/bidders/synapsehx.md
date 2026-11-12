@@ -26,6 +26,8 @@ sidebarType: 1
 
 The Synapse HX bidder adapter requires additional setup and approval from the Compas team. For additional information, please reach out to <prebid@compas-inc.com>.
 
+The bidder code is `synapsehx` in Prebid.js and `synapseHX` in Prebid Server; bidder codes are case-sensitive.
+
 ## Bid Params
 
 {: .table .table-bordered .table-striped }
