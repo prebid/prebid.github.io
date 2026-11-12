@@ -33,12 +33,12 @@ Contact your Splash account manager or [it@splashandroll.com](mailto:it@splashan
 
 ## Disclosure
 
-Disclosure: Parallax and Interstitial use one of two renderers provided by the adapter, and each bid carries only one of them:
+Disclosure: Parallax and Interstitial support two renderers provided by the adapter:
 
 * The top-window [Renderer](/dev-docs/renderer.html), bundled with the adapter, adds Splash-owned elements (iframe, SVG clip, styles) to the page. Interstitial shows a full-screen overlay with a **Pomiń** (Skip ad) button, closes with Escape or after at most five minutes, and locks page scrolling while open.
 * The [Safe Renderer](/dev-docs/renderer.html), returned as `bid.safeRenderer`, is a script that Prebid loads from `https://cdn.splashandroll.com/runtime/prebid/safe-renderer/1.0.0/splash-safe-renderer.js` into the ad's frame. It changes only that frame's document. Parallax is reduced to a presentation fitted inside the frame, preserving the creative's aspect ratio without the scrolling effect. Interstitial keeps a trusted toolbar with an optional countdown and **Pomiń** above the sandboxed creative, which is scaled to fit the remaining space. The creative's close, Escape and the five-minute limit remove the ad from the frame; a container around the frame, such as an ad server interstitial, is closed by its owner.
 
-The top-window renderer is used only when core reports on the bidder request that top-window renderers are allowed for Splash (`bidderRequest.allowTopWindowRenderers === true`, which reflects `allowTopWindowRenderers` including `setBidderConfig`), no publisher Safe Renderer is configured for the banner or the bid, and no publisher renderer without `backupOnly: true` would replace it. Otherwise the bid carries the Safe Renderer, including when the bidder request does not report the permission. A publisher Safe Renderer with `backupOnly: true` gives way to Splash's. Parallax and Interstitial are still requested when a publisher Safe Renderer without `backupOnly: true` replaces Splash's; core applies that publisher choice. Core still makes the final choice at render time. Standard Display uses Prebid's default rendering.
+For each bid request and media type, core reports in `bidRequest.rendererSupport` whether a bidder-provided `renderer` or `safeRenderer` will be used, accounting for publisher settings and renderer policy. The adapter prefers the page-level renderer when core permits it, preserving full Parallax and Interstitial behavior; if that path is unavailable, it uses Safe Renderer when core permits it. When both flags are true, the adapter supplies only the page-level renderer because core prefers Safe Renderer if both are present. If neither is supported, it leaves rendering to core and publisher configuration. When `rendererSupport` is absent in an older core, the adapter falls back to Safe Renderer. Core retains final renderer precedence. Standard Display uses Prebid's default rendering.
 
 ## Bid Params
 
@@ -57,8 +57,8 @@ The top-window renderer is used only when core reports on the bidder request tha
 | Format | `displayFormat` | Ad unit setup | Rendering |
 | ------ | --------------- | ------------- | --------- |
 | Standard Display | `'standard'` | Banner sizes, e.g. `[[300, 600]]` | Prebid default rendering |
-| Parallax | `'parallax'` | Banner sizes, e.g. `[[700, 1600]]`; for the top-window renderer, Prebid.js and the ad unit element must be in the top-level page | Top-window renderer: a clipped frame, up to the viewport height, in the ad unit element. Safe Renderer: the creative fits inside the ad frame |
-| Interstitial | `'interstitial'` | Banner sizes, e.g. `[[320, 480]]`; set `ortb2Imp: { instl: 1 }` | Top-window renderer: a full-screen overlay. Safe Renderer: the creative fits inside the ad frame |
+| Parallax | `'parallax'` | Banner sizes, e.g. `[[700, 1600]]`; for the page-level renderer, Prebid.js and the ad unit element must be in the top-level page | Core-approved page-level renderer: a clipped frame in the ad unit. Safe Renderer: the creative fits inside the ad frame without page-level scrolling |
+| Interstitial | `'interstitial'` | Banner sizes, e.g. `[[320, 480]]`; set `ortb2Imp: { instl: 1 }` | Core-approved page-level renderer: a full-screen overlay. Safe Renderer: the creative fits inside the ad frame |
 
 Response format fields (`ext.splash.format` and `ext.general.display_format`) are optional. Any declared value must be a supported format matching the request; unsupported or conflicting declarations discard the bid. With either renderer, Parallax and Interstitial creatives run in opaque-origin iframes with `sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"`, without access to publisher DOM or storage. Popups are permitted for user-initiated click-throughs; creative-to-host communication uses source-checked `postMessage`. With either Splash renderer, the trusted **Pomiń** button is always available above the creative, independently of creative controls or errors. The creative fits below the toolbar. Escape works in the host and the Interstitial frame; nested cross-origin content must cooperate through a close message. Creatives handle their own tracking.
 
@@ -72,7 +72,7 @@ Requests are in PLN and floors are requested from the [Price Floors](/dev-docs/m
 
 ## Test Parameters
 
-Splash staging inventory is publisher `725` with placements `100021` (Standard 300x600), `100022` (Parallax 700x1600) and `100023` (Interstitial 320x480); the Parallax test campaign is mobile-only, so use a mobile device or device emulation with a mobile user agent. Review all three formats at <https://one.tcpip.pl/public/prebid-official-sandbox.html?format=standard&renderer_policy=disabled&safe_renderer=cdn> (`format=standard|parallax|interstitial`). The demo defaults to top-window rendering when `renderer_policy` is omitted. Use `renderer_policy=disabled` to exercise Safe Renderer; use `renderer_policy=bidder-enabled` to allow Splash's top-window renderer while global top-window rendering is disabled. A publisher Safe Renderer still takes precedence.
+Splash staging inventory is publisher `725` with placements `100021` (Standard 300x600), `100022` (Parallax 700x1600) and `100023` (Interstitial 320x480); the Parallax test campaign is mobile-only, so use a mobile device or device emulation with a mobile user agent. Review all three formats in the sandbox after it has been rebuilt with the matching core and adapter revisions. Renderer behavior is determined by `rendererSupport` and publisher renderer configuration; do not treat an older hosted bundle as evidence for the current contract.
 
 ```javascript
 const adUnits = [
