@@ -18,8 +18,9 @@ pbs_app_supported: false
 fpd_supported: false
 ortb_blocking_supported: false
 multiformat_supported: will-bid-on-one
-enable_download: false
 pbjs: true
+enable_download: false
+pbjs_version_notes: removed in 12.0
 sidebarType: 1
 ---
 

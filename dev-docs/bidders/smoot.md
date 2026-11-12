@@ -16,17 +16,19 @@ media_types: banner, video, native
 multiformat_supported: will-bid-on-one
 userIds: all
 pbjs: true
+enable_download: false
+pbjs_version_notes: removed in 12.0
 pbs: true
 pbs_app_supported: false
 safeframes_ok: true
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 The Smoot Bidding adapter requires setup before beginning. Please contact us at <info@smoot.ai>
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 
@@ -35,6 +37,6 @@ The Smoot Bidding adapter requires setup before beginning. Please contact us at 
 | `placementId` | optional | Placement Id | `'0'`                           | `'string'` |
 | `endpointId`  | optional | Endpoint Id  | `'0'`                           | `'string'` |
 
-### Note
+## Note
 
 For prebid.js you only need to use one parameter: either placementId or endpointId

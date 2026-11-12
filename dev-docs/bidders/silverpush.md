@@ -3,6 +3,8 @@ layout: bidder
 title: Silverpush
 description: Prebid Silverpush Bidder Adaptor
 pbjs: true
+enable_download: false
+pbjs_version_notes: removed in 12.0
 pbs: true
 biddercode: silverpush
 media_types: banner, video
@@ -19,31 +21,31 @@ multiformat_supported: will-bid-on-one
 sidebarType: 1
 ---
 
-### Registration
+## Registration
 The Silverpush Bidding adapter requires setup before beginning. Please contact us at [prebid@silverpush.co](mailto:prebid@silverpush.co).
 
-### Bid Parameters
+## Bid Parameters
 
-#### Banner
+### Banner
 
 {: .table .table-bordered .table-striped }
 
-|       Name     |    Scope    |                 Description                |    Example    |     Type     |
-| -------------- | ----------- | ------------------------------------------ | ------------- | ------------ |
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
 | `publisherId` | required | Publisher id provided by silverpush | "123456" | String |
 | `bidFloor` | optional | Minimum price in USD. bidFloor applies to a specific unit. For example, use the following value to set a $1.50 floor: 1.50. <br/> | 1.50 | Number |
 
-#### mediaTypes.banner
+### mediaTypes.banner
 
 The following banner parameters are supported here so publishers may fully declare their banner inventory:
 
 {: .table .table-bordered .table-striped }
 
-|    Name   |    Scope    |                      Description                                  |  Example  |    Type   |
-| --------- | ------------| ----------------------------------------------------------------- | --------- | --------- |
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
 | sizes | required | Avalaible sizes supported for banner ad unit | [ [300, 250], [300, 600] ] | [[Integer, Integer], [Integer, Integer]] |
 
-### AdUnit Format for Banner
+## AdUnit Format for Banner
 
 ```javascript
 const adUnits = [{
@@ -63,41 +65,41 @@ const adUnits = [{
 }];
 ```
 
-#### Video
+### Video
 
 {: .table .table-bordered .table-striped }
 
 | Name | Scope | Description | Example | Type |
-| ---- | ----- | ----------- | ------- | ---- |
+| --- | --- | --- | --- | --- |
 | `publisherId` | required | Publisher id provided by silverpush | "123456" | String |
 | `bidFloor` | optional | Minimum price in USD. bidFloor applies to a specific unit. For example, use the following value to set a $1.50 floor: 1.50. | 1.50 | Number |
 
-#### mediaTypes.video
+### mediaTypes.video
 
 The following video parameters are supported here so publishers may fully declare their video inventory:
 
 {: .table .table-bordered .table-striped }
 
-|    Name   |    Scope    |                      Description                                  |  Example  |    Type   |
-| --------- | ------------| ----------------------------------------------------------------- | --------- | --------- |
-| context | required | instream or outstream |"outstream" | string |
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| context | required | instream or outstream | "outstream" | string |
 | playerSize | required | Avalaible sizes supported for video ad unit. | [300, 250] | [Integer, Integer] |
-| mimes | required | List of content MIME types supported by the player. | ["video/mp4"]| [String]|
-| protocols | required | Supported video bid response protocol values. | [2,3,5,6] | [integers]|
-| api | required | Supported API framework values. | [2] |  [integers] |
+| mimes | required | List of content MIME types supported by the player. | ["video/mp4"] | [String] |
+| protocols | required | Supported video bid response protocol values. | [2,3,5,6] | [integers] |
+| api | required | Supported API framework values. | [2] | [integers] |
 | maxduration | required | Maximum video ad duration in seconds. | 30 | Integer |
 | minduration | required | Minimum video ad duration in seconds. | 6 | Integer |
 | startdelay | required | Indicates the start delay in seconds for pre-roll, mid-roll, or post-roll ad placements. | 0 | Integer |
 | placement | required | Placement type for the impression. | 1 | Integer |
 | minbitrate | optional | Minimum bit rate in Kbps. | 300 | Integer |
 | maxbitrate | optional | Maximum bit rate in Kbps. | 9600 | Integer |
-| playbackmethod | optional | Playback methods that may be in use. Only one method is typically used in practice. | [2]| [Integers] |
+| playbackmethod | optional | Playback methods that may be in use. Only one method is typically used in practice. | [2] | [Integers] |
 | linearity | optional | OpenRTB2 linearity. in-strea,overlay... | 1 | Integer |
 | skip | optional | Indicates if the player will allow the video to be skipped, where 0 = no, 1 = yes . | 1 | Integer |
 | skipafter | optional | Number of seconds a video must play before skipping is enabled; only applicable if the ad is skippable. | 5 | Integer |
-| delivery | optional | OpenRTB2 delivery. Supported delivery methods (e.g., streaming, progressive). If none specified, assume all are supported.  | 1 | [Integer] |
+| delivery | optional | OpenRTB2 delivery. Supported delivery methods (e.g., streaming, progressive). If none specified, assume all are supported. | 1 | [Integer] |
 
-### AdUnit Format for Video
+## AdUnit Format for Video
 
 ```javascript
 var videoAdUnits = [{
@@ -127,12 +129,12 @@ var videoAdUnits = [{
 }]
 ```
 
-### First Party Data
+## First Party Data
 Publishers should use the `ortb2` method of setting First Party Data. The following fields are supported:
 
 - ortb2.user.ext.data
 
-### Prebid Server
+## Prebid Server
 
 ```javascript
 pbjs.setConfig({
@@ -161,5 +163,5 @@ pbjs.setConfig({
 });
 ```
 
-### Additional Details
+## Additional Details
 For any queries, reach us at <prebid@silverpush.co>.

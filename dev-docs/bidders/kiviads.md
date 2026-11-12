@@ -5,6 +5,8 @@ description: Prebid Kivi Bidder Adapter
 biddercode: kiviads
 media_types: banner, video, native
 pbjs: true
+enable_download: false
+pbjs_version_notes: removed in 12.0
 pbs: true
 safeframes_ok: true
 floors_supported: true
@@ -21,14 +23,14 @@ dchain_supported: false
 sidebarType: 1
 ---
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description           | Example   | Type      |
-|---------------|----------|-----------------------|-----------|-----------|
-| `placementId`      | optional | Placement Id         | `'0'`    | `'string'` |
-| `endpointId`      | optional | Endpoint Id         | `'0'`    | `'string'` |
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| `placementId` | optional | Placement Id | `'0'` | `'string'` |
+| `endpointId` | optional | Endpoint Id | `'0'` | `'string'` |
 
-### Note
+## Note
 
 For the prebid server and prebid.js you only need to use one parameter: either placementId or endpointId

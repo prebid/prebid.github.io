@@ -17,6 +17,8 @@ schain_supported: true
 safeframes_ok: false
 deals_supported: false
 pbjs: true
+enable_download: false
+pbjs_version_notes: removed in 12.0
 sidebarType: 1
 ---
 

@@ -3,6 +3,8 @@ layout: bidder
 title: MANTIS Ad Network
 description: Prebid Mantis Bidder Adaptor
 pbjs: true
+enable_download: false
+pbjs_version_notes: removed in 12.0
 biddercode: mantis
 media_types: native, video
 usp_supported: true
@@ -10,7 +12,7 @@ tcfeu_supported: false
 sidebarType: 1
 ---
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description                                                   | Example                      | Type     |

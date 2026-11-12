@@ -5,12 +5,14 @@ description: Prebid Qwarry Bidder Adaptor
 biddercode: qwarry
 media_types: banner, video
 pbjs: true
+enable_download: false
+pbjs_version_notes: removed in 12.0
 sidebarType: 1
 ---
 
 
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                                                                                                                                                          | Example                                  | Type      |

@@ -3,6 +3,8 @@ layout: bidder
 title: chtnw
 description: Prebid CHTNW Bidder Adaptor
 pbjs: true
+enable_download: false
+pbjs_version_notes: removed in 12.0
 biddercode: chtnw
 media_types: banner, video, native
 gvl_id: none
@@ -15,7 +17,7 @@ prebid_member: false
 sidebarType: 1
 ---
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 |      Name     | Scope    | Description          |         Example      | Type     |

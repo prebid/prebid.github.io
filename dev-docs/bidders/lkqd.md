@@ -3,6 +3,8 @@ layout: bidder
 title: LKQD
 description: Prebid LKQD Bidder Adaptor
 pbjs: true
+enable_download: false
+pbjs_version_notes: removed in 12.0
 biddercode: lkqd 
 media_types: video
 tcfeu_supported: false
@@ -11,19 +13,19 @@ enable_download : false
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 For more information about [LKQD Ad Serving and Management](https://www.nexstardigital.com/), please contact <info@lkqd.com>.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name             | Scope    | Description      | Example        | Type |
-|------------------|----------|------------------|----------------|------|
-| `siteId`         | required |                  | `'662921'`     | `string` |
-| `placementId`    | required |                  | `'263'`        | `string` |
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| `siteId` | required | | `'662921'` | `string` |
+| `placementId` | required | | `'263'` | `string` |
 
-### Ad Unit Setup for Instream Video
+## Ad Unit Setup for Instream Video
 
 ```javascript
 const adUnits = [{

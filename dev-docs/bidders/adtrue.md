@@ -3,6 +3,8 @@ layout: bidder
 title: AdTrue
 description: AdTrue Exchange Bidder Adapter
 pbjs: true
+enable_download: false
+pbjs_version_notes: removed in 12.0
 biddercode: adtrue
 media_types: banner
 tcfeu_supported: false
@@ -12,11 +14,11 @@ sidebarType: 1
 ---
 
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name        | Scope    | Description                                                                                                                    | Example    | Type     |
-|-------------|----------|--------------------------------------------------------------------------------------------------------------------------------|------------|----------|
-| `zoneId`    | required | ZoneId provided by AdTrue                                                                                         | `'21423'` | `string` |
-| `publisherId`    | required | PublisherID provided by AdTrue                                                                                         | `'1491'` | `string` |
-| `reserve`    | optional | Bid Floor                                                                                         | `0.5` | `float` |
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| `zoneId` | required | ZoneId provided by AdTrue | `'21423'` | `string` |
+| `publisherId` | required | PublisherID provided by AdTrue | `'1491'` | `string` |
+| `reserve` | optional | Bid Floor | `0.5` | `float` |

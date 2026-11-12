@@ -16,6 +16,8 @@ deals_supported: false
 floors_supported: true
 fpd_supported: true
 pbjs: true
+enable_download: false
+pbjs_version_notes: removed in 12.0
 pbs: false
 prebid_member: false
 multiformat_supported: will-not-bid

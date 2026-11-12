@@ -9,12 +9,14 @@ tcfeu_supported: true
 schain_supported: false
 prebid_member: false
 pbjs: true
+enable_download: false
+pbjs_version_notes: removed in 12.0
 sidebarType: 1
 ---
 
 
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Description                                                                           | Example                                     | Type     |

@@ -9,13 +9,15 @@ coppa_supported: false
 usp_supported: false
 schain_supported: true
 pbjs: true
+enable_download: false
+pbjs_version_notes: removed in 12.0
 sidebarType: 1
 ---
 
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope    | Description | Example  | Type     |
-|-------|----------|---------------------------|----------|----------|
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
 | `sid` | required | The AdUnit ID from Pub-X | `'eDMR'` | `string` |

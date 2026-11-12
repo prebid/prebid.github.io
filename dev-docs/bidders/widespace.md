@@ -3,12 +3,14 @@ layout: bidder
 title: Widespace
 description: Prebid Widespace Bidder Adaptor
 pbjs: true
+enable_download: false
+pbjs_version_notes: removed in 12.0
 biddercode: widespace
 tcfeu_supported: false
 sidebarType: 1
 ---
 
-### Bid params
+## Bid params
 
 {: .table .table-bordered .table-striped }
 | Name     | Scope    | Description             | Example                                  | Type     |
@@ -18,7 +20,7 @@ sidebarType: 1
 | bidFloor | Optional | Bid floor rate          | `'1.25'`                                 | `string` |
 | demo     | Optional | User's demographic data | `{}`                                     | `object` |
 
-#### Demo params
+### Demo params
 
 {: .table .table-bordered .table-striped }
 | Name         | Scope    | Description             | Example       | Type     |

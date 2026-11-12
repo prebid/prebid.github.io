@@ -14,6 +14,8 @@ media_types: banner
 floors_supported: true
 fpd_supported: false
 pbjs: true
+enable_download: false
+pbjs_version_notes: removed in 12.0
 pbs: false
 prebid_member: false
 multiformat_supported: will-not-bid
@@ -23,11 +25,11 @@ safeframes_ok: true
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 For more information about [AnyClip](https://www.anyclip.com), please contact <support@anyclip.com>.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example                  | Type      |
@@ -36,7 +38,7 @@ For more information about [AnyClip](https://www.anyclip.com), please contact <s
 | `supplyTagId` | required | Supply Tag ID         | `'-mptNo0BycUG4oCDgGrU'` | `string`  |
 | `floor`       | optional | Floor Price           | `0.5`                    | `float`   |
 
-#### Sample Banner only Ad Unit
+### Sample Banner only Ad Unit
 
 ```js
 var adUnits = [{

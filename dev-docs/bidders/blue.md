@@ -4,6 +4,8 @@ title: Blue
 description: Prebid Blue Bidder Adapter
 tcfeu_supported: true
 pbjs: true
+enable_download: false
+pbjs_version_notes: removed in 12.0
 pbs: true
 biddercode: blue
 prebid_member: false
@@ -17,14 +19,14 @@ gvl_id: 620
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 The bidder requires setup before usage. Please get in touch with our publisher team at <celsooliveira@getblue.io> to get started.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
-|---------------|----------|---------------------|---------------|----------|
+| --- | --- | --- | --- | --- |
 | `publisherId` | required | Unique publisher ID | `'ABCDEF'` | `string` |
 | `placementId` | optional | Unique placement ID | `'ABCDEF'` | `string` |

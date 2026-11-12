@@ -9,6 +9,8 @@ tcfeu_supported: false
 usp_supported: true
 prebid_member: false
 pbjs: true
+enable_download: false
+pbjs_version_notes: removed in 12.0
 pbs: true
 schain_supported: true
 floors_supported: true
@@ -16,7 +18,7 @@ multiformat_supported: will-bid-on-any
 sidebarType: 1
 ---
 
-### Prebid.js Bid params
+## Prebid.js Bid params
 
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                 | Example       | Type      |
@@ -25,7 +27,7 @@ sidebarType: 1
 | `env`       | required | Environment name            | `lm_kiviads`  | `string`  |
 | `ext`       | optional | Specific integration config | `{}`          | `object`  |
 
-### Prebid Server Bid Params
+## Prebid Server Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                 | Example                            | Type      |

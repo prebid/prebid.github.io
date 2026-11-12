@@ -5,6 +5,8 @@ description: Prebid Alkimi Bidder Adapter
 biddercode: alkimi
 media_types: banner, video
 pbjs: true
+enable_download: false
+pbjs_version_notes: removed in 12.0
 pbs: true
 schain_supported: true
 gvl_id: 1169
@@ -19,7 +21,7 @@ sidebarType: 1
 
 
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                                                                                                                                                          | Example                                  | Type      |

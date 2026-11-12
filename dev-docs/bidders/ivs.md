@@ -6,14 +6,16 @@ biddercode: ivs
 media_types: video
 floors_supported: true
 pbjs: true
+enable_download: false
+pbjs_version_notes: removed in 12.0
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 The IVS Bidding adapter requires setup before beginning. Please contact us at <prebid@ivs.tv>
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Description                | Example     | Type      |

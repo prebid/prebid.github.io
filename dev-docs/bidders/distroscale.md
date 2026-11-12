@@ -5,6 +5,8 @@ description: Prebid DistroScale Bidder Adaptor
 biddercode: distroscale
 media_types: banner
 pbjs: true
+enable_download: false
+pbjs_version_notes: removed in 12.0
 pbs: false
 tcfeu_supported: true
 usp_supported: true
@@ -19,13 +21,13 @@ gvl_id: 754
 sidebarType: 1
 ---
 
-### Registration
+## Registration
 
 To use the DistroScale bidder you will need a pubid (Publisher ID) from an account on DistroScale.
 
 For further information, please contact <support@distroscale.com>.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description        | Example         | Type     |
@@ -33,7 +35,7 @@ For further information, please contact <support@distroscale.com>.
 | `pubid`       | required | Publisher ID       | `'12345'`       | `string` |
 | `zoneid`      | optional | Zone ID            | `'67890'`       | `string` |
 
-### Prebid Test Request
+## Prebid Test Request
 
 ```javascript
 var adUnits = [{

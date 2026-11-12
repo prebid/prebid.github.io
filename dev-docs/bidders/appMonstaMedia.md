@@ -17,6 +17,8 @@ media_types: banner, video, native
 multiformat_supported: will-bid-on-one
 userIds: all
 pbjs: true
+enable_download: false
+pbjs_version_notes: removed in 12.0
 pbs: true
 pbs_app_supported: true
 safeframes_ok: true

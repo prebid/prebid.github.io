@@ -3,6 +3,8 @@ layout: bidder
 title: STN
 description: Prebid STN Bidder Adapter
 pbjs: true
+enable_download: false
+pbjs_version_notes: removed in 12.0
 biddercode: stn
 media_types: banner, video, native
 multiformat_supported: will-bid-on-any
@@ -18,24 +20,24 @@ fpd_supported: true
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 The STN adapter requires setup and approval. Please reach out to <hb@stnvideo.com> to setup an STN account.
 
-### Bid Parameters
+## Bid Parameters
 
-#### Banner, Video, Native
+### Banner, Video, Native
 
 {: .table .table-bordered .table-striped }
 
-| Name | Scope | Type | Description | Example
-| ---- | ----- | ---- | ----------- | -------
-| `org` | required | String |  STN publisher Id provided by your STN representative  | "0987654321abcdef87654321"
-| `floorPrice` | optional | Number |  Minimum price in USD. <br/><br/> **WARNING:**<br/> Misuse of this parameter can impact revenue | 2.00
-| `placementId` | optional | String |  A unique placement identifier  | "12345678"
-| `testMode` | optional | Boolean |  This activates the test mode  | false
+| Name | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| `org` | required | String | STN publisher Id provided by your STN representative | "0987654321abcdef87654321" |
+| `floorPrice` | optional | Number | Minimum price in USD. <br/><br/> **WARNING:**<br/> Misuse of this parameter can impact revenue | 2.00 |
+| `placementId` | optional | String | A unique placement identifier | "12345678" |
+| `testMode` | optional | Boolean | This activates the test mode | false |
 
-### Example
+## Example
 
 ```javascript
 var adUnits = [{
@@ -84,11 +86,11 @@ var adUnits = [{
 ];
 ```
 
-### Configuration
+## Configuration
 
 STN recommends setting UserSync by iframe for monetization.
 
-### Versions
+## Versions
 
 Prebid versions 5.0-5.3 are not supported.
 
