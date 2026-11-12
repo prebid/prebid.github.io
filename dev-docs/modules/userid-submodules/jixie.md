@@ -2,7 +2,7 @@
 layout: userid
 title: Jixie ID
 description: Jixie ID User ID sub-module
-useridmodule: jixieId
+useridmodule: jixieIdSystem
 bidRequestUserId: jixieId
 eidsource: jixie.io
 example: '"1111"'
@@ -30,7 +30,7 @@ Please reach out to [partners.jixie.io](mailto:partners.jixie.io) to request you
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of Module | `"jixieId"` |
-| params | optional | Object | Container of all module params. |  |
+| params | optional | Object | Container of all module params. | |
 | params.accountid | optional | String | This is your `accountid` as provided by Jixie. | `Mo165qXxxx` |
 
 ## DMD ID Example

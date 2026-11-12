@@ -2,7 +2,7 @@
 layout: analytics
 title: Datawrkz
 description: Datawrkz Analytics Adapter
-modulecode: datawrkzanalytics
+modulecode: datawrkz
 prebid_member: false
 tcfeu_supported: false
 usp_supported: false
@@ -11,16 +11,16 @@ gvl_id: none
 enable_download: true
 ---
 
-#### Registration
+## Registration
 
 Using this adapter requires a **Publisher ID** and an **API Key**, issued by the Datawrkz team.  
 Please contact [pubops@datawrkz.com](mailto:pubops@datawrkz.com) to create your account and obtain credentials.
 
-#### About
+## About
 
 This analytics adapter captures auction and render data from Prebid events and sends it to the Datawrkz API endpoint. The analytics for the  collected data can be accessed at [yieldopt.highr.ai](https://yieldopt.highr.ai/).
 
-#### Integration
+## Integration
 
 To incorporate this module into your `prebid.js`, compile the module using the following command:
 
@@ -28,7 +28,7 @@ To incorporate this module into your `prebid.js`, compile the module using the f
 gulp build --modules=datawrkzAnalyticsAdapter,<other modules...>
 ```
 
-#### Page Configuration
+## Page Configuration
 
 ```js
 pbjs.que.push(function () {

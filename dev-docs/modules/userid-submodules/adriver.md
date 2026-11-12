@@ -2,7 +2,7 @@
 layout: userid
 title: Adriver ID
 description: Adriver ID User ID sub-module
-useridmodule: adriverId
+useridmodule: adriverIdSystem
 bidRequestUserId: adriverId
 eidsource: adriver.ru
 example: '"1111"'
