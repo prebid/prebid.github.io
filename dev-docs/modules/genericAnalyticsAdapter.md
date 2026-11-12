@@ -225,7 +225,7 @@ pbjs.enableAnalytics({
 })
 ```
 
-When the page is hidden or unloaded (for example, after a same-tab ad click), the handler is called right away with any incomplete batch. Use `keepalive: true` or `navigator.sendBeacon` so the request isn't cancelled when the page goes away.
+When the page is hidden or unloaded (for example, after a same-tab ad click), the handler is called right away with any incomplete batch. Use `keepalive: true` or `navigator.sendBeacon` so the request isn't cancelled when the page goes away, and send it synchronously from the handler; see [Sending analytics events when the page is hidden](/dev-docs/analytics-page-hide.html).
 
 ### See also
 

@@ -89,6 +89,8 @@ Analytics adapters receive `bidClick` and `bidClickInferred` like other events. 
 
 The [generic analytics adapter's](/dev-docs/analytics/generic.html) `skinny` preset includes both events, with bid identifiers but without the bid, creative markup or click URL.
 
+A click that navigates the same tab unloads the page before queued events are normally sent. Since Prebid.js 11.50, analytics adapters that opt in send them when the page is hidden; see [Sending analytics events when the page is hidden](/dev-docs/analytics-page-hide.html) for which adapters do.
+
 ## Further Reading
 
 - [Prebid.js dynamic creatives](/adops/js-dynamic-creative.html)

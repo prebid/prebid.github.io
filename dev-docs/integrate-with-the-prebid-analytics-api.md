@@ -172,7 +172,8 @@ There are two error events analytics modules may wish to listen for: auctionDebu
 
 * listen only to the events required
 * batch up calls to the backend for post-auction logging rather than calling immediately after each event.
-* consider using the keepalive option on the ajax request to keep the priority low and the request queued after the pageview dies
+* send with the `keepalive` option of `ajax`, or with `sendBeacon`, so requests aren't cancelled when the page goes away
+* opt in to sending queued events when the page is hidden (see below)
 
 #### Sending events when the page is hidden
 
@@ -190,13 +191,15 @@ let exAnalytics = Object.assign(adapter({url, analyticsType, flushOnPageHide: tr
 });
 ```
 
-Only opt in if `track` is cheap and synchronous, and sends with `navigator.sendBeacon` or with the `keepalive` option of `ajax`. Adapters that don't opt in behave as before. The [generic analytics adapter](/dev-docs/modules/genericAnalyticsAdapter.html) and the 33Across, IM, Nexx360 and PGAM Direct analytics adapters opt in.
+Only opt in if `track` is cheap and synchronous, and sends with `navigator.sendBeacon` or with the `keepalive` option of `ajax`. Adapters that don't opt in behave as before. The [generic analytics adapter](/dev-docs/modules/genericAnalyticsAdapter.html) and the 33Across, IM, Nexx360 and PGAM Direct analytics adapters opt in. New adapters should opt in.
+
+See [Sending analytics events when the page is hidden](/dev-docs/analytics-page-hide.html) for the full rules, migration patterns for existing adapters, how to test, and the status of each adapter.
 
 ### Step 3: Add unit tests
 
 1. Create a JS file under `test/spec/modules` with the name of the bidder suffixed with 'AnalyticsAdapter_spec', e.g., `exAnalyticsAdapter_spec.js`
 
-2. Write great unit tests. See the other AnalyticsAdapter_spec.js files for examples.
+2. Write great unit tests. See the other AnalyticsAdapter_spec.js files for examples. If the adapter opts in to sending events when the page is hidden, test that too; see [Testing](/dev-docs/analytics-page-hide.html#testing).
 
 ### Step 4: Submit the code
 
