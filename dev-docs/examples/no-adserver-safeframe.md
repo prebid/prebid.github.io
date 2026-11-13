@@ -6,6 +6,7 @@ description: Running Prebid.js as an ad server and rendering ads in cross-origin
 sidebarType: 1
 
 about:
+- For production, use the <a href="/dev-docs/modules/safeRendering.html">Safe Rendering module</a>'s <code>pbjs.renderBid(bid)</code> rather than building this yourself or hosting the IAB SafeFrame 1.1 reference implementation. It creates the isolated frame, reuses Prebid.js's rendering, events and tracking, and can stop other frames from messaging Prebid.js. This page shows the underlying mechanism.
 - This example extends <a href="/dev-docs/examples/no-adserver.html">Running Prebid.js as an ad server</a>. Each winning ad is rendered in a cross-origin frame, so the creative can't access the publisher page, similar to the isolation a SafeFrame provides.
 - The frame runs the creative script Prebid.js uses for cross-domain rendering (<a href="https://github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/x-domain/creative.html">integrationExamples/gpt/x-domain/creative.html</a>), loaded from a <code>data:</code> URL, so no extra hosting is needed.
 - Creatives get an opaque origin, so they can't use cookies or local storage, and the SafeFrame <code>$sf</code> API isn't provided. See the notes below the example.
