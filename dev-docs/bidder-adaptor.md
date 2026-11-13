@@ -336,7 +336,6 @@ Other notes:
 * **userIdAsEid** is the EID-formatted version of `userId`.
 * **ortb2** a copy of `bidderRequest.ortb2` (see below), provided here for convenience.
 * **schain** is where bidders can look for any [Supply Chain](/dev-docs/modules/schain.html) data that they should pass through to the endpoint.
-* **safeRenderer** carries the bid's Safe Renderer configuration, falling back to the ad unit's configuration when the bid does not override it. Media-type renderer settings remain in `mediaTypes`. Adapters must account for [renderer precedence](/dev-docs/renderer.html) when their formats require a particular renderer. Renderer configuration and policy are local Prebid metadata, not OpenRTB fields to forward to the exchange.
 
 #### bidderRequest Parameters
 
@@ -368,8 +367,6 @@ Here is a sample bidderRequest object:
 Notes on parameters in the bidderRequest object:
 
 * **auctionId** (see [note](#tid-warning)) is unique per call to `requestBids()`, but is the same across ad units.
-* **allowTopWindowRenderers** is the top-window renderer permission for a client-side bidder when its request is created, including overrides from `setBidderConfig`. It does not resolve publisher renderer or Safe Renderer precedence, and is not an OpenRTB field. It is absent on server-side requests and may be absent in older Prebid.js versions.
-* **rendererSupport** reports, for each requested media type, whether core will use a matching bidder-provided `renderer` and/or `safeRenderer`, accounting for renderer policy and publisher configuration. Both flags may be true; if a bid supplies both, core prefers `safeRenderer`. This is local request metadata, not an OpenRTB field, and is absent in Prebid.js versions that do not implement the signal.
 * **ortb2** is the global (not specific to any adUnit) [first party data](/features/firstPartyData.html) to use for all requests in this auction. Note that Prebid allows any standard ORTB field or extension as first party data - including items that typically wouldn't be considered as such, for example user agent client hints (`device.sua`) or information on the regulatory environment (`regs.ext.gpc`).
 
     {: .alert.alert-warning :}
