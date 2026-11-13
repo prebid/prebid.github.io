@@ -44,11 +44,11 @@ In order to use the module you first need to register with Optable and obtain a 
 <script async src="<bundleURL>"></script>
 ```
 
-In this case bundleUrl parameter is not needed and the script will await bundle loading before delegating to it.
+In this case the `bundleUrl` parameter is not needed. Either way, the module does not hold an auction until the bundle loads when it has targeting data cached from a previous page (see [Default handler](#default-handler)).
 
 ### Configuration
 
-This module is configured as part of the `realTimeData.dataProviders`. We recommend setting `auctionDelay` to 1000 ms and make sure `waitForIt` is set to `true` for the `Optable` RTD provider.
+This module is configured as part of the `realTimeData.dataProviders`. We recommend setting `auctionDelay` to 1000 ms and make sure `waitForIt` is set to `true` for the `Optable` RTD provider. The delay only applies to auctions that start before the bundle has loaded with nothing cached from a previous page.
 
 ```javascript
 pbjs.setConfig({
@@ -62,6 +62,7 @@ pbjs.setConfig({
         params: {
           bundleUrl: '<optional, your bundle url>',
           adserverTargeting: '<optional, true by default, set to true to also set GAM targeting keywords to ad slots>',
+          instance: '<optional, name of the SDK instance on window.optable, defaults to "instance">',
         },
       },
     ],
@@ -113,13 +114,42 @@ To handle PPIDs and the above input - a custom `handleRtd` function may need to 
 | params                   | Object   |                                                                                                                                                                                                                                                                 |                  |          |
 | params.bundleUrl         | String   | Optable bundle URL                                                                                                                                                                                                                                              | `null`           | Optional |
 | params.adserverTargeting | Boolean  | If set to `true`, targeting keywords will be passed to the ad server upon auction completion                                                                                                                                                                    | `true`           | Optional |
-| params.handleRtd         | Function | An optional function that uses Optable data to enrich `reqBidsConfigObj` with the real-time data. If not provided, the module will do a default call to Optable bundle. The function signature is `[async] (reqBidsConfigObj, optableExtraData, mergeFn) => {}` | `null`           | Optional |
+| params.instance          | String   | Name of the Optable SDK instance on `window.optable`. The module uses `window.optable[instance]` to tell whether the bundle has loaded and to read targeting data. Set it when the page names its SDK instance something other than `instance`.                 | `'instance'`     | Optional |
+| params.handleRtd         | Function | An optional function that uses Optable data to enrich `reqBidsConfigObj` with the real-time data. If not provided, the module uses its [default handler](#default-handler). A custom function is called as soon as the auction starts, whether or not the Optable bundle has loaded. The function signature is `[async] (reqBidsConfigObj, optableExtraData, mergeFn, instance) => {}`, where `instance` is `params.instance` (or `null` when not set) | `null`           | Optional |
+
+## Default handler
+
+When `handleRtd` is not provided, the module enriches each auction as soon as it starts:
+
+1. If the Optable bundle has loaded and exposes `window.optable.rtd.handleRtd`, the module calls it. Bundles can
+   override that function to change how data is merged. The bundle counts as loaded when it exposes that function or
+   when the SDK instance named by `params.instance` exists on `window.optable`.
+2. If the bundle has not loaded yet, the module merges the targeting data the bundle cached on a previous page
+   (`localStorage` key `OPTABLE_RESOLVED`, read through Prebid's storage manager, so `deviceAccess` and activity
+   controls apply), without waiting. Cached EIDs are added to `user.ext.eids`.
+3. If nothing is cached, the module waits for the bundle to load (up to `auctionDelay` when `waitForIt` is `true`),
+   then continues as in step 1.
+
+Most publishers should not need a custom `handleRtd`.
 
 ## Publisher Customized RTD Handler Function
 
 When there is more pre-processing or post-processing needed prior/post calling Optable bundle - a custom `handleRtd`
 function can be supplied to do that.
 This function will also be responsible for the `reqBidsConfigObj` enrichment.
+The module calls it as soon as the auction starts, so the Optable bundle may not have loaded yet. A handler that needs
+the bundle should wait for it first:
+
+```javascript
+await new Promise((resolve) => {
+  window.optable = window.optable || { cmd: [] };
+  window.optable.cmd.push(resolve);
+});
+```
+
+The module waits for the handler to finish: if it returns a promise (for example an `async` function), the auction
+waits for that promise to settle, within the RTD `auctionDelay`. If the handler throws or its promise rejects, the
+module logs the error and the auction continues without Optable data.
 It will also receive the `optableExtraData` object, which can contain the extra data required for the enrichment and
 shouldn't be shared with other RTD providers/bidders.
 `mergeFn` parameter taken by `handleRtd` is a standard Prebid.js utility function that take an object to be enriched and
