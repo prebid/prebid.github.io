@@ -1,0 +1,47 @@
+name: Download page check
+
+# Monitors the Prebid.js download page (#3841, #6165): in a real browser, pick the newest release and every
+# module, download, and check the bundle. Runs after each deploy of master, daily (Prebid.js releases happen
+# independently of the docs), and on demand against any copy of the page, e.g. a Netlify deploy preview.
+on:
+  workflow_run:
+    workflows: ["Build and deploy Pages"]
+    types: [completed]
+    branches: [master]
+  schedule:
+    - cron: '17 6 * * *'
+  workflow_dispatch:
+    inputs:
+      url:
+        description: Download page URL
+        default: https://docs.prebid.org/download.html
+
+permissions:
+  contents: read
+
+concurrency:
+  group: download-page-check
+  cancel-in-progress: true
+
+jobs:
+  check:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+
+      - name: Install puppeteer-core outside the repo
+        run: npm install --prefix "$RUNNER_TEMP/pptr" --no-save --no-audit --no-fund puppeteer-core@25
+
+      - name: Download Prebid.js with every module
+        env:
+          PUPPETEER_MODULE: ${{ runner.temp }}/pptr/node_modules/puppeteer-core
+          PAGE_URL: ${{ inputs.url || 'https://docs.prebid.org/download.html' }}
+        run: CHROME_BIN="$(command -v google-chrome)" node .github/scripts/check-download-page.js "$PAGE_URL"
