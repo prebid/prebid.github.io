@@ -60,11 +60,11 @@ pbjs.setConfig({
 Possible values for it are:
 
 {: .table .table-bordered .table-striped }
-|Value | Description |
+| Value | Description |
 | ------------ | ------------ |
-|`'off''` | The default. Use of undisclosed storage keys only generates a console warning. |
-|`'strict'` | Deny access to undisclosed storage keys |
-|`'allowAliases'` | Deny access to undisclosed storage keys, unless the use is from an alias of a module that does disclose them, in which case only log a warning. This can happen for instance when a bidder provides an alias linked to a different vendor in the GVL. |
+| `'off''` | The default. Use of undisclosed storage keys only generates a console warning. |
+| `'strict'` | Deny access to undisclosed storage keys |
+| `'allowAliases'` | Deny access to undisclosed storage keys, unless the use is from an alias of a module that does disclose them, in which case only log a warning. This can happen for instance when a bidder provides an alias linked to a different vendor in the GVL. |
 
 ### Storage Disclosure Summary
 
@@ -97,10 +97,10 @@ The return value follows the same format as the TCF [disclosures array](https://
 - each item in the array contains these additional fields:
 
 {: .table .table-bordered .table-striped }
-|Name | Type | Description |
+| Name | Type | Description |
 | ------------ | ------------ | ------------ |
-|`disclosedIn` | String | URL of the JSON containing this disclosure. Can be `null` for identifiers chosen trough publisher configuration - such as those set by the [userId module](/dev-docs/modules/userId.html) |
-|`disclosedBy` | Array of Strings | Names of the Prebid modules providing this disclosure |
+| `disclosedIn` | String | URL of the JSON containing this disclosure. Can be `null` for identifiers chosen trough publisher configuration - such as those set by the [userId module](/dev-docs/modules/userId.html) |
+| `disclosedBy` | Array of Strings | Names of the Prebid modules providing this disclosure |
 
 <a id="adapter-integration"></a>
 
@@ -108,7 +108,7 @@ The return value follows the same format as the TCF [disclosures array](https://
 
 Modules that use storage should publish a [disclosure file](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/Vendor%20Device%20Storage%20%26%20Operational%20Disclosures.md) listing all keys that the pass to `storageManager` for the first party domain (`'*'`). This can be done by either:
 
-- providing a GVL ID in your adapter. The corresponding `deviceStorageDisclosureUrl` from the GVL is then used as your disclosure.
+- providing a GVL ID in your adapter. The corresponding `deviceStorageDisclosureUrl` from the GVL is then used as your disclosure. If your adapter declares several GVL IDs (Prebid.js 11.46+), the disclosures of all of them are used, and a key counts as disclosed if it appears in any one of them.
 - providing a `disclosureURL` directly. This does not require membership in the GVL, and overrides its disclosure if provided. For example:
 
 ```javascript
