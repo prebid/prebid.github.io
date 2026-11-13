@@ -46,10 +46,10 @@ For each bid request and media type, core reports in `bidRequest.rendererSupport
 | Name | Scope | Description | Example | Type |
 | ---- | ----- | ----------- | ------- | ---- |
 | `publisherId` | required | Splash publisher ID. Non-empty. | `'725'` | `string` |
-| `placementId` | required | Splash placement ID, sent as `imp.tagid`. Non-empty. | `'100021'` | `string` |
+| `placementId` | required | Splash placement ID, sent as `imp.tagid`. Non-empty. | `'100022'` | `string` |
 | `displayFormat` | required for Parallax and Interstitial | The placement's Splash format: `'standard'` (default), `'parallax'` or `'interstitial'`. It is not inferred from sizes or the creative. Any other value makes the bid invalid. | `'parallax'` | `string` |
 | `bidfloor` | optional | Floor in PLN, used only when no floor is set by the Price Floors module or `ortb2Imp`. Must be greater than 0. | `3` | `number` |
-| `endpoint` | optional | Splash staging endpoint for test placements: `https://ssp.emisja.stg.froc.mc2.rocks/auction/splash`; any other value uses the production endpoint (`https://ssp.splashandroll.com/auction/splash`). | `'https://ssp.emisja.stg.froc.mc2.rocks/auction/splash'` | `string` |
+| `endpoint` | optional | Exact auction URL. The adapter accepts this staging URL or the production URL (`https://ssp.splashandroll.com/auction/splash`); any other value logs a warning and falls back to production. If omitted, production is used. | `'https://ssp.emisja.stg.froc.mc2.rocks/auction/splash'` | `string` |
 
 ## Formats
 
@@ -72,7 +72,7 @@ Requests are in PLN and floors are requested from the [Price Floors](/dev-docs/m
 
 ## Test Parameters
 
-Splash staging inventory is publisher `725` with placements `100021` (Standard 300x600), `100022` (Parallax 700x1600) and `100023` (Interstitial 320x480); the Parallax test campaign is mobile-only, so use a mobile device or device emulation with a mobile user agent. To validate renderer selection, use a Prebid.js build containing this adapter and the matching `rendererSupport` core contract in #16138; the hosted test page is maintained separately from this documentation.
+Splash staging inventory is publisher `725` with placements `100021` (Standard 300x600), `100022` (Parallax 700x1600) and `100023` (Interstitial 320x480); the Parallax test campaign is mobile-only, so use a mobile device or device emulation with a mobile user agent. Set the staging endpoint on each test bid. Renderer policy is applied when the Prebid.js build provides the `rendererSupport` metadata; older builds use the compatibility fallback described above. The hosted test page is maintained separately from this documentation.
 
 ```javascript
 const adUnits = [
