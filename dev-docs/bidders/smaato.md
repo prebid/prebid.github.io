@@ -21,7 +21,7 @@ schain_supported: true
 sidebarType: 1
 ---
 
-### Table of Contents
+## Table of Contents
 
 - [Table of Contents](#table-of-contents)
 - [Registration](#registration)
@@ -32,41 +32,40 @@ sidebarType: 1
   - [Example Banner Ad Unit](#example-banner-ad-unit)
   - [Example Video Ad Unit](#example-video-ad-unit)
   - [Example Native Ad Unit](#example-native-ad-unit)
-  - [Example AdPod (long-form) Video Ad Unit](#example-adpod-long-form-video-ad-unit)
 - [First Party Data](#first-party-data)
 - [Test Parameters](#test-parameters)
 
 <a name="smaato-registration"></a>
 
-### Registration
+## Registration
 
 The Smaato adapter requires setup and approval from the Smaato team, even for existing Smaato publishers. Please reach out to your account team or <prebid@smaato.com> for more information.
 
 <a name="smaato-note"></a>
 
-### Note
+## Note
 
 The Smaato adapter will convert bidfloors to 'USD' currency as needed.
 
 <a name="smaato-bid-params"></a>
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name       | Scope    | Description          | Example    | Type     |
-|------------|----------|----------------------|------------|----------|
-| `publisherId` | required | Your Smaato publisher id  | `'1100012345'` | `string` |
-| `adspaceId` | required | Your Smaato adspace id. Required for non adpod requests | `'11002234'`   | `string` |
-| `adbreakId` | required | Your Smaato adbreak id. Required for adpod (long-form video) requests | `'41002234'`   | `string` |
-| `app` | optional | Object containing mobile app parameters.  See the [App Object](#smaato-app-object) for details.| `app : { ifa: '56700000-9cf0-22bd-b23e-46b96e40003a'}` | `object` |
+| Name          | Scope    | Description                                                                                                      | Example                                                | Type     |
+|---------------|----------|------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------|----------|
+| `publisherId` | required | Your Smaato publisher id                                                                                         | `'1100012345'`                                         | `string` |
+| `adspaceId`   | required | Your Smaato adspace id. Required for non adpod requests                                                          | `'11002234'`                                           | `string` |
+| `adbreakId`   | required | Your Smaato adbreak id. Required for adpod (long-form video) requests, which are supported by Prebid Server only | `'41002234'`                                           | `string` |
+| `app`         | optional | Object containing mobile app parameters.  See the [App Object](#smaato-app-object) for details.                  | `app : { ifa: '56700000-9cf0-22bd-b23e-46b96e40003a'}` | `object` |
 
-#### Note
+### Note
 
-In case of AdPods, the Smaato adapter will only read the first `imp[].skadn` entry for each AdPod, such that there should only be one `skadn` occurrence per AdPod.
+AdPods (long-form video) are supported by Prebid Server only. In case of AdPods, the Smaato adapter will only read the first `imp[].skadn` entry for each AdPod, such that there should only be one `skadn` occurrence per AdPod.
 
 <a name="smaato-app-object"></a>
 
-#### App Object
+### App Object
 
 Smaato supports using prebid within a mobile app's webview.
 
@@ -78,9 +77,9 @@ Smaato supports using prebid within a mobile app's webview.
 
 <a name="smaato-example-ad-units"></a>
 
-### Example Ad Units
+## Example Ad Units
 
-#### Example Banner Ad Unit
+### Example Banner Ad Unit
 
 ```javascript
 var adUnit = {
@@ -100,7 +99,7 @@ var adUnit = {
 }
 ```
 
-#### Example Video Ad Unit
+### Example Video Ad Unit
 
 ```javascript
 var adUnit = {
@@ -131,7 +130,7 @@ var adUnit = {
 };
 ```
 
-#### Example Native Ad Unit
+### Example Native Ad Unit
 
 ```javascript
 var adUnit = {
@@ -175,40 +174,9 @@ var adUnit = {
 };
 ```
 
-#### Example AdPod (long-form) Video Ad Unit
-
-```javascript
-var adUnit = {
-    "code": "adpod unit",
-    "mediaTypes": {
-        "video": {
-            "context": "adpod",
-            "playerSize": [640, 480],
-            "adPodDurationSec": 300,
-            "durationRangeSec": [15, 30],
-            "requireExactDuration": false,
-            "mimes": ["video/mp4"],
-            "startdelay": 0,
-            "linearity": 1,
-            "protocols": [7],
-            "skip": 1,
-            "skipmin": 5,
-            "api": [7],
-        }
-    },
-    "bids": [{
-        "bidder": "smaato",
-        "params": {
-            "publisherId": "1100042525",
-            "adbreakId": "400000000"
-        }
-    }]
-};
-```
-
 <a name="smaato-first-party"></a>
 
-### First Party Data
+## First Party Data
 
 Publishers should use the `ortb2` method of setting First Party Data. The following fields are supported:
 
@@ -253,7 +221,7 @@ pbjs.setConfig({
 
 <a name="smaato-test-parameters"></a>
 
-### Test Parameters
+## Test Parameters
 
 Following example includes sample `imp` object with publisherId and adSlot which can be used to test Smaato Adapter
 
