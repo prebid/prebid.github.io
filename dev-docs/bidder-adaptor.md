@@ -1121,6 +1121,14 @@ Every adapter submission must include unit tests.  For details about adapter tes
 
 For example tests, see [the existing adapter test suites](https://github.com/prebid/Prebid.js/tree/master/test/spec/modules).
 
+Run your adapter's tests with `npx gulp test-only --file test/spec/modules/exampleBidAdapter_spec.js`, and the whole suite with `npx gulp test-only` before you submit. The tests run under [Vitest](https://vitest.dev/guide/browser/) in real browsers: Chromium, Firefox, Safari, Edge, an old Chrome, and Safari on a real iPhone. So they need to hold up in each of these:
+
+* **Don't hard-code the test page's address.** On the iPhone it is `http://bs-local.com:9876`, not `http://localhost:9876`. Take the host or URL from `window.location` or from `getRefererInfo()`.
+* **Don't rely on a secure context.** The iPhone's test page isn't one, so `crypto.subtle` doesn't exist there and `Secure` cookies aren't kept. Check `window.isSecureContext` before using them.
+* **Don't rely on the screen or device.** A phone reports a phone's screen and user agent.
+* **Never call `it()`, `describe()` or a hook inside a running test or hook.** Mocha would silently skip them; here the test fails, and lint reports it. Clean up with `try`/`finally` inside the test.
+* **Restore what you change on shared objects** (`window.top`, `document.cookie`, stubs), so the next test file starts clean.
+
 <a name="bidder-example"></a>
 
 ## Full Bid Adapter Example
