@@ -15,7 +15,7 @@ media_types: banner
 safeframes_ok: true
 deals_supported: false
 floors_supported: false
-fpd_supported: false
+fpd_supported: true
 pbjs: true
 pbs: false
 prebid_member: false
@@ -57,6 +57,25 @@ pbjs.setBidderConfig({
   }
 });
 ```
+
+## Viewability
+
+Engerio records viewable impressions from the verdict your Prebid.js produces; it does not
+measure viewability itself. Enable **either** module:
+
+```javascript
+pbjs.setConfig({ bidViewabilityIO: { enabled: true } });   // IntersectionObserver, no ad server needed
+pbjs.setConfig({ bidViewability: { enabled: true } });     // GAM Active View, via GPT
+```
+
+With neither enabled, viewable impressions are reported as unavailable rather than as zero.
+Bidding is unaffected either way.
+
+## First-party data
+
+First-party data set in `ortb2` (page and user level) and in each ad unit's `ortb2Imp` is
+forwarded to Engerio. The adapter's own impression fields take precedence over `ortb2Imp` where
+they collide.
 
 ## Bid Params
 
