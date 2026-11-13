@@ -128,6 +128,15 @@ This means an adaptor is not available to download from Prebid.org as soon as th
 
 * [jekyll - check for non empty](https://michaelcurrin.github.io/dev-cheatsheets/cheatsheets/jekyll/liquid/conditionals/non-empty.html)
 
+## Markdown for AI Agents
+
+Every page is also published as its raw Markdown source: replace `.html` in a page's URL with `.md`, for example
+<https://docs.prebid.org/dev-docs/bidders/msft.md>. `_plugins/raw_markdown_generator.rb` copies the sources at build time.
+
+* [/llms.txt](https://docs.prebid.org/llms.txt) indexes all of them by section, following [llmstxt.org](https://llmstxt.org). It's generated from each page's `title`, `description` and `biddercode` front matter, so keep those accurate.
+* Each page's `<head>` links its Markdown with `<link rel="alternate" type="text/markdown">`, and documentation pages (not the homepage) show a "View as Markdown" link above the content.
+* Liquid tags such as `{% include %}` are not expanded in the `.md` files, so put content that agents need in the page itself rather than in an include.
+
 ## Codex
 
 To get started with Codex with Ruby 3.4.4 preinstalled on this repo, you can set up your environment like this

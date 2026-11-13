@@ -16,21 +16,21 @@ sidebarType: 1
 floors_supported: true
 prebid_member: false
 fpd_supported: false
-gvl_id: none
+gvl_id: 1409
 multiformat_supported: will-bid-on-one
 ortb_blocking_supported: true
 userIds: all
 ---
 
-### Note
+## Note
 
-The Example Bidding adapter requires setup before beginning. Please contact us at <support@motorik.io>.
+The Motorik adapter requires setup before beginning. Please contact us at <support@motorik.io>.
 Motorik will only respond to the first impression. Multiple ad formats in single request are not supported.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description           | Example   | Type      |
-|---------------|----------|-----------------------|-----------|-----------|
-| `placementId`      | required | placement id | `'a7402708185f6a0c00700fd21c4260d2'`    | `string` |
-| `accountId`      | required | account id | `'motorikTest'`    | `string` |
+| Name          | Scope    | Description  | Example                              | Type     |
+|---------------|----------|--------------|--------------------------------------|----------|
+| `placementId` | required | placement id | `'a7402708185f6a0c00700fd21c4260d2'` | `string` |
+| `accountId`   | required | account id   | `'motorikTest'`                      | `string` |

@@ -14,13 +14,13 @@ media_types: banner
 floors_supported: true
 fpd_supported: true
 pbjs: true
-pbs: true
+pbs: false
 multiformat_supported: will-not-bid
 ortb_blocking_supported: false
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 The BT Bid Adapter makes requests to the BT Server which supports OpenRTB.
 
@@ -31,8 +31,8 @@ Publishers should use the `ortb2` method of setting [First Party Data](https://d
 #### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example | Type |
-| -------- | -------- | --------------------------- | ------- | --------- |
+| Name         | Scope    | Description                                                     | Example                         | Type     |
+|--------------|----------|-----------------------------------------------------------------|---------------------------------|----------|
 | `bidderCode` | required | Bidder configuration. Could configure several bidders this way. | `bidderA: {publisherId: 55555}` | `object` |
 
 #### Bid Config
@@ -40,10 +40,10 @@ Publishers should use the `ortb2` method of setting [First Party Data](https://d
 Make sure to set required orgID, websiteID values received after approval using `pbjs.setBidderConfig`.
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example | Type |
-| ----------- | -------- | ---------------------------------- | ------------------ | --------- |
-| `orgID` | required | A unique ID for your organization provided by the Blockthrough team. | `4829301576428910` | `string` |
-| `websiteID` | required | A unique ID for your site provided by the Blockthrough team. | `5654012389765432` | `string` |
+| Name        | Scope    | Description                                                          | Example            | Type     |
+|-------------|----------|----------------------------------------------------------------------|--------------------|----------|
+| `orgID`     | required | A unique ID for your organization provided by the Blockthrough team. | `4829301576428910` | `string` |
+| `websiteID` | required | A unique ID for your site provided by the Blockthrough team.         | `5654012389765432` | `string` |
 
 #### Example
 

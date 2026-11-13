@@ -15,12 +15,12 @@ media_types: banner, video
 prebid_member: false
 safeframes_ok: false
 deals_supported: false
-pbs_app_supported: true
+pbs_app_supported: false
 fpd_supported: false
 ortb_blocking_supported: false
 multiformat_supported: will-bid-on-one
 pbjs: true
-pbs: true
+pbs: false
 sidebarType: 1
 ---
 
