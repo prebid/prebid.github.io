@@ -84,11 +84,11 @@ Each `params.transformations` entry is `{id: 'iab', config: {segtax: Number, iab
 
 `params.overwrites` is a legacy option: an object of functions keyed by bidder code (bids from `appnexusAst` use the `appnexus` key). Before each auction, the module calls the function for every bid of that bidder in the auction's ad units as `fn(bid, segmentData, acEnabled, utils, bidIdentity)`:
 
-- `bid`: the ad unit bid object; modify it directly. The return value is ignored.
-- `segmentData`: cohorts read from localStorage, with keys `ac`, `ix`, `rubicon`, `appnexus`, `gam`, `ssp` and `topics`.
-- `acEnabled`: `true` if the bidder is in `params.acBidders`.
-- `utils`: `{deepSetValue, deepAccess, isFn, mergeDeep}` from Prebid.js.
-- `bidIdentity`: a function that returns its argument, kept for backwards compatibility.
+* `bid`: the ad unit bid object; modify it directly. The return value is ignored.
+* `segmentData`: cohorts read from localStorage, with keys `ac`, `ix`, `rubicon`, `appnexus`, `gam`, `ssp` and `topics`.
+* `acEnabled`: `true` if the bidder is in `params.acBidders`.
+* `utils`: `{deepSetValue, deepAccess, isFn, mergeDeep}` from Prebid.js.
+* `bidIdentity`: a function that returns its argument, kept for backwards compatibility.
 
 ### Consent
 
