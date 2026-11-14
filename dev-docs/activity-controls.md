@@ -88,8 +88,8 @@ pbjs.setConfig({
 | --- | --- | --- |
 | `default` | Boolean | Whether the activity should be allowed if no other rule applies. Defaults to true. |
 | `rules` | Array of objects | Rules for this activity |
-| `rules[].condition` | Function | Condition function to use for this rule; the rule applies only if this returns true. Receives a single object that contains [activity parameters](#parameters) as input. If omitted, the rule always applies. |
-| `rules[].allow` | Boolean | Whether the activity should be allowed when this rule applies. Defaults to true. |
+| `rules[].condition` | Function | Condition function to use for this rule; the rule applies only if this returns true. Receives a single object that contains [activity parameters](#parameters) as input. If omitted, the rule always applies. The function must return a boolean synchronously; if it throws, the activity is denied. |
+| `rules[].allow` | Boolean | Whether the activity should be allowed when this rule applies. If omitted, the rule denies the activity; see [Allow Flag](#allow-flag). |
 | `rules[].priority` | Number | Priority of this rule compared to other rules; a lower number means higher priority. See [note on rule priority](#priority) below. Defaults to 1. |
 
 `Rules` is an array of objects that a publisher can construct to provide fine-grained control over a given activity. For instance, you could set up a series of rules that says:
@@ -230,7 +230,7 @@ If the rule's condition matches, this attribute defines whether the rule 'votes'
 
 As noted in the priority section, **disallow** (false) takes precedence amongst rules at the same priority level.
 
-If `allow` is not defined, the rule is assumed to assert **true** (i.e. allow the activity to take place).
+If `allow` is not defined, a matching rule denies the activity. Always set `allow` explicitly.
 
 ### More examples
 
@@ -294,10 +294,17 @@ pbjs.setConfig({
 Reference: [US Privacy User Signal Mechanism “USP API” Specification](https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/master/CCPA/USP%20API.md)
 
 ```javascript
+// Conditions must return a boolean synchronously, so read the USP string ahead of time.
+// Assumes __uspapi is properly implemented and available in your environment.
+let uspString;
+__uspapi('getUSPData', 1, (uspData, success) => {
+  if (success) uspString = uspData.uspString;
+});
+
+// Deny if the USP string is not available, its version (first character) is not '1',
+// notice (second character) is not 'Y', or opt-out (third character) is 'Y'.
 function isCCPAConsentDenied() {
-### assumes uspapi is properly implemented and available in your environment.
-### check usp string for the second character (notice) is not 'Y' or third character (opt out) is not 'N' or first character (version) is not '1'
-   __uspapi('getUSPData', 1 , (uspData, success) => { if(uspData.uspString.charAt(2) ==='Y' || uspData.uspString.charAt(1) !=='Y'|| uspData.uspString.charAt(0) !=='1') { return true } else { return false }});
+  return uspString == null || uspString.charAt(0) !== '1' || uspString.charAt(1) !== 'Y' || uspString.charAt(2) === 'Y';
 }
 
 pbjs.setConfig({
@@ -385,17 +392,18 @@ This approach works in conjunction with other activity-control compiant modules 
       allowActivities: {
         enrichEids: {
           default: false,
-          priority: 1,
           rules: [{
               condition(params) {
                   return params.componentName === 'sharedIdSystem'
               },
-              allow: true
+              allow: true,
+              priority: 1 // the default for publisher rules; set on the rule, not the activity
            }]
         },
         transmitEids: {
           rules: [{
               allow: true
+          }]
         },
         … see other activities in https://docs.prebid.org/dev-docs/activity-controls.html …
       }
