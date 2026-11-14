@@ -111,13 +111,12 @@ II. **Associated Property**
 What happens as a result of each active size bucket changes based on the media type and whether it was defined at the AdUnit or Bidder level. This table summarizes the scenarios:
 
 {: .table .table-bordered .table-striped }
-| Where Defined  | Available Property           | Example                                        | Description                                                                                                    |
-|--------|--------------------|------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
-| mediaTypes.banner | sizes              | `[[300, 250],[300, 100]]` or `[]` | Defines banner sizes that will be sent as part of bid requests for this size range. Declaring an empty array turns off banners for this AdUnit when the viewport is in that range.  |
-| mediaTypes.video  | playerSize         | `[[640, 400]]` or `[]` | Defines the video player-size that will be sent as part of bid requests. Declaring an empty array turns off the video mediaType for this AdUnit in this size range.   |
-| mediaTypes.native | active             | `true`                                         | Indicates whether Native mediaTypes should be active or not for this size bucket in this AdUnit.   |
-| bids.bidder | relevantMediaTypes | `['banner', 'video', 'native']` or `['none']`            | An array that defines a list of mediaTypes that a bidder will bid on for this size bucket in this AdUnit. Set to `['none']` to deactivate the bidder for this size bucket; `'none'` cannot be combined with other media types. |
-
+| Where Defined | Available Property | Example | Description |
+| --- | --- | --- | --- |
+| mediaTypes.banner | sizes | `[[300, 250],[300, 100]]` or `[]` | Defines banner sizes that will be sent as part of bid requests for this size range. Declaring an empty array turns off banners for this AdUnit when the viewport is in that range. |
+| mediaTypes.video | playerSize | `[[640, 400]]` or `[]` | Defines the video player-size that will be sent as part of bid requests. Declaring an empty array turns off the video mediaType for this AdUnit in this size range. |
+| mediaTypes.native | active | `true` | Indicates whether Native mediaTypes should be active or not for this size bucket in this AdUnit. |
+| bids.bidder | relevantMediaTypes | `['banner', 'video', 'native']` or `['none']` | An array that defines a list of mediaTypes that a bidder will bid on for this size bucket in this AdUnit. Set to `['none']` to deactivate the bidder for this size bucket; `'none'` cannot be combined with other media types. |
 ### Examples
 
 #### An AdUnit with Banner Media Type, Bidder-Level sizeConfig, and Labels
