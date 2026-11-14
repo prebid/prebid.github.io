@@ -54,7 +54,7 @@ This table summarizes how the 3 approaches work:
 {: .table .table-bordered .table-striped }
 
 | Component | AdServer-Defined Creative Scenario | AdUnit-Defined Creative Scenario | Custom Renderer Scenario |
-| --- | --- |--- | --- |
+| --- | --- | --- | --- |
 | Prebid.js | mediaTypes. native.sendTargetingKeys: false | sendTargetingKeys:false and mediaTypes.native.adTemplate contains ##macros## | sendTargetingKeys:false and mediaTypes.native.rendererUrl |
 | Ad Server Key Value Pairs | hb_adid | hb_adid | hb_adid |
 | Ad Server | Native template loads native-render.js and calls renderNativeAd(). Uses Prebid ##macro## format. | Native creative loads native-render.js and calls renderNativeAd() with requestAllAssets: true | Native creative loads native-render.js and calls renderNativeAd(), with requestAllAssets:true |
@@ -77,7 +77,7 @@ The Prebid.js AdUnit needs to defines a native mediatype object to tell bidders 
 | type | optional | A “type” is like a macro that defines a group of assets. The only value currently supported is ‘image’, which implies the following assets: image, title, sponsoredBy, clickUrl, body, icon, and cta. The first 4 are required attributes. | `image` | string |
 | ASSETCODE. required | optional | Defines whether native bids must include this asset. Defaults to `false`. | `true` | boolean |
 | ASSETCODE. len | optional | For text assets, bidders should pass this value through to the endpoint. Prebid.js does not enforce the responses and there’s no default. | 40 | integer |
-| ASSETCODE. sizes | optional | For image assets, bidders may pass this value through to the endpoint. Prebid.js does not enforce the responses and there’s no default. Format is an array with two elements: [WIDTH, HEIGHT] | `[50, 50]` | array of integers |
+| ASSETCODE. sizes | optional | For image assets, bidders may pass this value through to the endpoint. Prebid.js does not enforce the responses and there’s no default. Format is an array with two elements: [WIDTH, HEIGHT]. If an array of sizes is given, only the first is used in the OpenRTB native request (see [3.1](#31-two-ways-to-define-image-sizes)). | `[50, 50]` | array of integers |
 | ASSETCODE. aspect_ratios | optional | For image assets, bidders may pass this value through to the endpoint. Prebid.js does not enforce the responses and there’s no default. Format is an object with the attributes in the rows below.  | | object |
 | ASSETCODE. aspect_ratios.min_width | optional | Part of the aspect_ratios object, bidders may pass this value through to the endpoint. Prebid.js does not enforce the responses and there’s no default. | 50 | integer |
 | ASSETCODE. aspect_ratios.min_height | optional | Part of the aspect_ratios object, bidders may pass this value through to the endpoint. Prebid.js does not enforce the responses and there’s no default. | 75 | integer |
