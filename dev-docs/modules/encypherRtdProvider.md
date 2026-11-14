@@ -43,7 +43,11 @@ pbjs.setConfig({
       name: 'encypher',
       waitForIt: true,
       params: {
-        timeout: 300
+        timeout: 300,
+        gamTargeting: {
+          includeAttestationId: true,
+          packages: ['VPP-V1']
+        }
       }
     }]
   }
@@ -61,6 +65,7 @@ pbjs.setConfig({
 | `params.timeout` | Optional | Number | `300` | Total provider deadline in milliseconds for URL hashing, signal lookup, JWKS retrieval, and verification. The effective budget is the smaller of this value and `auctionDelay` |
 | `params.telemetry` | Optional | Boolean | `false` | Emit privacy-minimized diagnostic delivery events after the auction callback |
 | `params.adoptionReporting` | Optional | Boolean | `true` | Permit domain-level adoption observations on consent-allowed lookups. Set exactly `false` to opt out |
+| `params.gamTargeting` | Optional | Boolean or Object | `false` | Ad server key-values for Google Ad Manager line items. Either `false`, or an object with the optional `includeAttestationId` (Boolean, default `false`) and the optional `packages` (Array of String publisher package codes, each matching `[A-Za-z0-9_-]{1,32}`). A malformed value logs one warning and leaves targeting off |
 
 The signal origin is fixed at `https://signals.encypher.com`. Publishers cannot configure a mirror, alternate subdomain, or path-prefix override.
 
@@ -100,6 +105,22 @@ The provider adds one compact object at `imp.ext.c2pa`:
 | `att` | Compact JWS | ES256 attestation binding the record to the canonical URL digest, publisher domain, manifest digest, policy version, revision, and expiration |
 
 The serialized extension is limited to 1 KiB. Existing impression fields, including GPID, remain unchanged. Supply-chain data remains separate.
+
+## Ad server targeting
+
+With `params.gamTargeting` set to an object, the provider implements the RTD `getTargetingData` hook, so Prebid's ad server targeting carries the verified result for each ad unit that received `imp.ext.c2pa` in that auction. No extra request is made and no auction delay is added.
+
+{: .table .table-bordered .table-striped }
+
+| Key | Value | Emitted when |
+| - | - | - |
+| `encypher_verified` | `"1"` | The ad unit received `ortb2Imp.ext.c2pa` in this auction |
+| `encypher_att` | Attestation ID, the same value as `ortb2Imp.ext.c2pa.id` | `includeAttestationId` is `true` and the ID matches `[A-Za-z0-9_-]{1,32}` |
+| `encypher_pkg` | Publisher package codes, copied verbatim from `packages` | `packages` is non-empty |
+
+Absence is the negative signal: miss, stale, revoked, invalid, and timed-out outcomes emit nothing, and so does an auction a consent gate suppressed. The serialized key map is limited to 256 bytes per ad unit; on overflow the provider drops `encypher_pkg`, then `encypher_att`, then `encypher_verified`. Package codes are publisher configuration and are never derived from provenance evidence. No URL, digest, price, deal, or user value appears in targeting.
+
+On a page that runs more than one auction for the same ad unit code, clear these keys on the ad server slot before each set. `auctionManager.getAdUnits()` spans every retained auction and `targeting.getAdUnitTargeting` reads `adserverTargeting` from all of them, so an earlier verified auction keeps supplying `encypher_verified` after a later auction missed. A provider cannot correct that from `getTargetingData`: returning no entry leaves the earlier value in place, and returning an empty value reaches the ad server as a present key with an empty string.
 
 ## Validation and freshness
 
