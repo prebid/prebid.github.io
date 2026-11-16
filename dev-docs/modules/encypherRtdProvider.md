@@ -120,7 +120,9 @@ With `params.gamTargeting` set to an object, the provider implements the RTD `ge
 
 Absence is the negative signal: miss, stale, revoked, invalid, and timed-out outcomes emit nothing, and so does an auction a consent gate suppressed. The serialized key map is limited to 256 bytes per ad unit; on overflow the provider drops `encypher_pkg`, then `encypher_att`, then `encypher_verified`. Package codes are publisher configuration and are never derived from provenance evidence. No URL, digest, price, deal, or user value appears in targeting.
 
-On a page that runs more than one auction for the same ad unit code, clear these keys on the ad server slot before each set. `auctionManager.getAdUnits()` spans every retained auction and `targeting.getAdUnitTargeting` reads `adserverTargeting` from all of them, so an earlier verified auction keeps supplying `encypher_verified` after a later auction missed. A provider cannot correct that from `getTargetingData`: returning no entry leaves the earlier value in place, and returning an empty value reaches the ad server as a present key with an empty string.
+For repeated auctions using the same ad unit code, module-only GAM targeting requires a Prebid build containing the [latest-auction ad unit targeting fix](https://github.com/prebid/Prebid.js/pull/16187). Older cores read `adserverTargeting` from retained auctions, so an earlier verified result can reappear after a later miss or revocation. Clearing GPT keys **before** `pbjs.setTargetingForGPTAsync()` is ineffective: that call recomputes and reapplies the stale values. Verify the actual wrapper build with a verified-then-miss refresh; the Encypher module version alone does not establish that the core fix is present.
+
+Until that core fix is in the wrapper build, do not rely on module-only targeting for refreshed slots. A wrapper correction must run **after** the last Prebid targeting write and **before every GPT refresh**, using the closing auction's result and current consent. This also applies when `presetGPTTargeting` writes targeting automatically. The correction must clear all three Encypher keys when that auction is unverified or transmission is no longer permitted; retained `getAdserverTargeting` values are not evidence of the current auction's verification.
 
 ## Validation and freshness
 
@@ -152,6 +154,8 @@ The provider skips all work when COPPA applies, the US Privacy string records a 
 GPP consent is checked independently of the legacy US Privacy string. Applicable US national and state sections 7-12 block transmission on sale, sharing, targeted-advertising opt-outs, or GPC. Object and segmented section representations are supported. Unknown applicable sections, missing or malformed consent fields, and unresolved configured GPP consent fail closed. Only applicable sections are inspected; an exact `[-1]` applicable-section list means no GPP section applies. Other privacy gates still apply.
 
 Blocked calls complete the RTD callback without URL hashing, signal or JWKS requests, cached-signal injection, diagnostics, or adoption reporting. Ordinary auctions continue. Consent is checked again for every auction, including auctions that could otherwise reuse a cached signal.
+
+The targeting-time check uses the consent snapshot supplied by Prebid's RTD core; the module does not poll the CMP for mid-auction changes. A wrapper correction must use its own current consent decision immediately before refresh, and clear the keys if transmission is no longer permitted.
 
 Allowed lookup requests disclose the canonical URL digest, canonical publisher hostname, and module version to the fixed signal authority. They do not upload the raw URL, page content, manifest, cookies, bids, prices, deals, or creatives. Requests omit browser credentials and referrers. The URL digest is not an anonymization guarantee; canonical URLs can contain visitor-specific query values.
 
