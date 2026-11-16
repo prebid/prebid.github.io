@@ -92,7 +92,7 @@ The video fields (`mimes` to `playbackmethod` below) are read from `mediaTypes.v
 
 ## ORTB version
 
-The Prebid.js adapter sends an OpenRTB 2.5 request with the header `x-openrtb-version: 2.5`. Where a value can be set at its ORTB 2.5 and its ORTB 2.6 location, the ORTB 2.6 value wins and is sent at the ORTB 2.5 location. User IDs are the exception: Prebid merges `user.eids` and `user.ext.eids` into one list before the adapter runs, so both are sent. ORTB 2.6 fields the publisher sets in `ortb2.app` or in `content` are passed through unchanged.
+The Prebid.js adapter sends an OpenRTB 2.5 request with the header `x-openrtb-version: 2.5`. Prebid moves some ORTB 2.6 fields to their ORTB 2.5 location before the adapter runs; for user IDs it merges `user.eids` and `user.ext.eids` into one list, so both are sent. ORTB 2.6 fields the publisher sets in `ortb2.app` or in `content` are passed through unchanged.
 
 ## First party data
 
@@ -100,7 +100,7 @@ For site requests, `ortb2.site.content` is sent as `site.content`, including `co
 
 ## Inventory partner domain
 
-The inventory partner domain (ads.txt 1.1 / app-ads.txt) is read from `ortb2.site.inventorypartnerdomain` or `ortb2.site.ext.inventorypartnerdomain` (the same under `app`) and sent unchanged as `site.ext.inventorypartnerdomain` or `app.ext.inventorypartnerdomain`.
+The inventory partner domain (ads.txt 1.1 / app-ads.txt) is read from `ortb2.site.inventorypartnerdomain` or `ortb2.site.ext.inventorypartnerdomain` (the same under `app`) and sent unchanged as `site.ext.inventorypartnerdomain` or `app.ext.inventorypartnerdomain`. If both are set, the ORTB 2.6 value wins.
 
 ## User IDs
 
