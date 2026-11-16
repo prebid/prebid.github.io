@@ -33,8 +33,6 @@ Escalax supports two integration types. Use one or the other per ad unit, not bo
 - **Exchange** - `sourceId` + `accountId`
 - **SSP** - `supplyPlacementId`
 
-The regional endpoint is detected automatically from the caller's location; there is no region param to set.
-
 # Bid Params for Prebid Server
 
 {: .table .table-bordered .table-striped }
@@ -43,6 +41,7 @@ The regional endpoint is detected automatically from the caller's location; ther
 | `sourceId` | required for exchange integration | Partner name | `'partner'` | `string` |
 | `accountId` | required for exchange integration | Hash | `'0800fc577294'` | `string` |
 | `supplyPlacementId` | required for SSP integration | Supply-side placement id | `'0800fc577294'` | `string` |
+| `region` | region, optional | `'us'`(by default), `'eu'`, `'apac'` | `'us'` | `string` |
 
 ## Bid Params for Prebid.js
 
