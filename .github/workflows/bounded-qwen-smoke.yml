@@ -1,7 +1,7 @@
 name: Bounded Qwen docs smoke
 
 on:
-  pull_request_target:
+  pull_request:
     types: [opened, synchronize, reopened]
 
 permissions:
@@ -14,7 +14,8 @@ concurrency:
 
 jobs:
   smoke:
-    if: ${{ startsWith(github.event.pull_request.head.ref, 'ci/bounded-qwen-docs-') }}
+    # Same-repo branches only: fork PRs get a read-only token and could not post comments.
+    if: ${{ github.event.pull_request.head.repo.full_name == github.repository && startsWith(github.event.pull_request.head.ref, 'ci/bounded-qwen-docs-') }}
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
