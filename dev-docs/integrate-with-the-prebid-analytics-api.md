@@ -97,7 +97,7 @@ Analytics adapter for Example.com. Contact prebid@example.com for information.
 
 1. Create a JS file under `modules` with the name of the bidder suffixed with 'AnalyticsAdapter', e.g., `exAnalyticsAdapter.js`
 
-2. Create an analytics adapter to listen for [Prebid events](/dev-docs/publisher-api-reference/onEvent.html) and call the analytics library or server. See the existing *AnalyticsAdapter.js files in the repo under [modules](https://github.com/prebid/Prebid.js/tree/master/modules).
+2. Create an analytics adapter to listen for [Prebid events](/dev-docs/prebid-events.html) and call the analytics library or server. See the existing *AnalyticsAdapter.js files in the repo under [modules](https://github.com/prebid/Prebid.js/tree/master/modules).
 
 3. There are two types of analytics adapters. The example here focuses on the 'endpoint' type. See [AnalyticsAdapter.ts](https://github.com/prebid/Prebid.js/blob/master/libraries/analyticsAdapter/AnalyticsAdapter.ts) for more info on the 'bundle' type.
 
@@ -151,15 +151,18 @@ export default exAnalytics;
 
 #### Reading TCF2 enforcement actions
 
-Analytics adapters can learn what happened with regards to GDPR TCF2 enforcement by listening to the tcf2Enforcement event.
+Analytics adapters can learn what happened with regards to GDPR TCF2 enforcement by listening to the [tcf2Enforcement](/dev-docs/prebid-events.html#tcf2enforcement) event, which the TCF control module emits after every auction.
 
-The callback will receive an object with the following attributes:
+The callback will receive an object with the following attributes, each a list of the modules that were blocked since the previous event:
 
 ```javascript
 {
   storageBlocked: ['moduleA', 'moduleB'],
   biddersBlocked: ['moduleB'],
-  analyticsBlocked: ['moduleC']
+  analyticsBlocked: ['moduleC'],
+  ufpdBlocked: [],   // denied user first party data (purpose 4)
+  eidsBlocked: [],   // denied user IDs
+  geoBlocked: []     // denied precise geolocation (special feature 1)
 }
 ```
 
@@ -168,7 +171,7 @@ gdprApplies, consentString, and apiVersion
 
 #### Listening for errors
 
-There are two error events analytics modules may wish to listen for: auctionDebug and adRenderFailed. The former is any error that would be normally logged to console and there can be a great many. The latter may happen for the following reasons: (PREVENT_WRITING_ON_MAIN_DOCUMENT, NO_AD, CANNOT_FIND_AD, EXCEPTION, MISSING_DOC_OR_ADID). Since Prebid.js 11.48, it is also emitted, with reason EXCEPTION, when a bid's renderer script fails to load or its `render` function throws. Since 11.47, auctionDebug events include `bidder`, the code of the bidder whose adapter logged the message (or `null`), so errors can be attributed to a bidder.
+There are two error events analytics modules may wish to listen for: auctionDebug and adRenderFailed. The former is any warning or error that Prebid.js logs (whether or not debug mode is on) and there can be a great many; the base adapter only delivers it to adapters that list it in `includeEvents`. The latter may happen for the following reasons: (PREVENT_WRITING_ON_MAIN_DOCUMENT, NO_AD, CANNOT_FIND_AD, EXCEPTION, MISSING_DOC_OR_ADID); the event's `reason` holds the value of the constant, such as `'preventWritingOnMainDocument'` or `'cannotFindAd'`. See the [event reference](/dev-docs/prebid-events.html#adrenderfailed) for each reason. Since Prebid.js 11.48, it is also emitted, with reason EXCEPTION, when a bid's renderer script fails to load or its `render` function throws. Since 11.47, auctionDebug events include `bidder`, the code of the bidder whose adapter logged the message (or `null`), so errors can be attributed to a bidder.
 
 #### Analytics adapter best practices
 
