@@ -6,6 +6,7 @@ description: Observes clicks on Prebid-rendered creatives, emits bidClick events
 module_code : bidClickTracking
 display_name : Bid Click Tracking
 enable_download : true
+min_js_version: 11.50.0
 sidebarType : 1
 ---
 

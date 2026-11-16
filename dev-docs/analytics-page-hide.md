@@ -225,13 +225,18 @@ const pending = new Map();
 function send(auctionId, {hidden = false} = {}) {
   const auction = pending.get(auctionId);
   if (auction == null) return;
-  pending.delete(auctionId);
   const json = JSON.stringify(auction);
   if (hidden) {
     // synchronous: no compression while the page is going away
+    pending.delete(auctionId);
     ajax(url, null, json, {method: 'POST', keepalive: true});
   } else {
-    compress(json).then(body => ajax(url, null, body, {method: 'POST'}));
+    // stays pending until its request starts, so a page hide during compression still sends it
+    compress(json).then(body => {
+      if (pending.get(auctionId) !== auction) return; // already sent by onPageHide
+      pending.delete(auctionId);
+      ajax(url, null, body, {method: 'POST'});
+    });
   }
 }
 
