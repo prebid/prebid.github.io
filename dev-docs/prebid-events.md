@@ -120,7 +120,7 @@ The payload of `auctionInit`, `auctionTimeout` and `auctionEnd` (type `AuctionPr
 | `labels` | `string[]` or undefined | The `labels` passed to `requestBids`. |
 | `bidderRequests` | [`BidderRequest[]`](#bidder-request-object) | One per bidder (and per Prebid Server instance). |
 | `noBids` | [`BidRequest[]`](#bid-request-object) | Bid requests that got no bid. |
-| `bidsReceived` | [`Bid[]`](#bid-object) | Bids added to the auction (see `bidResponse`). Bids are removed once they expire. |
+| `bidsReceived` | [`Bid[]`](#bid-object) | Bids added to the auction (see `bidResponse`). By default bids stay in this list until the page unloads, even after they expire; with [`minBidCacheTTL`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-minBidCacheTTL) they are dropped after their TTL or `minBidCacheTTL`, whichever is longer. Being in the list doesn't mean a bid is still valid. |
 | `bidsRejected` | `Bid[]` | Rejected bids (see `bidRejected`). |
 | `winningBids` | `Bid[]` | Bids that have won (see `bidWon`). Usually empty in `auctionEnd`, since bids win after the auction. |
 | `timeout` | number | The auction's timeout in milliseconds. |
@@ -497,7 +497,7 @@ The reasons are the values of `REJECTION_REASON` in `src/constants.ts`. Rejected
 
 ### browserIntervention
 
-**When:** the browser reported an intervention on a creative rendered by Prebid.js, such as unloading a heavy ad. The creative reports it to Prebid.js, so it's only available for creatives rendered through Prebid.js's renderers. Since 10.11.
+**When:** the browser reported an intervention on a creative rendered by Prebid.js, such as unloading a heavy ad. Prebid.js's display renderer reports it, so it's only available for creatives rendered by that renderer (through `pbjs.renderAd` or the dynamic creative). Since 10.11.
 
 **Payload:** (type `BrowserInterventionData`)
 
@@ -506,7 +506,7 @@ The reasons are the values of `REJECTION_REASON` in `src/constants.ts`. Rejected
 | --- | --- | --- |
 | `bid` | object | The [bid](#bid-object). |
 | `adId` | string | The bid's `adId`. |
-| `intervention` | any | The browser's intervention report. Its type is not specified in the code (`any`); it is the report the creative received from the browser. |
+| `intervention` | any | The report from the browser: Prebid.js's display renderer listens for `intervention` reports with a `ReportingObserver` and passes them on. The type is `any` in the code. |
 
 ### bidClick
 
