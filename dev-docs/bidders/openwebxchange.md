@@ -16,26 +16,31 @@ floors_supported: true
 userIds: all
 gvl_id: 280
 sidebarType: 1
+pbjs_version_notes: deprecated; this alias has been replaced by the openweb bidder
 ---
 
-### Note
+## Note
+
+{: .alert.alert-warning :}
+Deprecated: the `openwebxchange` alias has been replaced by the [`openweb`](/dev-docs/bidders/openweb.html) bidder. Please use the `openweb` bidder moving forward.
 
 The OpenWebXChange adapter requires setup and approval.
 
-### Bid Parameters
+## Bid Parameters
 
-#### Banner, Video, Native
+### Banner, Video, Native
 
 {: .table .table-bordered .table-striped }
 
 | Name | Scope | Type | Description | Example
 | ---- | ----- | ---- | ----------- | -------
-| `org` | required | String |  OpenWebXChange publisher Id  | "1234567890abcdef12345678"
-| `floorPrice` | optional | Number |  Minimum price in USD. <br/><br/> **WARNING:**<br/> Misuse of this parameter can impact revenue | 2.00
-| `placementId` | optional | String |  A unique placement identifier  | "12345678"
-| `testMode` | optional | Boolean |  This activates the test mode  | false
+| `org` | required | String | OpenWebXChange publisher Id | "1234567890abcdef12345678"
+| `floorPrice` | optional | Number | Minimum price in USD. <br/><br/> **WARNING:**<br/> Misuse of this parameter can impact revenue | 2.00
+| `placementId` | optional | String | A unique placement identifier | "12345678"
+| `testMode` | optional | Boolean | This activates the test mode | false
+| `rtbDomain` | optional | String | Overrides the domain of the bid request endpoint | "www.test.com"
 
-### Example
+## Example
 
 ```javascript
 var adUnits = [{
@@ -86,11 +91,11 @@ var adUnits = [{
 ];
 ```
 
-### Configuration
+## Configuration
 
 We recommend setting UserSync by iframe for monetization.
 
-### Versions
+## Versions
 
 Prebid versions 5.0-5.3 are not supported.
 
