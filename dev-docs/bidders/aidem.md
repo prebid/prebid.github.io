@@ -58,7 +58,7 @@ This module is GDPR and CCPA compliant, and no 3rd party userIds are allowed.
 | `maxduration` | required | Maximum video ad duration, in seconds | `30` | `Integer` |
 | `minduration` | required | Minimum video ad duration, in seconds | `5` | `Integer` |
 | `mimes` | required | List of the content MIME types supported by the player | `["video/mp4"]` | `Array` |
-| `protocols` | required | An array of supported video protocols. At least one supported protocol must be specified, where: `2` = VAST 2.0 `3` = VAST 3.0 `5` = VAST 2.0 wrapper `6` = VAST 3.0 wrapper | `2` | `Array` |
+| `protocols` | required | An array of supported video protocols. At least one supported protocol must be specified, where: `2` = VAST 2.0 `3` = VAST 3.0 `5` = VAST 2.0 wrapper `6` = VAST 3.0 wrapper | `[2]` | `Array` |
 
 ### Additional Config
 
@@ -113,7 +113,7 @@ var adUnits = [{
         maxduration: 30,
         minduration: 5,
         mimes: ["video/mp4"],
-        protocols: 2
+        protocols: [2]
       }
     },
     bids: [{
