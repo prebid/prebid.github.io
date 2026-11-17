@@ -23,15 +23,17 @@ gvl_id: 1223
 sidebarType: 1
 ---
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description  | Example                         | Type       |
-|---------------|----------|--------------|---------------------------------|------------|
-| `placementId` | optional | Placement Id | `'0'`                           | `'string'` |
-| `endpointId`  | optional | Endpoint Id  | `'0'`                           | `'string'` |
-| `region`      | optional | Region (for Prebid.js) | `'us-east'` (default) or `'eu'` or `'apac'` | `'string'` |
+| Name          | Scope    | Description             | Example                                     | Type       |
+|---------------|----------|-------------------------|---------------------------------------------|------------|
+| `placementId` | optional | Placement Id            | `'0'`                                       | `'string'` |
+| `endpointId`  | optional | Endpoint Id             | `'0'`                                       | `'string'` |
+| `region`      | optional | Region (Prebid.js only) | `'us-east'` (default) or `'eu'` or `'apac'` | `'string'` |
 
-### Note
+In Prebid Server, the region isn't a bid parameter: the Prebid Server host sets the endpoint in each datacenter (`lb` for US East, `ortb-eu` for the EU, `ortb-apac` for APAC).
+
+## Note
 
 For the prebid server and prebid.js you only need to use one parameter: either placementId or endpointId.

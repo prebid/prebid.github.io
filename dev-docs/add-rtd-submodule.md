@@ -94,7 +94,7 @@ In order to let RTD-core know where to find the functions in your sub-module, cr
 | param name | type | Scope | Description | Params |
 | :--- | :--- | :--- | :--- | :--- |
 | name | string | required | must match the name provided by the publisher in the on-page config | n/a |
-| gvlid | number or array of numbers | optional | global vendor list ID for your submodule; an array if it acts on behalf of several vendors | n/a |
+| gvlid | number or array of numbers | optional | global vendor list ID for your submodule. Since Prebid.js 11.46, can be a list if the submodule acts on behalf of several vendors; all IDs then need a legal basis | n/a |
 | acpId | number | optional | Google [Additional Consent](/dev-docs/modules/tcfControl.html#additional-consent) provider ID for your submodule, used only if it has no GVL ID (PBJS 11.41+) | n/a |
 | init | function | required | defines the function that does any initialization required; return `true` to enable the sub-module | config, userConsent |
 | getTargetingData | function | optional | defines a function that provides ad server targeting data to RTD-core | adUnitCodes, config, userConsent, auction |
