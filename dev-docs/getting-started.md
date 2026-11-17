@@ -34,6 +34,7 @@ The easiest way to get started with Prebid.js is to look at an example. Start wi
 For more developer resources, see:
 
 * [Publisher API Reference](/dev-docs/publisher-api-reference.html)
+* [Using Prebid.js with TypeScript](/dev-docs/typescript.html)
 * [Prebid.js Module Overview](/dev-docs/modules/)
 * [Prebid.js Analytics Adapters](/overview/analytics.html)
 
