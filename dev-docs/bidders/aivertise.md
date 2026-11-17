@@ -41,6 +41,8 @@ The Aivertise adapter sends a single OpenRTB 2.6 bid request per auction to Aive
 
 Bids are returned in EUR, net revenue. Aivertise creatives are not compatible with SafeFrames; render them in a friendly iframe.
 
+The adapter is available from Prebid.js 11.49.0.
+
 ## Bid Params
 
 {: .table .table-bordered .table-striped }
@@ -93,6 +95,8 @@ pbjs.setConfig({
   }
 });
 ```
+
+The sync URL carries the page's GDPR, US Privacy and GPP signals. Aivertise doesn't sync users on child-directed (COPPA) pages or when the US Privacy string opts out of sale.
 
 ## Testing
 
