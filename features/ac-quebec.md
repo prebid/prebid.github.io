@@ -36,7 +36,7 @@ References:
 
 Prebid.js supports a [GPP module](/dev-docs/modules/consentManagementGpp.html), but it does not interpret the strings in Section 5 (Canada). It simply takes the GPP signal from the CMP and includes it in outgoing network requests if those vendors initiating network requests have added support for GPP in their modules. It isn't clear if TCF Purpose 2 (consent to 'basic ad serving') or a vendor list will be critical parts of a Quebec consent framework. Also, it isn't clear if publishers will be required to seek vendor-level consent as one does for TCF-EU.
 
-Prebid.js is planning a TCF Canada module to react to the contents of the string, but it is not yet available as of March 2024. Instead, publishers may access their CMP or the consent preferences that their website visitors have expressed to them directly, and control Prebid.js activity. Below is an example of how the Prebid.js [Activity Control system](/dev-docs/activity-controls.html) could be used to implement an interim solution for ad serving in Quebec:
+Prebid.js is planning a TCF Canada module to react to the contents of the string, but it is not yet available as of March 2024. Instead, publishers may access their CMP or the consent preferences that their website visitors have expressed to them directly, and control Prebid.js activity. Below is an example of how the Prebid.js [Activity Control system](/dev-docs/activity-controls.html) could be used to implement an interim solution for ad serving in Quebec (requires the [allowActivities module](/dev-docs/modules/allowActivities.html)):
 
 ```javascript
 function isQuebecPersonConsentDenied() {

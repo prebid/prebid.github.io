@@ -81,7 +81,7 @@ pbjs.setConfig({
 
 ## Configuration
 
-`allowActivities` is a new option to [setConfig](/dev-docs/publisher-api-reference/setConfig.html). It contains a list of activity names -- see the [full list of activities below](#activities). Each activity is an object that can contain these attributes:
+`allowActivities` is a [setConfig](/dev-docs/publisher-api-reference/setConfig.html) option that requires the [allowActivities module](/dev-docs/modules/allowActivities.html). It contains a list of activity names -- see the [full list of activities below](#activities). Each activity is an object that can contain these attributes:
 
 {: .table .table-bordered .table-striped }
 | Name | Type | Description |
