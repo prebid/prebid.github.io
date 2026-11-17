@@ -4,25 +4,27 @@ title: Optable
 description: Prebid Optable Bidder Adapter
 biddercode: optable
 pbjs: true
+enable_download: false
+pbjs_version_notes: removed in 11.0
 privacy_sandbox: paapi
 prebid_member: true
 sidebarType: 1
 ---
 
-### Registration
+## Registration
 
 If you have any questions regarding set up, please reach out to your account manager or <support@optable.co>.
 
-### Bid Parameters
+## Bid Parameters
 
-#### Banner
+### Banner
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
 | ---- | ----- | ----------- | ------- | ---- |
 | `site` | required | Optable site ID provided by your Optable representative. | "aaaaaaaa" | String |
 
-### AdUnit Format for Banner
+## AdUnit Format for Banner
 
 ```javascript
 var adUnits = [

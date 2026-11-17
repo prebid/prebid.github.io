@@ -1,0 +1,8 @@
+{%- comment -%}
+  Pagefind attributes for a layout's .pb-content div: index only the page content, add a "section" filter,
+  (pagefind-title.html sets the result title for pages without an <h1> in their content).
+  Pass has_h1=true from layouts that render their own <h1> inside .pb-content.
+  Usage: <div class="pb-content" {% include pagefind-body.html %}>
+{%- endcomment -%}
+{%- include doc-section.html url=page.url -%}
+data-pagefind-body data-pagefind-filter="section:{{ doc_section }}"

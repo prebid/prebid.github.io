@@ -19,7 +19,7 @@ This document describes the changes included for Prebid.js version 11.0.
 1. A number of obsolete modules have been removed (see list below).
 2. Adpod is no longer supported.
 3. PAAPI is no longer supported.
-4. The `addAdUnits`, `bidAccepted`, and `seatNonBid` events have been removed.
+4. The `addAdUnits`, `bidAccepted`, and `seatNonBid` events have been removed (`bidAccepted` was restored in Prebid.js 11.7).
 5. Bids whose `mediaType` does not match their request's `mediaTypes` are now rejected as invalid.
 6. The `storageControl` module now defaults to strict enforcement.
 7. [setTargetingForGPTAsync](/dev-docs/publisher-api-reference/setTargetingForGPTAsync.html) no longer takes a `customSlotMatching` argument; the configuration options `bidViewability.customMatchFunction` and `gptPreAuction.customGptSlotMatching` have been removed. The replacement is a single new configuration option `customGptSlotMatching`. 
@@ -63,7 +63,7 @@ The following modules have been removed from Prebid.js as part of the 11.0 relea
 The following events have been removed and will no longer trigger callbacks registered with [pbjs.onEvent](/dev-docs/publisher-api-reference/onEvent.html):
 
 * `addAdUnits`: this event carried no information besides the fact that `pbjs.addAdUnits` was called. `auctionInit` and `beforeRequestBids` contain the ad units involved in each auction.           
-* `bidAccepted`: use `bidResponse` instead.
+* `bidAccepted`: use `bidResponse` instead. Since Prebid.js 11.7, `bidAccepted` is available again; see [getEvents](/dev-docs/publisher-api-reference/getEvents.html).
 * `seatNonBid`: use `pbsAnalytics` instead.
 
 ## Stricter mediaType enforcement

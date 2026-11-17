@@ -176,7 +176,7 @@ For example, for a line item with a $10.00 CPM entered in the Rate field, a Labe
 For deals, the Rate portion of this value will contain the dealID if deals are prioritized. See [Getting Started with Long Form Video](/prebid-video/video-long-form.html#configuration) for engineering information.
 
 {: .alert.alert-info :}
-Engineers will need to include the [Adpod module](/dev-docs/modules/adpod.html) and the [Category Translation module](/dev-docs/modules/categoryTranslation.html) in Prebid.js to implement long-form video bidding.
+Ad pod (long-form) video support was removed in Prebid.js 11.0. With Prebid.js 10.x and earlier, engineers will need to include the [Adpod module](/dev-docs/modules/adpod.html) and the [Category Translation module](/dev-docs/modules/categoryTranslation.html) in Prebid.js to implement long-form video bidding.
 
 ### Creative-level Targeting
 

@@ -9,7 +9,7 @@ sidebarType: 2
 
 Back to [Bidding-Only Integration](/prebid-mobile/pbm-api/android/android-sdk-integration-nextgen-original-api.html#adunit-specific-instructions)
 
-Visit the [AdOps guide](/adops/gam-native.html#create-mobile-in-app-creative) for instructions on setting up the In-App creatives on GAM.
+Visit the [AdOps guide](/adops/gam-native.html#create-mobile-in-app-template) for instructions on setting up the In-App creatives on GAM.
 
 At a high level, the in-app workflow is happening the following way:
 
@@ -20,7 +20,7 @@ At a high level, the in-app workflow is happening the following way:
 5. If there are Prebid ads, the cached assets are then rendered.
 
 {% capture importantNote %}
-The cached assets might expire. If this occurs the publisher will receive a notification and they will have to fetch the assets again.
+The cached assets might expire. If this occurs the publisher will receive a notification and they will have to fetch the assets again. Starting from Prebid SDK `3.4.0`, the assets expire after the bid's `exp` seconds, or after 5 minutes if the bid has no `exp`. Earlier versions always used 5 minutes.
 {% endcapture %}
 
 Integration Example

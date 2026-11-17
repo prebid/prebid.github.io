@@ -22,7 +22,7 @@ sidebarType: 1
 | Name                | Scope                             | Description                                                                                                                                                                   | Example                                               | Type             |
 |---------------------|-----------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|------------------|
 | `placementId`       | optional                          | The placement ID from Adot.                                                      | `'adot_placement_224521'`                                            | `string`         |
-| `video`             | optional | Object containing video targeting parameters. See [Video Object](#adot-video-object) for details.                                                                        |  | `object`         |
+| `video`             | optional | Object containing video targeting parameters. See [Video Object](#video-object) for details.                                                                        |  | `object`         |
 
 #### Video Object
 

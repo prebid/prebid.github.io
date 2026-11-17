@@ -108,7 +108,9 @@ Analytics adapter for Example.com. Contact prebid@example.com for information.
 adapter needs to specify an enableAnalytics() function, but it should also call
 the base class function to set up the events.
 
-5. Doing analytics may require user permissions under [GDPR](/dev-docs/modules/consentManagementTcf.html), which means your adapter will need to be linked to your [IAB Global Vendor List](https://iabeurope.eu/vendor-list-tcf/) ID. If no GVL ID is found, and Purpose 7 (Measurement) is enforced, your analytics adapter will be blocked unless it is specifically listed under vendorExceptions. Your GVL ID can be added to the `registerAnalyticsAdapter()` call.
+5. Doing analytics may require user permissions under [GDPR](/dev-docs/modules/consentManagementTcf.html), which means your adapter will need to be linked to your [IAB Global Vendor List](https://iabeurope.eu/vendor-list-tcf/) ID. If no GVL ID is found, and Purpose 7 (Measurement) is enforced, your analytics adapter will be blocked unless it is specifically listed under vendorExceptions. Your GVL ID can be added to the `registerAnalyticsAdapter()` call. Since Prebid.js 11.41, if you are not on the GVL but are on Google's Additional Consent provider list, you can instead pass your provider ID as `acpId` (see [Additional Consent](/dev-docs/modules/tcfControl.html#additional-consent)).
+
+6. Since Prebid.js 11.18, Prebid.js may disable and re-enable an analytics adapter while the page is open, as consent data changes (see the [`reportAnalytics` activity](/dev-docs/activity-controls.html#activities)). Adapters must support `disableAnalytics()`: inherit it from the base adapter, or, if you override it, call the base class function. If an adapter does not provide `disableAnalytics()`, Prebid.js logs a warning and the adapter stays enabled. After being disabled, an adapter's `enableAnalytics()` may be called again; the base adapter then replays past events it has not already tracked, including those emitted while it was disabled.
 
 #### Basic prototype analytics adapter
 
@@ -172,7 +174,8 @@ There are two error events analytics modules may wish to listen for: auctionDebu
 
 * listen only to the events required
 * batch up calls to the backend for post-auction logging rather than calling immediately after each event.
-* consider using the keepalive option on the ajax request to keep the priority low and the request queued after the pageview dies
+* consider using the keepalive option on the ajax request to keep the priority low and the request queued after the pageview dies. Since Prebid.js 11.15, keepalive is ignored (with a console warning) when the request body is larger than 64 KiB, the browser limit for keepalive requests.
+* if a request should never carry credentials (cookies), use `noCredsAjax` or `noCredsFetch` from `src/ajax.js` instead of `ajax` or `fetch`. Credentials on `ajax` and `fetch` requests are subject to the [`accessRequestCredentials` activity]({{site.baseurl}}/dev-docs/activity-controls.html).
 
 ### Step 3: Add unit tests
 

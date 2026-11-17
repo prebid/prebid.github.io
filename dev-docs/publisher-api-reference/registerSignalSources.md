@@ -8,17 +8,19 @@ sidebarType: 1
 {: .alert.alert-info :}
 To use this function, include the [UserId module](/dev-docs/modules/userId.html) in your Prebid.js build.
 
-This function will register all configured encrypted signals as described in the [UserId module ESP configuration](/dev-docs/modules/userId.html#esp-configurations).
+This function registers each source in `userSync.encryptedSignalSources` with GPT as a secure signal provider, as described in the [UserId module ESP configuration](/dev-docs/modules/userId.html#esp-configurations). The signal for each source is produced by [`pbjs.getEncryptedEidsForSource()`](/dev-docs/publisher-api-reference/getEncryptedEidsForSource.html) when GPT collects it.
 
-The condition can only be called under two conditions
+Only call this function once both of these are true:
 
-1. The `pbjs.setConfig` call with the user sync config must have already happend
-2. The `gpt.js` tag must already be loaded
+1. `pbjs.setConfig` has already been called with the user sync config. Without `encryptedSignalSources`, a warning is logged and nothing is registered.
+2. `gpt.js` has already loaded. Otherwise, the call does nothing and doesn't log a message.
+
+Registration happens after `encryptedSignalSources.registerDelay` milliseconds (0 by default).
 
 Example
 
 ```js
-// initialze command queues
+// initialize command queues
 window.pbjs = window.pbjs || { que: []};
 window.googletag = window.googletag || { cmd: []};
 

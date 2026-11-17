@@ -13,3 +13,5 @@ Use this method to retrieve an array of winning bids.
 
 {: .alert.alert-warning :}
 Note that from **Prebid 3.0** onwards, `pbjs.getHighestCpmBids` will not return rendered bids.
+
+To pick bids by desirability instead of CPM (for example, when using [`bidDesirabilityAdjustment`](/dev-docs/publisher-api-reference/bidderSettings.html#23-biddesirabilityadjustment)), use [`pbjs.getBestBids`](/dev-docs/publisher-api-reference/getBestBids.html).

@@ -16,11 +16,12 @@ floors_supported: true
 fpd_supported: false
 pbjs: true
 pbs: true
+pbs_biddercode: appnexus
 gvl_id: 32
 sidebarType: 1
 ---
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description | Example | Type     |

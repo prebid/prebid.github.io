@@ -5,16 +5,23 @@ title: Module - Google Ad Manager Adpod Support
 description: Required for serving adpod video through Google Ad Manager.
 module_code : dfpAdpod
 display_name : Google Ad Manager Adpod Support
-enable_download : true
+enable_download : false
+pbjs_version_notes: removed in 11.0
 vendor_specific: true
 sidebarType : 1
 ---
 
 # Google Ad Manager Adpod Support
 
+{: .alert.alert-warning :}
+This module was removed in Prebid.js 11.0. See the [Prebid.js 11 release notes](/dev-docs/pb11-notes.html#removed-modules).
+
 {:.no_toc}
 
-This module exposes the [`pbjs.adServers.dfp.buildAdpodVideoUrl](/dev-docs/publisher-api-reference/adServers.dfp.buildAdpodVideoUrl.html) method, required to use [adpod](/dev-docs/modules/adpod.html) with Google Ad Manager.
+{: .alert.alert-warning :}
+The Google Ad Manager Adpod module was removed in Prebid.js 11.0 along with ad pod (long-form) video support.
+
+This module exposes the [`pbjs.adServers.dfp.buildAdpodVideoUrl](/dev-docs/publisher-api-reference/adServers.gam.buildAdpodVideoUrl.html) method, required to use [adpod](/dev-docs/modules/adpod.html) with Google Ad Manager.
 
 ## Further Reading
 

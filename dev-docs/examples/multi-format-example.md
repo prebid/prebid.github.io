@@ -81,10 +81,15 @@ pbjs.que.push(function() {
     timeout: 5000,
     bidsBackHandler: function () {
       const highestCpmBids = pbjs.getHighestCpmBids("ad-unit-1");
-      pbjs.renderAd('ad-unit-1', highestCpmBids[0].adId);
+      if (highestCpmBids.length > 0) {
+        pbjs.renderAd('ad-unit-1', highestCpmBids[0].adId);
+      }
     },
   });
 })
 {% endcapture %}
+
+{% comment %} The live test bidder doesn't reliably bid, so the result tab simulates a video bid with the debugging module; the code listing is unchanged. {% endcomment %}
+{% include video/mock-video-bid.html %}
 
 {% include code/web-example.html id="basic-prebid-example" html=htmlCodePrebid js=jsCode %}

@@ -51,7 +51,9 @@ The following sections give additional details of the steps provided in the work
 
 Here's a page example assuming that you're running your own Prebid Server. See [Prebid.js `s2sConfig`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Server-to-Server) for more information. Note that this config would handle both banner and video auctions server-side for bidderA and bidderB.
 
-```
+The Prebid.js bid adapters for bidderA and bidderB don't need to be in the Prebid.js build. Bidders in `s2sConfig.bidders` are sent to Prebid Server without using their client-side adapters. See [Server-Side Bidders Don't Need a Client-Side Adapter](/dev-docs/modules/prebidServer.html#server-side-bidders-dont-need-a-client-side-adapter) for the GDPR and alias details.
+
+```javascript
 pbjs.setConfig({
     s2sConfig: [{
         accountId: '1',
@@ -79,7 +81,7 @@ The Prebid.js `Prebid Server Bid Adapter` creates the OpenRTB for the adunits in
 
 Here's an example video request that could come from Prebid.js:
 
-```
+```json
 {
     "id": "548f8837-9411-4b8e-8caa-11234565d7a5",
     "cur": [
@@ -178,7 +180,7 @@ Next comes the auction and response:
 Here's an example video response carrying cache information for where
 the VAST can be retrieved.
 
-```
+```json
 {
     "id": "19af7cb0-b186-4128-84d6-8b60fddc21d9",
     "seatbid": [
@@ -262,5 +264,5 @@ actual creative asset when it's time to display.
 
 ## Further Reading
 
-- [What is Prebid.js?](/prebid/prebidjs.html)
-- [Prebid Video Ads](/formats/video.html)
+* [What is Prebid.js?](/prebid/prebidjs.html)
+* [Prebid Video Ads](/formats/video.html)

@@ -14,6 +14,7 @@ coppa_supported: true
 gpp_supported: true
 deals_supported: false
 floors_supported: true
+userIds: all
 safeframes_ok: false
 multiformat_supported: will-bid-on-any
 ortb_blocking_supported: true
