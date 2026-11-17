@@ -3,7 +3,7 @@ layout: bidder
 title: Growzee
 description: Prebid Growzee Bidder Adapter
 biddercode: growzee
-media_types: banner, video, native
+media_types: banner, video
 pbjs: false
 pbs: true
 pbs_app_supported: true
