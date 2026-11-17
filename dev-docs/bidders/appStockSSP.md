@@ -26,12 +26,13 @@ sidebarType: 1
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description            | Example                                          | Type       |
-|---------------|----------|------------------------|--------------------------------------------------|------------|
-| `placementId` | optional | Placement Id           | `'0'`                                            | `'string'` |
-| `endpointId`  | optional | Endpoint Id            | `'0'`                                            | `'string'` |
-| `region`      | optional | Region (for Prebid.js) | `'us-east'` (default) or `'eu'` or `'apac'`      | `'string'` |
-                             Region (Prebid-server) | `'lb'` (default) or `'ortb-eu'` or `'ortb-apac'` | `'string'` |
+| Name          | Scope    | Description             | Example                                     | Type       |
+|---------------|----------|-------------------------|---------------------------------------------|------------|
+| `placementId` | optional | Placement Id            | `'0'`                                       | `'string'` |
+| `endpointId`  | optional | Endpoint Id             | `'0'`                                       | `'string'` |
+| `region`      | optional | Region (Prebid.js only) | `'us-east'` (default) or `'eu'` or `'apac'` | `'string'` |
+
+In Prebid Server, the region isn't a bid parameter: the Prebid Server host sets the endpoint in each datacenter (`lb` for US East, `ortb-eu` for the EU, `ortb-apac` for APAC).
 
 ### Note
 
