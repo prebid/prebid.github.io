@@ -1,7 +1,7 @@
 // Unit tests for pending-release-check.js: node --test .github/scripts/pending-release-check.test.js
 const test = require('node:test');
 const assert = require('node:assert');
-const { parseLinks, crossReferences, collectLinks, decide, plannedComments, commentActions, semverKey } = require('./pending-release-check.js');
+const { parseLinks, crossReferences, collectLinks, decide, plannedComments, commentActions, readyLabelAction, semverKey } = require('./pending-release-check.js');
 
 const refs = links => links.map(l => `${l.repo}#${l.number}`);
 
@@ -33,14 +33,17 @@ test('parseLinks: ignores issues, the docs repo, other orgs and other repos', ()
   ].join('\n');
   assert.deepStrictEqual(parseLinks(text), []);
   assert.deepStrictEqual(parseLinks(undefined), []);
+  // hidden hints such as the PR template's example link
+  assert.deepStrictEqual(parseLinks('Related code PR(s): <!-- e.g. https://github.com/prebid/prebid-server/pull/1234 -->'), []);
+  assert.deepStrictEqual(refs(parseLinks('<!-- prebid/Prebid.js#1 --> prebid/Prebid.js#2')), ['prebid/Prebid.js#2']);
 });
 
 test('crossReferences: only PRs from code repos', () => {
-  const pr = (repo, number, isPr = true) => ({
+  const pr = (repo, number, isPr = true, owner = 'prebid') => ({
     event: 'cross-referenced',
-    source: { issue: { number, repository: { name: repo }, ...(isPr ? { pull_request: {} } : {}) } },
+    source: { issue: { number, repository: { name: repo, full_name: `${owner}/${repo}` }, ...(isPr ? { pull_request: {} } : {}) } },
   });
-  const timeline = [pr('prebid-server', 4766), pr('Prebid.js', 1, false), pr('prebid.github.io', 6000), { event: 'labeled' }];
+  const timeline = [pr('prebid-server', 4766), pr('Prebid.js', 1, false), pr('prebid.github.io', 6000), pr('prebid-server', 7, true, 'someone'), { event: 'labeled' }];
   assert.deepStrictEqual(refs(crossReferences(timeline)), ['prebid/prebid-server#4766']);
 });
 
@@ -52,7 +55,7 @@ test('collectLinks: skips bot comments and this check\'s own comments', () => {
       { body: '<!-- pending-release-check:partial key=x -->\nprebid/Prebid.js#3', user: { login: 'someone', type: 'User' } },
       { body: 'preview prebid/Prebid.js#4', user: { login: 'netlify[bot]', type: 'Bot' } },
     ],
-    timeline: [{ event: 'cross-referenced', source: { issue: { number: 1, pull_request: {}, repository: { name: 'prebid-server' } } } }],
+    timeline: [{ event: 'cross-referenced', source: { issue: { number: 1, pull_request: {}, repository: { name: 'prebid-server', full_name: 'prebid/prebid-server' } } } }],
     botLogin: 'github-actions[bot]',
   });
   assert.deepStrictEqual(links.map(l => `${l.repo}#${l.number} ${l.source}`), [
@@ -93,23 +96,25 @@ test('decide: an inferred PBS-Java release makes a waiting PR partial, never rel
 });
 
 test('plannedComments: one comment per kind, keyed by the PRs involved', () => {
+  // editOnly comments (withdrawing an earlier "released" one) are never posted on their own
+  const posted = (...args) => plannedComments(...args).filter(c => !c.editOnly);
   const released = plannedComments(decide([go('merged', 'v4.11.1')]), ['Pending PBS Release']);
   assert.deepStrictEqual(released.map(c => [c.kind, c.key]), [['released', 'prebid/prebid-server#4801']]);
   assert.match(released[0].body, /^<!-- pending-release-check:released key=prebid\/prebid-server#4801 -->/);
   assert.match(released[0].body, /release v4\.11\.1/);
 
-  const partial = plannedComments(decide([go('open'), java('merged', '4.5.0')]), ['Pending PBS Release']);
+  const partial = posted(decide([go('open'), java('merged', '4.5.0')]), ['Pending PBS Release']);
   assert.deepStrictEqual(partial.map(c => c.kind), ['partial']);
   assert.match(partial[0].body, /prebid\/prebid-server-java#4528 \(PBS-Java\): merged, and included in release 4\.5\.0/);
   assert.match(partial[0].body, /prebid\/prebid-server#4801 \(PBS-Go\): still open/);
   assert.match(partial[0].body, /only one of PBS-Go and PBS-Java/);
   const pbjs = { repo: 'prebid/Prebid.js', number: 1, state: 'merged', release: '11.51.0' };
-  const [mixed] = plannedComments(decide([go('open'), pbjs]), []);
+  const [mixed] = posted(decide([go('open'), pbjs]), []);
   assert.doesNotMatch(mixed.body, /only one of PBS-Go and PBS-Java/);
 
-  assert.deepStrictEqual(plannedComments(decide([go('closed')]), []).map(c => c.kind), ['closed']);
-  assert.deepStrictEqual(plannedComments(decide([]), ['Pending PBS Release']).map(c => c.kind), ['no-link']);
-  assert.deepStrictEqual(plannedComments(decide([go('open')]), []), []);
+  assert.deepStrictEqual(posted(decide([go('closed')]), []).map(c => c.kind), ['closed']);
+  assert.deepStrictEqual(posted(decide([]), ['Pending PBS Release']).map(c => c.kind), ['no-link']);
+  assert.deepStrictEqual(posted(decide([go('open')]), []), []);
 });
 
 test('commentActions: post once, edit when the key changes, otherwise nothing', () => {
@@ -128,4 +133,35 @@ test('commentActions: post once, edit when the key changes, otherwise nothing', 
 test('semverKey orders version tags numerically', () => {
   const tags = ['v4.9.0', 'v4.11.1', '3.0.0', 'v4.11.0'];
   assert.deepStrictEqual(tags.sort((a, b) => semverKey(b).localeCompare(semverKey(a))), ['v4.11.1', 'v4.11.0', 'v4.9.0', '3.0.0']);
+});
+
+test('readyLabelAction: added when released, removed when no longer released', () => {
+  const ready = 'Ready to merge: code released';
+  assert.strictEqual(readyLabelAction('released', ['Pending PBS Release']), 'add');
+  assert.strictEqual(readyLabelAction('released', [ready]), null);
+  assert.strictEqual(readyLabelAction('partial', [ready]), 'remove');
+  assert.strictEqual(readyLabelAction('waiting', [ready]), 'remove');
+  assert.strictEqual(readyLabelAction('waiting', []), null);
+  assert.strictEqual(readyLabelAction('error', [ready]), null); // an API failure doesn't change anything
+});
+
+test('a released comment is edited, never posted, when the PR stops being released', () => {
+  const bot = 'github-actions[bot]';
+  const [released] = plannedComments(decide([go('merged', 'v4.11.1')]), []);
+  const priorReleased = { id: 7, user: { login: bot }, body: released.body };
+  // a new, still-open PBS-Java dependency: partial
+  const later = plannedComments(decide([go('merged', 'v4.11.1'), java('open')]), []);
+  const actions = commentActions(later, [priorReleased], bot);
+  const withdraw = actions.find(a => a.kind === 'released');
+  assert.deepStrictEqual([withdraw.action, withdraw.id], ['edit', 7]);
+  assert.match(withdraw.body, /no longer ready/);
+  assert.match(withdraw.body, /prebid-server-java#4528 \(PBS-Java\): still open/);
+  assert.strictEqual(actions.find(a => a.kind === 'partial').action, 'post');
+  // without an earlier released comment there is nothing to withdraw
+  assert.strictEqual(commentActions(later, [], bot).find(a => a.kind === 'released').action, 'none');
+  // unchanged on the next run
+  const edited = { ...priorReleased, body: withdraw.body };
+  assert.strictEqual(commentActions(later, [edited], bot).find(a => a.kind === 'released').action, 'none');
+  // and back to released later: edited again
+  assert.strictEqual(commentActions(plannedComments(decide([go('merged', 'v4.11.1'), java('merged', '4.6.0')]), []), [edited], bot)[0].action, 'edit');
 });

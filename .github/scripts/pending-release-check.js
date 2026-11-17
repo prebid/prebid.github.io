@@ -49,7 +49,8 @@ function parseLinks(text) {
     const known = codeRepo(name);
     if (known) found.set(`${known.repo}#${number}`, { repo: known.repo, number: Number(number) });
   };
-  const body = String(text || '');
+  // HTML comments are hidden hints (e.g. the PR template's example link), not references.
+  const body = String(text || '').replace(/<!--[\s\S]*?(-->|$)/g, '');
   for (const m of body.matchAll(/github\.com\/prebid\/([\w.-]+?)\/pull\/(\d+)/gi)) add(m[1], m[2]);
   for (const m of body.matchAll(/(?<![\w./-])prebid\/([\w.-]+?)#(\d+)\b/gi)) add(m[1], m[2]);
   return [...found.values()];
@@ -61,7 +62,8 @@ function crossReferences(timeline) {
   for (const event of timeline || []) {
     const issue = event.event === 'cross-referenced' && event.source && event.source.issue;
     if (!issue || !issue.pull_request || !issue.repository) continue;
-    const known = codeRepo(issue.repository.name);
+    // Only prebid/<repo>: a fork's PR with the same number would otherwise be read as the upstream one.
+    const known = String(issue.repository.full_name).toLowerCase().startsWith('prebid/') && codeRepo(issue.repository.name);
     if (known) found.push({ repo: known.repo, number: issue.number });
   }
   return found;
@@ -153,6 +155,17 @@ function plannedComments(decision, pendingLabels) {
       '`https://github.com/prebid/prebid-server/pull/1234` or `prebid/prebid-server-java#1234`, ' +
       'so this PR can be merged once that code is released.'));
   }
+  if (status !== 'released') {
+    // Only edits an earlier "released" comment (e.g. a code PR linked since); never posted on its own.
+    out.push({ ...comment('released', `withdrawn:${key(pending)}`,
+      `An earlier run found the linked code released, but this PR is no longer ready: ${STATUS_TEXT[status]}.` +
+      (pending.length ? `
+
+${list(pending)}` : '') +
+      `
+
+The "${READY_LABEL.name}" label has been removed.`), editOnly: true });
+  }
   return out;
 }
 
@@ -160,10 +173,18 @@ function plannedComments(decision, pendingLabels) {
 function commentActions(planned, existing, botLogin) {
   return planned.map(p => {
     const prior = existing.find(c => c.user && c.user.login === botLogin && String(c.body || '').includes(`<!-- ${MARKER}:${p.kind} `));
-    if (!prior) return { action: 'post', ...p };
+    if (!prior) return { action: p.editOnly ? 'none' : 'post', ...p };
     const priorKey = (String(prior.body).match(new RegExp(`<!-- ${MARKER}:${p.kind} key=(\\S*) -->`)) || [])[1];
     return priorKey === p.key ? { action: 'none', ...p } : { action: 'edit', id: prior.id, ...p };
   });
+}
+
+// The ready label follows the decision on every run: on when everything is released, off otherwise.
+function readyLabelAction(status, labels) {
+  const has = labels.includes(READY_LABEL.name);
+  if (status === 'released' && !has) return 'add';
+  if (status !== 'released' && status !== 'error' && has) return 'remove';
+  return null;
 }
 
 // ---- GitHub API
@@ -330,11 +351,16 @@ async function main() {
         if (c.action === 'post') await gh.request('POST', `/repos/${repo}/issues/${number}/comments`, { body: c.body });
         else await gh.request('PATCH', `/repos/${repo}/issues/comments/${c.id}`, { body: c.body });
       }
-      if (decision.status === 'released' && !labels.includes(READY_LABEL.name)) {
+      const labelAction = readyLabelAction(decision.status, labels);
+      if (labelAction === 'add') {
         await ensureLabel();
         row.actions.push(`add label "${READY_LABEL.name}"`);
         log(`#${number}: add label "${READY_LABEL.name}"`);
         if (write) await gh.request('POST', `/repos/${repo}/issues/${number}/labels`, { labels: [READY_LABEL.name] });
+      } else if (labelAction === 'remove') {
+        row.actions.push(`remove label "${READY_LABEL.name}"`);
+        log(`#${number}: remove label "${READY_LABEL.name}"`);
+        if (write) await gh.request('DELETE', `/repos/${repo}/issues/${number}/labels/${encodeURIComponent(READY_LABEL.name)}`);
       }
     } catch (e) {
       row.status = 'error';
@@ -370,7 +396,7 @@ async function main() {
   console.log(summary);
 }
 
-module.exports = { parseLinks, crossReferences, collectLinks, decide, plannedComments, commentActions, semverKey, READY_LABEL, PENDING_LABELS };
+module.exports = { parseLinks, crossReferences, collectLinks, decide, plannedComments, commentActions, readyLabelAction, semverKey, READY_LABEL, PENDING_LABELS };
 
 if (require.main === module) {
   main().catch(e => {
