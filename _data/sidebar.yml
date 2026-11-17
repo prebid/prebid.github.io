@@ -177,6 +177,14 @@
   subgroup: 0
 
 - sbSecId: 1
+  title: Using Prebid.js with TypeScript
+  link: /dev-docs/typescript.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 1
   title: Basic Impression Flow
   link: /prebid/prebidjs-flow-video.html
   isHeader: 0
@@ -622,7 +630,7 @@
   subgroup: 8
 
 - sbSecId: 1
-  title: Prebid Ad Slot and GPID
+  title: Global Placement ID (GPID)
   link: /features/pbAdSlot.html
   isHeader: 0
   isSectionHeader: 0

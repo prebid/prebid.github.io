@@ -17,20 +17,20 @@ multiformat_supported: will-not-bid
 
 
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 
-| Name          | Scope                       | Description                                                                                                               | Example           | Type             |
-|---------------|-----------------------------|---------------------------------------------------------------------------------------------------------------------------|-------------------|------------------|
-| `site_id`     | required                    | The site ID from Epsilon.                                                                                              | `'87293'`         | `string`         |
-| `secure`      | required (for secure pages) | If impression requires secure HTTPS URL creative assets and markup. 0 for non-secure, 1 for secure. Default is non-secure | `1`               | `integer`        |
-| `bidfloor`    | optional                    | Bid floor                                                                                                                 | `0.50`            | `float`          |
-| `tag_id`      | optional                    | Identifies specific ad placement.                                                                                         | `'cnvr-test-tag'` | `string`         |
-| `white_label_url`| optional                  | Override the destination URL the request is sent to.                                                                       | `'https://mydomain.com/hbendpoint'`  | `string` |
-| `pubcid_name` | optional                    | Name of the pub common id. Epsilon adapter can read the id directly if the UserID module is absent. Default is _pubcid.| `'_pubcid'`         | `string`         |
+| Name | Scope | Description | Example | Type |
+| --------------- | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------------------- | ------------------ |
+| `site_id` | required | The site ID from Epsilon. | `'87293'` | `string` |
+| `secure` | required (for secure pages) | If impression requires secure HTTPS URL creative assets and markup. 0 for non-secure, 1 for secure. Default is non-secure | `1` | `integer` |
+| `bidfloor` | optional | Bid floor | `0.50` | `float` |
+| `tag_id` | optional | Identifies specific ad placement. | `'cnvr-test-tag'` | `string` |
+| `white_label_url` | optional | Override the destination URL the request is sent to. | `'https://mydomain.com/hbendpoint'` | `string` |
+| `pubcid_name` | optional | Name of the pub common id. Epsilon adapter can read the id directly if the UserID module is absent. Default is _pubcid. | `'_pubcid'` | `string` |
 
-### Video Params
+## Video Params
 
 {: .table .table-bordered .table-striped }
 
@@ -46,7 +46,7 @@ Video parameters can be included in either `mediaTypes.video` or `bids.params` e
 
 The following values are defined in the [ORTB 2.5 spec](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf).
 
-### position
+## position
 
 + `0` : Unknown
 + `1` : Above the Fold
@@ -56,7 +56,7 @@ The following values are defined in the [ORTB 2.5 spec](https://www.iab.com/wp-c
 + `6` : Sidebar
 + `7` : Full Screen
 
-### api
+## api
 
 + `1` : VPAID 1.0
 + `2` : VPAID 2.0
@@ -67,7 +67,7 @@ The following values are defined in the [ORTB 2.5 spec](https://www.iab.com/wp-c
 
 <a id="epsilon-protocols"></a>
 
-### protocols
+## protocols
 
 + `1` : VAST 1.0
 + `2` : VAST 2.0
@@ -80,7 +80,7 @@ The following values are defined in the [ORTB 2.5 spec](https://www.iab.com/wp-c
 + `9` : DAAST 1.0
 + `10` : DAAST 1.0 Wrapper
 
-### First Party Data
+## First Party Data
 
 Publishers should use the `ortb2` method of setting for setting First Party Data.
 Example first party data configuration that is available to all adUnits
@@ -132,6 +132,6 @@ Example AdUnit specific data using the `ortb2Imp` object
         }
 
         pbjs.que.push(function(){
-            pbjs.addAdUnits(videoAdUnits);
-        }
+            pbjs.addAdUnits(videoAdUnit);
+        });
 ```
