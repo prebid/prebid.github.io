@@ -62,7 +62,7 @@ Possible values for it are:
 {: .table .table-bordered .table-striped }
 | Value | Description |
 | ------------ | ------------ |
-| `'off''` | The default. Use of undisclosed storage keys only generates a console warning. |
+| `'off'` | The default. Use of undisclosed storage keys only generates a console warning. |
 | `'strict'` | Deny access to undisclosed storage keys |
 | `'allowAliases'` | Deny access to undisclosed storage keys, unless the use is from an alias of a module that does disclose them, in which case only log a warning. This can happen for instance when a bidder provides an alias linked to a different vendor in the GVL. |
 
@@ -99,7 +99,7 @@ The return value follows the same format as the TCF [disclosures array](https://
 {: .table .table-bordered .table-striped }
 | Name | Type | Description |
 | ------------ | ------------ | ------------ |
-| `disclosedIn` | String | URL of the JSON containing this disclosure. Can be `null` for identifiers chosen trough publisher configuration - such as those set by the [userId module](/dev-docs/modules/userId.html) |
+| `disclosedIn` | String | URL of the JSON containing this disclosure. Can be `null` for identifiers chosen through publisher configuration - such as those set by the [userId module](/dev-docs/modules/userId.html) |
 | `disclosedBy` | Array of Strings | Names of the Prebid modules providing this disclosure |
 
 <a id="adapter-integration"></a>
