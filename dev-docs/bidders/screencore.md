@@ -22,22 +22,36 @@ ortb_blocking_supported: true
 userIds: all
 ---
 
-# Note
+## Note
 
 The Screencore Bidding adapter requires setup before beginning. Please contact us at [connect@screencore.io](mailto:connect@screencore.io).
 Screencore will bid on first impression in request.
 
-# Prebid Server Bid Params
+## Bid Params
+
+### Prebid.js
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
-| --------------- | ---------- | ----------------------- | ----------- | ----------- |
+| --- | --- | --- | --- | --- |
 | `sspPlacementId` | required | ssp placement id | `'id'` | `string` |
-| `region` | required | target ssp region | `'us', 'eu', 'asia'` | `string` |
 
-# Prebid.js Bid Params
+The legacy `placementId` and `endpointId` params are deprecated in Prebid.js; use `sspPlacementId` instead.
+
+### Prebid Server (PBS-Go)
+
+The PBS-Go Screencore adapter is available once [prebid-server#5005](https://github.com/prebid/prebid-server/pull/5005) is released.
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
-| --------------- | ---------- | ----------------------- | ----------- | ----------- |
+| --- | --- | --- | --- | --- |
 | `sspPlacementId` | required | ssp placement id | `'id'` | `string` |
+| `region` | required | target ssp region, one of `us`, `eu`, `asia` | `'us'` | `string` |
+
+### Prebid Server (PBS-Java)
+
+{: .table .table-bordered .table-striped }
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| `accountId` | required | account id | `'account'` | `string` |
+| `placementId` | required | placement id | `'placement'` | `string` |
