@@ -5,7 +5,7 @@ description: Prebid Playgama Bidder Adapter
 biddercode: playgama
 tcfeu_supported: true
 usp_supported: true
-gpp_supported: true
+gpp_sids: tcfeu, usnat, usstate_all, usp
 coppa_supported: false
 gvl_id: none
 schain_supported: true
