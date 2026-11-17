@@ -31,11 +31,3 @@ multiformat_supported: will-bid-on-any
 | `minBidfloor` | optional | Minimal CPM value                                                  | 0.03                                 | `float`         |
 | `pos`         | optional | The position of the placement on the page, see OpenRTB spec v2.5.  | 4                                    | `number`        |
 
-## Prebid Server Bid Params
-
-{: .table .table-bordered .table-striped }
-
-| Name          | Scope    | Description         | Example                              | Type     |
-| :------------ | :------- | :------------------ | :----------------------------------- | :------- |
-| `seat`        | required | Seat value          | '9Q20EdGxzgWdfPYShScl'               | `string` |
-| `token`       | required | Token               | 'eKmw6alpP3zWQhRCe3flOpz0wpuwRFjW'   | `string` |
