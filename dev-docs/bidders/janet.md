@@ -15,23 +15,25 @@ usp_supported: true
 safeframes_ok: true
 prebid_member: true
 pbjs: true
+enable_download: false
+pbjs_version_notes: "This alias is not currently registered by its Prebid.js module; specific reason unknown."
 pbs: true
 sidebarType: 1
 ---
 
-### Bid params
+## Bid params
 
 {: .table .table-bordered .table-striped }
-| Name  | Scope    | Description                     | Example  | Type      |
-|-------|----------|---------------------------------|----------|-----------|
-| `aid` | required | The source ID from janet.   | `529814` | `integer` |
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| `aid` | required | The source ID from janet. | `529814` | `integer` |
 
-### Description
+## Description
 
 JANet header bidding adapter connects with JANet demand sources in order to fetch bids.
 This adapter provides a solution for accessing Video demand and display demand.
 
-### Test Parameters
+## Test Parameters
 
 ``` javascript
     var adUnits = [
@@ -106,7 +108,7 @@ This adapter provides a solution for accessing Video demand and display demand.
     ];
 ```
 
-### Additional Configuration
+## Additional Configuration
 
 It is possible to configure requests to be split into chunks so as to have fewer bid requests in a single http request
 (default value is 10).

@@ -1241,7 +1241,7 @@ to bypass the cache requirement. There are different flows possible with Prebid.
 {: .table .table-bordered .table-striped }
 | Cache Attribute | Required? | Type | Description |
 |----+--------+-----+-------|
-| cache.url | yes | string | The URL of the Prebid Cache server endpoint where VAST creatives will be sent. |
+| cache.url | yes | string (except when `useLocal` is `true`) | The URL of the Prebid Cache server endpoint where VAST creatives will be sent. |
 | cache.useLocal | no | boolean | Flag determining whether to locally save VAST XML as a blob |
 | cache.timeout | no | number | Timeout (in milliseconds) for network requests to the cache |
 | cache.vasttrack | no | boolean | Passes additional data to the url, used for additional event tracking data. Defaults to `false`. |
