@@ -6,11 +6,11 @@ sidebarType: 1
 ---
 
 
-Render a bid in an isolated iframe inside its ad unit's element, without an ad server's on-page library (such as GPT) handling rendering. Requires the [Safe Rendering module](/dev-docs/modules/safeRendering.html).
+Since Prebid.js 11.51, render a bid in an isolated iframe inside its ad unit's element, without an ad server's on-page library (such as GPT) handling rendering. Requires the [Safe Rendering module](/dev-docs/modules/safeRendering.html).
 
 **Kind**: static method of pbjs API
 
-The contents of the bid's element are replaced with a single iframe, and the ad is rendered inside it. The frame has an opaque origin and the same `sandbox` attribute as Google Ad Manager's SafeFrames, so the creative can't reach the publisher's page. The element is the ad unit's [`element`](/dev-docs/adunit-reference.html#adunit), or `document.getElementById(adUnitCode)` by default.
+The contents of the bid's element are replaced with a single iframe, and the ad is rendered inside it. The frame has an opaque origin and the same `sandbox` attribute as Google Ad Manager's SafeFrames, so the creative can't reach the publisher's page. The element is the ad unit's [`element`](/dev-docs/adunit-reference.html#adunit), or `document.getElementById(adUnitCode)` by default. It must belong to the document of the window that loaded Prebid.js, or of a same-origin iframe nested inside it.
 
 {: .table .table-bordered .table-striped }
 | Param | Scope | Type | Description |

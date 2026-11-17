@@ -6,6 +6,7 @@ description: Render winning bids in isolated, SafeFrame-style iframes without an
 module_code : safeRendering
 display_name : Safe Rendering
 enable_download : true
+min_js_version: 11.51.0
 sidebarType : 1
 ---
 
@@ -17,7 +18,7 @@ sidebarType : 1
 
 ## Overview
 
-The Safe Rendering module adds [`pbjs.renderBid`](/dev-docs/publisher-api-reference/renderBid.html), which renders a winning bid in an iframe that can't reach the publisher's page: a `data:` URL frame, which has an opaque origin, with the same `sandbox` attribute Google Ad Manager uses for its SafeFrames. You don't need GPT or another ad server's on-page library to handle rendering and SafeFrames, nor a separately hosted creative.
+Since Prebid.js 11.51, the Safe Rendering module adds [`pbjs.renderBid`](/dev-docs/publisher-api-reference/renderBid.html), which renders a winning bid in an iframe that can't reach the publisher's page: a `data:` URL frame, which has an opaque origin, with the same `sandbox` attribute Google Ad Manager uses for its SafeFrames. You don't need GPT or another ad server's on-page library to handle rendering and SafeFrames, nor a separately hosted creative.
 
 Use it when Prebid.js selects the winner itself, for example when [running Prebid.js as an ad server](/dev-docs/examples/no-adserver.html), and you want the creative isolated from the page. Ad servers can still compete as demand, for example by bidding into the auction through their bid adapter. It works with any way of picking the winner, including [deal priority](/dev-docs/publisher-api-reference/bidderSettings.html#212-allowprioritybids).
 
@@ -37,9 +38,9 @@ pbjs.requestBids({
 });
 ```
 
-`renderBid` replaces the contents of the bid's element with a single iframe and renders the ad inside it. The element is the ad unit's [`element`](/dev-docs/adunit-reference.html#adunit), or `document.getElementById(adUnitCode)` by default. It must be in the page that loaded Prebid.js, or in a same-origin iframe inside it.
+`renderBid` replaces the contents of the bid's element with a single iframe and renders the ad inside it. The element is the ad unit's [`element`](/dev-docs/adunit-reference.html#adunit), or `document.getElementById(adUnitCode)` by default. It must belong to the document of the window that loaded Prebid.js, or of a same-origin iframe nested inside that window. It can still be detached from the page: the ad loads once you insert the element.
 
-It honors `auctionOptions.suppressStaleRender` and `auctionOptions.suppressExpiredRender`: a suppressed render leaves the element untouched.
+It honors `auctionOptions.suppressStaleRender` and `auctionOptions.suppressExpiredRender`: a suppressed render leaves the element untouched, and emits `staleRender` or `expiredRender` rather than `adRenderFailed`.
 
 ## Configuration
 
@@ -61,7 +62,7 @@ By default, any frame that knows a bid's `adId` can message Prebid.js to get tha
 {: .alert.alert-warning :}
 `exclusive: true` also turns off rendering through ad server creatives (Prebid Universal Creative, or any creative calling Prebid.js from a cross-origin frame). Only enable it when every ad is rendered with `renderBid`.
 
-Even without `exclusive`, once a bid has been rendered with `renderBid`, messages for that bid must come through the channel set up by its frame.
+Even without `exclusive`, once `renderBid` has been called for a bid, Prebid.js only accepts messages for that bid from a frame `renderBid` set up for it, over that frame's channel.
 
 ## Limitations
 
