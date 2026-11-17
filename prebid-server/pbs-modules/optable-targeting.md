@@ -31,13 +31,18 @@ Targeting API endpoint is configurable per publisher.
 The module uses four hooks, all of which are required:
 
 * Raw Auction Request: starts the Optable API call early, without blocking the auction.
-* Processed Auction Request: starts the call for requests that rely on stored requests (see below).
+* Processed Auction Request (`optable-targeting-async-processed-auction-request-hook`): starts the call for requests
+  that rely on stored requests and for AMP requests (see below). It never blocks.
 * Bidder Request: awaits the API response and enriches each bidder request with `user.eids` and `user.data`.
 * Auction Response: injects ad server targeting.
 
 Stored requests and stored imps are merged after the Raw Auction Request stage. When the bidders or `site`/`app` are
 not known at that stage (f.e. Prebid Mobile SDK traffic, where they live in the stored request), the Processed Auction
 Request hook starts the call on the merged request instead. Without it such requests are not enriched.
+
+AMP requests have no Raw Auction Request stage, so the Processed Auction Request hook starts the call for them. To
+enrich AMP traffic, add an `/openrtb2/amp` entry next to `/openrtb2/auction` in the execution plan's `endpoints`, with
+the same `processed-auction-request`, `bidder-request` and `auction-response` stages.
 
 We recommend defining the execution plan in the account config so the module is only invoked for specific accounts. See
 below for an example.
@@ -109,7 +114,7 @@ hooks:
                   "hook-sequence": [
                     {
                       "module-code": "optable-targeting",
-                      "hook-impl-code": "optable-targeting-processed-auction-request-hook"
+                      "hook-impl-code": "optable-targeting-async-processed-auction-request-hook"
                     }
                   ]
                 }
@@ -150,9 +155,11 @@ hooks:
 ### Migrating from legacy configuration
 
 Previous versions used only the `processed-auction-request` hook (with `auction-response`), which made the API call
-and enriched the whole request synchronously, blocking the auction. To migrate, keep that hook and add the
-`raw-auction-request` and `bidder-request` hooks as shown above. With them in the plan, the processed hook no longer
-blocks; without them, it keeps the legacy synchronous behavior.
+and enriched the whole request synchronously, blocking the auction. That hook
+(`optable-targeting-processed-auction-request-hook`) is deprecated and keeps its synchronous behavior.
+
+To migrate, replace it with `optable-targeting-async-processed-auction-request-hook` and add the
+`raw-auction-request` and `bidder-request` hooks as shown above.
 
 **Note:** `enrichment-percentage` and `bidder-enrichment-percentages` only take effect on the new configuration. On the
 legacy configuration the `processed-auction-request` hook enriches the whole bid request before it is split per bidder,
@@ -195,26 +202,26 @@ would result in this nesting in the JSON configuration:
 
 {: .table .table-bordered .table-striped }
 
-| Param Name                     | Required | Type             | Default value | Description                                                                                                                                                                                                                                                                                                                                                                                                                |
-|:-------------------------------|:---------|:-----------------|:--------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| api-endpoint                   | yes      | string           | none          | Host-Level. Optable Targeting Edge API endpoint URL. Note it must include &#123;&#123;TENANT&#125;&#125; and &#123;ORIGIN&#125; macros that are substituted from account-level config values |
-| tenant                         | yes      | string           | none          | Account-Level. Your Optable tenant aka account ID. |
-| origin                         | yes      | string           | none          | Account-Level. Optable data `origin` aka `source`. |
-| api-key                        | no       | string           | none          | Account-Level. If the API is protected with a key - this param needs to be specified to be sent in the auth header |
-| ppid-mapping                   | no       | map              | none          | Account-Level. This specifies PPID source (`user.ext.eids[].source`) to a custom identifier prefix mapping, f.e. `{"example.com" : "c"}`. See the section on ID Mapping below for more detail. |
-| adserver-targeting             | no       | boolean          | false         | Account-Level. If set to true - will add the Optable-specific adserver targeting keywords into the PBS response for every `seatbid[].bid[].ext.prebid.targeting` |
-| timeout                        | no       | integer          | none          | Account-Level. A soft timeout (in ms) sent as a hint to the Targeting API endpoint to limit the request times to Optable's external tokenizer services |
-| id-prefix-order                | no       | string           | none          | Account-Level. An optional string of comma separated id prefixes that prioritizes and specifies the order in which ids are provided to Targeting API in a query string. F.e. "c,c1,id5" will guarantee that Targeting API will see id=c:...,c1:...,id5:... if these ids are provided. Id-prefixes not mentioned in this list will be added in arbitrary order after the priority prefix ids. This affects Targeting API processing logic  |
-| hid-prefixes                   | no       | string           | none          | Account-Level. An optional string of comma separated id prefixes that should additionally be sent to the Targeting API as resolver hints in `hid=prefix:value` query parameters. See the section on Resolver Hints below for more detail. |
-| enrichment-percentage          | no       | integer          | 100           | Account-Level. Default percentage (0-100) of bid requests per bidder that will receive enrichment data. Set to 100 to enrich all requests, 0 to disable enrichment by default. |
-| bidder-enrichment-percentages  | no       | map              | none          | Account-Level. Per-bidder overrides for `enrichment-percentage`. Keys are bidder names, values are percentages (0-100). F.e. `{"appnexus": 75, "criteo": 0}` enriches 75% of appnexus requests and none for criteo. Bidders not listed in this map fall back to the default `enrichment-percentage` (100% unless overridden). |
-| enrich-web                     | no       | boolean          | true          | Account-Level. Whether to enrich web traffic (requests with a `site` object). |
-| enrich-app                     | no       | boolean          | true          | Account-Level. Whether to enrich app traffic (requests with an `app` object). |
-| cache.enabled                  | no       | string           | false         | Account-Level. Optionally use [Prebid Cache Storage](https://docs.prebid.org/prebid-server/features/pbs-pbc-storage.html) feature - this significantly reduces the processing time when the Targeting API response has been cached |
-| cache.ttlseconds               | no       | int              | 86400         | Account-Level. The TTL in seconds for the Targeting API response to live in cache - by default is equal to 24 hours |
-| optable-inserter-eids-merge    | no       | array of strings | none          | Account-Level. List of EID source names for which the module should **merge** the incoming server-side EIDs with those returned by the Targeting API. |
-| optable-inserter-eids-replace  | no       | array of strings | none          | Account-Level. List of EID source names for which the module should **replace** the incoming EID entirely with the one from the Targeting API. |
-| optable-inserter-eids-ignore   | no       | array of strings | none          | Account-Level. List of EID source names for which the module should **remove** the EID entirely. |
+| Param Name | Required | Type | Default value | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| api-endpoint | yes | string | none | Host-Level. Optable Targeting Edge API endpoint URL. Note it must include &#123;&#123;TENANT&#125;&#125; and &#123;ORIGIN&#125; macros that are substituted from account-level config values |
+| tenant | yes | string | none | Account-Level. Your Optable tenant aka account ID. |
+| origin | yes | string | none | Account-Level. Optable data `origin` aka `source`. |
+| api-key | no | string | none | Account-Level. If the API is protected with a key - this param needs to be specified to be sent in the auth header |
+| ppid-mapping | no | map | none | Account-Level. This specifies PPID source (`user.ext.eids[].source`) to a custom identifier prefix mapping, f.e. `{"example.com" : "c"}`. See the section on ID Mapping below for more detail. |
+| adserver-targeting | no | boolean | true | Account-Level. If set to true - will add the Optable-specific adserver targeting keywords into the PBS response for every `seatbid[].bid[].ext.prebid.targeting` |
+| timeout | no | integer | none | Account-Level. A soft timeout (in ms) sent as a hint to the Targeting API endpoint to limit the request times to Optable's external tokenizer services |
+| id-prefix-order | no | string | none | Account-Level. An optional string of comma separated id prefixes that prioritizes and specifies the order in which ids are provided to Targeting API in a query string. F.e. "c,c1,id5" will guarantee that Targeting API will see id=c:...,c1:...,id5:... if these ids are provided. Id-prefixes not mentioned in this list will be added in arbitrary order after the priority prefix ids. This affects Targeting API processing logic |
+| hid-prefixes | no | string | none | Account-Level. An optional string of comma separated id prefixes that should additionally be sent to the Targeting API as resolver hints in `hid=prefix:value` query parameters. See the section on Resolver Hints below for more detail. |
+| enrichment-percentage | no | integer | 100 | Account-Level. Default percentage (0-100) of bid requests per bidder that will receive enrichment data. Set to 100 to enrich all requests, 0 to disable enrichment by default. |
+| bidder-enrichment-percentages | no | map | none | Account-Level. Per-bidder overrides for `enrichment-percentage`. Keys are bidder names, values are percentages (0-100). F.e. `{"appnexus": 75, "criteo": 0}` enriches 75% of appnexus requests and none for criteo. Bidders not listed in this map fall back to the default `enrichment-percentage` (100% unless overridden). |
+| enrich-web | no | boolean | true | Account-Level. Whether to enrich web traffic (requests with a `site` object). |
+| enrich-app | no | boolean | true | Account-Level. Whether to enrich app traffic (requests with an `app` object). |
+| cache.enabled | no | boolean | false | Account-Level. Optionally use [Prebid Cache Storage](https://docs.prebid.org/prebid-server/features/pbs-pbc-storage.html) feature - this significantly reduces the processing time when the Targeting API response has been cached |
+| cache.ttlseconds | no | int | 86400 | Account-Level. The TTL in seconds for the Targeting API response to live in cache - by default is equal to 24 hours |
+| optable-inserter-eids-merge | no | array of strings | none | Account-Level. List of EID source names for which the module should **merge** the incoming server-side EIDs with those returned by the Targeting API. |
+| optable-inserter-eids-replace | no | array of strings | none | Account-Level. List of EID source names for which the module should **replace** the incoming EID entirely with the one from the Targeting API. |
+| optable-inserter-eids-ignore | no | array of strings | none | Account-Level. List of EID source names for which the module should **remove** the EID entirely. |
 
 ## ID Mapping
 
@@ -229,22 +236,22 @@ on identifier types. Targeting API accepts multiple id parameters - and their or
 
 {: .table .table-bordered .table-striped }
 
-| Identifier Type                                                                | OpenRTB field                                                         | ID Type Prefix                           |
-|--------------------------------------------------------------------------------|-----------------------------------------------------------------------|------------------------------------------|
-| Email Address                                                                  | `user.ext.optable.email`                                              | `e:`                                     |
-| Phone Number                                                                   | `user.ext.optable.phone`                                              | `p:`                                     |
-| Postal Code                                                                    | `user.ext.optable.zip`                                                | `z:`                                     |
-| IPv4 Address                                                                   | `device.ip`                                                           | ~~i4:~~ Sent as `X-Forwarded-For` header |
-| IPv6 Address                                                                   | `device.ipv6`                                                         | ~~i6:~~ Sent as `X-Forwarded-For` header |
-| Apple IDFA                                                                     | `device.ifa if lcase(device.os) contains 'ios' and device.lmt!=1`     | `a:`                                     |
-| Google GAID                                                                    | `device.ifa if lcase(device.os) contains 'android' and device.lmt!=1` | `g:`                                     |
-| Roku RIDA                                                                      | `device.ifa if lcase(device.os) contains 'roku' and device.lmt!=1`    | `r:`                                     |
-| Samsung TV TIFA                                                                | `device.ifa if lcase(device.os) contains 'tizen' and device.lmt!=1`   | `s:`                                     |
-| Amazon Fire AFAI                                                               | `device.ifa if lcase(device.os) contains 'fire' and device.lmt!=1`    | `f:`                                     |
-| [NetID](https://docs.prebid.org/dev-docs/modules/userid-submodules/netid.html) | `user.ext.eids[].uids[0] when user.ext.eids[].source="netid.de"`      | `n:`                                     |
-| [ID5](https://docs.prebid.org/dev-docs/modules/userid-submodules/id5.html)     | `user.ext.eids[].uids[0] when user.ext.eids[].source="id5-sync.com"`  | `id5:`                                   |
-| [Utiq](https://docs.prebid.org/dev-docs/modules/userid-submodules/utiq.html)   | `user.ext.eids[].uids[0] when user.ext.eids[].source="utiq.com"`      | `utiq:`                                  |
-| Optable VID                                                                    | `user.ext.optable.vid`                                                | `v:`                                     |
+| Identifier Type | OpenRTB field | ID Type Prefix |
+| --- | --- | --- |
+| Email Address | `user.ext.optable.email` | `e:` |
+| Phone Number | `user.ext.optable.phone` | `p:` |
+| Postal Code | `user.ext.optable.zip` | `z:` |
+| IPv4 Address | `device.ip` | ~~i4:~~ Sent as `X-Forwarded-For` header |
+| IPv6 Address | `device.ipv6` | ~~i6:~~ Sent as `X-Forwarded-For` header |
+| Apple IDFA | `device.ifa if lcase(device.os) contains 'ios' and device.lmt!=1` | `a:` |
+| Google GAID | `device.ifa if lcase(device.os) contains 'android' and device.lmt!=1` | `g:` |
+| Roku RIDA | `device.ifa if lcase(device.os) contains 'roku' and device.lmt!=1` | `r:` |
+| Samsung TV TIFA | `device.ifa if lcase(device.os) contains 'tizen' and device.lmt!=1` | `s:` |
+| Amazon Fire AFAI | `device.ifa if lcase(device.os) contains 'fire' and device.lmt!=1` | `f:` |
+| [NetID](https://docs.prebid.org/dev-docs/modules/userid-submodules/netid.html) | `user.ext.eids[].uids[0] when user.ext.eids[].source="netid.de"` | `n:` |
+| [ID5](https://docs.prebid.org/dev-docs/modules/userid-submodules/id5.html) | `user.ext.eids[].uids[0] when user.ext.eids[].source="id5-sync.com"` | `id5:` |
+| [Utiq](https://docs.prebid.org/dev-docs/modules/userid-submodules/utiq.html) | `user.ext.eids[].uids[0] when user.ext.eids[].source="utiq.com"` | `utiq:` |
+| Optable VID | `user.ext.optable.vid` | `v:` |
 
 ### Optable input erasure
 
@@ -301,16 +308,16 @@ the Targeting API:
 
 {: .table .table-bordered .table-striped }
 
-| Attribute       | Source                                                                                                                |
-|:----------------|:---------------------------------------------------------------------------------------------------------------------|
-| `gdpr`          | `1` if GDPR applies to the request, `0` otherwise. |
-| `gdpr_consent`  | TCF consent string, sent when available and the consent is valid. |
-| `gpp`           | GPP string, sent when available in the resolved GPP context. |
-| `gpp_sid`       | Comma-separated list of active GPP section IDs, limited to the first two, sent when the set is non-empty. |
-| `timeout`       | Soft timeout hint in ms, suffixed with `ms`, sent when the account-level `timeout` parameter is configured. |
-| `osdk`          | Always set to `prebid-server`, identifying the caller. |
-| `bundle`        | App bundle identifier, URL-encoded. Sent when the incoming request has an `app` object and `app.bundle` is non-empty. |
-| `ver`           | App version, URL-encoded. Sent only when `bundle` is non-empty and `app.ver` is present and non-empty. |
+| Attribute | Source |
+| :--- | :--- |
+| `gdpr` | `1` if GDPR applies to the request, `0` otherwise. |
+| `gdpr_consent` | TCF consent string, sent when available and the consent is valid. |
+| `gpp` | GPP string, sent when available in the resolved GPP context. |
+| `gpp_sid` | Comma-separated list of active GPP section IDs, limited to the first two, sent when the set is non-empty. |
+| `timeout` | Soft timeout hint in ms, suffixed with `ms`, sent when the account-level `timeout` parameter is configured. |
+| `osdk` | Always set to `prebid-server`, identifying the caller. |
+| `bundle` | App bundle identifier, URL-encoded. Sent when the incoming request has an `app` object and `app.bundle` is non-empty. |
+| `ver` | App version, URL-encoded. Sent only when `bundle` is non-empty and `app.ver` is present and non-empty. |
 | `id5_signature` | ID5 signature, URL-encoded. Sent when `user.ext.optable.id5_signature` is present in the incoming request. |
 
 ### App bundle and version
@@ -350,17 +357,16 @@ For the `optable-enrich-request` activity the `execution-time` value is logged.
 
 The `optable-enrich-bidder-request` activity is emitted separately for each bidder that the module considered, and
 names that bidder in `results[0].appliedto.bidders`. Its `results[0].values` carries an `outcome` alongside the
-`execution-time` (in ms, measured from the moment the Targeting API call was initiated in the `raw-auction-request`
-stage):
+`execution-time` (in ms, measured from the moment the Targeting API call was initiated):
 
 {: .table .table-bordered .table-striped }
 
-| `outcome`  | Meaning                                                                                     |
-|:-----------|:--------------------------------------------------------------------------------------------|
+| `outcome` | Meaning |
+| :--- | :--- |
 | `enriched` | The Targeting API returned data and the bidder request was enriched. `status` is `success`. |
-| `no-data`  | The call succeeded but returned nothing to enrich with. `status` is `failure`.               |
-| `timeout`  | The call did not complete within the `bidder-request` hook timeout. `status` is `failure`.   |
-| `error`    | The call failed. `status` is `failure`.                                                      |
+| `no-data` | The call succeeded but returned nothing to enrich with. `status` is `failure`. |
+| `timeout` | The call did not complete within the `bidder-request` hook timeout. `status` is `failure`. |
+| `error` | The call failed. `status` is `failure`. |
 
 A bidder that was sampled out by `bidder-enrichment-percentages` produces no activity at all, so absence is expected
 rather than an error.
