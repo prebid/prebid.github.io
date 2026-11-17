@@ -29,7 +29,9 @@ jobs:
       - name: Check out trusted base only
         uses: actions/checkout@v6
         with:
-          ref: ${{ github.event.pull_request.base.sha }}
+          # The base branch's current head, not the PR's (possibly old) base commit: PRs opened before
+          # the reviewer scripts landed have a base without .github/scripts. Still trusted base-branch code.
+          ref: ${{ github.event.pull_request.base.ref }}
           persist-credentials: false
 
       - name: Validate Markdown reviewer guardrails
