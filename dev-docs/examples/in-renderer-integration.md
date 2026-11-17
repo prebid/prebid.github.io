@@ -53,6 +53,22 @@ var adUnit = {
 };
 
 pbjs.que.push(function() {
+  pbjs.setConfig({
+    debugging: {
+      enabled: true,
+      intercept: [
+        {
+          when: {
+            bidder: 'michao',
+          },
+          then: {
+            cpm: 10,
+            mediaType: "video",
+          }
+        }
+      ]
+    }
+  });
   pbjs.addAdUnits(adUnit);
   pbjs.requestBids({
     timeout: 5000,

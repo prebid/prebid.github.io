@@ -3,6 +3,7 @@ layout: bidder
 title: ResponsiveAds
 description: ResponsiveAds Prebid Adapter
 biddercode: responsiveads
+filename: responsiveAdsBidAdapter
 media_types: banner
 pbjs: true
 pbs: false

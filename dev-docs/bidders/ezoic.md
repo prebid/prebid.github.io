@@ -1,0 +1,62 @@
+---
+layout: bidder
+title: Ezoic
+description: Prebid Ezoic Bidder Adapter
+biddercode: ezoic
+tcfeu_supported: true
+gvl_id: 347
+usp_supported: true
+gpp_sids: tcfeu, usp
+coppa_supported: false
+schain_supported: true
+dchain_supported: false
+media_types: banner, video, native
+safeframes_ok: false
+deals_supported: false
+floors_supported: true
+fpd_supported: true
+pbjs: true
+pbs: true
+pbs_app_supported: true
+multiformat_supported: will-bid-on-one
+ortb_blocking_supported: false
+privacy_sandbox: no
+sidebarType: 1
+---
+
+## Registration
+
+The Ezoic bidder adapter requires approval before use. Bids are returned
+only for publisher domains that have been registered and approved by
+Ezoic; requests for unapproved inventory receive no-bid responses.
+Contact <prebid@ezoic.com> to get set up before adding the bidder.
+
+## Bid Params
+
+The Ezoic adapter requires no parameters.
+
+{: .table .table-bordered .table-striped }
+| Name          | Scope    | Description  | Example   | Type     |
+|---------------|----------|--------------|-----------|----------|
+| `placementId` | optional | Placement ID | `'11111'` | `string` |
+
+## User Sync
+
+The Ezoic bid adapter supports iframe-based user syncing. For best
+performance and higher match rates, enable iframe user syncs in your
+Prebid.js configuration:
+
+```javascript
+pbjs.setConfig({
+  userSync: {
+    filterSettings: {
+      iframe: {
+        bidders: ['ezoic'],
+        filter: 'include'
+      }
+    }
+  }
+});
+```
+
+The sync honors TCF (GVL ID 347), GPP, and US Privacy signals.

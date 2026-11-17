@@ -143,9 +143,9 @@ var adOptions =
             }
         },
         "bids": [{
-            "bidder": "appnexus",
+            "bidder": "msft",
             "params": {
-                "placementId": 8845778
+                "placement_id": 8845778
             }
         }]
     },
@@ -252,7 +252,7 @@ None
     "bidderAliases": [
         {
             "name": "alias1",
-            "bidderName": "appnexus"
+            "bidderName": "msft"
         }
     ],
     "biddersSpec": {
@@ -268,9 +268,9 @@ None
             }
         },
         "bids": [{
-            "bidder": "appnexus",
+            "bidder": "msft",
             "params": {
-                "placementId": 8845778,
+                "placement_id": 8845778,
                 "video": {"skippable": true,
                 "playback_method":
                     ["auto_play_sound_off"]
@@ -329,7 +329,7 @@ None
                 }
             ]
         },
-        "appnexus": {
+        "msft": {
             "adserverTargeting": [
                 {
                     "key": "hb_size",

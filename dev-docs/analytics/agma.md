@@ -10,14 +10,14 @@ prebid_member: false
 gvl_id: 1122
 ---
 
-#### Analytics Options
+## Analytics Options
 
 {: .table .table-bordered .table-striped }
 | Name         | Scope              | Description                                                                                                                 | Example                                                                             | Type             |
 |-------------|---------|--------------------|-----------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|------------------|
 | code | required  | Provided by agma | `'my-code'`  | string |
 
-### Example Configuration
+## Example Configuration
 
 ```javascript
 pbjs.enableAnalytics({
@@ -28,6 +28,6 @@ pbjs.enableAnalytics({
 });
 ```
 
-#### Registration
+## Registration
 
 Please contact [team-internet@agma-mmc.de](mailto:team-internet@agma-mmc.de) for signup.

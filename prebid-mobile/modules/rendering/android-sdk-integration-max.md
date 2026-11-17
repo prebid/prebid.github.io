@@ -79,7 +79,15 @@ The `MaxMediationBannerUtils` is a helper class, which performs certain utility 
 #### Step 3: Create MediationBannerAdUnit
 {:.no_toc}
 
-The `MediationBannerAdUnit` is a part of Prebid mediation API. This class is responsible for making bid request and providing the winning bid and targeting keywords to mediating SDKs.  
+The `MediationBannerAdUnit` is a part of Prebid mediation API. This class is responsible for making bid request and providing the winning bid and targeting keywords to mediating SDKs.
+
+By default, the ad unit requests a display banner. To request an outstream video banner, or to let display and video demand compete for the same banner, set the ad unit formats before making the bid request (requires SDK v3.4.0):
+
+```kotlin
+adUnit.setAdUnitFormats(EnumSet.of(AdUnitFormat.BANNER, AdUnitFormat.VIDEO))
+```
+
+A null or empty set is ignored, and the current value is kept. Unlike `BannerView`, the mediation ad unit doesn't know whether the Prebid bid won in the mediation SDK, so auto-refresh keeps running during video playback. If the refresh interval is shorter than the video creatives, call `stopRefresh()` and `resumeRefresh()` around playback.
 
 #### Step 4: Make bid request
 {:.no_toc}

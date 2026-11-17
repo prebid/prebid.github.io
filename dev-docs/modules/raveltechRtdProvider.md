@@ -48,7 +48,7 @@ Please contact <support@raveltech.io> to activate your adapter after installatio
 ### Build
 
 ```bash
-gulp build --modules="rtdModule,raveltechRtdProvider,appnexusBidAdapter,..."  
+gulp build --modules="rtdModule,raveltechRtdProvider,msftBidAdapter,..."  
 ```
 
 > Note that the global RTD module, `rtdModule`, is a prerequisite of the raveltech RTD module.
@@ -68,7 +68,7 @@ pbjs.setConfig({
         dataProviders: [{
             name: 'raveltech',
             params: {
-                bidders: ['appnexus', 'rubicon'],
+                bidders: ['msft', 'rubicon'],
                 preserveOriginalBid: true
             }
         }]

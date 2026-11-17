@@ -37,6 +37,28 @@ For instructions on integrating an analytics provider, see the next section.
 
 ![Prebid Analytics Architecture Diagram]({{ site.baseurl }}/assets/images/prebid-analytics-architecture.png){: .pb-md-img :}
 
+## Analytics Labels
+
+Prebid events can carry an object of **analytics labels** that annotate the payload with experiment, rollout, or troubleshooting context. Labels are available to every analytics adapter in two places:
+
+* as a top-level `labels` object that combines every active label
+* as `args.analyticsLabels` inside the event payload so adapters that only inspect the args can still read them
+
+Publishers can declare their own labels with standard configuration:
+
+```javascript
+pbjs.setConfig({
+  analyticsLabels: {
+    experiment_1: 'group_a',
+    releaseTrain: 'B'
+  }
+});
+```
+
+Modules can also contribute labels by calling `setLabels` from `AnalyticsAdapter`. One example is the [Enrichment Lift Measurement Module](/dev-docs/modules/enrichmentLiftMeasurement.html), which attaches the active A/B test configuration so analytics adapters can report on each test run. All labels defined by publishers or modules are merged together before being delivered to analytics adapters.
+
+Analytics adapters that want to use this metadata simply read either `event.labels` or `event.args.analyticsLabels` in their `track` implementation.
+
 ## Creating an Analytics Module
 
 Working with any Prebid project requires using Github. In general, we recommend the same basic workflow for any project:
@@ -77,7 +99,7 @@ Analytics adapter for Example.com. Contact prebid@example.com for information.
 
 2. Create an analytics adapter to listen for [Prebid events](/dev-docs/publisher-api-reference/onEvent.html) and call the analytics library or server. See the existing *AnalyticsAdapter.js files in the repo under [modules](https://github.com/prebid/Prebid.js/tree/master/modules).
 
-3. There are two types of analytics adapters. The example here focuses on the 'endpoint' type. See [AnalyticsAdapter.js](https://github.com/prebid/Prebid.js/blob/master/libraries/analyticsAdapter/AnalyticsAdapter.js) for more info on the 'bundle' type.
+3. There are two types of analytics adapters. The example here focuses on the 'endpoint' type. See [AnalyticsAdapter.ts](https://github.com/prebid/Prebid.js/blob/master/libraries/analyticsAdapter/AnalyticsAdapter.ts) for more info on the 'bundle' type.
 
     1. endpoint - Calls the specified URL on analytics events. Doesn't require a global context.
     2. bundle - An advanced option expecting a global context.
@@ -86,7 +108,9 @@ Analytics adapter for Example.com. Contact prebid@example.com for information.
 adapter needs to specify an enableAnalytics() function, but it should also call
 the base class function to set up the events.
 
-5. Doing analytics may require user permissions under [GDPR](/dev-docs/modules/consentManagementTcf.html), which means your adapter will need to be linked to your [IAB Global Vendor List](https://iabeurope.eu/vendor-list-tcf/) ID. If no GVL ID is found, and Purpose 7 (Measurement) is enforced, your analytics adapter will be blocked unless it is specifically listed under vendorExceptions. Your GVL ID can be added to the `registerAnalyticsAdapter()` call.
+5. Doing analytics may require user permissions under [GDPR](/dev-docs/modules/consentManagementTcf.html), which means your adapter will need to be linked to your [IAB Global Vendor List](https://iabeurope.eu/vendor-list-tcf/) ID. If no GVL ID is found, and Purpose 7 (Measurement) is enforced, your analytics adapter will be blocked unless it is specifically listed under vendorExceptions. Your GVL ID can be added to the `registerAnalyticsAdapter()` call. Since Prebid.js 11.41, if you are not on the GVL but are on Google's Additional Consent provider list, you can instead pass your provider ID as `acpId` (see [Additional Consent](/dev-docs/modules/tcfControl.html#additional-consent)).
+
+6. Since Prebid.js 11.18, Prebid.js may disable and re-enable an analytics adapter while the page is open, as consent data changes (see the [`reportAnalytics` activity](/dev-docs/activity-controls.html#activities)). Adapters must support `disableAnalytics()`: inherit it from the base adapter, or, if you override it, call the base class function. If an adapter does not provide `disableAnalytics()`, Prebid.js logs a warning and the adapter stays enabled. After being disabled, an adapter's `enableAnalytics()` may be called again; the base adapter then replays past events it has not already tracked, including those emitted while it was disabled.
 
 #### Basic prototype analytics adapter
 
@@ -150,7 +174,8 @@ There are two error events analytics modules may wish to listen for: auctionDebu
 
 * listen only to the events required
 * batch up calls to the backend for post-auction logging rather than calling immediately after each event.
-* consider using the keepalive option on the ajax request to keep the priority low and the request queued after the pageview dies
+* consider using the keepalive option on the ajax request to keep the priority low and the request queued after the pageview dies. Since Prebid.js 11.15, keepalive is ignored (with a console warning) when the request body is larger than 64 KiB, the browser limit for keepalive requests.
+* if a request should never carry credentials (cookies), use `noCredsAjax` or `noCredsFetch` from `src/ajax.js` instead of `ajax` or `fetch`. Credentials on `ajax` and `fetch` requests are subject to the [`accessRequestCredentials` activity]({{site.baseurl}}/dev-docs/activity-controls.html).
 
 ### Step 3: Add unit tests
 

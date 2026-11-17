@@ -64,12 +64,14 @@ Privacy Sandbox is the name the Chrome browser has given to a series of features
 At a high level, the "Topics" feature is Chrome's way of defining a taxonomy of information that can be used for ad targeting. See 
 [Chrome Topics](https://privacysandbox.com/proposals/topics/) for details.
 
-There's actually nothing to do to enable Topics in Prebid.js – bidders will receive their own Topics if they've implemented that feature.
-That said, Prebid.js does have a [Topics FPD Module](/dev-docs/modules/topicsFpdModule.html) that allows bidders to share each other's Topics.
+Chrome has since removed the Topics API. Since Prebid.js 11.26, Prebid.js no longer requests the Sec-Browsing-Topics header, and the [Topics FPD Module](/dev-docs/modules/topicsFpdModule.html) is a no-op.
 
 Prebid Server supports reading the Topics headers and inserting them into the OpenRTB at `user.data`.
 
 #### Protected Audience API
+
+{: .alert.alert-warning :}
+The Prebid.js PAAPI modules (`paapi`, `paapiForGpt`, `topLevelPaapi`) and the `paapi` setConfig option were removed in Prebid.js 11.0. The Prebid.js guidance in this section applies to Prebid.js 10.x and earlier only.
 
 PAAPI (also called PAA) is Chrome's solution for ad targeting done in a privacy-friendly way. In short, GAM will kick off an in-browser auction after
 the contextual auction. If the in-browser auction wins, it can override the ad chosen by GAM. 
@@ -125,26 +127,28 @@ This table may be useful to publishers trying to decide which version of Prebid.
 {: .table .table-bordered .table-striped }
 
 | Prebid.js Version | Notes |
-|-------------------|-------|
-| 8.22| Makes Prebid FPD available to the PAAPI generateBid, scoreAds, and reportResult functions |
-| 8.15| Added floor signal to the paapiForGpt module |
-| 8.9| Initial release of the paapiForGpt module, Sec-Browsing-Topics header enabled |
-| 8.8| The topicsFpd module is released, allowing bidders to share topics |
+| --- | --- |
+| 11.26 | Topics support removed: the Sec-Browsing-Topics header is no longer requested and the topicsFpd module is a no-op |
+| 11.3 | The Chrome cookie deprecation label (`device.ext.cdep`) is no longer collected |
+| 8.22 | Makes Prebid FPD available to the PAAPI generateBid, scoreAds, and reportResult functions |
+| 8.15 | Added floor signal to the paapiForGpt module |
+| 8.9 | Initial release of the paapiForGpt module, Sec-Browsing-Topics header enabled |
+| 8.8 | The topicsFpd module is released, allowing bidders to share topics |
 
 #### Prebid Server Versions Supporting Privacy Sandbox
 
 {: .table .table-bordered .table-striped }
 
 | PBS-Go Version | Notes |
-|-------------------|-------|
+| --- | --- |
 | 0.239.0 | Basic passthrough support |
 
 {: .table .table-bordered .table-striped }
 
 | PBS-Java Version | Notes |
-|-------------------|-------|
-| 2.11| Topics and Test Labels |
-| 1.111| Basic passthrough support |
+| --- | --- |
+| 2.11 | Topics and Test Labels |
+| 1.111 | Basic passthrough support |
 
 ## Further Reading
 

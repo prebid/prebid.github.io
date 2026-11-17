@@ -61,7 +61,7 @@ to load a Prebid Config containing a `realTimeData.dataProviders` array:
 3. Configure the OneKey RTD Provider with the bidders that are part of the OneKey community. If there is no bidders specified, the RTD provider
 will share OneKey data with all adapters.
 
-⚠️ This module works with a User Id sub-module. Both must be configured. See the [OneKey Id Sub-Module](/dev-docs/modules/userId.html#onekey-ids--preferences).
+⚠️ This module works with a User Id sub-module. Both must be configured. See the [OneKey Id Sub-Module](/dev-docs/modules/userid-submodules/onekey.html).
 
 ### Parameters
 

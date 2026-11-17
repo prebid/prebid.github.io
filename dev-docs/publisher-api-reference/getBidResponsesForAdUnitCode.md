@@ -9,9 +9,10 @@ Returns bidResponses for the specified adUnitCode. See full documentation at [pb
 
 **Kind**: static method of `pbjs`
 
-**Returns**: `Object` - bidResponse object
+**Returns**: `Array` - an array of bid responses. For backwards compatibility, the array exposes the array also under the `.bids` property.
 
 {: .table .table-bordered .table-striped }
+
 | Param | Scope | Type | Description |
 | --- | --- | --- | --- |
 | adUnitCode | Required | `String` | adUnitCode |

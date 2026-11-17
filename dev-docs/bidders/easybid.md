@@ -5,6 +5,7 @@ description: Prebid Easybid Bidder Adapter
 pbjs: true
 pbs: true
 biddercode: easybid
+aliasCode: nexx360
 gvl_id: 1068
 usp_supported: true
 gpp_sids: tcfeu

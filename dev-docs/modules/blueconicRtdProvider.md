@@ -24,7 +24,7 @@ BlueConic's Real-time Data Provider automatically obtains segmentation data and 
 
 Compile the BlueConic RTD module into your Prebid build:
 
-`gulp build --modules=rtdModule,blueconicRtdProvider,appnexusBidAdapter`
+`gulp build --modules=rtdModule,blueconicRtdProvider,bidderABidAdapter`
 
 Add the BlueConic RTD provider to your Prebid config. In this example we will configure
 publisher 1234 to retrieve segments, profile data from BlueConic. See the
@@ -57,8 +57,8 @@ pbjs.setConfig(
 ## BlueConic Configuration Parameters
 
 {: .table .table-bordered .table-striped }
-| Name  |Type | Description   | Notes  |
-| :------------ | :------------ | :------------ |:------------ |
+| Name | Type | Description | Notes |
+| :--- | :--- | :--- | :--- |
 | name | String | Real time data module name | Always 'blueconic' |
 | waitForIt | Boolean | Required to ensure that the auction is delayed until prefetch is complete | Optional. Defaults to false |
 | params | Object | | |
@@ -71,13 +71,13 @@ tests.
 
 To run test suite for blueconic:
 
-`gulp test --modules=rtdModule,blueconicRtdProvider,appnexusBidAdapter`
+`gulp test --modules=rtdModule,blueconicRtdProvider,bidderABidAdapter`
 
 ## Example
 
 To view an example of available segments & profile data:
 
-`gulp serve --modules=rtdModule,blueconicRtdProvider,appnexusBidAdapter`
+`gulp serve --modules=rtdModule,blueconicRtdProvider,bidderABidAdapter`
 
 and then point your browser at:
 

@@ -236,6 +236,32 @@ This setting determines the number of seconds after the start of playback before
 
 {% include code/mobile-sdk.html id="skip-delay" kotlin=android swift=ios %}
 
+### Auto-Close on Video Completion
+
+This setting controls whether a non-rewarded fullscreen video ad without a companion ad closes automatically when video playback completes. Disable it to keep the interstitial open with a **Watch Again** button until the user closes the ad.
+
+Rewarded ads do not use this setting. Configure their post-reward behavior with [`rwdd.close.action`](/prebid-mobile/modules/rendering/combined-ui-ux-policy.html#rewarded-ad), using either `autoclose` or `closebutton`.
+
+{% capture android %}
+  {: .table .table-bordered .table-striped }
+
+  |**API Object**         | *not supported*|
+  |**Ad Unit Property**   | *not supported*|
+  |**Server Property**    | *not supported*|
+{% endcapture %}
+
+{% capture ios %}
+  {: .table .table-bordered .table-striped }
+
+  |**API Object**         |`InterstitialRenderingAdUnit`, `MediationInterstitialAdUnit`|
+  |**Ad Unit Property**   |`adUnit.isAutoCloseOnCompletionEnabled`|
+  |**Server Property**    |`isautocloseoncompletionenabled`|
+  |**Allowed Values**     |`true`, `false`|
+  |**Default Value**      |`true`|
+{% endcapture %}
+
+{% include code/mobile-sdk.html id="auto-close-on-video-completion" kotlin=android swift=ios %}
+
 ### Sound Button
 
 This option switches on or off the visibility of the sound/mute button for users.
@@ -310,6 +336,7 @@ Here is how you can implement all the API's to customize your ad.
   interstitialController?.skipButtonArea = 0.1
   interstitialController?.skipButtonPosition = .topRight
   interstitialController?.closeButtonPosition = .topRight
+  interstitialController?.isAutoCloseOnCompletionEnabled = false
   ```
   
 {% endcapture %}

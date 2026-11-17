@@ -18,9 +18,9 @@ function loadVideoData() {
             }
         },
         bids: [{
-            bidder: 'appnexus',
+            bidder: 'msft',
             params: {
-                placementId: 13232361, // Add your own placement id here
+                placement_id: 13232361, // Add your own placement id here
                 video: {
                     skipppable: true,
                     playback_method: ['auto_play_sound_off']
@@ -41,7 +41,7 @@ function loadVideoData() {
 
         pbjs.requestBids({
             bidsBackHandler: function(bids) {
-                var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
+                var videoUrl = pbjs.adServers.gam.buildVideoUrl({
                     adUnit: videoAdUnit,
                     params: {
                         iu: '/19968336/prebid_cache_video_adunit',

@@ -131,10 +131,10 @@ This would create a set of orders for bidder Rubicon
 ![Line Item Results 1](/assets/images/tools/line-item-mgmt-img1.png){:class="pb-xlg-img"}
 
 ```bash
-line_item_manager create my_config.yml -b rubicon -b appnexus -b openx
+line_item_manager create my_config.yml -b rubicon -b msft -b openx
 ```
 
-This would create a set of orders for bidders Rubicon, Appnexus and OpenX
+This would create a set of orders for bidders Rubicon, Microsoft and OpenX
 
 ![Line Item Results 2](/assets/images/tools/line-item-mgmt-img2.png){:class="pb-xlg-img"}
 

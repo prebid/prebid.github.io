@@ -66,16 +66,16 @@ Once the Brightcove Player has loaded, then publisher needs to call `renderAd()`
     // define options for ad playback
     window.bc_plugin_pbjs = {plugin_prebid_options: {}};
     // specify prebid parameters as the value of biddersSpec
-    // the set of bidders here shows how to specify the AppNexus video bidder:  appnexus
+    // the set of bidders here shows how to specify the Microsoft video bidder:  msft
     var params = {
             code : 'my-video-tag',
             sizes : [640, 480],
             mediaType: 'video',
             bids: [
                 {
-                    bidder: 'appnexus',
+                    bidder: 'msft',
                     params: {
-                        placementId: 12334567,
+                        placement_id: 12334567,
                         video: {
                             skippable: true,
                             playback_method: ['auto_play_sound_off']
@@ -172,16 +172,16 @@ To do this, the publisher must add code in the body of the document where the Br
     // define options for prebid
     var plugin_options = {};
     // specify prebid parameters as the value of biddersSpec
-    // the set of bidders here shows how to specify the AppNexus video bidder:  appnexus
+    // the set of bidders here shows how to specify the Microsoft video bidder:  msft
     var params = {
             code : 'my-video-tag',
             sizes : [640, 480],
             mediaType: 'video',
             bids: [
                 {
-                    bidder: 'appnexus',
+                    bidder: 'msft',
                     params: {
-                        placementId: 12334567,
+                        placement_id: 12334567,
                         video: {
                             skippable: true,
                             playback_method: ['auto_play_sound_off']

@@ -44,7 +44,7 @@ pbjs.setConfig({
       name: 'permutive',
       waitForIt: true, // should be true if there's an `auctionDelay`
       params: {
-        acBidders: ['appnexus']
+        acBidders: ['msft']
       }
     }]
   },
@@ -61,28 +61,39 @@ as well as enabling settings for specific use cases mentioned above (e.g. acbidd
 
 {: .table .table-bordered .table-striped }
 
-| Name                   | Type                 | Description                                                                                   | Default            |
-| ---------------------- | -------------------- | --------------------------------------------------------------------------------------------- | ------------------ |
-| name                   | String               | This should always be `permutive`                                                             | -                  |
-| waitForIt              | Boolean              | Should be `true` if there's an `auctionDelay` defined (optional)                              | `false`            |
-| params                 | Object               |                                                                                               | -                  |
-| params.acBidders       | String[]             | An array of bidder codes to share cohorts with in certain versions of Prebid, see below                         | `[]`               |
-| params.maxSegs         | Integer              | Maximum number of cohorts to be included in either the `permutive` or `p_standard` key-value. | `500`              |
+| Name                                           | Type                 | Description                                                                                    | Default                                                         |
+| ---------------------------------------------- | -------------------- | ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| name                                           | String               | This should always be `permutive`                                                              | -                                                               |
+| waitForIt                                      | Boolean              | Should be `true` if there's an `auctionDelay` defined (optional)                               | `false`                                                         |
+| params                                         | Object               |                                                                                                | -                                                               |
+| params.acBidders                               | String[]             | An array of bidder codes to share cohorts with in certain versions of Prebid, see below        | `[]`                                                            |
+| params.maxSegs                                 | Integer              | Maximum number of cohorts to be included in either the `permutive` or `p_standard` key-value.  | `500`                                                           |
+| params.enforceVendorConsent                    | Boolean              | When `true`, require TCF consent for vendor 361 as well as the required purpose consent.       | `false`                                                         |
+| params.bidders                                 | Object               | Custom cohort sources by bidder; also enables ortb2 data for bidders outside `acBidders`.      | `{}`                                                            |
+| params.bidders.\<bidder\>.customCohorts        | Object               | Custom cohorts source configuration for a specific bidder.                                     | -                                                               |
+| params.bidders.\<bidder\>.customCohorts.source | String               | Storage type to read custom cohorts from. Currently only `'ls'` (localStorage) is supported.   | -                                                               |
+| params.bidders.\<bidder\>.customCohorts.key    | String               | The localStorage key to read custom cohorts from.                                              | -                                                               |
 
-### Context
+### Consent
 
-While Permutive is listed as a TCF vendor (ID: 361), Permutive does not obtain consent directly from the TCF. As we act as a processor on behalf of our publishers consent is given to the Permutive SDK by the publisher, not by the [GDPR Consent Management Module](/dev-docs/modules/consentManagement.html).
+**Prebid.js 10.19.0 and later:** The Permutive RTD module uses the publisher's TCF purpose 1 signals by default, without requiring consent for Permutive's vendor ID 361 (`params.enforceVendorConsent` defaults to `false`). If publisher purpose consent is not available where GDPR applies, the module will not initialize.
 
-This means that if GDPR enforcement is configured within the Permutive SDK _and_ the user consent isn’t given for Permutive to fire, no cohorts will populate.
+To also require TCF vendor consent for Permutive, include vendor ID 361 in your CMP and explicitly set `params.enforceVendorConsent: true` in the Permutive RTD provider configuration:
 
-If you are also using the [TCF Control Module](/dev-docs/modules/tcfControl.html), in order to prevent Permutive from being blocked, it needs to be labeled within the Vendor Exceptions.
+```javascript
+pbjs.setConfig({
+  realTimeData: {
+    dataProviders: [{
+      name: 'permutive',
+      params: {
+        enforceVendorConsent: true
+      }
+    }]
+  }
+});
+```
 
-### Instructions
-
-{% include dev-docs/vendor-exception.md gvlId="361" %}
-
-1. Publisher enables rules within Prebid.js configuration. 
-2. Label Permutive as an exception, as shown below.
+**Prebid.js 10.18.0 and earlier:** `enforceVendorConsent` is not supported. These versions identify the Permutive module with vendor ID 361, so installations using the [TCF Control Module](/dev-docs/modules/tcfControl.html) may still need the legacy `vendorExceptions` entry for `permutive` if the publisher has not collected TCF vendor consent. For example, the relevant TCF Control rules could include:
 
 ```javascript
 [
@@ -90,7 +101,7 @@ If you are also using the [TCF Control Module](/dev-docs/modules/tcfControl.html
     purpose: 'storage',
     enforcePurpose: true,
     enforceVendor: true,
-    vendorExceptions: ["permutive"]
+    vendorExceptions: ['permutive']
   },
   {
     purpose: 'basicAds',
@@ -101,7 +112,9 @@ If you are also using the [TCF Control Module](/dev-docs/modules/tcfControl.html
 ]
 ```
 
-Before making any updates to this configuration, please ensure that this approach aligns with internal policies and current regulations regarding consent.
+{% include dev-docs/vendor-exception.md gvlId="361" %}
+
+Before making any updates to your consent configuration, please ensure that your approach aligns with internal policies and current regulations regarding consent.
 
 ## Cohort Activation with Permutive RTD Module
 
@@ -132,10 +145,24 @@ Currently, bidders with known support for custom cohort targeting are:
 
 * Xandr
 * Magnite
+* Microsoft (msft)
 
 When enabling the respective Activation for a cohort in Permutive, this module will automatically attach that cohort ID to the bid request.
 There is no need to enable individual bidders in the module configuration, it will automatically reflect which SSP integrations you have enabled in your Permutive dashboard.
 Permutive cohorts will be sent in the permutive key-value.
+
+**Note:** Publishers migrating from the `appnexus` bidder to `msft` need to configure the `params.bidders` object so the module knows where to read custom cohorts from. The Permutive SDK writes `msft` custom cohorts to the same localStorage key used by `appnexus` (`_papns`), so publishers should add the following to their Permutive RTD config:
+
+```javascript
+params: {
+  acBidders: ['msft'],
+  bidders: {
+    msft: {
+      customCohorts: { source: 'ls', key: '_papns' }
+    }
+  }
+}
+```
 
 ### _Enabling Advertiser Cohorts_
 

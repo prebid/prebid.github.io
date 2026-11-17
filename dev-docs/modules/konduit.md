@@ -73,7 +73,7 @@ Konduit platform supports the ‘Send all bids’ scenario, but the GAM configur
 - If Send all bids is enabled, update the GAM line item creative URL as shown here:
 `https://p.konduit.me/api/vastProxy?konduit_hb=1&konduit_hb_awarded=1&konduit_cache_key=%%PATTERN:k_cache_key_BIDDERCODE%%&konduit_id=%%PATTERN:k_id%%`
 
-`k_cache_key_BIDDERCODE` is a bidder-specific macro. Replace ‘BIDDERCODE’ with an actual bidder code, such as `k_cache_key_appnexus`.
+`k_cache_key_BIDDERCODE` is a bidder-specific macro. Replace ‘BIDDERCODE’ with an actual bidder code, such as `k_cache_key_msft`.
 
 Note that the creative URL contains a few custom macros that allow Konduit platform to combine different data for predictive insights functionality.
 
@@ -110,7 +110,7 @@ pbjs.que.push(function() {
         adUnitCode: videoAdUnit[0].code,
         timeout: 1500,
         callback: function (error, bids) {
-          var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
+          var videoUrl = pbjs.adServers.gam.buildVideoUrl({
             ...
           });
 ​

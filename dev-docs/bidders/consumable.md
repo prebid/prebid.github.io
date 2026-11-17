@@ -99,7 +99,7 @@ To call Consumable from a web browser environment using a Prebid Server integrat
 
 In this configuration, Prebid.js makes a call to Prebid Server and then Prebid Server uses our server-side adapter to call Consumable. Complete the following steps to configure Consumable as a demand source:
 
-1. If you are hosting your own Prebid Server instance, see [Setup instructions to call Consumable through Prebid Server](/dev-docs/pbs-bidders.html#setup-instructions-to-call-consumable-through-prebid-server).
+1. If you are hosting your own Prebid Server instance, see [Setup instructions to call Consumable through Prebid Server](/dev-docs/pbs-bidders.html).
 2. In the `[pbjs.setConfig()]` function, within the `s2sConfig` property, add `consumable` to the `bidders` attribute.
 3. Define the Consumable-specific parameters at the bidder level. For Consumable's bidder-specific parameters, see the [Bid request parameters](#bid-request-parameters) section below.
 4. Define your ad units in the `adUnit` object. For more information about this object, see Prebid's [Ad Unit Reference](/dev-docs/adunit-reference.html) documentation.

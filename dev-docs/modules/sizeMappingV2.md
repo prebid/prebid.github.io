@@ -51,7 +51,7 @@ Note that the Prebid Server bid adapter does not currently support the scenario 
 
 If you've used [`sizeConfig`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-Responsive-Ads) in Prebid.js before, read this section to learn about the differences. If you haven't used sizeConfig before, you can skip to the next section.
 
-* The biggest change to size mapping is the introduction of **AdUnit** and **Bidder** level sizeConfig declarations. Instead of defining a global sizeConfig object configured in [`pbjs.setConfig`](/dev-docs/publisher-api-reference/setConfig.html#module_pbjs.setConfig), each Ad Unit and Bidder can define and control their own set of sizeConfig rules. This process makes it easier to reason which sizes should be active for the current viewport size in complex scenarios.
+* The biggest change to size mapping is the introduction of **AdUnit** and **Bidder** level sizeConfig declarations. Instead of defining a global sizeConfig object configured in [`pbjs.setConfig`](/dev-docs/publisher-api-reference/setConfig.html), each Ad Unit and Bidder can define and control their own set of sizeConfig rules. This process makes it easier to reason which sizes should be active for the current viewport size in complex scenarios.
 
 * A **sizeConfig** parameter may be specified on the AdUnit mediaType or a bidder. In these scenarios, the syntax is a little different than with the global configuration. Here's an example for a sizeConfig object for banner media type:
 
@@ -70,7 +70,7 @@ If you've used [`sizeConfig`](/dev-docs/publisher-api-reference/setConfig.html#s
 
 * Likewise, **mediaQuery** is not used in AdUnit sizeConfig objects. Instead, an array of size buckets is defined by just the `minViewPort` property. Only one size bucket activates based on viewport size.
 
-It may be useful to compare the globally-configured sizeConfig with the AdUnit-level sizeConfig. [Here is an example](/dev-docs/publisher-api-reference/setConfig.html#sizeConfig-Example) using global sizeConfig.
+It may be useful to compare the globally-configured sizeConfig with the AdUnit-level sizeConfig. [Here is an example](/dev-docs/modules/sizeMapping.html#sizeConfig-Example) using global sizeConfig.
 
 Here's that same example using Advanced Size Mapping:
 
@@ -122,7 +122,7 @@ What happens as a result of each active size bucket changes based on the media t
 
 #### An AdUnit with Banner Media Type, Bidder-Level sizeConfig, and Labels
 
-Note that the labels are assumed to be passed in via [`pbjs.requestBids()`](/dev-docs/publisher-api-reference.html#module_pbjs.requestBids).
+Note that the labels are assumed to be passed in via [`pbjs.requestBids()`](/dev-docs/publisher-api-reference/requestBids.html).
 
 ```javascript
 {

@@ -285,6 +285,15 @@
     sectionName: Support
     title: Prebid Mobile
     link: /faq/prebid-mobile-faq.html
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 0
+
+  - subsectionId: 3
+    sectionId: 2
+    sectionName: Support
+    title: Release Notes
+    link: /dev-docs/release-notes.html
     needsDivider: 1
     isHeader: 0
     isSubSectionStart: 0

@@ -23,14 +23,16 @@ dsa_supported: false
 fpd_supported: false
 multiformat_supported: none
 privacy_sandbox: none
+userIds: imuid
 ---
 
-### Registration
-To use this bidder you will need with UNIQUEST. For further information, Please contact us at <prebid_info@muneee.co.jp>.
+## Registration
+To use this bidder you will need to work with UNIQUEST. For further information, Please contact us at <prebid_info@muneee.co.jp>.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope    | Description | Example  | Type     |
-|-------|----------|---------------------------|----------|----------|
+
+| Name  | Scope    | Description                 | Example      | Type     |
+|-------|----------|-----------------------------|--------------|----------|
 | `sid` | required | The AdUnit ID from UNIQUEST | `'SID00001'` | `string` |

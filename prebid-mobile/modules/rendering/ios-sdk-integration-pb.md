@@ -71,7 +71,8 @@ The `BidInfo` provides the following properties:
 - `nativeAdCacheId` - the local cache ID of the winning bid. Applied only to the `native` ad format.
 - `events` - the map of some publically available event URLs attached to the bid. These can be used to enable Prebid Server-based analytics when the Prebid Universal Creative (PUC) is not involved in the rendering process. If the PUC is used for rendering, it will take care of hitting these events. These are the available event URLs:
   - **EVENT_WIN** - this bid was chosen by the ad server as the one to display. This is the main metric for banner and native. This returns the OpenRTB `seatbid.bid.ext.prebid.events.win` field. (requires SDK v2.1.6)
-  - **EVENT_IMP** - the ad creative for this bid was actually displayed. This is often the main metric for video ads. This returns the OpenRTB `seatbid.bid.ext.prebid.events.imp` field. (requires SDK v2.1.6)
+  - **EVENT_IMP** - the ad creative for this bid was actually displayed. This is often the main metric for video ads. This returns the OpenRTB `seatbid.bid.ext.prebid.events.imp` field. (requires SDK v2.1.6; before SDK v3.4.0, this key returned the `win` URL by mistake)
+- `topBidFiltered` - `true` when [`filterOutUncachedBids`](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#filtering-uncached-bids) dropped the bid Prebid Server chose as the winner and a lower-priced cached bid took its place. The result code stays `.prebidDemandFetchSuccess`. (requires SDK v3.4.0)
 
 Code sample to extract the events:
 
@@ -121,11 +122,22 @@ Call the method `loadAd()` which will:
 
 #### Banner Video (non-instream)
 
-**Banner Video** is the same as HTML banner, but you also need to specify the ad format:
+**Banner Video** is the same as HTML banner, but you also need to specify the ad formats (requires SDK v3.4.0):
 
 ``` swift
-banner.adFormat = .video
+banner.adFormats = [.video]
 ```
+
+To let display and video demand compete for the same banner, request both formats:
+
+``` swift
+banner.adFormats = [.banner, .video]
+```
+
+`BannerView` renders `.banner` and `.video` only. An empty set, or a set with any other format such as `.native`, is ignored with a warning, and the current value is kept. Auto-refresh waits while a video creative is playing.
+
+{: .alert.alert-warning :}
+Starting from PrebidMobile `3.4.0`, the `adFormat` property is deprecated and will be removed in a future major release. Use `adFormats` instead.
 
 #### Interstitials
 
@@ -264,6 +276,10 @@ func rewardedAdUserDidEarnReward(_ rewardedAd: RewardedAdUnit, reward: PrebidRew
     // Process the reward
 }
 ```
+
+## Ad Expiration
+
+{% include mobile/rendering-ad-expiration-ios.md %}
 
 ## Additional Ad Unit Configuration
 

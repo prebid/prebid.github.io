@@ -114,7 +114,9 @@ To illustrate, these definitions are equivalent:
 
 ### Replace rules
 
-The replace rule can be provided as a function that takes the bid request as its only argument and returns an object with the desired response properties. The [first example above](#example) could be written as:
+The replace rule can be provided as a function that takes the bid request as its only argument and returns an object with the desired response properties. 
+The function can also return `null` to indicate that there is no bid.
+The [first example above](#example) could be written as:
 
 ```javascript
 pbjs.setConfig({
@@ -136,6 +138,8 @@ Alternatively, the rule can be expressed as an object, and its `key`-`value` pai
 
 - if `value` is a function, then `bidResponse[key]` will be set to `value(bidRequest)`;
 - otherwise, `bidResponse[key]` will be set to `value`.
+
+Using `null` as the object indicates that there was no bid.
 
 To illustrate, the following definitions are equivalent:
 
@@ -160,6 +164,10 @@ To illustrate, the following definitions are equivalent:
 |Property |Type              |Default value |Description                                                                                                             |
 |---------+------------------+--------------+------------------------------------------------------------------------------------------------------------------------|
 |`delay`  |Number            |0             |Delay (in milliseconds) before intercepted bids are injected into the auction. Can be used to simulate network latency. |
+
+## First party data validation
+
+Since Prebid.js 11.26, when the debugging module is installed it also validates first party data at the start of each auction, covering both global and bidder-specific `ortb2`. It uses the same rules as the [First Party Data Validation module](/dev-docs/modules/validationFpdModule.html) and logs each invalid field as a warning, but does not modify or remove any data.
 
 ## Examples
 
@@ -212,7 +220,6 @@ pbjs.setConfig({
           mediaType: "native",
           source: "client",
           currency: "EUR",
-          cpm: 1.00,
           creativeId: "222222",
           native: { ortb: {
             link: { url: "http://example.com" },
@@ -245,3 +252,7 @@ pbjs.setConfig({
   }
 });
 ```
+
+## Further Reading
+
+- [DevTools MCP module](/dev-docs/modules/devtoolsMcp.html): inspect live Prebid.js auctions, bids and events from an AI agent through Chrome DevTools.

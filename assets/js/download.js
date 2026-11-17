@@ -34,13 +34,9 @@
     });
 
     function getVersionList() {
-        $.ajax({
-            type: "GET",
-            url: "https://js-download.prebid.org/versions",
-        })
-            .success(function (data) {
+        prebidBundler.getVersions()
+            .then(function (data) {
                 try {
-                    data = JSON.parse(data);
                     var versions = data.versions;
                     if (!versions || versions.length === 0) {
                         showError();
@@ -70,8 +66,7 @@
                     console.log(e);
                     showError();
                 }
-            })
-            .fail(function (e) {
+            }, function (e) {
                 console.log(e);
                 showError();
             });
@@ -86,44 +81,41 @@
         $('#download-button').html('<i class="glyphicon glyphicon-send"></i> Sending Request...').addClass('disabled');
 
         var form_data = get_form_data();
-        $.ajax({
-            type: "POST",
-            url: "https://js-download.prebid.org/download",
-            dataType: "text",
-            data: form_data,
-        })
-        .success(function (data, textStatus, jqXHR) {
+        const removedModules = form_data.removedModules;
+        delete form_data.removedModules;
+        prebidBundler.download(form_data)
+        .then(function (data) {
             $('#download-button').html('<i class="glyphicon glyphicon-ok"></i> Prebid.js download successfully prepared!');
             setTimeout(function () {
                 $('#download-button').html('<i class="glyphicon glyphicon-download-alt"></i> Download Prebid.js').removeClass('disabled');
             }, 5000);
             var filename = "prebid" + form_data["version"] + ".js";
-            var disposition = jqXHR.getResponseHeader("Content-Disposition");
-            if (disposition && disposition.indexOf("attachment") !== -1) {
-                var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
-                var matches = filenameRegex.exec(disposition);
-                if (matches != null && matches[1])
-                    filename = matches[1].replace(/['"]/g, "");
-            }
 
-            var jsBlob = new Blob([data], { type: "text/javascript" });
+            var jsBlob = new Blob([data.source], { type: "text/javascript" });
             var configData = JSON.stringify({ version: form_data.version, modules: form_data.modules }, null, 2);
 
             triggerDownload(jsBlob, filename);
             triggerDownload(new Blob([configData], { type: "application/json" }), "prebid-config.json");
+            if (data.disclosures) {
+                triggerDownload(
+                    new Blob([JSON.stringify(data.disclosures, null, 2)], { type: "application/json" }),
+                    filename.replace(/\.js$/, "") + "_disclosures.json"
+                );
+            } else {
+                alert("Prebid.js was downloaded, but the storage disclosure file couldn't be generated. Download again to retry.");
+            }
 
-            if (form_data["removedModules"].length > 0) {
+            if (removedModules.length > 0) {
                 alert(
                     "The following modules were removed from your download because they aren't present in Prebid.js version " +
                     form_data["version"] +
                     ": " +
-                    JSON.stringify(form_data["removedModules"])
+                    JSON.stringify(removedModules)
                 );
             }
-        })
-        .fail(function (e) {
+        }, function (e) {
             console.log(e);
-            alert("Ran into an issue.");
+            alert("Ran into an issue: " + e.message);
         });
     }
 
@@ -179,7 +171,7 @@
             });
 
         return {
-            modules: renameModules(version, modules),
+            modules: renameModules(version, modules).filter(mod => !removedModules.includes(mod)),
             version,
             removedModules,
         };

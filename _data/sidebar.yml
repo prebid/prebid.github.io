@@ -177,6 +177,14 @@
   subgroup: 0
 
 - sbSecId: 1
+  title: Using Prebid.js with TypeScript
+  link: /dev-docs/typescript.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 1
   title: Basic Impression Flow
   link: /prebid/prebidjs-flow-video.html
   isHeader: 0
@@ -266,8 +274,24 @@
   subgroup: 1
 
 - sbSecId: 1
+  title: Prebid as an ad server, cross-origin rendering
+  link: /dev-docs/examples/no-adserver-safeframe.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 1
+  title: Server-side only bidding
+  link: /dev-docs/examples/s2s-only.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 1
   title: Using Prebid.js with Microsoft Monetize Ad Server
-  link: /dev-docs/examples/use-prebid-with-appnexus-ad-server.html
+  link: /dev-docs/examples/use-prebid-with-microsoft-ad-server.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -532,6 +556,14 @@
   subgroup: 5
 
 - sbSecId: 1
+  title: Loading modules separately
+  link: /dev-docs/modules/index.html#loading-modules-separately
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 1
   title: External Interfaces
   link:
   isHeader: 1
@@ -598,7 +630,7 @@
   subgroup: 8
 
 - sbSecId: 1
-  title: Prebid Ad Slot and GPID
+  title: Global Placement ID (GPID)
   link: /features/pbAdSlot.html
   isHeader: 0
   isSectionHeader: 0
@@ -624,6 +656,14 @@
 - sbSecId: 1
   title: Interstitial Ads
   link: /features/InterstitialAds.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 8
+
+- sbSecId: 1
+  title: Custom Rendering for Deals
+  link: /features/customDealRendering.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -899,6 +939,22 @@
 - sbSecId: 2
   title: GAM Prebid-Rendered Integration
   link: /prebid-mobile/modules/rendering/android-sdk-integration-gam.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 2
+  title: Google Next-Gen SDK Bidding-Only Integration
+  link: /prebid-mobile/pbm-api/android/android-sdk-integration-nextgen-original-api.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 2
+  title: Google Next-Gen SDK Prebid-Rendered Integration
+  link: /prebid-mobile/modules/rendering/android-sdk-integration-nextgen.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1906,6 +1962,14 @@
   subgroup: 0
 
 - sbSecId: 7
+  title: Release Notes
+  link: /dev-docs/release-notes.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 7
   title: Blog
   link: https://prebid.org/blog/
   isHeader: 0
@@ -2030,6 +2094,35 @@
 - sbSecId: 9
   title: SharedID
   link: /identity/sharedid.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+#-------------- Prebid Agents --------------|
+
+- sbSecId: 10
+  title:
+  link:
+  isHeader: 0
+  isSectionHeader: 1
+  sectionTitle: Prebid Agents
+  sectionId: prebid-agents
+  subgroup: 1000
+  sbCollapseId: prebid-agents
+
+- sbSecId: 10
+  title: General
+  link:
+  isHeader: 1
+  headerId: agents-general
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 10
+  title: Salesagent
+  link: /agents/salesagent.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:

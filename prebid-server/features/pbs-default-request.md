@@ -43,7 +43,7 @@ For both PBS-Go and PBS-Java, here's an example default request file:
     "ext": {
         "prebid": {
             "aliases": {
-                "districtm": "appnexus"
+                "districtm": "msft"
             }
         }
     }

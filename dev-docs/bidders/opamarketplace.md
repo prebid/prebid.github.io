@@ -9,7 +9,7 @@ tcfeu_supported: true
 usp_supported: true
 coppa_supported: false
 schain_supported: true
-gpp_supported: true
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 floors_supported: true
 media_types: banner, video
 prebid_member: false
@@ -24,7 +24,7 @@ pbs: false
 sidebarType: 1
 ---
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 
