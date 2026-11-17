@@ -1241,7 +1241,7 @@ to bypass the cache requirement. There are different flows possible with Prebid.
 {: .table .table-bordered .table-striped }
 | Cache Attribute | Required? | Type | Description |
 |----+--------+-----+-------|
-| cache.url | yes | string | The URL of the Prebid Cache server endpoint where VAST creatives will be sent. |
+| cache.url | yes | string (except when `useLocal` is `true`) | The URL of the Prebid Cache server endpoint where VAST creatives will be sent. |
 | cache.useLocal | no | boolean | Flag determining whether to locally save VAST XML as a blob |
 | cache.timeout | no | number | Timeout (in milliseconds) for network requests to the cache |
 | cache.vasttrack | no | boolean | Passes additional data to the url, used for additional event tracking data. Defaults to `false`. |
@@ -1660,12 +1660,15 @@ Prebid modules sometimes need to know the [IAB Global Vendor List](https://iabeu
 pbjs.setConfig({
   gvlMapping: {
     msft: 4,
-    someModule: 123
+    someModule: 123,
+    otherModule: [123, 456]
   }
 });
 ```
 
 Prebid Server uses this mapping when it sends `ext.prebid.aliasgvlids` for bidder aliases, and the [TCF Control Module](/dev-docs/modules/tcfControl.html) references it when enforcing consent.
+
+Since Prebid.js 11.46, a value may be a list of GVL IDs, for modules that act on behalf of more than one vendor. The TCF Control Module then requires a legal basis for every ID in the list - see [modules with multiple GVL IDs](/dev-docs/modules/tcfControl.html#multiple-gvl-ids). `ext.prebid.aliasgvlids` takes a single ID per alias, so Prebid.js doesn't send it for an alias with several IDs (and logs a warning); Prebid Server then uses the GVL ID from its own configuration.
 
 <a id="setConfig-gvlLegalBasisMapping"></a>
 
