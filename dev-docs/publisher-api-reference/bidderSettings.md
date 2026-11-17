@@ -50,6 +50,7 @@ Some sample scenarios where publishers may wish to alter the default settings:
 | allowedAlternateBidderCodes | standard or adapter-specific | 6.23.0 | n/a | Array of bidder codes for which an adapter can bid. <br />`undefined` or `['*']` will allow adapter to bid with any bidder code. |
 | allowPriorityBids | adapter-specific | 11.44.0 | false | Trust this adapter's deal metadata (priority and priority-adjusted CPM) when ranking its bids. See [below](#212-allowprioritybids). |
 | allowHouseBids | adapter-specific | 11.45.0 | false | Accept this adapter's house bids at a 0 CPM, without accepting its other 0 CPM bids. Requires `allowPriorityBids`. See [below](#213-allowhousebids). |
+| disableGzipCompression | standard or adapter-specific | 11.48.0 | false | Send this adapter's bid requests uncompressed, even if it asks for gzip compression. See [below](#214-disablegzipcompression). |
 | adjustAlternateBids | standard or adapter-specific | 7.48.0 | false | Optionally allow alternate bidder codes to use an adapter's bidCpmAdjustment function by default instead of the standard bidCpmAdjustment function if present (note: if a bidCpmAdjustment function exists for the alternate bidder code within bidderSettings, then this will be used instead of falling back to the adapter's bidCpmAdjustment function). |
 
 ### 2.1. adserverTargeting
@@ -430,6 +431,26 @@ pbjs.bidderSettings = {
         allowPriorityBids: true,
         allowHouseBids: true
     }
+};
+```
+
+### 2.14. disableGzipCompression
+
+Since Prebid.js 11.48, `disableGzipCompression: true` sends an adapter's bid requests uncompressed. Adapters that support it ask Prebid.js to [gzip their request payloads](/dev-docs/bidder-adaptor.html#compression-support-for-outgoing-requests), some on every request; this setting lets the publisher turn that off, for example to read the requests in the browser's developer tools or when an endpoint has trouble with compressed bodies.
+
+Notes:
+
+* The setting is read for the bidder code of the request, falling back to `standard`, so `standard` turns compression off for every adapter. An alias has its own setting.
+* It only applies to client-side bid requests. For Prebid Server, use [`s2sConfig.endpointCompression`](/dev-docs/modules/prebidServer.html), which is off by default. Analytics adapters have their own options (for example, id5's `compressionDisabled`).
+* Debug mode (`?pbjs_debug=true` or `debug: true`) already sends every request uncompressed.
+
+```javascript
+pbjs.bidderSettings = {
+    standard: {
+        disableGzipCompression: true  // all adapters
+    },
+    // or for one adapter:
+    // exampleBidder: { disableGzipCompression: true }
 };
 ```
 
