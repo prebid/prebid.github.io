@@ -121,7 +121,7 @@ What happens as a result of each active size bucket changes based on the media t
 
 #### An AdUnit with Banner Media Type, Bidder-Level sizeConfig, and Labels
 
-Note that the labels are assumed to be passed in via [`pbjs.requestBids()`](/dev-docs/publisher-api-reference/requestBids.html). An AdUnit or bid may use `labelAny` or `labelAll`, not both. If `labels` is not passed to `requestBids`, label checks pass.
+Note that the labels are assumed to be passed in via [`pbjs.requestBids()`](/dev-docs/publisher-api-reference/requestBids.html). An AdUnit or bid may use `labelAny` or `labelAll`, not both. If `labels` is not passed to `requestBids`, label checks pass. This module applies label checks only when at least one AdUnit in the same `requestBids` call uses `sizeConfig`.
 
 ```javascript
 {
