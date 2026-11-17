@@ -88,7 +88,7 @@ pbjs.setConfig({
 | --- | --- | --- |
 | `default` | Boolean | Whether the activity should be allowed if no other rule applies. Defaults to true. |
 | `rules` | Array of objects | Rules for this activity |
-| `rules[].condition` | Function | Condition function to use for this rule; the rule applies only if this returns true. Receives a single object that contains [activity parameters](#parameters) as input. If omitted, the rule always applies. The function must return a boolean synchronously; if it throws, the activity is denied. |
+| `rules[].condition` | Function | Condition function to use for this rule. Receives a single object that contains [activity parameters](#parameters) as input. Must be synchronous; the rule applies if it returns a truthy value. If it throws, the activity is denied. If omitted, the rule always applies. |
 | `rules[].allow` | Boolean | Whether the activity should be allowed when this rule applies. If omitted, the rule denies the activity; see [Allow Flag](#allow-flag). |
 | `rules[].priority` | Number | Priority of this rule compared to other rules; a lower number means higher priority. See [note on rule priority](#priority) below. Defaults to 1. |
 
