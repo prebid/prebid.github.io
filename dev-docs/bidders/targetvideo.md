@@ -9,6 +9,7 @@ tcfeu_supported: true
 schain_supported: true
 pbjs: true
 pbs: true
+pbs_app_supported: true
 prebid_member: true
 userIds: all
 floors_supported: true
