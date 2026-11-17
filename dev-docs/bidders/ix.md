@@ -668,13 +668,13 @@ var adUnits = [{
             mimes: ['video/mp4', 'application/javascript'],
             placement: 3,
             plcmt: 4,
-            playbackmethod: 6
+            playbackmethod: [6]
         }
     },
     bids: [{
         bidder: 'ix',
         params: {
-            siteId: '9999990'
+            siteId: '9999990',
             video: {
                 playerConfig: {
                     floatOnScroll: true,
