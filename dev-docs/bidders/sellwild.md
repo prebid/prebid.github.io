@@ -29,7 +29,7 @@ sidebarType: 1
 
 The Sellwild adapter requires setup and approval before use. Sellwild assigns each partner a partner code and an auth token. Contact <support@sellwild.com> to get started.
 
-Keep the `token` in server-side stored requests or stored impressions, not in parameters sent from the page or app.
+Keep the `token` in server-side stored requests or stored impressions, not in parameters sent from the page or app. Prebid Server returns the resolved request, stored data included, in `ext.debug.resolvedrequest` when debug is on, so disable debug for accounts that carry a Sellwild token.
 
 - Send `device.ip`, `device.ua` and `device.geo.country` on every request. Without `device.geo.country`, Sellwild doesn't apply floors and geo-targeted demand won't bid.
 - Fire the returned `nurl` or `burl` when the ad wins or renders. Sellwild bills its demand from that notice.
