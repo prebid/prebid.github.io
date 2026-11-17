@@ -122,6 +122,15 @@ The Downloads page is generated from [the Markdown bidder adapter docs](https://
 
 This means an adaptor is not available to download from Prebid.org as soon as the code gets merged into Prebid.js - it will be available after the next release (usually in a couple of weeks).
 
+### Pending release labels
+
+A reviewer labels docs PRs that wait for code "Pending PBJS Release", "Pending PBS Release", "Pending Prebid Mobile Release", "Pending Prebid Module Release" or "Pending Next Major Release". Every day, the [pending release check](.github/workflows/pending-release-check.yml) looks at the code PRs each one links to (in its description or comments, or code PRs that mention it):
+
+* When all of them are merged and in their repo's latest release, it adds the "Ready to merge: code released" label and comments with the releases. A docs maintainer then merges the PR; the pending label stays on it.
+* When only some have shipped (for example, PBS-Java released but PBS-Go not), a code PR was closed without being merged, or there is no link, it comments once and edits that comment if the linked PRs change.
+
+So please link the code PR(s) on the "Related code PR(s)" line of the PR description.
+
 <a name="thanks"></a>
 
 ## Liquid Templating

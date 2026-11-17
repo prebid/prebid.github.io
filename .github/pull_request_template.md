@@ -21,3 +21,5 @@ merging and reviewing a lot faster for everybody.
 <!-- Remove items that don't apply and/or select an item by changing [ ] to [x] -->
 - [ ] Related pull requests in prebid.js or server are linked -> Paste link in this list or reference it on the PR itself
 - [ ] For new adapters check [submitting your adapter docs](https://docs.prebid.org/dev-docs/bidder-adaptor.html#submitting-your-adapter)
+
+Related code PR(s): <!-- e.g. https://github.com/prebid/prebid-server/pull/1234, one link per Prebid.js / PBS-Go / PBS-Java PR -->
