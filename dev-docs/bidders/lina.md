@@ -44,14 +44,15 @@ Configure LINA SSP CORS to allow the page origin and return
 | Name | Scope | Description | Example | Type |
 | --- | --- | --- | --- | --- |
 | `publisherId` | required | The public integration key (`app_key`), not the account UUID or login password. | `'<SSP-issued publisherId>'` | `string` |
-| `placementId` | required | The placement UUID, independent of media types. It must be active and belong to the publisher. | `'<SSP-issued placementId>'` | `string` |
+| `placementId` | optional override | The SSP-issued placement UUID. When omitted, the adapter uses the standard OpenRTB `ortb2Imp.tagid`; a valid placement identifier is required in one of these two locations. | `'<SSP-issued placementId>'` | `string` |
 
 Replace all `<SSP-issued ...>` placeholders with values issued for your account.
 These placeholders are illustrative and do not identify test inventory.
 
 The Ad Unit's `code` identifies the slot in your page. It is separate from the
 SSP-issued `placementId`. Media types and sizes belong in `mediaTypes`, not in
-LINA bidder parameters.
+LINA bidder parameters. If `params.placementId` and `ortb2Imp.tagid` are both
+provided, `params.placementId` takes precedence.
 
 When using several placements in the same auction, use placements registered to
 the same site for each publisher. LINA SSP rejects a batch that combines
@@ -278,7 +279,7 @@ module values and does not declare support for User ID providers.
 
 | Symptom | What to check |
 | --- | --- |
-| No LINA request | Ensure the build contains `linaBidAdapter`, both required parameters are populated, and the Ad Unit has a valid media type configuration. |
+| No LINA request | Ensure the build contains `linaBidAdapter`, `publisherId` is populated, the placement identifier is present in `params.placementId` or `ortb2Imp.tagid`, and the Ad Unit has a valid media type configuration. |
 | Invalid publisher or placement | Confirm the IDs with LINA, that the placement is active and belongs to the publisher, and that batched placements belong to the same site. |
 | Rejected media configuration | Check placement formats, Banner sizes, the first selected Video size and playback fields, or Native assets. |
 | HTTP 204 or an empty Bid list | This is a normal No Bid result. A valid configuration does not guarantee available demand. |
