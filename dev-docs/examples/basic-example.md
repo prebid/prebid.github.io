@@ -10,6 +10,7 @@ about:
 - This example demonstrates asynchronous Prebid.js integration with a single Google Ad Manager ad slot
 - Default keyword targeting setup (<a href="/dev-docs/publisher-api-reference/bidderSettings.html">reference</a>)
 - Default price granularity
+- For a new GPT integration that needs no <code>disableInitialLoad()</code> and also covers GPT lazy loading and refreshes, see the <a href="/dev-docs/examples/gpt-request-hook-example.html">GPT Request Hook Example</a>
 
 pid: 10
 ---
