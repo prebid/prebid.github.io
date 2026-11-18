@@ -13,7 +13,7 @@ dchain_supported: true
 dsa_supported: true
 floors_supported: true
 fpd_supported: true
-media_types: video, native
+media_types: banner, video, native
 safeframes_ok: true
 deals_supported: false
 pbjs: true
@@ -28,35 +28,16 @@ sidebarType: 1
 
 ## Before You Begin
 
-`panxoBidAdapter` first shipped in Prebid.js 10.23 and the Panxo provider
-`panxoRtdProvider` in 10.25. The provider uses the unchanged core `rtdModule`
-dependency. The adapter and RTD updates are reviewed in separate PRs; neither
-introduces another external script source.
-
-This documentation covers a proposed update; it is not yet a released version.
-
-Register at [app.panxo.ai](https://app.panxo.ai) to obtain your `propertyKey`
-and RTD `siteId`. Build Prebid with `panxoBidAdapter`, `rtdModule` and
-`panxoRtdProvider`, then enable the Panxo provider. Do not install a separate
-Panxo Signal tag on the page; the provider loads its implementation through
-Prebid.
-
-This candidate no longer reads `panxo_uid`, forwards EIDs or emits user sync.
-It preserves existing OpenRTB consent fields and continues contextual bidding
-without a user ID.
-
-The Panxo RTD provider forwards only the coarse AI visit flag `{ai: true}`
-through `site.ext.data.panxo`; false, missing or invalid `ai` produces `{}`.
-It discards the bridge's legacy device/user payloads and richer site context.
-The bidder independently excludes those identity channels. It remains tolerant of missing RTD data, but
-publishers must enable the provider for Panxo AI
-classification and RTD-targeted demand.
-Configure that provider with `waitForIt: true` and a bounded `auctionDelay` when
-its signals must be available to the first auction.
+The updated Panxo bidder adapter is available in Prebid.js 11.48.0 and later.
+Register at [app.panxo.ai](https://app.panxo.ai) for a bidder `propertyKey` and
+an RTD `siteId`. Include and configure the
+[Panxo RTD provider](/dev-docs/modules/panxoRtdProvider.html) for AI visit
+classification. The bidder can participate in contextual auctions without RTD
+data or a user ID.
 
 ## Property-key migration restriction
 
-This candidate does not support migration of path-scoped zone keys. The
+The adapter does not support migration of path-scoped zone keys. The
 ordinary `/openrtb/2.6/bid` receiver rejects a key whose trusted zone
 configuration has a non-root `pathPrefix`, even if a caller supplies
 `site.page`. Both JS and PBS intentionally omit `site.page` and `site.ref`;
@@ -183,7 +164,7 @@ still carry identifiers; this filtering does not make the integration anonymous.
 
 ## User Sync
 
-This candidate does not return user-sync pixels or iframe syncs. The Server
+The JavaScript adapter does not return user-sync pixels or iframe syncs. The Server
 registration also omits user-sync configuration. These adapter changes do not
 control independent requests made by the separately loaded RTD runtime.
 
@@ -191,7 +172,7 @@ control independent requests made by the separately loaded RTD runtime.
 
 - **Net Revenue**: Bids are returned as net revenue.
 - **Prebid.js TTL**: A finite OpenRTB `bid.exp` of at least one second is rounded down and capped at 300 seconds. If absent, non-finite or smaller, the adapter uses 300 seconds (5 minutes). This describes the client adapter; PBS expiration follows its own core configuration.
-- **Media and App Readiness**: The candidate implements Banner, Video and Native transport across `site` and `app` inventory. CTV uses standard Video + `app` + connected-TV `device.devicetype`; InApp uses `app`. Synthetic browser and adapter fixtures do not certify a full Go exchange, physical mobile/CTV devices or commercial serving. Unsupported Audio remains safe no-bid.
+- **Media and App Readiness**: The adapter supports banner, video and native transport across `site` and `app` inventory. CTV uses standard Video + `app` + connected-TV `device.devicetype`; InApp uses `app`. Audio is unsupported.
 - **Currency**: Panxo requests and responses use USD. Prebid's configured currency service converts foreign impression/deal floors before transport and converts returned bids to the publisher's currency afterward. Positive floors without a valid rate reject their impression. Malformed explicit ad-server currency values fail closed. The legacy `params.floor` and notice prices retain their USD denomination.
 - **Request Validation**: Property key, Banner sizes, Video parameters, Native request and privacy signals are normalized and type-checked before a bid request is emitted; Prebid's `gpp_sid = -1` no-applicable-section sentinel is supported without accepting malformed mixed values
 - **Private Deals**: The ordinary endpoint does not support private deals. Impressions with `pmp.private_auction: 1` receive no bid; open-auction siblings remain eligible. Transporting optional deal fields does not establish deal matching or fulfillment.
