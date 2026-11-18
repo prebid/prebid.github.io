@@ -15,7 +15,7 @@ floors_supported: true
 deals_supported: true
 multiformat_supported: will-bid-on-any
 pbjs: true
-pbs: true
+pbs: false
 sidebarType: 1
 ---
 
