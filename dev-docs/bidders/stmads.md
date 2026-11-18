@@ -1,8 +1,8 @@
 ---
 layout: bidder
-title: Streamads
-description: Prebid Streamads Bidder Adapter
-biddercode: streamads
+title: StreamAds
+description: Prebid StreamAds Bidder Adapter
+biddercode: stmads
 gpp_sids: usstate_all
 tcfeu_supported: false
 usp_supported: true
@@ -29,6 +29,17 @@ sidebarType: 1
 |---------------|----------|--------------|---------------------------------|------------|
 | `placementId` | optional | Placement Id | `'0'`                           | `'string'` |
 | `endpointId`  | optional | Endpoint Id  | `'0'`                           | `'string'` |
+| `mediaType` | required for multiformat in Prebid.js | Format to request: `banner`, `video`, or `native` | `'video'` | `'string'` |
+
+## Media Type Selection
+
+For Prebid.js, set `params.mediaType` to `banner`, `video`, or `native` when the
+ad unit offers multiple supported formats. Only the selected format is requested.
+The parameter is optional for single-format ad units. Bids are rejected if a
+multiformat ad unit has no selection or the selected format is absent from `mediaTypes`.
+
+Example: `{ placementId: 'testVideo', mediaType: 'video' }`.
+This parameter applies only to Prebid.js.
 
 ## Note
 
