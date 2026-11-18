@@ -28,13 +28,11 @@ The Boldwin Bidding adapter requires setup before beginning. Please contact us a
 ## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope                    | Description                                                                                  | Example   | Type                 |
-|---------------|--------------------------|----------------------------------------------------------------------------------------------|-----------|----------------------|
-| `epid`        | required (Prebid.js)     | Endpoint ID issued by Boldwin                                                                | `'12345'` | `string` or `number` |
-| `endpointId`  | required (Prebid Server) | Endpoint ID issued by Boldwin. Prebid.js reads it when neither `epid` nor `placementId` is set | `'12345'` | `string`             |
-| `placementId` | optional                 | Prebid.js only: earlier name of `epid`, read when `epid` is not set                          | `'12345'` | `string` or `number` |
+| Name         | Scope    | Description                   | Example   | Type                                         |
+|--------------|----------|-------------------------------|-----------|----------------------------------------------|
+| `endpointId` | required | Endpoint ID issued by Boldwin | `'12345'` | `string` (Prebid.js also accepts a `number`) |
 
-In Prebid.js, `epid` is required unless the ad unit has `placementId` or `endpointId`.
+For both the Prebid Server and Prebid.js integrations, use only one parameter: `endpointId`.
 
 ## Prebid.js notes
 
