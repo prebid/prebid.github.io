@@ -475,6 +475,14 @@
   subgroup: 4
 
 - sbSecId: 1
+  title: Sending Analytics Events on Page Hide
+  link: /dev-docs/analytics-page-hide.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 4
+
+- sbSecId: 1
   title: How to Add A Real Time Data submodule
   link: /dev-docs/add-rtd-submodule.html
   isHeader: 0
