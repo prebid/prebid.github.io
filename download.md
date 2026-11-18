@@ -65,10 +65,14 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <h4>Select Prebid Version</h4>
 <select id="version_selector" class="selectpicker">
 </select>
+<div id="version-error" class="alert alert-danger" style="display: none;" role="alert">
+The list of Prebid.js versions couldn't be loaded, so custom builds can't be generated right now. Please try again later, or <a href="#option-2-build-from-source-code-more-advanced">build Prebid.js from source</a> instead.
+</div>
 <br/>
 <label for="configFileInput"><strong>Upload Configuration</strong></label>
 <input type="file" id="configFileInput" accept="application/json" />
 <br>
+<p id="module-filter-status" class="text-muted" aria-live="polite"></p>
 <h4>Select Bidder Adapters</h4>
 <div class="row adapters">
 {% for page in bidder_pages %}{% if page.pbjs == true %}{% if page.enable_download == false %}{% continue %}{% endif %}
@@ -131,7 +135,7 @@ The download includes the Prebid.js build, `prebid-config.json` (your version an
 
 {: .alert.alert-info :}
 Note: If you receive an error during download you most likely selected a configuration that is not supported. Verify that each bidder / module is available in the selected version. Also please note that even though you can download older versions of Prebid.js,
-Prebid only supports the most recent major version. Within a month or so after a major release (e.g. 3.x), we won't patch the previous major release (e.g. 2.x).
+Prebid only supports the most recent major version. Within a month or so after a major release (e.g. 11.x), we won't patch the previous major release (e.g. 10.x).
 
 </div>
 
