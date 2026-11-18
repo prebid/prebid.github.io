@@ -91,7 +91,7 @@ pbjs.setConfig({
 
 ## Limitations
 
-- An `update` that denies a signal applies from the next auction. Analytics adapters that are already enabled aren't disabled when `analytics_storage` is revoked mid-session; that depends on [Prebid.js #15026](https://github.com/prebid/Prebid.js/issues/15026).
+- An `update` that denies a signal applies to bidding from the next auction. Revoking `analytics_storage` mid-session disables enabled analytics adapters through their `disableAnalytics()` method, as for any consent change that denies [`reportAnalytics`](/dev-docs/activity-controls.html#activities). Adapters that don't implement `disableAnalytics()` stay enabled, and Prebid.js logs a warning.
 - `url_passthrough` and `ads_data_redaction` aren't consent signals and aren't enforced.
 
 ## Build the Package

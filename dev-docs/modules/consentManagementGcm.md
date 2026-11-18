@@ -107,7 +107,7 @@ Bid adapters can read it from `bidderRequest.ortb2.regs.ext.gcm`. The consent da
 ### Out of scope
 
 - `url_passthrough` and `ads_data_redaction` are Consent Mode settings for Google's own tags, not consent signals. The module ignores them.
-- **Revocation mid-session:** an `update` that denies a signal applies to the next auction. Analytics adapters that are already enabled aren't disabled when `analytics_storage` is revoked; that depends on a general analytics disable hook ([Prebid.js #15026](https://github.com/prebid/Prebid.js/issues/15026)).
+- **Revocation mid-session:** an `update` that denies a signal changes the consent data at once, and applies to bidding from the next auction. Like any consent change, it makes Prebid.js check [`reportAnalytics`](/dev-docs/activity-controls.html#activities) again. With the [GCM Control module](/dev-docs/modules/gcmControl.html), revoking `analytics_storage` disables enabled analytics adapters through their `disableAnalytics()` method. Adapters that don't implement it stay enabled, and Prebid.js logs a warning.
 
 ### Examples
 
