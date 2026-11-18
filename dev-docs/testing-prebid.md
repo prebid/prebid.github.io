@@ -55,18 +55,12 @@ After checking out the Prebid.js repository and installing dev dependencies with
 
 Check the test results using these guidelines:
 
-* Look at the total number of tests run, passed, and failed (shown below the rainbow Nyan Cat in the shell window).
+* Look at the total number of tests run, passed, and failed.
 * If all tests are passing, great.
 * Otherwise look for errors printed in the console for a description of the failing test.
 * You may need to iterate on your code or tests until all tests are passing.
 * Make sure existing tests still pass.
-* There is a table below the testing report that shows code coverage percentage, for each file under the `src` directory.
-* Each time you run tests, a code coverage report is generated in `build/coverage/lcov/lcov-report/index.html`.
-* This is a static HTML page that you can load in your browser.
-* On that page, navigate to the file you are testing to see which lines are being tested.
-* Red indicates that a line isn't covered by a test.
-* Gray indicates a line that doesn't need coverage, such as a comment or blank line.
-* Green indicates a line that is covered by tests.
+* `gulp test-coverage` generates an lcov coverage report under `build/coverage/`; add `--file <spec>` to cover a single test file. Open it with any lcov viewer or editor plugin to see which lines your tests cover.
 * The code you have added or modified must have greater than 80% coverage to be accepted.
 
 ## Examples
@@ -74,7 +68,7 @@ Check the test results using these guidelines:
 Prebid.js already has lots of tests. Read them to see how Prebid.js is tested, and for inspiration:
 
 * Look in `test/spec` and its subdirectories
-* Tests for bidder adaptors are located in `test/spec/adapters`
+* Tests for bid adapters and other modules are located in `test/spec/modules`
 
 A test module might have the following general structure:
 
