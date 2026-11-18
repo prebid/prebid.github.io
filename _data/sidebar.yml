@@ -424,6 +424,14 @@
   subgroup: 3
 
 - sbSecId: 1
+  title: Prebid.js Event Reference
+  link: /dev-docs/prebid-events.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 1
   title: Renderer
   link: /dev-docs/renderer.html
   isHeader: 0

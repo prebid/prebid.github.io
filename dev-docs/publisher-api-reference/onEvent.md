@@ -13,7 +13,7 @@ This routine allows the page (or module) to create a callback function that's in
 
 **Returns**: none
 
-See the [getEvents](/dev-docs/publisher-api-reference/getEvents.html) function for the full list of eventTypes supported.
+See the [getEvents](/dev-docs/publisher-api-reference/getEvents.html) function for the full list of eventTypes supported, and the [Prebid.js Event Reference](/dev-docs/prebid-events.html) for when each event fires and the fields of its payload.
 
 {: .alert.alert-info :}
 The `adRenderSucceeded` event indicates that the render function did not generate an error, it does not guarantee that tracking for this event has occurred yet.
@@ -69,3 +69,4 @@ pbjs.onEvent('auctionDebug', function () {
 
 * [getEvents](/dev-docs/publisher-api-reference/getEvents.html)
 * [offEvent](/dev-docs/publisher-api-reference/offEvent.html)
+* [Prebid.js Event Reference](/dev-docs/prebid-events.html)
