@@ -1,5 +1,7 @@
-# Copies the exact raw Markdown source of every page/doc as a static asset 
-# at "<page-url>.md" without applying layouts or Liquid transformations.
+# Copies the exact raw Markdown source of every page/doc as a static asset
+# at its source path (e.g. /dev-docs/bidders/msft.md, served next to msft.html)
+# without applying layouts or Liquid transformations.
+# _includes/markdown-source.html and llms.txt link to that same path.
 module Jekyll
   class RawMarkdownFile < StaticFile
     def initialize(site, source_item)
@@ -9,8 +11,9 @@ module Jekyll
 
       super(site, site.source, dir, name)
 
-      url = source_item.url
-      @custom_url = url.end_with?("/") ? "#{url}index.html.md" : "#{url}.md"
+      # Jekyll 3 writes a StaticFile to dir/name regardless of #url, so match
+      # that here; Jekyll 4 writes it to #url, which then stays the same path.
+      @custom_url = "/#{rel_path}"
     end
 
     def url

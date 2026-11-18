@@ -81,16 +81,16 @@ pbjs.setConfig({
 
 ## Configuration
 
-`allowActivities` is a new option to [setConfig](/dev-docs/publisher-api-reference/setConfig.html). It contains a list of activity names -- see the [full list of activities below](#activities). Each activity is an object that can contain these attributes:
+`allowActivities` is a [setConfig](/dev-docs/publisher-api-reference/setConfig.html) option that requires the [allowActivities module](/dev-docs/modules/allowActivities.html). It contains a list of activity names -- see the [full list of activities below](#activities). Each activity is an object that can contain these attributes:
 
 {: .table .table-bordered .table-striped }
 | Name | Type | Description |
-|------|------|-------------|
+| --- | --- | --- |
 | `default` | Boolean | Whether the activity should be allowed if no other rule applies. Defaults to true. |
-| `rules`   | Array of objects | Rules for this activity |
-| `rules[].condition` | Function | Condition function to use for this rule; the rule applies only if this returns true. Receives a single object that contains [activity parameters](#parameters) as input. If omitted, the rule always applies. |
-| `rules[].allow`    | Boolean | Whether the activity should be allowed when this rule applies. Defaults to true. |  
-| `rules[].priority` | Number | Priority of this rule compared to other rules; a lower number means higher priority. See [note on rule priority](#priority) below. Defaults to 1. |  
+| `rules` | Array of objects | Rules for this activity |
+| `rules[].condition` | Function | Condition function to use for this rule. Receives a single object that contains [activity parameters](#parameters) as input. Must be synchronous; the rule applies if it returns a truthy value. If it throws, the activity is denied. If omitted, the rule always applies. |
+| `rules[].allow` | Boolean | Whether the activity should be allowed when this rule applies. If omitted, the rule denies the activity; see [Allow Flag](#allow-flag). |
+| `rules[].priority` | Number | Priority of this rule compared to other rules; a lower number means higher priority. See [note on rule priority](#priority) below. Defaults to 1. |
 
 `Rules` is an array of objects that a publisher can construct to provide fine-grained control over a given activity. For instance, you could set up a series of rules that says:
 
@@ -108,17 +108,17 @@ There's more about [rules](#parameters) below.
 Here's the list of the 'potentially restricted activities' that Prebid.js core can restrict for Publishers:
 
 {: .table .table-bordered .table-striped }
-| Name           | Description | Effect when denied | Additional parameters |
-|----------------|-------------|---------------------------|--------------------------------|
-| `accessDevice` | A component wants to use device storage  | Storage is disabled | [`storageType`](#params-accessDevice) |
-| `accessRequestCredentials` | A component wants to [include credentials](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#including_credentials) (notably, cookies) in a request. Available since version 10. | Credentials are excluded | None |  
+| Name | Description | Effect when denied | Additional parameters |
+| --- | --- | --- | --- |
+| `accessDevice` | A component wants to use device storage | Storage is disabled | [`storageType`](#params-accessDevice) |
+| `accessRequestCredentials` | A component wants to [include credentials](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#including_credentials) (notably, cookies) in a request. Available since version 10. Since 11.15, if a module file belongs to several components (for example, a bid adapter and its aliases), credentials are included only if all of them are allowed; if the requesting module cannot be identified, credentials are excluded. | Credentials are excluded | None |
 | `enrichEids` | A user ID or RTD submodule wants to add user IDs to outgoing requests | User IDs are discarded | None |
 | `enrichUfpd` | A Real-Time Data (RTD) submodule wants to add user first-party data to outgoing requests (`user.data` in ORTB) | User FPD is discarded | None |
-| `fetchBids`  | A bid adapter wants to participate in an auction | Bidder is removed from the auction | [`configName`](#params-fetchBids) |
-| `reportAnalytics` | An analytics adapter is being enabled through `pbjs.enableAnalytics` | Adapter remains disabled | None |
+| `fetchBids` | A bid adapter wants to participate in an auction | Bidder is removed from the auction | [`configName`](#params-fetchBids) |
+| `reportAnalytics` | An analytics adapter is being enabled through `pbjs.enableAnalytics`. Since Prebid.js 11.18, this is checked again whenever consent data changes. | Adapter remains disabled. Since Prebid.js 11.18, a blocked adapter is enabled if the check later passes, and an enabled adapter that no longer passes the check is disabled through its `disableAnalytics()` method. Adapters that don't implement `disableAnalytics()` stay enabled, and Prebid.js logs a warning. | None |
 | `syncUser` | A bid adapter wants to fetch a [user sync](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing) | User sync is skipped | [`syncType`, `syncUrl`](#params-syncUser) |
 | `transmitEids` | A bid adapter or RTD submodule wants to access and/or transmit user IDs to their endpoint | User IDs are hidden from the component | [`configName`](#params-fetchBids) |
-| `transmitPreciseGeo` | A bid adapter or RTD submodule wants to access and/or transmit precise geolocation data to their endpoint | Component is allowed only 2-digit precision for latitude and longitude  | [`configName`](#params-fetchBids) |
+| `transmitPreciseGeo` | A bid adapter or RTD submodule wants to access and/or transmit precise geolocation data to their endpoint | Component is allowed only 2-digit precision for latitude and longitude | [`configName`](#params-fetchBids) |
 | `transmitTid` | A bid adapter or RTD submodule wants to access and/or transmit globally unique transaction IDs to their endpoint | Transaction IDs are hidden from the component | [`configName`](#params-fetchBids) |
 | `transmitUfpd` | A bid adapter or RTD submodule wants to access and/or transmit user FPD to their endpoint | User FPD is hidden from the component | [`configName`](#params-fetchBids) |
 | `loadExternalScript` | A bid adapter, analytics adapter, or module wants to load external script | Module is not allowed to load external script from `adloader.js` | None |
@@ -213,16 +213,16 @@ A `condition` is a javascript function that receives information about the activ
 These are the parameters available to the condition function:
 
 {: .table .table-bordered .table-striped }
-| Name | Type | Available for | Description |  
-|------|------|-------------|---------------|
+| Name | Type | Available for | Description |
+| --- | --- | --- | --- |
 | `componentType` | String | All activities | One of: `'bidder'`, `'userId'`, `'rtd'`, `'analytics'`, or `'prebid'`; identifies the type of component (usually a module) that wishes to perform the activity. `'prebid'` is reserved for Prebid core itself and a few "privileged" modules such as the [PBS adapter](/dev-docs/modules/prebidServer.html). |
 | `componentName` | String | All activities | Name of the component; this is (depending on the type) either a bidder code, user ID or RTD submodule name, analytics provider code, or module name. |
-| `component`     | String | All activities | This is always a dot-separated concatenation of `componentType` and `componentName`; for example, with `{componentType: 'bidder', componentName: 'bidderX'}`, `component` is `'bidder.bidderX'`. |
-| `adapterCode`   | String | All activities | If `componentType` is `'bidder'`, and `componentName` is an [alias](/dev-docs/publisher-api-reference/aliasBidder.html), then `adapterCode` is the bidder code that was aliased; or identical to `componentName` if the bidder is not an alias. This is undefined when the component is not a bidder.|
-| `configName`    | String | <a id="params-fetchBids"></a> `fetchBids`    | When the Prebid Server adapter is part of an auction, this is the name given to its [s2s configuration](/dev-docs/modules/prebidServer.html), if any. |
-| `storageType`   | String | <a id="params-accessDevice"></a> `accessDevice` | Either `'html5'` or `'cookie'` - the device storage mechanism being accessed. |
-| `syncType`      | String | <a id="params-syncUser"></a> `syncUser`     | Either `'iframe'` or `'image'` - the type of user sync. |
-| `syncUrl`       | String | `syncUser`     | URL of the user sync. |
+| `component` | String | All activities | This is always a dot-separated concatenation of `componentType` and `componentName`; for example, with `{componentType: 'bidder', componentName: 'bidderX'}`, `component` is `'bidder.bidderX'`. |
+| `adapterCode` | String | All activities | If `componentType` is `'bidder'`, and `componentName` is an [alias](/dev-docs/publisher-api-reference/aliasBidder.html), then `adapterCode` is the bidder code that was aliased; or identical to `componentName` if the bidder is not an alias. This is undefined when the component is not a bidder. |
+| `configName` | String | <a id="params-fetchBids"></a> `fetchBids` | When the Prebid Server adapter is part of an auction, this is the name given to its [s2s configuration](/dev-docs/modules/prebidServer.html), if any. |
+| `storageType` | String | <a id="params-accessDevice"></a> `accessDevice` | Either `'html5'` or `'cookie'` - the device storage mechanism being accessed. |
+| `syncType` | String | <a id="params-syncUser"></a> `syncUser` | Either `'iframe'` or `'image'` - the type of user sync. |
+| `syncUrl` | String | `syncUser` | URL of the user sync. |
 
 #### Allow Flag
 
@@ -230,7 +230,7 @@ If the rule's condition matches, this attribute defines whether the rule 'votes'
 
 As noted in the priority section, **disallow** (false) takes precedence amongst rules at the same priority level.
 
-If `allow` is not defined, the rule is assumed to assert **true** (i.e. allow the activity to take place).
+If `allow` is not defined, a matching rule denies the activity. Always set `allow` explicitly.
 
 ### More examples
 
@@ -294,10 +294,17 @@ pbjs.setConfig({
 Reference: [US Privacy User Signal Mechanism “USP API” Specification](https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/master/CCPA/USP%20API.md)
 
 ```javascript
+// Conditions must return a boolean synchronously, so read the USP string ahead of time.
+// Assumes __uspapi is properly implemented and available in your environment.
+let uspString;
+__uspapi('getUSPData', 1, (uspData, success) => {
+  if (success) uspString = uspData.uspString;
+});
+
+// Deny if the USP string is not available, its version (first character) is not '1',
+// notice (second character) is not 'Y', or opt-out (third character) is 'Y'.
 function isCCPAConsentDenied() {
-### assumes uspapi is properly implemented and available in your environment.
-### check usp string for the second character (notice) is not 'Y' or third character (opt out) is not 'N' or first character (version) is not '1'
-   __uspapi('getUSPData', 1 , (uspData, success) => { if(uspData.uspString.charAt(2) ==='Y' || uspData.uspString.charAt(1) !=='Y'|| uspData.uspString.charAt(0) !=='1') { return true } else { return false }});
+  return uspString == null || uspString.charAt(0) !== '1' || uspString.charAt(1) !== 'Y' || uspString.charAt(2) === 'Y';
 }
 
 pbjs.setConfig({
@@ -385,17 +392,18 @@ This approach works in conjunction with other activity-control compiant modules 
       allowActivities: {
         enrichEids: {
           default: false,
-          priority: 1,
           rules: [{
               condition(params) {
                   return params.componentName === 'sharedIdSystem'
               },
-              allow: true
+              allow: true,
+              priority: 1 // the default for publisher rules; set on the rule, not the activity
            }]
         },
         transmitEids: {
           rules: [{
               allow: true
+          }]
         },
         … see other activities in https://docs.prebid.org/dev-docs/activity-controls.html …
       }

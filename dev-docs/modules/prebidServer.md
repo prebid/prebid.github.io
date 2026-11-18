@@ -37,12 +37,14 @@ Video notes:
 
 ## Configuration
 
-Here's an example config enabling the appnexuspsp Prebid Server:
+Here's a minimal example config:
 
 ```javascript
 pbjs.setConfig({
     s2sConfig: {
         accountId : '12345',
+        endpoint: 'https://prebid-server.example.com/openrtb2/auction',
+        syncEndpoint: 'https://prebid-server.example.com/cookie_sync',
         bidders : ['msft','pubmatic', 'rubicon'],
         timeout: 300
     }
@@ -112,10 +114,10 @@ If `endpoint` and `syncEndpoint` are objects, these are the supported properties
 - If `bidders` is omitted, only adUnits that also omit bidders will be sent to Prebid Server. See the [stored impressions](#stored-imp) example below.
 - If the `s2sConfig` timeout is not specified, Prebid Server will utilize a configured default for `tmax`.
 - When using the `endpoint` or `syncEndpoint` object configs, you should define both properties.  If either property is not defined, Prebid Server requests for that type of user will not be made.  If you do not need to distinguish endpoints for consent reasons, you can simply define the same URL value in both fields or use the String version of the field (which is configured to use defined URL for all users).
+- Since Prebid.js 11.20, the `cookie_sync` request to `syncEndpoint` is skipped in Safari, Firefox, and Chrome on iOS, or when cookies are disabled or denied, in line with the [user sync behavior]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html#setConfig-ConfigureUserSyncing-HowUserSyncingWorks) for bid adapters.
 - When `endpointCompression` is enabled, Prebid.js compresses the request body sent to Prebid Server and appends `gzip=1` to the endpoint URL. This feature is skipped when debug mode is active or the browser lacks GZIP support. Do not use if your PBS Host does not yet support gzip request compression.
 - <a name="allowUnknownBidderCodes" ></a> When `allowUnknownBidderCodes` is `true`, bidders that have not been explicitly requested in [`adUnit.bids`](../adunit-reference.html#adunitbids) may take part in the auction. This can break custom logic that relies on the availability of a bid request object for any given bid. Known scenarios where custom code won't get the request when there's an "unknown bidder":
   - There will not be a [`bidRequested`](/dev-docs/publisher-api-reference/getEvents.html) event.
-  - In the [MASS custom renderers](/dev-docs/modules/mass.html#configuration-parameters) module, `payload.bidRequest` will be undefined.
   - In the [Price Floors module](/dev-docs/modules/floors.html), custom schema functions will see the bidRequest object as undefined.
 
 Additional options for `s2sConfig` may be enabled by including the [Server-to-Server testing module]({{site.baseurl}}/dev-docs/modules/s2sTesting.html).
@@ -126,7 +128,17 @@ Additional options for `s2sConfig` may be enabled by including the [Server-to-Se
 
 **Emitting SeatNonBid Data**
 
-- Prebid Server can be instructed to return additional [SeatNonBid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#seat-non-bid) information about why bidders might not have bid on certain adunits. You can get this extra information by setting `extPrebid.returnallbidstatus` equal to `true`. Note that client-side analytics adapters can receive this data by listening to the `seatNonBid` event.
+- Prebid Server can be instructed to return additional [SeatNonBid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#seat-non-bid) information about why bidders might not have bid on certain adunits. You can get this extra information by setting `extPrebid.returnallbidstatus` equal to `true`. Note that client-side analytics adapters can receive this data by listening to the `pbsAnalytics` event (its `seatnonbid` field). The `seatNonBid` event was removed in Prebid.js 11.
+
+## Server-Side Bidders Don't Need a Client-Side Adapter
+
+A bidder listed in `s2sConfig.bidders` doesn't have to be in the Prebid.js build. Prebid.js forwards the bidder's ad unit params to Prebid Server without calling the bidder's Prebid.js adapter, so you can leave the adapter out and keep the bundle smaller. That includes bidders that only have a Prebid Server adapter. Prebid Server handles parameter validation and type conversion and runs user syncs through `/cookie_sync`. Prebid.js has no bidder-specific parameter transforms for server-side bidders.
+
+If you leave the adapter out, keep these in mind:
+
+- **GDPR / TCF:** the bidder's Global Vendor List ID is normally declared by its Prebid.js adapter. Without the adapter, Prebid.js doesn't know it. If the [TCF Control module](/dev-docs/modules/tcfControl.html) is enforcing vendor consent for `basicAds` (the default), the bidder is removed from the auction. Either declare its ID with [`gvlMapping`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-gvlMapping), which also sends it to Prebid Server for aliases, or set `deferS2Sbidders: true` on the `basicAds` rule to let Prebid Server enforce vendor consent for bidders with unknown IDs.
+- **Aliases:** an alias that's defined in the bidder's Prebid.js adapter isn't defined without it. Use an alias Prebid Server knows, or declare it in `extPrebid.aliases` as described in [Server-Side Aliases](#server-side-aliases).
+- **Client-side fallback:** a bidder without an adapter can only bid server-side. Features that route a bidder to the client, such as the [s2sTesting module](/dev-docs/modules/s2sTesting.html), need the client-side adapter in the build.
 
 ## Bid Params
 

@@ -18,7 +18,7 @@ deals_supported: false
 floors_supported: true
 fpd_supported: true
 pbjs: true
-pbs: false
+pbs: true
 prebid_member: false
 multiformat_supported: will-bid-on-any
 ortb_blocking_supported: true
@@ -190,7 +190,7 @@ var videoAdUnits = [
         skip: 1, // recommended
         startdelay: 1, // recommended
         pos: 1, // optional
-        playbackmethod: 1, // optional
+        playbackmethod: [1], // optional
         battr: [10, 11], // optional
         api: [1, 2], // optional
         playerSize: [640, 480], // recommended

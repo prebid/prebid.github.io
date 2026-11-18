@@ -119,6 +119,9 @@ results. See [the userSync setConfig](/dev-docs/publisher-api-reference/setConfi
 
 There are situations where a publisher uses different modules depending on various factors, such as specific pages or locations. This creates the inconvenience of having to load a Prebid build that is larger than what a particular page actually needs. While it’s possible to work around this by creating separate Prebid builds for different pages, that approach doesn’t scale well. Since a Prebid build is composed of concatenated chunks, it’s possible to load modules separately, allowing you to have a main Prebid file that contains only the modules shared across all pages.
 
+{: .alert.alert-info :}
+Since Prebid.js 11.40.0, you can also load Prebid.js directly from jsDelivr with only the modules a page needs, without hosting or building anything: the `bundle.js` loader resolves module dependencies and loads each file for you. See [Load from the jsDelivr CDN](/download.html#option-3-load-from-the-jsdelivr-cdn).
+
 ### Example
 
 This is the example of loading modules separately for the self-hosted (e.g. CDN) Prebid build.

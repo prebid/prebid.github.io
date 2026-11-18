@@ -136,10 +136,10 @@ labelAll: ["A", "B"]
 ```
 
 {: .alert.alert-warning :}
-Only one conditional may be specified on a given AdUnit or bid -- if both `labelAny` and `labelAll` are specified, only the first one will be utilized and an error will be logged to the console. It is allowable for an AdUnit to have one condition and a bid to have another.
+Only one conditional may be specified on a given AdUnit or bid. It is allowable for an AdUnit to have one condition and a bid to have another.
 
 {: .alert.alert-warning :}
-If either `labeAny` or `labelAll` values is an empty array, it evaluates to `true`.
+If either `labelAny` or `labelAll` values is an empty array, it evaluates to `true`.
 
 {: .alert.alert-warning :}
 It is important to note that labels do not act as filters for sizeConfig. In the example above, using a screen of 1600px wide and `labelAll:["desktop"]` will *not* filter out sizes defined in the `desktop-hd` sizeConfig. Labels in sizeConfig are only used for selecting or de-selecting AdUnits and AdUnit.bids.

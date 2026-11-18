@@ -10,6 +10,11 @@ const path = require('path');
 const axios = require('axios');
 const nodemailer = require('nodemailer');
 
+// File names come from the PR, and may contain markup.
+function escapeHtml(str) {
+  return str.replace(/[&<>"']/g, c => `&#${c.charCodeAt(0)};`);
+}
+
 async function getAccessToken(clientId, clientSecret, refreshToken) {
   try {
     const response = await axios.post('https://oauth2.googleapis.com/token', {
@@ -114,7 +119,7 @@ async function getAccessToken(clientId, clientSecret, refreshToken) {
         <p>
         Files owned by you have been changed in open source ${repo}. The <a href="https://github.com/${repo}/pull/${prNumber}">pull request is #${prNumber}</a>. These are the files you own that have been modified:
         <ul>
-          ${files.map(file => `<li>${file}</li>`).join('')}
+          ${files.map(file => `<li>${escapeHtml(file)}</li>`).join('')}
         </ul>
       `;
 
@@ -127,9 +132,9 @@ async function getAccessToken(clientId, clientSecret, refreshToken) {
         });
 
         console.log(`Email sent successfully to ${email}`);
-        console.log(`${emailBody}`);
       } catch (error) {
         console.error(`Failed to send email to ${email}:`, error.message);
+        process.exitCode = 1;
       }
     }
   } catch (error) {

@@ -12,6 +12,7 @@ safeframes_ok: true
 deals_supported: false
 pbjs: true
 pbs: true
+pbs_biddercode: definemedia
 pbs_app_supported: false
 prebid_member: false
 sidebarType: 1

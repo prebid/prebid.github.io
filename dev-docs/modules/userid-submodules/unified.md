@@ -44,17 +44,13 @@ Either `params.partner` or `params.url` must be provided.
 
 1. Publisher has a partner ID with The Trade Desk, and is using the default endpoint for Unified ID.
 
-    {: .alert.alert-warning :}
-    Bug: The default URL did not support HTTPS in Prebid.js 2.10-2.14. So instead of using
-    the 'partner' parameter, it's best to supply the Trade Desk URL as shown in this example.
-
     ```javascript
     pbjs.setConfig({
         userSync: {
             userIds: [{
                 name: "unifiedId",
                 params: {
-                    url: "//match.adsrvr.org/track/rid?ttd_pid=MyTtidPid&fmt=json"
+                    partner: "myTtdPid"
                 },
                 storage: {
                     type: "cookie",

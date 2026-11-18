@@ -20,16 +20,17 @@ privacy_sandbox: topics
 multiformat_supported: will-bid-on-any
 ---
 
+{% include dev-docs/reports-timeout-events.md endpoint="onetag-sys.com/ptimeout" data="the timeout data Prebid.js passes to `onTimeout` for its bid requests, such as bid parameters, ad unit code, auction and bid IDs, and the timeout" %}
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 
-| Name    | Scope    | Description                       | Example      | Type     |
-|---------|----------|-----------------------------------|--------------|----------|
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
 | `pubId` | required | The publisher's ID provided by OneTag | `'386276e072'` | `string` |
-| `ext`   | optional | A set of custom key-value pairs | `{ customKey: customValue }` | `object` |
+| `ext` | optional | A set of custom key-value pairs | `{ customKey: customValue }` | `object` |
 
-### Video Additional Information
+## Video Additional Information
 
 Note that right now video support is only provided when the context is "instream" or "outstream".
