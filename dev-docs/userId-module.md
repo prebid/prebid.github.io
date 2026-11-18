@@ -85,6 +85,40 @@ otherwise it should provide a `callback` that calls its first argument `setId` p
 
 In both cases ID data should be a string or a plain, serializable JS object; this data is what may then get stored, passed to [`decode`](#decode) and, on later sessions, to `getId` or `extendId` as the `storedId` argument.    
 
+#### `callback` arguments
+
+`callback(setId, getStoredValue)` receives:
+
+{: .table .table-bordered .table-striped }
+| Argument | Type | Description |
+| --- | --- | --- |
+| `setId` | Function | `setId(id, options)`: call it once, with the ID data, or with nothing if there is none. Prebid.js stores `id` (when the module has `storage` configured) and passes it to [`decode`](#decode). |
+| `getStoredValue` | Function | Returns the ID data currently in the module's storage, if any. |
+
+`setId` accepts an optional second argument, an object with:
+
+{: .table .table-bordered .table-striped }
+| Property | Type | Description |
+| --- | --- | --- |
+| `fromStorage` | Boolean | Set it when `id` is what `getStoredValue()` returned because something other than Prebid.js, such as a server's `Set-Cookie` response, wrote or deleted it. Prebid.js then decodes `id` into the in-memory ID, or clears the in-memory ID if `id` is empty, so later auctions on the page follow storage, but it does not write `id` to storage again. Without it, an ID that storage no longer holds stays in memory, and a new value is written again from script, turning a server-set cookie into a script-set one (which Safari caps at 7 days). |
+
+For example, a module whose server endpoint sets or deletes the ID cookie can report the result like this:
+
+```javascript
+function getId(config, consentData, storedId) {
+    return {
+        callback: function(setId, getStoredValue) {
+            triggerPixel(config.params.endpoint, function () {
+                // the endpoint has set or deleted the cookie; mirror it without writing it again
+                setId(getStoredValue(), {fromStorage: true});
+            });
+        }
+    }
+}
+```
+
+`fromStorage` requires a Prebid.js release that includes [#16204](https://github.com/prebid/Prebid.js/pull/16204); earlier releases ignore it and treat the call as `setId(id)`.
+
 #### Example: synchronous ID generation
 
 ```javascript
