@@ -122,10 +122,153 @@ There are situations where a publisher uses different modules depending on vario
 {: .alert.alert-info :}
 Since Prebid.js 11.40.0, you can also load Prebid.js directly from jsDelivr with only the modules a page needs, without hosting or building anything: the `bundle.js` loader resolves module dependencies and loads each file for you. See [Load from the jsDelivr CDN](/download.html#option-3-load-from-the-jsdelivr-cdn).
 
-### Example
+### Build a small bundle or reuse compiled modules
 
-This is the example of loading modules separately for the self-hosted (e.g. CDN) Prebid build.
-Instructions for importing modules when using the npm package can be found in the [Readme file](https://github.com/prebid/Prebid.js/blob/master/README.md)
+To include one bidder adapter and its required core code, build with the module
+**filename** (without `.js`):
+
+```sh
+npm ci
+npx gulp build --modules=openxBidAdapter
+```
+
+This generates a usable Prebid.js bundle with core, the selected adapter, and
+its dependencies. It does **not** produce a standalone bidder script that can
+run without Prebid core. An adapter alias may share another adapter's module
+file; select the actual module filename when that is the case.
+
+If you need several different selections from the **same** Prebid.js version,
+compile once, then use `gulp bundle` to concatenate the already-built chunks:
+
+```sh
+npx gulp build
+npx gulp bundle --modules=openxBidAdapter --tag openx
+npx gulp bundle --modules=rubiconBidAdapter --tag rubicon
+```
+
+The tagged files are written to `build/dist/prebid.openx.js` and
+`build/dist/prebid.rubicon.js`. Unlike `gulp build`, `gulp bundle`
+**does not recompile** sources or generate a bidder adapter in isolation;
+it requires the build output to exist. Each tagged file is a complete
+Prebid.js bundle, not an add-on to an already loaded instance.
+
+### Conditionally load a module after an event (npm)
+
+If your site bundles the npm package with a tool that supports dynamic
+`import()` (such as Webpack, Rollup, or Vite), the adapter can be placed in a
+separate network chunk. Only import it when the page needs it, then wait for
+the import to finish **before** requesting bids that depend on it:
+
+```javascript
+import pbjs from 'prebid.js';
+// Import any required privacy and consent-control modules up front.
+pbjs.processQueue();
+
+// Replace with the relevant CMP or publisher-specific event/decision.
+async function optionalBidderIsAllowed() {
+  return false; // Fail closed until the real integration is implemented.
+}
+
+async function onOptionalBidderReady(adUnits) {
+  if (!(await optionalBidderIsAllowed())) return;
+
+  try {
+    // The module registers its bidder when the import resolves.
+    await import('prebid.js/modules/openxBidAdapter');
+  } catch (error) {
+    console.error('Could not load optional Prebid bidder', error);
+    return;
+  }
+
+  // The queue ensures the core is ready; this auction waits for the adapter.
+  pbjs.que.push(function () {
+    pbjs.requestBids({ adUnits });
+  });
+}
+
+// Call onOptionalBidderReady(adUnits) from your actual CMP or page event.
+```
+
+Keep the module out of other static imports or eager bundler imports if you
+want a separate chunk. The ad units must reference the bidder you loaded.
+`processQueue()` is required for npm consumers; the generated standalone
+bundles already call it. Configure consent management and required activity
+controls **before** auctions, and do not treat delaying a script download as
+a substitute for enforcing the user's privacy choices. Where consent or ID
+availability changes, use the current CMP or publisher signal and do not start
+an affected auction until its required modules are loaded.
+
+For self-hosted precompiled chunks (rather than npm imports), see
+[Self-hosted precompiled chunks](#self-hosted-precompiled-chunks). Those
+scripts must match the Prebid core build and include any dependent chunks;
+loading another full `prebid.js` bundle onto an already initialized page is
+not a way to add a module.
+
+### Load a user ID module after collecting an email (npm)
+
+{: .alert.alert-info :}
+**Use case:** some ID providers (for example UID2) build their ID from the
+user's email address, which a publisher only has after the user logs in,
+registers, or signs up for a newsletter. Most visitors never provide one, so
+there is no reason to ship that ID module to every page view. Load it only
+when the email becomes available, and include the resulting ID in later
+auctions.
+
+The `userId` core module is bundled up front; only the ID submodule is
+loaded on demand. An ID submodule registers itself when its import resolves,
+and adding its entry to `userSync.userIds` starts its ID lookup:
+
+```javascript
+import pbjs from 'prebid.js';
+import 'prebid.js/modules/userId';
+// Import consent management and any other modules needed on every page.
+pbjs.processQueue();
+
+// Call this from your login, registration, or newsletter sign-up handler.
+async function onUserEmailAvailable(email) {
+  try {
+    // The submodule registers with the userId module when the import resolves.
+    await import('prebid.js/modules/uid2IdSystem');
+  } catch (error) {
+    console.error('Could not load optional Prebid ID module', error);
+    return;
+  }
+
+  // setConfig replaces the whole userSync object, so keep existing settings.
+  const userSync = pbjs.getConfig('userSync') || {};
+  pbjs.setConfig({
+    userSync: {
+      ...userSync,
+      userIds: [
+        ...(userSync.userIds || []),
+        {
+          name: 'uid2',
+          params: {
+            serverPublicKey: 'YOUR_SERVER_PUBLIC_KEY',
+            subscriptionId: 'YOUR_SUBSCRIPTION_ID',
+            email
+          }
+        }
+      ]
+    }
+  });
+
+  // Resolves once the new ID is available; later auctions will include it.
+  await pbjs.refreshUserIds({ submoduleNames: ['uid2'] });
+}
+```
+
+Auctions that start before `refreshUserIds()` resolves run without the new
+ID; wait for it if the next auction should include it. Collecting an email
+does not replace consent: the ID module's storage and EID transmission are
+still subject to your consent management and activity control
+configuration. See the [User ID module](/dev-docs/modules/userId) and the
+ID provider's page for its parameters.
+
+### Self-hosted precompiled chunks
+
+This example loads the module chunks before the main script, from the same
+Prebid.js build. The code for these chunks is generated by `gulp build`.
 
 1. Perform full Prebid build `gulp build`
 1. Generate the main `prebid.js` file containing only the modules required across all pages: `gulp bundle --modules=<...>`

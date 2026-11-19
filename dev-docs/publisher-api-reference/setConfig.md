@@ -653,6 +653,7 @@ For descriptions of all the properties that control user syncs, see the table be
 | `enableOverride` | Boolean | Enable/disable publisher to trigger user syncs by calling `pbjs.triggerUserSyncs()`. Default: `false`. |
 | `aliasSyncEnabled` | Boolean | Enable/disable registered syncs for aliased adapters. Default: `false`. |
 | `usePoliteSync` | Boolean | Fire user syncs as low-priority background work. Image syncs are sent with `fetch` (`no-cors`, `credentials: 'include'`, `keepalive`), falling back to an image pixel; iframe syncs are inserted the same way as before, but in a background task. Background tasks use `scheduler.postTask` with `background` priority where available, otherwise `requestIdleCallback` with a 2 second timeout, otherwise they run immediately. Filtering, limits and delays are unchanged. Default: `false`. Since Prebid.js 11.14. |
+| `removeIframes` | Boolean or Object | Remove sync iframes automatically, counting from when each is added to the page (whether or not it loads). On by default; set `false` to keep them for the life of the page. An object sets the delays, in milliseconds (missing ones use the defaults). `withChildFrames`: remove an iframe at this point if it has created frames of its own, and log a warning (default `15000`). `all`: remove it at this point regardless (default `15000`). Set either to `false` to skip that step. See [removeUserSyncs]({{site.baseurl}}/dev-docs/publisher-api-reference/removeUserSyncs.html). Since Prebid.js 11.47. |
 
 <a name="setConfig-ConfigureUserSyncing-UserSyncExamples"></a>
 
@@ -686,6 +687,19 @@ Fire user syncs as background tasks to reduce their impact on page performance:
 pbjs.setConfig({
     userSync: {
         usePoliteSync: true
+    }
+});
+```
+
+Remove sync iframes that fan out sooner, after 2 seconds, and keep the others for a minute (both default to 15 seconds):
+
+```javascript
+pbjs.setConfig({
+    userSync: {
+        removeIframes: {
+            withChildFrames: 2000,
+            all: 60000
+        }
     }
 });
 ```
@@ -1171,6 +1185,7 @@ To register a video player with Prebid, you must use `setConfig` to set a `video
 | video.providers[] .adServer.params | yes | object | Querystring parameters that will be used to construct the video ad tag URL. Required when `video.providers[].adServer.baseAdTagUrl` is absent. |
 | video.contentEnrichmentEnabled | no | boolean | Defaults to true. Set to false to prevent the Video Module from enriching the `site.content` params in the bidder request. |
 | video.mainContentDivId | no | string | Div Id of the video player intended to populate the `bidderRequest.site.content` params. Used when multiple video players are registered with the Video Module to indicate which player is rendering the main content. The `bidderRequest.site.content` params will be populated by said video player for all auctions where a Video Player is registered with an Ad Unit in the auction. |
+| video.sizeBuckets | no | array of `[width, height]` | List of player sizes to report instead of the player's actual size, e.g. `[[640, 360], [480, 640]]`. When set, the Video Module reports the bucket nearest to the player's actual size as the ad unit's player size (`imp.video.w`/`h`), and the actual size as `imp.video.ext.true_size` (`{w, h}`). See [Size buckets]({{site.github.url}}/prebid-video/video-module.html#size-buckets). |
 | video.adServer | no | object | Configuration for ad server integration. Applies to all Video Providers and all Ad Units linked to a video provider. Superseded by `video.adServer` configurations defined at the Ad Unit level, and `video.providers[] .adServer` configurations. |
 | video.adServer .vendorCode | yes | string | The identifier of the AdServer vendor (i.e. gam, etc) |
 | video.adServer .baseAdTagUrl | yes | string | Your AdServer Ad Tag. The targeting params of the winning bid will be appended. Required when `video.adServer.params` is absent. |
