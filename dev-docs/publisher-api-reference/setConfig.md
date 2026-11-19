@@ -653,7 +653,8 @@ For descriptions of all the properties that control user syncs, see the table be
 | `enableOverride` | Boolean | Enable/disable publisher to trigger user syncs by calling `pbjs.triggerUserSyncs()`. Default: `false`. |
 | `aliasSyncEnabled` | Boolean | Enable/disable registered syncs for aliased adapters. Default: `false`. |
 | `usePoliteSync` | Boolean | Fire user syncs as low-priority background work. Image syncs are sent with `fetch` (`no-cors`, `credentials: 'include'`, `keepalive`), falling back to an image pixel; iframe syncs are inserted the same way as before, but in a background task. Background tasks use `scheduler.postTask` with `background` priority where available, otherwise `requestIdleCallback` with a 2 second timeout, otherwise they run immediately. Filtering, limits and delays are unchanged. Default: `false`. Since Prebid.js 11.14. |
-| `allowRestrictedBrowsers` | Array of strings | Browsers in which user syncs are off by default where syncs should still fire, for example after the user has opted in to tracking. Values: `'safari'`, `'firefox'`, `'chromeIOS'`. Applies to bid adapter syncs and to the [Prebid Server adapter]({{site.baseurl}}/dev-docs/modules/prebidServer.html) `cookie_sync` request. Cookie access, consent and activity controls still apply. Default: none. Since Prebid.js 11.52. |
+| `removeIframes` | Boolean or Object | Remove sync iframes automatically, counting from when each is added to the page (whether or not it loads). On by default; set `false` to keep them for the life of the page. An object sets the delays, in milliseconds (missing ones use the defaults). `withChildFrames`: remove an iframe at this point if it has created frames of its own, and log a warning (default `15000`). `all`: remove it at this point regardless (default `15000`). Set either to `false` to skip that step. See [removeUserSyncs]({{site.baseurl}}/dev-docs/publisher-api-reference/removeUserSyncs.html). Since Prebid.js 11.47. |
+| `allowRestrictedBrowsers` | Array of strings | Browsers in which user syncs are off by default where syncs should still fire, for example after the user has opted in to tracking. Values: `'safari'`, `'firefox'`, `'chromeIOS'`. Applies to bid adapter syncs and to the [Prebid Server adapter]({{site.baseurl}}/dev-docs/modules/prebidServer.html) `cookie_sync` request. Cookie access, consent and activity controls still apply. Default: none. Since Prebid.js 11.53. |
 
 <a name="setConfig-ConfigureUserSyncing-UserSyncExamples"></a>
 
@@ -697,6 +698,19 @@ Fire user syncs as background tasks to reduce their impact on page performance:
 pbjs.setConfig({
     userSync: {
         usePoliteSync: true
+    }
+});
+```
+
+Remove sync iframes that fan out sooner, after 2 seconds, and keep the others for a minute (both default to 15 seconds):
+
+```javascript
+pbjs.setConfig({
+    userSync: {
+        removeIframes: {
+            withChildFrames: 2000,
+            all: 60000
+        }
     }
 });
 ```
@@ -804,7 +818,7 @@ The [userSync.registerSync()]({{site.baseurl}}/dev-docs/bidder-adaptor.html#bidd
 
 When user syncs are run, regardless of whether they are invoked by the platform or by the page calling pbjs.triggerUserSyncs(), the queue entries are randomized and appended to the bottom of the HTML tag.
 
-The queue is not fired at all if the browser is Safari (or, since Prebid.js 11.9, Firefox or Chrome on iOS), or if cookies are disabled or access to them is denied (for example, by consent or activity controls). This applies to syncs run after `syncDelay` and to `pbjs.triggerUserSyncs()`. Adapters' `getUserSyncs()` functions are still called and their syncs registered, but no image or iframe syncs are fired. Since Prebid.js 11.20, the [Prebid Server adapter]({{site.baseurl}}/dev-docs/modules/prebidServer.html) also skips its `cookie_sync` request under the same conditions. Since Prebid.js 11.52, browsers listed in `allowRestrictedBrowsers` are not skipped.
+The queue is not fired at all if the browser is Safari (or, since Prebid.js 11.9, Firefox or Chrome on iOS), or if cookies are disabled or access to them is denied (for example, by consent or activity controls). This applies to syncs run after `syncDelay` and to `pbjs.triggerUserSyncs()`. Adapters' `getUserSyncs()` functions are still called and their syncs registered, but no image or iframe syncs are fired. Since Prebid.js 11.20, the [Prebid Server adapter]({{site.baseurl}}/dev-docs/modules/prebidServer.html) also skips its `cookie_sync` request under the same conditions. Since Prebid.js 11.53, browsers listed in `allowRestrictedBrowsers` are not skipped.
 
 <a name="setConfig-targetingControls"></a>
 
@@ -1182,6 +1196,7 @@ To register a video player with Prebid, you must use `setConfig` to set a `video
 | video.providers[] .adServer.params | yes | object | Querystring parameters that will be used to construct the video ad tag URL. Required when `video.providers[].adServer.baseAdTagUrl` is absent. |
 | video.contentEnrichmentEnabled | no | boolean | Defaults to true. Set to false to prevent the Video Module from enriching the `site.content` params in the bidder request. |
 | video.mainContentDivId | no | string | Div Id of the video player intended to populate the `bidderRequest.site.content` params. Used when multiple video players are registered with the Video Module to indicate which player is rendering the main content. The `bidderRequest.site.content` params will be populated by said video player for all auctions where a Video Player is registered with an Ad Unit in the auction. |
+| video.sizeBuckets | no | array of `[width, height]` | List of player sizes to report instead of the player's actual size, e.g. `[[640, 360], [480, 640]]`. When set, the Video Module reports the bucket nearest to the player's actual size as the ad unit's player size (`imp.video.w`/`h`), and the actual size as `imp.video.ext.true_size` (`{w, h}`). See [Size buckets]({{site.github.url}}/prebid-video/video-module.html#size-buckets). |
 | video.adServer | no | object | Configuration for ad server integration. Applies to all Video Providers and all Ad Units linked to a video provider. Superseded by `video.adServer` configurations defined at the Ad Unit level, and `video.providers[] .adServer` configurations. |
 | video.adServer .vendorCode | yes | string | The identifier of the AdServer vendor (i.e. gam, etc) |
 | video.adServer .baseAdTagUrl | yes | string | Your AdServer Ad Tag. The targeting params of the winning bid will be appended. Required when `video.adServer.params` is absent. |

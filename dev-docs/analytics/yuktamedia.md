@@ -30,8 +30,7 @@ Please reach out at <info@yuktamedia.com> for more information.
           pubId: 1234, // pubId and pubKey be given by YuktaMedia. 
           pubKey: 'some string', // Please contact us to get pubId and pubKey.
           enableUTMCollection: true,
-          enableSession: true,
-          enableUserIdCollection: true
+          enableSession: true
         }
     });
 

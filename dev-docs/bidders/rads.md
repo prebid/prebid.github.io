@@ -3,6 +3,8 @@ layout: bidder
 title: Rads
 description: Prebid Rads Bidder Adaptor
 pbjs: true
+enable_download: false
+pbjs_version_notes: "Not available in current Prebid.js builds; specific reason unknown."
 biddercode: rads
 media_types: banner, video 
 tcfeu_supported: true
@@ -12,10 +14,10 @@ sidebarType: 1
 ---
 
 
-### bid params
+## bid params
 
 {: .table .table-bordered .table-striped }
 
-| Name          | Scope    | Description                                                                | Example                | Type            |
-|---------------|----------|----------------------------------------------------------------------------|------------------------|-----------------|
-| `placement`   | required | Placement ID from Rads.                                                    | `'101'`                  | `string`        |
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| `placement` | required | Placement ID from Rads. | `'101'` | `string` |

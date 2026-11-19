@@ -168,7 +168,7 @@ gdprApplies, consentString, and apiVersion
 
 #### Listening for errors
 
-There are two error events analytics modules may wish to listen for: auctionDebug and adRenderFailed. The former is any error that would be normally logged to console and there can be a great many. The latter may happen for the following reasons: (PREVENT_WRITING_ON_MAIN_DOCUMENT, NO_AD, CANNOT_FIND_AD, EXCEPTION, MISSING_DOC_OR_ADID)
+There are two error events analytics modules may wish to listen for: auctionDebug and adRenderFailed. The former is any error that would be normally logged to console and there can be a great many. The latter may happen for the following reasons: (PREVENT_WRITING_ON_MAIN_DOCUMENT, NO_AD, CANNOT_FIND_AD, EXCEPTION, MISSING_DOC_OR_ADID). Since Prebid.js 11.48, it is also emitted, with reason EXCEPTION, when a bid's renderer script fails to load or its `render` function throws. Since 11.47, auctionDebug events include `bidder`, the code of the bidder whose adapter logged the message (or `null`), so errors can be attributed to a bidder.
 
 #### Analytics adapter best practices
 
