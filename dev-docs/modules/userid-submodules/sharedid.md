@@ -32,11 +32,49 @@ In addition to the parameters documented above in the Basic Configuration sectio
 | params | Optional | Object | Customized parameters | |
 | params.create | Optional | Boolean | For publisher server support only.  If true, the publisher's server will create the (pubcid) cookie.  Default is true. | `true` |
 | params.pixelUrl | Optional | String | For publisher server support only. Where to call out to for a server cookie -- see [Prebid Identity](/identity/sharedid.html) for more information. | `/wp-json/pubcid/v1/extend/` |
+| params.pixelConsent | Optional | Boolean | For publisher server support only. If true, the `pixelUrl` request also carries the page's consent data, so the endpoint can decide on storage with the same consent as Prebid.js. See [Sending consent to the pixelUrl endpoint](#sending-consent-to-the-pixelurl-endpoint). Default is false. Since Prebid.js 11.52. | `true` |
+| params.pixelCookieDomain | Optional | Boolean | For publisher server support only. If true, the `pixelUrl` request also carries `cookie_domain`, the domain Prebid.js writes the ID cookie on, so the endpoint can set its cookie on the same domain. See [Sending the cookie domain to the pixelUrl endpoint](#sending-the-cookie-domain-to-the-pixelurl-endpoint). Default is false. Since Prebid.js 11.52. | `true` |
 | params.extend | Optional | Boolean | If true, the expiration time of the stored IDs will be refreshed during each page load.  Default is false. | `false` |
 | storage | Required | Object | The publisher must specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage.| |
 | storage.expires | Integer | Required | How long the user ID information will be stored. | `365` |
 | storage.name | String | Required | The name of the cookie or html5 local storage where the user ID will be stored. | `_pubcid` |
 | storage.type | String | Required | This is where the results of the user ID will be stored. Must be either: Must be either: "cookie" or "html5". For server side implementations, which have the best identifier life and revenue impact, this must be a cookie. | `cookie` |
+
+### Sending consent to the pixelUrl endpoint
+
+Since Prebid.js 11.52, `params.pixelConsent: true` adds the page's consent data to the `pixelUrl` request, both when an ID is created and when it is extended. A `pixelUrl` endpoint sets and deletes the ID cookie itself, so it needs to decide on consent too. Without these parameters it has to find the consent on its own, for example from a CMP cookie, which may be missing or out of date.
+
+The request keeps its `id=pubcid:<id>` parameter and adds, each only when the consent data is available:
+
+{: .table .table-bordered .table-striped }
+
+| Query parameter | Value |
+| --- | --- |
+| `gdpr` | `1` if GDPR applies, `0` if it doesn't; left out when that is unknown |
+| `gdpr_consent` | The TCF consent string |
+| `us_privacy` | The US Privacy (CCPA) string |
+| `gpp` | The GPP string |
+| `gpp_sid` | The applicable GPP section IDs, comma-separated |
+
+Values are URL-encoded, for example:
+
+```text
+/wp-json/pubcid/v1/extend/?id=pubcid%3A<id>&gdpr=1&gdpr_consent=<TC string>&gpp=DBABMA~<TC string>&gpp_sid=2%2C7
+```
+
+Without `pixelConsent`, the request is unchanged.
+
+### Sending the cookie domain to the pixelUrl endpoint
+
+Since Prebid.js 11.52, `params.pixelCookieDomain: true` adds `cookie_domain` to the `pixelUrl` request, both when an ID is created and when it is extended. Its value is the domain Prebid.js writes the ID cookie on: the topmost domain the browser accepts a cookie for, found by writing test cookies (for example `example.com` on `www.example.com`). A server can't run that check itself, so with this parameter a first-party endpoint can set its cookie with the same `Domain` as Prebid.js. The endpoint should only accept a value that equals the request host or is a parent domain of it (ending in `.` plus the value), and ignore anything else.
+
+`cookie_domain` is left out when no domain can be determined, for example when cookies can't be written. The test cookies are only written when this parameter is set. It works with or without `pixelConsent`:
+
+```text
+/wp-json/pubcid/v1/extend/?id=pubcid%3A<id>&us_privacy=1YNN&cookie_domain=example.com
+```
+
+Without `pixelCookieDomain`, the request is unchanged.
 
 ## SharedID Examples
 
@@ -96,7 +134,9 @@ In addition to the parameters documented above in the Basic Configuration sectio
             userIds: [{
                 name: "sharedId",
                 params: {
-                    pixelUrl: "/wp-json/pubcid/v1/extend/" //pixelUrl should be specified when the server plugin is used
+                    pixelUrl: "/wp-json/pubcid/v1/extend/", //pixelUrl should be specified when the server plugin is used
+                    pixelConsent: true,                     // optional: send the page's consent data with the pixelUrl request
+                    pixelCookieDomain: true                 // optional: send the domain Prebid.js writes the cookie on
                 },
                 storage: {
                     type: "cookie",
