@@ -26,7 +26,7 @@ The available events are:
 | Event | Description | Event argument |
 | --- | --- | --- |
 | auctionInit | The auction has started | Object containing auction details |
-| auctionEnd | The auction has ended | Object containing auction details |
+| auctionEnd | The auction has ended | Object containing auction details. Since 11.48, `timedOutRequests` lists the bid requests whose bidders did not respond before the auction timed out (the same requests as `bidTimeout`), so analytics adapters can read them from this one event. |
 | auctionTimeout | The auction has timed out. In case of an auction timeout, you receive this event first, followed by `bidTimeout` and then `auctionEnd` | Object containing auction details |
 | beforeRequestBids | Bids are about to be requested from adapters (added in 3.x) | Array of adunits in the auction |
 | beforeBidderHttp | bidder network request is about be triggered | Array of Bid request objects |
@@ -41,9 +41,9 @@ The available events are:
 | setTargeting | Targeting has been set | Hash of targeting values |
 | requestBids | Bids have been requested from adapters (i.e. pbjs.requestBids() was called) | The argument passed to [`requestBids`](https://docs.prebid.org/dev-docs/publisher-api-reference/requestBids.html), except that `adUnits` and `adUnitCodes` are always set and reflect the ad units involved in the auction. Event handlers may not modify `adUnitCodes`. |
 | addAdUnits | Removed in 11.0 - use `auctionInit` instead. Ad units have been added to the auction. Removed in 11.0. | None |
-| adRenderFailed | Ad rendering failed | Object containing 'reason' and 'message' |
-| adRenderSucceeded | Ad rendering succeeded | Object containing 'doc', 'bid', and 'adId'. 'doc' is the DOM root containing the ad and may be `null` if it was rendered in a cross-origin iframe. This event indicates that the render function did not generate an error, it does not guarantee that tracking for this event has occurred yet. |
-| auctionDebug | An error was logged to the console | Object containing 'type' and 'arguments' |
+| adRenderFailed | Ad rendering failed | Object containing 'reason' and 'message'. Since 11.48, this is also emitted for bids rendered by a [renderer](/dev-docs/show-outstream-video-ads.html) when the renderer script fails to load or its `render` function throws (reason `exception`). |
+| adRenderSucceeded | Ad rendering succeeded | Object containing 'doc', 'bid', and 'adId'. 'doc' is the DOM root containing the ad and may be `null` if it was rendered in a cross-origin iframe. This event indicates that the render function did not generate an error, it does not guarantee that tracking for this event has occurred yet. For bids rendered by a renderer, since 11.48 it is emitted once the renderer has loaded and rendered, rather than when rendering starts. |
+| auctionDebug | An error was logged to the console | Object containing 'type' and 'arguments'. Since 11.47, also 'bidder': the code of the bidder whose adapter was running when the message was logged, or `null`. |
 | bidderDone | A bidder has signaled they are done responding | Bid request object |
 | bidderError | A bidder responded with an error | Object with the XMLHttpRequest error and the bid request object `{ error, bidderRequest }` |
 | tcf2Enforcement | There was a TCF2 enforcement action taken | `{ storageBlocked: ['moduleA', 'moduleB'], biddersBlocked: ['moduleB'], analyticsBlocked: ['moduleC'] }` |
