@@ -10,7 +10,7 @@ example: '"ruid_7b9c1d3f-1e2b-4e7b-9e5a-acde12345678"'
 
 ## Overview
 
-The Rediads User ID submodule generates a first-party browser identifier for publisher-side identity and makes it available to Prebid bidders through both `bidRequest.userId.rediadsId` and `bidRequest.userIdAsEids`.
+The Rediads User ID submodule generates a first-party browser identifier for publisher-side identity and makes it available to Prebid bidders as an EID in `ortb2.user.ext.eids` (also `bidRequest.userIdAsEids`).
 
 This submodule is implemented as a Prebid User ID module and uses Prebid-managed storage.
 
@@ -78,15 +78,9 @@ The Rediads ID submodule follows the standard Prebid User ID privacy flow.
 
 The module uses Prebid's vendorless TCF marker so purpose-level enforcement applies without requiring a separate vendor registration in the module config.
 
-## Bid Request Output
+## Decoded ID
 
-When available, the Rediads ID is exposed on the bid request as:
-
-```javascript
-bidRequest.userId.rediadsId
-```
-
-Example:
+When available, the decoded Rediads ID is returned by `pbjs.getUserIds().rediadsId`. Example:
 
 ```json
 {
