@@ -4,7 +4,7 @@ title: AlchemyX
 description: Prebid AlchemyX Bidder Adapter
 aliasCode: adverxo
 pbjs: true
-pbs: false
+pbs: true
 pbs_app_supported: false
 biddercode: alchemyx
 media_types: banner, native, video
@@ -27,7 +27,7 @@ prebid_member: false
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 The AlchemyX Bidding adapter requires setup and approval before beginning. Please reach out to <prebid@alchemyx.io> for
 more details.
@@ -35,10 +35,10 @@ more details.
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example | Type |
-|----------|----------|-----------------------|---------------------------|----------|
-| `adUnitId`   | required | Unique identifier for the ad unit in AlchemyX platform. | `1` | `integer` |
-| `auth`       | required | Authentication token provided by AlchemyX platform for the AdUnit. |`'61336e75e414c77c367eq5c47c2599ce80a8032b'` | `string` |
+| Name       | Scope    | Description                                                        | Example                                      | Type      |
+|------------|----------|--------------------------------------------------------------------|----------------------------------------------|-----------|
+| `adUnitId` | required | Unique identifier for the ad unit in AlchemyX platform.            | `1`                                          | `integer` |
+| `auth`     | required | Authentication token provided by AlchemyX platform for the AdUnit. | `'61336e75e414c77c367eq5c47c2599ce80a8032b'` | `string`  |
 
 ### Setting First Party Data (FPD)
 

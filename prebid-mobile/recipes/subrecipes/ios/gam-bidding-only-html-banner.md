@@ -83,9 +83,11 @@ In case you use a single-size banner (e.g., 300x250), you don't need to make a c
 {% capture gma12 %}func bannerViewDidReceiveAd(_ bannerView: GoogleMobileAds.BannerView) {
     AdViewUtils.findPrebidCreativeSize(bannerView, success: { size in
         guard let bannerView = bannerView as? AdManagerBannerView else { return }
+        // Resize the ad view using the resolved Prebid creative size.
         bannerView.resize(adSizeFor(cgSize: size))
-    }, failure: { (error) in
-        PrebidDemoLogger.shared.error("Error occurring during searching for Prebid creative size: \(error)")
+    }, failure: { error in
+        // Size resolution may fail for a non-Prebid creative served by GAM,
+        // or when size information cannot be extracted from a Prebid creative.
     })
 }
 {% endcapture %}
@@ -93,9 +95,11 @@ In case you use a single-size banner (e.g., 300x250), you don't need to make a c
     // 6. Resize ad view if needed (Prebid Mobile SDK)
     AdViewUtils.findPrebidCreativeSize(bannerView, success: { size in
         guard let bannerView = bannerView as? GAMBannerView else { return }
+        // Resize the ad view using the resolved Prebid creative size.
         bannerView.resize(GADAdSizeFromCGSize(size))
-    }, failure: { (error) in
-        // The received ad is not Prebid’s one 
+    }, failure: { error in
+        // Size resolution may fail for a non-Prebid creative served by GAM,
+        // or when size information cannot be extracted from a Prebid creative.
     })
 }
 {% endcapture %}
@@ -103,7 +107,7 @@ In case you use a single-size banner (e.g., 300x250), you don't need to make a c
 {% include code/gma-versions-tabs.html id="html-banner-did-receive-ad-callback" gma11=gma11 gma12=gma12 %}
 
 {: .alert.alert-info :}
-Make sure you process all possible cases in the  `AdViewUtils.findPrebidCreativeSize` callbacks (both success and failure).  Sometimes you might not get the size of the creative (or a failure callback) - it simply means that this is not a Prebid creative.  It means that you still need to render the creative, but you most likely don’t need to resize it.
+Size resolution may fail when GAM serves a non-Prebid creative or when the required size information cannot be extracted from a Prebid creative. The failure callback does not distinguish between these cases; leave the ad view’s current size unchanged.
 
 ## Step 1: Create a `BannerAdUnit`
 
@@ -136,7 +140,7 @@ Ensure that you call the _load_ method with the same `AdManagerRequest` object t
 
 ## Step 6: Adjust the ad view size
 
-Once an app receives a signal that an ad is loaded, you should use the method `AdViewUtils.findPrebidCreativeSize` to verify whether it's Prebid Server’s ad and resize the ad slot respectively to the creative's properties. 
+After the banner loads, use `AdViewUtils.findPrebidCreativeSize` to look for Prebid size information in the creative’s HTML. If a size is found, resize the ad view in the success callback.
 
 ## Further Reading
 

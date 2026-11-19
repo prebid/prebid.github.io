@@ -20,3 +20,4 @@
 | `salePrice`   | The sale price of the advertised application/product                                 | `##hb_native_saleprice##` |
 | `address`     | Address of the Buyer/Store. e.g, "123 Main Street, Anywhere USA"                     | `##hb_native_address##`   |
 | `phone`       | Phone Number of the Buyer/Store. e.g, "(123) 456-7890"                               | `##hb_native_phone##`     |
+| `video`       | VAST XML for a video asset (since Prebid.js 11.41). The request must set `mimes`, `protocols`, `minduration` and `maxduration`; see [Native video asset](/dev-docs/show-native-ads.html#native-video-asset). The native template must play it. | `##hb_native_video##`     |

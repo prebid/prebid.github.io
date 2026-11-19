@@ -113,12 +113,14 @@ To handle the banner, video and in-banner native (Native Styles) ads:
     self.bannerView.addSubview(bannerView)
     
     AdViewUtils.findPrebidCreativeSize(bannerView, success: { [weak self] size in
+        // Resize the ad view using the resolved Prebid creative size.
         bannerView.resize(adSizeFor(cgSize: size))
         
         self?.bannerView.constraints.first { $0.firstAttribute == .width }?.constant = size.width
         self?.bannerView.constraints.first { $0.firstAttribute == .height }?.constant = size.height
-    }, failure: { (error) in
-        PrebidDemoLogger.shared.error("Error occurring during searching for Prebid creative size: \(error)")
+    }, failure: { error in
+        // Size resolution may fail for a non-Prebid creative served by GAM,
+        // or when size information cannot be extracted from a Prebid creative.
     })
 }
 {% endcapture %}
@@ -129,12 +131,14 @@ To handle the banner, video and in-banner native (Native Styles) ads:
     self.bannerView.addSubview(bannerView)
 
     AdViewUtils.findPrebidCreativeSize(bannerView, success: { [weak self] size in
+        // Resize the ad view using the resolved Prebid creative size.
         bannerView.resize(GADAdSizeFromCGSize(size))
 
         self?.bannerView.constraints.first { $0.firstAttribute == .width }?.constant = size.width
         self?.bannerView.constraints.first { $0.firstAttribute == .height }?.constant = size.height
-    }, failure: { (error) in
-        PrebidDemoLogger.shared.error("Error occurring during searching for Prebid creative size: \(error)")
+    }, failure: { error in
+        // Size resolution may fail for a non-Prebid creative served by GAM,
+        // or when size information cannot be extracted from a Prebid creative.
     })
 }
 {% endcapture %}
@@ -235,7 +239,7 @@ Be sure that you make the ad request with the same `AdManagerRequest` object tha
 ## Step 7: Process the Ad Response
 {:.no_toc}
 
-Once an app receives a signal that an ad is loaded, you should use the method `AdViewUtils.findPrebidCreativeSize` to verify whether it is a Prebid ad and resize the ad slot respectively to the creative's properties.
+For banner responses, use `AdViewUtils.findPrebidCreativeSize` to look for Prebid size information in the creative’s HTML. If a size is found, resize the ad view and update its container constraints in the success callback.
 
 ## Further Reading
 

@@ -3,7 +3,7 @@ layout: bidder
 title: Lifestreet
 description: Prebid Lifestreet Bidder Adaptor
 pbjs: true
-pbs: true
+pbs: false
 biddercode: lifestreet
 media_types: video
 tcfeu_supported: true
@@ -14,8 +14,7 @@ pbjs_version_notes:
 sidebarType: 1
 ---
 
-
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name      | Scope    | Description | Example        | Type     |

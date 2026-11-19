@@ -3,7 +3,7 @@ layout: bidder
 title: DXKulture
 description: Prebid DXKulture Bidder Adapter
 pbjs: true
-pbs: true
+pbs: false
 biddercode: dxkulture
 media_types: banner, video
 tcfeu_supported: false
@@ -14,16 +14,16 @@ sidebarType: 1
 
 ---
 
-### Integration Note
+## Integration Note
 
 The DXKulture Header Bidding adapter requires approval from the DXKulture team. Please reach out to <devops@dxkulture.com> for more information.
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope    | Description        | Example     | Type      |
-|------|----------|--------------------|-------------|-----------|
-| `placementId` | required | Placement Id | `'1234abcd'` | `string`  |
-| `publisherId` | required | Publisher Id       | `'12345'`     | `string` |
-| `bidfloor` | optional | Bid Floor       | `2.3`     | `float` |
-| `bidfloorcur` | optional | Bid Floor Currency       | `'USD'`     | `string` |
+| Name          | Scope    | Description        | Example      | Type     |
+|---------------|----------|--------------------|--------------|----------|
+| `placementId` | required | Placement Id       | `'1234abcd'` | `string` |
+| `publisherId` | required | Publisher Id       | `'12345'`    | `string` |
+| `bidfloor`    | optional | Bid Floor          | `2.3`        | `float`  |
+| `bidfloorcur` | optional | Bid Floor Currency | `'USD'`      | `string` |

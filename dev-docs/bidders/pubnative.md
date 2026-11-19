@@ -4,15 +4,17 @@ title: PubNative
 pbs: true
 media_types: banner, video, native
 biddercode: pubnative
-tcfeu_supported: false
+tcfeu_supported: true
+gvl_id: 512
 prebid_member: true
 schain_supported: true
 coppa_supported: true
 usp_supported: true
+gpp_sids: tcfeu
 sidebarType: 1
 ---
 
-### Registration
+## Registration
 
 Before adding PubNative as a new bidder, there are 3 prerequisites:
 
@@ -20,17 +22,17 @@ Before adding PubNative as a new bidder, there are 3 prerequisites:
 - You need a configured Prebid Server (either self-hosted or hosted by 3rd party).
 - You need to be integrated with Ad Server SDK or internal product which communicates with Prebid Mobile SDK.
 
-Please see [documentation](https://developers.pubnative.net/docs/prebid-adding-pubnative-as-a-bidder) for more info.
+Please see [documentation](https://developers.verve.com/docs/prebid-adding-verve-as-bidder) for more info.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name       | Scope    | Description            | Example | Type     |
-|------------|----------|------------------------|---------|----------|
-| zone_id | required | The ad zone identifier | 1 | integer |
-| app_auth_token | required | The app's authentication token | 'aaaabbbbcccc' | string |
+| Name           | Scope    | Description                    | Example        | Type    |
+|----------------|----------|--------------------------------|----------------|---------|
+| zone_id        | required | The ad zone identifier         | 1              | integer |
+| app_auth_token | required | The app's authentication token | 'aaaabbbbcccc' | string  |
 
-### Test Parameters
+## Test Parameters
 
 Please consult with our Account Manager for testing.
 We need to confirm that your ad request is correctly received by our system.

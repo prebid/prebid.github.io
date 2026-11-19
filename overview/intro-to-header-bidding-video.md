@@ -62,7 +62,9 @@ When a web page or app loads, the header bidding wrapper also loads. The wrapper
 
 In a fraction of a second, the buyers respond with bids containing the ad they want to serve, the price they're willing to pay, and other relevant information. The header bidding wrapper then collects and passes these bids to the primary ad server.
 
-The ad server considers the header bidding bids alongside other potential buyers and decides which buyer wins. Within the ad server, header bidding bids compete based on price and do not interfere with the delivery of reserved, guaranteed and sponsorship campaigns. When the ad server chooses a header bidding buyer, it works with the wrapper to render the ad to the page.
+In this setup, the ad server considers the header bidding bids alongside other potential buyers and decides which buyer wins. Within the ad server, header bidding bids compete based on price and do not interfere with the delivery of reserved, guaranteed and sponsorship campaigns. When the ad server chooses a header bidding buyer, it works with the wrapper to render the ad to the page.
+
+Alternatively, the wrapper can make the final decision itself, with the ad server bidding into the header bidding auction alongside other buyers. Prebid supports this with [priority bids](/dev-docs/publisher-api-reference/bidderSettings.html#212-allowprioritybids), so reserved and sponsorship campaigns from the ad server can still be prioritized correctly.
 
 ### Header Bidding and Prebid
 

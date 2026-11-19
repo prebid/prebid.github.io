@@ -1,82 +1,69 @@
 ---
 layout: page_v2
-title: Prebid Ad Slot and GPID
-description: Prebid Ad Slot and GPID
+title: Global Placement ID (GPID)
+description: How to identify ad slots for bidders and reporting with the Global Placement ID (GPID), which replaced the Prebid Ad Slot
 sidebarType: 1
 ---
 
-# The Prebid Ad Slot and the GPID
+# The Global Placement ID (GPID)
 
 {:.no_toc}
 
 - TOC
 {:toc}
 
-Prebid Ad Slot and the Global Placement ID (GPID) are overlapping conventions that allow publishers to identify ad inventory on their pages so bidders and reporting systems can better deal with their sites.
+The Global Placement ID (GPID) lets publishers identify each ad slot on their pages, so bidders and reporting systems can tell slots apart.
+
+{: .alert.alert-info :}
+GPID replaced the Prebid Ad Slot (`ortb2Imp.ext.data.pbadslot`). Prebid.js 9.0 deprecated `pbadslot`, and Prebid.js 10.0 removed it. Use `ortb2Imp.ext.gpid` instead; see [Migrating from the Prebid Ad Slot](#migrating-from-the-prebid-ad-slot).
 
 ## Background
 
-It all starts with how publishers decide to label their ad slots: the places on their pages
-where ads can be served. In some ad servers like GAM, these things are called "ad units".
-Most publishers use unique ad slot names, but some publishers utilize the same name for every ad slot on their page. e.g. "/homepage" might be the name for 5 different slots.
+It starts with how publishers label their ad slots, the places on their pages
+where ads can be served. Ad servers such as GAM call these "ad units".
+Most publishers use unique ad slot names, but some use the same name for every ad slot on a page. For example, "/homepage" might be the name of 5 different slots.
 
-It's the case of 'same ad slot names' that Prebid Ad Slot and GPID are
-meant to address.
+GPID addresses that case of repeated ad slot names.
 
 ### The Prebid.js AdUnit
 
-When Prebid.js was developed in 2015, they needed a data structure that would link each ad slot to the bidders and parameters involved in the auction for that slot. Thus was born the Prebid.js [AdUnit](/dev-docs/adunit-reference.html). The AdUnit 'code' is what links this object to the adserver's ad slot. Because some pubs use the same ad slot name everywhere, AdUnit.code is a mixed attribute that can be either the ad slot name **or** the HTML div ID. The undecided nature of AdUnit.code makes it hard to utilize for reporting and auction targeting.
-
-### The Prebid Ad Slot
-
-The 'Prebid Ad Slot' was developed in Prebid.js v3 as an optional inventory management convention allowing publishers to supply a descriptive and stable label for each ad on the page. This makes it possible to have more granular reporting and better deal targeting.
-However, the PB ad slot is not an industry standard convention, so didn't gain
-much traction.
+Prebid.js links each ad slot to the bidders and parameters of its auction with an [AdUnit](/dev-docs/adunit-reference.html). The AdUnit `code` links it to the ad server's slot. Because some publishers use the same ad slot name everywhere, `AdUnit.code` can be either the ad slot name **or** the HTML div ID, which makes it hard to use for reporting and auction targeting.
 
 ### The GPID
 
-The Global Placement ID (GPID) was an initiative in the Fall of 2021 led
-by the TradeDesk to solve the problem of inventory identification in an industry-wide way. i.e. Buyers want to be able to identify ad slots in a unique way even
-when the publisher uses the same ad slot name multiple times.
+The Global Placement ID was an initiative in the fall of 2021, led
+by The Trade Desk, to identify inventory in an industry-wide way: buyers want to identify each ad slot uniquely,
+even when the publisher uses the same ad slot name several times.
 
-The original suggestion for GPID was to simply append the HTML div element id (aka the 'div-id') to the ad slot name. But some publishers generate div-ids randomly, so the definition of GPID has become:
+The original proposal was to append the HTML div element ID (the "div-id") to the ad slot name. Some publishers generate div-ids randomly, so GPID is defined as:
 
 ```javascript
 imp[].ext.gpid: ADSLOTNAME#UNIQUIFIER
 ```
 
-Where ADSLOTNAME is the ad server's slot name (e.g. /1111/homepage) and UNIQUIFIER is something that makes the ADSLOTNAME different from others. Normally it's a
-div-id, but if div-ids are random, it can be something else. The "#UNIQUIFIER" is only required if the ADSLOTNAME isn't unique enough on its own.
+ADSLOTNAME is the ad server's slot name (e.g. /1111/homepage), and UNIQUIFIER makes it different from other slots with the same name. It's normally the
+div-id, but if div-ids are random, it can be something else. The "#UNIQUIFIER" is only needed when ADSLOTNAME isn't unique on its own.
 
-{: .alert.alert-info :}
-The Prebid Ad Slot didn't ever get broad adoption, so it's likely that
-someday we'll deprecate it in favor of the more standard GPID.
+## Defining the GPID
 
-## Defining Prebid Ad Slot and GPID
+There are two ways to add the GPID to header bidding auctions:
 
-There are two ways a publisher can inject these values into the header bidding auctions:
+1. If you use GPT, install the [GPT Pre-Auction module](/dev-docs/modules/gpt-pre-auction.html), which sets `ortb2Imp.ext.gpid` for you.
+2. Set it on each Prebid.js AdUnit. This is required for in-stream video and for publishers not using GAM.
 
-1. Supply them manually on the PBJS AdUnits. This is required for in-stream video and for publishers not using GAM.
-2. If you're using GPT, install the [GPT Pre-Auction module](/dev-docs/modules/gpt-pre-auction.html)
-
-### Defining them on the PBJS Ad Unit
-
-This approach what you'll have to use for in-stream video and for publishers not using GAM.
+### Defining it on the Prebid.js AdUnit
 
 #### Example 1 - unique ad slot names
 
-In this example, there's no need for the "UNIQUIFIER" string because every ad slot
-on the publisher page is already unique.
+There's no need for the "UNIQUIFIER" string here, because every ad slot
+on the page is already unique.
 
 ```javascript
 pbjs.addAdUnits({
     code: '/1111/homepage-leftnav',
     ortb2Imp: {
         ext: {
-            gpid: "/1111/homepage-leftnav",
-            data: {
-                pbadslot: "/1111/homepage-leftnav"
-            }
+            gpid: "/1111/homepage-leftnav"
         }
     },
     mediaTypes: ...
@@ -86,18 +73,14 @@ pbjs.addAdUnits({
 
 #### Example 2 - duplicate ad slots
 
-In this example, the publisher's ad slots all have the same name, but at least
- the div-ids are unique.
+The publisher's ad slots all have the same name, but the div-ids are unique.
 
 ```javascript
 pbjs.addAdUnits({
     code: 'div-leftnav',
     ortb2Imp: {
         ext: {
-            gpid: "/1111/homepage#div-leftnav",
-            data: {
-                pbadslot: "/1111/homepage#div-leftnav"
-            }
+            gpid: "/1111/homepage#div-leftnav"
         }
     },
     mediaTypes: ...
@@ -107,7 +90,7 @@ pbjs.addAdUnits({
 
 #### Example 3 - duplicate ad slots, random div IDs
 
-In this example, the publisher utilizes the same 'slotname' in the page for multiple holes-in-the-page, differentiating in the ad server by size. They also use random div-ids. e.g.
+The publisher uses the same slot name for several slots on the page and differentiates them in the ad server by size. The div-ids are random, e.g.
 
 - defineSlot('/1111/homepage', [[300,250]], 'div-293rj893p9wje9we9fj');
 - defineSlot('/1111/homepage', [[728,90]], 'div-j98s9u9usj987665da');
@@ -118,10 +101,7 @@ pbjs.addAdUnits([
         code: 'div-293rj893p9wje9we9fj',
         ortb2Imp: {
             ext: {
-                gpid: "/1111/homepage#300x250",
-                data: {
-                    pbadslot: "/1111/homepage#300x250"
-                }
+                gpid: "/1111/homepage#300x250"
             }
         },
         mediaTypes: ...
@@ -131,10 +111,7 @@ pbjs.addAdUnits([
         code: 'div-j98s9u9usj987665da',
         ortb2Imp: {
             ext: {
-                gpid: "/1111/homepage#728x90",
-                data: {
-                    pbadslot: "/1111/homepage#728x90"
-                }
+                gpid: "/1111/homepage#728x90"
             }
         },
         mediaTypes: ...
@@ -145,14 +122,17 @@ pbjs.addAdUnits([
 
 ## Prebid Server
 
-The Prebid Server Bid Adapter just sends the values to the conventional OpenRTB locations:
+The Prebid Server Bid Adapter sends the GPID in its OpenRTB location, `imp[].ext.gpid`.
+Mobile and AMP stored requests should put it there too.
 
-- Prebid Ad Slot is `imp[].ext.data.pbadslot`
-- GPID is `imp[].ext.gpid`
+## Migrating from the Prebid Ad Slot
 
-Mobile and AMP Stored Requests should place the values there as desired.
+The Prebid Ad Slot was an optional Prebid.js convention, introduced in Prebid.js 3, for a stable label on each ad slot in `ortb2Imp.ext.data.pbadslot`. It never became an industry standard, and GPID covers the same need.
 
-Server-side bid and anlytics adapters may be modified to read the value.
+- **Prebid.js 9.0** deprecated it: setting `pbadslot` logs a warning.
+- **Prebid.js 10.0** removed it: the GPT Pre-Auction module no longer sets `pbadslot` or supports the `customPbAdSlot` option, and Prebid.js no longer reads the field.
+
+To migrate, move the value from `ortb2Imp.ext.data.pbadslot` to `ortb2Imp.ext.gpid`, or let the GPT Pre-Auction module set the GPID. See the [Prebid.js 10 release notes](/dev-docs/pb10-notes.html).
 
 ## Further Reading
 

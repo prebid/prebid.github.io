@@ -113,7 +113,7 @@ Important Notes:
 
 The quick start is to take a look in two places:
 
-- the [ortb2-blocking module](https://github.com/prebid/prebid-server-java/tree/master/extra/modules/ortb2-blocking)
+- the [ortb2-blocking module](https://github.com/prebid/prebid-server-java/tree/master/extra/modules/pb-ortb2-blocking)
 - the [module test cases](https://github.com/prebid/prebid-server-java/tree/master/src/test/java/org/prebid/server/it/hooks)
 
 ### Adding module documentation

@@ -17,7 +17,7 @@ several kinds of modules built by the community to enhance header bidding:
 
 {: .table .table-bordered .table-striped }
 | Module Type | Description | Scope |
-|-------------|-------------|-------|
+| --- | --- | --- |
 | Bid Adapter | Obtains Open Market or Private Market bids for the current ad request. | Prebid.js, Prebid Server |
 | Analytics Adapter | Listens to auction events and reports to an analytics system. | Prebid.js, Prebid Server |
 | User ID Sub-Module | Obtains an ID for this user and makes that ID available to other types of modules. | Prebid.js |
@@ -66,6 +66,7 @@ The use of the terms "must" and "should" in this document is deliberate.  Howeve
 1. To be listed on the Prebid.org website, a module must be in a Prebid open source repository.
 1. Prebid.js requests and responses must be secure HTTPS.
 1. Prebid.js modules must not use the PREBID_GLOBAL variable nor otherwise obtain a pointer to the global PBJS object. This preserves data integrity.
+1. Module names should be distinct; they should not add to potential entity confusion. Eg a new bidder should not name itself the same name as an existing RTD module from a different entity.
 
 #### Rules that May Someday Be Enforced
 
@@ -140,6 +141,8 @@ There are already exceptions to these rules, and we recognize there will likely 
 * Disclosure: this bidder reports timeout events.
 
 Ideally, the disclosures should be of a limited number of standard types so they can be managed.
+
+For example, a bidder adapter whose `onTimeout` function sends a network request (see [Registering on Timeout](/dev-docs/bidder-adaptor.html#bidder-adaptor-Registering-on-Timout)) gets the "reports timeout events" disclosure. Bidder pages add it with the `dev-docs/reports-timeout-events.md` include, giving the endpoint and the data sent. Adapters that only define an empty `onTimeout` don't need it.
 
 To manage this, we plan to:
 

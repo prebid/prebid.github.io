@@ -124,7 +124,7 @@ These are the fields that can be referenced in the JsonLogic rule:
 - SensitiveDataProcessing8
 - SensitiveDataProcessing9
 
-See the IAB technical specifications for the definition and values allowed for each field. e.g. [GPP Extension: IAB Privacy’s US National Privacy Technical Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md)
+See the IAB technical specifications for the definition and values allowed for each field. e.g. [GPP Extension: IAB Privacy’s US National Privacy Technical Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20Multi-State%20Privacy%20Agreement%20(MSPA)%20US%20National%20Technical%20Specification.md)
 
 ### Linking the module to Activities
 
@@ -304,4 +304,4 @@ Here's a screenshot showing the usage of that tool:
 - [Prebid US Compliance Support](/features/mspa-usnat.html)
 - [US General Privacy Module](/prebid-server/features/pbs-usgen.html)
 - [Activity Control system](/prebid-server/features/pbs-activitycontrols.html)
-- [IAB US National Privacy Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md)
+- [IAB US National Privacy Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20Multi-State%20Privacy%20Agreement%20(MSPA)%20US%20National%20Technical%20Specification.md)
