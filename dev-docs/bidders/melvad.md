@@ -26,7 +26,7 @@ sidebarType: 1
 
 ## Registration
 
-The Melvad bidding adapter requires setup before beginning. Please contact us at <a.stukolkin@melvad.com> to get your placement IDs (Prebid.js) or your `sspId` (Prebid Server).
+The Melvad bidding adapter requires setup before beginning. Please contact us at <support@melvad.com> to get your placement IDs (Prebid.js) or your `sspId` (Prebid Server).
 
 ## Bid Params
 
