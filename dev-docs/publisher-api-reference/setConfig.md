@@ -1446,6 +1446,7 @@ The `auctionOptions` object controls aspects related to auctions.
 | `secondaryBidders` | Optional | Array of Strings | Specifies bidders that the Prebid auction will no longer wait for before determining the auction has completed. This may be helpful if you find there are a number of low performing and/or high timeout bidders in your page's rotation. |
 | `suppressStaleRender` | Optional | Boolean | When true, prevents `banner` bids from being rendered more than once. It should only be enabled after auto-refreshing is implemented correctly.  Default is false. |
 | `suppressExpiredRender` | Optional | Boolean | When true, prevent bids from being rendered if TTL is reached. Default is false. |
+| `replaceExpiredBid` | Optional | Function | Since Prebid.js 11.53. Called when a bid that is about to be rendered has expired. It may return another bid, or a promise to one, to render in its place. See [note](#auctionOptions-replaceExpiredBid). |
 | `legacyRender`     | Optional  | Boolean | When true, uses "legacy" rendering logic  (see [note](#legacyRender))                               |
 | `rejectUnknownMediaTypes` | Optional | Boolean | Since Pbjs 11, When true, reject bids when the adapter response omits `mediaType` for an ad unit that has explicit `mediaTypes` configured. Default is false. |
 | `rejectInvalidMediaTypes` | Optional | Boolean | Since Pbjs 11, When true, reject bids when response `mediaType` does not match one of the ad unit's configured `mediaTypes`. Default is true. |
@@ -1525,6 +1526,52 @@ PBJS performs the following actions when expired rendering is detected.
 * Emit a `EXPIRED_RENDER` event before `BID_WON` event.
 
 Expired winning bids will continue to be rendered unless `suppressExpiredRender` is set to true.  Events including `STALE_RENDER` and `BID_WON` are unaffected by this option.
+
+<a id="auctionOptions-replaceExpiredBid"></a>
+
+#### Replacing Expired Bids
+{: .no_toc}
+
+Since Prebid.js 11.53, `auctionOptions.replaceExpiredBid` lets you render a fresh bid in place of one that expired before it was shown. This is meant for slots the ad server can't refresh, such as interstitials, where the bid in targeting is often past its TTL by the time the ad is displayed.
+
+```javascript
+pbjs.setConfig({
+  auctionOptions: {
+    replaceExpiredBid(expiredBid) {
+      return pbjs.getHighestUnusedBidResponseForAdUnitCode(expiredBid.adUnitCode);
+    }
+  }
+});
+```
+
+The function receives the expired bid and may return a bid, a promise that resolves to a bid, or nothing. It can also run a new auction and return its winner:
+
+```javascript
+pbjs.setConfig({
+  auctionOptions: {
+    replaceExpiredBid(expiredBid) {
+      return new Promise((resolve) => {
+        pbjs.requestBids({
+          adUnitCodes: [expiredBid.adUnitCode],
+          bidsBackHandler() {
+            resolve(pbjs.getHighestUnusedBidResponseForAdUnitCode(expiredBid.adUnitCode));
+          }
+        });
+      });
+    }
+  }
+});
+```
+
+How it works:
+
+* It is called once per expired bid, when the creative (or [`renderAd`](/dev-docs/publisher-api-reference/renderAd.html)) asks Prebid.js to render it. A bid that was already rendered, a bid that already won, and a bid with `deferRendering` are not replaced.
+* Prebid.js renders the replacement only if it is unused, not expired, for the same ad unit and of the same media type, doesn't use `deferRendering`, and uses the same kind of renderer as the expired bid. Otherwise the expired bid is handled as usual, so `suppressExpiredRender` still applies.
+* When a replacement renders, Prebid.js logs a warning and emits `EXPIRED_RENDER` for the expired bid.
+* After that, everything the creative sends under the expired bid's ad ID applies to the replacement: native asset requests and trackers, resize requests and render events. [`triggerBilling`](/dev-docs/publisher-api-reference/triggerBilling.html) with the expired ad ID bills the replacement.
+* The ad server's targeting can't be changed at render time, so it still reflects the expired bid.
+* Returning a promise delays rendering until it resolves. With `legacyRender`, which writes the creative with `document.write`, return the replacement synchronously instead.
+* Don't use the returned bid anywhere else. If two expired bids render at the same time and both get the same replacement, it may render twice.
 
 <a id="legacyRender"></a>
 
