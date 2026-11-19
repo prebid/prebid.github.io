@@ -692,13 +692,13 @@ TargetingParams.addExternalUserId(fullUserId);
 TargetingParams.removeExternalUserId("adserver.org");
 ```
 
-`setExternalUserIds()` and `getExternalUserIds()` are deprecated:
+`setExternalUserIds()` and `getExternalUserIds()` are deprecated and will be removed in PrebidMobile 4.0:
 
 - `setExternalUserIds()` replaces the whole list, so it can overwrite IDs set by other integrations. Use `addExternalUserId()`, `removeExternalUserId()` or `clearExternalUserIds()` instead.
 - `getExternalUserIds()` returns only the IDs set on `TargetingParams`. Use `getExtendedIds()` instead.
 
 ```java
-// Deprecated
+// Deprecated, will be removed in PrebidMobile 4.0
 TargetingParams.setExternalUserIds(List.of(fullUserId));
 ```
 
