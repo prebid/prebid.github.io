@@ -4,6 +4,10 @@
     <meta name="google-site-verification" content="_SMhyxJ4MnU9eTUQQNMUwU5W18T5tjNF7A6mumIci-A" />
     <meta name="keywords" content="Header Bidding, Advanced Bidding, Header Bid, Pre-bid">
     <meta name="description" content="{{page.description}}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{ page.title | escape }}" />
+    {% if page.description %}<meta property="og:description" content="{{ page.description | escape }}" />{% endif %}
+    <meta property="og:url" content="https://docs.prebid.org{{ page.url }}" />
 
     <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.ico">
 
