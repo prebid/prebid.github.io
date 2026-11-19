@@ -38,10 +38,10 @@ The following Video Players are currently supported:
 
 {: .table .table-bordered .table-striped }
 | Video Player | Submodule Name | Vendor Code |
-|--------------|----------------|-------------|
-| [JW Player](https://info.jwplayer.com/sign-up/?utm_source=developer&utm_medium=CTA)  | jwplayerVideoProvider | 1 |
-| [video.js](https://videojs.com/)   | videojsVideoProvider | 2 |
-| [AdPlayer.Pro](https://adplayer.pro/)   | adplayerproVideoProvider | 3 |
+| --- | --- | --- |
+| [JW Player](https://info.jwplayer.com/sign-up/?utm_source=developer&utm_medium=CTA) | jwplayerVideoProvider | 1 |
+| [video.js](https://videojs.com/) | videojsVideoProvider | 2 |
+| [AdPlayer.Pro](https://adplayer.pro/) | adplayerproVideoProvider | 3 |
 
 Not seeing your desired video player ? Learn how to add support by reading our [contribution guide](#Video-Module-Contributing)
 
@@ -49,8 +49,8 @@ Optionally, if you are using an Ad Server, you can configure the Video Module to
 
 {: .table .table-bordered .table-striped }
 | Ad Server | Module Name | Vendor Code |
-|--------------|----------------|-------------|
-| [Google Ad Manager](https://admanager.google.com/)  | dfpAdServerVideo | 'gam' |
+| --- | --- | --- |
+| [Google Ad Manager](https://admanager.google.com/) | gamAdServerVideo | 'gam' |
 
 {: .alert.alert-warning :}
 **Note:** You must include the Ad Server's module in your build.
@@ -90,7 +90,7 @@ The event payload includes metadata which can be used for analytics, error handl
 
 {: .table .table-bordered .table-striped }
 | Event Constant | Event String | Description |
-|----------------|--------------|-------------|
+| --- | --- | --- |
 | SETUP_COMPLETE | 'videoSetupComplete' | Fired when the player is instantiated and the integration is complete. At this point the API is ready to be used. |
 | SETUP_FAILED | 'videoSetupFailed' | Fired when the integration was unsuccessful. |
 | DESTROYED | 'videoDestroyed' | Fired when the player instance has been destroyed. |
@@ -200,8 +200,6 @@ No additional params.
 | adPlacementType | number | The video placements per IAB guidelines. Enum list: In-Stream: 1, In-Banner: 2, In-Article: 3, In-Feed: 4, Interstitial/Slider/Floating: 5 |
 | waterfallIndex | number | Index of the current item in the ad waterfall |
 | waterfallCount | number |  The count of items in a given ad waterfall |
-| adPodCount | number | the total number of ads in the pod |
-| adPodIndex | number | The index of the currently playing ad within an ad pod |
 | wrapperAdIds | array[string] | Ad IDs of the VAST Wrappers that were loaded while loading the Ad tag. The list returned starts at the inline ad (innermost) and traverses to the outermost wrapper ad. An empty array is returned if there are no wrapper ads. |
 
 ###### AD_STARTED
@@ -229,8 +227,6 @@ No additional params.
 | adPlacementType | number | The video placements per IAB guidelines. Enum list: In-Stream: 1, In-Banner: 2, In-Article: 3, In-Feed: 4, Interstitial/Slider/Floating: 5 |
 | waterfallIndex | number | Index of the current item in the ad waterfall |
 | waterfallCount | number |  The count of items in a given ad waterfall |
-| adPodCount | number | the total number of ads in the pod |
-| adPodIndex | number | The index of the currently playing ad within an ad pod |
 | wrapperAdIds | array[string] | Ad IDs of the VAST Wrappers that were loaded while loading the Ad tag. The list returned starts at the inline ad (innermost) and traverses to the outermost wrapper ad. An empty array is returned if there are no wrapper ads. |
 
 <a name="ad-impression-params"></a>
@@ -260,8 +256,6 @@ No additional params.
 | adPlacementType | number | The video placements per IAB guidelines. Enum list: In-Stream: 1, In-Banner: 2, In-Article: 3, In-Feed: 4, Interstitial/Slider/Floating: 5 |
 | waterfallIndex | number | Index of the current item in the ad waterfall |
 | waterfallCount | number |  The count of items in a given ad waterfall |
-| adPodCount | number | the total number of ads in the pod |
-| adPodIndex | number | The index of the currently playing ad within an ad pod |
 | wrapperAdIds | array[string] | Ad IDs of the VAST Wrappers that were loaded while loading the Ad tag. The list returned starts at the inline ad (innermost) and traverses to the outermost wrapper ad. An empty array is returned if there are no wrapper ads. |
 | time | number | The playback time in the ad when the event occurs, in seconds. |
 | duration | number | Total duration of an ad in seconds |
@@ -311,8 +305,6 @@ No additional params.
 | adPlacementType | number | The video placements per IAB guidelines. Enum list: In-Stream: 1, In-Banner: 2, In-Article: 3, In-Feed: 4, Interstitial/Slider/Floating: 5 |
 | waterfallIndex | number | Index of the current item in the ad waterfall |
 | waterfallCount | number |  The count of items in a given ad waterfall |
-| adPodCount | number | the total number of ads in the pod |
-| adPodIndex | number | The index of the currently playing ad within an ad pod |
 | wrapperAdIds | array[string] | Ad IDs of the VAST Wrappers that were loaded while loading the Ad tag. The list returned starts at the inline ad (innermost) and traverses to the outermost wrapper ad. An empty array is returned if there are no wrapper ads. |
 | time | number | The playback time in the ad when the event occurs, in seconds. |
 | duration | number | Total duration of an ad in seconds |
@@ -355,8 +347,6 @@ No additional params.
 | adPlacementType | number | The video placements per IAB guidelines. Enum list: In-Stream: 1, In-Banner: 2, In-Article: 3, In-Feed: 4, Interstitial/Slider/Floating: 5 |
 | waterfallIndex | number | Index of the current item in the ad waterfall |
 | waterfallCount | number |  The count of items in a given ad waterfall |
-| adPodCount | number | the total number of ads in the pod |
-| adPodIndex | number | The index of the currently playing ad within an ad pod |
 | wrapperAdIds | array[string] | Ad IDs of the VAST Wrappers that were loaded while loading the Ad tag. The list returned starts at the inline ad (innermost) and traverses to the outermost wrapper ad. An empty array is returned if there are no wrapper ads. |
 | time | number | The playback time in the ad when the event occurs, in seconds. |
 | duration | number | Total duration of an ad in seconds |
@@ -565,6 +555,30 @@ For your convenience, when an auction begins, the Video Module will update oRTB 
 
 The params in `adUnit.mediaTypes.video` are populated with information extracted from the player. Any param already filled by the publisher will remain unchanged.
 Some params such as `battr`, `minduration`, `maxduration` are specific to a publisher's preferences and should therefore be populated by the Publisher.
+
+<a name="size-buckets"></a>
+
+##### Size buckets
+
+By default, the player size (`mediaTypes.video.playerSize`, `w` and `h`, which become `imp.video.w` and `imp.video.h` in the bid request) is the player's actual size.
+Players are often sized dynamically, so their actual size rarely matches the sizes that demand targets: a 495x655 player may not get bids from an SSP that targets 480x640.
+To report standard sizes instead, set `video.sizeBuckets` to a list of `[width, height]` sizes:
+
+```javascript
+pbjs.setConfig({
+    video: {
+        providers: [/* ... */],
+        sizeBuckets: [[640, 360], [640, 480], [480, 640], [300, 250]]
+    }
+});
+```
+
+When `sizeBuckets` is set:
+
+- the reported player size is the bucket nearest to the player's actual size, that is, the one with the smallest Euclidean distance between the two `[width, height]` pairs. If two buckets are equally near, the one listed first is used.
+- the player's actual size is reported as `imp.video.ext.true_size`, in the form `{w: 495, h: 655}` (set on `adUnit.ortb2Imp.video.ext.true_size`).
+- entries that are not a pair of positive integers are ignored, and a warning is logged.
+- ad units where you have set `mediaTypes.video.playerSize`, `w` or `h` (or `ortb2Imp.video.w` or `h`) keep the size you set, and are not bucketed.
 
 ##### bidderRequest.ortb2.site.content
 

@@ -35,15 +35,15 @@ See the table below for the list of properties on the ad unit. For example ad un
 | `code` | Required | String | An identifier you create and assign to this ad unit. Generally this is set to the ad slot name or the div element ID. Used by [setTargetingForGPTAsync()](/dev-docs/publisher-api-reference/setTargetingForGPTAsync.html) to match which auction is for which ad slot. |
 | `bids` | Optional | Array[Object] | Array of bid objects representing demand partners and associated parameters for a given ad unit. See [Bids](#adUnit.bids) below. |
 | `mediaTypes` | Optional | Object | Defines one or more media types that can serve into the ad unit. For a list of properties, see [`adUnit.mediaTypes`](#adUnit.mediaTypes) below. |
-| `labelAny` | Optional | Array[String] | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive]. |
-| `labelAll` | Optional | Array[String] | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive]. |
+| `labelAny` | Optional | Array[String] | Used for [conditional ads][conditionalAds]; requires the [sizeMapping](/dev-docs/modules/sizeMapping.html) or [sizeMappingV2](/dev-docs/modules/sizeMappingV2.html) module. |
+| `labelAll` | Optional | Array[String] | Used for [conditional ads][conditionalAds]; requires the [sizeMapping](/dev-docs/modules/sizeMapping.html) or [sizeMappingV2](/dev-docs/modules/sizeMappingV2.html) module. |
 | `ortb2Imp` | Optional | Object | ortb2Imp is used to signal OpenRTB Imp objects at the adUnit grain. Similar to the global ortb2 field used for [global first party data configuration](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd), but specific to this adunit.|
 | `ttlBuffer` | Optional | Number | TTL buffer override for this adUnit. See [setConfig({ttlBuffer})](/dev-docs/publisher-api-reference/setConfig.html#setConfig-ttlBuffer) |
 | `renderer` | Optional | Object | Custom renderer, typically used for [outstream video](/dev-docs/show-outstream-video-ads.html) |
 | `video` | Optional | Object | Used to link an Ad Unit to the [Video Module][videoModule]. For allowed params see the [adUnit.video reference](#adunitvideo). |
 | `deferBilling` | Optional | Boolean | Used by a publisher to flag adUnits as being separately billable. This allows for a publisher to trigger billing manually for winning bids. See [pbjs.triggerBilling](/dev-docs/publisher-api-reference/triggerBilling.html) and [onBidBillable](/dev-docs/bidder-adaptor.html#registering-on-bid-billable) for more info. |
 | `bidLimit` | Optional | Number | Used by a publisher to set a bid limit for this ad unit |
-| `element`  | Optional | HTMLElement | A DOM element corresponding to this ad unit, used for viewability measurements. Defaults to `document.getElementById(code)` |    
+| `element`  | Optional | HTMLElement | A DOM element corresponding to this ad unit, used for viewability measurements and as the render target of [`pbjs.renderBid`](/dev-docs/publisher-api-reference/renderBid.html). Defaults to `document.getElementById(code)` |    
 
 <a name="adUnit.bids"></a>
 
@@ -59,8 +59,8 @@ Note that `bids` is optional only for [Prebid Server stored impressions](#stored
 | `bidder` | Optional | String | Unique code identifying the bidder. For bidder codes, see the [bidder param reference]({{site.baseurl}}/dev-docs/bidders.html). |
 | `module` | Optional | String | Module code - for requesting bids from modules that are not bid adapters. See [Prebid Server stored impressions](#stored-imp). |
 | `params` | Required | Object | Bid request parameters for a given bidder. For allowed params, see the [bidder param reference]({{site.baseurl}}/dev-docs/bidders.html). |
-| `labelAny` | Optional | Array[String] | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive]. |
-| `labelAll` | Optional | Array[String] | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive]. |
+| `labelAny` | Optional | Array[String] | Used for [conditional ads][conditionalAds]; requires the [sizeMapping](/dev-docs/modules/sizeMapping.html) or [sizeMappingV2](/dev-docs/modules/sizeMappingV2.html) module. |
+| `labelAll` | Optional | Array[String] | Used for [conditional ads][conditionalAds]; requires the [sizeMapping](/dev-docs/modules/sizeMapping.html) or [sizeMappingV2](/dev-docs/modules/sizeMappingV2.html) module. |
 | `ortb2Imp` | Optional | Object | OpenRTB first-party data specific to this bidder. This is merged with, and takes precedence over, `adUnit.ortb2Imp`.|
 | `renderer` | Optional | Object | Custom renderer. Takes precedence over `adUnit.renderer`, but applies only to this bidder. |
 
@@ -107,7 +107,8 @@ See [Prebid Native Implementation](/prebid/native-implementation.html) for detai
 |------------------+-------------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `pos` | Optional | Integer | Ad position on screen, see [OpenRTB 2.5 spec][openRTB]. OpenRTB page position value: 0=unknown, 1=above-the-fold, 3=below-the-fold, 4=header, 5=footer, 6=sidebar, 7=full-screen |
 | `context` | Recommended | String | The video context, either `'instream'` or `'outstream'`. Example: `context: 'outstream'`. Defaults to 'instream'. |
-| `useCacheKey` | Optional | Boolean | Defaults to `false`. While context `'instream'` always will return an vastUrl in bidResponse, `'outstream'` will not. Setting this `true` will use cache url defined in global options also for outstream responses. |
+| `useCacheKey` | Optional | Boolean | Defaults to `false`. Instream bids follow the global cache configuration. Set to `true` to use the globally configured cache URL for outstream bids too. Setting `cache: false` on the ad unit overrides this option. |
+| `cache` | Optional | Boolean | Set to `false` to skip remote and local caching by Prebid.js for this ad unit's video bids, even when global `cache.url` or `cache.useLocal` is configured. Omitted or `true` follows the existing cache rules. The player must be able to use the bid's VAST URL or XML directly. |
 | `placement` | Recommended | Integer | 1=in-stream, 2=in-banner, 3=in-article, 4=in-feed, 5=interstitial/floating. **Highly recommended** because some bidders require more than context=outstream. |
 | `plcmt` | Recommended | Integer | 1=in-stream, 2=accompanying content, 3=interstitial, 4=no content/standalone. **Highly recommended** to comply with new IAB video specifications. See [AdCOM v1 spec](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/develop/AdCOM%20v1.0%20FINAL.md#list_plcmtsubtypesvideo) |
 | `playerSize` | Optional | Array[Integer,Integer] | The size (width, height) of the video player on the page, in pixels. Example: `playerSize: [640, 480]` |
@@ -128,6 +129,12 @@ See [Prebid Native Implementation](/prebid/native-implementation.html) for detai
 | `maxbitrate` | Optional | Integer | Maximum bit rate in Kbps., see [OpenRTB 2.5 spec][openRTB]. |
 | `delivery` | Optional | Array[Integer] | Supported delivery methods (e.g., streaming, progressive), see [OpenRTB 2.5 spec][openRTB]. |
 | `playbackend` | Optional | Integer | The event that causes playback to end, see [OpenRTB 2.5 spec][openRTB]. |
+
+For mixed video setups, keep the global cache configured for ad units that need a cached VAST URL. Set `mediaTypes.video.cache: false` only on ad units whose player consumes the bid directly. This choice stays with the ad unit when auctions overlap; changing the global cache configuration between auctions does not provide that isolation.
+
+This option controls caching performed by Prebid.js. It does not disable caching by Prebid Server or bidders, or remove VAST URLs and cache keys they supply. Configure [Prebid Server caching](/dev-docs/modules/prebidServer.html#video-via-s2sconfig) separately.
+
+When caching is disabled, Prebid does not turn VAST XML into a VAST URL. For outstream video, if the active renderer declares `requiresVastUrl: true`, the bid must already supply a VAST URL. An XML-only bid is discarded in that case, including with local caching configured.
 
 <a name="adUnit-examples"></a>
 
@@ -748,14 +755,13 @@ pbjs.addAdUnits({
 * [Show Native Ads](/prebid/native-implementation.html)
 * [Show Video Ads](/dev-docs/show-video-with-a-dfp-video-tag.html)
 * [Show Outstream Video Ads](/dev-docs/show-outstream-video-ads.html)
-* [Show Long-Form Video Ads](/prebid-video/video-long-form.html)
+* [Show Long-Form Video Ads](/prebid-video/video-long-form.html) (removed in Prebid.js 11.0)
 * [Prebid.org Video Examples](/examples/video/)
 * [Prebid.org Native Examples](/dev-docs//examples/native-ad-example.html)
 
 <!-- Reference Links -->
 
 [conditionalAds]: /dev-docs/conditional-ad-units.html
-[configureResponsive]: /dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-Responsive-Ads
 [openRTB]: https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf
 [pbServer]: /prebid-server/overview/prebid-server-overview.html
 [OpenMeasurement]: https://iabtechlab.com/standards/open-measurement-sdk/

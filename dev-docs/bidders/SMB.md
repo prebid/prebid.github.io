@@ -3,6 +3,7 @@ layout: bidder
 title: SMB
 description: SMB Bidder Adapter
 biddercode: SMB
+filename: smbBidAdapter
 usp_supported: true
 coppa_supported: true
 schain_supported: true
@@ -13,10 +14,12 @@ floors_supported: true
 fpd_supported: false
 pbjs: true
 pbs: true
+pbs_biddercode: smb
 pbs_app_supported: true
 multiformat_supported: will-bid-on-any
 ---
 
+> **Prebid Server bidder code:** Use `smb` (lowercase) as the Prebid Server bidder code; Prebid.js uses `SMB`.
 
 ## Bid Params
 

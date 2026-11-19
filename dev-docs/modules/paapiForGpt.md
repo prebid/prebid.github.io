@@ -1,19 +1,25 @@
 ---
+redirect_from:
+  - /dev-docs/modules/fledgeForGpt.html
 layout: page_v2
 page_type: module
 title: Module - paapiForGpt
 description: how to use PAAPI with GPT
 module_code : paapiForGpt
 display_name : Fledge (PAAPI) for GPT
-enable_download : true
+enable_download : false
+pbjs_version_notes: removed in 11.0
 sidebarType : 1
 ---
 
 # Protected Audience API (PAAPI) for GPT Module
 
+{: .alert.alert-warning :}
+The paapiForGpt module was removed in Prebid.js 11.0. Prebid.js no longer supports the Protected Audience API.
+
 This module allows Prebid.js to support PAAPI (formerly FLEDGE) by integrating with GPT's support for [component auctions](https://developers.google.com/publisher-tag/reference#googletag.config.componentauctionconfig).
 
-To learn more about PAAPI in general, go [here](https://github.com/WICG/turtledove/blob/main/FLEDGE.md).
+To learn more about PAAPI in general, see the [FLEDGE explainer](https://github.com/WICG/turtledove/blob/main/FLEDGE.md).
 
 Note that Prebid can't help anyone with which fields to include in auctionconfig, but you can start by looking in [this section](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#21-initiating-an-on-device-auction) of the PAAPI documentation.
 

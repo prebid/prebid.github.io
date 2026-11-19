@@ -51,7 +51,7 @@ Note that the Prebid Server bid adapter does not currently support the scenario 
 
 If you've used [`sizeConfig`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-Responsive-Ads) in Prebid.js before, read this section to learn about the differences. If you haven't used sizeConfig before, you can skip to the next section.
 
-* The biggest change to size mapping is the introduction of **AdUnit** and **Bidder** level sizeConfig declarations. Instead of defining a global sizeConfig object configured in [`pbjs.setConfig`](/dev-docs/publisher-api-reference/setConfig.html#module_pbjs.setConfig), each Ad Unit and Bidder can define and control their own set of sizeConfig rules. This process makes it easier to reason which sizes should be active for the current viewport size in complex scenarios.
+* The biggest change to size mapping is the introduction of **AdUnit** and **Bidder** level sizeConfig declarations. Instead of defining a global sizeConfig object configured in [`pbjs.setConfig`](/dev-docs/publisher-api-reference/setConfig.html), each Ad Unit and Bidder can define and control their own set of sizeConfig rules. This process makes it easier to reason which sizes should be active for the current viewport size in complex scenarios.
 
 * A **sizeConfig** parameter may be specified on the AdUnit mediaType or a bidder. In these scenarios, the syntax is a little different than with the global configuration. Here's an example for a sizeConfig object for banner media type:
 
@@ -70,7 +70,7 @@ If you've used [`sizeConfig`](/dev-docs/publisher-api-reference/setConfig.html#s
 
 * Likewise, **mediaQuery** is not used in AdUnit sizeConfig objects. Instead, an array of size buckets is defined by just the `minViewPort` property. Only one size bucket activates based on viewport size.
 
-It may be useful to compare the globally-configured sizeConfig with the AdUnit-level sizeConfig. [Here is an example](/dev-docs/publisher-api-reference/setConfig.html#sizeConfig-Example) using global sizeConfig.
+It may be useful to compare the globally-configured sizeConfig with the AdUnit-level sizeConfig. [Here is an example](/dev-docs/modules/sizeMapping.html#sizeConfig-Example) using global sizeConfig.
 
 Here's that same example using Advanced Size Mapping:
 
@@ -101,28 +101,27 @@ Note the tradeoff here: If you're specifying duplicate sizeConfigs on every AdUn
 
 I. **Size Bucket** (Declared using *minViewPort*)
 
-As the name suggests, *minViewPort* signifies the minimum viewport size for the size bucket to become active. It's declared as an array of two numbers. The first number indicates the *viewport width*, the second indicates *viewport height*. For example, if *minViewPort* is `[750, 0]`, this size bucket will activate only when viewport width is greater than `750`. If there was any previous size bucket active for a smaller viewport, it'll get deactivated.
+As the name suggests, *minViewPort* signifies the minimum viewport size for the size bucket to become active. It's declared as an array of two numbers. The first number indicates the *viewport width*, the second indicates *viewport height*. For example, if *minViewPort* is `[750, 0]`, this size bucket will activate only when viewport width is at least `750`. If there was any previous size bucket active for a smaller viewport, it'll get deactivated.
 
 {: .alert.alert-info :}
-**NOTE**:  Only one size bucket in each array will be active for the current viewport size.
+**NOTE**:  Only one size bucket in each array will be active for the current viewport size: the one with the largest `minViewPort` width that does not exceed the viewport width. If the viewport is shorter than that bucket's `minViewPort` height, no bucket is active, even if a narrower bucket would fit.
 
 II. **Associated Property**
 
 What happens as a result of each active size bucket changes based on the media type and whether it was defined at the AdUnit or Bidder level. This table summarizes the scenarios:
 
 {: .table .table-bordered .table-striped }
-| Where Defined  | Available Property           | Example                                        | Description                                                                                                    |
-|--------|--------------------|------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
-| mediaTypes.banner | sizes              | `[[300, 250],[300, 100]]` or `[]` | Defines banner sizes that will be sent as part of bid requests for this size range. Declaring an empty array turns off banners for this AdUnit when the viewport is in that range.  |
-| mediaTypes.video  | playerSize         | `[[640, 400]]` or `[]` | Defines the video player-size that will be sent as part of bid requests. Declaring an empty array turns off the video mediaType for this AdUnit in this size range.   |
-| mediaTypes.native | active             | `true`                                         | Indicates whether Native mediaTypes should be active or not for this size bucket in this AdUnit.   |
-| bids.bidder | relevantMediaTypes | `['banner', 'video', 'native']` or `['none']`            | An array that defines a list of mediaTypes that a bidder will bid on for this size bucket in this AdUnit. Set to ['none'] if no mediaType of this size bucket. |
-
+| Where Defined | Available Property | Example | Description |
+| --- | --- | --- | --- |
+| mediaTypes.banner | sizes | `[[300, 250],[300, 100]]` or `[]` | Defines banner sizes that will be sent as part of bid requests for this size range. Declaring an empty array turns off banners for this AdUnit when the viewport is in that range. |
+| mediaTypes.video | playerSize | `[[640, 400]]` or `[]` | Defines the video player-size that will be sent as part of bid requests. Declaring an empty array turns off the video mediaType for this AdUnit in this size range. |
+| mediaTypes.native | active | `true` | Indicates whether Native mediaTypes should be active or not for this size bucket in this AdUnit. |
+| bids.bidder | relevantMediaTypes | `['banner', 'video', 'native']` or `['none']` | An array that defines a list of mediaTypes that a bidder will bid on for this size bucket in this AdUnit. Set to `['none']` to deactivate the bidder for this size bucket; `'none'` cannot be combined with other media types. |
 ### Examples
 
 #### An AdUnit with Banner Media Type, Bidder-Level sizeConfig, and Labels
 
-Note that the labels are assumed to be passed in via [`pbjs.requestBids()`](/dev-docs/publisher-api-reference.html#module_pbjs.requestBids).
+Note that the labels are assumed to be passed in via [`pbjs.requestBids()`](/dev-docs/publisher-api-reference/requestBids.html). An AdUnit or bid may use `labelAny` or `labelAll`, not both. If `labels` is not passed to `requestBids`, label checks pass. This module applies label checks only when at least one AdUnit in the same `requestBids` call uses `sizeConfig`.
 
 ```javascript
 {

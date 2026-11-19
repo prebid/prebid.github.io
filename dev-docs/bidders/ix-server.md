@@ -184,7 +184,7 @@ To call Index from a web browser using Prebid Server, you must first configure P
     ```
 
 7. (Optional) If you want to monetize outstream video, you can choose among the following options:
-    * Use Index's outstream video player. For more information, see the [Index's outstream video player](/dev-docs/bidders/ix.html#index-outstream-video-player) section in our Prebid.js documentation on the Prebid site.
+    * Use Index's outstream video player. For more information, see the [Index's outstream video player](/dev-docs/bidders/ix.html#indexs-outstream-ad-unit) section in our Prebid.js documentation on the Prebid site.
     * Use your own outstream video player. For more information, see [Prebid's documentation on how to show video ads.](/dev-docs/show-outstream-video-ads.html)
 8. (Optional) Configure Prebid Native with Index. For more information, see the [Prebid Native](/dev-docs/bidders/ix.html#prebid-native-configuration) section in our Prebid.js documentation on the Prebid site. Prebid Native is available from Prebid.js version 7.4.0 or higher.
 

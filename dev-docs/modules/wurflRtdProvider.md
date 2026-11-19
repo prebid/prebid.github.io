@@ -130,21 +130,22 @@ pbjs.setConfig({
 | `params.altHost` | String | Alternate host to connect to WURFL.js | |
 | `params.abTest` | Boolean | Enable A/B testing mode | `false` |
 | `params.abName` | String | A/B test name identifier | `'unknown'` |
-| `params.abSplit` | Number | Fraction of users in treatment group (0-1) | `0.8` |
+| `params.abSplit` | Number | Fraction of auctions in treatment group (0-1) | `0.5` |
 
-## IMPORTANT:  GDPR / TCF Vendor Consent
+## GDPR / TCF Vendor Consent
 
-WURFL is a privacy-safe signal. WURFL RTD does not have a registered IAB Global Vendor List (GVL) ID. 
-If your site enforces TCF vendor consent for the "storage" purpose — which is Prebid's *default*
-behavior the moment `consentManagement.gdpr` is configured, whether or not you set
-`rules` yourself — Prebid has no vendor ID to check consent against for this module,
-and will deny it local storage access for every GDPR-scoped visitor. The module still
-runs, but permanently falls back to lightweight client-side enrichment (LCE) instead
-of full WURFL device-database enrichment for that traffic.
+Starting with Prebid.js 11.41.0, the WURFL RTD module declares ScientiaMobile's IAB Global Vendor List (GVL) ID `1655`. When your site enforces TCF consent, Prebid checks the visitor's consent for vendor 1655 before the module can use local storage, so no extra configuration is needed.
 
-To avoid this, add "wurfl" to the storage purpose's `vendorExceptions`:
+Without storage consent the module still runs, but it falls back to lightweight client-side enrichment (LCE) instead of full WURFL device-database enrichment for that traffic.
 
-```pbjs.setConfig({
+### Prebid.js versions before 11.41.0
+
+Older versions of the module do not declare a GVL ID. If your site enforces TCF vendor consent for the "storage" purpose — which is Prebid's *default* behavior the moment `consentManagement.gdpr` is configured, whether or not you set `rules` yourself — Prebid has no vendor ID to check consent against for this module, and will deny it local storage access for every GDPR-scoped visitor.
+
+To avoid this on those versions, add "wurfl" to the storage purpose's `softVendorExceptions`:
+
+```javascript
+pbjs.setConfig({
   consentManagement: {
     gdpr: {
       rules: [
@@ -162,8 +163,8 @@ To avoid this, add "wurfl" to the storage purpose's `vendorExceptions`:
 ```
 
 {: .alert.alert-warning :}
-This only matters if your site enforces TCF vendor consent for "storage"
-Sites with no CMP, or with GDPR enforcement disabled, are unaffected
+This only matters if your site enforces TCF vendor consent for "storage" and runs a Prebid.js version before 11.41.0.
+Sites with no CMP, or with GDPR enforcement disabled, are unaffected.
 
 ## Testing
 
@@ -283,7 +284,7 @@ For a complete list of available capabilities, see [WURFL Capabilities Documenta
 
 ## A/B Testing with ScientiaMobile
 
-The WURFL RTD module includes built-in A/B testing capabilities to help publishers measure the impact of device enrichment on their revenue. When enabled, the module randomly assigns users to treatment (enriched) or control (not enriched) groups.
+The WURFL RTD module includes built-in A/B testing capabilities to help publishers measure the impact of device enrichment on their revenue. When enabled, the module randomly assigns each auction to a treatment (enriched) or control (not enriched) group, so auctions on the same page can fall in different groups. In the control group the module still keeps its WURFL.js cache up to date; it only skips the bid request enrichment.
 
 ScientiaMobile can assist with setting up and analyzing A/B tests to quantify the value of WURFL enrichment for your specific inventory. Contact [ScientiaMobile](https://www.scientiamobile.com/contact/) to discuss A/B testing collaboration.
 

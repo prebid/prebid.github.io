@@ -13,6 +13,9 @@ sidebarType: 4
 
 {: .no_toc }
 
+{: .alert.alert-warning :}
+Ad pod (long-form) video support was removed in Prebid.js 11.0. This page applies to Prebid.js 10.x and earlier only.
+
 If you’re new to header bidding and Prebid review the following to get a general understanding of Prebid.js.
 
 - [What Is Prebid?](/overview/intro.html)
@@ -35,7 +38,7 @@ To implement header bidding for long-form video start by [downloading Prebid.js]
 
 Before downloading, select the adapters you want to include. (You can add more adapters later.)
 
-- Include at least one video adapter. Find a list of available video adapters in [the video bidders table](/dev-docs/bidders.html#bidder-video-native).
+- Include at least one video adapter. Find a list of available video adapters in [the video bidders table](/dev-docs/bidders.html).
 - Include the [FreeWheel](/dev-docs/modules/freewheel.html) Ad Server module.
 - Include the [Category Translation](/dev-docs/modules/categoryTranslation.html) module.  
 - If you’ll be integrating with Prebid Server, be sure to include “Prebid Server” in the list of adapters.
@@ -216,10 +219,6 @@ Below is an example of a bid response for deals.
   ]
 }
 ```
-
-### Examples
-
-See [Prebid Video Examples](/examples/video/long-form/pb-ve-lf-freewheel.html) for examples of long-form video ads.
 
 ## Further Reading
 

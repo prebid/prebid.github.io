@@ -3,27 +3,28 @@ layout: bidder
 title: iQM
 description: Prebid iQM Bidder Adaptor
 pbjs: true
+enable_download: false
 biddercode: iqm
 pbjs_version_notes: removed in 9.0
 sidebarType: 1
 ---
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 
-| Name          | Scope    | Description               | Example              |
-| :------------ | :------- | :------------------------ | :------------------- |
+| Name | Scope | Description | Example |
+| --- | --- | --- | --- |
 | `publisherId` | required | The Publisher ID from iQM | "df5fd732-c5f3-11e7-abc4-cec278b6b50a" |
-| `geo.country` | required | The publisher country| "USA" |
-| `placementId` | required | The Placement ID from iQM | 23451                |
-| `bidfloor`    | optional | Bid Floor                 | 0.50                 |
+| `geo.country` | required | The publisher country | "USA" |
+| `placementId` | required | The Placement ID from iQM | 23451 |
+| `bidfloor` | optional | Bid Floor | 0.50 |
 
-### Description
+## Description
 
 Module that connects to iQM demand sources
 
-### Test Parameters
+## Test Parameters
 
 ```javascript
 var adUnits = [{
@@ -51,7 +52,7 @@ var adUnits = [{
 
 ```
 
-### adUnit Video
+## adUnit Video
 
 ```javascript
  var videoAdUnit = {

@@ -84,8 +84,8 @@ The following fields related to anonymizing aspects of the auction are supported
 
 Notes:
 
-* <a id="strictStorageEnforcement"></a> By default, Prebid allows some limited use of storage even when purpose 1 consent was not given: this is limited to non-PII, such as [category translation mappings](/dev-docs/modules/categoryTranslation.html), or temporary test data used to probe the browser's storage features. If `strictStorageEnforcement` is true, Purpose 1 consent will always be enforced for any access to storage.
-* To accommodate Prebid.js modules and adapters that don't have GVL IDs, the vendorExceptions list is based on Prebid.js biddercodes instead of Global Vendor List (GVL) IDs (i.e. "bidderA" instead of "12345").
+* <a id="strictStorageEnforcement"></a> By default, Prebid allows some limited use of storage even when purpose 1 consent was not given: this is limited to non-PII, such as temporary test data used to probe the browser's storage features. If `strictStorageEnforcement` is true, Purpose 1 consent will always be enforced for any access to storage.
+* To accommodate Prebid.js modules and adapters that don't have GVL IDs, the vendorExceptions list is based on Prebid.js biddercodes instead of Global Vendor List (GVL) IDs (i.e. "bidderA" instead of "12345"). For custom vendors, see [consent-dependent exceptions](#consent-dependent-exceptions-for-custom-vendors).
 * An alternate way of establishing a GVL mapping is to define a 'gvlMapping' object:
 
 ```javascript
@@ -97,9 +97,94 @@ pbjs.setConfig({
 });
 ```
 
+* <a id="multiple-gvl-ids"></a> Since Prebid.js 11.46, a module may declare more than one GVL ID - for example, a bidder alias whose endpoint is run by another company, or a user ID module that reads identifiers from several vendors. The module's `gvlid` (or its `gvlMapping` entry) is then a list, and the module is allowed only if **every** GVL ID in the list has a legal basis for the purpose being checked:
+  * Each ID is checked as if it were the only one: vendor consent or legitimate interest, publisher restrictions, and the ID's own legal-basis declarations (or `gvlLegalBasisMapping`, or `defaultLegalBasis`).
+  * If any ID fails, the module is blocked, and the log names the ID(s) without a legal basis.
+  * `vendorExceptions` and `softVendorExceptions` still take module names, and apply to all of the module's GVL IDs.
+  * Additional Consent (`acpId`) is used only when a module has no GVL ID at all.
+
+```javascript
+pbjs.setConfig({
+    gvlMapping: {
+        bidderA: [12345, 67890] // requires a legal basis for both 12345 and 67890
+    }
+});
+```
+
 * If you set `gvlMapping` for a module whose legal-basis declarations are not
   already known to Prebid.js (i.e. it maps to a GVL ID not used by any other module), also set [`gvlLegalBasisMapping`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-gvlLegalBasisMapping) for that GVL ID or
   review the `defaultLegalBasis` fallback described below.
+* <a id="additional-consent"></a> Since version 11.41, modules that have no GVL ID but are on Google's [Additional Consent](https://support.google.com/admanager/answer/9681920) (AC) provider list can declare an `acpId`, which publishers can set or override with [`acpMapping`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-acpMapping). For these modules, vendor consent is read from the AC string (`gdprConsent.addtlConsent`) instead of the TCF string:
+  * Only the vendor check uses the AC string. Purpose signals still come from the TCF string, evaluated against `defaultLegalBasis`.
+  * Modules with a GVL ID are never checked against the AC string.
+  * Both AC v1 (`1~1.2.3`) and v2 (`2~1.2.3~dv.1.2.3.4.5`) strings are accepted. Only the providers in the consented list (before `~dv.`) have consent; the `dv.` list of disclosed providers is ignored, so a provider that appears only there has no consent. A malformed AC string means no AC vendor consent.
+  * This applies to the `storage`, `basicAds`, `personalizedAds`, `measurement` and `transmitPreciseGeo` rules, and to the default [`transmitEids`](#note-transmitEids) check. `vendorExceptions`, `softVendorExceptions` and `enforceVendor: false` work as before.
+
+### Consent-dependent exceptions for custom vendors
+
+A `vendorExceptions` entry is an enforcement override, **not** proof that the user consented to the vendor. It bypasses both purpose and vendor checks for that rule, even if the user later withdraws consent. An exception on `basicAds`, `personalizedAds`, or `measurement` can also allow the default [`transmitEids` activity](#note-transmitEids) without purpose or vendor consent. By contrast, `softVendorExceptions` skips only the vendor check and still requires the applicable purpose signal. Neither option queries the CMP for a custom vendor's consent.
+
+For vendors on the IAB Global Vendor List (GVL), let Prebid.js enforce the vendor's TCF signal using its GVL ID (or [`gvlMapping`](#page-integration) where necessary). The standard `__tcfapi` response exposes GVL consent under `tcData.vendor.consents[gvlId]`, **not** consent for arbitrary custom/non-IAB vendors. If a CMP collects consent for a custom vendor outside the TCF string, use that CMP's documented interface to read the user's current opt-in. For non-GVL vendors on Google's Additional Consent provider list, prefer Prebid.js [Additional Consent support](#additional-consent) instead of maintaining an exception.
+
+The following example configures Prebid.js **once**, after the CMP has returned the current custom-vendor choice and **before the first auction**. It leaves the vendor unexcepted unless that separate CMP lookup confirms opt-in. The lookup must wait for the CMP's custom-vendor consent to be ready; `__tcfapi` itself does not supply this value.
+
+```javascript
+const customBidder = 'exampleBidder';
+const exceptionPurposes = ['storage', 'basicAds', 'personalizedAds'];
+
+// Replace with your CMP's custom-vendor API and wait for its result.
+// Do not infer custom-vendor consent from tcData.vendor.consents.
+async function hasCurrentCustomVendorOptIn() {
+  return false; // Fail closed until the CMP integration is implemented.
+}
+
+async function configureCustomVendorBeforeFirstAuction() {
+  const hasOptIn = await hasCurrentCustomVendorOptIn() === true;
+
+  pbjs.que.push(function () {
+    // Keep existing GDPR timeouts and other consent frameworks (GPP/USP).
+    const existing = pbjs.getConfig('consentManagement') || {};
+    const gdpr = existing.gdpr || {};
+
+    // Prebid.js applies the default rule to any purpose missing from
+    // gdpr.rules, so add that default before excepting the vendor. Rules that
+    // are already configured keep their options.
+    const configured = [...(gdpr.rules || [])];
+    exceptionPurposes.forEach(purpose => {
+      if (!configured.some(rule => rule.purpose === purpose)) {
+        configured.push({ purpose, enforcePurpose: true, enforceVendor: true });
+      }
+    });
+    const rules = configured.map(rule => {
+      if (!exceptionPurposes.includes(rule.purpose)) {
+        return rule;
+      }
+
+      const exceptions = (rule.softVendorExceptions || [])
+        .filter(name => name !== customBidder);
+      if (hasOptIn) {
+        exceptions.push(customBidder);
+      }
+      return { ...rule, softVendorExceptions: exceptions };
+    });
+
+    pbjs.setConfig({
+      consentManagement: {
+        ...existing,
+        gdpr: { ...gdpr, rules }
+      }
+    });
+
+    // Only now start the first auction (or release your auction queue).
+  });
+}
+
+configureCustomVendorBeforeFirstAuction();
+```
+
+The `storage` exception is included for a custom bidder that needs device access: without it, Purpose 1's vendor check can still block cookies or local storage despite the custom-vendor opt-in. All three `softVendorExceptions` continue to require the relevant TCF purpose signal; the example preserves any other rules and exceptions already configured, and adds the default rule for an exception purpose that has none (Prebid.js would otherwise apply that default without the exception). Adjust the list of purposes to the activities that the custom module actually performs, with legal review.
+
+**Consent changes require additional integration.** This example configures consent management once; it does **not** update rules automatically after initialization. Listen for your CMP's custom-vendor consent changes, including withdrawal, and **prevent new auctions** while applying a fresh consent-dependent configuration (for example, by reloading the page after blocking auctions). Do not repeatedly call `pbjs.setConfig({consentManagement: ...})` inside a `__tcfapi('addEventListener', ...)` callback: that reinitializes the TCF CMP integration and can register additional listeners. `pbjs.mergeConfig` is not a drop-in solution either, because it merges arrays rather than reliably removing a withdrawn exception. Make sure any new choice is effective before resuming bid requests. Use the stronger `vendorExceptions` override only if your legal assessment specifically supports bypassing purpose enforcement as well as the vendor check.
 
 ### Examples
 
@@ -229,6 +314,8 @@ Before allowing an activity tied to a TCF-protected Purpose for a given vendor, 
   * the vendor is excepted through either `softVendorExceptions` or `vendorExceptions`;
 * Configuration rules check neither purpose consent nor vendor signal (`enforcePurpose: false, enforceVendor: false`).
 
+Since version 11.41, for a module that has no GVL ID but has an [Additional Consent provider ID](#additional-consent), the user's consent for that provider in the AC string also satisfies the vendor signal in the scenarios above. Because such a module has no GVL declarations, its purpose signals are evaluated against `defaultLegalBasis`.
+
 ### Basic enforcement (Prebid.js versions prior to 11.15)
 
 Prior to version 11.15, Prebid.js did not have access to the Global Vendor List (GVL), so it implements
@@ -258,6 +345,25 @@ Before allowing an activity tied to a TCF-protected Purpose for a given vendor, 
 See the [IAB TCF Consent String Format](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20Consent%20string%20and%20vendor%20list%20formats%20v2.md) for details.
 
 Before allowing an activity tied to a TCF-protected Purpose for a publisher module, such as Generic Analytics, SharedId, Pub-provided-id, configuration rules check for the relevant publisher purpose consent instead of vendor consent. IAB Europe officials have written to Prebid that "When one is seeking a signal indicating whether the Publisher has had their consent (or legitimate interest) legal basis established to the data subject by the CMP, one should examine the Publisher Purposes Transparency and Consent string segment signals, if present. The core string PurposesConsent bit sequence is intended solely to represent disclosures made by the CMP in the context of Vendors."
+
+<a id="publisher-restrictions"></a>
+
+### Publisher restrictions
+
+Since Prebid.js 11.12, the TCF Control Module also enforces the publisher restrictions signaled by the CMP in the TC string (`vendorData.publisher.restrictions`). A restriction applies to a specific purpose and vendor, and narrows which legal bases Prebid.js accepts for that vendor and purpose:
+
+| Restriction type | Effect |
+| --- | --- |
+| 0 - Not allowed | Neither consent nor LI is accepted, so the activity is blocked. |
+| 1 - Require consent | Only consent is accepted; LI is not. |
+| 2 - Require legitimate interest | Only LI is accepted; consent is not. If LI is not otherwise an acceptable legal basis for the vendor and purpose (for example, the vendor's GVL declarations don't allow LI for that purpose), nothing is accepted. |
+
+The narrowed legal basis is used for both the purpose and the vendor checks. Publisher restrictions are applied only when the vendor check is made using the module's GVL ID. They are not applied:
+
+* to modules listed in `vendorExceptions` or `softVendorExceptions`,
+* to rules with `enforceVendor: false`,
+* to modules without a GVL ID, or
+* to Special Feature 1 (`transmitPreciseGeo`).
 
 ### Default Legal Basis
 

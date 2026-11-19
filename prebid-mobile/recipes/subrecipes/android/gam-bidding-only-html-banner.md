@@ -69,10 +69,14 @@ private fun createGAMListener(adView: AdManagerAdView): AdListener {
             // 6. Resize ad view if needed
             AdViewUtils.findPrebidCreativeSize(adView, object : AdViewUtils.PbFindSizeListener {
                 override fun success(width: Int, height: Int) {
+                    // Resize the ad view using the resolved Prebid creative size.
                     adView.setAdSizes(AdSize(width, height))
                 }
 
-                override fun failure(error: PbFindSizeError) {}
+                override fun failure(error: PbFindSizeError) {
+                    // Size resolution may fail for a non-Prebid creative served by GAM,
+                    // or when size information cannot be extracted from a Prebid creative.
+                }
             })
         }
     }
@@ -82,7 +86,7 @@ private fun createGAMListener(adView: AdManagerAdView): AdListener {
 Notes:
 
 1. in case you use a single-size banner (as opposed to multi-size), i.e. 300x250 - you don’t need to make a call to the AdViewUtils.findPrebidCreativeSize routine - because you already know the size of the creative (it is 300x250), however you still need to make a call to bannerView.resize because the creative has the 1x1 size by default and without this call it will be rendered, but as a pixel.
-2. Make sure you properly process all possible cases in the  AdViewUtils.findPrebidCreativeSize callbacks (both success and failure).  Sometimes you might not get the size of the creative (or a failure callback) - it simply means that this is not a Prebid creative.  It means that you still need to render the creative, but you most likely don’t need to resize it - at least Prebid knows nothing about it.
+2. Size resolution may fail when GAM serves a non-Prebid creative or when the required size information cannot be extracted from a Prebid creative. The failure callback does not distinguish between these cases; leave the ad view’s current size unchanged.
 
 ## Step 1: Create a BannerAdUnit
 {:.no_toc}
@@ -118,12 +122,12 @@ Be sure that you make the ad request with the same `AdManagerAdRequest` object t
 ## Step 6: Adjust the ad view size
 {:.no_toc}
 
-Once an app receives a signal that an ad is loaded, you should use the method `AdViewUtils.findPrebidCreativeSize` to verify whether it's Prebid's ad and resize the ad slot respectively to the creative's properties.
+After the banner loads, use `AdViewUtils.findPrebidCreativeSize` to look for Prebid size information in the creative’s HTML. If a size is found, resize the ad view in the success callback.
 
 Notes:
 
 1. In case you use a single-size banner (as opposed to multi-size), f.e. 300x250 - you don’t need to make a call to the AdViewUtils.findPrebidCreativeSize routine - because you already know the size of the creative (it is 300x250), however you still need to make a call to bannerView.resize(<size>) because the creative has the 1x1 size by default and without this call it will be rendered, but as a pixel. 
-2. Make sure you properly process all possible cases in the  AdViewUtils.findPrebidCreativeSize callbacks (both success and failure).  Sometimes you might not get the size of the creative (or a failure callback) - it simply means that this is not a Prebid creative.  It means that you still need to render the creative, but you most likely don’t need to resize it - at least Prebid knows nothing about it.
+2. Size resolution may fail when GAM serves a non-Prebid creative or when the required size information cannot be extracted from a Prebid creative. The failure callback does not distinguish between these cases; leave the ad view’s current size unchanged.
 
 ## Further Reading
 

@@ -3,7 +3,7 @@ layout: bidder
 title: Moving Up
 description: Prebid Moving Up Bidder Adapter
 pbjs: true
-pbs: true
+pbs: false
 biddercode: movingup
 gvl_id: 1416
 tcfeu_supported: true
@@ -23,13 +23,13 @@ multiformat_supported: will-bid-on-any
 
 ---
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description                | Example                                   | Type      |
-|---------------|----------|----------------------------|--------------------------------------     |-----------|
-| `tagId`       | optional | tag ID                     | `"testnexx"`                              | `string`  |
-| `placement`   | optional | Placement                  | `"test"`                                  | `string`  |
+| Name        | Scope    | Description | Example      | Type     |
+|-------------|----------|-------------|--------------|----------|
+| `tagId`     | optional | tag ID      | `"testnexx"` | `string` |
+| `placement` | optional | Placement   | `"test"`     | `string` |
 
 For the prebid.js you only need to use one parameter: either tagId or placement
 

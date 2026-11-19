@@ -34,13 +34,9 @@
     });
 
     function getVersionList() {
-        $.ajax({
-            type: "GET",
-            url: "https://js-download.prebid.org/versions",
-        })
-            .success(function (data) {
+        prebidBundler.getVersions()
+            .then(function (data) {
                 try {
-                    data = JSON.parse(data);
                     var versions = data.versions;
                     if (!versions || versions.length === 0) {
                         showError();
@@ -66,53 +62,57 @@
                         }
                     });
                     setPrepickedVersion();
+                    filterModulesForVersion();
                 } catch (e) {
                     console.log(e);
                     showError();
                 }
-            })
-            .fail(function (e) {
+            }, function (e) {
                 console.log(e);
                 showError();
             });
         function showError() {
-            $(".selectpicker").append(
-                '<option value="error">Error generating version list. Please try again later</option>'
-            );
+            // the request can fail before the rest of the page has been parsed
+            $(function () {
+                $(".selectpicker").append(
+                    '<option value="error">Error generating version list. Please try again later</option>'
+                );
+                $("#version-error").show();
+                $("#download-button").addClass("disabled").prop("disabled", true);
+            });
         }
     }
 
     function submit_download() {
+        if (moduleFilterPending) {
+            return;
+        }
         $('#download-button').html('<i class="glyphicon glyphicon-send"></i> Sending Request...').addClass('disabled');
 
         var form_data = get_form_data();
         const removedModules = form_data.removedModules;
         delete form_data.removedModules;
-        $.ajax({
-            type: "POST",
-            url: "https://js-download.prebid.org/download",
-            dataType: "text",
-            data: form_data,
-        })
-        .success(function (data, textStatus, jqXHR) {
+        prebidBundler.download(form_data)
+        .then(function (data) {
             $('#download-button').html('<i class="glyphicon glyphicon-ok"></i> Prebid.js download successfully prepared!');
             setTimeout(function () {
                 $('#download-button').html('<i class="glyphicon glyphicon-download-alt"></i> Download Prebid.js').removeClass('disabled');
             }, 5000);
             var filename = "prebid" + form_data["version"] + ".js";
-            var disposition = jqXHR.getResponseHeader("Content-Disposition");
-            if (disposition && disposition.indexOf("attachment") !== -1) {
-                var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
-                var matches = filenameRegex.exec(disposition);
-                if (matches != null && matches[1])
-                    filename = matches[1].replace(/['"]/g, "");
-            }
 
-            var jsBlob = new Blob([data], { type: "text/javascript" });
+            var jsBlob = new Blob([data.source], { type: "text/javascript" });
             var configData = JSON.stringify({ version: form_data.version, modules: form_data.modules }, null, 2);
 
             triggerDownload(jsBlob, filename);
             triggerDownload(new Blob([configData], { type: "application/json" }), "prebid-config.json");
+            if (data.disclosures) {
+                triggerDownload(
+                    new Blob([JSON.stringify(data.disclosures, null, 2)], { type: "application/json" }),
+                    filename.replace(/\.js$/, "") + "_disclosures.json"
+                );
+            } else {
+                alert("Prebid.js was downloaded, but the storage disclosure file couldn't be generated. Download again to retry.");
+            }
 
             if (removedModules.length > 0) {
                 alert(
@@ -122,10 +122,9 @@
                     JSON.stringify(removedModules)
                 );
             }
-        })
-        .fail(function (e) {
+        }, function (e) {
             console.log(e);
-            alert("Ran into an issue.");
+            alert("Ran into an issue: " + e.message);
         });
     }
 
@@ -138,23 +137,6 @@
         document.body.removeChild(link);
     }
 
-    const renameModules = (function() {
-        const RENAMES = [
-            [
-                /^8\./,
-                {
-                    tcfControl: 'gdprEnforcement',
-                    consentManagementTcf: 'consentManagement',
-                    paapiForGpt: 'fledgeForGpt'
-                }
-            ]
-        ];
-        return function(version, modules) {
-            const renames = RENAMES.find(([pat]) => pat.test(version))?.[1] || {};
-            return modules.map(mod => renames.hasOwnProperty(mod) ? renames[mod] : mod)
-        }
-    })();
-
     function get_form_data() {
         var modules = [];
         var version = $(".selectpicker").val();
@@ -166,6 +148,11 @@
                 var moduleCode = box.getAttribute("moduleCode");
                 var minVersion = box.getAttribute("minVersion");
                 modules.push(moduleCode);
+
+                if (box.hasAttribute("data-not-in-version")) {
+                    removedModules.push(moduleCode);
+                    return;
+                }
 
                 if (minVersion) {
                     var module_version_array = minVersion.split(".");
@@ -181,7 +168,7 @@
             });
 
         return {
-            modules: renameModules(version, modules).filter(mod => !removedModules.includes(mod)),
+            modules: modules.filter(mod => !removedModules.includes(mod)),
             version,
             removedModules,
         };
@@ -239,6 +226,7 @@
             if (versionOption) {
                 versionOption.selected = true;
                 searchParams.set("version", cfg.version);
+                filterModulesForVersion();
             }
         }
 
@@ -258,6 +246,88 @@
         }
     }
 
+    // Module names (file names under modules/) in each Prebid.js version, from the package listing on jsDelivr.
+    // Published versions never change, so each listing is fetched at most once per page view (and cached by the browser).
+    var modulesByVersion = {};
+
+    function getModulesInVersion(version) {
+        if (!modulesByVersion[version]) {
+            modulesByVersion[version] = $.ajax({
+                type: "GET",
+                url: "https://data.jsdelivr.com/v1/packages/npm/prebid.js@" + encodeURIComponent(version) + "?structure=flat",
+                dataType: "json",
+                timeout: 20000,
+            }).then(function (data) {
+                var modules = {};
+                (data.files || []).forEach(function (file) {
+                    var match = /^\/modules\/([^/]+?)(?:\/index)?\.(?:js|ts)$/.exec(file.name);
+                    if (match && !/\.d$/.test(match[1])) {
+                        modules[match[1]] = true;
+                    }
+                });
+                if (Object.keys(modules).length === 0) {
+                    return $.Deferred().reject();
+                }
+                return modules;
+            });
+            // don't cache failures, so that the next selection retries
+            modulesByVersion[version].fail(function () {
+                delete modulesByVersion[version];
+            });
+        }
+        return modulesByVersion[version];
+    }
+
+    // Show only the modules that are part of the selected version. If the module list can't be loaded, show everything.
+    // While the selected version's module list is loading, the checklist still reflects the previous version,
+    // so downloads are blocked until the lookup succeeds or falls back.
+    var moduleFilterPending = false;
+
+    function setModuleFilterPending(pending) {
+        moduleFilterPending = pending;
+        $(function () {
+            $("#download-button").toggleClass("disabled", pending).prop("disabled", pending);
+        });
+    }
+
+    function filterModulesForVersion() {
+        var version = $(".selectpicker").val();
+        var status = $("#module-filter-status");
+        if (!version || version === "error") {
+            return;
+        }
+        setModuleFilterPending(true);
+        status.text("Checking which modules are available in Prebid.js " + version + "...");
+        getModulesInVersion(version).then(function (available) {
+            if ($(".selectpicker").val() !== version) {
+                return; // a different version was selected in the meantime
+            }
+            setModuleFilterPending(false);
+            var shown = {};
+            document.querySelectorAll("input[type=checkbox][moduleCode]").forEach(function (box) {
+                var inVersion = available[box.getAttribute("moduleCode")] === true;
+                $(box).closest(".col-md-4, .row").toggle(inVersion);
+                if (inVersion) {
+                    box.removeAttribute("data-not-in-version");
+                    shown[box.getAttribute("moduleCode")] = true;
+                } else {
+                    box.setAttribute("data-not-in-version", "");
+                }
+            });
+            status.text("Showing the " + Object.keys(shown).length + " modules available in Prebid.js " + version + ".");
+        }, function () {
+            if ($(".selectpicker").val() !== version) {
+                return;
+            }
+            setModuleFilterPending(false);
+            document.querySelectorAll("input[type=checkbox][moduleCode]").forEach(function (box) {
+                box.removeAttribute("data-not-in-version");
+                $(box).closest(".col-md-4, .row").show();
+            });
+            status.text("Couldn't check which modules are available in Prebid.js " + version + ", so all modules are shown.");
+        });
+    }
+
     function setPrepickedVersion() {
         var version = searchParams.get("version");
         if (version) {
@@ -272,6 +342,7 @@
         if (versionSelector) {
             versionSelector.addEventListener("change", function (event) {
                 var version = event.target.value;
+                filterModulesForVersion();
                 searchParams.set("version", version);
                 window.history.replaceState(
                     null,

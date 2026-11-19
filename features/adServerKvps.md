@@ -114,7 +114,7 @@ That approach has been deprecated -- all implementations should now use [one of 
 
 Video's always been a different implementation than banners because
 it's the video player that controls the ad call, not in-page JavaScript like
-the GPT library. So the [Google Ad Manager Video module](/dev-docs/modules/dfp_video.html) includes the [buildVideoUrl](/dev-docs/publisher-api-reference/adServers.dfp.buildVideoUrl.html) function.
+the GPT library. So the [Google Ad Manager Video module](/dev-docs/modules/dfp_video.html) includes the [buildVideoUrl](/dev-docs/publisher-api-reference/adServers.gam.buildVideoUrl.html) function.
 
 Publishers using other ad servers need to integrate on their own
 using the [pbjs.getAdserverTargetingForAdUnitCode](/dev-docs/publisher-api-reference/getAdserverTargetingForAdUnitCode.html) function to build whatever

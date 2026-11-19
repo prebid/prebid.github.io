@@ -21,16 +21,17 @@ ortb_blocking_supported: false
 multiformat_supported: will-bid-on-one
 gvl_id: 918
 pbjs: true
+enable_download: false
 pbjs_version_notes: removed in 9.0
 sidebarType: 1
 ---
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name       | Scope    | Description                                                                                      | Example                      | Type     |
-|------------|----------|--------------------------------------------------------------------------------------------------|------------------------------|----------|
-| `cId`      | required | The connection ID from MinuteMediaPlus.                                                          | `'562524b21b1c1f08117fc7f9'` | `string` |
-| `pId`      | required | The publisher ID from MinuteMediaPlus.                                                           | `'59ac17c192832d0011283fe3'` | `string` |
-| `bidFloor` | required | The minimum bid value desired. MinuteMediaPlus will not respond with bids lower than this value. | `0.90`                       | `float`  |
-| `subDomain`| optional | Sets the server subdomain, default: 'exchange'.                                                  | `'exchange'`                 | `string` |
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| `cId` | required | The connection ID from MinuteMediaPlus. | `'562524b21b1c1f08117fc7f9'` | `string` |
+| `pId` | required | The publisher ID from MinuteMediaPlus. | `'59ac17c192832d0011283fe3'` | `string` |
+| `bidFloor` | required | The minimum bid value desired. MinuteMediaPlus will not respond with bids lower than this value. | `0.90` | `float` |
+| `subDomain` | optional | Sets the server subdomain, default: 'exchange'. | `'exchange'` | `string` |

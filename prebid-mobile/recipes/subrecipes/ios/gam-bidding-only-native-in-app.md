@@ -10,7 +10,7 @@ sidebarType: 2
 
 Back to [Bidding-Only Integration](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#adunit-specific-instructions)
 
-Visit the [AdOps guide](/adops/gam-native.html#create-mobile-in-app-creative) for instructions on setting up the In-App creatives on GAM. 
+Visit the [AdOps guide](/adops/gam-native.html#create-mobile-in-app-template) for instructions on setting up the In-App creatives on GAM. 
 
 At a high level, the in-app workflow follows this sequence:
 
