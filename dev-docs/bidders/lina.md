@@ -9,7 +9,7 @@ media_types: video, native
 multiformat_supported: will-bid-on-any
 tcfeu_supported: false
 usp_supported: false
-floors_supported: false
+floors_supported: true
 userId: none
 sidebarType: 1
 ---
@@ -236,17 +236,22 @@ for one bid request.
 ### Currency, Pricing, and Floors
 
 LINA SSP manages the publisher currency, placement floor, and applicable fees.
-Confirm your account currency when configuring your ad server. The adapter
-does not offer bidder parameters to override currency or floors and does not
-integrate with the Prebid Floors Module.
+Confirm the fixed currency registered for the publisher when configuring the
+Prebid Floors Module and ad server. The adapter calls `bid.getFloor()` once
+with the resolved publisher currency and wildcard media type and size, and sends
+a valid result as OpenRTB `imp.bidfloor` and `imp.bidfloorcur`. An explicit zero
+is preserved. If the request currency cannot be resolved, `getFloor()` fails or
+returns a malformed/mismatched result, LINA skips that bid rather than sending an
+unverified floor. A null or empty result means no matching floor rule and leaves
+an existing static OpenRTB floor unchanged.
 
-An SSP placement floor takes priority, including an explicit zero. When it is
-unset, LINA uses `ortb2Imp.bidfloor` from the request. If both are unset or null,
-no floor restriction applies. There are no currency-specific default floors.
-Floors are publisher Net CPM; LINA converts the selected floor to DSP Gross CPM
-using the publisher fee. A positive request floor's `bidfloorcur` must match the
-publisher currency. An omitted `bidfloorcur` means USD under OpenRTB; LINA does
-not convert a floor between currencies.
+LINA uses the greater of the registered SSP placement floor and client floor
+as the effective publisher Net CPM floor, while keeping an unset floor distinct
+from a configured zero. Floors are converted to DSP Gross CPM using the
+publisher fee. Request currency, positive floor currency, ADEx response
+currency, and publisher currency must align. LINA does not perform FX conversion
+in the initial Prebid client path. This implementation uses one wildcard floor
+per bid, not separate floors by banner size.
 
 Returned CPM is publisher Net CPM after applicable SSP fees, with
 `netRevenue: true`. The adapter passes this CPM to Prebid unchanged. A zero fee
