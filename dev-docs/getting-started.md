@@ -27,7 +27,7 @@ See the [Ad Ops Planning Guide](/adops/adops-planning-guide.html) for details.
 
 ## Quick Start
 
-The easiest way to get started with Prebid.js is to look at an example. Start with our [Basic Example](/dev-docs/examples/basic-example.html), then explore other examples under **Prebid.js > Examples** to find what you need.
+The easiest way to get started with Prebid.js is to look at an example. Start with our [Basic Example](/dev-docs/examples/basic-example.html) (or the new [GPT Request Hook Example](/dev-docs/examples/gpt-request-hook-example.html) for Google Ad Manager), then explore other examples under **Prebid.js > Examples** to find what you need.
 
 ## Next Steps
 

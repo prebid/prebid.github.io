@@ -35,7 +35,7 @@ This diagram summarizes timeouts in Prebid.js and Prebid Server:
 JavaScript setTimeout() that publishers should consider establishing
 after the Prebid.js code is loaded. It's a safety net that invokes the ad
 server callback in case something goes wrong. In all regular scenarios,
-Prebid.js will have already invoked the callback before this timeout is reached. This value should be much larger than the auction timeout.
+Prebid.js will have already invoked the callback before this timeout is reached. This value should be much larger than the auction timeout. Pages that use GPT's new request hook rely on the GPT `requestHookTimeoutMs` setting instead of this timer, as shown in the [GPT Request Hook Example](/dev-docs/examples/gpt-request-hook-example.html).
 2. **Auction Timeout** - This value defines the amount of time the Prebid is allowed to coordinate 
 header bidding activities. Determining this value is a delicate balance: too short, and header bidding won't have enough time to take place; too long, and revenue
 may go down due to delaying the ad server call to the point where users have left

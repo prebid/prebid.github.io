@@ -234,6 +234,14 @@
   subgroup: 1
 
 - sbSecId: 1
+  title: GPT Request Hook
+  link: /dev-docs/examples/gpt-request-hook-example.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 1
   title: Multi-Format Ads
   link: /dev-docs/examples/multi-format-example.html
   isHeader: 0
