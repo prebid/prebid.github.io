@@ -7,36 +7,40 @@ sidebarType: 1
 
 about:
 - This example shows how to display instream video and banner ads within the same configuration.
+- The video ad is fetched from Google Ad Manager with `pbjs.adServers.gam.getVastXml` and played in JW Player; the bid VAST is cached locally (`cache.useLocal`).
 
 ---
 <!-- markdownlint-disable-file MD034 -->
 ## Instream Video and Banner Ad Mixed Page
 
-{% capture htmlCodePrebid %}<h2>Prebid Video - JW Platform</h2>
+{% capture htmlCodePrebid %}<h2>Prebid Video - JW Player</h2>
 <div id="myElement1"></div>
 <!-- This line loads a player without loading any video content -->
-<!-- Replace this with the correct url for your player -->
-<script src="https://content.jwplatform.com/libraries/72xIKEe6.js"></script>
+<!-- Replace this with the library URL of your own JW Player -->
+<script src="https://cdn.jwplayer.com/libraries/dNV4UKpE.js"></script>
 <script>
 
 // we initialize our player instance, specifying the div to load it into
 var playerInstance = jwplayer('myElement1');
 
-function invokeVideoPlayer(url) {
+function invokeVideoPlayer(vastXml) {
     // this calls setup on the player we initialized
     // this will use the settings defined in the player we loaded above unless you override them here
     playerInstance.setup({
-        // this line loads a playlist from your jwplatform account (in either json or rss format)
-        // this can also be a single media file by specifying "file" : "content.jwplatform.com/videos/VIDEOKEY.mp4"
-        // Replace this with the correct url for your playlist
-        "playlist": "https://content.jwplatform.com/feeds/ae4tmw2D.json",
+        // the content video; this can also be a "playlist" URL from your JW Player account
+        "file": "https://vjs.zencdn.net/v/oceans.mp4",
         "width": 640,
         "height": 480,
+        "autostart": true,
+        "mute": true,
         // we enable vast advertising for this player
         "advertising": {
             "client": "vast",
-            // url is the vast tag url that we passed in when we called invokeVideoPlayer in the header
-            "tag": url,
+            // vastXml is the VAST returned by Google Ad Manager, passed in when we called invokeVideoPlayer in the header
+            "schedule": [{
+                "vastxml": vastXml,
+                "offset": "pre"
+            }]
         },
     });
 }
@@ -144,8 +148,8 @@ pbjs.que = pbjs.que || [];
 
 // define invokeVideoPlayer in advance in case we get the bids back from prebid before the entire page loads
 var tempTag = false;
-var invokeVideoPlayer = function(url) {
-    tempTag = url;
+var invokeVideoPlayer = function(vastXml) {
+    tempTag = vastXml;
 };
 
 pbjs.que.push(function() {
@@ -154,15 +158,36 @@ pbjs.que.push(function() {
     pbjs.setConfig({
         debug: true,
         cache: {
-            url: 'https://my-pbs.example.com/cache'
+            // keep the video bid's VAST in the browser instead of a Prebid Cache server
+            useLocal: true
         }
     });
     pbjs.requestBids({
-        bidsBackHandler: initAdserver,
+        bidsBackHandler: function(bids) {
+            initAdserver(bids);
+            initVideoAdserver();
+        },
         timeout: PREBID_TIMEOUT,
         auctionId: 'auction_1'
     })
 });
+
+function initVideoAdserver() {
+    // Fetch the GAM VAST for videoAdUnit; with cache.useLocal, Prebid inlines the winning bid's VAST
+    pbjs.adServers.gam.getVastXml({
+        adUnit: videoAdUnit,
+        params: {
+            iu: '/41758329/localcache',
+            cust_params: {
+                section: 'blog',
+                anotherKey: 'anotherValue'
+            }
+        }
+    }).then(function(vastXml) {
+        // Pass the VAST to the video player
+        invokeVideoPlayer(vastXml);
+    });
+}
 
 function initAdserver(bids) {
 
@@ -186,22 +211,6 @@ function initAdserver(bids) {
             googletag.pubads().refresh();
         }
     });
-
-    // Build GAM URL with targeting for videoAdUnit
-    var videoUrl = pbjs.adServers.gam.buildVideoUrl({
-        adUnit: videoAdUnit,
-        params: {
-            iu: '/19968336/prebid_cache_video_adunit',
-            cust_params: {
-                section: 'blog',
-                anotherKey: 'anotherValue'
-            },
-            output: 'vast'
-        }
-    });
-
-    // Pass URL to Video player to make final DFP call
-    invokeVideoPlayer(videoUrl);
 }
 // in case PBJS doesn't load
 setTimeout(function() {
@@ -219,5 +228,8 @@ googletag.cmd.push(function() {
     googletag.enableServices();
 });
 {% endcapture %}
+
+{% comment %} The live test bidder doesn't reliably bid, so the result tab simulates the video bid with the debugging module; banner bids are not simulated, and the code listing is unchanged. {% endcomment %}
+{% include video/mock-video-bid.html adUnitCode="video1" %}
 
 {% include code/web-example.html id="basic-prebid-example" html=htmlCodePrebid js=jsCode %}
