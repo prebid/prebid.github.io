@@ -176,7 +176,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Prebid.shared.initializeSDK()
 
         // Register the Plugin Renderer globally
-        Prebid.registerPluginRenderer(sampleCustomRenderer)
+        Prebid.register(sampleCustomRenderer, as: .renderer)
         
         return true
     }
@@ -187,9 +187,31 @@ Don't forget to unregister the plugin when it's no longer needed:
 
 ```swift
 func applicationWillTerminate(_ application: UIApplication) {
-    Prebid.unregisterPluginRenderer(sampleCustomRenderer)
+    Prebid.unregister(sampleCustomRenderer, as: .renderer)
 }
 ```
+
+#### Registration functions
+
+(requires SDK v3.5.0)
+
+Prebid SDK registers plugins of every kind with the same three functions. The second argument is the plugin's capability, which is `.renderer` for a Plugin Renderer (`PluginCapability.renderer` in Objective-C):
+
+{: .table .table-bordered .table-striped }
+| Swift | Objective-C | Description |
+| --- | --- | --- |
+| `Prebid.register(_:as:)` | `[Prebid registerPlugin:as:]` | Registers the renderer. A renderer whose name is already registered is ignored, whatever its version. To replace a renderer, unregister it first. |
+| `Prebid.unregister(_:as:)` | `[Prebid unregisterPlugin:as:]` | Unregisters the renderer with the same name. |
+| `Prebid.contains(_:as:)` | `[Prebid containsPlugin:as:]` | Returns whether a renderer with the same name is registered. |
+
+```objc
+[Prebid registerPlugin:sampleCustomRenderer as:PluginCapability.renderer];
+```
+
+Register plugins during the SDK setup. Registering or unregistering the same plugin from several threads at once, or from inside the plugin's own callbacks, is not supported.
+
+{: .alert.alert-warning :}
+`Prebid.registerPluginRenderer(_:)`, `Prebid.unregisterPluginRenderer(_:)` and `Prebid.containsPluginRenderer(_:)` are deprecated and will be removed in PrebidMobile 4.0. Use the functions above instead. Note that `containsPluginRenderer(_:)` matches the renderer instance, while `contains(_:as:)` matches a renderer by name.
 
 #### Controller-Level Registration (for specific use cases)
 
@@ -200,11 +222,11 @@ class CustomRendererBannerController: UIViewController {
     
     override init() {
         super.init()
-        Prebid.registerPluginRenderer(sampleCustomRenderer)
+        Prebid.register(sampleCustomRenderer, as: .renderer)
     }
     
     deinit {
-        Prebid.unregisterPluginRenderer(sampleCustomRenderer)
+        Prebid.unregister(sampleCustomRenderer, as: .renderer)
     }
 }
 ```
