@@ -36,8 +36,6 @@ For integration testing or Prebid review, set numeric `test: 1`. This sends Open
 
 ## Bid Params
 
-{: .table .table-bordered .table-striped }
-
 | Name | Scope | Description | Example | Type |
 | --- | --- | --- | --- | --- |
 | `mid` | required | Roockmobile channel identifier. | `'YOUR_MID'` | `string` |
