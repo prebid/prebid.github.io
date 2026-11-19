@@ -102,7 +102,7 @@ Emitted once per `/openrtb2/amp` request, at the same point as the auction event
 | Errors | `Errors []error` | `errors List<String>` | Request errors and warnings. |
 | Request | `RequestWrapper` | `auctionContext.bidRequest` | The OpenRTB request built from the AMP stored request. |
 | Response | `AuctionResponse *openrtb2.BidResponse` | `bidResponse` | The OpenRTB response of the underlying auction. |
-| Targeting | `AmpTargetingValues map[string]string` | `targeting Map<String, JsonNode>` | Targeting key-values returned to the AMP page. Java declares the field but doesn't set it; read targeting from `bidResponse`. |
+| Targeting | `AmpTargetingValues map[string]string` | `targeting Map<String, JsonNode>` | Targeting key-values returned to the AMP page. Java sets it from the AMP response in [`AmpHandler`](https://github.com/prebid/prebid-server-java/blob/9ac33456c4d57336fdb2514fa15b792fdfb3d20d/src/main/java/org/prebid/server/handler/openrtb2/AmpHandler.java#L196). |
 | Origin | `Origin string` | `origin String` | The `__amp_source_origin` query parameter. |
 | Rejected bids | `SeatNonBid` | `auctionContext.bidRejectionTrackers` | As for auction. |
 | Module results | `HookExecutionOutcome` | `auctionContext.hookExecutionContext` | As for auction. |
@@ -198,6 +198,13 @@ To join server-side auctions to client-side activity:
 - Prebid.js sends `ext.prebid.channel` and, when allowed, transaction IDs (`source.tid`, `imp[].ext.tid`) to PBS, so they appear in the request of the auction event.
 - PBS returns [analytics tags](/prebid-server/developers/module-atags.html) to the client in `ext.prebid.analytics.tags` when both the account and the request allow it.
 - Notification events carry the `bidid` and `bidder` of the winning bid.
+
+## Known issues
+
+These issues were found while writing this page and are open at the time of writing:
+
+- PBS-Go: [#5107](https://github.com/prebid/prebid-server/issues/5107) (scrubbed request leaks between modules), [#5108](https://github.com/prebid/prebid-server/issues/5108) (hook-rejected auctions skip account activity controls), [#5109](https://github.com/prebid/prebid-server/issues/5109) (setuid passes the raw `uid` without activity controls).
+- PBS-Java: [#4715](https://github.com/prebid/prebid-server-java/issues/4715) (AMP and video events skip activity controls applied to auction events), [#4716](https://github.com/prebid/prebid-server-java/issues/4716) (shared `ext.prebid.analytics` node is modified), [#4717](https://github.com/prebid/prebid-server-java/issues/4717) (cookie sync and setuid events ignore enablement config), [#4718](https://github.com/prebid/prebid-server-java/issues/4718) (setuid passes the raw `uid` with only the TCF check).
 
 ## Further reading
 
