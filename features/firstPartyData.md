@@ -81,7 +81,7 @@ pbjs.setConfig({
 })
 ```
 
-Note however that this typically not the case for fields populated by optional modules: `consentManagementTcf` will override `regs.gdpr` and `user.consent`, `geolocationRtdProvider` will override `device.geo`, and so on.    
+Note however that this typically not the case for fields populated by optional modules: `consentManagementTcf` will override `regs.gdpr` and `user.consent`, `consentManagementGcm` will override `regs.ext.gcm` (the page's [Google Consent Mode](/dev-docs/modules/consentManagementGcm.html#regsextgcm) state), `geolocationRtdProvider` will override `device.geo`, and so on.    
 
 <a id="config"></a>
 
