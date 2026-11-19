@@ -26,17 +26,28 @@ sidebarType: 1
 
 ## Registration
 
-The Melvad bidding adapter requires setup before beginning. Please contact us at <support@melvad.com> to get your placement IDs (Prebid.js) or your `sspId` (Prebid Server).
+The Melvad bidding adapter requires setup before beginning. Please contact us at <a.stukolkin@melvad.com> to get your placement IDs (Prebid.js) or your `sspId` (Prebid Server).
 
 ## Bid Params
 
-Prebid.js and Prebid Server take different parameters.
+Prebid.js and Prebid Server take different parameters: the Prebid.js adapter calls the Melvad supply side with a
+`placementId`, the Prebid Server adapter calls the Melvad bidder with an `sspId`. They are not interchangeable.
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope                       | Description                               | Example          | Type     |
 |---------------|-----------------------------|-------------------------------------------|------------------|----------|
 | `placementId` | required (Prebid.js)        | Placement ID issued by Melvad             | `'pl-a962d9cff'` | `string` |
 | `sspId`       | required (Prebid Server)    | SSP identifier issued by Melvad           | `'prebid'`       | `string` |
+
+### Prebid Server through Prebid.js
+
+When Prebid.js sends `melvad` to Prebid Server (`s2sConfig`), the ad unit must carry the Prebid Server parameter
+`sspId`, not `placementId`: Prebid Server checks the parameters against its schema and refuses the whole auction
+request when they do not match, the other bidders included.
+
+```javascript
+bids: [{ bidder: 'melvad', params: { sspId: 'prebid' } }]
+```
 
 ## Prebid.js
 
