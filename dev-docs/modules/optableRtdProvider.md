@@ -115,7 +115,7 @@ To handle PPIDs and the above input - a custom `handleRtd` function may need to 
 | params.bundleUrl         | String   | Optable bundle URL                                                                                                                                                                                                                                              | `null`           | Optional |
 | params.adserverTargeting | Boolean  | If set to `true`, targeting keywords will be passed to the ad server upon auction completion                                                                                                                                                                    | `true`           | Optional |
 | params.instance          | String   | Name of the Optable SDK instance on `window.optable`. The module uses `window.optable[instance]` to tell whether the bundle has loaded and to read targeting data. Set it when the page names its SDK instance something other than `instance`.                 | `'instance'`     | Optional |
-| params.handleRtd         | Function | An optional function that uses Optable data to enrich `reqBidsConfigObj` with the real-time data. If not provided, the module uses its [default handler](#default-handler). A custom function is called as soon as the auction starts, whether or not the Optable bundle has loaded. The function signature is `[async] (reqBidsConfigObj, optableExtraData, mergeFn, instance) => {}`, where `instance` is `params.instance` (or `null` when not set) | `null`           | Optional |
+| params.handleRtd         | Function | Custom function that enriches `reqBidsConfigObj` with Optable data, called as soon as the auction starts. Signature: `[async] (reqBidsConfigObj, optableExtraData, mergeFn, instance) => {}`. If not set, the [default handler](#default-handler) is used       | `null`           | Optional |
 
 ## Default handler
 
@@ -137,6 +137,7 @@ Most publishers should not need a custom `handleRtd`.
 When there is more pre-processing or post-processing needed prior/post calling Optable bundle - a custom `handleRtd`
 function can be supplied to do that.
 This function will also be responsible for the `reqBidsConfigObj` enrichment.
+Its 4th argument, `instance`, is `params.instance`, or `null` when that is not set.
 The module calls it as soon as the auction starts, so the Optable bundle may not have loaded yet. A handler that needs
 the bundle should wait for it first:
 
