@@ -44,7 +44,7 @@ In order to use the module you first need to register with Optable and obtain a 
 <script async src="<bundleURL>"></script>
 ```
 
-In this case the `bundleUrl` parameter is not needed. Either way, the module does not hold an auction until the bundle loads when it has targeting data cached from a previous page (see [Default handler](#default-handler)).
+In this case the `bundleUrl` parameter is not needed. Either way, if targeting data is cached from a previous page, auctions don't wait for the bundle to load (see [Default handler](#default-handler)).
 
 ### Configuration
 
@@ -122,13 +122,19 @@ To handle PPIDs and the above input - a custom `handleRtd` function may need to 
 When `handleRtd` is not provided, the module enriches each auction as soon as it starts:
 
 1. If the Optable bundle has loaded and exposes `window.optable.rtd.handleRtd`, the module calls it. Bundles can
-   override that function to change how data is merged. The bundle counts as loaded when it exposes that function or
-   when the SDK instance named by `params.instance` exists on `window.optable`.
+   override that function to change how data is merged. The bundle also counts as loaded when the SDK instance named
+   by `params.instance` exists on `window.optable`. If it exposes no `rtd.handleRtd`, the module merges the instance's
+   targeting data instead: the data the SDK already holds, or else the data from its next `optable-targeting:change`
+   event.
 2. If the bundle has not loaded yet, the module merges the targeting data the bundle cached on a previous page
    (`localStorage` key `OPTABLE_RESOLVED`, read through Prebid's storage manager, so `deviceAccess` and activity
-   controls apply), without waiting. Cached EIDs are added to `user.ext.eids`.
-3. If nothing is cached, the module waits for the bundle to load (up to `auctionDelay` when `waitForIt` is `true`),
-   then continues as in step 1.
+   controls apply), without waiting. The whole cached ORTB2 object is merged. Cache-only `_ref` fields are removed
+   from EIDs first.
+3. If nothing is cached, or the cache holds no EIDs, the module waits for the bundle to load (up to `auctionDelay`
+   when `waitForIt` is `true`), then continues as in step 1.
+
+On both paths, EIDs are placed in `user.ext.eids`, where Prebid's User ID module puts them, rather than in
+`user.eids`.
 
 Most publishers should not need a custom `handleRtd`.
 
@@ -138,6 +144,19 @@ When there is more pre-processing or post-processing needed prior/post calling O
 function can be supplied to do that.
 This function will also be responsible for the `reqBidsConfigObj` enrichment.
 Its 4th argument, `instance`, is `params.instance`, or `null` when that is not set.
+It will also receive the `optableExtraData` object, which can contain the extra data required for the enrichment and
+shouldn't be shared with other RTD providers/bidders.
+`mergeFn` parameter taken by `handleRtd` is a standard Prebid.js utility function that take an object to be enriched and
+an object to enrich with: the second object's fields will be merged into the first one (also see the code of an example
+mentioned below):
+
+```javascript
+mergeFn(
+  reqBidsConfigObj.ortb2Fragments.global, // or other nested object as needed
+  rtdData,
+);
+```
+
 The module calls it as soon as the auction starts, so the Optable bundle may not have loaded yet. A handler that needs
 the bundle should wait for it first:
 
@@ -151,18 +170,6 @@ await new Promise((resolve) => {
 The module waits for the handler to finish: if it returns a promise (for example an `async` function), the auction
 waits for that promise to settle, within the RTD `auctionDelay`. If the handler throws or its promise rejects, the
 module logs the error and the auction continues without Optable data.
-It will also receive the `optableExtraData` object, which can contain the extra data required for the enrichment and
-shouldn't be shared with other RTD providers/bidders.
-`mergeFn` parameter taken by `handleRtd` is a standard Prebid.js utility function that take an object to be enriched and
-an object to enrich with: the second object's fields will be merged into the first one (also see the code of an example
-mentioned below):
-
-```javascript
-mergeFn(
-  reqBidsConfigObj.ortb2Fragments.global, // or other nested object as needed
-  rtdData,
-);
-```
 
 A `handleRtd` function implementation has access to its surrounding context including capturing a `pbjs` object, calling `pbjs.getConfig()` and f.e. reading off the `consentManagement` config to make the appropriate decision based on it.
 
