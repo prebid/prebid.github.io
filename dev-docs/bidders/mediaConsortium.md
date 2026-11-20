@@ -10,7 +10,36 @@ multiformat_supported: will-bid-on-any
 sidebarType: 1
 ---
 
-MediaConsortium doesn't require inventory parameters - we'll match your inventory using a combination of ad unit code and domain.
+MediaConsortium doesn't require inventory parameters - we'll match your inventory using a combination of ad unit code and domain. You can optionally set a `placementCode` to identify the placement instead of the ad unit code.
+
+## Bid Params
+
+{: .table .table-bordered .table-striped }
+
+| Name            | Scope    | Description                                                                                         | Example      | Type     |
+|-----------------|----------|-----------------------------------------------------------------------------------------------------|--------------|----------|
+| `placementCode` | optional | Identifier of the placement. If absent, the ad unit code is used to identify the placement instead. | `'banner-1'` | `string` |
+
+```javascript
+    const adUnits = [
+        {
+            code: 'div-prebid-banner',
+            mediaTypes: {
+                banner: {
+                    sizes: [[300, 250]]
+                }
+            },
+            bids: [
+                {
+                    bidder: 'mediaConsortium',
+                    params: {
+                        placementCode: 'banner-1'
+                    }
+                }
+            ]
+        }
+    ];
+```
 
 ## Prebid JS configuration
 
