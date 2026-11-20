@@ -7,65 +7,113 @@ tcfeu_supported: true
 gvl_id: 1527
 usp_supported: true
 coppa_supported: true
-gpp_supported: true
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 schain_supported: true
+dchain_supported: true
+dsa_supported: true
 floors_supported: true
 fpd_supported: true
-media_types: banner
+media_types: banner, video, native
 safeframes_ok: true
-bidder_supports_deals: true
+deals_supported: false
 pbjs: true
-pbs: false
+pbs: true
+pbs_app_supported: true
 prebid_member: true
-multiformat_supported: will-not-bid
+multiformat_supported: will-bid-on-one
 ortb_blocking_supported: false
+privacy_sandbox: no
 sidebarType: 1
 ---
 
-### Before You Begin
+## Before You Begin
 
-The Panxo adapter requires the [Panxo RTD Module](/dev-docs/modules/panxoRtdProvider.html) to be included in your Prebid.js build. The RTD module detects AI-referred traffic and enriches bid requests with classification signals that the adapter needs to participate in the auction.
+The updated Panxo bidder adapter is available in Prebid.js 11.48.0 and later.
+Register at [app.panxo.ai](https://app.panxo.ai) for a bidder `propertyKey` and
+an RTD `siteId`. Include and configure the
+[Panxo RTD provider](/dev-docs/modules/panxoRtdProvider.html) for AI visit
+classification. The bidder can participate in contextual auctions without RTD
+data or a user ID.
 
-Please register at [app.panxo.com](https://app.panxo.com) to obtain your `siteId` (for the RTD module) and `propertyKey` (for the bid adapter).
+## Property-key migration restriction
 
-**Important**: Without the Panxo RTD module configured, the adapter will not participate in the auction.
+The adapter does not support migration of path-scoped zone keys. The
+ordinary `/openrtb/2.6/bid` receiver rejects a key whose trusted zone
+configuration has a non-root `pathPrefix`, even if a caller supplies
+`site.page`. Both JS and PBS intentionally omit `site.page` and `site.ref`;
+full URLs or pathnames that may contain identifiers must not be restored as a
+workaround.
 
-### Bid Params
+Before migrating an existing `propertyKey`, confirm its trusted inventory
+scope and exclude non-root zone keys from this update. An ordinary host-based
+property or root-zone success does not prove section membership. Root-zone
+keys retain their host, device and other authorization checks. An unknown key
+scope is not evidence of compatibility; do not silently substitute a host or
+root-zone key to make a request bid.
+
+Contact Panxo before migrating a path-scoped key; this update does not support
+that configuration.
+
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
-|---------------|----------|--------------------------------------------------|----------------------|----------|
+| --------------- | ---------- | -------------------------------------------------- | ---------------------- | ---------- |
 | `propertyKey` | required | Property identifier from Panxo dashboard | `'abc123def456'` | `string` |
-| `floor` | optional | Minimum CPM floor price in USD | `0.50` | `number` |
+| `floor` | deprecated, legacy Prebid.js only | Legacy CPM fallback in USD; use standard Price Floors rules/defaults or an OpenRTB floor for new configurations | `0.50` | `number` |
 
-### Setup Example
+For new configurations, use publisher-controlled Price Floors rules/defaults
+or a static OpenRTB floor. The legacy JS `params.floor` is deprecated but remains
+available in USD when no standard floor control is active. Existing fallback
+values must not be relabeled as the ad-server currency during migration.
 
-#### Step 1: Build Prebid.js with required modules
+An active Price Floors model controls the floor even when a rule yields zero,
+null, no match, an A/B skip or `noFloorSignalBidders`. Those cases do not restore
+the legacy bidder fallback. If the module reports no floor data, the existing
+fallback remains available. Without active Price Floors control, JS preserves
+an explicit `ortb2Imp.bidfloor` and `bidfloorcur` before considering the legacy
+parameter; an omitted OpenRTB floor currency means USD.
 
-Include both `panxoRtdProvider` and `panxoBidAdapter` in your Prebid.js build:
+Panxo transport uses USD. The adapter requests floors in USD and uses Prebid's
+configured Currency module to convert any foreign impression or deal floor.
+A positive floor without a valid rate causes that impression to be skipped;
+the amount is never relabeled, ignored or replaced with a legacy fallback.
+Zero can be normalized without a rate. Publisher inputs and other impressions
+are preserved. Prebid converts the returned USD bid to the configured ad-server
+currency after adapter response validation.
+
+For Prebid Server, configure standard floors through its core or supply OpenRTB
+`imp.bidfloor` and `bidfloorcur`. The Server adapter converts copied impression
+and deal floors to USD using PBS currency rates, while the exchange retains the
+original auction currency. It does not read `params.floor`. Migrate the legacy
+value to an equivalent standard
+rule/default before changing routes; `floorMin` is a mandatory minimum and is
+not an equivalent fallback. Keep explicit zero and skip behavior in migration
+checks. If a static positive floor is also present, both the pinned
+Prebid.js-to-PBS serializer and PBS core floor processing can retain it when a
+dynamic rule returns zero. Resolve that configuration conflict before asserting
+equivalence across routes.
+
+## Setup Example
 
 ```bash
-gulp build --modules=rtdModule,panxoRtdProvider,panxoBidAdapter,...
+gulp build --modules=panxoBidAdapter,rtdModule,panxoRtdProvider
 ```
-
-Or select both **Panxo RTD Module** and **Panxo** on the Prebid [Download](/download.html) page.
-
-#### Step 2: Configure RTD module and ad units
 
 ```javascript
 pbjs.setConfig({
     realTimeData: {
-        auctionDelay: 300,
+        auctionDelay: 1500,
         dataProviders: [{
             name: 'panxo',
             waitForIt: true,
-            params: {
-                siteId: 'your-site-id'
-            }
+            params: { siteId: 'YOUR_SITE_ID' }
         }]
     }
 });
+```
 
+```javascript
 var adUnits = [{
     code: 'banner-ad',
     mediaTypes: {
@@ -82,34 +130,72 @@ var adUnits = [{
 }];
 ```
 
-### First Party Data
+## First Party Data
 
 This adapter supports First Party Data via `ortb2`:
 
-- `ortb2.site.*` (name, cat, content, keywords, etc.)
-- `ortb2.user.*` (data, ext)
+- `ortb2.site` context except `page` and `ref` (publisher, content, categories, keywords and site extensions)
+- `ortb2.user.consent` and `ortb2.user.ext.consent` (existing consent fields only)
+- remaining root `ortb2.device` context, including structured user agent data; no `device.ext`
+- `ortb2.regs.*` and `ortb2.source.*` (including transaction and supply-chain data)
+- per-bid media/placement/PMP/floor fields; no outgoing `imp.ext`, GPID or impression extension transaction IDs
 
-### User Sync
+Top-level request `ext` is omitted after currency controls are consumed
+locally. `site.page` and `site.ref` are omitted without referer fallback.
+The Server adapter extracts its property key before omitting `imp.ext`.
+This intentionally removes viewport extensions and other contextual metadata
+in the omitted containers, narrowing the previous passthrough behavior.
+Media objects, consent, billing and computed floors/currencies retain their
+existing behavior; publisher inputs and other bidders are not rewritten.
 
-Panxo supports pixel-based user sync:
+Both adapters independently limit `site.ext.data.panxo` and
+`app.ext.data.panxo` to a strict boolean `ai`. They remove legacy IDs, history,
+memberships, links and richer payloads in that namespace, including RTD
+context transferred to an app request.
 
-```javascript
-pbjs.setConfig({
-    userSync: {
-        filterSettings: {
-            pixel: {
-                bidders: ['panxo'],
-                filter: 'include'
-            }
-        }
-    }
-});
-```
+User IDs, buyer IDs, EIDs, audience memberships and arbitrary user extensions
+are omitted. Device IFA, hashed device identifiers, IP addresses and the legacy
+`device.ext.panxo` envelope are also omitted. The RTD provider retains only an
+own boolean `ai: true`, dropping `src`, `conf`, `seg`, `co`, `topics` and arbitrary
+`context`. The flag concerns the visit, not whether a page is public or about
+AI. Descriptor checks avoid executing getters but do not authenticate origin.
+Remaining context, URL locations/extensions and the external runtime may
+still carry identifiers; this filtering does not make the integration anonymous.
 
-### Additional Notes
+## User Sync
+
+The JavaScript adapter does not return user-sync pixels or iframe syncs. The Server
+registration also omits user-sync configuration. These adapter changes do not
+control independent requests made by the separately loaded RTD runtime.
+
+## Additional Notes
 
 - **Net Revenue**: Bids are returned as net revenue.
-- **TTL**: 300 seconds (5 minutes)
-- **Currency**: USD
+- **Prebid.js TTL**: A finite OpenRTB `bid.exp` of at least one second is rounded down and capped at 300 seconds. If absent, non-finite or smaller, the adapter uses 300 seconds (5 minutes). This describes the client adapter; PBS expiration follows its own core configuration.
+- **Media and App Readiness**: The adapter supports banner, video and native transport across `site` and `app` inventory. CTV uses standard Video + `app` + connected-TV `device.devicetype`; InApp uses `app`. Audio is unsupported.
+- **Currency**: Panxo requests and responses use USD. Prebid's configured currency service converts foreign impression/deal floors before transport and converts returned bids to the publisher's currency afterward. Positive floors without a valid rate reject their impression. Malformed explicit ad-server currency values fail closed. The legacy `params.floor` and notice prices retain their USD denomination.
+- **Request Validation**: Property key, Banner sizes, Video parameters, Native request and privacy signals are normalized and type-checked before a bid request is emitted; Prebid's `gpp_sid = -1` no-applicable-section sentinel is supported without accepting malformed mixed values
+- **Private Deals**: The ordinary endpoint does not support private deals. Impressions with `pmp.private_auction: 1` receive no bid; open-auction siblings remain eligible. Transporting optional deal fields does not establish deal matching or fulfillment.
+- **Response Validation**: Request/bid/impression IDs, currency, requested media type, dimensions, price and media-specific creative markup must match the grouped request; omitted `mtype` is accepted only for a single-format impression, optional notification/deal/TTL fields are sanitized, and omitted response currency means USD per OpenRTB
 - **Safeframes**: Supported
 - **Advertiser Domains**: Available in bid responses at `meta.advertiserDomains`
+- **Bid Transparency**: Standard `adomain`, `cat`, `cattax`, `attr`, `ext.dsa`, `ext.dchain`, `ext.eventtrackers` and extensible `ext.prebid.meta` response data are exposed through Prebid's canonical bid fields
+
+## Win and Billing Notifications
+
+In Prebid.js, a non-empty OpenRTB `nurl` is sent from `onBidWon`, and a
+non-empty `burl` is sent from `onBidBillable`. Both use Prebid's pixel helper
+and require a finite price. The `${AUCTION_PRICE}` macro uses `originalCpm`
+when finite, otherwise `cpm`.
+
+By default a winning bid is also billable. If the publisher sets
+`adUnit.deferBilling: true`, the win callback still runs, but billing waits for
+the publisher's `pbjs.triggerBilling(winningBid)` call when appropriate.
+Prebid core processes impression image trackers (`event: 1`, `method: 1`)
+before calling `onBidBillable`. If the expanded `burl` exactly matches one of
+those tracker URLs, the adapter leaves that notification to core rather than
+sending a second pixel. This does not assert general deduplication of all
+notification types or backend charging behavior.
+
+These callbacks describe the client adapter. Prebid Server uses its own core
+and integration tracking path; it does not execute the JavaScript hooks.

@@ -1,43 +1,42 @@
 ---
 layout: page_v2
-title: Panxo RTD Provider Module
-display_name: Panxo RTD Module
-description: Real-time AI traffic classification for enriched OpenRTB bid requests.
+title: Panxo RTD Provider
+display_name: Panxo RTD Provider
+description: Panxo real-time coarse AI visit classification
 page_type: module
 module_type: rtd
-module_code : panxoRtdProvider
-enable_download : true
+module_code: panxoRtdProvider
+enable_download: true
 vendor_specific: true
-sidebarType : 1
+sidebarType: 1
 ---
 
-# Panxo RTD Provider Module
-{:.no_toc}
+# Panxo RTD Provider
 
-* TOC
-{:toc}
+The Panxo RTD provider adds the external runtime's coarse AI-visit classification
+to an auction. Contact [publishers@panxo.ai](mailto:publishers@panxo.ai) or register
+at [app.panxo.ai](https://app.panxo.ai) to obtain a publisher property identifier.
 
-## Overview
+## External script disclosure
 
-The Panxo RTD module enriches OpenRTB bid requests with real-time AI traffic classification signals. It detects visits originating from AI assistants and provides contextual data through `device.ext.panxo` and `site.ext.data.panxo`, enabling the Panxo Bid Adapter and other demand partners to apply differentiated bidding on AI-referred inventory.
+This module loads external code that is not open source and has not been
+reviewed by Prebid.org. It loads `https://api.idsequoia.ai/rtd.js` with the
+publisher's `siteId` and a per-connection `session` parameter. The script request
+uses anonymous CORS and a no-referrer policy. These attributes do not restrict
+network or storage operations performed by the external script after loading.
 
-To use this module, contact [publishers@panxo.ai](mailto:publishers@panxo.ai) or sign up at [app.panxo.com](https://app.panxo.com) to receive your property identifier.
+The provider registers GVL ID **1527** and checks Prebid's `accessDevice` and
+`enrichUfpd` activities before connecting or enriching. The loader also applies
+`loadExternalScript`. Configure consent and activity controls before or together
+with RTD configuration.
 
-{% include dev-docs/loads-external-javascript.md %}
+## Build
+
+```bash
+gulp build --modules=rtdModule,panxoRtdProvider,...
+```
 
 ## Configuration
-
-This module is configured as part of the `realTimeData.dataProviders` object.
-
-{: .table .table-bordered .table-striped }
-| Name             | Scope    | Description                                            | Example              | Type      |
-|------------------|----------|--------------------------------------------------------|----------------------|-----------|
-| `name`           | required | Real time data module name                             | `'panxo'`            | `string`  |
-| `params`         | required |                                                        |                      | `Object`  |
-| `params.siteId`  | required | 16-character hex property identifier provided by Panxo | `'a1b2c3d4e5f67890'` | `string`  |
-| `params.verbose` | optional | Enable verbose logging for troubleshooting             | `true`               | `boolean` |
-
-### Basic Example
 
 ```javascript
 pbjs.setConfig({
@@ -54,28 +53,25 @@ pbjs.setConfig({
 });
 ```
 
-## ORTB2 Data
+| Parameter | Type | Required | Description |
+| :-------- | :--- | :------- | :---------- |
+| `siteId` | String | Yes | Publisher property identifier: 16 lowercase hexadecimal characters. |
+| `verbose` | Boolean | No | Enable diagnostic logging. Default: `false`. |
 
-The module adds the following fields to the OpenRTB bid request:
+`auctionDelay` limits the RTD core's wait for providers marked `waitForIt`.
+If Panxo has no signal when the auction continues, the auction proceeds without
+Panxo enrichment.
 
-{: .table .table-bordered .table-striped }
-| Path                     | Description                              |
-|--------------------------|------------------------------------------|
-| `device.ext.panxo`      | Session signal token for traffic verification |
-| `site.ext.data.panxo`   | Contextual AI traffic classification data     |
+A data-deletion request clears the provider's cached signal and disables its
+connection for the rest of the page. A new page load is required to reconnect.
+This hook does not delete data held independently by the external runtime.
 
-## Integration
+## Data added to the auction
 
-To install the module, follow these instructions:
+An AI visit produces:
 
-### Step 1: Build Prebid.js with the module
+```javascript
+ortb2.site.ext.data.panxo = { ai: true };
+```
 
-* Option 1: Use the Prebid [Download](/download.html) page to build the prebid package. Ensure that you check *Panxo RTD Module* under Vendor-Specific Modules.
-
-* Option 2: From the command line, run `gulp build --modules=rtdModule,panxoRtdProvider,...`
-
-> Note that the Panxo RTD module requires the global real-time data module, `rtdModule`.
-
-### Step 2: Set configuration
-
-Enable the Panxo RTD module using `pbjs.setConfig` as shown in the example above.
+The flag classifies the visit. A missing or false signal adds no Panxo data.
