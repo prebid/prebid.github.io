@@ -34,7 +34,7 @@ option.
 | bidders | optional | Other bidder codes whose params carry an XE placement id | `['myXeAlias']` | array of strings |
 | sampling | optional | Share of page views to report, from 0 to 1. Defaults to 1. | `0.5` | number |
 | gvlid | optional | GVL ID (or IDs) checked for consent instead of 1383, for an exchange that runs XE under its own vendor | `1234` | number or array of numbers |
-| host | optional | Host name to send to instead of `pbjs.xe.works`, for an exchange that runs XE on its own domain | `'prebid.example.live'` | string |
+| host | optional | Host name to send to instead of `pbjs.xe.works`, for an exchange that runs XE on its own domain. Only the Prebid Direct domains of the XE family are accepted: `prebid.adipolo.live`, `prebid-eu.adipolo.live`, `prebid.anyclip.com`, `pbjs.anzu-rtb.live`, `pbjs.driftpixel.live`, `pbjs.iqzonertb.live`, `pbjs.league-m.media`, `pbjs.kiviads.live`, `pbjs.bematterfull.com`, `pbjs.revealonmedia.live`, `pbjs.rbstsystems.live` | `'prebid.adipolo.live'` | string |
 
 ## Events
 
@@ -69,8 +69,8 @@ An exchange that runs XE on its own domain and lists its own vendor in the CMP:
 pbjs.enableAnalytics({
     provider: 'xe',
     options: {
-        gvlid: 1234,
-        host: 'prebid.example.live'
+        gvlid: 1456,
+        host: 'prebid.adipolo.live'
     }
 });
 ```
