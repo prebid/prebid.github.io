@@ -1,0 +1,52 @@
+name: Pending release check
+
+# Daily: for each open docs PR labelled as waiting on a code release ("Pending PBS Release" etc.), check whether the
+# linked code PRs are merged and in a release. When all are, label the PR "Ready to merge: code released" and say so;
+# when only some are, a linked PR was closed unmerged, or there is no link, comment once. See
+# .github/scripts/pending-release-check.js. Schedule and manual runs only, in the base repo: it never runs PR code.
+on:
+  schedule:
+    - cron: '23 6 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Only report what would change; don't label or comment
+        type: boolean
+        default: false
+      pr_numbers:
+        description: Optional comma-separated docs PR numbers to check (default all pending PRs)
+        type: string
+        default: ''
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: pending-release-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    if: ${{ github.repository == 'prebid/prebid.github.io' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+
+      - name: Unit tests
+        run: node --test .github/scripts/pending-release-check.test.js
+
+      - name: Check pending-release PRs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          DRY_RUN: ${{ inputs.dry_run && 'true' || 'false' }}
+          PR_NUMBERS: ${{ inputs.pr_numbers }}
+        run: node .github/scripts/pending-release-check.js
