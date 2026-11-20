@@ -49,7 +49,7 @@ Camino bid params for video mediaTypes are identical to banner. The following `m
 | `adUnit.mediaTypes.video.placement` | optional | Video placement type (OpenRTB list) | `1` | `integer` |
 | `adUnit.mediaTypes.video.startdelay` | optional | Start delay in seconds (defaults to `0` for instream) | `0` | `integer` |
 
-An ad unit with both banner and video sends its video to Camino, or its banner when the video fields above are incomplete.
+An ad unit with both banner and video sends its banner to Camino. To bid on video, use a video-only ad unit.
 
 ## Example Configuration
 
