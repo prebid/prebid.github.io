@@ -160,6 +160,9 @@ mergeFn(
 The module calls it as soon as the auction starts, so the Optable bundle may not have loaded yet. A handler that needs
 the bundle should wait for it first:
 
+> Before Prebid.js 11.52.0, the module called a custom `handleRtd` only after the Optable bundle had loaded. Handlers
+> written for older versions that use the bundle right away need the wait below.
+
 ```javascript
 await new Promise((resolve) => {
   window.optable = window.optable || { cmd: [] };
@@ -172,6 +175,64 @@ waits for that promise to settle, within the RTD `auctionDelay`. If the handler 
 module logs the error and the auction continues without Optable data.
 
 A `handleRtd` function implementation has access to its surrounding context including capturing a `pbjs` object, calling `pbjs.getConfig()` and f.e. reading off the `consentManagement` config to make the appropriate decision based on it.
+
+## Direct targeting mode
+
+Available from Prebid.js 11.52.0. With `params.enableTargeting: true`, the module fetches targeting itself instead of
+handing off to the Optable bundle:
+
+1. If the Optable SDK instance (`window.optable[instance]`) is on the page, the module uses its targeting data, waiting
+   for its `optable-targeting:change` event when needed.
+2. If an Optable bundle is still loading (`window.optable` exists), the module behaves like the
+   [default handler](#default-handler): it uses the `OPTABLE_RESOLVED` cache, or waits for the SDK.
+3. Otherwise, if `host`, `node` and `site` are set, it calls the DCN targeting API (`https://<host>/v2/targeting`)
+   directly. Use this on pages without the Optable bundle. Responses are cached in `localStorage`: a cached response is
+   used right away and refreshed in the background.
+
+Waits are bounded by `auctionDelay`; with no `auctionDelay` the module does not wait. `bundleUrl` and
+`optableRtdConfig` are ignored in this mode.
+
+```javascript
+pbjs.setConfig({
+  realTimeData: {
+    auctionDelay: 200,
+    dataProviders: [
+      {
+        name: 'optable',
+        waitForIt: true,
+        params: {
+          enableTargeting: true,
+          host: 'dcn.customer.com',
+          node: 'prod-us',
+          site: 'my-site',
+        },
+      },
+    ],
+  },
+});
+```
+
+{: .table .table-bordered .table-striped }
+
+| Name | Type | Description | Default |
+| :--- | :--- | :--- | :--- |
+| params.enableTargeting | Boolean | Turns on direct targeting mode | `false` |
+| params.host | String | DCN hostname. Required for direct API calls | None |
+| params.node | String | DCN node. Required for direct API calls | None |
+| params.site | String | Site slug configured on the DCN. Required for direct API calls | None |
+| params.ids | Array | Optable identifiers, f.e. `"e:<sha256>"`, `"c:<ppid>"`. Prebid User ID EIDs are not used | `["__passport__"]` |
+| params.hids | Array | Hint identifiers | `[]` |
+| params.cookies | Boolean | When `false`, the request is sent without cookies and the visitor passport goes in the query string | `true` |
+| params.timeout | String/Number | Targeting API timeout, f.e. `"500ms"` or a number of ms | `auctionDelay` minus 100 ms |
+| params.skipMergeIfUid2Exists | Boolean | Skip Optable's UID2 EIDs when the request already has one | `false` |
+| params.optableCacheTargeting | String | `localStorage` key of the targeting cache | `'OPTABLE_RESOLVED'` |
+| params.handleRtd | Function | Custom handler: `[async] (reqBidsConfigObj, targetingData, mergeFn, options) => {}` | `null` |
+
+EIDs are merged into `user.ext.eids`, and each ad unit gets `ortb2Imp.ext.optable.variant` (plus
+`splitTestAssignment` when the DCN returns one). `adserverTargeting` still requires the Optable SDK on the page.
+
+The module has no GVL ID. When the `tcfControl` module enforces GDPR, add `optable` to the `softVendorExceptions` of
+the `storage` rule, or Prebid blocks its storage, cookies and EID enrichment. TCF Purpose 1 consent is still required.
 
 ## Example
 
