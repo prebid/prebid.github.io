@@ -17,7 +17,7 @@ userIds: all
 floors_supported: true
 fpd_supported: true
 multiformat_supported: will-bid-on-any
-deals_supported: true
+deals_supported: false
 safeframes_ok: true
 ortb_blocking_supported: false
 prebid_member: false
