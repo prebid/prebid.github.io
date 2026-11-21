@@ -23,7 +23,8 @@ ad units without an XE placement are not sent.
 
 The adapter sends no user ids, IP addresses or consent strings: only flags (GDPR applies, GPP section ids, US
 Privacy and COPPA present, schain present) and the names of the user id sources. It does not read or write browser
-storage or cookies. Under GDPR, `tcfControl` lets it run only with consent for vendor 1383.
+storage or cookies. Under GDPR, `tcfControl` lets it run only with consent for vendor 1383, or for the vendor set in the `gvlid`
+option.
 
 ## Analytics Options
 
@@ -32,6 +33,8 @@ storage or cookies. Under GDPR, `tcfControl` lets it run only with consent for v
 | ------ | ------- | ------------- | --------- | ------ |
 | bidders | optional | Other bidder codes whose params carry an XE placement id | `['myXeAlias']` | array of strings |
 | sampling | optional | Share of page views to report, from 0 to 1. Defaults to 1. | `0.5` | number |
+| gvlid | optional | GVL ID (or IDs) checked for consent instead of 1383, for an exchange that runs XE under its own vendor | `1234` | number or array of numbers |
+| host | optional | Host name to send to instead of `pbjs.xe.works`, for an exchange that runs XE on its own domain. Only the Prebid Direct domains of the XE family are accepted: `prebid.adipolo.live`, `prebid-eu.adipolo.live`, `prebid.anyclip.com`, `pbjs.anzu-rtb.live`, `pbjs.driftpixel.live`, `pbjs.iqzonertb.live`, `pbjs.league-m.media`, `pbjs.kiviads.live`, `pbjs.bematterfull.com`, `pbjs.revealonmedia.live`, `pbjs.rbstsystems.live` | `'prebid.adipolo.live'` | string |
 
 ## Events
 
@@ -47,7 +50,7 @@ storage or cookies. Under GDPR, `tcfControl` lets it run only with consent for v
 An auction is sent 3 seconds after `auctionEnd`, together with the wins and renders of that window. Later events are
 sent in batches once a second. When the page is hidden or unloaded, the events still in the analytics queue are
 processed and everything pending is sent with `sendBeacon`. Requests are `text/plain` POSTs to
-`https://pbjs.xe.works/analytics`, in bodies under 60 KB: a large auction is split by ad unit, then by bidder.
+`https://pbjs.xe.works/analytics` (or the `host` option), in bodies under 60 KB: a large auction is split by ad unit, then by bidder.
 
 ## Example Configuration
 
@@ -56,6 +59,18 @@ pbjs.enableAnalytics({
     provider: 'xe',
     options: {
         bidders: ['myXeAlias']
+    }
+});
+```
+
+An exchange that runs XE on its own domain and lists its own vendor in the CMP:
+
+```javascript
+pbjs.enableAnalytics({
+    provider: 'xe',
+    options: {
+        gvlid: 1456,
+        host: 'prebid.adipolo.live'
     }
 });
 ```
