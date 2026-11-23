@@ -51,6 +51,7 @@ The available events are:
 | browserIntervention | The browser reported an intervention affecting a rendered creative (e.g., heavy-ad unload). | `{ bid, adId, intervention }` |
 | bidClick | Experimental. A click was observed on a creative rendered by Prebid.js. Requires [`bidClickTracking`](/dev-docs/modules/bidClickTracking.html) (added in 11.50). | `{ bid, adId, adUnitCode, bidder, method, assetId }`; `method` is `creativeClick` or `nativeClick` |
 | bidClickInferred | Experimental. A click was inferred on desktop from focus moving into a creative's iframe. Requires the [`bidClickTracking`](/dev-docs/modules/bidClickTracking.html) module with `desktopFallback` (added in 11.50). | `{ bid, adId, adUnitCode, bidder, method: 'iframeFocus' }` |
+| unauthorizedVideo | A banner bid showed video that the ad unit blocks or that the bid did not declare. Requires the [`bidResponseFilter`](/dev-docs/modules/bidResponseFilter.html#detecting-unauthorized-video) module with `unauthorizedVideo.enabled` (added in 11.54). | `{ bid, adUnitCode, stage, reason, signals }`; `stage` is `bidResponse` or `render`, `reason` is `blocked` or `undeclared` |
 
 The example below shows how these events can be used.
 
