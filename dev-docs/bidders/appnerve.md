@@ -25,7 +25,7 @@ privacy_sandbox: no
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 The Appnerve adapter sends each ad unit as its own OpenRTB 2.6 request to
 `https://exchange.appnerve.net/openrtb2/auction`. Bids are gross CPM in USD.
