@@ -43,8 +43,8 @@ are the types of creatives that may be attached to your ad server line items.
 ### Prebid Universal Creative (PUC)
 
 {: .table .table-bordered }
-| :memo: Use Cases          |
-|:---------------------------|
+| :memo: Use Cases |
+| :--- |
 | - AMP<br/>- Prebid Mobile Bidding-Only<br/>- Prebid.js when you use AMP or PBSDK and want to keep line item setup simple. |
 
 The original idea behind the Prebid Universal Creative (which we fondly call 'the PUC') was that it would be one set of javascript that would render banners, non-instream, and native creatives.
@@ -73,8 +73,8 @@ If you choose to use the Prebid Universal Creative, you'll need to decide where 
 ### Prebid.js 'dynamic creatives'
 
 {: .table .table-bordered }
-| :memo: Use Cases          |
-|:---------------------------|
+| :memo: Use Cases |
+| :--- |
 | - Prebid.js with no need to worry about AMP or Prebid Mobile<br/>- You're using a tool that can modify the creative if needed |
 
 If you have line items that target only browsers running Prebid.js, you can use [dynamic creatives](/adops/js-dynamic-creative.html) to avoid the PUC performance penalty but keep the same ease of setup and maintenance.
@@ -82,8 +82,8 @@ If you have line items that target only browsers running Prebid.js, you can use 
 ### VastUrl
 
 {: .table .table-bordered }
-| :memo: Use Cases          |
-|:---------------------------|
+| :memo: Use Cases |
+| :--- |
 | - Instream video<br/>- Prebid Mobile non-instream video<br/>- Prebid Mobile rewarded video (GAM Bidding-only integration) |
 
 VAST video does not use the PUC. Instead, video bids provide VAST that Prebid caches to obtain a cache ID that can be retrieved with a URL. The cache ID is passed as a key value to the ad server. (See [Video Overview](/prebid-video/video-overview.html) for details.)
@@ -93,8 +93,8 @@ When you’re running campaigns with video creatives, the primary decision you n
 ### Prebid SDK Rendering
 
 {: .table .table-bordered }
-| :memo: Use Cases          |
-|:---------------------------|
+| :memo: Use Cases |
+| :--- |
 | Prebid Mobile rendering scenarios:<br/>- Display Banner<br/>-Video Banner<br/>- Display Interstitial<br/>- Video Interstitial |
 
 When the mobile app is coded to use the Prebid-Rendered scenario ([iOS](/prebid-mobile/modules/rendering/ios-sdk-integration-gam.html),[Android](/prebid-mobile/modules/rendering/android-sdk-integration-gam.html)), there's no PUC.
@@ -103,8 +103,8 @@ Instead, a special ad server creative is used. See the [GAM Prebid Mobile Render
 ### Rewarded Video
 
 {: .table .table-bordered }
-| :memo: Use Cases          |
-|:---------------------------|
+| :memo: Use Cases |
+| :--- |
 | - Prebid Mobile rewarded video (Prebid rendered scenario) |
 
 When the mobile app is coded to use the Prebid-Rendered scenario ([iOS](/prebid-mobile/modules/rendering/ios-sdk-integration-gam.html),[Android](/prebid-mobile/modules/rendering/android-sdk-integration-gam.html)), there's a special
@@ -113,8 +113,8 @@ VAST URL required. See the [GAM Prebid Mobile Rendering Ad Ops](/adops/mobile-re
 ### Native (PUC)
 
 {: .table .table-bordered }
-| :memo: Use Cases          |
-|:---------------------------|
+| :memo: Use Cases |
+| :--- |
 | - Prebid.js Native |
 
 Native ads require close collaboration between web designers, engineering, and ad ops. The primary decision to be made that affects ad ops is where to store the rendering template. The options are:
@@ -135,8 +135,8 @@ Engineering details outlining each template storage option can be found in the [
 ### Native (native-trk.js)
 
 {: .table .table-bordered }
-| :memo: Use Cases          |
-|:---------------------------|
+| :memo: Use Cases |
+| :--- |
 | - Prebid Mobile webview native |
 
 Like Prebid.js, Mobile native ads require close collaboration between web designers, engineering, and ad ops. However, mobile only supports hosting the template in the ad server.
@@ -146,8 +146,8 @@ Prebid Mobile uses a special script called 'native-trk.js' to render native crea
 ### Native (In-App)
 
 {: .table .table-bordered }
-| :memo: Use Cases          |
-|:---------------------------|
+| :memo: Use Cases |
+| :--- |
 | - Prebid Mobile app-rendered native |
 
 The final native option is when the app itself does the rendering. See [Prebid In-App Native for GAM](/adops/gam-native.html#create-mobile-in-app-template) for more information.
@@ -208,6 +208,10 @@ If you don't trust all your bidders to provide creatives that can safely run ins
 [Prebid documentation for each bidder](/dev-docs/bidders.html) provides information on whether the bidder supports SafeFrames.
 
 Be sure to check with bidders directly if you have questions about their SafeFrame support.
+
+## Blocking In-Banner Video
+
+In-banner video is a video creative that plays inside a display slot. To keep it out of banner slots, Prebid.js declares the blocked creative attributes (`battr`) on the ad unit and rejects bids that return them with the [Bid Response Filter module](/dev-docs/modules/bidResponseFilter.html). See [Blocking in-banner video](/dev-docs/modules/bidResponseFilter.html#blocking-in-banner-video) for the ad unit and module configuration, including multi-format ad units and bids that don't declare their creative attributes.
 
 ## Further Reading
 

@@ -45,7 +45,7 @@ Some fields accept additional options:
 | `cat.cattax` | optional | number | Category taxonomy of `cat.bcat` | `1` |
 | `adv.badv` | optional | array of strings | Blocked advertiser domains, checked in addition to `ortb2.badv` | none |
 | `attr.battr` | optional | array of numbers | Blocked creative attribute IDs, checked in addition to the ad unit's `battr` | none |
-| `mediaTypes.rejectIbvBannerOnMultiFormat` | optional | boolean | Reject banner bids on multi-format in-banner video ad units. See [Disabling In-Banner video](#disabling-in-banner-video) | `false` |
+| `mediaTypes.rejectIbvBannerOnMultiFormat` | optional | boolean | Reject banner bids on multi-format in-banner video ad units. See [Blocking in-banner video](#blocking-in-banner-video) | `false` |
 
 ### How bids are validated
 
@@ -101,46 +101,129 @@ The new `mediaTypes` parameter allows you to block bids whose mediaType does not
 
 With `enforce: true`, the bid is rejected when `bid.meta.mediaType` is not one of the ad unit's media types. With `blockUnknown: true`, the bid is rejected when `bid.meta.mediaType` is missing.
 
-### Disabling In-Banner video
+### Blocking in-banner video
 
-To block bids containing In-Banner Video creatives [IAB Creative Attributes 6 and 7, as defined in the AdCOM 1.0 specification](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/main/AdCOM%20v1.0%20FINAL.md#list_creativeattributes), configure the Bid Response Filter module to reject these responses.
+In-banner video (IBV) is a video creative that plays inside a display slot. In [AdCOM 1.0 creative attributes](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/main/AdCOM%20v1.0%20FINAL.md#list_creativeattributes) it is attribute `6` (In-Banner Video Ad, auto-play) or `7` (In-Banner Video Ad, user-initiated).
 
-Restrict the ad unit to banner only and declare disallowed creative attributes (battr) directly in the ad unit definition:
+Blocking it takes two steps:
+
+1. Declare `battr: [6, 7]` on the ad unit, so bidders are asked not to return IBV.
+2. Enable the `attr` check in this module, so a bid that returns IBV anyway is rejected.
+
+`battr` on the ad unit is only a request. Bidders that read `imp.banner.battr` (including adapters built on the ORTB converter, and Prebid Server) pass it on, but nothing makes a demand partner honor it. The module is what enforces it, and it can only act on what the bid declares in `bid.meta.attr`.
+
+#### Turn off the checks you don't need
+
+Enabling the module turns on all of its checks. `cat` and `adv` default to `enforce: true` and `blockUnknown: true`, so a bid with no `bid.meta.primaryCatId`, or no `bid.meta.advertiserDomains`, is rejected. Many bids carry neither. If you only want to block IBV, set both `enforce` and `blockUnknown` to `false` for `cat` and `adv`: `blockUnknown` rejects bids on its own, even when `enforce` is `false`.
+
+`mediaTypes` also defaults to `blockUnknown: true`, which rejects every bid without `bid.meta.mediaType`. Adapters aren't required to set it and Prebid.js doesn't fill it in, so the examples below set `mediaTypes.blockUnknown: false`. Keep `true` only if all your bidders set `bid.meta.mediaType`.
+
+#### Step 1: declare battr on the ad unit
+
+Set `battr` on each media type that can carry the creative. For a banner-only ad unit:
 
 ```javascript
 const adUnit = {
   code: 'banner-adunit',
   mediaTypes: {
     banner: {
-      battr: [6, 7] // Block In-Banner Video creative attributes
+      sizes: [[300, 250]],
+      battr: [6, 7] // In-Banner Video, auto-play and user-initiated
     }
   },
   bids: [ /* bidder configs */ ]
 };
 ```
 
-Enable both the attr and mediaTypes filters in the bidResponseFilter configuration:
+`mediaTypes.banner.battr` is copied to `ortb2Imp.banner.battr`, which is where bidders and this module read it.
+
+#### Step 2: reject IBV that a bid declares
+
+With the ad unit above, this configuration rejects any banner bid whose `bid.meta.attr` contains `6` or `7`. Category and advertiser-domain checks are off, so they don't reject other bids:
 
 ```javascript
 pbjs.setConfig({
   bidResponseFilter: {
+    cat: { enforce: false, blockUnknown: false },
+    adv: { enforce: false, blockUnknown: false },
     attr: { enforce: true },
-    mediaTypes: { enforce: true }
+    mediaTypes: { enforce: true, blockUnknown: false }
   }
 });
 ```
 
-#### Multi-format ad units with in-banner video
-
-Since Prebid.js 11.8, setting `mediaTypes.rejectIbvBannerOnMultiFormat` to `true` rejects bids whose `bid.meta.mediaType` is `'banner'` on ad units that declare more than one media type and have `mediaTypes.video.context` set to `'inbanner'`. This only applies when `mediaTypes.enforce` is `true`.
+To block IBV on every ad unit without adding `battr` to each one, list the attributes in the module configuration with `attr.battr`. The module checks it in addition to the ad unit's `battr` (see [Module-level blocklists](#module-level-blocklists)). Bidders are only asked not to send IBV where the ad unit itself declares `battr`.
 
 ```javascript
 pbjs.setConfig({
   bidResponseFilter: {
+    cat: { enforce: false, blockUnknown: false },
+    adv: { enforce: false, blockUnknown: false },
+    attr: { enforce: true, battr: [6, 7] },
+    mediaTypes: { enforce: true, blockUnknown: false }
+  }
+});
+```
+
+#### Banner ad units: IBV that is not declared
+
+A bid that returns IBV without setting `bid.meta.attr` passes the check above, because `attr.blockUnknown` defaults to `false`. Many adapters don't populate `bid.meta.attr`.
+
+Setting `attr.blockUnknown: true` closes that gap by rejecting every bid that doesn't declare its creative attributes:
+
+```javascript
+pbjs.setConfig({
+  bidResponseFilter: {
+    cat: { enforce: false, blockUnknown: false },
+    adv: { enforce: false, blockUnknown: false },
+    attr: { enforce: true, blockUnknown: true },
+    mediaTypes: { enforce: true, blockUnknown: false }
+  }
+});
+```
+
+This also rejects ordinary display bids from any bidder that doesn't send `attr`, so check which of your bidders populate it before you turn it on. The module does not inspect the creative markup, so an IBV creative that a bid doesn't declare can only be caught this way.
+
+#### Multi-format ad units
+
+On an ad unit with both `banner` and `video`, video bids are checked against `mediaTypes.video.battr` and banner bids against `mediaTypes.banner.battr`. To accept video only as a video bid, and refuse IBV that comes back as a banner bid, declare `battr` on the banner media type:
+
+```javascript
+const adUnit = {
+  code: 'multiformat-adunit',
+  mediaTypes: {
+    banner: {
+      sizes: [[300, 250]],
+      battr: [6, 7]
+    },
+    video: {
+      context: 'outstream',
+      playerSize: [300, 250],
+      mimes: ['video/mp4'],
+      protocols: [2, 3, 5, 6]
+    }
+  },
+  bids: [ /* bidder configs */ ]
+};
+```
+
+With the step 2 configuration, a banner bid on this ad unit that declares attribute `6` or `7` is rejected, and video bids are unaffected.
+
+If the ad unit declares the video slot as in-banner (`mediaTypes.video.context: 'inbanner'`), `mediaTypes.rejectIbvBannerOnMultiFormat` goes further. It rejects every bid whose `bid.meta.mediaType` is `'banner'` on that ad unit, declared IBV or not, so the slot accepts only video bids:
+
+```javascript
+pbjs.setConfig({
+  bidResponseFilter: {
+    cat: { enforce: false, blockUnknown: false },
+    adv: { enforce: false, blockUnknown: false },
+    attr: { enforce: true },
     mediaTypes: {
       enforce: true,
+      blockUnknown: false,
       rejectIbvBannerOnMultiFormat: true
     }
   }
 });
 ```
+
+`rejectIbvBannerOnMultiFormat` is available since Prebid.js 11.8. It only applies when `mediaTypes.enforce` is `true`, the ad unit declares more than one media type, and `mediaTypes.video.context` is `'inbanner'`. It identifies banner bids by `bid.meta.mediaType`, so a bid that doesn't set it isn't rejected by this check.
