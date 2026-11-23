@@ -44,7 +44,7 @@ Bid requests are sent to `https://hb.adapex.io/pbjs?seat={seat}`, one request pe
 
 ## Error and Timeout Telemetry
 
-By default, the adapter sends cookieless `keepalive` beacons to `https://sync.adapex.io/event` for auction timeouts and bidder transport errors. They contain the seat, region label, event type and available operational fields (HTTP status, timeout flag, duration and publisher domain). Error beacons also carry consent signals when available; timeout beacons carry none. They contain no user, device or auction identifier and are deduplicated per seat per event.
+By default, the adapter sends cookieless `keepalive` beacons to `https://sync.adapex.io/event` for auction timeouts and bidder transport errors. They contain the seat, region label, event type and available operational fields (HTTP status, timeout flag, duration and publisher domain). Error beacons also carry consent signals when available. Timeout beacons carry no consent signals, but list the timed-out bid ids (`bidIds`, at most 32), the same random per-bid ids already sent as `imp.id` in the bid request. Beacons contain no user or device identifier and are deduplicated per seat per event.
 
 Publishers can disable these beacons. Bidding and user sync continue to operate independently:
 
