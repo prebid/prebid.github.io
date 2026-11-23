@@ -7,6 +7,7 @@ gvl_id: 687
 pbjs: true
 pbs: true
 gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
+tcfeu_supported: true
 safeframes_ok: false
 sidebarType: 1
 pbs_app_supported: true
