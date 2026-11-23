@@ -653,6 +653,7 @@ For descriptions of all the properties that control user syncs, see the table be
 | `enableOverride` | Boolean | Enable/disable publisher to trigger user syncs by calling `pbjs.triggerUserSyncs()`. Default: `false`. |
 | `aliasSyncEnabled` | Boolean | Enable/disable registered syncs for aliased adapters. Default: `false`. |
 | `usePoliteSync` | Boolean | Fire user syncs as low-priority background work. Image syncs are sent with `fetch` (`no-cors`, `credentials: 'include'`, `keepalive`), falling back to an image pixel; iframe syncs are inserted the same way as before, but in a background task. Background tasks use `scheduler.postTask` with `background` priority where available, otherwise `requestIdleCallback` with a 2 second timeout, otherwise they run immediately. Filtering, limits and delays are unchanged. Default: `false`. Since Prebid.js 11.14. |
+| `removeIframes` | Boolean or Object | Remove sync iframes automatically, counting from when each is added to the page (whether or not it loads). On by default; set `false` to keep them for the life of the page. An object sets the delays, in milliseconds (missing ones use the defaults). `withChildFrames`: remove an iframe at this point if it has created frames of its own, and log a warning (default `15000`). `all`: remove it at this point regardless (default `15000`). Set either to `false` to skip that step. See [removeUserSyncs]({{site.baseurl}}/dev-docs/publisher-api-reference/removeUserSyncs.html). Since Prebid.js 11.47. |
 
 <a name="setConfig-ConfigureUserSyncing-UserSyncExamples"></a>
 
@@ -686,6 +687,19 @@ Fire user syncs as background tasks to reduce their impact on page performance:
 pbjs.setConfig({
     userSync: {
         usePoliteSync: true
+    }
+});
+```
+
+Remove sync iframes that fan out sooner, after 2 seconds, and keep the others for a minute (both default to 15 seconds):
+
+```javascript
+pbjs.setConfig({
+    userSync: {
+        removeIframes: {
+            withChildFrames: 2000,
+            all: 60000
+        }
     }
 });
 ```
@@ -1171,6 +1185,7 @@ To register a video player with Prebid, you must use `setConfig` to set a `video
 | video.providers[] .adServer.params | yes | object | Querystring parameters that will be used to construct the video ad tag URL. Required when `video.providers[].adServer.baseAdTagUrl` is absent. |
 | video.contentEnrichmentEnabled | no | boolean | Defaults to true. Set to false to prevent the Video Module from enriching the `site.content` params in the bidder request. |
 | video.mainContentDivId | no | string | Div Id of the video player intended to populate the `bidderRequest.site.content` params. Used when multiple video players are registered with the Video Module to indicate which player is rendering the main content. The `bidderRequest.site.content` params will be populated by said video player for all auctions where a Video Player is registered with an Ad Unit in the auction. |
+| video.sizeBuckets | no | array of `[width, height]` | List of player sizes to report instead of the player's actual size, e.g. `[[640, 360], [480, 640]]`. When set, the Video Module reports the bucket nearest to the player's actual size as the ad unit's player size (`imp.video.w`/`h`), and the actual size as `imp.video.ext.true_size` (`{w, h}`). See [Size buckets]({{site.github.url}}/prebid-video/video-module.html#size-buckets). |
 | video.adServer | no | object | Configuration for ad server integration. Applies to all Video Providers and all Ad Units linked to a video provider. Superseded by `video.adServer` configurations defined at the Ad Unit level, and `video.providers[] .adServer` configurations. |
 | video.adServer .vendorCode | yes | string | The identifier of the AdServer vendor (i.e. gam, etc) |
 | video.adServer .baseAdTagUrl | yes | string | Your AdServer Ad Tag. The targeting params of the winning bid will be appended. Required when `video.adServer.params` is absent. |
@@ -1598,8 +1613,11 @@ The controls publishers have over the RTD modules:
 
 | Field | Required? | Type | Description |
 | --- | --- | --- | --- |
-| realTimeData.auctionDelay | no | integer | Defines the maximum amount of time, in milliseconds, the header bidding auction will be delayed while waiting for a response from the RTD modules as a whole group. The default is 0 ms delay, which means that RTD modules need to obtain their data when the page initializes. |
+| realTimeData.auctionDelay | no | integer | Defines the maximum amount of time, in milliseconds, the header bidding auction will be delayed while waiting for the RTD modules flagged with `waitForIt`. The default is 0 ms delay, which means that RTD modules need to obtain their data when the page initializes. |
+| realTimeData.dataProviders | yes | array of objects | The RTD modules to enable, in the order they are called. A module that is included in the build but not listed here does not run. |
+| realTimeData.dataProviders[].name | yes | string | Name of the RTD module, as given on its documentation page. |
 | realTimeData.dataProviders[].waitForIt | no | boolean | Setting this value to true flags this RTD module as "important" enough to wait the full auction delay period. Once all such RTD modules have returned, the auction will proceed even if there are other RTD modules that have not yet responded. The default is `false`. |
+| realTimeData.dataProviders[].params | no | object | Module-specific parameters; see the module's documentation page. |
 
 The idea behind the `waitForIt` flag is that publishers can decide which
 modules are worth waiting for and which better hustle. For example, imagine a bus stop:
@@ -1613,8 +1631,9 @@ of the real-time data with the revenue loss from auction delay.
 
 Notes:
 
-* The only time `waitForIt` means anything is if some modules are flagged as true and others as false. If all modules are the same (true or false), it has no effect.
+* The auction is delayed only if `auctionDelay` is greater than 0 and at least one module has `waitForIt: true`. Without a `waitForIt` module, `auctionDelay` has no effect and the auction does not wait for any module.
 * Likewise, `waitForIt` doesn't mean anything without an auctionDelay specified.
+* `realTimeData` is read once: the first `setConfig` call that includes `dataProviders` configures the RTD modules, and later `realTimeData` updates are ignored.
 * Since Prebid.js 11.26, RTD providers may be loaded after Prebid.js has started (for example, from a separate script). A provider that registers after `realTimeData` has been configured is initialized as soon as it registers, as long as it is listed in `realTimeData.dataProviders`; it takes part in auctions that start after that point.
 
 <a name="setConfig-topicsIframeConfig"></a>
@@ -1660,12 +1679,15 @@ Prebid modules sometimes need to know the [IAB Global Vendor List](https://iabeu
 pbjs.setConfig({
   gvlMapping: {
     msft: 4,
-    someModule: 123
+    someModule: 123,
+    otherModule: [123, 456]
   }
 });
 ```
 
 Prebid Server uses this mapping when it sends `ext.prebid.aliasgvlids` for bidder aliases, and the [TCF Control Module](/dev-docs/modules/tcfControl.html) references it when enforcing consent.
+
+Since Prebid.js 11.46, a value may be a list of GVL IDs, for modules that act on behalf of more than one vendor. The TCF Control Module then requires a legal basis for every ID in the list - see [modules with multiple GVL IDs](/dev-docs/modules/tcfControl.html#multiple-gvl-ids). `ext.prebid.aliasgvlids` takes a single ID per alias, so Prebid.js doesn't send it for an alias with several IDs (and logs a warning); Prebid Server then uses the GVL ID from its own configuration.
 
 <a id="setConfig-gvlLegalBasisMapping"></a>
 

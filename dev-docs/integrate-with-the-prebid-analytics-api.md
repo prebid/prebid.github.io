@@ -108,7 +108,7 @@ Analytics adapter for Example.com. Contact prebid@example.com for information.
 adapter needs to specify an enableAnalytics() function, but it should also call
 the base class function to set up the events.
 
-5. Doing analytics may require user permissions under [GDPR](/dev-docs/modules/consentManagementTcf.html), which means your adapter will need to be linked to your [IAB Global Vendor List](https://iabeurope.eu/vendor-list-tcf/) ID. If no GVL ID is found, and Purpose 7 (Measurement) is enforced, your analytics adapter will be blocked unless it is specifically listed under vendorExceptions. Your GVL ID can be added to the `registerAnalyticsAdapter()` call. Since Prebid.js 11.41, if you are not on the GVL but are on Google's Additional Consent provider list, you can instead pass your provider ID as `acpId` (see [Additional Consent](/dev-docs/modules/tcfControl.html#additional-consent)).
+5. Doing analytics may require user permissions under [GDPR](/dev-docs/modules/consentManagementTcf.html), which means your adapter will need to be linked to your [IAB Global Vendor List](https://iabeurope.eu/vendor-list-tcf/) ID. If no GVL ID is found, and Purpose 7 (Measurement) is enforced, your analytics adapter will be blocked unless it is specifically listed under vendorExceptions. Your GVL ID can be added to the `registerAnalyticsAdapter()` call. Since Prebid.js 11.46, it can also be a list of IDs, if your adapter sends data to more than one vendor; all of them then need a legal basis. Since Prebid.js 11.41, if you are not on the GVL but are on Google's Additional Consent provider list, you can instead pass your provider ID as `acpId` (see [Additional Consent](/dev-docs/modules/tcfControl.html#additional-consent)).
 
 6. Since Prebid.js 11.18, Prebid.js may disable and re-enable an analytics adapter while the page is open, as consent data changes (see the [`reportAnalytics` activity](/dev-docs/activity-controls.html#activities)). Adapters must support `disableAnalytics()`: inherit it from the base adapter, or, if you override it, call the base class function. If an adapter does not provide `disableAnalytics()`, Prebid.js logs a warning and the adapter stays enabled. After being disabled, an adapter's `enableAnalytics()` may be called again; the base adapter then replays past events it has not already tracked, including those emitted while it was disabled.
 
@@ -168,7 +168,7 @@ gdprApplies, consentString, and apiVersion
 
 #### Listening for errors
 
-There are two error events analytics modules may wish to listen for: auctionDebug and adRenderFailed. The former is any error that would be normally logged to console and there can be a great many. The latter may happen for the following reasons: (PREVENT_WRITING_ON_MAIN_DOCUMENT, NO_AD, CANNOT_FIND_AD, EXCEPTION, MISSING_DOC_OR_ADID)
+There are two error events analytics modules may wish to listen for: auctionDebug and adRenderFailed. The former is any error that would be normally logged to console and there can be a great many. The latter may happen for the following reasons: (PREVENT_WRITING_ON_MAIN_DOCUMENT, NO_AD, CANNOT_FIND_AD, EXCEPTION, MISSING_DOC_OR_ADID). Since Prebid.js 11.48, it is also emitted, with reason EXCEPTION, when a bid's renderer script fails to load or its `render` function throws. Since 11.47, auctionDebug events include `bidder`, the code of the bidder whose adapter logged the message (or `null`), so errors can be attributed to a bidder.
 
 #### Analytics adapter best practices
 
