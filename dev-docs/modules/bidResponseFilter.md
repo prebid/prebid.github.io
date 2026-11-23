@@ -24,6 +24,7 @@ Fields that can be configured:
 - `adv` - Banned advertiser domains
 - `attr` - Banned creative attributes
 - `mediaTypes` - Banned bids of mediaTypes not present on adUnit
+- `unauthorizedVideo` - Detect video in banner bids that is not allowed or not declared. See [Detecting unauthorized video](#detecting-unauthorized-video)
 
 ### Field configuration object
 
@@ -144,3 +145,81 @@ pbjs.setConfig({
   }
 });
 ```
+
+### Detecting unauthorized video
+
+Since Prebid.js 11.54, the module can look for video in banner bids and report it, which catches in-banner video (IBV) that the checks above miss because the bid doesn't declare it in `bid.meta.attr`. Detection is off by default.
+
+A banner bid that shows video is unauthorized when either:
+
+- **`blocked`**: the `battr` that applies to the bid (the ad unit's `ortb2Imp.banner.battr`, or the module's `attr.battr`) contains `6` or `7`, or
+- **`undeclared`**: `bid.meta.attr` does not contain `6` or `7`.
+
+Banner bids that declare `6` or `7` and are not blocked are not checked.
+
+```javascript
+pbjs.setConfig({
+  bidResponseFilter: {
+    cat: { enforce: false, blockUnknown: false },
+    adv: { enforce: false, blockUnknown: false },
+    unauthorizedVideo: {
+      enabled: true,
+      reject: false,
+      sampleRate: 1,
+      patterns: ['player.example.com/loader.js'],
+      observe: {
+        sampleRate: 0.1,
+        duration: 3000
+      }
+    }
+  }
+});
+
+pbjs.onEvent('unauthorizedVideo', ({ bid, adUnitCode, stage, reason, signals }) => {
+  // report to your own endpoint
+});
+```
+
+`unauthorizedVideo` takes these options:
+
+{: .table .table-bordered .table-striped }
+| Field | Scope | Type | Description | Default |
+| --- | --- | --- | --- | --- |
+| `enabled` | optional | boolean | Turn on detection | `false` |
+| `reject` | optional | boolean | Reject bids whose markup shows video, instead of only reporting them. Only applies to the markup scan | `false` |
+| `sampleRate` | optional | number | Fraction (0 to 1) of banner bids whose markup is scanned | `1` |
+| `patterns` | optional | array of strings or RegExps | Extra markup patterns that indicate video, such as a video player's script URL. Strings match case-insensitively anywhere in the markup | none |
+| `observe.sampleRate` | optional | number | Fraction (0 to 1) of rendered banner bids that are watched for video after rendering | `0` (off) |
+| `observe.duration` | optional | number | How long, in milliseconds, to watch a rendered ad. Capped at `10000` | `3000` |
+
+Enabling the module turns on its other checks too. The example turns off the `cat` and `adv` checks, which otherwise reject bids that don't declare categories or advertiser domains; see the field configuration above.
+
+#### Markup scan
+
+When a banner bid with markup (`bid.ad`) arrives, the module searches the markup for:
+
+- a `<video>` element,
+- VAST XML (a `<VAST>` element),
+- the Google IMA SDK loader (`imasdk.googleapis.com/js/sdkloader/`),
+- any of the configured `patterns`.
+
+This is a text search, so it is a heuristic: it misses video that a script loads from elsewhere, and it can match these strings in comments or script text. Bids that only have `adUrl` are not scanned. If `reject` is `true`, a bid that matches is rejected with the reason `Unauthorized video`, and `bidRejected` fires as usual.
+
+#### Post-render check
+
+With `observe.sampleRate` above `0`, the module also watches a sample of rendered banner bids. After `adRenderSucceeded`, it checks the document the ad was rendered into, and the same-origin frames inside it, for a `<video>` element, and keeps watching for one to be added for `observe.duration` milliseconds. It never delays rendering, and it can only report, not reject.
+
+It only works when Prebid.js can reach the document. Ads rendered in cross-origin frames, SafeFrames, or by Prebid Universal Creative through `postMessage` (where `adRenderSucceeded` has no `doc`) are skipped, as are frames on another origin inside the ad.
+
+#### unauthorizedVideo event
+
+Each detection fires an `unauthorizedVideo` event, at most once per bid for each stage:
+
+{: .table .table-bordered .table-striped }
+| Field | Type | Description |
+| --- | --- | --- |
+| `bid` | object | The bid |
+| `adUnitCode` | string | Ad unit code |
+| `stage` | string | `'bidResponse'` for the markup scan, `'render'` for the post-render check |
+| `reason` | string | `'blocked'` or `'undeclared'` |
+| `signals` | array of strings | What was found: `videoElement`, `vast`, `imaSdk`, or `pattern:<pattern>` for a configured pattern |
