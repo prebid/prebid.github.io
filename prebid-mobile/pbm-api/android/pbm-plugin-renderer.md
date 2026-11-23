@@ -96,13 +96,31 @@ class PpmBannerPluginRendererFragment : AdFragment(), BannerViewListener {
         super.onCreate(savedInstanceState)
         
         // Init your Plugin Renderer
-        PrebidMobile.registerPluginRenderer(SampleCustomRenderer())
+        PrebidMobile.registerPlugin(SampleCustomRenderer(), PluginCapability.RENDERER)
         
         initAdViews()
         requestAd()
     }
 }
 ```
+
+#### Registration functions
+
+(requires SDK v3.5.0)
+
+Prebid SDK registers plugins of every kind with the same three functions. The second argument is the plugin's capability, which is `PluginCapability.RENDERER` for a Plugin Renderer. The compiler checks that the plugin's type matches the capability.
+
+{: .table .table-bordered .table-striped }
+| Function | Description |
+| --- | --- |
+| `PrebidMobile.registerPlugin(plugin, capability)` | Registers the renderer. A renderer whose name is already registered is ignored, whatever its version. To replace a renderer, unregister it first. |
+| `PrebidMobile.unregisterPlugin(plugin, capability)` | Unregisters the renderer with the same name. |
+| `PrebidMobile.containsPlugin(plugin, capability)` | Returns whether a renderer with the same name is registered. |
+
+Register plugins during the SDK setup. Registering or unregistering the same plugin from several threads at once, or from inside the plugin's own callbacks, is not supported.
+
+{: .alert.alert-warning :}
+`PrebidMobile.registerPluginRenderer()`, `PrebidMobile.unregisterPluginRenderer()` and `PrebidMobile.containsPluginRenderer()` are deprecated and will be removed in PrebidMobile 4.0. Use the functions above instead.
 
 #### Take advantage of the Plugin Renderer fields
 
@@ -227,7 +245,7 @@ class PpmBannerPluginEventListenerFragment : AdFragment(), SampleCustomRendererE
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        PrebidMobile.registerPluginRenderer(SampleCustomRenderer())
+        PrebidMobile.registerPlugin(SampleCustomRenderer(), PluginCapability.RENDERER)
     }
 
     override fun initAd(): Any? {

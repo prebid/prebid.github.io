@@ -664,26 +664,42 @@ Note that starting from `2.4.0`, the Prebid SDK no longer saves EIDs to permanen
 
 ### Prebid SDK API Access
 
-Prebid SDK supports passing an array of EIDs at auction time with the function `TargetingParams.setExternalUserIds()`, which is globally scoped. It is sufficient to set the `userIds` object once per user session, as these values would be used in all consecutive ad auctions in the same session.
+Prebid SDK adds the EIDs set on `TargetingParams` to every bid request. The IDs are globally scoped, and setting each ID once per user session is sufficient unless its value changes.
 
-```java
-public static void setExternalUserIds(@Nullable List<ExternalUserId> userIds)
-```
+Starting from PrebidMobile `3.5.0`, the IDs are set one source at a time:
+
+{: .table .table-bordered .table-striped }
+| Method | Description |
+| --- | --- |
+| `addExternalUserId(ExternalUserId)` | Adds the ID, or replaces the ID with the same source. IDs from other sources stay in place, so independent integrations can each manage their own ID. |
+| `removeExternalUserId(String source)` | Removes the ID with the given source. IDs from [extended ID providers](#extended-id-providers) are not affected. |
+| `clearExternalUserIds()` | Removes all the IDs set on `TargetingParams`. IDs from extended ID providers are not affected. |
+| `getExtendedIds()` | Returns the IDs the SDK adds to bid requests, in the [order they are sent](#eid-order-and-checks). EIDs set through `setUserExt()` or the [global OpenRTB config](#arbitrary-openrtb) are sent too, but aren't in this list. |
 
 Example:
 
 ```java
-ArrayList<ExternalUserId> userIds = new ArrayList<>();
-
 ExternalUserId.UniqueId uniqueId1 = new ExternalUserId.UniqueId("111111111111", 20);
 uniqueId1.setExt(new HashMap<String, Object>() {% raw %}{{
     put("rtiPartner", "TDID");
 }});{% endraw %}
 ExternalUserId.UniqueId uniqueId2 = new ExternalUserId.UniqueId("_fl7bV96WjZsbiUyQnJlQ3g4ckh5a1N", 777);
 ExternalUserId fullUserId = new ExternalUserId("adserver.org", List.of(uniqueId1, uniqueId2));
-userIds.add(fullUserId);
 
-TargetingParams.setExternalUserIds(userIds);
+TargetingParams.addExternalUserId(fullUserId);
+
+// When the ID is no longer valid
+TargetingParams.removeExternalUserId("adserver.org");
+```
+
+`setExternalUserIds()` and `getExternalUserIds()` are deprecated and will be removed in PrebidMobile 4.0:
+
+- `setExternalUserIds()` replaces the whole list, so it can overwrite IDs set by other integrations. Use `addExternalUserId()`, `removeExternalUserId()` or `clearExternalUserIds()` instead.
+- `getExternalUserIds()` returns only the IDs set on `TargetingParams`. Use `getExtendedIds()` instead.
+
+```java
+// Deprecated, will be removed in PrebidMobile 4.0
+TargetingParams.setExternalUserIds(List.of(fullUserId));
 ```
 
 Starting from PrebidMobile `3.4.0`, `ExternalUserId` also supports the OpenRTB 2.6 provenance fields:
@@ -702,6 +718,78 @@ fullUserId.setMatcher("example.com");
 fullUserId.setMm(3);
 ```
 
+### Extended ID providers
+
+(requires SDK v3.5.0)
+
+An identity vendor's SDK, or your own code, can supply EIDs through an extended ID provider instead of setting them on `TargetingParams`. The SDK asks every registered provider for its IDs on each bid request, so the request carries the provider's current IDs, for example after it refreshes a token or the user's consent changes. Identity vendors may ship ready-made providers.
+
+Implement the `ExtendedIdProvider` interface:
+
+```java
+public class SampleIdProvider implements ExtendedIdProvider {
+
+    private static final Info INFO = new Info("sample-id-provider.example", "1.0.0");
+
+    @NonNull
+    @Override
+    public Info getProviderInfo() {
+        return INFO;
+    }
+
+    @NonNull
+    @Override
+    public List<ExtendedId> getExtendedIds() {
+        // Return the IDs you already have, without network calls or other blocking work
+        String id = currentId();
+        if (id == null) {
+            return Collections.emptyList();
+        }
+
+        return Collections.singletonList(new ExternalUserId("sample-id-provider.example",
+                Collections.singletonList(new ExternalUserId.UniqueId(id, 1))));
+    }
+}
+```
+
+Then register it once, after initializing the SDK:
+
+```java
+PrebidMobile.registerPlugin(sampleIdProvider, PluginCapability.EXTENDED_IDS);
+```
+
+`PrebidMobile.unregisterPlugin()` stops sending the provider's IDs, and `PrebidMobile.containsPlugin()` returns whether the provider is registered. Renderers are registered with the same functions, see [Plugin Renderer](/prebid-mobile/pbm-api/android/pbm-plugin-renderer.html).
+
+{: .table .table-bordered .table-striped }
+| Method | Description |
+| --- | --- |
+| `getProviderInfo()` | The provider's name and version. A second provider with the same name and version is ignored. Must return the same value for the lifetime of the provider, and must not return `null` or throw. |
+| `getExtendedIds()` | Returns the provider's current EIDs. Called on every bid request, on any thread, including the main thread, and possibly on several threads at once, so it must return immediately. |
+| `onRegister()` | Optional. Called once inside `registerPlugin()`. The provider's IDs are used only after it returns. If it throws, the provider is not registered. |
+| `onUnregister()` | Optional. Called inside `unregisterPlugin()`. Bid requests that are already being built may still call `getExtendedIds()` during or after it, so keep it safe to call. |
+
+To return an EID that you already have as an OpenRTB JSON object, wrap it with `ExtendedId.wrap(JSONObject)`. It copies the JSON, and throws `IllegalArgumentException` if the JSON has no non-empty `"source"` string or can't be encoded, for example because it holds a `NaN` number. Catch it for each ID, so one bad ID doesn't drop the others.
+
+### EID order and checks
+
+(requires SDK v3.5.0)
+
+The SDK adds the EIDs to the bid request in this order:
+
+1. The IDs set on `TargetingParams`.
+2. The Shared ID, if `getSendSharedId()` is `true`.
+3. The IDs of each extended ID provider, in the order the providers were registered.
+
+It skips an ID, and logs a warning that names its source and where it came from, if:
+
+- its source is empty,
+- its JSON is `null` or empty, or can't be built,
+- the `"source"` in its JSON is missing or differs from its source,
+- its JSON can't be encoded,
+- it comes from a provider, and an ID with the same source is already in the list: from `TargetingParams`, the Shared ID, or a provider registered earlier.
+
+The IDs set on `TargetingParams` and the Shared ID are never skipped as duplicates. Warnings about a provider's IDs are usually logged once per registration of the provider, not on every bid request.
+
 ### EID placement
 
 (requires SDK v3.4.0)
@@ -719,7 +807,7 @@ OpenRTB 2.6 moved EIDs from `user.ext.eids` to `user.eids`. Prebid Server reads 
 PrebidMobile.setEidsPlacement(EidsPlacement.OPEN_RTB_2_6)
 ```
 
-The placement applies to all EIDs in the request: those set with `setExternalUserIds()`, the Shared ID, and any EIDs added to `user.eids` or `user.ext.eids` through the [global OpenRTB config](#arbitrary-openrtb). The SDK combines both locations into one list, where entries already in `user.eids` aren't added twice, and writes that list to each location the placement enables.
+The placement applies to all EIDs in the request: those set on `TargetingParams`, the Shared ID, the IDs of [extended ID providers](#extended-id-providers), and any EIDs added to `user.eids` or `user.ext.eids` through the [global OpenRTB config](#arbitrary-openrtb). The SDK combines both locations into one list, where entries already in `user.eids` aren't added twice, and writes that list to each location the placement enables.
 
 ### Shared ID
 

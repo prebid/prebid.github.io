@@ -500,19 +500,38 @@ Note that starting from `2.4.0`, the Prebid SDK no longer saves EIDs to permanen
 
 ### Storing IDs 
 
-Prebid SDK supports passing an array of EIDs at auction time in the Prebid global field `externalUserIds`. Setting the `externalUserIds` object once per user session is sufficient unless one of the values changes.
+Prebid SDK adds the EIDs set on `Targeting` to every bid request. Setting each ID once per user session is sufficient unless its value changes.
 
-```swift
-Targeting.shared.setExternalUserIds()
-```
+Starting from PrebidMobile `3.5.0`, the IDs are set one source at a time:
+
+{: .table .table-bordered .table-striped }
+| Method | Description |
+| --- | --- |
+| `addExternalUserId(_:)` | Adds the ID, or replaces the ID with the same source. IDs from other sources stay in place, so independent integrations can each manage their own ID. |
+| `removeExternalUserId(_:)` | Removes the ID with the given source. IDs from [extended ID providers](#extended-id-providers) are not affected. |
+| `clearExternalUserIds()` | Removes all the IDs set on `Targeting`. IDs from extended ID providers are not affected. |
+| `getExtendedIds()` | Returns the IDs the SDK adds to bid requests, in the [order they are sent](#eid-order-and-checks). EIDs added through the [global OpenRTB config](#arbitrary-openrtb) are sent too, but aren't in this list. |
 
 **Examples**
 
 ```swift
-let uniqueId1 = UserUniqueID(id: "111111111111", aType: 20, ext: ["rtiPartner": "TDID"])
-let uniqueId2 = UserUniqueID(id: "_fl7bV96WjZsbiUyQnJlQ3g4ckh5a1N", aType: 777)
+let uniqueId1 = UserUniqueID(uniqueId: "111111111111", aType: 20, ext: ["rtiPartner": "TDID"])
+let uniqueId2 = UserUniqueID(uniqueId: "_fl7bV96WjZsbiUyQnJlQ3g4ckh5a1N", aType: 777)
 let fullUserId = ExternalUserId(source: "adserver.org", uids: [uniqueId1, uniqueId2])
-        
+
+Targeting.shared.addExternalUserId(fullUserId)
+
+// When the ID is no longer valid
+Targeting.shared.removeExternalUserId("adserver.org")
+```
+
+`setExternalUserIds(_:)` and `getExternalUserIds()` are deprecated and will be removed in PrebidMobile 4.0:
+
+- `setExternalUserIds(_:)` replaces the whole list, so it can overwrite IDs set by other integrations. Use `addExternalUserId(_:)`, `removeExternalUserId(_:)` or `clearExternalUserIds()` instead.
+- `getExternalUserIds()` returns only the IDs set on `Targeting`. Use `getExtendedIds()` instead.
+
+```swift
+// Deprecated, will be removed in PrebidMobile 4.0
 Targeting.shared.setExternalUserIds([fullUserId])
 ```
 
@@ -532,6 +551,74 @@ fullUserId.matcher = "example.com"
 fullUserId.mm = 3
 ```
 
+### Extended ID providers
+
+(requires SDK v3.5.0)
+
+An identity vendor's SDK, or your own code, can supply EIDs through an extended ID provider instead of setting them on `Targeting`. The SDK asks every registered provider for its IDs on each bid request, so the request carries the provider's current IDs, for example after it refreshes a token or the user's consent changes. Identity vendors may ship ready-made providers.
+
+Implement the `ExtendedIdProvider` protocol:
+
+```swift
+final class SampleIdProvider: NSObject, ExtendedIdProvider {
+
+    let providerInfo = ExtendedIdProviderInfo(name: "sample-id-provider.example", version: "1.0.0")
+
+    func getExtendedIds() -> [ExtendedId] {
+        // Return the IDs you already have, without network calls or other blocking work
+        guard let id = currentId() else {
+            return []
+        }
+
+        return [ExternalUserId(source: "sample-id-provider.example", uids: [UserUniqueID(uniqueId: id, aType: 1)])]
+    }
+}
+```
+
+Then register it once, after initializing the SDK:
+
+```swift
+Prebid.register(sampleIdProvider, as: .extendedIds)
+```
+
+In Objective-C:
+
+```objc
+[Prebid registerPlugin:sampleIdProvider as:PluginCapability.extendedIds];
+```
+
+`Prebid.unregister(_:as:)` stops sending the provider's IDs, and `Prebid.contains(_:as:)` returns whether the provider is registered. Renderers are registered with the same functions, see [Plugin Renderer](/prebid-mobile/pbm-api/ios/pbm-plugin-renderer.html).
+
+{: .table .table-bordered .table-striped }
+| Member | Description |
+| --- | --- |
+| `providerInfo` | The provider's name and version. A second provider with the same name and version is ignored. Must not change for the lifetime of the provider. |
+| `getExtendedIds()` | Returns the provider's current EIDs. Called on every bid request, on any thread, possibly concurrently, so it must return immediately. |
+| `onRegister()` | Optional. Called once inside `Prebid.register(_:as:)`. The provider's IDs are used only after it returns. |
+| `onUnregister()` | Optional. Called inside `Prebid.unregister(_:as:)`. Bid requests that are already being built may still call `getExtendedIds()` during or after it, so keep it safe to call. |
+
+To return an EID that you already have as an OpenRTB dictionary, wrap it with `RawExtendedId(json:)`. It returns `nil` if the dictionary has no non-empty `"source"` string, or can't be encoded as JSON.
+
+### EID order and checks
+
+(requires SDK v3.5.0)
+
+The SDK adds the EIDs to the bid request in this order:
+
+1. The IDs set on `Targeting`.
+2. The Shared ID, if `sendSharedId` is `true`.
+3. The IDs of each extended ID provider, in the order the providers were registered.
+
+It skips an ID, and logs a warning that names its source and where it came from, if:
+
+- its source is empty,
+- its JSON is empty,
+- the `"source"` in its JSON is missing or differs from its source,
+- its JSON can't be encoded,
+- it comes from a provider, and an ID with the same source is already in the list: from `Targeting`, the Shared ID, or a provider registered earlier.
+
+The IDs set on `Targeting` and the Shared ID are never skipped as duplicates. Warnings about a provider's IDs are usually logged once per registration of the provider, not on every bid request.
+
 ### EID placement
 
 (requires SDK v3.4.0)
@@ -549,7 +636,7 @@ OpenRTB 2.6 moved EIDs from `user.ext.eids` to `user.eids`. Prebid Server reads 
 Prebid.shared.eidsPlacement = .openRTB26
 ```
 
-The placement applies to all EIDs in the request: those set with `setExternalUserIds()`, the Shared ID, and any EIDs added to `user.eids` or `user.ext.eids` through the [global OpenRTB config](#arbitrary-openrtb). The SDK combines both locations into one list, where entries already in `user.eids` aren't added twice, and writes that list to each location the placement enables.
+The placement applies to all EIDs in the request: those set on `Targeting`, the Shared ID, the IDs of [extended ID providers](#extended-id-providers), and any EIDs added to `user.eids` or `user.ext.eids` through the [global OpenRTB config](#arbitrary-openrtb). The SDK combines both locations into one list, where entries already in `user.eids` aren't added twice, and writes that list to each location the placement enables.
 
 ### Shared ID
 
