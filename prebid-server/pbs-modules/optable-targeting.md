@@ -73,6 +73,7 @@ file. Here's the recommended account config:
 hooks:
   modules:
     optable-targeting:
+      api-call-timeout: 400
       api-key: key
       tenant: optable
       origin: web-sdk-demo
@@ -168,14 +169,16 @@ on per-bidder sampling, migrate to the `raw-auction-request` and `bidder-request
 
 ### Timeout considerations
 
-The `bidder-request` hook timeout is the budget for the API call started in the `raw-auction-request` or
-`processed-auction-request` stage. The call runs in parallel with the rest of the auction, so the actual wait at the
+The Targeting API call started at the `raw-auction-request` or `processed-auction-request` stage is bounded by the
+`api-call-timeout` parameter (400 ms by default). Once this budget is exceeded the call is abandoned and the affected
+bidder requests are not enriched. The call runs in parallel with the rest of the auction, so the actual wait at the
 `bidder-request` stage is usually much shorter than the full roundtrip. The `raw-auction-request` and
 `processed-auction-request` hook timeouts only cover validation and sampling and can be kept short.
 
-**Note:** Do not confuse hook timeout value with the module timeout parameter which is optional. The hook timeout value
-would depend on the cloud/region where the PBS instance is hosted and the latency to reach the Optable's servers. This
-will need to be verified experimentally upon deployment.
+**Note:** Do not confuse the `api-call-timeout` parameter with the module `timeout` parameter which is optional - the
+latter is only a soft timeout hint sent to the Targeting API endpoint. The `api-call-timeout` value would depend on the
+cloud/region where the PBS instance is hosted and the latency to reach the Optable's servers. This will need to be
+verified experimentally upon deployment.
 
 The timeout value for the `auction-response` can be set to 10 ms - usually it will be sub-millisecond time as there are
 no HTTP calls made in this hook - Optable-specific keywords are cached on earlier stages and retrieved from the module
@@ -205,6 +208,7 @@ would result in this nesting in the JSON configuration:
 | Param Name | Required | Type | Default value | Description |
 | :--- | :--- | :--- | :--- | :--- |
 | api-endpoint | yes | string | none | Host-Level. Optable Targeting Edge API endpoint URL. Note it must include &#123;&#123;TENANT&#125;&#125; and &#123;ORIGIN&#125; macros that are substituted from account-level config values |
+| api-call-timeout | no | integer | 400 | Account-Level. Timeout (in ms) for the Targeting API call made by the `raw-auction-request` and async `processed-auction-request` hooks. Once the budget is exceeded the call is abandoned and the affected bidder requests are not enriched. |
 | tenant | yes | string | none | Account-Level. Your Optable tenant aka account ID. |
 | origin | yes | string | none | Account-Level. Optable data `origin` aka `source`. |
 | api-key | no | string | none | Account-Level. If the API is protected with a key - this param needs to be specified to be sent in the auth header |
@@ -365,7 +369,7 @@ names that bidder in `results[0].appliedto.bidders`. Its `results[0].values` car
 | :--- | :--- |
 | `enriched` | The Targeting API returned data and the bidder request was enriched. `status` is `success`. |
 | `no-data` | The call succeeded but returned nothing to enrich with. `status` is `failure`. |
-| `timeout` | The call did not complete within the `bidder-request` hook timeout. `status` is `failure`. |
+| `timeout` | The call did not complete within `api-call-timeout`. `status` is `failure`. |
 | `error` | The call failed. `status` is `failure`. |
 
 A bidder that was sampled out by `bidder-enrichment-percentages` produces no activity at all, so absence is expected
