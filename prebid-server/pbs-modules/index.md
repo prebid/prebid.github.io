@@ -38,6 +38,7 @@ The full list of modules:
 | [**Response Correction**](/prebid-server/pbs-modules/response-correction.html) | Apply optional corrections to bid responses. | general | | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> |
 | [**Optable Targeting**](/prebid-server/pbs-modules/optable-targeting.html) | Enrich `user.ext.eids`, `user.ext.data`. | general | | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> |
 | [**WURFL Device Detection**](/prebid-server/pbs-modules/wurfl-device-detection.html) | Enriches an incoming OpenRTB request with WURFL Device Data | general | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> |
+| [**ZeroGPU Real Time Data**](/prebid-server/pbs-modules/zerogpu-rtd.html) | Enriches an incoming OpenRTB request with IAB content categories classified from the publisher's domain. | general | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> | |
 
 ## Installing a PBS General Module
 
