@@ -307,3 +307,9 @@ Each detection fires an `unauthorizedVideo` event, at most once per bid for each
 | `stage` | string | `'bidResponse'` for the markup scan, `'render'` for the post-render check |
 | `reason` | string | `'blocked'` or `'undeclared'` |
 | `signals` | array of strings | What was found: `videoElement`, `vast`, `imaSdk`, or `pattern:<pattern>` for a configured pattern |
+
+#### Reporting unauthorized video
+
+The `undeclared` reason usually means the bidder's adapter isn't passing the creative attributes through: the bid response carries `attr` (or the bidder could send it), but the adapter doesn't set `bid.meta.attr`. That gap is what lets in-banner video past the `attr` check in [Banner ad units: IBV that is not declared](#banner-ad-units-ibv-that-is-not-declared).
+
+When you see `unauthorizedVideo` events for a bidder, [open an issue on the Prebid.js repository](https://github.com/prebid/Prebid.js/issues) naming the bidder, the `reason` and `signals` from the event, and a sample creative or bid response if you can share one. The adapter can then be fixed to read the bidder's creative attribute declarations into `bid.meta.attr`, so the `attr` check can block those bids without `attr.blockUnknown: true`. Raise it with the bidder too, since the declaration has to come from their side.
