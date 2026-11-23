@@ -116,7 +116,7 @@ Blocking it takes two steps:
 
 Enabling the module turns on all of its checks. `cat` and `adv` default to `enforce: true` and `blockUnknown: true`, so a bid with no `bid.meta.primaryCatId`, or no `bid.meta.advertiserDomains`, is rejected. Many bids carry neither. If you only want to block IBV, set both `enforce` and `blockUnknown` to `false` for `cat` and `adv`: `blockUnknown` rejects bids on its own, even when `enforce` is `false`.
 
-`mediaTypes` also defaults to `blockUnknown: true`. Keep it only if your bidders set `bid.meta.mediaType`.
+`mediaTypes` also defaults to `blockUnknown: true`, which rejects every bid without `bid.meta.mediaType`. Adapters aren't required to set it and Prebid.js doesn't fill it in, so the examples below set `mediaTypes.blockUnknown: false`. Keep `true` only if all your bidders set `bid.meta.mediaType`.
 
 #### Step 1: declare battr on the ad unit
 
@@ -159,7 +159,8 @@ pbjs.setConfig({
   bidResponseFilter: {
     cat: { enforce: false, blockUnknown: false },
     adv: { enforce: false, blockUnknown: false },
-    attr: { enforce: true, battr: [6, 7] }
+    attr: { enforce: true, battr: [6, 7] },
+    mediaTypes: { enforce: true, blockUnknown: false }
   }
 });
 ```
@@ -175,7 +176,8 @@ pbjs.setConfig({
   bidResponseFilter: {
     cat: { enforce: false, blockUnknown: false },
     adv: { enforce: false, blockUnknown: false },
-    attr: { enforce: true, blockUnknown: true }
+    attr: { enforce: true, blockUnknown: true },
+    mediaTypes: { enforce: true, blockUnknown: false }
   }
 });
 ```
@@ -217,10 +219,11 @@ pbjs.setConfig({
     attr: { enforce: true },
     mediaTypes: {
       enforce: true,
+      blockUnknown: false,
       rejectIbvBannerOnMultiFormat: true
     }
   }
 });
 ```
 
-`rejectIbvBannerOnMultiFormat` is available since Prebid.js 11.8. It only applies when `mediaTypes.enforce` is `true`, the ad unit declares more than one media type, and `mediaTypes.video.context` is `'inbanner'`.
+`rejectIbvBannerOnMultiFormat` is available since Prebid.js 11.8. It only applies when `mediaTypes.enforce` is `true`, the ad unit declares more than one media type, and `mediaTypes.video.context` is `'inbanner'`. It identifies banner bids by `bid.meta.mediaType`, so a bid that doesn't set it isn't rejected by this check.
