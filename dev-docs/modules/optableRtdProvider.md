@@ -128,8 +128,8 @@ When `handleRtd` is not provided, the module enriches each auction as soon as it
    event.
 2. If the bundle has not loaded yet, the module merges the targeting data the bundle cached on a previous page
    (`localStorage` key `OPTABLE_RESOLVED`, read through Prebid's storage manager, so `deviceAccess` and activity
-   controls apply), without waiting. The whole cached ORTB2 object is merged. Cache-only `_ref` fields are removed
-   from EIDs first.
+   controls apply), without waiting. The whole cached ORTB2 object is merged. Cache-only fields whose names start
+   with `_` (such as `_ref`) are removed from EIDs first.
 3. If nothing is cached, or the cache holds no EIDs, the module waits for the bundle to load (up to `auctionDelay`
    when `waitForIt` is `true`), then continues as in step 1.
 
@@ -183,11 +183,12 @@ handing off to the Optable bundle:
 
 1. If the Optable SDK instance (`window.optable[instance]`) is on the page, the module uses its targeting data, waiting
    for its `optable-targeting:change` event when needed.
-2. If an Optable bundle is still loading (`window.optable` exists), the module behaves like the
-   [default handler](#default-handler): it uses the `OPTABLE_RESOLVED` cache, or waits for the SDK.
+2. If an Optable bundle is still loading (`window.optable` exists), the module uses the targeting cached under
+   `params.optableCacheTargeting` (`OPTABLE_RESOLVED` by default) when it holds EIDs or a split test assignment, and
+   otherwise waits for the SDK. The [default handler](#default-handler) uses the cache only when it holds EIDs.
 3. Otherwise, if `host`, `node` and `site` are set, it calls the DCN targeting API (`https://<host>/v2/targeting`)
-   directly. Use this on pages without the Optable bundle. Responses are cached in `localStorage`: a cached response is
-   used right away and refreshed in the background.
+   directly. Use this on pages without the Optable bundle. Responses are cached in `localStorage` under the same key:
+   a cached response, even an empty one, is used right away and refreshed in the background.
 
 Waits are bounded by `auctionDelay`; with no `auctionDelay` the module does not wait. `bundleUrl` and
 `optableRtdConfig` are ignored in this mode.
@@ -231,8 +232,11 @@ pbjs.setConfig({
 EIDs are merged into `user.ext.eids`, and each ad unit gets `ortb2Imp.ext.optable.variant` (plus
 `splitTestAssignment` when the DCN returns one). `adserverTargeting` still requires the Optable SDK on the page.
 
+## GDPR and TCF
+
 The module has no GVL ID. When the `tcfControl` module enforces GDPR, add `optable` to the `softVendorExceptions` of
-the `storage` rule, or Prebid blocks its storage, cookies and EID enrichment. TCF Purpose 1 consent is still required.
+the `storage` rule, or Prebid blocks its storage, cookies and EID enrichment. This applies to every mode, including the
+default handler's cache read. TCF Purpose 1 consent is still required.
 
 ## Example
 
@@ -252,4 +256,4 @@ Open the browser console to see the logs.
 
 Any suggestions or questions can be directed to [prebid@optable.co](mailto:prebid@optable.co).
 
-Alternatively please open a new [issue](https://github.com/prebid/prebid-server-java/issues/new) or [pull request](https://github.com/prebid/prebid-server-java/pulls) in this repository.
+Alternatively please open a new [issue](https://github.com/prebid/Prebid.js/issues/new) or [pull request](https://github.com/prebid/Prebid.js/pulls) in the Prebid.js repository.
