@@ -50,8 +50,8 @@ Bidders add the takeover terms to the deal metadata of each bid. Adapters built 
 | --- | --- | --- | --- |
 | `mode` | `mode` | string | `all`, `max` or `viewport` (see [Modes](#modes)). Defaults to `max` when missing or unknown. |
 | `min_slots` | `minSlots` | integer | Minimum number of ad units the takeover must win in `max` and `viewport` modes. |
-| `exclusivity.adomain` | `exclusivity.adomain` | array of strings | Advertiser domains to keep out of the page's other ad units. |
-| `exclusivity.cat` | `exclusivity.cat` | array of strings | IAB categories to keep out of the page's other ad units. |
+| `exclusivity.adomain` | `exclusivity.adomain` | array of strings | Advertiser domains to keep out of the ad units the takeover did not bid on. |
+| `exclusivity.cat` | `exclusivity.cat` | array of strings | IAB categories to keep out of the ad units the takeover did not bid on. |
 
 The takeover's price is the sum of its bids' prices. The deal's `priority` and `priority_adjusted_cpm` are used as for any [priority bid](/dev-docs/publisher-api-reference/bidderSettings.html#212-allowprioritybids).
 
@@ -86,7 +86,7 @@ Bids of takeovers that lose are removed from the auction, so a takeover never wi
 | excludeAdUnits | No | array of strings | Ad unit codes that are never taken over. | `[]` |
 | collapseUnfilled | No | boolean | In `all` mode, leave ad units the takeover has no bid for empty instead of rejecting the takeover. | `false` |
 | blockRefresh | No | boolean | Skip `requestBids` for ad units that rendered a takeover bid. | `false` |
-| allowExclusivity | No | boolean | Let takeovers keep the advertisers and categories in their `exclusivity` out of the page's other ad units. | `false` |
+| allowExclusivity | No | boolean | Let takeovers keep the advertisers and categories in their `exclusivity` out of the ad units they did not bid on. | `false` |
 | exclusivityLabels | No | object | Maps `hb_excl` targeting values to IAB categories, for ad server competitive exclusions. | `{}` |
 | viewportPercent | No | number | Percentage of an ad unit's element that must be in view for `viewport` mode. | `50` |
 
