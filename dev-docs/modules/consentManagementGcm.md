@@ -6,6 +6,7 @@ description: If your site signals consent through Google Consent Mode v2, this m
 module_code : consentManagementGcm
 display_name : Consent Management - Google Consent Mode
 enable_download : true
+recommended: true
 min_js_version: 11.54.0
 sidebarType : 1
 ---
