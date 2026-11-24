@@ -5,6 +5,10 @@ description: Prebid Waardex Bidder Adaptor
 hide: true
 biddercode: waardex
 media_types: banner, video
+tcfeu_supported: true
+gvl_id: 1592
+usp_supported: true
+coppa_supported: true
 pbjs: true
 sidebarType: 1
 ---
