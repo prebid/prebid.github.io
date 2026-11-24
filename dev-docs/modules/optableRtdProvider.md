@@ -133,8 +133,9 @@ When `handleRtd` is not provided, the module enriches each auction as soon as it
 3. If nothing is cached, or the cache holds no EIDs, the module waits for the bundle to load (up to `auctionDelay`
    when `waitForIt` is `true`), then continues as in step 1.
 
-On both paths, EIDs are placed in `user.ext.eids`, where Prebid's User ID module puts them, rather than in
-`user.eids`.
+When the module merges the data itself, on either path, EIDs are placed in `user.ext.eids`, where Prebid's User ID
+module puts them, rather than in `user.eids`. When the bundle provides `rtd.handleRtd`, the bundle decides where
+they go.
 
 Most publishers should not need a custom `handleRtd`.
 
@@ -189,6 +190,9 @@ handing off to the Optable bundle:
 3. Otherwise, if `host`, `node` and `site` are set, it calls the DCN targeting API (`https://<host>/v2/targeting`)
    directly. Use this on pages without the Optable bundle. Responses are cached in `localStorage` under the same key:
    a cached response, even an empty one, is used right away and refreshed in the background.
+
+If `window.optable` is not set and `host`, `node` and `site` are all unset, the module still uses the cache or waits
+for the SDK, as in step 2. If only some of them are set, it logs an error and adds no Optable data to the auction.
 
 Waits are bounded by `auctionDelay`; with no `auctionDelay` the module does not wait. `bundleUrl` and
 `optableRtdConfig` are ignored in this mode.
