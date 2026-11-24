@@ -12,7 +12,7 @@ example: '{"id":"01EAJWWN...", "third":"01EAJ..."}'
 This module stores an unique user id in the first party domain and makes it accessible to all adapters. Similar to IDFA and AAID, this is a simple UUID that can be utilized to improve user matching, especially for iOS and MacOS browsers, and is compatible with ITP (Intelligent Tracking Prevention). It’s lightweight and self contained. Adapters that support SharedId will be able to pick up the user ID and return it for additional server-side cross device tracking.
 
 There is no special registration or configuration for SharedID. Each publisher's privacy policy should take
-SharedID into account.  Prebid  recommends implementing a method where users can easily opt-out of targeted advertising. Please refer to the User Opt-Out section located at the bottom of this page. For more information check out Prebid's dedicated [identity page](/identity/sharedid.html)
+SharedID into account.  Prebid  recommends implementing a method where users can easily opt-out of targeted advertising. See [User opt-out](#user-opt-out) below. For more information check out Prebid's dedicated [identity page](/identity/sharedid.html)
 
 Add it to your Prebid.js package with:
 
@@ -35,7 +35,7 @@ In addition to the parameters documented above in the Basic Configuration sectio
 | params.pixelConsent | Optional | Boolean | For publisher server support only. If true, the `pixelUrl` request also carries the page's consent data, so the endpoint can decide on storage with the same consent as Prebid.js. See [Sending consent to the pixelUrl endpoint](#sending-consent-to-the-pixelurl-endpoint). Default is false. Since Prebid.js 11.52. | `true` |
 | params.pixelCookieDomain | Optional | Boolean | For publisher server support only. If true, the `pixelUrl` request also carries `cookie_domain`, the domain Prebid.js writes the ID cookie on, so the endpoint can set its cookie on the same domain. See [Sending the cookie domain to the pixelUrl endpoint](#sending-the-cookie-domain-to-the-pixelurl-endpoint). Default is false. Since Prebid.js 11.52. | `true` |
 | params.extend | Optional | Boolean | If true, the expiration time of the stored IDs will be refreshed during each page load.  Default is false. | `false` |
-| storage | Required | Object | The publisher must specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage.| |
+| storage | Required | Object | The publisher must specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. | |
 | storage.expires | Integer | Required | How long the user ID information will be stored. | `365` |
 | storage.name | String | Required | The name of the cookie or html5 local storage where the user ID will be stored. | `_pubcid` |
 | storage.type | String | Required | This is where the results of the user ID will be stored. Must be either: Must be either: "cookie" or "html5". For server side implementations, which have the best identifier life and revenue impact, this must be a cookie. | `cookie` |
@@ -75,6 +75,19 @@ Since Prebid.js 11.52, `params.pixelCookieDomain: true` adds `cookie_domain` to 
 ```
 
 Without `pixelCookieDomain`, the request is unchanged.
+
+### User opt-out
+
+SharedID turns itself off when a `_pubcid_optout` cookie or localStorage item is present (any non-empty value). It then provides no ID and never calls `pixelUrl`.
+
+Since Prebid.js 11.54, it also makes the opt-out last and reach a first-party SharedID endpoint, without any network request:
+
+- If the opt-out is only in localStorage, it writes the `_pubcid_optout` cookie too (value `1`, 365 days, `SameSite=Lax`, on the same domain as the ID cookie). A `pixelUrl` endpoint can't read localStorage, but sees the cookie on its next request and can delete its own copies of the ID, including HttpOnly ones.
+- It deletes the stored ID (`storage.name`) and the User ID module's companion entries (`_cst`, `_last`, and `_exp` for html5).
+
+Both go through Prebid.js storage controls: if writing the cookie isn't allowed (for example by [activity controls](/dev-docs/activity-controls.html)), it's skipped and logged. Once the cookie is set and the ID is gone, later page views write nothing.
+
+To undo an opt-out, remove both the cookie and the localStorage item.
 
 ## SharedID Examples
 
