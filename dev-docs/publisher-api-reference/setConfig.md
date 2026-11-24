@@ -333,7 +333,7 @@ pbjs.setConfig({
 
 <a id="setConfig-minBidCacheTTL"></a>
 
-By default, Prebid keeps every bid it receives stored in memory until the user leaves the page, even after the bid actually times out and is no longer available for new auctions. This can cause high memory usage on long-running single-page apps; you can configure Prebid to drop stale bids from memory with `minBidCacheTTL`:
+Since Prebid 12, Prebid drops stale bids from memory by default: bids are kept for the duration of their actual TTL lifetime or 300 seconds, whichever is greater, and auctions without bids are dropped after 300 seconds. (Before Prebid 12, every bid was kept in memory until the user left the page, which could cause high memory usage on long-running single-page apps.) You can change how long stale bids stay in memory with `minBidCacheTTL`:
 
 ```javascript
 pbjs.setConfig({
@@ -341,7 +341,7 @@ pbjs.setConfig({
 })
 ```
 
-When set, bids are only kept in memory for the duration of their actual TTL lifetime or the value of `minBidCacheTTL`, whichever is greater. Setting `minBidCacheTTL: 0` causes bids to be dropped as soon as they expire.
+When set, bids are only kept in memory for the duration of their actual TTL lifetime or the value of `minBidCacheTTL`, whichever is greater. Setting `minBidCacheTTL: 0` causes bids to be dropped as soon as they expire. If `minBidCacheTTL` is not set, it defaults to 300 seconds; set `minBidCacheTTL: Infinity` to opt out and keep bids in memory until the user leaves the page.
 
 Put another way, this setting doesn't define each bid's TTL, but rather controls how long it's kept around in memory for analytics purposes.
 
