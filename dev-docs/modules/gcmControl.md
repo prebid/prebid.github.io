@@ -6,7 +6,7 @@ description: Complements the Google Consent Mode consent management module, deny
 module_code : gcmControl
 display_name : GCM Control
 enable_download : true
-min_js_version: 11.53.0
+min_js_version: 11.54.0
 sidebarType : 1
 ---
 

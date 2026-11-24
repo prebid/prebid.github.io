@@ -6,7 +6,7 @@ description: If your site signals consent through Google Consent Mode v2, this m
 module_code : consentManagementGcm
 display_name : Consent Management - Google Consent Mode
 enable_download : true
-min_js_version: 11.53.0
+min_js_version: 11.54.0
 sidebarType : 1
 ---
 
@@ -30,7 +30,7 @@ gtag('consent', 'update', { ad_storage: 'granted', analytics_storage: 'granted',
 
 `gtag()` pushes its arguments onto `window.dataLayer`. This module reads those calls and makes the resulting Consent Mode state available to Prebid.js:
 
-1. It folds the `['consent', 'default' | 'update', {...}]` entries of `window.dataLayer`, in order, into the current state of each signal, the way gtag does.
+1. It folds the `consent` `default` and `update` calls on `window.dataLayer`, in order, into the current state of each signal, the way gtag does. Like gtag, it reads only what `gtag()` pushes (its `arguments` object): an array pushed directly, such as `dataLayer.push(['consent', 'update', {...}])`, is ignored.
 2. It wraps `dataLayer.push`, as Google Tag Manager does, so calls made later in the session are seen too.
 3. By default, it also reads what Google's tag itself holds: the visitor's region, and Consent Mode state that never went through the `dataLayer` (see [Google's tag data](#googles-tag-data)).
 4. Before the first auction, it waits for `update` calls to set the signals that the defaults deny (see [Timeouts](#timeouts)).
@@ -38,7 +38,7 @@ gtag('consent', 'update', { ad_storage: 'granted', analytics_storage: 'granted',
 
 To act on the state, for example to stop bidders writing cookies when `ad_storage` is denied, add the [GCM Control module](/dev-docs/modules/gcmControl.html) too.
 
-The module works on its own: it doesn't need the TCF or GPP modules, or Google's tag, on the page. It works whether `window.dataLayer` exists before Prebid.js loads or not, whether Google Tag Manager wraps `dataLayer.push` before or after Prebid.js does, and if the page replaces `window.dataLayer` with a new array (the new array is read at the next auction).
+The module works on its own: it doesn't need the TCF or GPP modules, or Google's tag, on the page. It works whether `window.dataLayer` exists before Prebid.js loads or not, whether gtag.js or Google Tag Manager loads, and wraps `dataLayer.push`, before or after Prebid.js does, and if the page replaces `window.dataLayer` with a new array (the new array is read at the next auction).
 
 As in gtag, any value other than `'granted'` on one of the four Consent Mode v2 signals (`ad_storage`, `analytics_storage`, `ad_user_data`, `ad_personalization`) counts as `'denied'`.
 
@@ -70,9 +70,11 @@ The module starts looking for Consent Mode as soon as `consentManagement` is con
 
 - **No Consent Mode found**: the module waits up to `timeout` for a `gtag('consent', ...)` call. If none arrives, `defaultWhenAbsent` applies.
 - **The defaults deny one or more of the four v2 signals**: the module waits until `update` calls have set every signal that the defaults deny. An update that sets only some of them keeps the auction waiting for the rest; updates pushed one right after the other count together.
-- **The defaults deny none of the four v2 signals** and set no `wait_for_update`: there's nothing to wait for, and the auction goes ahead at once. This applies when the defaults are on the `dataLayer` only. If [Google's tag](#googles-tag-data) reports defaults too, the module waits for an `update`, as it can't tell whether those defaults asked to wait.
+- **The defaults deny none of the four v2 signals** and set no `wait_for_update`: there's nothing to wait for, and the auction goes ahead at once. This also holds with gtag.js on the page, when [Google's tag](#googles-tag-data) reports the same signals as the `dataLayer` defaults. If Google's tag reports defaults for other signals (for example set by a Tag Manager consent template), the module waits for an `update`, as it can't tell whether those defaults asked to wait.
 
 The wait for updates ends after `wait_for_update` milliseconds, if a `default` call sets it (the longest one, if several do), and never lasts longer than `timeout`. The auction then uses what the module has at that point: the defaults, with any updates received so far on top.
+
+If `consentManagement` is configured again while an auction is waiting, the auction waits for the new lookup instead, but no longer than it would have for the first one.
 
 Later auctions don't wait. A `default` or `update` call at any point changes the state used by the next auction.
 
@@ -102,7 +104,7 @@ About `gcm.region`:
 - If it's a promise, the region is unknown (or the one from Google's tag) until the promise resolves, and the state is recomputed as soon as it does. The first auction doesn't wait for the promise beyond the [timeouts](#timeouts) above, so it should resolve within `timeout`. If it's rejected, or resolves to something that isn't a region code, it's ignored with a warning.
 - Setting it again with a later `setConfig` recomputes the state at once.
 
-`update` calls always apply, regardless of region. As gtag does, the module ignores a `default` whose `region` names no region (for example an empty list), and doesn't trim the region codes in `default` calls.
+`update` calls always apply, regardless of region. As gtag does, the module ignores a `default` whose `region` is an empty list, applies a `default` to everyone if its `region` list includes an empty string (`''`), and reads each entry of `region` as an upper-case string without trimming it. An entry that isn't a valid region code matches no visitor, but still denies while the region is unknown.
 
 ### Google's tag data
 
@@ -220,6 +222,7 @@ You can also use the [Prebid.js Download](/download.html) page.
 - [Google: Set up consent mode on websites](https://developers.google.com/tag-platform/security/guides/consent)
 - [Google: About consent mode](https://support.google.com/google-ads/answer/13802165)
 - [Prebid GCM Control module](/dev-docs/modules/gcmControl.html)
+- [Integration example with gtag.js](https://github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/gcmConsent.html): Prebid.js with gtag.js loaded before or after it, scripted consent commands, a promised region, and a `demo.report()` helper that compares Prebid's consent data with what Google's tag resolved
 - [Prebid Activity Controls](/dev-docs/activity-controls.html)
 - [Prebid Consent Management - TCF Module](/dev-docs/modules/consentManagementTcf.html)
 - [Prebid Consent Management - GPP Module](/dev-docs/modules/consentManagementGpp.html)
