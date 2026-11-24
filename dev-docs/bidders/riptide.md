@@ -38,6 +38,8 @@ Riptide is an ad server, SSP and DSP. The adapter sends OpenRTB 2.6 to
   most one bid for it.
 - Outstream video needs the publisher's own renderer (`mediaTypes.video.renderer`). The adapter
   returns VAST markup and no renderer.
+- Video bids carry VAST XML, not a VAST URL, so Prebid.js instream video needs Prebid Cache
+  (`cache.url`) or the local cache (`cache.useLocal`).
 - Consent: GDPR TCF, US Privacy, GPP, COPPA and DSA signals are passed through. No IAB TCF Global
   Vendor List id is registered for `riptide` yet, so where Prebid's TCF enforcement applies, EU
   traffic that requires consent is not sent to Riptide.
