@@ -882,6 +882,10 @@ If your bid adapter is going to be used in the United States, you should support
 * Read coppa from the request object and forward it to your endpoint
 * Consider handling data deletion events
 
+If your endpoint acts on Google Consent Mode v2 signals:
+
+* Read `bidderRequest.ortb2.regs.ext.gcm`, set by the [Google Consent Mode module](/dev-docs/modules/consentManagementGcm.html#regsextgcm), and pass it through to your endpoint. It holds the page's current Consent Mode state with gtag's own keys and values, e.g. `{ad_storage: 'granted', ad_user_data: 'denied'}`, and is absent when no Consent Mode signal was found.
+
 ## Supporting Video
 
 Follow the steps in this section to ensure that your adapter properly supports video.

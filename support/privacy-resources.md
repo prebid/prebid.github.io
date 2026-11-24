@@ -55,6 +55,13 @@ Please see [Prebid's support for Quebec privacy law 25](/features/ac-quebec.html
 
 ## Global Privacy References
 
+### Google Consent Mode
+
+Sites that signal consent through Google Consent Mode v2 can have Prebid.js read and enforce it:
+
+- [Prebid.js Google Consent Mode Consent Management Module](/dev-docs/modules/consentManagementGcm.html)
+- [Prebid.js GCM Control Module](/dev-docs/modules/gcmControl.html)
+
 ### Chrome Privacy Sandbox
 
 Privacy Sandbox is the name the Chrome browser has given to a series of features aimed at smoothing the transition off the 3rd party cookie.
