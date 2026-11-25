@@ -4,6 +4,8 @@ title: waardex
 description: Prebid Waardex Bidder Adaptor
 hide: true
 biddercode: waardex
+tcfeu_supported: true
+gvl_id: 1592
 media_types: banner, video
 pbjs: true
 pbs: true
