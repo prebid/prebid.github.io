@@ -30,9 +30,13 @@ The Scalibur Bid Adapter connects publishers to Scalibur's programmatic advertis
 
 | Name | Scope | Type | Description | Example |
 | ---- | ----- | ---- | ----------- | ------- |
-| `placementId` | required | String | Placement identifier provided by Scalibur | `'test-placement-123'` |
+| `placementId` | required | String | Placement identifier provided by Scalibur. On Prebid Server it may instead be supplied per ad unit as the OpenRTB `imp.tagid` (see note below). | `'test-placement-123'` |
 | `bidfloor` | optional | Float | Fallback minimum CPM for the impression | `0.50` |
 | `bidfloorcur` | optional | String | Currency for the bid floor | `'USD'` |
+| `host` | optional | String | Prebid Server only. Overrides the endpoint host for regional/endpoint routing. Bare host with an optional port; no scheme or path. | `'eu.scalibur.io'` |
+
+{: .alert.alert-info :}
+On Prebid Server, the placement is sent to Scalibur as the OpenRTB `imp.tagid`. If an ad unit sets `imp.tagid` (via `ortb2Imp`), that value is used for that impression; otherwise the `placementId` bid param is applied. An impression that resolves to no placement is not served.
 
 ## Test Parameters
 
