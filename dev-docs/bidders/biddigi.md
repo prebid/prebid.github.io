@@ -42,8 +42,8 @@ only when the Price Floors module has not already set one.
 | `placementId` | required | BidDigi placement identifier, from your BidDigi dashboard | `'placement-123'` | `string` |
 | `publisherId` | required | BidDigi publisher/account identifier | `'publisher-abc'` | `string` |
 | `region` | optional | Routes the bid request to a regional BidDigi endpoint. Defaults to `'in'`. | `'in'`, `'us'` | `string` |
-| `bidfloor` | optional | Per-imp floor override, in `bidfloorcur` (defaults to INR). Ignored when the Price Floors module supplies a floor. | `12.5` | `float` |
-| `bidfloorcur` | optional | Currency of `bidfloor` | `'INR'` | `string` |
+| `bidfloor` | optional | Per-imp floor override, in `bidfloorcur` (defaults to USD). Ignored when the Price Floors module supplies a floor. | `12.5` | `float` |
+| `bidfloorcur` | optional | Currency of `bidfloor` | `'USD'` | `string` |
 
 ## Test Parameters
 
