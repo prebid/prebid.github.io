@@ -1705,6 +1705,14 @@
   subgroup: 5
 
 - sbSecId: 5
+  title: Analytics Events
+  link: /prebid-server/developers/pbs-analytics-events.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 5
   title: Building a Module
   link: /prebid-server/developers/add-a-module.html
   isHeader: 0

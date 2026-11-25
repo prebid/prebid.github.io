@@ -14,6 +14,7 @@ title: Prebid Server | Endpoints | Events
 ## GET /event
 
 This endpoint alerts Prebid Server to process the event and informing the analytics adapter.
+See [Analytics Events](/prebid-server/developers/pbs-analytics-events.html#notification) for what analytics modules receive.
 
 ### Query Params
 
