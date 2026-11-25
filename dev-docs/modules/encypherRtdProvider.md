@@ -43,7 +43,11 @@ pbjs.setConfig({
       name: 'encypher',
       waitForIt: true,
       params: {
-        timeout: 300
+        timeout: 300,
+        gamTargeting: {
+          includeAttestationId: true,
+          packages: ['VPP-V1']
+        }
       }
     }]
   }
@@ -61,6 +65,7 @@ pbjs.setConfig({
 | `params.timeout` | Optional | Number | `300` | Total provider deadline in milliseconds for URL hashing, signal lookup, JWKS retrieval, and verification. The effective budget is the smaller of this value and `auctionDelay` |
 | `params.telemetry` | Optional | Boolean | `false` | Emit privacy-minimized diagnostic delivery events after the auction callback |
 | `params.adoptionReporting` | Optional | Boolean | `true` | Permit domain-level adoption observations on consent-allowed lookups. Set exactly `false` to opt out |
+| `params.gamTargeting` | Optional | Boolean or Object | `false` | Ad server key-values for Google Ad Manager line items. Either `false`, or an object with the optional `includeAttestationId` (Boolean, default `false`) and the optional `packages` (Array of String publisher package codes, each matching `[A-Za-z0-9_-]{1,32}`). A malformed value logs one warning and leaves targeting off |
 
 The signal origin is fixed at `https://signals.encypher.com`. Publishers cannot configure a mirror, alternate subdomain, or path-prefix override.
 
@@ -101,6 +106,24 @@ The provider adds one compact object at `imp.ext.c2pa`:
 
 The serialized extension is limited to 1 KiB. Existing impression fields, including GPID, remain unchanged. Supply-chain data remains separate.
 
+## Ad server targeting
+
+With `params.gamTargeting` set to an object, the provider implements the RTD `getTargetingData` hook, so Prebid's ad server targeting carries the verified result for each ad unit that received `imp.ext.c2pa` in that auction. No extra request is made and no auction delay is added.
+
+{: .table .table-bordered .table-striped }
+
+| Key | Value | Emitted when |
+| - | - | - |
+| `encypher_verified` | `"1"` | The ad unit received `ortb2Imp.ext.c2pa` in this auction |
+| `encypher_att` | Attestation ID, the same value as `ortb2Imp.ext.c2pa.id` | `includeAttestationId` is `true` and the ID matches `[A-Za-z0-9_-]{1,32}` |
+| `encypher_pkg` | Publisher package codes, copied verbatim from `packages` | `packages` is non-empty |
+
+Absence is the negative signal: miss, stale, revoked, invalid, and timed-out outcomes emit nothing, and so does an auction a consent gate suppressed. The serialized key map is limited to 256 bytes per ad unit; on overflow the provider drops `encypher_pkg`, then `encypher_att`, then `encypher_verified`. Package codes are publisher configuration and are never derived from provenance evidence. No URL, digest, price, deal, or user value appears in targeting.
+
+For repeated auctions using the same ad unit code, module-only GAM targeting requires a Prebid build containing the [latest-auction ad unit targeting fix](https://github.com/prebid/Prebid.js/pull/16187). Older cores read `adserverTargeting` from retained auctions, so an earlier verified result can reappear after a later miss or revocation. Clearing GPT keys **before** `pbjs.setTargetingForGPTAsync()` is ineffective: that call recomputes and reapplies the stale values. Verify the actual wrapper build with a verified-then-miss refresh; the Encypher module version alone does not establish that the core fix is present.
+
+Until that core fix is in the wrapper build, do not rely on module-only targeting for refreshed slots. A wrapper correction must run **after** the last Prebid targeting write and **before every GPT refresh**, using the closing auction's result and current consent. This also applies when `presetGPTTargeting` writes targeting automatically. The correction must clear all three Encypher keys when that auction is unverified or transmission is no longer permitted; retained `getAdserverTargeting` values are not evidence of the current auction's verification.
+
 ## Validation and freshness
 
 The provider requires:
@@ -131,6 +154,8 @@ The provider skips all work when COPPA applies, the US Privacy string records a 
 GPP consent is checked independently of the legacy US Privacy string. Applicable US national and state sections 7-12 block transmission on sale, sharing, targeted-advertising opt-outs, or GPC. Object and segmented section representations are supported. Unknown applicable sections, missing or malformed consent fields, and unresolved configured GPP consent fail closed. Only applicable sections are inspected; an exact `[-1]` applicable-section list means no GPP section applies. Other privacy gates still apply.
 
 Blocked calls complete the RTD callback without URL hashing, signal or JWKS requests, cached-signal injection, diagnostics, or adoption reporting. Ordinary auctions continue. Consent is checked again for every auction, including auctions that could otherwise reuse a cached signal.
+
+The targeting-time check uses the consent snapshot supplied by Prebid's RTD core; the module does not poll the CMP for mid-auction changes. A wrapper correction must use its own current consent decision immediately before refresh, and clear the keys if transmission is no longer permitted.
 
 Allowed lookup requests disclose the canonical URL digest, canonical publisher hostname, and module version to the fixed signal authority. They do not upload the raw URL, page content, manifest, cookies, bids, prices, deals, or creatives. Requests omit browser credentials and referrers. The URL digest is not an anonymization guarantee; canonical URLs can contain visitor-specific query values.
 
