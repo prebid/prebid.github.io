@@ -1265,11 +1265,29 @@ The module will do this by leveraging the already-existing implementation for an
 | floorMin | float | The mimimum CPM floor used by the module (as of 4.13). The module will take the greater of floorMin and the matched rule CPM when evaluating getFloor() and enforcing floors. Note that the currency of this floor is the same as bidResponse.floorData.floorCurrency. | 0.10 |
 | floorProvider | string | Optional atribute (as of prebid version 4.1) used to signal to the Floor Provider's Analytics adapter their floors are being applied. They can opt to log only floors that are applied when they are the provider. If floorProvider is supplied in both the top level of the floors object and within the data object, the data object's configuration shall prevail.| "rubicon" |
 | location | String | Where the module derived the rule set. Values are one of 'adUnit', 'setConfig', 'fetch' or 'noData'. If the module code is invoked and no floors object is able to be found (either by error or other condition) the floorsModule will set  location to 'noData'. When on data is found, it is up to the analtyics adapter to decide what to log. All available values will be provided in the bidRequest object. | ‘fetch’ |
+| matchedRules | object | The rule matched for each media type the ad unit declares, keyed by media type. See [matched rules](#matched-rules) below. | { banner: { floorRule: 'banner\|\*', floorRuleValue: 1.5, floorValue: 1.5, floorCurrency: 'USD', modelVersion: 'floor-model-4.3' } } |
 | modelVersion | String | The name of the model| ‘floor-model-4.3’ |
 | modelWeight | integer | The weight of the model selected (for schema 2 version only)| 50 |
 | modelTimestamp | integer | Epoch timestamp associated with the modelVersion to be used for post auction analysis.| 1607126814 |
 | skipRate | integer | skipRate will be populated when a skip rate is configured in the module, even if the skipRate is evaluated to false. Skip Rate is used to determine when to skip all floors logic.  | 15 |
 | skipped | Boolean | Whether the skipRate resolved to be true or false| true |
+
+#### Matched rules
+
+`bidRequest.floorData.matchedRules` records, at request time, the rule the module matches for each media type the ad unit declares. Because it is set before any bidder responds, analytics adapters can log it for requests that get no bids. It is available in the `auctionInit` and `bidRequested` events.
+
+Each entry is the rule matched by `getFloor({mediaType: <type>, size: '*'})`. As with `getFloor()`, a `*` size resolves to the ad unit's size when that media type declares exactly one. **It is not necessarily the floor a given bidder used**: adapters call `getFloor()` with their own media type and size, bid adjustments may change the floor per bidder, and custom schema fields don't see bidder-specific request properties.
+
+`matchedRules` is set only when floor data is available, floors are not skipped for the auction, and the bidder is not in `noFloorSignalBidders`. Media types with no matching rule are left out.
+
+{: .table .table-bordered .table-striped }
+| bidRequest.floorData.matchedRules.&lt;mediaType&gt;. | Type | Description | example |
+|---+---+---+---+---|
+| floorRule | String | The matching rule. Not set when the schema's `default` floor was used. | ‘div-1\|banner\|\*’ |
+| floorRuleValue | float | The value of the matching rule. `null` if the rule explicitly sets no floor. | 2.33 |
+| floorValue | float | The greater of floorMin and floorRuleValue, in floorCurrency, before any bidder-specific adjustment. | 2.33 |
+| floorCurrency | string | Currency of the floor data | ‘USD’ |
+| modelVersion | String | The name of the model the rule came from | ‘floor-model-4.3’ |
 
 **bidResponse**: When a bid response is being processed it is important for analytics adapters to know the decision which was made and the context of the rule selection. Here is the data which is attached to each bidResponse:
 
