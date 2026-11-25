@@ -19,7 +19,7 @@ In simple terms, a renderer offers publishers:
 
 ## Types of renderers
 
-From Prebid 11.15 onward, publishers and adapters can specify their custom renderers in two ways: top window renderers (the old-fashioned way) and the new Safe Renderer approach. The latter has the significant advantage of executing renderer code inside the ad frame, where the ad markup and other important data are accessible within the frame context, whereas the old approach executed renderers in the top window. We strongly recommend using the new Safe Renderer approach whenever possible.
+From Prebid 11.14 onward, publishers and adapters can specify their custom renderers in two ways: top window renderers (the old-fashioned way) and the new Safe Renderer approach. The latter has the significant advantage of executing renderer code inside the ad frame, where the ad markup and other important data are accessible within the frame context, whereas the old approach executed renderers in the top window. We strongly recommend using the new Safe Renderer approach whenever possible.
 
 If both Safe Renderer and top window renderers are specified, the Safe Renderer takes precedence. You can also disable top window renderers through the top level configuration flag:
 
@@ -34,16 +34,25 @@ Renderers can be specified at multiple levels by specifying either `safeRenderer
 1. MediaType Level `adUnit.mediaTypes.video|banner|native|audio`: If a renderer is associated with a specific mediaType (video, banner, audio or native), it will be used to display any demand associated with that mediaType. This is the preferred method for all ad types.
 2. AdUnit Level `adUnit`: Applied to all bids for this ad unit that don't override it. This is a legacy approach; using the mediaType-level renderer is preferred.
 3. Bidder Level `adUnit.bids[]`: Applied only to this bidder, overriding adUnit renderer if both exist.
-4. Default: If no renderer is specified at any level, Prebid will use the default renderer for the media type, if one exists. For banner and native ads, Prebid.js has built-in default rendering capabilities.
+4. Bid: Bid adapters (and Prebid Server) can attach a renderer or a Safe Renderer to the bid itself. See [Priority Order](#priority-order) for when it is used.
+5. Default: If no renderer is specified at any level, Prebid will use the default renderer for the media type, if one exists. For banner and native ads, Prebid.js has built-in default rendering capabilities.
 
 ### Priority Order
 
-When multiple renderers are defined, the following priority is used:
+Prebid.js picks a Safe Renderer and a top window renderer separately, with the same rule for each, then uses at most one of them.
 
-1. MediaType Level renderer
-2. AdUnit Level renderer
-3. Bidder Level renderer
-4. Default renderer
+**Rule:** the publisher's `safeRenderer` (or `renderer`) at the MediaType level, otherwise at the Bidder level, otherwise at the AdUnit level. A publisher one with `backupOnly: true` is skipped when the bid comes with its own of the same kind, and the next level is tried instead. When no publisher one applies, the one provided with the bid, if any, is used.
+
+{: .alert.alert-info :}
+Before Prebid.js 11.47: an AdUnit-level `renderer` took precedence over a Bidder-level one (Safe Renderers already used MediaType > Bidder > AdUnit); a `safeRenderer`'s own `backupOnly` was ignored, and the MediaType-level `renderer`'s `backupOnly` applied instead; and a publisher renderer skipped for `backupOnly` did not fall through to the next level.
+
+**Which one runs:** if the bid ends up with a Safe Renderer, from the publisher or from the bid, it is used and any top window renderer is ignored. Otherwise the top window renderer is used, if there is one (and `allowTopWindowRenderers` is not `false`). Otherwise Prebid.js falls back to the default rendering for the media type.
+
+### Safe Renderers provided with bids
+
+Bid adapters can attach a Safe Renderer to a bid response by setting `bid.safeRenderer = { url, config }`.
+
+Since Prebid 11.19, Prebid.js also accepts Safe Renderers from Prebid Server. Requests to Prebid Server include `ext.prebid.safeRenderer: true` to signal support, and when a Prebid Server bid has `ext.prebid.meta.rendererUrl`, Prebid.js sets `bid.safeRenderer = { url: rendererUrl }`.
 
 ## Safe renderer
 
@@ -57,6 +66,7 @@ The Safe Renderer works similarly to the default Prebid renderer in that it is i
 | `url` | Required | String | URL to the external renderer script that will be loaded and executed within Safe renderer |
 | `config` | Optional | Object | Object that will be passed to external renderer script as a `config` field. For bid adapters use |
 | `getConfig` | Optional | Function | Function that will evaluate `config` object accessible in external renderer script. For publisher's use. Accepts `bidResponse` as a parameter |
+| `backupOnly` | Optional | Boolean | If `true`, used only when the bid doesn't provide its own Safe Renderer; otherwise the next level is tried (see [Priority Order](#priority-order)). Since Prebid.js 11.47 |
 | `requiresVastUrl` | Optional | Boolean | For outstream video, cache XML-only bids so the renderer receives `vastUrl`. Requires `cache.url` or `cache.useLocal`. Has no effect when the bid already has `vastUrl`. |
 
 ```javascript
@@ -185,7 +195,7 @@ window.pbRenderInFrame = function ({ config, ...renderingData }) {
 |--------------+----------+---------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `url` | Required | String | URL to the renderer script that will be loaded. This script should create a renderer object in the global scope. |
 | `render` | Required | Function | Function that tells Prebid.js how to invoke the renderer script to render a bid. The function receives the bid object as a parameter. |
-| `backupOnly` | Optional | Boolean | if set to true, buyer or adapter renderer will be preferred |
+| `backupOnly` | Optional | Boolean | If `true`, used only when the bid doesn't provide its own renderer; otherwise the next level is tried (see [Priority Order](#priority-order)). |
 | `requiresVastUrl` | Optional | Boolean | For outstream video, cache XML-only bids so the renderer receives `vastUrl`. Requires `cache.url` or `cache.useLocal`. Has no effect when the bid already has `vastUrl`. |
 
 Set `requiresVastUrl: true` on the renderer that needs a URL. Prebid uses the selected renderer's value, including a Safe Renderer when present. If caching is unavailable, an XML-only bid cannot be used by a renderer requiring `vastUrl`. `mediaTypes.video.useCacheKey` still forces caching for outstream bids independently of the renderer.

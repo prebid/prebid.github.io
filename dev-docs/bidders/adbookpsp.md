@@ -10,6 +10,7 @@ schain_supported: true
 coppa_supported: true
 usp_supported: true
 pbjs: true
+enable_download: false
 pbs: false
 pbjs_version_notes: removed in 9.0
 sidebarType: 1
@@ -17,13 +18,13 @@ sidebarType: 1
 
 *NOTE*: The AdBookPSP Bidder Adapter requires setup and approval before use. The adapter uses custom targeting keys that require a dedicated Google Ad Manager setup to work. Please reach out to your AdbookPSP representative for more details.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-|Name|Scope|Description|Example|Type|
-|----|-----|-----------|-------|----|
-|`orgId`|optional|Org ID listed in the Deal File|`abc123`|`string`|
-|`placementId`|optional|Placement ID listed in the Deal File|`abc123`|`string`|
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| `orgId` | optional | Org ID listed in the Deal File | `abc123` | `string` |
+| `placementId` | optional | Placement ID listed in the Deal File | `abc123` | `string` |
 
 Each adUnit with `adbookpsp` adapter has to have either `placementId` or `orgId` set.
 
@@ -55,7 +56,7 @@ pbjs.setConfig({
 
 *NOTE*: adUnit orgId will take precedence over the globally set orgId.
 
-#### Banner parameters
+### Banner parameters
 
 Required:
 
@@ -76,7 +77,7 @@ var adUnits = [
 ];
 ```
 
-#### Video parameters
+### Video parameters
 
 Required:
 
@@ -117,7 +118,7 @@ var adUnits = [
 
 *NOTE*: Supporting outstream video requires the publisher to set up a renderer as described [in the Prebid docs](https://docs.prebid.org/dev-docs/show-outstream-video-ads.html).
 
-#### Testing params
+### Testing params
 
 To test the adapter, either `placementId: 'example-placement-id'` or `orgId: 'example-org-id'` can be used.
 
@@ -154,7 +155,7 @@ googletag
   .addService(googletag.pubads());
 ```
 
-### Configuration
+## Configuration
 
 Setting of the `orgId` can be done in the `pbjs.setConfig()` call. If this is the case, both `orgId` and `placementId` become optional. Remember to only call `pbjs.setConfig()` once as each call overwrites anything set in previous calls.
 
@@ -177,11 +178,11 @@ pbjs.setConfig({
 });
 ```
 
-### Privacy
+## Privacy
 
 GDPR and US Privacy are both supported by default.
 
-#### Event tracking
+### Event tracking
 
 This adapter tracks win events for it’s bids. This functionality can be disabled by adding `winTrackingEnabled: false` to the adapter configuration:
 
@@ -193,7 +194,7 @@ pbjs.setConfig({
 });
 ```
 
-#### COPPA support
+### COPPA support
 
 COPPA support can be enabled for all the visitors by changing the config value:
 

@@ -59,24 +59,34 @@ async function getAccessToken(clientId, clientSecret, refreshToken) {
         return { regex: new RegExp(regex), email };
       });
 
-    // Fetch changed files from github
+    // Fetch all changed files from github (paginated)
     const [owner, repoName] = repo.split('/');
-    const apiUrl = `https://api.github.com/repos/${owner}/${repoName}/pulls/${prNumber}/files`;
-    const response = await axios.get(apiUrl, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        Accept: 'application/vnd.github.v3+json',
-      },
-    });
+    const changedFiles = [];
+    let url = `https://api.github.com/repos/${owner}/${repoName}/pulls/${prNumber}/files?per_page=100`;
+    while (url) {
+      const response = await axios.get(url, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: 'application/vnd.github.v3+json',
+        },
+      });
+      changedFiles.push(...response.data.map(file => file.filename));
 
-    const changedFiles = response.data.map(file => file.filename);
+      // Follow pagination via Link header
+      const link = response.headers?.link || '';
+      const next = link.match(/<([^>]+)>;\s*rel="next"/);
+      url = next ? next[1] : null;
+    }
     console.log('Changed files:', changedFiles);
 
     // match file pathnames that are in the config and group them by email address
     const matchesByEmail = {};
     changedFiles.forEach(file => {
+      // Rules are written from the repository root (/dev-docs/...), but github
+      // returns file names without the leading slash (dev-docs/...).
+      const rootedFile = file.startsWith('/') ? file : `/${file}`;
       configRules.forEach(rule => {
-        if (rule.regex.test(file)) {
+        if (rule.regex.test(rootedFile)) {
           if (!matchesByEmail[rule.email]) {
             matchesByEmail[rule.email] = [];
           }
