@@ -70,7 +70,7 @@ The takeover's price is the sum of its bids' prices. The deal's `priority` and `
 2. On each ad unit, the takeover's bid is compared with the best other bid by priority (lower wins). The takeover takes ad units where its priority is higher and loses those where it is lower.
 3. On ad units where the priorities are equal, the takeover wins only if the sum of its bids' desirability is higher than the sum of the best other bids' desirability, plus the publisher's `premium` and the value of any bids its exclusivity keeps off the page.
 
-Bids of takeovers that lose are removed from the auction, so a takeover never wins only part of what it bid for.
+Every bid of a takeover that loses is removed from the auction, so a losing takeover can't still win some ad units as ordinary bids. In `max` and `viewport` modes a winning takeover can win only some of the ad units it bid on: it keeps the ones it won, and the others go to their best other bid. Use `all` mode when a takeover must win every ad unit or none.
 
 ## Parameters
 
