@@ -49,6 +49,8 @@ The available events are:
 | tcf2Enforcement | There was a TCF2 enforcement action taken | `{ storageBlocked: ['moduleA', 'moduleB'], biddersBlocked: ['moduleB'], analyticsBlocked: ['moduleC'] }` |
 | bidAccepted | A bid was accepted and is about to be added to the auction. Fired once per accepted bid, after bid adjustment and before `bidResponse`; for video and audio bids, before VAST caching. Removed in 11.0 and restored in 11.7. | Bid response object |
 | browserIntervention | The browser reported an intervention affecting a rendered creative (e.g., heavy-ad unload). | `{ bid, adId, intervention }` |
+| consentDataChanged | Consent changed: a consent string or another value identifying consent (such as `gdprApplies`), Consent Mode signals or the `coppa` setting changed (added in 11.54) | The new result of [`getConsentData()`](/dev-docs/publisher-api-reference/getConsentData.html) |
+| consentMetadataChanged | The result of [`getConsentMetadata()`](/dev-docs/publisher-api-reference/getConsentMetadata.html) changed, for example because new consent data was received (added in 11.54) | The new result of `getConsentMetadata()` |
 | bidClick | Experimental. A click was observed on a creative rendered by Prebid.js. Requires [`bidClickTracking`](/dev-docs/modules/bidClickTracking.html) (added in 11.50). | `{ bid, adId, adUnitCode, bidder, method, assetId }`; `method` is `creativeClick` or `nativeClick` |
 | bidClickInferred | Experimental. A click was inferred on desktop from focus moving into a creative's iframe. Requires the [`bidClickTracking`](/dev-docs/modules/bidClickTracking.html) module with `desktopFallback` (added in 11.50). | `{ bid, adId, adUnitCode, bidder, method: 'iframeFocus' }` |
 
