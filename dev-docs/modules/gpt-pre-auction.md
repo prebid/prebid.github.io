@@ -2,7 +2,7 @@
 layout: page_v2
 page_type: module
 title: Module - GPT Pre-Auction
-description: If you run GAM, this module generates the 'global placement id' that's becoming required for successful auctions.
+description: If you run GAM, this module generates the 'global placement id' that's becoming required for successful auctions. It also offers a test mode for GPT's new request hook.
 module_code : gptPreAuction
 display_name : GPT Pre-Auction
 enable_download : true
@@ -46,6 +46,7 @@ Optional initialization parameters:
 | useDefaultPreAuction | no | boolean | If true, use default behavior for determining GPID. Defaults to true. | true |
 | customPreAuction | no | function | Custom function for defining the GPID. | |
 | mcmEnabled | no | boolean | Removes extra network IDs when Multiple Customer Management is active. Default is false. | true |
+| requestHook.mode | no | string | Set to `'test'` to evaluate the [GPT Request Hook Integration](#gpt-request-hook-integration). Default is `'disabled'`. | `'test'` |
 
 For example:
 
@@ -132,6 +133,46 @@ pbjs.setConfig({
 });
 ```
 
+## GPT Request Hook Integration
+
+The module's test mode lets a page that already uses `disableInitialLoad()` and `bidsBackHandler` evaluate GPT's new [`registerRequestHook()`](https://developers.google.com/publisher-tag/reference#googletag.PubAdsService.registerRequestHook) API (currently experimental) without retagging. Enable it by setting `requestHook.mode` to `'test'`:
+
+```javascript
+pbjs.setConfig({
+    gptPreAuction: {
+        requestHook: {
+            mode: 'test'
+        }
+    }
+});
+```
+
+### How Test Mode Works
+
+In test mode, the module:
+
+* Registers a GPT request hook named `gpt-pre-auction-v<version>`, which GPT calls before each ad request.
+* Intercepts `pbjs.requestBids()` calls from the page for ad units that match GPT slots. An intercepted call starts no auction. It resolves with empty bids and runs `bidsBackHandler` asynchronously with `({}, false, undefined)`, so existing page code proceeds to `googletag.pubads().refresh()`.
+* Runs the auction inside the hook for the slots in the pending ad request, then calls `pbjs.setTargetingForGPTAsync()`. The hook maps slots to ad units with the standard GPT slot matching, including `customGptSlotMatching`. Lazy loading and GPT's automatic refreshes after bfcache restores or heavy ad intervention also get a fresh auction this way.
+* Forwards request-scoped `adUnits`, `labels`, `ortb2`, `timeout`, and `ttlBuffer` from the most recent intercepted call for each ad unit to the hook auction.
+* Unregisters the hook and stops intercepting `pbjs.requestBids()` when `requestHook.mode` is set back to `'disabled'` or `gptPreAuction.enabled` is set to `false`.
+
+### Latency Trade-Off with Other Header Bidding Wrappers
+
+{: .alert.alert-warning :}
+If another header bidding wrapper on the page finishes its own auction before it calls `googletag.pubads().refresh()`, test mode runs the two auctions in sequence instead of in parallel.
+
+In test mode, the Prebid auction starts only when GPT calls the request hook, which happens after the page calls `refresh()`. The other wrapper's auction has finished by then, so the ad request waits for both auctions in turn. To keep the auctions parallel, register the other wrapper as a GPT request hook as well. Otherwise, evaluate test mode on pages where Prebid.js is the only header bidding wrapper.
+
+### Test Mode Caveats
+
+* **Non-GPT ad units:** The module never intercepts instream-only calls, where every ad unit is instream video with no `banner` or `native` media type. Once GPT slots are defined, it also does not intercept calls whose ad units match no GPT slot, such as outstream or native ad units that Prebid.js renders. A call that mixes GPT and non-GPT ad units is intercepted as a whole, and the hook auctions only the ad units that match GPT slots. Request non-GPT ad units in a separate `pbjs.requestBids()` call.
+* **Calls before GPT slots exist:** Until the page defines a GPT slot, the module cannot tell which ad units belong to GPT. It intercepts every call that is not instream-only and only auctions ad units that later match a GPT slot, so any non-GPT ad unit requested that early is never auctioned.
+* **Callbacks that read bids:** Intercepted calls return empty bids. A `bidsBackHandler` that inspects bids before it calls `googletag.pubads().refresh()` therefore sees none.
+* **Hook timeout:** GPT stops waiting for the hook after `requestHookTimeoutMs`. Keep that GPT setting at `"auto"` or slightly above the Prebid auction timeout so that bids arrive before the ad request.
+* **Moving to production:** Test mode is for evaluation. For a permanent integration, replace the page's `disableInitialLoad()` and `bidsBackHandler` code with a hook that the page registers itself, as in the [GPT Request Hook Example](/dev-docs/examples/gpt-request-hook-example.html).
+
 # Further Reading
 
 * [GPID](/features/pbAdSlot.html#the-gpid)
+* [GPT Request Hook Example](/dev-docs/examples/gpt-request-hook-example.html)

@@ -8,6 +8,7 @@ sidebarType: 1
 about:
 - Demonstrates the ability to <strong>refresh individual ad units</strong>. This is useful for infinite scrolling ad slots.
 - Keep in mind that when auto-refreshing is done incorrectly, it could cause the same bids to be rendered repeatedly. For instance, when googletag.pubads.refresh() is called directly without removing the PBJS targeting, the same hb_ variables get re-sent to GAM, re-chosen, and re-rendered over and over without ever asking PBJS for updated targeting variables.  See <a href="/dev-docs/publisher-api-reference/setConfig.html#setConfig-auctionOptions">Auction Options</a> for more info.
+- With GPT's new request hook, every <code>googletag.pubads().refresh()</code> runs a fresh Prebid auction and updates targeting without a custom refresh function. See the <a href="/dev-docs/examples/gpt-request-hook-example.html">GPT Request Hook Example</a>.
 
 
 pid: 20
