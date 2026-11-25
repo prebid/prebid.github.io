@@ -24,16 +24,14 @@ This adapter requires setup and approval from the smartclip team. Please contact
 ### Prebid Server Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name                 | Scope    | Description                                                                                             | Example                 | Type        |
-| -------------------- | -------- | ------------------------------------------------------------------------------------------------------- | ----------------------- | ----------- |
-| `tagId`              | required | A unique ID.                                                                                            | `'Nu68JuOWAvrbzoyrOR9a7A'` | `string` |
-| `publisherId`        | required | A unique PublisherID. Is provided by smartclip                                                          | `'publisher_Id'`        | `string`    |
-| `siteId`             | required | A unique SiteID or AppID. Is provided by smartclip                                                      | `'site_id'`             | `string`    |
-| `secure`             | optional | Boolean identifying whether the requests should be https or not (used to override the protocol if the page isn't secure). | `true`| `boolean`   |
-| `mimes`              | optional | List of MIME types to allow in ad.                                                                      | `['application/javascript', 'video/mp4', 'video/webm']` | `array` |
-| `price_floor`        | optional | Set the current channel price floor in real time.                                                       | `10`                    | `integer`   |
-| `min_duration`       | optional | Minimum video ad duration in seconds                                                                    | `15`                    | `integer`   |
-| `max_duration`       | optional | Maximum video ad duration in seconds                                                                    | `60`                    | `integer`   |
+| Name          | Scope       | Description                                                     | Example                          | Type     |
+| ------------- | ----------- | --------------------------------------------------------------- | -------------------------------- | -------- |
+| `tagId`       | required    | Ad tag ID, provided by smartclip.                               | `'Nu68JuOWAvrbzoyrOR9a7A'`       | `string` |
+| `publisherId` | required    | Publisher ID, provided by smartclip.                            | `'11986'`                        | `string` |
+| `siteId`      | conditional | Site ID, provided by smartclip. Required unless `appId` is set. | `'22860'`                        | `string` |
+| `appId`       | conditional | App ID, provided by smartclip. Required unless `siteId` is set. | `'22860'`                        | `string` |
+| `bundleId`    | optional    | App bundle ID.                                                  | `'com.example.app'`              | `string` |
+| `storeUrl`    | optional    | App store URL.                                                  | `'https://apps.example.com/app'` | `string` |
 
 ### Prebid.js Bid Params
 
