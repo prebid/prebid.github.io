@@ -21,7 +21,7 @@ pbjs: true
 pbs: false
 prebid_member: false
 multiformat_supported: will-bid-on-one
-ortb_blocking_supported: false
+ortb_blocking_supported: partial
 privacy_sandbox: no
 sidebarType: 1
 ---
@@ -34,6 +34,10 @@ Native 1.2 for native) with Railu's signed impression trackers inside, so delive
 trafficked Railu tag. The adapter sets no cookies and asks for no user syncs. Sellers get their tag ID in the Railu
 console (Connect your supply); see [docs.railu.dev](https://docs.railu.dev) or contact [dev@railu.ai](mailto:dev@railu.ai).
 
+An ad unit with several formats sends them all; Railu answers in the first one it can fill, in the order the ad unit
+declares them (or `params.format` first). The publisher's `badv` and `bcat` are honoured; `battr` and `bapp` are
+forwarded.
+
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
@@ -43,6 +47,7 @@ console (Connect your supply); see [docs.railu.dev](https://docs.railu.dev) or c
 | `tid` | recommended | The seller's public Railu tag ID. Bids count as the seller's on its own verified domains | `'t_k3m9p2x7q4w8z6'` | `string` |
 | `source` | optional | The seller's registered Railu source key | `'src_7f3a'` | `string` |
 | `placement` | optional | Where the slot sits on the page: `topscroll`, `midscroll`, `interscroller`, `skin`, `outstream`, `instream`, `infeed` or `display`. Also read from `ortb2Imp.ext.data.placement` | `'topscroll'` | `string` |
+| `format` | optional | The format Railu answers in first when the ad unit declares several; by default the order the ad unit declares them in | `'video'` | `string` |
 | `domain` | optional | The property, when `refererInfo` cannot see it | `'news.example.com'` | `string` |
 | `segments` | optional | The seller's declared first-party segments for this impression | `['sports', 'auto']` | `Array<string>` |
 | `signals` | optional | The seller's declared signal ids | `['sig_42']` | `Array<string>` |
