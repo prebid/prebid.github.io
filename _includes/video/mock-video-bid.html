@@ -7,7 +7,8 @@
           enabled: true,
           intercept: [
             {
-              when: {},
+              {% comment %} Pass adUnitCode to mock only that ad unit's bids, e.g. on pages that also have banner ad units. {% endcomment %}
+              when: {% if include.adUnitCode %}{ adUnitCode: "{{ include.adUnitCode }}" }{% else %}{}{% endif %},
               then: {
                 cpm: 1,
                 mediaType: "video",
