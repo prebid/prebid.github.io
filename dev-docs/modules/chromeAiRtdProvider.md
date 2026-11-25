@@ -21,6 +21,8 @@ The Chrome AI RTD Provider is a Prebid.js Real-Time Data (RTD) module that adds 
 - classify article pages into tier 1 categories of IAB Content Taxonomy 2.2 or Content Category Taxonomy 1.0 with the Decisions API or the Prompt API, written to `site.pagecat`. With Content Taxonomy 2.2, the categories also reach Google Ad Manager as Publisher Provided Signals (`IAB_CONTENT_2_2`) through the `gptPreAuction` module, with no extra setup beyond GPT targeting;
 - answer publisher-defined questions about the page with the [Decisions API](https://github.com/explainers-by-googlers/decisions-api) (`DecisionModel`) or the Prompt API, written to `site.content.data`.
 
+Prompt API keywords, categories and publisher questions are in Prebid.js 11.54.0 and later.
+
 ## API availability
 
 | API | Used for | Status |
@@ -225,7 +227,7 @@ Categories are not written when the auction already has `site.pagecat`, or when 
 
 ### Custom prompts
 
-`keywords.prompt` and `categories.prompt` replace the module's default instruction. The module still adds the rest:
+`keywords.prompt` and `categories.prompt` replace the module's default instruction. For a prompt of your own, ask a [publisher question](#asking-your-own-question). The module still adds the rest:
 
 - for categories, the tier 1 category names (one per line) and then the page text. With the Decisions API, the prompt is the choice question asked over the names;
 - for keywords, the page text.
@@ -266,6 +268,58 @@ The answers are added to `site.content.data` as one entry, without `ext.segtax`,
 ```
 
 No entry is added when `site.content.data` already has a `chromeAi` entry without `ext.segtax`.
+
+#### Asking your own question
+
+A publisher question is the module's way to run a custom prompt: `prompt` is free text, and the answer is constrained to the question's labels, so it can be used as a segment. The module doesn't run prompts with free-form output.
+
+- Use `boolean` for yes/no questions, `choice` to pick one of up to 26 labels (give each a `description` when the label alone is ambiguous), and `score` for a scale.
+- The prompt only sees the [page text](#page-text), not images, video, ads or comments loaded later, so ask about what that text shows.
+- Keep each `prompt` to one question; ask several questions rather than combining them. All questions are answered together, in one model call over the same text.
+- Changing the questions refreshes cached answers.
+
+#### Example: brand safety
+
+```javascript
+decisions: {
+  enabled: true,
+  minConfidence: 0.8,
+  questions: [
+    { id: 'brand_safe', type: 'boolean', prompt: 'Is this page safe for mainstream brands to advertise on, free of adult content, violence, hate speech, illegal drugs, tragedy and graphic news?' },
+    {
+      id: 'sensitive_topic',
+      type: 'choice',
+      prompt: 'Which sensitive topic is this page mainly about, if any?',
+      options: [
+        { label: 'none' },
+        { label: 'adult', description: 'Sexual or adult content' },
+        { label: 'violence', description: 'Violence, crime, war or terrorism' },
+        { label: 'tragedy', description: 'Death, disasters or accidents' },
+        { label: 'hate', description: 'Hate speech or discrimination' },
+        { label: 'drugs', description: 'Illegal drugs, alcohol or tobacco' },
+        { label: 'gambling' }
+      ]
+    }
+  ]
+}
+```
+
+Bidders receive the answers in `site.content.data` (for example `{ id: 'brand_safe', value: 'false' }`). To also use them on the page, for example as an ad server key-value, read them from a bid request:
+
+```javascript
+pbjs.onEvent('bidRequested', (bidderRequest) => {
+  const entry = (bidderRequest.ortb2?.site?.content?.data || [])
+    .find(data => data.name === 'chromeAi' && data.ext?.segtax == null);
+  const answer = entry?.segment.find(segment => segment.id === 'brand_safe')?.value;
+  if (answer) googletag.cmd.push(() => googletag.pubads().setTargeting('brand_safe', answer));
+});
+```
+
+Treat the answer as a signal, not a verification service:
+
+- No answer means not yet known, not safe: the first page view, browsers without the APIs, and pages whose answer arrives after the auction (see [How It Works](#how-it-works)) have none.
+- With the Decisions API, `minConfidence` drops uncertain answers; the Prompt API gives no confidence, so its answers are always kept.
+- The on-device model can be wrong, and the page text leaves out much of what an ad can appear next to.
 
 ## Storage
 
