@@ -12,7 +12,7 @@ fpd_supported: false
 tcfeu_supported: false
 usp_supported: true
 coppa_supported: true
-gpp_supported: true
+gpp_sids: usnat, usstate_all, usp
 schain_supported: true
 dchain_supported: false
 prebid_member: false
