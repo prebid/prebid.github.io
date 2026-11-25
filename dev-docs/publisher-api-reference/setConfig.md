@@ -628,7 +628,7 @@ However, there are also good reasons why publishers may want to control the use 
 {: .alert.alert-info :}
 **User syncing default behavior**
 If you don't tweak any of the settings described in this section, the default behavior of Prebid.js is to wait 3 seconds after the auction ends, and then allow every adapter to drop up to 5 image-based user syncs.
-No user syncs are fired in browsers that don't support third-party sync cookies (Safari, and since Prebid.js 11.9 also Firefox and Chrome on iOS) or when cookies are disabled or denied. See [How User Syncing Works](#setConfig-ConfigureUserSyncing-HowUserSyncingWorks).
+No user syncs are fired in browsers that don't support third-party sync cookies (Safari, and since Prebid.js 11.9 also Firefox and Chrome on iOS) or when cookies are disabled or denied. Publishers can turn syncs back on in these browsers with `allowRestrictedBrowsers`. See [How User Syncing Works](#setConfig-ConfigureUserSyncing-HowUserSyncingWorks).
 
 For more information, see the sections below.
 
@@ -654,6 +654,7 @@ For descriptions of all the properties that control user syncs, see the table be
 | `aliasSyncEnabled` | Boolean | Enable/disable registered syncs for aliased adapters. Default: `false`. |
 | `usePoliteSync` | Boolean | Fire user syncs as low-priority background work. Image syncs are sent with `fetch` (`no-cors`, `credentials: 'include'`, `keepalive`), falling back to an image pixel; iframe syncs are inserted the same way as before, but in a background task. Background tasks use `scheduler.postTask` with `background` priority where available, otherwise `requestIdleCallback` with a 2 second timeout, otherwise they run immediately. Filtering, limits and delays are unchanged. Default: `false`. Since Prebid.js 11.14. |
 | `removeIframes` | Boolean or Object | Remove sync iframes automatically, counting from when each is added to the page (whether or not it loads). On by default; set `false` to keep them for the life of the page. An object sets the delays, in milliseconds (missing ones use the defaults). `withChildFrames`: remove an iframe at this point if it has created frames of its own, and log a warning (default `15000`). `all`: remove it at this point regardless (default `15000`). Set either to `false` to skip that step. See [removeUserSyncs]({{site.baseurl}}/dev-docs/publisher-api-reference/removeUserSyncs.html). Since Prebid.js 11.47. |
+| `allowRestrictedBrowsers` | Array of strings | Browsers in which user syncs are off by default where syncs should still fire, for example after the user has opted in to tracking. Values: `'safari'`, `'firefox'`, `'chromeIOS'`. Applies to bid adapter syncs and to the [Prebid Server adapter]({{site.baseurl}}/dev-docs/modules/prebidServer.html) `cookie_sync` request. Cookie access, consent and activity controls still apply. Default: none. Since Prebid.js 11.53. |
 
 <a name="setConfig-ConfigureUserSyncing-UserSyncExamples"></a>
 
@@ -677,6 +678,16 @@ Turn off user syncing entirely:
 pbjs.setConfig({
     userSync: {
         syncEnabled: false
+    }
+});
+```
+
+Fire user syncs in Firefox, where they are off by default since Prebid.js 11.9:
+
+```javascript
+pbjs.setConfig({
+    userSync: {
+        allowRestrictedBrowsers: ['firefox']
     }
 });
 ```
@@ -807,7 +818,7 @@ The [userSync.registerSync()]({{site.baseurl}}/dev-docs/bidder-adaptor.html#bidd
 
 When user syncs are run, regardless of whether they are invoked by the platform or by the page calling pbjs.triggerUserSyncs(), the queue entries are randomized and appended to the bottom of the HTML tag.
 
-The queue is not fired at all if the browser is Safari (or, since Prebid.js 11.9, Firefox or Chrome on iOS), or if cookies are disabled or access to them is denied (for example, by consent or activity controls). This applies to syncs run after `syncDelay` and to `pbjs.triggerUserSyncs()`. Adapters' `getUserSyncs()` functions are still called and their syncs registered, but no image or iframe syncs are fired. Since Prebid.js 11.20, the [Prebid Server adapter]({{site.baseurl}}/dev-docs/modules/prebidServer.html) also skips its `cookie_sync` request under the same conditions.
+The queue is not fired at all if the browser is Safari (or, since Prebid.js 11.9, Firefox or Chrome on iOS), or if cookies are disabled or access to them is denied (for example, by consent or activity controls). This applies to syncs run after `syncDelay` and to `pbjs.triggerUserSyncs()`. Adapters' `getUserSyncs()` functions are still called and their syncs registered, but no image or iframe syncs are fired. Since Prebid.js 11.20, the [Prebid Server adapter]({{site.baseurl}}/dev-docs/modules/prebidServer.html) also skips its `cookie_sync` request under the same conditions. Since Prebid.js 11.53, browsers listed in `allowRestrictedBrowsers` are not skipped.
 
 <a name="setConfig-targetingControls"></a>
 
