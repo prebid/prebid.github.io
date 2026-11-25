@@ -117,7 +117,3 @@ bids: [
 Where GDPR applies, it needs TCF consent for Aivertise like any other placement. A request that doesn't say whether GDPR applies is treated as if it does, so on a test page without a CMP set `pbjs.setConfig({ ortb2: { regs: { ext: { gdpr: 0 } } } })`.
 
 Add `aivertiseTest=1` to the page URL to mark the auction as a test: Aivertise then bids its banner at a CPM of 20 EUR for any publisher. Test bids carry the ad server targeting key `aivertiseBidderTest=1`.
-
-## GDPR / TCF
-
-Aivertise is registered in the IAB Europe TCF as Dorvan Srl. Where GDPR applies, Aivertise only bids with consent for vendor 1654 and for purposes 1 and 2, and only syncs users with consent for purpose 1.
