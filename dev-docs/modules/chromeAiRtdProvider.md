@@ -323,7 +323,7 @@ Treat the answer as a signal, not a verification service:
 
 ## Storage
 
-All results are stored in localStorage under the `chromeAi_detected_data` key, as an object keyed by page URL, when storage is allowed for the module by the activity controls (for example, the `storage` activity and TCF consent).
+All results are stored in localStorage under the `chromeAi_detected_data` key, as an object keyed by page URL, when storage is allowed for the module by the activity controls (the [`accessDevice` activity](/dev-docs/activity-controls.html) with `storageType: 'html5'`, which TCF consent can also deny).
 
 Keywords, categories and answers are stored with a hash of the settings that shape them (`maxKeywords` and `prompt`; `taxonomy`, `maxCategories`, `articlesOnly` and `prompt`; the questions and `minConfidence`) and of a version of the module's model input, and detected again when those change.
 
