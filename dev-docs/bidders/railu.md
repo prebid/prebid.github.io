@@ -26,7 +26,7 @@ privacy_sandbox: no
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 Railu runs an auction for the seller over OpenRTB 2.6: one request per Prebid auction to
 `https://api.railu.ai/v1/ortb/bid`. The bid carries the served creative (VAST for video, HTML for banner, OpenRTB
@@ -38,12 +38,12 @@ An ad unit with several formats sends them all; Railu answers in the first one i
 declares them (or `params.format` first). The publisher's `badv` and `bcat` are honoured; `battr` and `bapp` are
 forwarded.
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 
 | Name | Scope | Description | Example | Type |
-|------|-------|-------------|---------|------|
+| --- | --- | --- | --- | --- |
 | `tid` | recommended | The seller's public Railu tag ID. Bids count as the seller's on its own verified domains | `'t_k3m9p2x7q4w8z6'` | `string` |
 | `source` | optional | The seller's registered Railu source key | `'src_7f3a'` | `string` |
 | `placement` | optional | Where the slot sits on the page: `topscroll`, `midscroll`, `interscroller`, `skin`, `outstream`, `instream`, `infeed` or `display`. Also read from `ortb2Imp.ext.data.placement` | `'topscroll'` | `string` |
@@ -54,7 +54,7 @@ forwarded.
 | `test` | optional | `true`: Railu answers every slot with a fixed sample bid ($0.50), never billed; for integration testing | `true` | `boolean` |
 | `endpoint` | optional | Override the bid endpoint | `'https://api.railu.ai/v1/ortb/bid'` | `string` |
 
-### Test Parameters
+## Test Parameters
 
 ```js
 var adUnits = [
@@ -76,7 +76,7 @@ var adUnits = [
 ];
 ```
 
-### Deals
+## Deals
 
 When a Railu deal wins, the bid carries `dealId`, so Prebid sets `hb_deal_railu` (and `hb_deal` when it is the
 winning bid). A Google Ad Manager line item that targets the deal key serves it.
