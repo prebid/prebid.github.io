@@ -73,6 +73,22 @@ as well as enabling settings for specific use cases mentioned above (e.g. acbidd
 | params.bidders.\<bidder\>.customCohorts        | Object               | Custom cohorts source configuration for a specific bidder.                                     | -                                                               |
 | params.bidders.\<bidder\>.customCohorts.source | String               | Storage type to read custom cohorts from. Currently only `'ls'` (localStorage) is supported.   | -                                                               |
 | params.bidders.\<bidder\>.customCohorts.key    | String               | The localStorage key to read custom cohorts from.                                              | -                                                               |
+| params.transformations                         | Object[]             | Transformations of the cohorts written to ortb2. See [Transformations](#transformations).      | `[]`                                                            |
+| params.overwrites                              | Object               | Legacy custom functions keyed by bidder code. See [Overwrites](#overwrites).                   | `{}`                                                            |
+
+### Transformations
+
+Each `params.transformations` entry is `{id: 'iab', config: {segtax: Number, iabIds: Object<string, string>}}`; `iab` is the only supported `id`. For each bidder the module writes ortb2 data for, the bidder's Permutive cohort IDs are mapped through `iabIds` (keys are Permutive IDs, values IAB IDs; unmapped IDs are dropped) and added to `user.data` as a `permutive.com` entry with `ext.segtax` set to `segtax`.
+
+### Overwrites
+
+`params.overwrites` is a legacy option: an object of functions keyed by bidder code (bids from `appnexusAst` use the `appnexus` key). Before each auction, the module calls the function for every bid of that bidder in the auction's ad units as `fn(bid, segmentData, acEnabled, utils, bidIdentity)`:
+
+* `bid`: the ad unit bid object; modify it directly. The return value is ignored.
+* `segmentData`: cohorts read from localStorage, with keys `ac`, `ix`, `rubicon`, `appnexus`, `gam`, `ssp` and `topics`.
+* `acEnabled`: `true` if the bidder is in `params.acBidders`.
+* `utils`: `{deepSetValue, deepAccess, isFn, mergeDeep}` from Prebid.js.
+* `bidIdentity`: a function that returns its argument, kept for backwards compatibility.
 
 ### Consent
 

@@ -8,6 +8,11 @@
 # /dev-docs/bidders/BIDDERCODE.md
 #
 # The aim is to find a minimal set of regex patterns that matches any file in these paths
+#
+# The regex is tested against the changed file's path with a leading /
+# (e.g. /dev-docs/bidders/rubicon.md), so patterns can start with / for the
+# repository root. Matching is not anchored at either end: /dev-docs/bidders/ix
+# also matches /dev-docs/bidders/ix-server.md.
 
 /dev-docs/bidders/rubicon : header-bidding@magnite.com
 /dev-docs/bidders/ix : pdu-supply-prebid@indexexchange.com

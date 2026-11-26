@@ -66,12 +66,14 @@ Contact Optimera to get assistance with the params.
 
 {: .table .table-bordered .table-striped }
 
-|  param name | type  |Scope | Description |
-| :------------ | :------------ | :------- | :------- |
-| clientID  | string  | required | Optimera Client ID |
-| optimeraKeyName  | string  | optional |  GAM key name for Optimera. If migrating from the Optimera bidder adapter this will default to hb_deal_optimera and can be ommitted from the configuration. |
-| device  | string  | optional | Device type code for mobile, tablet, or desktop. Either mo, tb, de |
-| apiVersion  | string  | optional | Optimera API Versions. Either v0, or v1. ** Note: v1 wll need to be enabled specifically for your account, otherwise use v0.
+| param name | type | Scope | Description |
+| --- | --- | --- | --- |
+| clientID | string | required | Optimera Client ID |
+| optimeraKeyName | string | optional | GAM key name for Optimera. If migrating from the Optimera bidder adapter this will default to hb_deal_optimera and can be omitted from the configuration. |
+| device | string | optional | Device type code for mobile, tablet, or desktop. Either mo, tb, de |
+| apiVersion | string | optional | Optimera API Versions. Either v0, or v1. **Note: v1 will need to be enabled specifically for your account, otherwise use v0.** |
+| transmitWithBidRequests | string | optional | `'allow'` (default) injects Optimera data into the ORTB2 object of bid requests; any other value, such as `'deny'`, prevents it. |
+| callOPS | boolean or string | optional | When `true` or `'true'`, loads the Optimera oPS measurement script (`https://d15kdpgjg3unno.cloudfront.net/oPS.js?cid=<clientID>`) and appends it to the document body. Default `false`. |
 
 ## Example
 

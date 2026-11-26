@@ -3,6 +3,7 @@ layout: bidder
 title: zMaticoo
 description: zMaticoo Prebid Bidder Adapter
 pbjs: true
+pbs: true
 biddercode: zmaticoo
 deals_supported: false
 tcfeu_supported: true

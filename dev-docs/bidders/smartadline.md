@@ -2,7 +2,9 @@
 layout: bidder
 title: smartadline
 description: Prebid Smartadline Bidder Adaptor
-pbjs: true 
+pbjs: true
+enable_download: false
+pbjs_version_notes: "Not available in current Prebid.js builds; specific reason unknown."
 pbs: false
 biddercode: smartadline
 media_types: banner
@@ -12,18 +14,18 @@ fpd_supported: false
 sidebarType: 1
 ---
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name            | Scope    | Description              | Example      | Type     |
-|-----------------|----------|--------------------------|--------------|----------|
-| `publisherId`   | required | Unique identificator per widget integration provided by Smartadline team | `'1234567'` | `string` |
+| Name | Scope | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| `publisherId` | required | Unique identificator per widget integration provided by Smartadline team | `'1234567'` | `string` |
 
-### Note
+## Note
 
 The Smartadline bidder adaptor requires setup and approval from the Smartadline team. Please reach out to [smartadline@gmail.com](mailto:smartadline@gmail.com) for more information.<br>
 
-### Banner - Ad Unit Setup
+## Banner - Ad Unit Setup
 
 ```javascript
 var adUnits = [
