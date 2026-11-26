@@ -236,20 +236,26 @@ for one bid request.
 ### Currency, Pricing, and Floors
 
 LINA SSP manages the publisher currency, placement floor, and applicable fees.
-Confirm the fixed currency registered for the publisher when configuring the
-Prebid Floors Module and ad server. The adapter calls `bid.getFloor()` once
-with the resolved publisher currency and wildcard media type and size, and sends
-a valid result as OpenRTB `imp.bidfloor` and `imp.bidfloorcur`. An explicit zero
-is preserved. If the request currency cannot be resolved, `getFloor()` fails or
-returns a malformed/mismatched result, LINA skips that bid rather than sending an
-unverified floor. A null or empty result means no matching floor rule and leaves
-an existing static OpenRTB floor unchanged.
+The adapter calls `bid.getFloor()` once with the single valid `ortb2.cur`
+currency and wildcard media type and size, then sends a valid result as OpenRTB
+`imp.bidfloor` and `imp.bidfloorcur`. The Prebid `adServerCurrency` is
+independent from this request currency: LINA does not use it for
+`getFloor()` and does not synthesize `ortb2.cur` from it.
+
+When `ortb2.cur` is absent, LINA uses a valid existing
+`ortb2Imp.bidfloorcur`; if that field is also absent, the floor lookup defaults
+to USD. An explicitly invalid currency, a failed or malformed `getFloor()`
+result, or a floor currency mismatch skips the bid. A null or empty result means
+no matching floor rule and preserves an existing static OpenRTB floor. An
+explicit zero is preserved.
 
 LINA uses the greater of the registered SSP placement floor and client floor
 as the effective publisher Net CPM floor, while keeping an unset floor distinct
 from a configured zero. Floors are converted to DSP Gross CPM using the
 publisher fee. Request currency, positive floor currency, ADEx response
-currency, and publisher currency must align. LINA does not perform FX conversion
+currency, and publisher currency must align. A different
+`adServerCurrency` is handled by Prebid's currency conversion path and is not
+the currency used for LINA floor signaling. LINA does not perform FX conversion
 in the initial Prebid client path. This implementation uses one wildcard floor
 per bid, not separate floors by banner size.
 
