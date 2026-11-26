@@ -38,4 +38,19 @@ For both the Prebid Server and Prebid.js integrations, use only one parameter: `
 
 - Floors: set with the [Price Floors module](/dev-docs/modules/floors.html). Bids and floors are in USD; a floor in another currency is left out of the request, and Prebid still enforces it on the bids.
 - Video: instream video needs Prebid Cache (`cache.url` or `cache.useLocal`). Outstream video needs the publisher's own renderer.
-- User sync: an image pixel that carries the GDPR, US Privacy and GPP signals. No sync is made when COPPA applies.
+- User sync: an iframe when iframe syncs are allowed, otherwise an image pixel, never both. It carries the GDPR, US Privacy and GPP signals. No sync is made when [COPPA](/dev-docs/publisher-api-reference/setConfig.html#setConfig-coppa) is set with `pbjs.setConfig({ coppa: true })`.
+
+Prebid.js allows only image syncs by default. To get the iframe sync, [allow iframe syncs](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing) for `boldwin`:
+
+```javascript
+pbjs.setConfig({
+  userSync: {
+    filterSettings: {
+      iframe: {
+        bidders: ['boldwin'],
+        filter: 'include'
+      }
+    }
+  }
+});
+```
