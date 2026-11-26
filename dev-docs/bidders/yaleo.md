@@ -21,11 +21,12 @@ The Yaleo Bidding adapter requires setup before beginning. Please contact us at 
 
 {: .table .table-bordered .table-striped }
 
-| Name          | Scope    | Description                                                                          | Example                              | Type   |
-| ------------- | -------- | ------------------------------------------------------------------------------------ | ------------------------------------ | ------ |
-| `placementId` | required | Yaleo placement identifier.                                                          |`460a301d-a9f7-4104-b55f-2a3d4674a973`|`string`|
-| `memberId`    | optional | Member identifier.                                                                   |`12345`.                              |`number`|
-| `maxCpm`      | optional | Maximum CPM value. Bids with a CPM higher than the specified value will be rejected. |`2.5`                                 |`number`|
+| Name             | Scope    | Description                                                                                                  | Example                                | Type      |
+| ---------------- | -------- | ------------------------------------------------------------------------------------------------------------ | -------------------------------------- | --------- |
+| `placementId`    | required | Yaleo placement identifier (UUID).                                                                           | `460a301d-a9f7-4104-b55f-2a3d4674a973` | `string`  |
+| `memberId`       | optional | Member identifier.                                                                                           | `12345`                                | `integer` |
+| `maxCpm`         | optional | Maximum CPM value in the auction currency. Bids with a CPM higher than the specified value will be rejected. | `2.5`                                  | `number`  |
+| `forceDarkTheme` | optional | Renders the ad unit in the dark theme.                                                                       | `true`                                 | `boolean` |
 
 ## Configuration
 
