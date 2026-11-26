@@ -217,13 +217,16 @@
             var checksums = results[3];
             modules = addParentModules(modules, parentModules);
             var available = checksums || dependencies;
+            // Leave out modules the release doesn't have, and report them, instead of failing the whole download:
+            // the docs can list a module (or a stale alias page) that a given release doesn't include.
+            var missing = [];
             if (checksums) {
-                var missing = modules.filter(function (module) {
+                missing = modules.filter(function (module) {
                     return !checksums.hasOwnProperty(module + '.js');
                 });
-                if (missing.length > 0) {
-                    throw new Error('Modules not available in Prebid.js ' + version + ': ' + missing.join(', '));
-                }
+                modules = modules.filter(function (module) {
+                    return missing.indexOf(module) === -1;
+                });
             }
             function hasMetadata(module) {
                 return available.hasOwnProperty(module + METADATA_SUFFIX);
@@ -232,6 +235,7 @@
                 version: version,
                 pkg: pkg,
                 modules: modules,
+                missing: missing,
                 chunks: resolveChunks(modules, dependencies, hasMetadata),
                 checksums: checksums,
                 hasMetadata: hasMetadata
@@ -308,7 +312,7 @@
                 return null;
             });
             return Promise.all([bundleSource(bundle), disclosures]).then(function (results) {
-                return {source: results[0], disclosures: results[1]};
+                return {source: results[0], disclosures: results[1], missing: bundle.missing};
             });
         });
     }
