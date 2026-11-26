@@ -27,7 +27,7 @@ pbs: true
 sidebarType: 1
 ---
 
-{% include dev-docs/reports-timeout-events.md endpoint="navvy.media.net/log" data="its customer ID, the number of timed-out bid requests, the timeout and details of those bid requests" %}
+{% include dev-docs/reports-timeout-events.md endpoint="navvy.trustedstack.com/log" data="its customer ID, the number of timed-out bid requests, the timeout and details of those bid requests" %}
 
 ## Bid Params
 
