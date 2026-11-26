@@ -21,7 +21,7 @@ prebid_member: false
 sidebarType: 1
 ---
 
-### Note
+## Note
 
 The Phaistos bidder adapter sends OpenRTB auctions to Phaistos expand at
 `https://pbs.phaistos.eu`. Contact [prebid@phaistos.eu](mailto:prebid@phaistos.eu)
@@ -31,7 +31,7 @@ Device-storage disclosure (host `uids` cookie via credentialed auction and
 iframe user sync):
 [phaistos_ads_cookies_disclosure.json](https://static.adman.gr/phaistos_ads_cookies_disclosure.json).
 
-### Bid Params
+## Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                                                                                      | Type              |
@@ -40,7 +40,7 @@ iframe user sync):
 | `host`      | optional | the grxchange origin. When omitted, Phaistos prebid server fallbacks to `https://x.grxchange.gr` | `string`          |
 | `accountId` | optional | Override for `site.publisher.id`. Defaults to eTLD+1 of the page domain.                         | `string`          |
 
-### First Party Data
+## First Party Data
 
 This adapter reads first-party data from the standard Prebid locations via
 ortbConverter / Prebid Server extensions:
@@ -48,7 +48,7 @@ ortbConverter / Prebid Server extensions:
 - Request-level OpenRTB from `bidderRequest.ortb2` (e.g. site, user, device, regs, schain)
 - Impression-level OpenRTB from `bidRequest.ortb2Imp`
 
-### Configuration
+## Configuration
 
 Phaistos recommends enabling iframe-based user sync so mapped SSP seats can
 match users on expand:
@@ -66,7 +66,8 @@ pbjs.setConfig({
 });
 ```
 
-### Test Parameters
+## Test Parameters
+
 ```javascript
 var adUnits = [
     {
