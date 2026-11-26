@@ -38,3 +38,7 @@ pbjs.setConfig({
   }
 });
 ```
+
+## Test mode
+
+To receive test bids, add `yaleo_test=true` to the page URL, e.g. `https://example.com/page?yaleo_test=true`. The Prebid.js adapter then sends the bid request with the OpenRTB `test: 1` flag.
