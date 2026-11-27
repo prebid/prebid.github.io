@@ -32,10 +32,9 @@ for the common setup flow.
 The adapter uses the fixed HTTPS endpoint
 `https://ssp-api.qa.web3lge.com/v1/prebid/bids` (QA).
 
-Requests send a JSON body with `Content-Type: text/plain`. The `publisherId`
-body field contains the publisher integration key. Responses use JSON.
-Configure LINA SSP CORS to allow the page origin and return
-`Access-Control-Allow-Credentials: true`.
+Requests send a JSON body with `Content-Type: text/plain`. The publisher
+integration key is sent in `ext.lina.publisherId`. Responses use JSON.
+Configure LINA SSP CORS to allow the page origin.
 
 ### Bid Params
 
@@ -236,9 +235,12 @@ for one bid request.
 ### Currency, Pricing, and Floors
 
 LINA SSP manages the publisher currency, placement floor, and applicable fees.
-The adapter calls `bid.getFloor()` once with the single valid `ortb2.cur`
-currency and wildcard media type and size, then sends a valid result as OpenRTB
-`imp.bidfloor` and `imp.bidfloorcur`. The Prebid `adServerCurrency` is
+The adapter calls `bid.getFloor()` with the single valid `ortb2.cur` currency
+and wildcard media type and size, then sends a valid result as OpenRTB
+`imp.bidfloor` and `imp.bidfloorcur`. It repeats the lookup for each present
+media type and each `imp.banner.format` size, and reports a valid result that
+differs from the impression floor in `imp.<mediatype>.ext.bidfloor` and
+`ext.bidfloorcur`. The Prebid `adServerCurrency` is
 independent from this request currency: LINA does not use it for
 `getFloor()` and does not synthesize `ortb2.cur` from it.
 
@@ -246,8 +248,10 @@ When `ortb2.cur` is absent, LINA uses a valid existing
 `ortb2Imp.bidfloorcur`; if that field is also absent, the floor lookup defaults
 to USD. An explicitly invalid currency, a failed or malformed `getFloor()`
 result, or a floor currency mismatch skips the bid. A null or empty result means
-no matching floor rule and preserves an existing static OpenRTB floor. An
-explicit zero is preserved.
+no matching floor rule: it preserves a static `ortb2Imp.bidfloor` and
+`bidfloorcur`, while a static floor supplied in `ortb2Imp.<mediatype>.ext` or
+`ortb2Imp.banner.format[].ext` is replaced so a stale per-format floor is never
+sent without a matching lookup. An explicit zero is preserved.
 
 LINA uses the greater of the registered SSP placement floor and client floor
 as the effective publisher Net CPM floor, while keeping an unset floor distinct
@@ -256,8 +260,9 @@ publisher fee. Request currency, positive floor currency, ADEx response
 currency, and publisher currency must align. A different
 `adServerCurrency` is handled by Prebid's currency conversion path and is not
 the currency used for LINA floor signaling. LINA does not perform FX conversion
-in the initial Prebid client path. This implementation uses one wildcard floor
-per bid, not separate floors by banner size.
+in the initial Prebid client path. Per-format floors are reported only as
+signaling to LINA SSP; the SSP still selects the effective floor, so separate
+floors by banner size never produce a different client-side price.
 
 Returned CPM is publisher Net CPM after applicable SSP fees, with
 `netRevenue: true`. The adapter passes this CPM to Prebid unchanged. A zero fee
